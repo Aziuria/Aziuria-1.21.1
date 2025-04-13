@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "aziuriamod:item/steel_alloy_mesh"
+  }
+
+}
