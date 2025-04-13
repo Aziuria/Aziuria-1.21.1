@@ -66,6 +66,8 @@ public class AziuriaMod {
         if(event.getTabKey() == CreativeModeTabs.BUILDING_BLOCKS){
             event.accept(ModBlocks.SULPHUR_ORE);
             event.accept(ModBlocks.POTASSIUM_ORE);
+            event.accept(ModBlocks.DEEPSLATE_SULPHUR_ORE);
+            event.accept(ModBlocks.DEEPSLATE_POTASSIUM_ORE);
         }
 
     }

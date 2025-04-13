@@ -1,10 +1,12 @@
 {
-  "item.aziuriamod.steel_ingot": "Steel ingot",
-  "item.aziuriamod.steel_alloy_mesh": "Steel alloy mesh",
+  "item.aziuriamod.steel_ingot": "Steel Ingot",
+  "item.aziuriamod.steel_alloy_mesh": "Steel Alloy Mesh",
   "item.aziuriamod.sulphur": "Sulphur",
-  "item.aziuriamod.potassium": "potassium",
+  "item.aziuriamod.potassium": "Potassium",
   "item.aziuriamod.sack": "sack",
 
-  "block.aziuriamod.sulphur_ore": "Sulphur ore",
-  "block.aziuriamod.potassium_ore": "Potassium ore"
+  "block.aziuriamod.sulphur_ore": "Sulphur Ore",
+  "block.aziuriamod.potassium_ore": "Potassium Ore",
+  "block.aziuriamod.deepslate_sulphur_ore": "Deepslate Sulphur Ore",
+  "block.aziuriamod.deepslate_potassium_ore": "Deepslate Potassium Ore"
 }
