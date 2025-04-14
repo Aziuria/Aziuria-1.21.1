@@ -3,11 +3,11 @@
   "category": "misc",
 
   "key": {
-    "I": {
-      "item": "minecraft:raw_iron"
-    },
     "C": {
       "item": "minecraft:coal"
+    },
+    "I": {
+      "item": "minecraft:raw_iron"
     }
   },
   "pattern": [
@@ -17,6 +17,6 @@
   ],
   "result": {
     "count": 1,
-    "id": "aziuriamod:steel_alloy_mesh"
+    "id": "aziuriamod_steel_alloy_mesh"
   }
 }
