@@ -22,13 +22,15 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                 .add(ModBlocks.POTASSIUM_ORE.get())
                 .add(ModBlocks.SULPHUR_ORE.get())
                 .add(ModBlocks.DEEPSLATE_SULPHUR_ORE.get())
-                .add(ModBlocks.DEEPSLATE_POTASSIUM_ORE.get());
+                .add(ModBlocks.DEEPSLATE_POTASSIUM_ORE.get())
+                .add(ModBlocks.STEEL_BLOCK.get());
 
         tag(BlockTags.NEEDS_IRON_TOOL)
                 .add(ModBlocks.SULPHUR_ORE.get())
                 .add(ModBlocks.POTASSIUM_ORE.get())
                 .add(ModBlocks.DEEPSLATE_SULPHUR_ORE.get())
-                .add(ModBlocks.DEEPSLATE_POTASSIUM_ORE.get());
+                .add(ModBlocks.DEEPSLATE_POTASSIUM_ORE.get())
+                .add(ModBlocks.STEEL_BLOCK.get());
 
     }
 }

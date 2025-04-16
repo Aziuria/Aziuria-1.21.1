@@ -71,6 +71,7 @@ public class AziuriaMod {
             event.accept(ModBlocks.POTASSIUM_ORE);
             event.accept(ModBlocks.DEEPSLATE_SULPHUR_ORE);
             event.accept(ModBlocks.DEEPSLATE_POTASSIUM_ORE);
+            event.accept(ModBlocks.STEEL_BLOCK);
         }
 
     }

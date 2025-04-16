@@ -26,6 +26,8 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
 
     @Override
     protected void generate() {
+        dropSelf(ModBlocks.STEEL_BLOCK.get());
+
         add(ModBlocks.SULPHUR_ORE.get(),
         block -> createOreDrop(ModBlocks.SULPHUR_ORE.get(), ModItems.SULPHUR.get()));
         add(ModBlocks.DEEPSLATE_SULPHUR_ORE.get(),
@@ -34,6 +36,7 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
                 block -> createOreDrop(ModBlocks.POTASSIUM_ORE.get(), ModItems.POTASSIUM.get()));
         add(ModBlocks.DEEPSLATE_POTASSIUM_ORE.get(),
                 block -> createMultipleOreDrops(ModBlocks.DEEPSLATE_POTASSIUM_ORE.get(), ModItems.POTASSIUM.get(), 2, 5));
+
 
     }
 

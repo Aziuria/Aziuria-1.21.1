@@ -19,6 +19,8 @@ public class ModBlockStateProvider extends BlockStateProvider {
         blockWithItem(ModBlocks.POTASSIUM_ORE);
         blockWithItem(ModBlocks.DEEPSLATE_POTASSIUM_ORE);
 
+        blockWithItem(ModBlocks.STEEL_BLOCK);
+
     }
 
     private void blockWithItem(DeferredBlock<?> deferredBlock) {
