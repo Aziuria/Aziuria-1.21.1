@@ -21,8 +21,7 @@ import java.util.List;
 public class ModConfiguredFeatures {
     public static final ResourceKey<ConfiguredFeature<?, ?>> OVERWORLD_SULPHUR_ORE_KEY = registerKey("sulphur_ore");
     public static final ResourceKey<ConfiguredFeature<?, ?>> OVERWORLD_POTASSIUM_ORE_KEY = registerKey("potassium_ore");
-   // public static final ResourceKey<ConfiguredFeature<?, ?>> NETHER_BISMUTH_ORE_KEY = registerKey("nether_bismuth_ore");
-   // public static final ResourceKey<ConfiguredFeature<?, ?>> END_BISMUTH_ORE_KEY = registerKey("end_bismuth_ore");
+
 
     public static void bootstrap(BootstrapContext<ConfiguredFeature<?, ?>> context) {
 
