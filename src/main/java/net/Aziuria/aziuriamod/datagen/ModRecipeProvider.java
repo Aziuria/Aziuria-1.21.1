@@ -42,6 +42,13 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .define('S', ModItems.SULPHUR.get())
                 .unlockedBy("has_potassium", has(ModItems.POTASSIUM.get())).save(recipeOutput);
 
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.SACK.get())
+                .pattern("   ")
+                .pattern("L L")
+                .pattern("LLL")
+                .define('L', Items.LEATHER)
+                .unlockedBy("has_leather", has(Items.LEATHER)).save(recipeOutput);
+
         oreSmelting(recipeOutput, STEEL_ALLOY_MESH_SMELTABLES, RecipeCategory.MISC, ModItems.STEEL_INGOT.get(), 0.25f, 200, "steel_ingot");
         oreBlasting(recipeOutput, STEEL_ALLOY_MESH_SMELTABLES, RecipeCategory.MISC, ModItems.STEEL_INGOT.get(), 0.25f, 100, "steel_ingot");
         oreSmelting(recipeOutput, SULPHUR, RecipeCategory.MISC, ModItems.SULPHUR.get(), 0.25f, 200, "sulphur");
