@@ -3,7 +3,12 @@
   "item.aziuriamod.steel_alloy_mesh": "Steel Alloy Mesh",
   "item.aziuriamod.sulphur": "Sulphur",
   "item.aziuriamod.potassium": "Potassium",
-  "item.aziuriamod.sack": "sack",
+  "item.aziuriamod.sack": "Sack",
+  "item.aziuriamod.steel_sword": "Steel Sword",
+  "item.aziuriamod.steel_axe": "Steel Axe",
+  "item.aziuriamod.steel_pickaxe": "Steel Pickaxe",
+  "item.aziuriamod.steel_shovel": "Steel Shovel",
+  "item.aziuriamod.steel_hoe": "Steel Hoe",
 
   "block.aziuriamod.sulphur_ore": "Sulphur Ore",
   "block.aziuriamod.potassium_ore": "Potassium Ore",

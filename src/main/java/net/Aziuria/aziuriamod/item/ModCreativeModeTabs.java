@@ -24,6 +24,11 @@ public class ModCreativeModeTabs {
                         output.accept(ModItems.STEEL_INGOT);
                         output.accept(ModItems.POTASSIUM);
                         output.accept(ModItems.SULPHUR);
+                        output.accept(ModItems.STEEL_PICKAXE);
+                        output.accept(ModItems.STEEL_AXE);
+                        output.accept(ModItems.STEEL_SWORD);
+                        output.accept(ModItems.STEEL_SHOVEL);
+                        output.accept(ModItems.STEEL_HOE);
                         output.accept(ModBlocks.POTASSIUM_ORE);
                         output.accept(ModBlocks.SULPHUR_ORE);
                         output.accept(ModBlocks.DEEPSLATE_POTASSIUM_ORE);

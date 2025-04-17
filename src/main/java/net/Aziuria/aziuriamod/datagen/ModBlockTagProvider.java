@@ -2,6 +2,7 @@ package net.Aziuria.aziuriamod.datagen;
 
 import net.Aziuria.aziuriamod.AziuriaMod;
 import net.Aziuria.aziuriamod.block.ModBlocks;
+import net.Aziuria.aziuriamod.util.ModTags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.tags.BlockTags;
@@ -31,6 +32,13 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                 .add(ModBlocks.DEEPSLATE_SULPHUR_ORE.get())
                 .add(ModBlocks.DEEPSLATE_POTASSIUM_ORE.get())
                 .add(ModBlocks.STEEL_BLOCK.get());
+
+        tag(ModTags.Blocks.NEEDS_STEEL_TOOL)
+                .addTag(BlockTags.NEEDS_IRON_TOOL);
+
+        tag(ModTags.Blocks.INCORRECT_FOR_STEEL_TOOL)
+                .addTag(BlockTags.INCORRECT_FOR_IRON_TOOL)
+                .remove(ModTags.Blocks.NEEDS_STEEL_TOOL);
 
     }
 }
