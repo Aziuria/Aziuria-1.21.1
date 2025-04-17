@@ -34,6 +34,46 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .define('I', Items.RAW_IRON)
                 .unlockedBy("has_raw_iron", has(Items.RAW_IRON)).save(recipeOutput);
 
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.STEEL_PICKAXE.get())
+                .pattern("BBB")
+                .pattern(" K ")
+                .pattern(" K ")
+                .define('K', Items.STICK)
+                .define('B', ModItems.STEEL_INGOT.get())
+                .unlockedBy("has_raw_iron", has(ModItems.STEEL_INGOT)).save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.STEEL_AXE.get())
+                .pattern("BB ")
+                .pattern("BK ")
+                .pattern(" K ")
+                .define('K', Items.STICK)
+                .define('B', ModItems.STEEL_INGOT.get())
+                .unlockedBy("has_raw_iron", has(ModItems.STEEL_INGOT)).save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.STEEL_SHOVEL.get())
+                .pattern(" B ")
+                .pattern(" K ")
+                .pattern(" K ")
+                .define('K', Items.STICK)
+                .define('B', ModItems.STEEL_INGOT.get())
+                .unlockedBy("has_raw_iron", has(ModItems.STEEL_INGOT)).save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.STEEL_SWORD.get())
+                .pattern(" B ")
+                .pattern(" B ")
+                .pattern(" K ")
+                .define('K', Items.STICK)
+                .define('B', ModItems.STEEL_INGOT.get())
+                .unlockedBy("has_raw_iron", has(ModItems.STEEL_INGOT)).save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.STEEL_HOE.get())
+                .pattern("BB ")
+                .pattern(" K ")
+                .pattern(" K ")
+                .define('K', Items.STICK)
+                .define('B', ModItems.STEEL_INGOT.get())
+                .unlockedBy("has_raw_iron", has(ModItems.STEEL_INGOT)).save(recipeOutput);
+
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, Items.GUNPOWDER)
                 .pattern("PSP")
                 .pattern("SPS")
