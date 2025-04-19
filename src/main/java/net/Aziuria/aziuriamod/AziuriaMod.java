@@ -3,7 +3,6 @@ package net.Aziuria.aziuriamod;
 import net.Aziuria.aziuriamod.block.ModBlocks;
 import net.Aziuria.aziuriamod.item.ModCreativeModeTabs;
 import net.Aziuria.aziuriamod.item.ModItems;
-import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.CreativeModeTabs;
 import org.slf4j.Logger;
 
@@ -72,6 +71,7 @@ public class AziuriaMod {
             event.accept(ModBlocks.DEEPSLATE_SULPHUR_ORE);
             event.accept(ModBlocks.DEEPSLATE_POTASSIUM_ORE);
             event.accept(ModBlocks.STEEL_BLOCK);
+            event.accept(ModBlocks.UNBREAKABLE_GLASS);
         }
 
     }
@@ -89,5 +89,8 @@ public class AziuriaMod {
         public static void onClientSetup(FMLClientSetupEvent event) {
 
         }
+
+
+
     }
 }
