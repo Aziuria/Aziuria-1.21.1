@@ -1,6 +1,7 @@
 package net.Aziuria.aziuriamod.item;
 
 import net.Aziuria.aziuriamod.AziuriaMod;
+import net.Aziuria.aziuriamod.block.ModBlocks;
 import net.minecraft.world.item.*;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredItem;
@@ -19,6 +20,8 @@ public class ModItems {
             () -> new Item(new Item.Properties()));
     public static final DeferredItem<Item> SACK = ITEMS.register("sack",
             () -> new Item(new Item.Properties()));
+
+
 
 
 

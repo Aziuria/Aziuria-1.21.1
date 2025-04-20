@@ -40,15 +40,6 @@ public class ModBlocks {
             () -> new Block(BlockBehaviour.Properties.of()
                     .strength(4f).requiresCorrectToolForDrops().sound(SoundType.METAL)));
 
-    public static final DeferredBlock<Block> UNBREAKABLE_GLASS = registerBlock("unbreakable_glass",
-            () -> new Block(BlockBehaviour.Properties.of()
-                    .strength(-1.0F, 3600000.0F).sound(SoundType.GLASS)
-                    .noOcclusion()
-                    .isViewBlocking((s, l, p) -> false)
-                    .isSuffocating((s, l, p) -> false)
-                    .noLootTable().requiresCorrectToolForDrops()
-                    .isRedstoneConductor((s, l, p) -> false)));
-
 
     private static <T extends Block> DeferredBlock<T> registerBlock(String name, Supplier<T> block) {
         DeferredBlock<T> toReturn = BLOCKS.register(name, block);

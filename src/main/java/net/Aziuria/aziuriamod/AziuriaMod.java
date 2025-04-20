@@ -71,7 +71,6 @@ public class AziuriaMod {
             event.accept(ModBlocks.DEEPSLATE_SULPHUR_ORE);
             event.accept(ModBlocks.DEEPSLATE_POTASSIUM_ORE);
             event.accept(ModBlocks.STEEL_BLOCK);
-            event.accept(ModBlocks.UNBREAKABLE_GLASS);
         }
 
     }
@@ -82,15 +81,16 @@ public class AziuriaMod {
 
     }
 
+
+    //
     // You can use EventBusSubscriber to automatically register all static methods in the class annotated with @SubscribeEvent
     @EventBusSubscriber(modid = MOD_ID, bus = EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
     public static class ClientModEvents {
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event) {
 
+
         }
-
-
 
     }
 }
