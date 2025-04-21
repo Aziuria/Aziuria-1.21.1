@@ -1,5 +1,6 @@
 package net.Aziuria.aziuriamod;
 
+import net.Aziuria.aziuriamod.block.entity.ModBlockEntities;
 import net.Aziuria.aziuriamod.block.ModBlocks;
 import net.Aziuria.aziuriamod.item.ModCreativeModeTabs;
 import net.Aziuria.aziuriamod.item.ModItems;
@@ -46,6 +47,7 @@ public class AziuriaMod {
 
         ModItems.register(modEventBus);
         ModBlocks.register(modEventBus);
+        ModBlockEntities.register(modEventBus);
 
         // Register the item to a creative tab
         modEventBus.addListener(this::addCreative);
@@ -74,6 +76,7 @@ public class AziuriaMod {
             event.accept(ModBlocks.DEEPSLATE_POTASSIUM_ORE);
             event.accept(ModBlocks.STEEL_BLOCK);
             event.accept(ModBlocks.UNBREAKABLE_GLASS);
+            event.accept(ModBlocks.OAK_SHELF);
 
 
         }
@@ -97,6 +100,8 @@ public class AziuriaMod {
             event.enqueueWork(() -> {
                 ItemBlockRenderTypes.setRenderLayer(ModBlocks.UNBREAKABLE_GLASS.get(), RenderType.translucent());
             });
+
+
 
 
         }
