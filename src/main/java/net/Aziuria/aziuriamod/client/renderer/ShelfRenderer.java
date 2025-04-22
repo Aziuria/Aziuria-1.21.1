@@ -27,7 +27,7 @@ public class ShelfRenderer implements BlockEntityRenderer<ShelfBlockEntity> {
 
         // Render the shelf model (the block itself) first
         BlockState blockState = blockEntity.getBlockState(); // Get the block state for the shelf
-        Block block = blockState.getBlock(); // Get the actual block
+      //  Block block = blockState.getBlock(); // Get the actual block
         Minecraft.getInstance().getBlockRenderer().renderSingleBlock(blockState, poseStack, bufferSource, combinedLight, combinedOverlay);
 
         // Render each item in the shelf
