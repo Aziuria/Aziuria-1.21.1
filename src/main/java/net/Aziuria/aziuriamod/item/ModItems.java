@@ -22,9 +22,6 @@ public class ModItems {
             () -> new Item(new Item.Properties()));
 
 
-
-
-
     public static final DeferredItem<SwordItem> STEEL_SWORD = ITEMS.register("steel_sword",
             () -> new SwordItem(ModToolTiers.STEEL, new Item.Properties()
                     .attributes(SwordItem.createAttributes(ModToolTiers.STEEL, 4, -2.4f))));

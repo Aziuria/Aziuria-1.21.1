@@ -18,7 +18,6 @@ public class ModBlockStateProvider extends BlockStateProvider {
         blockWithItem(ModBlocks.DEEPSLATE_SULPHUR_ORE);
         blockWithItem(ModBlocks.POTASSIUM_ORE);
         blockWithItem(ModBlocks.DEEPSLATE_POTASSIUM_ORE);
-        simpleBlock(ModBlocks.OAK_SHELF.get());
 
         blockWithItem(ModBlocks.STEEL_BLOCK);
         blockWithItem(ModBlocks.UNBREAKABLE_GLASS);

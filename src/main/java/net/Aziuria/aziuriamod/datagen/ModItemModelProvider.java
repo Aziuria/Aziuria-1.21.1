@@ -1,6 +1,7 @@
 package net.Aziuria.aziuriamod.datagen;
 
 import net.Aziuria.aziuriamod.AziuriaMod;
+import net.Aziuria.aziuriamod.block.ModBlocks;
 import net.Aziuria.aziuriamod.item.ModItems;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
@@ -28,6 +29,7 @@ public class ModItemModelProvider extends ItemModelProvider {
         handheldItem(ModItems.STEEL_SHOVEL);
         handheldItem(ModItems.STEEL_AXE);
         handheldItem(ModItems.STEEL_HOE);
+
 
     }
 

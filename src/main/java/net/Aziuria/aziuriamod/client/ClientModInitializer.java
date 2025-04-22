@@ -9,11 +9,13 @@ import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 
+
 public class ClientModInitializer {
 
     @SubscribeEvent
     public static void onClientSetup(FMLClientSetupEvent event) {
         event.enqueueWork(() -> {
+
             ItemBlockRenderTypes.setRenderLayer(ModBlocks.OAK_SHELF.get(), RenderType.solid());
 
             // Register block entity renderers
@@ -23,5 +25,7 @@ public class ClientModInitializer {
 
     public static void registerBlockEntityRenderers() {
         BlockEntityRenderers.register(ModBlockEntities.SHELF_BLOCK_ENTITY.get(), ShelfRenderer::new);
+
+
     }
 }

@@ -9,8 +9,6 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.DropExperienceBlock;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
-import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
-import net.minecraft.world.level.material.MapColor;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredRegister;
@@ -20,14 +18,6 @@ import java.util.function.Supplier;
 public class ModBlocks {
     public static final DeferredRegister.Blocks BLOCKS =
             DeferredRegister.createBlocks(AziuriaMod.MOD_ID);
-
-    // Define block properties (You can modify the properties as needed)
-    public static final BlockBehaviour.Properties SHELF_PROPERTIES = BlockBehaviour.Properties.of()
-            .mapColor(MapColor.WOOD)
-            .instrument(NoteBlockInstrument.BASS)
-            .strength(2.5F)
-            .sound(SoundType.WOOD)
-            .noOcclusion();
 
 
     public static final DeferredBlock<Block> SULPHUR_ORE = registerBlock("sulphur_ore",

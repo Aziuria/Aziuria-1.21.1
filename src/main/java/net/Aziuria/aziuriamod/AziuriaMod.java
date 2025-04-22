@@ -76,7 +76,6 @@ public class AziuriaMod {
             event.accept(ModBlocks.DEEPSLATE_POTASSIUM_ORE);
             event.accept(ModBlocks.STEEL_BLOCK);
             event.accept(ModBlocks.UNBREAKABLE_GLASS);
-            event.accept(ModBlocks.OAK_SHELF);
 
 
         }
@@ -99,6 +98,7 @@ public class AziuriaMod {
 
             event.enqueueWork(() -> {
                 ItemBlockRenderTypes.setRenderLayer(ModBlocks.UNBREAKABLE_GLASS.get(), RenderType.translucent());
+
             });
 
 

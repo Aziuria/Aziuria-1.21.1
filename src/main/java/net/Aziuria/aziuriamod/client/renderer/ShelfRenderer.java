@@ -25,15 +25,20 @@ public class ShelfRenderer implements BlockEntityRenderer<ShelfBlockEntity> {
     public void render(ShelfBlockEntity blockEntity, float partialTick, PoseStack poseStack, MultiBufferSource bufferSource, int combinedLight, int combinedOverlay) {
         poseStack.pushPose(); // Save the current pose (transformations)
 
+        // Render the shelf model (the block itself) first
+        BlockState blockState = blockEntity.getBlockState(); // Get the block state for the shelf
+        Block block = blockState.getBlock(); // Get the actual block
+        Minecraft.getInstance().getBlockRenderer().renderSingleBlock(blockState, poseStack, bufferSource, combinedLight, combinedOverlay);
+
         // Render each item in the shelf
-        for (int i = 0; i < 6; i++) {
-            ItemStack itemStack = blockEntity.getItem(i);
+        for (int i = 0; i < 4; i++) {
+            ItemStack itemStack = blockEntity.getItems().get(i);
             if (!itemStack.isEmpty()) { // Check if the item slot isn't empty
                 poseStack.pushPose(); // Save the current pose for this item
 
                 // Positioning: adjust X and Z based on slot
-                float xOffset = (i % 3) * 0.3f + 0.1f; // 3 columns
-                float zOffset = (i / 3) * 0.4f + 0.1f; // 2 rows
+                float xOffset = (i % 2) * 0.4f; // 2 columns
+                float zOffset = (i / 2) * 0.4f; // 2 rows
 
                 poseStack.translate(xOffset, 0.2f, zOffset); // Apply the translation (positioning)
                 poseStack.scale(0.4f, 0.4f, 0.4f); // Scale down the item to fit on the shelf
@@ -56,18 +61,7 @@ public class ShelfRenderer implements BlockEntityRenderer<ShelfBlockEntity> {
             }
         }
 
-        // Render the shelf model (the block itself)
-        BlockState blockState = blockEntity.getBlockState(); // Get the block state for the shelf
-        Block block = blockState.getBlock(); // Get the actual block
-
-        // Render the block model of the shelf (the shelf itself)
-        Minecraft.getInstance().getBlockRenderer().renderSingleBlock(blockState, poseStack, bufferSource, combinedLight, combinedOverlay);
-
         poseStack.popPose(); // Final pop of the pose stack (finish rendering the shelf block)
     }
 
-    @Override
-    public int getViewDistance() {
-        return 100; // Define the maximum view distance for rendering the block entity
-    }
 }

@@ -2,6 +2,7 @@ package net.Aziuria.aziuriamod.block.entity;
 
 import com.mojang.serialization.Codec;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.InteractionResult;
@@ -10,53 +11,67 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.Vec3;
+import net.minecraft.core.NonNullList;
 import org.jetbrains.annotations.Nullable;
 
 public class ShelfBlockEntity extends BlockEntity {
     public static final Codec<ShelfBlockEntity> CODEC = Codec.unit(() -> new ShelfBlockEntity(BlockPos.ZERO, null));
 
-    private final ItemStack[] items = new ItemStack[6];
+    private final NonNullList<ItemStack> items = NonNullList.withSize(4, ItemStack.EMPTY); // 4-slot shelf
 
     public ShelfBlockEntity(BlockPos pos, @Nullable BlockState state) {
         super(ModBlockEntities.SHELF_BLOCK_ENTITY.get(), pos, state);
-
-        for (int i = 0; i < items.length; i++) {
-            items[i] = ItemStack.EMPTY;
-        }
     }
 
-    public ItemStack getItem(int index) {
-        return items[index];
-    }
+    public static int getClickedSlot(Vec3 hit, Direction facing) {
+        double x = hit.x;
+        double y = hit.y;
+        double z = hit.z;
 
-    public void setItem(int index, ItemStack item) {
-        items[index] = item;
-        setChanged();
-    }
-
-    public InteractionResult onRightClick(Level level, BlockPos pos, Player player, BlockState state, ItemStack stack) {
-        if (level.isClientSide) return InteractionResult.SUCCESS;
-
-        // Add item
-        if (!stack.isEmpty()) {
-            for (int i = 0; i < items.length; i++) {
-                if (items[i].isEmpty()) {
-                    items[i] = stack.split(1);
-                    setChanged();
-                    return InteractionResult.CONSUME;
-                }
+        switch (facing) {
+            case NORTH -> {
+                if (y > 0.5) return x > 0.5 ? 1 : 0;
+                else return x > 0.5 ? 3 : 2;
+            }
+            case SOUTH -> {
+                if (y > 0.5) return x < 0.5 ? 1 : 0;
+                else return x < 0.5 ? 3 : 2;
+            }
+            case WEST -> {
+                if (y > 0.5) return z < 0.5 ? 1 : 0;
+                else return z < 0.5 ? 3 : 2;
+            }
+            case EAST -> {
+                if (y > 0.5) return z > 0.5 ? 1 : 0;
+                else return z > 0.5 ? 3 : 2;
+            }
+            default -> {
+                return 0;
             }
         }
-        // Remove item
-        else {
-            for (int i = 0; i < items.length; i++) {
-                if (!items[i].isEmpty()) {
-                    player.addItem(items[i].copy());
-                    items[i] = ItemStack.EMPTY;
-                    setChanged();
-                    return InteractionResult.CONSUME;
-                }
+    }
+
+    public InteractionResult onRightClick(Level level, BlockPos pos, Player player, BlockState state, ItemStack heldItem, int slot) {
+        if (slot < 0 || slot >= items.size()) return InteractionResult.PASS;
+
+        if (items.get(slot).isEmpty()) {
+            if (!heldItem.isEmpty()) {
+                items.set(slot, heldItem.copyWithCount(1));
+                heldItem.shrink(1);
+                setChanged();
+                level.sendBlockUpdated(pos, state, state, 3);
+                return InteractionResult.SUCCESS;
             }
+        }
+        if (!items.get(slot).isEmpty()) {
+            if (!player.addItem(items.get(slot))) {
+                player.drop(items.get(slot), false);
+            }
+            items.set(slot, ItemStack.EMPTY);
+            setChanged();
+            level.sendBlockUpdated(pos, state, state, 3);
+            return InteractionResult.SUCCESS;
         }
 
         return InteractionResult.PASS;
@@ -66,10 +81,10 @@ public class ShelfBlockEntity extends BlockEntity {
     protected void loadAdditional(CompoundTag tag, HolderLookup.Provider registries) {
         super.loadAdditional(tag, registries);
 
-        for (int i = 0; i < items.length; i++) {
+        for (int i = 0; i < items.size(); i++) {
             if (tag.contains("Item" + i)) {
                 CompoundTag itemTag = tag.getCompound("Item" + i);
-                items[i] = ItemStack.parse(registries, itemTag).orElse(ItemStack.EMPTY);
+                items.set(i, ItemStack.parse(registries, itemTag).orElse(ItemStack.EMPTY));
             }
         }
     }
@@ -78,12 +93,16 @@ public class ShelfBlockEntity extends BlockEntity {
     public void saveAdditional(CompoundTag tag, HolderLookup.Provider provider) {
         super.saveAdditional(tag, provider);
 
-        for (int i = 0; i < items.length; i++) {
-            if (!items[i].isEmpty()) {
+        for (int i = 0; i < items.size(); i++) {
+            if (!items.get(i).isEmpty()) {
                 CompoundTag itemTag = new CompoundTag();
-                items[i].save(provider, itemTag);
+                items.get(i).save(provider, itemTag);
                 tag.put("Item" + i, itemTag);
             }
         }
+    }
+
+    public NonNullList<ItemStack> getItems() {
+        return items;
     }
 }
