@@ -3,34 +3,32 @@ package net.Aziuria.aziuriamod.block;
 import com.mojang.serialization.MapCodec;
 import net.Aziuria.aziuriamod.block.entity.ShelfBlockEntity;
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.level.block.*;
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraft.world.level.block.state.BlockBehaviour;
-import net.minecraft.world.level.block.state.StateDefinition;
-import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.core.Direction;
-import net.minecraft.world.level.BlockGetter;
-import net.minecraft.world.level.block.state.properties.DirectionProperty;
-import net.minecraft.world.phys.Vec3;
-import net.minecraft.world.phys.shapes.VoxelShape;
-import net.minecraft.world.phys.shapes.Shapes;
-import net.minecraft.world.phys.shapes.CollisionContext;
-import org.jetbrains.annotations.Nullable;
-
-import net.minecraft.world.InteractionResult;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.phys.BlockHitResult;
-import net.minecraft.world.level.Level;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.DirectionProperty;
+import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.Vec3;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.Shapes;
+import net.minecraft.world.phys.shapes.VoxelShape;
+import org.jetbrains.annotations.Nullable;
 
 
 public class ShelfBlock extends BaseEntityBlock {
     public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
 
     public static final MapCodec<ShelfBlock> CODEC = MapCodec.unit(() ->
-            new ShelfBlock(BlockBehaviour.Properties.of()
+            new ShelfBlock(Properties.of()
                     .strength(1.5f)
                     .sound(SoundType.WOOD)
                     .noOcclusion())
@@ -88,7 +86,31 @@ public class ShelfBlock extends BaseEntityBlock {
 
     @Override
     public VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
-        return Shapes.block(); // Replace with custom shape if needed
+        Direction direction = state.getValue(FACING);
+
+        // Full width and height (16x16) and depth of 9/16
+        double offset = 0.0;  // No offset for the collision box
+        double width = 1.0;   // Full width of the block
+        double height = 1.0;  // Full height of the block
+        double depth = 0.5625; // Depth is 9/16 of the block (0.5625)
+
+        // Adjust the coordinates of the collision box based on the facing direction
+        switch (direction) {
+            case NORTH:
+                return Shapes.box(0, 0, offset, width, height, depth);
+
+            case SOUTH:
+                return Shapes.box(0, 0, 1 - depth, width, height, 1);
+
+            case EAST:
+                return Shapes.box(0, 0, 0, depth, height, 1);
+
+            case WEST:
+                return Shapes.box(1 - depth, 0, 0, 1, height, 1);
+
+            default:
+                return Shapes.block();
+        }
     }
 
     @Override

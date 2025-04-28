@@ -1,10 +1,13 @@
 package net.Aziuria.aziuriamod.block.entity;
 
-import com.mojang.serialization.Codec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.protocol.Packet;
+import net.minecraft.network.protocol.game.ClientGamePacketListener;
+import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
+import net.minecraft.world.ContainerHelper;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -13,15 +16,14 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.core.NonNullList;
-import org.jetbrains.annotations.Nullable;
+import net.minecraft.network.chat.Component;
 
 public class ShelfBlockEntity extends BlockEntity {
-    public static final Codec<ShelfBlockEntity> CODEC = Codec.unit(() -> new ShelfBlockEntity(BlockPos.ZERO, null));
+    public final NonNullList<ItemStack> inventory;
 
-    private final NonNullList<ItemStack> items = NonNullList.withSize(4, ItemStack.EMPTY); // 4-slot shelf
-
-    public ShelfBlockEntity(BlockPos pos, @Nullable BlockState state) {
+    public ShelfBlockEntity(BlockPos pos, BlockState state) {
         super(ModBlockEntities.SHELF_BLOCK_ENTITY.get(), pos, state);
+        this.inventory = NonNullList.withSize(4, ItemStack.EMPTY);
     }
 
     public static int getClickedSlot(Vec3 hit, Direction facing) {
@@ -30,79 +32,68 @@ public class ShelfBlockEntity extends BlockEntity {
         double z = hit.z;
 
         switch (facing) {
-            case NORTH -> {
-                if (y > 0.5) return x > 0.5 ? 1 : 0;
-                else return x > 0.5 ? 3 : 2;
-            }
-            case SOUTH -> {
-                if (y > 0.5) return x < 0.5 ? 1 : 0;
-                else return x < 0.5 ? 3 : 2;
-            }
-            case WEST -> {
-                if (y > 0.5) return z < 0.5 ? 1 : 0;
-                else return z < 0.5 ? 3 : 2;
-            }
-            case EAST -> {
-                if (y > 0.5) return z > 0.5 ? 1 : 0;
-                else return z > 0.5 ? 3 : 2;
-            }
-            default -> {
-                return 0;
-            }
+            case NORTH -> { return y > 0.5 ? (x > 0.5 ? 1 : 0) : (x > 0.5 ? 3 : 2); }
+            case SOUTH -> { return y > 0.5 ? (x < 0.5 ? 1 : 0) : (x < 0.5 ? 3 : 2); }
+            case WEST  -> { return y > 0.5 ? (z < 0.5 ? 1 : 0) : (z < 0.5 ? 3 : 2); }
+            case EAST  -> { return y > 0.5 ? (z > 0.5 ? 1 : 0) : (z > 0.5 ? 3 : 2); }
+            default -> { return 0; }
         }
     }
 
     public InteractionResult onRightClick(Level level, BlockPos pos, Player player, BlockState state, ItemStack heldItem, int slot) {
-        if (slot < 0 || slot >= items.size()) return InteractionResult.PASS;
+        if (slot < 0 || slot >= inventory.size()) return InteractionResult.PASS;
 
-        if (items.get(slot).isEmpty()) {
+        if (inventory.get(slot).isEmpty()) {
             if (!heldItem.isEmpty()) {
-                items.set(slot, heldItem.copyWithCount(1));
+                inventory.set(slot, heldItem.copyWithCount(1));
                 heldItem.shrink(1);
                 setChanged();
                 level.sendBlockUpdated(pos, state, state, 3);
-                return InteractionResult.SUCCESS;
+                return InteractionResult.CONSUME;
             }
-        }
-        if (!items.get(slot).isEmpty()) {
-            if (!player.addItem(items.get(slot))) {
-                player.drop(items.get(slot), false);
+        } else {
+            if (!player.addItem(inventory.get(slot))) {
+                player.drop(inventory.get(slot), false);
             }
-            items.set(slot, ItemStack.EMPTY);
+            inventory.set(slot, ItemStack.EMPTY);
             setChanged();
             level.sendBlockUpdated(pos, state, state, 3);
-            return InteractionResult.SUCCESS;
+            return InteractionResult.CONSUME;
         }
 
         return InteractionResult.PASS;
     }
 
     @Override
-    protected void loadAdditional(CompoundTag tag, HolderLookup.Provider registries) {
-        super.loadAdditional(tag, registries);
-
-        for (int i = 0; i < items.size(); i++) {
-            if (tag.contains("Item" + i)) {
-                CompoundTag itemTag = tag.getCompound("Item" + i);
-                items.set(i, ItemStack.parse(registries, itemTag).orElse(ItemStack.EMPTY));
-            }
-        }
+    public Packet<ClientGamePacketListener> getUpdatePacket() {
+        return ClientboundBlockEntityDataPacket.create(this);
     }
 
     @Override
-    public void saveAdditional(CompoundTag tag, HolderLookup.Provider provider) {
-        super.saveAdditional(tag, provider);
+    public CompoundTag getUpdateTag(HolderLookup.Provider registryLookup) {
+        return this.saveWithoutMetadata(registryLookup);
+    }
 
-        for (int i = 0; i < items.size(); i++) {
-            if (!items.get(i).isEmpty()) {
-                CompoundTag itemTag = new CompoundTag();
-                items.get(i).save(provider, itemTag);
-                tag.put("Item" + i, itemTag);
-            }
-        }
+    @Override
+    public void loadAdditional(CompoundTag nbt, HolderLookup.Provider registryLookup) {
+        super.loadAdditional(nbt, registryLookup);
+        this.inventory.clear();
+        ContainerHelper.loadAllItems(nbt, this.inventory, registryLookup);
+        this.setChanged();
+    }
+
+    @Override
+    public void saveAdditional(CompoundTag nbt, HolderLookup.Provider registryLookup) {
+        super.saveAdditional(nbt, registryLookup);
+        ContainerHelper.saveAllItems(nbt, this.inventory, registryLookup);
+    }
+
+    public Component getDisplayName() {
+        return Component.literal("Oak Shelf");
+
     }
 
     public NonNullList<ItemStack> getItems() {
-        return items;
+        return inventory;
     }
 }
