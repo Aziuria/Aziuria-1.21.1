@@ -97,15 +97,19 @@ public class ShelfBlock extends BaseEntityBlock {
         // Adjust the coordinates of the collision box based on the facing direction
         switch (direction) {
             case NORTH:
-                return Shapes.box(0, 0, offset, width, height, depth);
-
-            case SOUTH:
+                // Start at the back (1 - depth) and go to the front (1.0)
                 return Shapes.box(0, 0, 1 - depth, width, height, 1);
 
+            case SOUTH:
+                // Start at the back (0) and go to the front (depth)
+                return Shapes.box(0, 0, 0, width, height, depth);
+
             case EAST:
+                // Correct depth already for EAST direction (reaches the edge of the shelf)
                 return Shapes.box(0, 0, 0, depth, height, 1);
 
             case WEST:
+                // Correct depth already for WEST direction (reaches the edge of the shelf)
                 return Shapes.box(1 - depth, 0, 0, 1, height, 1);
 
             default:

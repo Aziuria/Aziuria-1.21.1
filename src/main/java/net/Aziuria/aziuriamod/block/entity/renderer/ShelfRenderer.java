@@ -38,60 +38,78 @@ public class ShelfRenderer implements BlockEntityRenderer<ShelfBlockEntity> {
 
         poseStack.pushPose();
 
-        // Loop through the inventory slots (2 for top, 2 for bottom)
         for (int i = 0; i < 4; i++) {
             ItemStack itemStack = blockEntity.getItems().get(i);
             if (!itemStack.isEmpty()) {
                 poseStack.pushPose();
 
+                // Center in the middle of the block
+                poseStack.translate(0.5f, 0.2f, 0.5f);
 
-// Center the entire shelf space (keep this translation if needed)
-                poseStack.translate(0.25f, 0.2f, 0.25f);
+                // Determine Y position: top or bottom shelf
+                float yOffset = (i < 2) ? 0.5f : 0.1f;
 
-// Calculate X and Z offsets for the items
-                float xOffset = 0.0f;  // Default value for left
-                float zOffset = 0.0f;  // Default value for front
+                // Define base spacing offsets (based on SOUTH-facing as base)
+                float baseX = 0.25f; // Side spacing
+                float baseZ = (i == 0 || i == 2) ? -0.25f : 0.25f; // Front/back spacing
 
-// Define a shift for all items to move to the right
-                float shiftRight = 0.25f;  // Increase this value to shift further to the right
+                float xOffset = 0f;
+                float zOffset = 0f;
 
-// Set the Y offset for top and bottom
-                float yOffset;
-                if (i < 2) {  // For top section (items 0 and 1)
-                    yOffset = 0.5f;  // Top of the shelf (near 16 height)
-                    // Adjust Z offset for left (-0.25f) and right (+0.25f) sides in the top section
-                    zOffset = (i == 0) ? -0.25f : 0.25f;  // Slightly smaller offset to bring items closer to the center
-                } else {  // For bottom section (items 2 and 3)
-                    yOffset = 0.1f;  // Bottom of the shelf (near 0 height)
-                    // Adjust Z offset for left (-0.25f) and right (+0.25f) sides in the bottom section
-                    zOffset = (i == 2) ? -0.25f : 0.25f;  // Slightly smaller offset to bring items closer to the center
+                // Corrected offsets for each facing direction:
+                switch (facing) {
+                    case NORTH -> {
+                        // Fix offsets for NORTH: Swap xOffset and zOffset.
+                        xOffset = baseZ; // Positive X offset should be used for right
+                        zOffset = -baseX; // Negative Z offset for left
+                        poseStack.translate(0f, 0f, 0.5f);                     }
+                    case SOUTH -> {
+                        // Fix offsets for SOUTH: Swap xOffset and zOffset.
+                        xOffset = -baseZ; // Negative X offset for left
+                        zOffset = baseX;  // Positive Z offset for right
+                        poseStack.translate(0f, 0f, -0.5f);                    }
+                    case EAST -> {
+                        // Fix offsets for EAST: Swap xOffset and zOffset.
+                        xOffset = baseX; // Positive X offset for right
+                        zOffset = baseZ; // Positive Z offset for right
+                        poseStack.translate(-0.5f, 0f, 0f);  // Move back by half a block on X axis (opposite direction)
+                    }
+                    case WEST -> {
+                        // Fix offsets for WEST: Swap xOffset and zOffset.
+                        xOffset = -baseX; // Negative X offset for left
+                        zOffset = -baseZ; // Negative Z offset for left
+                        poseStack.translate(0.5f, 0f, 0f); // Move back by half a block on X axis (opposite direction)
+                    }
                 }
 
-// Apply the right shift to Z offset (to move all items to the right)
-                zOffset += shiftRight;  // Shift everything to the right
-
-// Adjust X offset for the left and right sides
-                if (i == 0 || i == 2) {  // Left-hand side items
-                    xOffset = 0.25f;  // Fine-tune left-hand items (adjusting by 4 pixels)
-                } else {  // Right-hand side items
-                    xOffset = 0.25f;  // Keep right-hand items at this offset
-                }
-
-
-
-// Apply the translation to the pose stack
+                // Apply final translation
                 poseStack.translate(xOffset, yOffset, zOffset);
 
                 // Rotate the items based on facing direction
-                float rotation = switch (facing) {
-                    case NORTH -> 180f;
-                    case EAST  -> -90f;
-                    case SOUTH -> 0f;
-                    case WEST  -> 90f;
-                    default    -> 0f;
+                float blockRotation = switch (facing) {
+                    case EAST -> 180f;
+                    case WEST -> 0f;
+                    case NORTH -> 90f;
+                    case SOUTH -> -90f;
+                    default -> 0f;
                 };
-                poseStack.mulPose(Axis.YP.rotationDegrees(rotation));
+                poseStack.mulPose(Axis.YP.rotationDegrees(blockRotation));
 
+                // Rotate item to show side view
+                poseStack.mulPose(Axis.YP.rotationDegrees(90f));
+
+                // Move item forward a bit (on Z axis for North/South, on X axis for East/West)
+                float forwardOffset = 0.00f;  // Adjust this value for how far forward you want the items
+
+                // Adjust for North/South direction:
+                switch (facing) {
+                    case NORTH -> poseStack.translate(0f, 0f, -forwardOffset);  // Move forward if facing north
+                    case SOUTH -> poseStack.translate(0f, 0f, forwardOffset);   // Move forward if facing south
+                    case EAST  -> poseStack.translate(forwardOffset, 0f, 0f);   // Move forward on X axis for East
+                    case WEST  -> poseStack.translate(-forwardOffset, 0f, 0f);  // Move forward on X axis for West
+                }
+
+                // Scale down the item
                 poseStack.scale(0.4f, 0.4f, 0.4f);
 
                 itemRenderer.renderStatic(itemStack, ItemDisplayContext.FIXED, combinedLight, combinedOverlay, poseStack, bufferSource, blockEntity.getLevel(), 0);
