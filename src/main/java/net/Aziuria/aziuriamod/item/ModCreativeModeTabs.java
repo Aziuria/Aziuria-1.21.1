@@ -36,6 +36,11 @@ public class ModCreativeModeTabs {
                         output.accept(ModBlocks.STEEL_BLOCK);
                         output.accept(ModBlocks.UNBREAKABLE_GLASS);
                         output.accept(ModBlocks.OAK_SHELF);
+                        output.accept(ModBlocks.BIRCH_SHELF);
+                        output.accept(ModBlocks.SPRUCE_SHELF);
+                        output.accept(ModBlocks.JUNGLE_SHELF);
+                        output.accept(ModBlocks.DARK_OAK_SHELF);
+                        output.accept(ModBlocks.BAMBOO_SHELF);
                     }).build());
 
 

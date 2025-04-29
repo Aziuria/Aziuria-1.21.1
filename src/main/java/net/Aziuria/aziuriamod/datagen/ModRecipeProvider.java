@@ -96,13 +96,64 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .define('B', ModItems.STEEL_INGOT.get())
                 .unlockedBy("has_steel_ingot", has(ModItems.STEEL_INGOT)).save(recipeOutput);
 
+        // OAK Shelf
         ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ModBlocks.OAK_SHELF.get())
                 .pattern("WSW")
                 .pattern("WSW")
                 .pattern("WSW")
-                .define('W', Items.OAK_PLANKS)
+                .define('W', Items.OAK_LOG)
                 .define('S', Items.OAK_SLAB)
                 .unlockedBy("has_oak_slab", has(Items.OAK_SLAB))
+                .save(recipeOutput);
+
+// BIRCH Shelf
+        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ModBlocks.BIRCH_SHELF.get())
+                .pattern("WSW")
+                .pattern("WSW")
+                .pattern("WSW")
+                .define('W', Items.BIRCH_LOG)
+                .define('S', Items.BIRCH_SLAB)
+                .unlockedBy("has_birch_slab", has(Items.BIRCH_SLAB))
+                .save(recipeOutput);
+
+// SPRUCE Shelf
+        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ModBlocks.SPRUCE_SHELF.get())
+                .pattern("WSW")
+                .pattern("WSW")
+                .pattern("WSW")
+                .define('W', Items.SPRUCE_LOG)
+                .define('S', Items.SPRUCE_SLAB)
+                .unlockedBy("has_spruce_slab", has(Items.SPRUCE_SLAB))
+                .save(recipeOutput);
+
+// JUNGLE Shelf
+        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ModBlocks.JUNGLE_SHELF.get())
+                .pattern("WSW")
+                .pattern("WSW")
+                .pattern("WSW")
+                .define('W', Items.JUNGLE_LOG)
+                .define('S', Items.JUNGLE_SLAB)
+                .unlockedBy("has_jungle_slab", has(Items.JUNGLE_SLAB))
+                .save(recipeOutput);
+
+// DARK OAK Shelf
+        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ModBlocks.DARK_OAK_SHELF.get())
+                .pattern("WSW")
+                .pattern("WSW")
+                .pattern("WSW")
+                .define('W', Items.DARK_OAK_LOG)
+                .define('S', Items.DARK_OAK_SLAB)
+                .unlockedBy("has_dark_oak_slab", has(Items.DARK_OAK_SLAB))
+                .save(recipeOutput);
+
+// BAMBOO Shelf (note: bamboo uses bamboo blocks and slabs)
+        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ModBlocks.BAMBOO_SHELF.get())
+                .pattern("WSW")
+                .pattern("WSW")
+                .pattern("WSW")
+                .define('W', Items.BAMBOO_BLOCK)
+                .define('S', Items.BAMBOO_SLAB)
+                .unlockedBy("has_bamboo_slab", has(Items.BAMBOO_SLAB))
                 .save(recipeOutput);
 
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.STEEL_INGOT.get(), 9)

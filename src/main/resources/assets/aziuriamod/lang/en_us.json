@@ -17,6 +17,11 @@
   "block.aziuriamod.steel_block": "Steel Block",
   "block.aziuriamod.unbreakable_glass": "Unbreakable Glass",
   "block.aziuriamod.oak_shelf": "Oak Shelf",
+  "block.aziuriamod.bamboo_shelf": "Bamboo Shelf",
+  "block.aziuriamod.birch_shelf": "Birch Shelf",
+  "block.aziuriamod.dark_oak_shelf": "Dark Oak Shelf",
+  "block.aziuriamod.jungle_shelf": "Jungle Shelf",
+  "block.aziuriamod.spruce_shelf": "Spruce Shelf",
 
 
   "creativetab.aziuriamod.useful_items_and_blocks": "Useful Items and Blocks"

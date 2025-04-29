@@ -10,7 +10,6 @@ import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 
 
-
 public class ClientModInitializer {
 
     public static void register(IEventBus eventBus) {
