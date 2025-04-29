@@ -82,6 +82,24 @@ public class ModBlocks {
                     .sound(SoundType.WOOD)
                     .noOcclusion()));
 
+    public static final DeferredBlock<ShelfBlock> ACACIA_SHELF = registerBlock("acacia_shelf",
+            () -> new ShelfBlock(BlockBehaviour.Properties.of()
+                    .strength(1.5f)
+                    .sound(SoundType.WOOD)
+                    .noOcclusion()));
+
+    public static final DeferredBlock<ShelfBlock> CHERRY_SHELF = registerBlock("cherry_shelf",
+            () -> new ShelfBlock(BlockBehaviour.Properties.of()
+                    .strength(1.5f)
+                    .sound(SoundType.WOOD)
+                    .noOcclusion()));
+
+    public static final DeferredBlock<ShelfBlock> MANGROVE_SHELF = registerBlock("mangrove_shelf",
+            () -> new ShelfBlock(BlockBehaviour.Properties.of()
+                    .strength(1.5f)
+                    .sound(SoundType.WOOD)
+                    .noOcclusion()));
+
     public static final DeferredBlock<ShelfBlock> BAMBOO_SHELF = registerBlock("bamboo_shelf",
             () -> new ShelfBlock(BlockBehaviour.Properties.of()
                     .strength(1.5f)

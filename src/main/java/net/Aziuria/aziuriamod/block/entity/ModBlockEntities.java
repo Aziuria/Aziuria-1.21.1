@@ -22,7 +22,10 @@ public class ModBlockEntities {
                     ModBlocks.SPRUCE_SHELF.get(),
                     ModBlocks.JUNGLE_SHELF.get(),
                     ModBlocks.DARK_OAK_SHELF.get(),
-                    ModBlocks.BAMBOO_SHELF.get()
+                    ModBlocks.BAMBOO_SHELF.get(),
+                    ModBlocks.ACACIA_SHELF.get(),
+                    ModBlocks.CHERRY_SHELF.get(),
+                    ModBlocks.MANGROVE_SHELF.get()
             ).build(null));
 
 

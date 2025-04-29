@@ -156,6 +156,33 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .unlockedBy("has_bamboo_slab", has(Items.BAMBOO_SLAB))
                 .save(recipeOutput);
 
+        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ModBlocks.CHERRY_SHELF.get())
+                .pattern("WSW")
+                .pattern("WSW")
+                .pattern("WSW")
+                .define('W', Items.CHERRY_LOG)
+                .define('S', Items.CHERRY_SLAB)
+                .unlockedBy("has_cherry_slab", has(Items.CHERRY_SLAB))
+                .save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ModBlocks.ACACIA_SHELF.get())
+                .pattern("WSW")
+                .pattern("WSW")
+                .pattern("WSW")
+                .define('W', Items.ACACIA_LOG)
+                .define('S', Items.ACACIA_SLAB)
+                .unlockedBy("has_acacia_slab", has(Items.ACACIA_SLAB))
+                .save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ModBlocks.MANGROVE_SHELF.get())
+                .pattern("WSW")
+                .pattern("WSW")
+                .pattern("WSW")
+                .define('W', Items.MANGROVE_LOG)
+                .define('S', Items.MANGROVE_SLAB)
+                .unlockedBy("has_mangrove_slab", has(Items.MANGROVE_SLAB))
+                .save(recipeOutput);
+
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.STEEL_INGOT.get(), 9)
                 .requires(ModBlocks.STEEL_BLOCK)
                 .unlockedBy("has_steel_block", has(ModBlocks.STEEL_BLOCK)).save(recipeOutput);
