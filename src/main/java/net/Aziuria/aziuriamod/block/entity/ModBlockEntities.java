@@ -28,6 +28,13 @@ public class ModBlockEntities {
                     ModBlocks.MANGROVE_SHELF.get()
             ).build(null));
 
+    public static final Supplier<BlockEntityType<StorageBlockEntity>> STORAGE_BLOCK_ENTITY =
+            BLOCK_ENTITIES.register("storage_block_entity", () -> BlockEntityType.Builder.of(
+                    StorageBlockEntity::new,
+                    ModBlocks.OAK_STORAGE.get()
+
+            ).build(null));
+
 
     public static void register(IEventBus eventBus) {
         BLOCK_ENTITIES.register(eventBus);

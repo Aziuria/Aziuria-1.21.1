@@ -14,8 +14,10 @@
   "block.aziuriamod.potassium_ore": "Potassium Ore",
   "block.aziuriamod.deepslate_sulphur_ore": "Deepslate Sulphur Ore",
   "block.aziuriamod.deepslate_potassium_ore": "Deepslate Potassium Ore",
+
   "block.aziuriamod.steel_block": "Steel Block",
   "block.aziuriamod.unbreakable_glass": "Unbreakable Glass",
+
   "block.aziuriamod.oak_shelf": "Oak Shelf",
   "block.aziuriamod.bamboo_shelf": "Bamboo Shelf",
   "block.aziuriamod.birch_shelf": "Birch Shelf",
@@ -25,6 +27,9 @@
   "block.aziuriamod.acacia_shelf": "Acacia Shelf",
   "block.aziuriamod.cherry_shelf": "Cherry Shelf",
   "block.aziuriamod.mangrove_shelf": "Mangrove Shelf",
+
+  "block.aziuriamod.oak_storage": "Oak Storage",
+
 
 
   "creativetab.aziuriamod.useful_items_and_blocks": "Useful Items and Blocks"

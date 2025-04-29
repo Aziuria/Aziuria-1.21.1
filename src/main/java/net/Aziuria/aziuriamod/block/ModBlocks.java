@@ -106,6 +106,15 @@ public class ModBlocks {
                     .sound(SoundType.BAMBOO)
                     .noOcclusion()));
 
+    // WOODEN STORAGES
+
+
+    public static final DeferredBlock<StorageBlock> OAK_STORAGE = registerBlock("oak_storage",
+            () -> new StorageBlock(BlockBehaviour.Properties.of()
+                    .strength(1.5f)
+                    .sound(SoundType.WOOD)
+                    .noOcclusion()));
+
 
     private static <T extends Block> DeferredBlock<T> registerBlock(String name, Supplier<T> block) {
         DeferredBlock<T> toReturn = BLOCKS.register(name, block);
