@@ -43,17 +43,33 @@ public class StorageBlockEntity extends BlockEntity {
     public InteractionResult onRightClick(Level level, BlockPos pos, Player player, BlockState state, ItemStack heldItem, int slot) {
         if (slot < 0 || slot >= inventory.size()) return InteractionResult.PASS;
 
-        if (inventory.get(slot).isEmpty()) {
+        ItemStack slotStack = inventory.get(slot);
+
+        // Try placing the item into the slot
+        if (slotStack.isEmpty()) {
             if (!heldItem.isEmpty()) {
-                inventory.set(slot, heldItem.copyWithCount(1));
-                heldItem.shrink(1);
+                int stackSize = Math.min(heldItem.getMaxStackSize(), 64);  // Ensure the stack does not exceed 64
+                inventory.set(slot, heldItem.copyWithCount(stackSize));
+                heldItem.shrink(stackSize);
                 setChanged();
                 level.sendBlockUpdated(pos, state, state, 3);
                 return InteractionResult.CONSUME;
             }
         } else {
-            if (!player.addItem(inventory.get(slot))) {
-                player.drop(inventory.get(slot), false);
+            // Try stacking with the existing item in the slot
+            if (ItemStack.matches(slotStack, heldItem) && slotStack.getCount() < slotStack.getMaxStackSize()) {
+                int availableSpace = slotStack.getMaxStackSize() - slotStack.getCount();
+                int addAmount = Math.min(heldItem.getCount(), availableSpace);
+                slotStack.grow(addAmount);
+                heldItem.shrink(addAmount);
+                setChanged();
+                level.sendBlockUpdated(pos, state, state, 3);
+                return InteractionResult.CONSUME;
+            }
+
+            // Drop the item if it can't stack, or the slot is full
+            if (!player.addItem(slotStack)) {
+                player.drop(slotStack, false);
             }
             inventory.set(slot, ItemStack.EMPTY);
             setChanged();

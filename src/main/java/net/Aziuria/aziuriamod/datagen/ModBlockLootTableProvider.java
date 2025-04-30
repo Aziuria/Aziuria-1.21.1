@@ -28,6 +28,24 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
     protected void generate() {
         dropSelf(ModBlocks.STEEL_BLOCK.get());
         dropSelf(ModBlocks.OAK_SHELF.get());
+        dropSelf(ModBlocks.ACACIA_SHELF.get());
+        dropSelf(ModBlocks.BAMBOO_SHELF.get());
+        dropSelf(ModBlocks.BIRCH_SHELF.get());
+        dropSelf(ModBlocks.CHERRY_SHELF.get());
+        dropSelf(ModBlocks.DARK_OAK_SHELF.get());
+        dropSelf(ModBlocks.JUNGLE_SHELF.get());
+        dropSelf(ModBlocks.MANGROVE_SHELF.get());
+        dropSelf(ModBlocks.SPRUCE_SHELF.get());
+
+        dropSelf(ModBlocks.OAK_STORAGE.get());
+        dropSelf(ModBlocks.ACACIA_STORAGE.get());
+        dropSelf(ModBlocks.BAMBOO_STORAGE.get());
+        dropSelf(ModBlocks.BIRCH_STORAGE.get());
+        dropSelf(ModBlocks.CHERRY_STORAGE.get());
+        dropSelf(ModBlocks.DARK_OAK_STORAGE.get());
+        dropSelf(ModBlocks.JUNGLE_STORAGE.get());
+        dropSelf(ModBlocks.MANGROVE_STORAGE.get());
+        dropSelf(ModBlocks.SPRUCE_STORAGE.get());
 
         add(ModBlocks.SULPHUR_ORE.get(),
         block -> createOreDrop(ModBlocks.SULPHUR_ORE.get(), ModItems.SULPHUR.get()));

@@ -43,17 +43,35 @@ public class ShelfBlockEntity extends BlockEntity {
     public InteractionResult onRightClick(Level level, BlockPos pos, Player player, BlockState state, ItemStack heldItem, int slot) {
         if (slot < 0 || slot >= inventory.size()) return InteractionResult.PASS;
 
-        if (inventory.get(slot).isEmpty()) {
+        ItemStack slotStack = inventory.get(slot);
+
+        // === MODIFIED LOGIC START ===
+        if (slotStack.isEmpty()) {
             if (!heldItem.isEmpty()) {
-                inventory.set(slot, heldItem.copyWithCount(1));
-                heldItem.shrink(1);
+                // Place entire stack into the empty slot
+                inventory.set(slot, heldItem.copy());
+                heldItem.setCount(0);
                 setChanged();
                 level.sendBlockUpdated(pos, state, state, 3);
                 return InteractionResult.CONSUME;
             }
         } else {
-            if (!player.addItem(inventory.get(slot))) {
-                player.drop(inventory.get(slot), false);
+            // Try stacking if same item and compatible
+            if (ItemStack.matches(slotStack, heldItem)) {
+                int space = slotStack.getMaxStackSize() - slotStack.getCount();
+                if (space > 0) {
+                    int transfer = Math.min(space, heldItem.getCount());
+                    slotStack.grow(transfer);
+                    heldItem.shrink(transfer);
+                    setChanged();
+                    level.sendBlockUpdated(pos, state, state, 3);
+                    return InteractionResult.CONSUME;
+                }
+            }
+
+            // If not stackable or full, return the item to player
+            if (!player.addItem(slotStack)) {
+                player.drop(slotStack, false);
             }
             inventory.set(slot, ItemStack.EMPTY);
             setChanged();
