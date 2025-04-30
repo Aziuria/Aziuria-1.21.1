@@ -1,0 +1,19 @@
+{
+	"variants": {
+		"facing=north": {
+			"model": "aziuriamod:block/dark_oak_storage"
+		},
+		"facing=south": {
+			"model": "aziuriamod:block/dark_oak_storage",
+			"y": 180
+		},
+		"facing=east": {
+			"model": "aziuriamod:block/dark_oak_storage",
+			"y": 90
+		},
+		"facing=west": {
+			"model": "aziuriamod:block/dark_oak_storage",
+			"y": 270
+		}
+	}
+}

@@ -1,0 +1,19 @@
+{
+	"variants": {
+		"facing=north": {
+			"model": "aziuriamod:block/acacia_storage"
+		},
+		"facing=south": {
+			"model": "aziuriamod:block/acacia_storage",
+			"y": 180
+		},
+		"facing=east": {
+			"model": "aziuriamod:block/acacia_storage",
+			"y": 90
+		},
+		"facing=west": {
+			"model": "aziuriamod:block/acacia_storage",
+			"y": 270
+		}
+	}
+}

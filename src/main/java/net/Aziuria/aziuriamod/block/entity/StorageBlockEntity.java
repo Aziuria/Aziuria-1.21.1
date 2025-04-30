@@ -28,17 +28,16 @@ public class StorageBlockEntity extends BlockEntity {
 
     public static int getClickedSlot(Vec3 hit, Direction facing) {
         double x = hit.x;
-        double y = hit.y;
         double z = hit.z;
 
-        // Here, we're assuming that the hitbox is divided into top and bottom
-        switch (facing) {
-            case NORTH -> { return y > 0.5 ? 0 : 1; }  // Top is 0, Bottom is 1
-            case SOUTH -> { return y > 0.5 ? 0 : 1; }
-            case WEST  -> { return y > 0.5 ? 0 : 1; }
-            case EAST  -> { return y > 0.5 ? 0 : 1; }
-            default -> { return 0; }
-        }
+        // Determine slot based on horizontal division (left/right from player view)
+        return switch (facing) {
+            case NORTH -> x > 0.5 ? 1 : 0; // Right is slot 1, Left is slot 0
+            case SOUTH -> x < 0.5 ? 1 : 0;
+            case WEST  -> z < 0.5 ? 1 : 0;
+            case EAST  -> z > 0.5 ? 1 : 0;
+            default -> 0;
+        };
     }
 
     public InteractionResult onRightClick(Level level, BlockPos pos, Player player, BlockState state, ItemStack heldItem, int slot) {

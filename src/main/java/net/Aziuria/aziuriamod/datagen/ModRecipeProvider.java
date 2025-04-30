@@ -183,6 +183,104 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .unlockedBy("has_mangrove_slab", has(Items.MANGROVE_SLAB))
                 .save(recipeOutput);
 
+        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ModBlocks.OAK_STORAGE.get())
+                .pattern("   ")
+                .pattern("WTW")
+                .pattern("WSW")
+                .define('W', Items.OAK_LOG)
+                .define('S', Items.OAK_SLAB)
+                .define('T', Items.STICK)
+                .unlockedBy("has_oak_slab", has(Items.OAK_SLAB))
+                .save(recipeOutput);
+
+        // Birch Storage
+        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ModBlocks.BIRCH_STORAGE.get())
+                .pattern("   ")
+                .pattern("WTW")
+                .pattern("WSW")
+                .define('W', Items.BIRCH_LOG)
+                .define('S', Items.BIRCH_SLAB)
+                .define('T', Items.STICK)
+                .unlockedBy("has_birch_slab", has(Items.BIRCH_SLAB))
+                .save(recipeOutput);
+
+// Spruce Storage
+        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ModBlocks.SPRUCE_STORAGE.get())
+                .pattern("   ")
+                .pattern("WTW")
+                .pattern("WSW")
+                .define('W', Items.SPRUCE_LOG)
+                .define('S', Items.SPRUCE_SLAB)
+                .define('T', Items.STICK)
+                .unlockedBy("has_spruce_slab", has(Items.SPRUCE_SLAB))
+                .save(recipeOutput);
+
+// Jungle Storage
+        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ModBlocks.JUNGLE_STORAGE.get())
+                .pattern("   ")
+                .pattern("WTW")
+                .pattern("WSW")
+                .define('W', Items.JUNGLE_LOG)
+                .define('S', Items.JUNGLE_SLAB)
+                .define('T', Items.STICK)
+                .unlockedBy("has_jungle_slab", has(Items.JUNGLE_SLAB))
+                .save(recipeOutput);
+
+// Dark Oak Storage
+        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ModBlocks.DARK_OAK_STORAGE.get())
+                .pattern("   ")
+                .pattern("WTW")
+                .pattern("WSW")
+                .define('W', Items.DARK_OAK_LOG)
+                .define('S', Items.DARK_OAK_SLAB)
+                .define('T', Items.STICK)
+                .unlockedBy("has_dark_oak_slab", has(Items.DARK_OAK_SLAB))
+                .save(recipeOutput);
+
+// Acacia Storage
+        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ModBlocks.ACACIA_STORAGE.get())
+                .pattern("   ")
+                .pattern("WTW")
+                .pattern("WSW")
+                .define('W', Items.ACACIA_LOG)
+                .define('S', Items.ACACIA_SLAB)
+                .define('T', Items.STICK)
+                .unlockedBy("has_acacia_slab", has(Items.ACACIA_SLAB))
+                .save(recipeOutput);
+
+        // Cherry Storage
+        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ModBlocks.CHERRY_STORAGE.get())
+                .pattern("   ")
+                .pattern("WTW")
+                .pattern("WSW")
+                .define('W', Items.CHERRY_LOG)
+                .define('S', Items.CHERRY_SLAB)
+                .define('T', Items.STICK)
+                .unlockedBy("has_cherry_slab", has(Items.CHERRY_SLAB))
+                .save(recipeOutput);
+
+        // Mangrove Storage
+        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ModBlocks.MANGROVE_STORAGE.get())
+                .pattern("   ")
+                .pattern("WTW")
+                .pattern("WSW")
+                .define('W', Items.MANGROVE_LOG)
+                .define('S', Items.MANGROVE_SLAB)
+                .define('T', Items.STICK)
+                .unlockedBy("has_mangrove_slab", has(Items.MANGROVE_SLAB))
+                .save(recipeOutput);
+
+        // Bamboo Storage (assuming custom bamboo slab exists)
+        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ModBlocks.BAMBOO_STORAGE.get())
+                .pattern("   ")
+                .pattern("WTW")
+                .pattern("WSW")
+                .define('W', Items.BAMBOO_BLOCK)
+                .define('S', Items.BAMBOO_SLAB) // Assuming you have a BAMBOO_SLAB item in your ModItems
+                .define('T', Items.STICK)
+                .unlockedBy("has_bamboo_slab", has(Items.BAMBOO_SLAB))
+                .save(recipeOutput);
+
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.STEEL_INGOT.get(), 9)
                 .requires(ModBlocks.STEEL_BLOCK)
                 .unlockedBy("has_steel_block", has(ModBlocks.STEEL_BLOCK)).save(recipeOutput);

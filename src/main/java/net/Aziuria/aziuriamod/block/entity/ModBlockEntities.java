@@ -31,7 +31,15 @@ public class ModBlockEntities {
     public static final Supplier<BlockEntityType<StorageBlockEntity>> STORAGE_BLOCK_ENTITY =
             BLOCK_ENTITIES.register("storage_block_entity", () -> BlockEntityType.Builder.of(
                     StorageBlockEntity::new,
-                    ModBlocks.OAK_STORAGE.get()
+                    ModBlocks.OAK_STORAGE.get(),
+                    ModBlocks.BAMBOO_STORAGE.get(),
+                    ModBlocks.BIRCH_STORAGE.get(),
+                    ModBlocks.SPRUCE_STORAGE.get(),
+                    ModBlocks.DARK_OAK_STORAGE.get(),
+                    ModBlocks.JUNGLE_STORAGE.get(),
+                    ModBlocks.MANGROVE_STORAGE.get(),
+                    ModBlocks.CHERRY_STORAGE.get(),
+                    ModBlocks.ACACIA_STORAGE.get()
 
             ).build(null));
 

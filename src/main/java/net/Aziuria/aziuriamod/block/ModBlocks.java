@@ -115,6 +115,54 @@ public class ModBlocks {
                     .sound(SoundType.WOOD)
                     .noOcclusion()));
 
+    public static final DeferredBlock<StorageBlock> ACACIA_STORAGE = registerBlock("acacia_storage",
+            () -> new StorageBlock(BlockBehaviour.Properties.of()
+                    .strength(1.5f)
+                    .sound(SoundType.WOOD)
+                    .noOcclusion()));
+
+    public static final DeferredBlock<StorageBlock> BAMBOO_STORAGE = registerBlock("bamboo_storage",
+            () -> new StorageBlock(BlockBehaviour.Properties.of()
+                    .strength(1.5f)
+                    .sound(SoundType.BAMBOO)
+                    .noOcclusion()));
+
+    public static final DeferredBlock<StorageBlock> BIRCH_STORAGE = registerBlock("birch_storage",
+            () -> new StorageBlock(BlockBehaviour.Properties.of()
+                    .strength(1.5f)
+                    .sound(SoundType.WOOD)
+                    .noOcclusion()));
+
+    public static final DeferredBlock<StorageBlock> CHERRY_STORAGE = registerBlock("cherry_storage",
+            () -> new StorageBlock(BlockBehaviour.Properties.of()
+                    .strength(1.5f)
+                    .sound(SoundType.WOOD)
+                    .noOcclusion()));
+
+    public static final DeferredBlock<StorageBlock> DARK_OAK_STORAGE = registerBlock("dark_oak_storage",
+            () -> new StorageBlock(BlockBehaviour.Properties.of()
+                    .strength(1.5f)
+                    .sound(SoundType.WOOD)
+                    .noOcclusion()));
+
+    public static final DeferredBlock<StorageBlock> JUNGLE_STORAGE = registerBlock("jungle_storage",
+            () -> new StorageBlock(BlockBehaviour.Properties.of()
+                    .strength(1.5f)
+                    .sound(SoundType.WOOD)
+                    .noOcclusion()));
+
+    public static final DeferredBlock<StorageBlock> MANGROVE_STORAGE = registerBlock("mangrove_storage",
+            () -> new StorageBlock(BlockBehaviour.Properties.of()
+                    .strength(1.5f)
+                    .sound(SoundType.WOOD)
+                    .noOcclusion()));
+
+    public static final DeferredBlock<StorageBlock> SPRUCE_STORAGE = registerBlock("spruce_storage",
+            () -> new StorageBlock(BlockBehaviour.Properties.of()
+                    .strength(1.5f)
+                    .sound(SoundType.WOOD)
+                    .noOcclusion()));
+
 
     private static <T extends Block> DeferredBlock<T> registerBlock(String name, Supplier<T> block) {
         DeferredBlock<T> toReturn = BLOCKS.register(name, block);

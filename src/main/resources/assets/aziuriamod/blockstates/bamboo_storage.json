@@ -1,0 +1,19 @@
+{
+	"variants": {
+		"facing=north": {
+			"model": "aziuriamod:block/bamboo_storage"
+		},
+		"facing=south": {
+			"model": "aziuriamod:block/bamboo_storage",
+			"y": 180
+		},
+		"facing=east": {
+			"model": "aziuriamod:block/bamboo_storage",
+			"y": 90
+		},
+		"facing=west": {
+			"model": "aziuriamod:block/bamboo_storage",
+			"y": 270
+		}
+	}
+}

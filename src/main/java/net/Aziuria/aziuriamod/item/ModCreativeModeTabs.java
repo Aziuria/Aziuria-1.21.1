@@ -44,7 +44,15 @@ public class ModCreativeModeTabs {
                         output.accept(ModBlocks.ACACIA_SHELF);
                         output.accept(ModBlocks.CHERRY_SHELF);
                         output.accept(ModBlocks.MANGROVE_SHELF);
+                        output.accept(ModBlocks.ACACIA_STORAGE);
+                        output.accept(ModBlocks.BAMBOO_STORAGE);
+                        output.accept(ModBlocks.BIRCH_STORAGE);
+                        output.accept(ModBlocks.CHERRY_STORAGE);
+                        output.accept(ModBlocks.DARK_OAK_STORAGE);
+                        output.accept(ModBlocks.JUNGLE_STORAGE);
+                        output.accept(ModBlocks.MANGROVE_STORAGE);
                         output.accept(ModBlocks.OAK_STORAGE);
+                        output.accept(ModBlocks.SPRUCE_STORAGE);;
                     }).build());
 
 

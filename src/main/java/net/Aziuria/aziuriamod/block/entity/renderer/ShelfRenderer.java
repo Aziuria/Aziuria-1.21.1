@@ -87,8 +87,8 @@ public class ShelfRenderer implements BlockEntityRenderer<ShelfBlockEntity> {
 
                 // Rotate the items based on facing direction
                 float blockRotation = switch (facing) {
-                    case EAST -> 180f;
-                    case WEST -> 0f;
+                    case EAST -> 0f; // Rotate by 180 degrees for East-facing items
+                    case WEST -> 180f; // Rotate by 180 degrees for West-facing items
                     case NORTH -> 90f;
                     case SOUTH -> -90f;
                     default -> 0f;
