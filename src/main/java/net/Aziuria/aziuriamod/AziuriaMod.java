@@ -55,10 +55,15 @@ public class AziuriaMod {
         ModBlocks.register(modEventBus);
         ModBlockEntities.register(modEventBus);
 
+        // Register the BlockDropHandler to handle grass drops
+        NeoForge.EVENT_BUS.register(new BlockDropHandler());  // Register the BlockDropHandler class as an instance
+
+
         // Register the item to a creative tab
         modEventBus.addListener(this::addCreative);
         // Register our mod's ModConfigSpec so that FML can create and load the config file for us
         modContainer.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
+
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {
@@ -108,9 +113,8 @@ public class AziuriaMod {
             });
 
 
-
-
         }
 
     }
+
 }
