@@ -3,6 +3,9 @@ package net.Aziuria.aziuriamod;
 import net.Aziuria.aziuriamod.block.ModBlocks;
 import net.Aziuria.aziuriamod.block.entity.ModBlockEntities;
 import net.Aziuria.aziuriamod.client.ClientModInitializer;
+import net.Aziuria.aziuriamod.client.screen.ModMenus;
+import net.Aziuria.aziuriamod.events.ModEvents;
+import net.Aziuria.aziuriamod.handler.BlockDropHandler;
 import net.Aziuria.aziuriamod.item.ModCreativeModeTabs;
 import net.Aziuria.aziuriamod.item.ModItems;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
@@ -44,19 +47,25 @@ public class AziuriaMod {
             ClientModInitializer.register(modEventBus);
         }
 
+
         // Register ourselves for server and other game events we are interested in.
         // Note that this is necessary if and only if we want *this* class (ExampleMod) to respond directly to events.
         // Do not add this line if there are no @SubscribeEvent-annotated functions in this class, like onServerStarting() below.
         NeoForge.EVENT_BUS.register(this);
+
+
 
         ModCreativeModeTabs.register(modEventBus);
 
         ModItems.register(modEventBus);
         ModBlocks.register(modEventBus);
         ModBlockEntities.register(modEventBus);
+        ModMenus.register(modEventBus);
 
         // Register the BlockDropHandler to handle grass drops
-        NeoForge.EVENT_BUS.register(new BlockDropHandler());  // Register the BlockDropHandler class as an instance
+        NeoForge.EVENT_BUS.register(BlockDropHandler.class);  // Register the BlockDropHandler class
+        NeoForge.EVENT_BUS.register(ModEvents.class);
+
 
 
         // Register the item to a creative tab
@@ -77,7 +86,6 @@ public class AziuriaMod {
             event.accept(ModItems.STEEL_ALLOY_MESH);
             event.accept(ModItems.SULPHUR);
             event.accept(ModItems.POTASSIUM);
-            event.accept(ModItems.SACK);
         }
 
         if(event.getTabKey() == CreativeModeTabs.BUILDING_BLOCKS){
@@ -109,6 +117,8 @@ public class AziuriaMod {
 
             event.enqueueWork(() -> {
                 ItemBlockRenderTypes.setRenderLayer(ModBlocks.UNBREAKABLE_GLASS.get(), RenderType.translucent());
+
+
 
             });
 

@@ -40,7 +40,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .pattern(" K ")
                 .define('K', Items.STICK)
                 .define('B', ModItems.STEEL_INGOT.get())
-                .unlockedBy("has_raw_iron", has(ModItems.STEEL_INGOT)).save(recipeOutput);
+                .unlockedBy("has_steel_ingot", has(ModItems.STEEL_INGOT)).save(recipeOutput);
 
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.STEEL_AXE.get())
                 .pattern("BB ")
@@ -48,7 +48,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .pattern(" K ")
                 .define('K', Items.STICK)
                 .define('B', ModItems.STEEL_INGOT.get())
-                .unlockedBy("has_raw_iron", has(ModItems.STEEL_INGOT)).save(recipeOutput);
+                .unlockedBy("has_steel_ingot", has(ModItems.STEEL_INGOT)).save(recipeOutput);
 
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.STEEL_SHOVEL.get())
                 .pattern(" B ")
@@ -56,7 +56,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .pattern(" K ")
                 .define('K', Items.STICK)
                 .define('B', ModItems.STEEL_INGOT.get())
-                .unlockedBy("has_raw_iron", has(ModItems.STEEL_INGOT)).save(recipeOutput);
+                .unlockedBy("has_steel_ingot", has(ModItems.STEEL_INGOT)).save(recipeOutput);
 
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.STEEL_SWORD.get())
                 .pattern(" B ")
@@ -64,7 +64,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .pattern(" K ")
                 .define('K', Items.STICK)
                 .define('B', ModItems.STEEL_INGOT.get())
-                .unlockedBy("has_raw_iron", has(ModItems.STEEL_INGOT)).save(recipeOutput);
+                .unlockedBy("has_steel_ingot", has(ModItems.STEEL_INGOT)).save(recipeOutput);
 
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.STEEL_HOE.get())
                 .pattern("BB ")
@@ -72,7 +72,35 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .pattern(" K ")
                 .define('K', Items.STICK)
                 .define('B', ModItems.STEEL_INGOT.get())
-                .unlockedBy("has_raw_iron", has(ModItems.STEEL_INGOT)).save(recipeOutput);
+                .unlockedBy("has_steel_ingot", has(ModItems.STEEL_INGOT)).save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.STEEL_HELMET.get())
+                .pattern("BBB")
+                .pattern("B B")
+                .pattern("   ")
+                .define('B', ModItems.STEEL_INGOT.get())
+                .unlockedBy("has_steel_ingot", has(ModItems.STEEL_INGOT)).save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.STEEL_CHESTPLATE.get())
+                .pattern("B B")
+                .pattern("BBB")
+                .pattern("BBB")
+                .define('B', ModItems.STEEL_INGOT.get())
+                .unlockedBy("has_steel_ingot", has(ModItems.STEEL_INGOT)).save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.STEEL_LEGGINGS.get())
+                .pattern("   ")
+                .pattern("BBB")
+                .pattern("B B")
+                .define('B', ModItems.STEEL_INGOT.get())
+                .unlockedBy("has_steel_ingot", has(ModItems.STEEL_INGOT)).save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.STEEL_BOOTS.get())
+                .pattern("   ")
+                .pattern("B B")
+                .pattern("B B")
+                .define('B', ModItems.STEEL_INGOT.get())
+                .unlockedBy("has_steel_ingot", has(ModItems.STEEL_INGOT)).save(recipeOutput);
 
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, Items.GUNPOWDER)
                 .pattern("PSP")
@@ -82,7 +110,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .define('S', ModItems.SULPHUR.get())
                 .unlockedBy("has_potassium", has(ModItems.POTASSIUM.get())).save(recipeOutput);
 
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.SACK.get())
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.SACK_ITEM.get())
                 .pattern("   ")
                 .pattern("L L")
                 .pattern("LLL")

@@ -19,7 +19,7 @@ public class ModCreativeModeTabs {
             () -> CreativeModeTab.builder().icon(() -> new ItemStack(ModItems.STEEL_INGOT.get()))
                     .title(Component.translatable("creativetab.aziuriamod.useful_items_and_blocks"))
                     .displayItems((itemDisplayParameters, output) -> {
-                        output.accept(ModItems.SACK);
+                        output.accept(ModItems.SACK_ITEM.get());
                         output.accept(ModItems.STEEL_ALLOY_MESH);
                         output.accept(ModItems.STEEL_INGOT);
                         output.accept(ModItems.POTASSIUM);
@@ -29,6 +29,10 @@ public class ModCreativeModeTabs {
                         output.accept(ModItems.STEEL_SWORD);
                         output.accept(ModItems.STEEL_SHOVEL);
                         output.accept(ModItems.STEEL_HOE);
+                        output.accept(ModItems.STEEL_HELMET);
+                        output.accept(ModItems.STEEL_BOOTS);
+                        output.accept(ModItems.STEEL_LEGGINGS);
+                        output.accept(ModItems.STEEL_CHESTPLATE);
                         output.accept(ModBlocks.POTASSIUM_ORE);
                         output.accept(ModBlocks.SULPHUR_ORE);
                         output.accept(ModBlocks.DEEPSLATE_POTASSIUM_ORE);
