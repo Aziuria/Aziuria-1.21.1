@@ -15,6 +15,9 @@ public class SackScreen extends AbstractContainerScreen<SackMenu> {
 
     public SackScreen(SackMenu menu, Inventory playerInventory, Component title) {
         super(menu, playerInventory, title);
+        this.imageWidth = 174;
+        this.imageHeight = 117;
+        this.inventoryLabelY = this.imageHeight - 94;
     }
 
     @Override
@@ -26,7 +29,7 @@ public class SackScreen extends AbstractContainerScreen<SackMenu> {
         int x = (width - imageWidth) / 2;
         int y = (height - imageHeight) / 2;
 
-        guiGraphics.blit(GUI_TEXTURE, x, y, 0, 0, imageWidth, imageHeight);
+        guiGraphics.blit(GUI_TEXTURE, x, y, 0, 0, 174, 117);
     }
 
     @Override

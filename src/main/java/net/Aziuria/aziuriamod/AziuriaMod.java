@@ -4,6 +4,7 @@ import net.Aziuria.aziuriamod.block.ModBlocks;
 import net.Aziuria.aziuriamod.block.entity.ModBlockEntities;
 import net.Aziuria.aziuriamod.client.ClientModInitializer;
 import net.Aziuria.aziuriamod.client.screen.ModMenus;
+import net.Aziuria.aziuriamod.data.ModDataComponents;
 import net.Aziuria.aziuriamod.events.ModEvents;
 import net.Aziuria.aziuriamod.handler.BlockDropHandler;
 import net.Aziuria.aziuriamod.item.ModCreativeModeTabs;
@@ -61,6 +62,7 @@ public class AziuriaMod {
         ModBlocks.register(modEventBus);
         ModBlockEntities.register(modEventBus);
         ModMenus.register(modEventBus);
+        ModDataComponents.register(modEventBus);
 
         // Register the BlockDropHandler to handle grass drops
         NeoForge.EVENT_BUS.register(BlockDropHandler.class);  // Register the BlockDropHandler class

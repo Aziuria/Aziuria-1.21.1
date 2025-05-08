@@ -3,6 +3,7 @@ package net.Aziuria.aziuriamod.data;
 import net.minecraft.core.component.DataComponentType;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.nbt.CompoundTag;
+import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.Aziuria.aziuriamod.AziuriaMod;
@@ -19,7 +20,7 @@ public class ModDataComponents {
                             .build()
             );
 
-    public static void register(net.neoforged.bus.api.IEventBus bus) {
+    public static void register(IEventBus bus) {
         COMPONENTS.register(bus);
     }
 }
