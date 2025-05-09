@@ -9,7 +9,6 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.levelgen.Heightmap;
-
 public class VegetationGrowthHandler {
 
     public static void spreadPlants(ServerLevel level) {
@@ -35,7 +34,35 @@ public class VegetationGrowthHandler {
             float chance = random.nextFloat();
 
             // Exclude Nether, End, Ocean biomes
-            if (biomePath.contains("nether") || biomePath.contains("end") || biomePath.contains("ocean")) return;
+            if (biomePath.contains("nether") || biomePath.contains("end")) return;
+
+
+
+            // Special handling for warm ocean biome to spread grass on islands
+            if (biomePath.contains("warm_ocean")) {
+                // Custom check for islands in the warm ocean (island logic goes here)
+                if (isOnIsland(level, surfacePos)) {
+                    handleWarmOceanIslandGrowth(level, surfacePos, chance);
+                }
+                return; // Stop further biome checks if it's a warm ocean island
+            }
+
+            // Special handling for lukewarm ocean islands
+            if (biomePath.contains("lukewarm_ocean")) {
+                if (isOnIsland(level, surfacePos)) {
+                    handleLukewarmOceanIslandGrowth(level, surfacePos, chance);
+                }
+                return; // Stop further checks for lukewarm ocean islands
+            }
+
+            // Special handling for tropical ocean islands (or generic ocean islands)
+            if (biomePath.contains("ocean")) {
+                // You can expand this further if needed for additional ocean-based islands
+                if (isOnIsland(level, surfacePos)) {
+                    handleOceanIslandGrowth(level, surfacePos, chance); // Assume `handleOceanIslandGrowth` is a function for generic ocean islands
+                }
+                return; // Stop further biome checks if it's an ocean island
+            }
 
             // Biome-specific handlers
             if (biomePath.contains("plains")) {
@@ -68,6 +95,32 @@ public class VegetationGrowthHandler {
                 handleDefaultGrowth(level, surfacePos, chance);
             }
         });
+    }
+
+    // Utility method to check if the position is an island in warm ocean
+    private static boolean isOnIsland(ServerLevel level, BlockPos pos) {
+        // Check if the surrounding blocks are water (ocean biome), and the position is land (grass block).
+        BlockState blockBelow = level.getBlockState(pos.below());
+        return blockBelow.is(Blocks.GRASS_BLOCK);  // Check if the block below is a grass block (island-like behavior)
+    }
+
+    private static void handleOceanIslandGrowth(ServerLevel level, BlockPos pos, float chance) {
+        handleGenericOceanIslandGrowth(level, pos, chance);
+    }
+
+    private static void handleWarmOceanIslandGrowth(ServerLevel level, BlockPos pos, float chance) {
+        handleGenericOceanIslandGrowth(level, pos, chance);
+    }
+
+    private static void handleLukewarmOceanIslandGrowth(ServerLevel level, BlockPos pos, float chance) {
+        handleGenericOceanIslandGrowth(level, pos, chance);
+    }
+
+    private static void handleGenericOceanIslandGrowth(ServerLevel level, BlockPos pos, float chance) {
+        if (chance < 0.05f) level.setBlock(pos, Blocks.DANDELION.defaultBlockState(), 3);
+        else if (chance < 0.10f) level.setBlock(pos, Blocks.POPPY.defaultBlockState(), 3);
+        else if (chance < 0.15f) level.setBlock(pos, Blocks.CORNFLOWER.defaultBlockState(), 3);
+        else if (chance < 0.25f) level.setBlock(pos, Blocks.TALL_GRASS.defaultBlockState(), 3);
     }
 
     private static void handlePlainsGrowth(ServerLevel level, BlockPos pos, float chance) {

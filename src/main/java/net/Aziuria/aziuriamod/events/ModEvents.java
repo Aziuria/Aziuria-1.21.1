@@ -17,7 +17,7 @@ public class ModEvents {
 
         tickCounter++;
 
-        if (tickCounter % 20 == 0) {
+        if (tickCounter % 500 == 0) {
             System.out.println("Spreading plants on tick " + tickCounter);
             VegetationGrowthHandler.spreadPlants(level);
         }
