@@ -1,6 +1,8 @@
 package net.Aziuria.aziuriamod.client.screen.custom;
 
 import net.Aziuria.aziuriamod.client.screen.ModMenus;
+import net.Aziuria.aziuriamod.handler.SackItemInventoryHandler; // Ensure this is imported
+import net.Aziuria.aziuriamod.handler.SackItemInventoryHandler.SackHandler; // Import custom handler
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
@@ -14,6 +16,9 @@ public class SackMenu extends AbstractContainerMenu {
     private final ItemStack sackItem;
     private final Level level;
 
+    // Custom SackHandler for managing the sack's inventory
+    private final SackHandler sackHandler;
+
     public SackMenu(int containerId, Inventory inv, FriendlyByteBuf extraData) {
         this(containerId, inv, inv.player.getMainHandItem());
     }
@@ -23,18 +28,22 @@ public class SackMenu extends AbstractContainerMenu {
         this.sackItem = sackItem;
         this.level = inv.player.level();
 
-        // Custom Sack Inventory Slots (3 in a row, top center)
-        int customSlotX = 61; // ← Adjusted left by 18px
+        // Create and store the SackHandler instance
+        this.sackHandler = new SackHandler(sackItem, level.registryAccess());
+
+        // Add custom slots for the sack's inventory (3 slots in this case)
+        int customSlotX = 61;
         int customSlotY = 16;
         for (int i = 0; i < 3; i++) {
             this.addSlot(new SlotItemHandler(
-                    net.Aziuria.aziuriamod.handler.SackItemInventoryHandler.getInventory(sackItem, null),
+                    sackHandler, // Use the persistent SackHandler here
                     i,
                     customSlotX + i * 18,
                     customSlotY
             ));
         }
 
+        // Add player's inventory and hotbar
         addPlayerInventory(inv);
         addPlayerHotbar(inv);
     }

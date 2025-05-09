@@ -33,4 +33,6 @@ public class SackItem extends Item {
 
         return InteractionResultHolder.sidedSuccess(stack, level.isClientSide());
     }
+
+
 }
