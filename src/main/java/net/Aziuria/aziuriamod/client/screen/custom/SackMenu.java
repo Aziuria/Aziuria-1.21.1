@@ -24,8 +24,8 @@ public class SackMenu extends AbstractContainerMenu {
         this.level = inv.player.level();
 
         // Custom Sack Inventory Slots (3 in a row, top center)
-        int customSlotX = 76;
-        int customSlotY = 17;
+        int customSlotX = 61; // ← Adjusted left by 18px
+        int customSlotY = 16;
         for (int i = 0; i < 3; i++) {
             this.addSlot(new SlotItemHandler(
                     net.Aziuria.aziuriamod.handler.SackItemInventoryHandler.getInventory(sackItem, null),
@@ -86,18 +86,18 @@ public class SackMenu extends AbstractContainerMenu {
     }
 
     private void addPlayerInventory(Inventory playerInventory) {
-        int startY = 39;
+        int startY = 35;
         for (int row = 0; row < 3; ++row) {
             for (int col = 0; col < 9; ++col) {
                 this.addSlot(new Slot(playerInventory, col + row * 9 + 9,
-                        8 + col * 18, startY + row * 18));
+                        7 + col * 18, startY + row * 18));
             }
         }
     }
 
     private void addPlayerHotbar(Inventory playerInventory) {
         for (int i = 0; i < 9; ++i) {
-            this.addSlot(new Slot(playerInventory, i, 8 + i * 18, 93));
+            this.addSlot(new Slot(playerInventory, i, 7 + i * 18, 93));
         }
     }
 }
