@@ -1,5 +1,6 @@
 package net.Aziuria.aziuriamod;
 
+import com.mojang.logging.LogUtils;
 import net.Aziuria.aziuriamod.block.ModBlocks;
 import net.Aziuria.aziuriamod.block.entity.ModBlockEntities;
 import net.Aziuria.aziuriamod.client.ClientModInitializer;
@@ -12,11 +13,6 @@ import net.Aziuria.aziuriamod.item.ModItems;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.world.item.CreativeModeTabs;
-import net.neoforged.fml.loading.FMLEnvironment;
-import org.slf4j.Logger;
-
-import com.mojang.logging.LogUtils;
-
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -26,111 +22,88 @@ import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.config.ModConfig;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.neoforged.fml.loading.FMLEnvironment;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 import net.neoforged.neoforge.event.server.ServerStartingEvent;
+import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
+import net.neoforged.neoforge.capabilities.Capabilities;
+import net.Aziuria.aziuriamod.block.entity.SteelBarrelBlockEntity;
+import org.slf4j.Logger;
 
-// The value here should match an entry in the META-INF/neoforge.mods.toml file
 @Mod(AziuriaMod.MOD_ID)
 public class AziuriaMod {
-    // Define mod id in a common place for everything to reference
     public static final String MOD_ID = "aziuriamod";
-    // Directly reference a slf4j logger
     public static final Logger LOGGER = LogUtils.getLogger();
 
-    // The constructor for the mod class is the first code that is run when your mod is loaded.
-    // FML will recognize some parameter types like IEventBus or ModContainer and pass them in automatically.
     public AziuriaMod(IEventBus modEventBus, ModContainer modContainer) {
-        // Register the commonSetup method for modloading
+        // Setup events
         modEventBus.addListener(this::commonSetup);
+        modEventBus.addListener(this::registerCapabilities); // <-- Register capabilities
+        modEventBus.addListener(this::addCreative);
 
         if (FMLEnvironment.dist == Dist.CLIENT) {
             ClientModInitializer.register(modEventBus);
         }
 
-
-        // Register ourselves for server and other game events we are interested in.
-        // Note that this is necessary if and only if we want *this* class (ExampleMod) to respond directly to events.
-        // Do not add this line if there are no @SubscribeEvent-annotated functions in this class, like onServerStarting() below.
         NeoForge.EVENT_BUS.register(this);
+        NeoForge.EVENT_BUS.register(BlockDropHandler.class);
+        NeoForge.EVENT_BUS.register(ModEvents.class);
 
-
-
+        // Register all mod content
         ModCreativeModeTabs.register(modEventBus);
-
         ModItems.register(modEventBus);
         ModBlocks.register(modEventBus);
         ModBlockEntities.register(modEventBus);
         ModMenus.register(modEventBus);
         ModDataComponents.register(modEventBus);
 
-        // Register the BlockDropHandler to handle grass drops
-        NeoForge.EVENT_BUS.register(BlockDropHandler.class);  // Register the BlockDropHandler class
-        NeoForge.EVENT_BUS.register(ModEvents.class);
-
-
-
-        // Register the item to a creative tab
-        modEventBus.addListener(this::addCreative);
-        // Register our mod's ModConfigSpec so that FML can create and load the config file for us
+        // Config registration
         modContainer.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
 
         LOGGER.info("AziuriaMod has loaded successfully.");
-
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {
-
         LOGGER.info("Running common setup...");
-
     }
 
-    // Add the example block item to the building blocks tab
+    private void registerCapabilities(RegisterCapabilitiesEvent event) {
+        event.registerBlockEntity(
+                Capabilities.FluidHandler.BLOCK,
+                ModBlockEntities.STEEL_BARREL_BLOCK_ENTITY.get(),
+                (barrelEntity, direction) -> barrelEntity.getTank()
+        );
+    }
+
     private void addCreative(BuildCreativeModeTabContentsEvent event) {
-        if(event.getTabKey() == CreativeModeTabs.INGREDIENTS) {
+        if (event.getTabKey() == CreativeModeTabs.INGREDIENTS) {
             event.accept(ModItems.STEEL_INGOT);
             event.accept(ModItems.STEEL_ALLOY_MESH);
             event.accept(ModItems.SULPHUR);
             event.accept(ModItems.POTASSIUM);
         }
 
-        if(event.getTabKey() == CreativeModeTabs.BUILDING_BLOCKS){
+        if (event.getTabKey() == CreativeModeTabs.BUILDING_BLOCKS) {
             event.accept(ModBlocks.SULPHUR_ORE);
             event.accept(ModBlocks.POTASSIUM_ORE);
             event.accept(ModBlocks.DEEPSLATE_SULPHUR_ORE);
             event.accept(ModBlocks.DEEPSLATE_POTASSIUM_ORE);
             event.accept(ModBlocks.STEEL_BLOCK);
             event.accept(ModBlocks.UNBREAKABLE_GLASS);
-
-
         }
-
     }
 
-    // You can use SubscribeEvent and let the Event Bus discover methods to call
     @SubscribeEvent
     public void onServerStarting(ServerStartingEvent event) {
-
         LOGGER.info("Server is starting...");
     }
 
-
-    //
-    // You can use EventBusSubscriber to automatically register all static methods in the class annotated with @SubscribeEvent
     @EventBusSubscriber(modid = MOD_ID, bus = EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
     public static class ClientModEvents {
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event) {
-
-            event.enqueueWork(() -> {
-
-                LOGGER.info("Client setup complete.");
-
-            });
-
-
+            event.enqueueWork(() -> LOGGER.info("Client setup complete."));
         }
-
     }
-
 }

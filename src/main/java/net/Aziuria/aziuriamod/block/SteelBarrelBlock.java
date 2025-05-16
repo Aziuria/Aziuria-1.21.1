@@ -86,23 +86,11 @@ public class SteelBarrelBlock extends BaseEntityBlock {
     }
 
     @Override
-    protected ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos,
-                                              Player player, InteractionHand hand, BlockHitResult hitResult) {
-        AziuriaMod.LOGGER.info("Attempting fluid interaction at " + pos);
-
-        if (!level.isClientSide) {
-            BlockEntity be = level.getBlockEntity(pos);
-            if (be instanceof SteelBarrelBlockEntity barrelEntity) {
-                boolean inserted = barrelEntity.tryInsertFluidFromItem(stack, player);
-                if (inserted) {
-                    AziuriaMod.LOGGER.info("Fluid inserted successfully!");
-                    return ItemInteractionResult.sidedSuccess(level.isClientSide);
-                }
-                AziuriaMod.LOGGER.info("Fluid insertion failed or no fluid inserted.");
-            }
+    protected ItemInteractionResult useItemOn(ItemStack pStack, BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand pHand, BlockHitResult pRayTrace) {
+        if (FluidUtil.interactWithFluidHandler(pPlayer, pHand, pLevel, pPos, pRayTrace.getDirection())) {
+            return ItemInteractionResult.sidedSuccess(pLevel.isClientSide());
         }
 
-        // Either fall back to the default or explicitly return a "pass"
-        return super.useItemOn(stack, state, level, pos, player, hand, hitResult);
+        return super.useItemOn(pStack, pState, pLevel, pPos, pPlayer, pHand, pRayTrace);
     }
 }
