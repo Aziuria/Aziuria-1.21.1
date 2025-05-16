@@ -47,6 +47,8 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
         dropSelf(ModBlocks.MANGROVE_STORAGE.get());
         dropSelf(ModBlocks.SPRUCE_STORAGE.get());
 
+        dropSelf(ModBlocks.STEEL_BARREL_EMPTY.get());
+
         add(ModBlocks.SULPHUR_ORE.get(),
         block -> createOreDrop(ModBlocks.SULPHUR_ORE.get(), ModItems.SULPHUR.get()));
         add(ModBlocks.DEEPSLATE_SULPHUR_ORE.get(),

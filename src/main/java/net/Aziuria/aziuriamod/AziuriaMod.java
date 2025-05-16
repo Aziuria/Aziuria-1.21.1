@@ -36,7 +36,7 @@ public class AziuriaMod {
     // Define mod id in a common place for everything to reference
     public static final String MOD_ID = "aziuriamod";
     // Directly reference a slf4j logger
-    private static final Logger LOGGER = LogUtils.getLogger();
+    public static final Logger LOGGER = LogUtils.getLogger();
 
     // The constructor for the mod class is the first code that is run when your mod is loaded.
     // FML will recognize some parameter types like IEventBus or ModContainer and pass them in automatically.
@@ -75,9 +75,13 @@ public class AziuriaMod {
         // Register our mod's ModConfigSpec so that FML can create and load the config file for us
         modContainer.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
 
+        LOGGER.info("AziuriaMod has loaded successfully.");
+
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {
+
+        LOGGER.info("Running common setup...");
 
     }
 
@@ -107,6 +111,7 @@ public class AziuriaMod {
     @SubscribeEvent
     public void onServerStarting(ServerStartingEvent event) {
 
+        LOGGER.info("Server is starting...");
     }
 
 
@@ -118,9 +123,8 @@ public class AziuriaMod {
         public static void onClientSetup(FMLClientSetupEvent event) {
 
             event.enqueueWork(() -> {
-                ItemBlockRenderTypes.setRenderLayer(ModBlocks.UNBREAKABLE_GLASS.get(), RenderType.translucent());
 
-
+                LOGGER.info("Client setup complete.");
 
             });
 

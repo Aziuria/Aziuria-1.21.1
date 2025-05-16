@@ -43,6 +43,14 @@ public class ModBlockEntities {
 
             ).build(null));
 
+    public static final Supplier<BlockEntityType<SteelBarrelBlockEntity>> STEEL_BARREL_BLOCK_ENTITY =
+            BLOCK_ENTITIES.register("steel_barrel_block_entity", () ->
+                    BlockEntityType.Builder.of(
+                            SteelBarrelBlockEntity::new,
+                            ModBlocks.STEEL_BARREL_EMPTY.get()
+                    ).build(null)
+            );
+
 
     public static void register(IEventBus eventBus) {
         BLOCK_ENTITIES.register(eventBus);

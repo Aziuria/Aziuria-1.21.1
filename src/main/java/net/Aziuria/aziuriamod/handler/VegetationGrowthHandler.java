@@ -119,7 +119,8 @@ public class VegetationGrowthHandler {
     private static void handleGenericOceanIslandGrowth(ServerLevel level, BlockPos pos, float chance) {
         if (chance < 0.05f) level.setBlock(pos, Blocks.DANDELION.defaultBlockState(), 3);
         else if (chance < 0.10f) level.setBlock(pos, Blocks.POPPY.defaultBlockState(), 3);
-        else if (chance < 0.15f) level.setBlock(pos, Blocks.CORNFLOWER.defaultBlockState(), 3);
+        else if (chance < 0.15f) level.setBlock(pos, Blocks.OXEYE_DAISY.defaultBlockState(), 3);
+        else if (chance < 0.20f) level.setBlock(pos, Blocks.CORNFLOWER.defaultBlockState(), 3);
         else if (chance < 0.25f) level.setBlock(pos, Blocks.TALL_GRASS.defaultBlockState(), 3);
     }
 
