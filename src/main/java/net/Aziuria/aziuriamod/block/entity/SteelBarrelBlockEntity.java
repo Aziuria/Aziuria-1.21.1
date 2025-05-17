@@ -14,7 +14,6 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.capabilities.BlockCapability;
 import net.neoforged.neoforge.capabilities.Capabilities;
-import net.neoforged.neoforge.capabilities.ICapabilityProvider;
 import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.FluidUtil;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler;
@@ -29,8 +28,8 @@ public class SteelBarrelBlockEntity extends BlockEntity {
         @Override
         protected void onContentsChanged() {
             setChanged();
-            if (!level.isClientSide()) {
-                level.sendBlockUpdated(getBlockPos(), getBlockState(), getBlockState(), 3);
+            if (level != null && !level.isClientSide()) {
+                level.sendBlockUpdated(worldPosition, getBlockState(), getBlockState(), 3);
             }
             AziuriaMod.LOGGER.info("Tank contents changed. Fluid amount: {}", getFluidAmount());
         }
@@ -55,23 +54,49 @@ public class SteelBarrelBlockEntity extends BlockEntity {
         return null;
     }
 
+    @Override
+    public void setChanged() {
+        super.setChanged();
+        AziuriaMod.LOGGER.info("setChanged() called on SteelBarrelBlockEntity at {}", worldPosition);
+    }
+
     // Data saving
     @Override
     protected void saveAdditional(CompoundTag tag, HolderLookup.Provider registries) {
         super.saveAdditional(tag, registries);
+        AziuriaMod.LOGGER.info("Saving SteelBarrel: {}", tank.getFluidAmount());
         CompoundTag tankTag = new CompoundTag();
         tank.writeToNBT(registries, tankTag);
         tag.put("tank", tankTag);
+        setChanged();
+
+        AziuriaMod.LOGGER.info("Saving SteelBarrel at {}: Fluid amount = {}", worldPosition, tank.getFluidAmount());
+        AziuriaMod.LOGGER.info("Tank reference during save: {}", tank);
+        AziuriaMod.LOGGER.info("Saved NBT: {}", tankTag);
     }
 
-    // Data loading
     @Override
     protected void loadAdditional(CompoundTag tag, HolderLookup.Provider registries) {
+        AziuriaMod.LOGGER.info("loadAdditional called on SteelBarrelBlockEntity");
         super.loadAdditional(tag, registries);
+
         if (tag.contains("tank")) {
-            tank.readFromNBT(registries, tag.getCompound("tank"));
+            AziuriaMod.LOGGER.info("Loading tank data from NBT");
+            CompoundTag tankTag = tag.getCompound("tank");
+            tank.readFromNBT(registries, tankTag);
+
+            AziuriaMod.LOGGER.info("Tank reference after load: {}, Fluid amount = {}", tank, tank.getFluidAmount());
+            setChanged(); // marks the block entity as dirty for saving again if needed
+
+            if (level != null && !level.isClientSide()) {
+                level.sendBlockUpdated(worldPosition, getBlockState(), getBlockState(), 3);
+                AziuriaMod.LOGGER.info("Block update sent after loading tank data");
+            }
+        } else {
+            AziuriaMod.LOGGER.info("No tank tag found in NBT for SteelBarrel at {}", worldPosition);
         }
     }
+
 
     // Syncing to client
     @Nullable
@@ -105,10 +130,13 @@ public class SteelBarrelBlockEntity extends BlockEntity {
             itemFluidHandler.drain(filled, IFluidHandler.FluidAction.EXECUTE);
 
             setChanged();
+
+            AziuriaMod.LOGGER.info("Inserted {} mB of fluid from item into SteelBarrel at {}", filled, getBlockPos());
+            AziuriaMod.LOGGER.info("Tank reference during insert: {}, Fluid amount: {}", tank, tank.getFluidAmount());
+
             if (!level.isClientSide()) {
                 level.sendBlockUpdated(getBlockPos(), getBlockState(), getBlockState(), 3);
             }
-            AziuriaMod.LOGGER.info("Inserted {} mB of fluid from item into SteelBarrel at {}", filled, getBlockPos());
             return true;
         }
 
