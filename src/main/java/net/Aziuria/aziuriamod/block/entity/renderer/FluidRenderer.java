@@ -2,7 +2,6 @@ package net.Aziuria.aziuriamod.block.entity.renderer;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
-import net.Aziuria.aziuriamod.AziuriaMod;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
@@ -35,15 +34,7 @@ public class FluidRenderer {
             sprite = sprites[backup.typeIndex];
         }
 
-        if (sprite == null) {
-            AziuriaMod.LOGGER.warn("FluidRenderer: Missing fluid sprite for {}, skipping rendering.",
-                    BuiltInRegistries.FLUID.getKey(stack.getFluid()));
-            return Pair.of(null, buffer);
-        }
-
-        AziuriaMod.LOGGER.debug("FluidRenderer: Using sprite {} for fluid {}",
-                sprite, BuiltInRegistries.FLUID.getKey(stack.getFluid()));
-        return Pair.of(sprite, sprite.wrap(buffer));
+        return Pair.of(sprite, sprite != null ? sprite.wrap(buffer) : buffer);
     }
 
     public static int getFluidColor(Level level, BlockPos pos, FluidState state) {

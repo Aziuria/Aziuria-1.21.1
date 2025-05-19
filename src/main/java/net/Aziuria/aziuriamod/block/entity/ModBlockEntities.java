@@ -47,8 +47,10 @@ public class ModBlockEntities {
             BLOCK_ENTITIES.register("steel_barrel_block_entity", () ->
                     BlockEntityType.Builder.of(
                             SteelBarrelBlockEntity::new,
-                            ModBlocks.STEEL_BARREL_EMPTY.get()
+                            ModBlocks.STEEL_BARREL_EMPTY.get(),
+                            ModBlocks.IRON_BARREL_EMPTY.get()
                     ).build(null)
+
             );
 
 

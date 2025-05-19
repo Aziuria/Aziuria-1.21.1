@@ -1,9 +1,9 @@
 {
 	"credit": "Made with Blockbench",
 	"textures": {
-		"0": "aziuriamod:block/steel_block_lower",
-		"1": "aziuriamod:block/steel_block_upper",
-		"particle": "aziuriamod:block/steel_block_lower"
+		"0": "aziuriamod:block/iron_block_lower",
+		"1": "aziuriamod:block/iron_block_upper",
+		"particle": "aziuriamod:block/iron_block_lower"
 	},
 	"elements": [
 		{

@@ -13,12 +13,9 @@ public class ModEvents {
     public static void onWorldTick(LevelTickEvent.Post event) {
         if (!(event.getLevel() instanceof ServerLevel level)) return;
 
-        System.out.println("World tick event fired!");
-
         tickCounter++;
 
         if (tickCounter % 500 == 0) {
-            System.out.println("Spreading plants on tick " + tickCounter);
             VegetationGrowthHandler.spreadPlants(level);
         }
     }

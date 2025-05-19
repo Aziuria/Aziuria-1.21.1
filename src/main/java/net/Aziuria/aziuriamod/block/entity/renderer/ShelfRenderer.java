@@ -27,15 +27,6 @@ public class ShelfRenderer implements BlockEntityRenderer<ShelfBlockEntity> {
         BlockState blockState = blockEntity.getBlockState();
         Direction facing = blockState.getValue(net.minecraft.world.level.block.HorizontalDirectionalBlock.FACING);
 
-        // Debugging output to verify if items are being read
-        System.out.println("Inventory size: " + blockEntity.getItems().size());
-        for (int i = 0; i < blockEntity.getItems().size(); i++) {
-            ItemStack stack = blockEntity.getItems().get(i);
-            System.out.println("Slot " + i + ": " + stack);
-        }
-
-
-
         poseStack.pushPose();
 
         for (int i = 0; i < 4; i++) {
@@ -50,66 +41,57 @@ public class ShelfRenderer implements BlockEntityRenderer<ShelfBlockEntity> {
                 float yOffset = (i < 2) ? 0.5f : 0.1f;
 
                 // Define base spacing offsets (based on SOUTH-facing as base)
-                float baseX = 0.25f; // Side spacing
-                float baseZ = (i == 0 || i == 2) ? -0.25f : 0.25f; // Front/back spacing
+                float baseX = 0.25f;
+                float baseZ = (i == 0 || i == 2) ? -0.25f : 0.25f;
 
                 float xOffset = 0f;
                 float zOffset = 0f;
 
-                // Corrected offsets for each facing direction:
                 switch (facing) {
                     case NORTH -> {
-                        // Fix offsets for NORTH: Swap xOffset and zOffset.
-                        xOffset = baseZ; // Positive X offset should be used for right
-                        zOffset = -baseX; // Negative Z offset for left
-                        poseStack.translate(0f, 0f, 0.5f);                     }
+                        xOffset = baseZ;
+                        zOffset = -baseX;
+                        poseStack.translate(0f, 0f, 0.5f);
+                    }
                     case SOUTH -> {
-                        // Fix offsets for SOUTH: Swap xOffset and zOffset.
-                        xOffset = -baseZ; // Negative X offset for left
-                        zOffset = baseX;  // Positive Z offset for right
-                        poseStack.translate(0f, 0f, -0.5f);                    }
+                        xOffset = -baseZ;
+                        zOffset = baseX;
+                        poseStack.translate(0f, 0f, -0.5f);
+                    }
                     case EAST -> {
-                        // Fix offsets for EAST: Swap xOffset and zOffset.
-                        xOffset = baseX; // Positive X offset for right
-                        zOffset = baseZ; // Positive Z offset for right
-                        poseStack.translate(-0.5f, 0f, 0f);  // Move back by half a block on X axis (opposite direction)
+                        xOffset = baseX;
+                        zOffset = baseZ;
+                        poseStack.translate(-0.5f, 0f, 0f);
                     }
                     case WEST -> {
-                        // Fix offsets for WEST: Swap xOffset and zOffset.
-                        xOffset = -baseX; // Negative X offset for left
-                        zOffset = -baseZ; // Negative Z offset for left
-                        poseStack.translate(0.5f, 0f, 0f); // Move back by half a block on X axis (opposite direction)
+                        xOffset = -baseX;
+                        zOffset = -baseZ;
+                        poseStack.translate(0.5f, 0f, 0f);
                     }
                 }
 
-                // Apply final translation
                 poseStack.translate(xOffset, yOffset, zOffset);
 
-                // Rotate the items based on facing direction
                 float blockRotation = switch (facing) {
-                    case EAST -> 0f; // Rotate by 180 degrees for East-facing items
-                    case WEST -> 180f; // Rotate by 180 degrees for West-facing items
+                    case EAST -> 0f;
+                    case WEST -> 180f;
                     case NORTH -> 90f;
                     case SOUTH -> -90f;
                     default -> 0f;
                 };
                 poseStack.mulPose(Axis.YP.rotationDegrees(blockRotation));
 
-                // Rotate item to show side view
                 poseStack.mulPose(Axis.YP.rotationDegrees(90f));
 
-                // Move item forward a bit (on Z axis for North/South, on X axis for East/West)
-                float forwardOffset = 0.00f;  // Adjust this value for how far forward you want the items
+                float forwardOffset = 0.00f;
 
-                // Adjust for North/South direction:
                 switch (facing) {
-                    case NORTH -> poseStack.translate(0f, 0f, -forwardOffset);  // Move forward if facing north
-                    case SOUTH -> poseStack.translate(0f, 0f, forwardOffset);   // Move forward if facing south
-                    case EAST  -> poseStack.translate(forwardOffset, 0f, 0f);   // Move forward on X axis for East
-                    case WEST  -> poseStack.translate(-forwardOffset, 0f, 0f);  // Move forward on X axis for West
+                    case NORTH -> poseStack.translate(0f, 0f, -forwardOffset);
+                    case SOUTH -> poseStack.translate(0f, 0f, forwardOffset);
+                    case EAST -> poseStack.translate(forwardOffset, 0f, 0f);
+                    case WEST -> poseStack.translate(-forwardOffset, 0f, 0f);
                 }
 
-                // Scale down the item
                 poseStack.scale(0.4f, 0.4f, 0.4f);
 
                 itemRenderer.renderStatic(itemStack, ItemDisplayContext.FIXED, combinedLight, combinedOverlay, poseStack, bufferSource, blockEntity.getLevel(), 0);

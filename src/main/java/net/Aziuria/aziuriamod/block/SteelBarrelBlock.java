@@ -63,7 +63,7 @@ public class SteelBarrelBlock extends BaseEntityBlock {
 
     @Override
     public VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
-        return Shapes.box(0.0, 0.0, 0.0, 1.0, 1.550, 1.0); // 22 pixels tall
+        return Shapes.box(0.0, 0.0, 0.0, 1.0, 1.0, 1.0);
     }
 
     @Override
