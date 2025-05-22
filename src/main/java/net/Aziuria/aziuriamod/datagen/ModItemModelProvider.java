@@ -10,10 +10,12 @@ import net.minecraft.server.packs.PackType;
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.armortrim.TrimMaterial;
 import net.minecraft.world.item.armortrim.TrimMaterials;
+import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.client.model.generators.ItemModelBuilder;
 import net.neoforged.neoforge.client.model.generators.ItemModelProvider;
 import net.neoforged.neoforge.client.model.generators.ModelFile;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
+import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredItem;
 
 import java.util.LinkedHashMap;
@@ -21,6 +23,7 @@ import java.util.LinkedHashMap;
 public class ModItemModelProvider extends ItemModelProvider {
 
     private static LinkedHashMap<ResourceKey<TrimMaterial>, Float> trimMaterials = new LinkedHashMap<>();
+
     static {
         trimMaterials.put(TrimMaterials.QUARTZ, 0.1F);
         trimMaterials.put(TrimMaterials.IRON, 0.2F);
@@ -63,7 +66,7 @@ public class ModItemModelProvider extends ItemModelProvider {
     private void trimmedArmorItem(DeferredItem<ArmorItem> itemDeferredItem) {
         final String MOD_ID = AziuriaMod.MOD_ID; // Change this to your mod id
 
-        if(itemDeferredItem.get() instanceof ArmorItem armorItem) {
+        if (itemDeferredItem.get() instanceof ArmorItem armorItem) {
             trimMaterials.forEach((trimMaterial, value) -> {
                 float trimValue = value;
 
@@ -96,7 +99,7 @@ public class ModItemModelProvider extends ItemModelProvider {
                 this.withExistingParent(itemDeferredItem.getId().getPath(),
                                 mcLoc("item/generated"))
                         .override()
-                        .model(new ModelFile.UncheckedModelFile(trimNameResLoc.getNamespace()  + ":item/" + trimNameResLoc.getPath()))
+                        .model(new ModelFile.UncheckedModelFile(trimNameResLoc.getNamespace() + ":item/" + trimNameResLoc.getPath()))
                         .predicate(mcLoc("trim_type"), trimValue).end()
                         .texture("layer0",
                                 ResourceLocation.fromNamespaceAndPath(MOD_ID,
@@ -109,7 +112,8 @@ public class ModItemModelProvider extends ItemModelProvider {
     private ItemModelBuilder handheldItem(DeferredItem<?> item) {
         return withExistingParent(item.getId().getPath(),
                 ResourceLocation.parse("item/handheld")).texture("layer0",
-                ResourceLocation.fromNamespaceAndPath(AziuriaMod.MOD_ID,"item/" + item.getId().getPath()));
+                ResourceLocation.fromNamespaceAndPath(AziuriaMod.MOD_ID, "item/" + item.getId().getPath()));
     }
+
 
 }

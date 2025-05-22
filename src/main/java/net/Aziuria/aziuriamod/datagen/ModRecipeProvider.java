@@ -325,6 +325,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .define('S', Items.IRON_BLOCK)
                 .unlockedBy("has_iron_ingot", has(Items.IRON_INGOT)).save(recipeOutput);
 
+
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.STEEL_INGOT.get(), 9)
                 .requires(ModBlocks.STEEL_BLOCK)
                 .unlockedBy("has_steel_block", has(ModBlocks.STEEL_BLOCK)).save(recipeOutput);

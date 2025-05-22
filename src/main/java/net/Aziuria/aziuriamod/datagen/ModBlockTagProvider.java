@@ -24,7 +24,13 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                 .add(ModBlocks.SULPHUR_ORE.get())
                 .add(ModBlocks.DEEPSLATE_SULPHUR_ORE.get())
                 .add(ModBlocks.DEEPSLATE_POTASSIUM_ORE.get())
+                .add(ModBlocks.IRON_BARREL_EMPTY.get())
+                .add(ModBlocks.STEEL_BARREL_EMPTY.get())
                 .add(ModBlocks.STEEL_BLOCK.get());
+
+        tag(BlockTags.NEEDS_STONE_TOOL)
+                .add(ModBlocks.IRON_BARREL_EMPTY.get())
+                .add(ModBlocks.STEEL_BARREL_EMPTY.get());
 
         tag(BlockTags.NEEDS_IRON_TOOL)
                 .add(ModBlocks.SULPHUR_ORE.get())
@@ -39,6 +45,7 @@ public class ModBlockTagProvider extends BlockTagsProvider {
         tag(ModTags.Blocks.INCORRECT_FOR_STEEL_TOOL)
                 .addTag(BlockTags.INCORRECT_FOR_IRON_TOOL)
                 .remove(ModTags.Blocks.NEEDS_STEEL_TOOL);
+
 
     }
 }

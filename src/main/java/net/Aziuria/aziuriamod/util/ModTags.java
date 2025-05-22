@@ -23,4 +23,6 @@ public class ModTags {
         private static TagKey<Item> createTag(String name) {
             return ItemTags.create(ResourceLocation.fromNamespaceAndPath(AziuriaMod.MOD_ID, name));
         }
+
+
     }
