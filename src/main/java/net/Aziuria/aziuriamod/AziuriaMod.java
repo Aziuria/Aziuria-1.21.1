@@ -2,6 +2,7 @@ package net.Aziuria.aziuriamod;
 
 import com.mojang.logging.LogUtils;
 import net.Aziuria.aziuriamod.block.ModBlocks;
+import net.Aziuria.aziuriamod.handler.LeafParticleHandler;
 import net.Aziuria.aziuriamod.block.entity.ModBlockEntities;
 import net.Aziuria.aziuriamod.client.ClientModInitializer;
 import net.Aziuria.aziuriamod.client.screen.ModMenus;
@@ -47,6 +48,7 @@ public class AziuriaMod {
         NeoForge.EVENT_BUS.register(this);
         NeoForge.EVENT_BUS.register(BlockDropHandler.class);
         NeoForge.EVENT_BUS.register(ModEvents.class);
+        NeoForge.EVENT_BUS.register(LeafParticleHandler.class);
 
         // Register all mod content
         ModCreativeModeTabs.register(modEventBus);

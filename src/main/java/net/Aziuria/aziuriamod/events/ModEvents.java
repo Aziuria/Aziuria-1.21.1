@@ -1,5 +1,6 @@
 package net.Aziuria.aziuriamod.events;
 
+import net.Aziuria.aziuriamod.handler.LeafLitterHandler;
 import net.minecraft.server.level.ServerLevel;
 import net.neoforged.neoforge.event.tick.LevelTickEvent;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -18,5 +19,11 @@ public class ModEvents {
         if (tickCounter % 500 == 0) {
             VegetationGrowthHandler.spreadPlants(level);
         }
+
+        if (tickCounter % 400 == 0) {
+            LeafLitterHandler.spreadLeafLitter(level);
+        }
+
+
     }
 }

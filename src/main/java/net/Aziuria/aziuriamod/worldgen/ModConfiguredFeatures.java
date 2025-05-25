@@ -12,9 +12,11 @@ import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.configurations.FeatureConfiguration;
 import net.minecraft.world.level.levelgen.feature.configurations.OreConfiguration;
+import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
 import net.minecraft.world.level.levelgen.structure.templatesystem.BlockMatchTest;
 import net.minecraft.world.level.levelgen.structure.templatesystem.RuleTest;
 import net.minecraft.world.level.levelgen.structure.templatesystem.TagMatchTest;
+import  net.minecraft.world.level.levelgen.feature.configurations.SimpleBlockConfiguration;
 
 import java.util.List;
 
@@ -44,7 +46,6 @@ public class ModConfiguredFeatures {
       //          ModBlocks.BISMUTH_NETHER_ORE.get().defaultBlockState(), 9));
       //  register(context, END_BISMUTH_ORE_KEY, Feature.ORE, new OreConfiguration(endReplaceables,
       //          ModBlocks.BISMUTH_END_ORE.get().defaultBlockState(), 9));
-
 
     }
 

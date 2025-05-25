@@ -2,15 +2,18 @@ package net.Aziuria.aziuriamod.block;
 
 import net.Aziuria.aziuriamod.AziuriaMod;
 import net.Aziuria.aziuriamod.item.ModItems;
+import net.Aziuria.aziuriamod.item.custom.FuelItem;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.material.MapColor;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
+import java.util.function.Function;
 import java.util.function.Supplier;
 
 public class ModBlocks {
@@ -173,16 +176,34 @@ public class ModBlocks {
                     .sound(SoundType.METAL)
                     .noOcclusion()));
 
+    public static final DeferredBlock<LeafLitterBlock> LEAF_LITTER = registerBlock("leaf_litter",
+            () -> new LeafLitterBlock(BlockBehaviour.Properties.of()
+                    .mapColor(MapColor.PLANT)
+                    .strength(0.2f)
+                    .noOcclusion()
+                    .isViewBlocking((s, r, p) -> false)
+                    .isSuffocating((s, r, p) -> false)),
+            block -> new FuelItem(block, new Item.Properties(), 100)
+
+    );
+
+
 
 
     private static <T extends Block> DeferredBlock<T> registerBlock(String name, Supplier<T> block) {
         DeferredBlock<T> toReturn = BLOCKS.register(name, block);
-        registerBlockItem(name, toReturn);
+        ModItems.ITEMS.register(name, () -> new BlockItem(toReturn.get(), new Item.Properties()));
         return toReturn;
     }
 
-    private static <T extends Block> void registerBlockItem(String name, DeferredBlock<T> block) {
-        ModItems.ITEMS.register(name, () -> new BlockItem(block.get(), new Item.Properties()));
+    private static <T extends Block> DeferredBlock<T> registerBlock(
+            String name,
+            Supplier<T> blockSupplier,
+            Function<T, ? extends Item> itemFactory
+    ) {
+        DeferredBlock<T> toReturn = BLOCKS.register(name, blockSupplier);
+        ModItems.ITEMS.register(name, () -> itemFactory.apply(toReturn.get()));
+        return toReturn;
     }
 
     public static void register(IEventBus eventBus) {
