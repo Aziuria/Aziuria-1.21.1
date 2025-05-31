@@ -10,27 +10,56 @@ public class FogEventManager {
 
     private static FogType activeFog = null;
     private static FogIntensity currentIntensity = FogIntensity.MEDIUM;
+
+    private static long fogStart = 0;
     private static long fogEnd = 0;
+    private static final int TRANSITION_DURATION = 60; // ticks (3 seconds)
+
+    private static boolean isFadingOut = false;
 
     public static void tick() {
         ClientLevel level = mc.level;
         if (level == null || mc.isPaused()) return;
 
         long time = level.getGameTime();
+
+        // Fade-out handling
         if (activeFog != null && time >= fogEnd) {
-            activeFog = null;
+            if (!isFadingOut) {
+                isFadingOut = true;
+                fogEnd = time + TRANSITION_DURATION;
+            } else if (time >= fogEnd) {
+                activeFog = null;
+                isFadingOut = false;
+            }
         }
 
-        if (activeFog == null) {
+        // Start fog if none is active or fading
+        if (activeFog == null && !isFadingOut) {
             for (FogType type : FogRegistry.getAll()) {
                 if (type.shouldStart(level, random)) {
-                    activeFog = type;
-                    currentIntensity = FogIntensity.values()[random.nextInt(FogIntensity.values().length)];
-                    fogEnd = time + type.getDurationTicks(random);
+                    startFogNow(type);
                     break;
                 }
             }
         }
+    }
+
+    public static void startFogNow(FogType type) {
+        if (mc.level == null) return;
+        activeFog = type;
+        currentIntensity = FogIntensity.values()[random.nextInt(FogIntensity.values().length)];
+        long time = mc.level.getGameTime();
+        fogStart = time;
+        fogEnd = time + type.getDurationTicks(random);
+        isFadingOut = false;
+    }
+
+    public static void stopFogNow() {
+        activeFog = null;
+        fogStart = 0;
+        fogEnd = 0;
+        isFadingOut = false;
     }
 
     public static FogType getActiveFog() {
@@ -41,20 +70,19 @@ public class FogEventManager {
         return currentIntensity;
     }
 
-    public static void startFogNow(FogType type) {
-        if (mc.level == null) return;
-        activeFog = type;
-        currentIntensity = FogIntensity.values()[random.nextInt(FogIntensity.values().length)];
-        fogEnd = mc.level.getGameTime() + type.getDurationTicks(random);
-    }
-
-    public static void stopFogNow() {  // ← New method to stop the fog
-        activeFog = null;
-        fogEnd = 0;
-    }
-
     public static float getFogEndDistance() {
-        return activeFog != null ? activeFog.getFogEnd(currentIntensity) : 0f;
+        if (activeFog == null && !isFadingOut) return 0f;
+
+        long time = mc.level.getGameTime();
+        float target = activeFog != null ? activeFog.getFogEnd(currentIntensity) : 0f;
+
+        if (isFadingOut) {
+            float progress = 1.0f - Math.min(1.0f, (time - (fogEnd - TRANSITION_DURATION)) / (float) TRANSITION_DURATION);
+            return target * progress;
+        } else {
+            float progress = Math.min(1.0f, (time - fogStart) / (float) TRANSITION_DURATION);
+            return target * progress;
+        }
     }
 
     public static boolean isEvilFogActive() {

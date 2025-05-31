@@ -3,12 +3,8 @@ package net.Aziuria.aziuriamod;
 import com.mojang.logging.LogUtils;
 import net.Aziuria.aziuriamod.block.ModBlocks;
 import net.Aziuria.aziuriamod.client.ModClientCommonBusEvents;
-import net.Aziuria.aziuriamod.client.ModClientEvents;
 import net.Aziuria.aziuriamod.command.FogCommand;
-import net.Aziuria.aziuriamod.fog.FogMobSpawnModifier;
-import net.Aziuria.aziuriamod.fog.FogRegistry;
-import net.Aziuria.aziuriamod.fog.FogRendererHook;
-import net.Aziuria.aziuriamod.fog.FogVillagerAI;
+import net.Aziuria.aziuriamod.fog.*;
 import net.Aziuria.aziuriamod.handler.LeafParticleHandler;
 import net.Aziuria.aziuriamod.block.entity.ModBlockEntities;
 import net.Aziuria.aziuriamod.client.ClientModInitializer;
@@ -35,7 +31,6 @@ import net.neoforged.neoforge.event.RegisterCommandsEvent;
 import net.neoforged.neoforge.event.server.ServerStartingEvent;
 import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
 import net.neoforged.neoforge.capabilities.Capabilities;
-import net.Aziuria.aziuriamod.block.entity.SteelBarrelBlockEntity;
 import org.slf4j.Logger;
 
 @Mod(AziuriaMod.MOD_ID)
@@ -65,6 +60,7 @@ public class AziuriaMod {
         NeoForge.EVENT_BUS.register(new FogVillagerAI());             // AI handler
         NeoForge.EVENT_BUS.register(new FogMobSpawnModifier());
         NeoForge.EVENT_BUS.register(ModClientCommonBusEvents.class);
+        NeoForge.EVENT_BUS.register(new FogZombieSpawner());
 
         // Register all mod content
         ModCreativeModeTabs.register(modEventBus);
@@ -126,7 +122,7 @@ public class AziuriaMod {
         public static void onClientSetup(FMLClientSetupEvent event) {
             event.enqueueWork(() -> LOGGER.info("Client setup complete."));
 
-            NeoForge.EVENT_BUS.register(new FogRendererHook());
+
 
         }
     }

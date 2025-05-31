@@ -19,6 +19,7 @@ public class ClientModInitializer {
     public static void register(IEventBus eventBus) {
         eventBus.addListener(ClientModInitializer::onClientSetup);
         ModClientEvents.register(eventBus);
+        NeoForge.EVENT_BUS.register(new FogRendererHook());
 
     }
 
