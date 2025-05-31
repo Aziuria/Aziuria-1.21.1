@@ -2,6 +2,7 @@ package net.Aziuria.aziuriamod.fog;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientLevel;
+import net.minecraft.network.chat.Component;
 import net.minecraft.util.RandomSource;
 
 public class FogEventManager {
@@ -17,13 +18,20 @@ public class FogEventManager {
 
     private static boolean isFadingOut = false;
 
+    // ⬇️ NEW: cooldown before next fog can start again
+    private static long nextFogCheckTime = 0; // ⬅️ timestamp for when fog can next be considered
+    private static final int FOG_COOLDOWN_TICKS = 20 * 60 * 5; // ⬅️ 5 minutes cooldown
+
     public static void tick() {
         ClientLevel level = mc.level;
         if (level == null || mc.isPaused()) return;
 
         long time = level.getGameTime();
 
-        // Fade-out handling
+        // ⬇️ NEW: Skip if cooldown not yet over
+        if (activeFog == null && !isFadingOut && time < nextFogCheckTime) return;
+
+        // ⬇️ Fade-out handling
         if (activeFog != null && time >= fogEnd) {
             if (!isFadingOut) {
                 isFadingOut = true;
@@ -31,13 +39,23 @@ public class FogEventManager {
             } else if (time >= fogEnd) {
                 activeFog = null;
                 isFadingOut = false;
+
+                // ⬇️ Set next check time after fog ends
+                nextFogCheckTime = time + FOG_COOLDOWN_TICKS; // ⬅️ wait 5 minutes after fog ends
             }
         }
 
-        // Start fog if none is active or fading
-        if (activeFog == null && !isFadingOut) {
+        // ⬇️ NEW: Try to start new fog only after cooldown
+        if (activeFog == null && !isFadingOut && time >= nextFogCheckTime) {
             for (FogType type : FogRegistry.getAll()) {
                 if (type.shouldStart(level, random)) {
+
+                    // Show red warning in chat
+                    if (mc.player != null) {
+                        mc.player.sendSystemMessage(Component.literal("⚠ Fog is approaching...")
+                                .withStyle(style -> style.withColor(net.minecraft.ChatFormatting.RED)));
+                    }
+
                     startFogNow(type);
                     break;
                 }
@@ -53,6 +71,9 @@ public class FogEventManager {
         fogStart = time;
         fogEnd = time + type.getDurationTicks(random);
         isFadingOut = false;
+
+        // ⬇️ Reset the cooldown when fog starts (optional safety)
+        nextFogCheckTime = fogEnd + FOG_COOLDOWN_TICKS;
     }
 
     public static void stopFogNow() {
@@ -60,6 +81,10 @@ public class FogEventManager {
         fogStart = 0;
         fogEnd = 0;
         isFadingOut = false;
+
+        // ⬇️ Start cooldown if fog manually stopped
+        if (mc.level != null)
+            nextFogCheckTime = mc.level.getGameTime() + FOG_COOLDOWN_TICKS;
     }
 
     public static FogType getActiveFog() {

@@ -7,7 +7,7 @@ import net.minecraft.world.phys.Vec3;
 public class EvilFogType implements FogType {
     @Override
     public boolean shouldStart(ClientLevel level, RandomSource random) {
-        return level.isNight() && random.nextInt(15000) == 0;
+        return level.isNight() && random.nextInt(30000) == 0;
     }
 
     @Override
