@@ -18,15 +18,13 @@ public class FogMobSpawnModifier {
 
         if (!level.isClientSide() && FogEventManager.isEvilFogActive()) {
             if (event.getEntityType() == EntityType.ZOMBIE) {
-                event.setResult(MobSpawnEvent.SpawnPlacementCheck.Result.SUCCEED);
+                event.setResult(MobSpawnEvent.SpawnPlacementCheck.Result.FAIL);
 
-                // Spawn and buff the zombie manually
                 BlockPos pos = event.getPos();
                 Zombie zombie = new Zombie(level);
-                zombie.moveTo(pos, 0.0F, 0.0F);
-                zombie.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 20 * 60, 1));  // Speed II
-                zombie.addEffect(new MobEffectInstance(MobEffects.DAMAGE_BOOST, 20 * 60, 0));   // Strength I
-
+                zombie.moveTo(pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5, 0.0F, 0.0F);
+                zombie.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 20 * 60, 1));
+                zombie.addEffect(new MobEffectInstance(MobEffects.DAMAGE_BOOST, 20 * 60, 0));
                 level.addFreshEntity(zombie);
             }
         }
