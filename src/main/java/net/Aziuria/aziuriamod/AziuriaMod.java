@@ -2,6 +2,11 @@ package net.Aziuria.aziuriamod;
 
 import com.mojang.logging.LogUtils;
 import net.Aziuria.aziuriamod.block.ModBlocks;
+import net.Aziuria.aziuriamod.client.ModClientEvents;
+import net.Aziuria.aziuriamod.command.FogCommand;
+import net.Aziuria.aziuriamod.fog.FogMobSpawnModifier;
+import net.Aziuria.aziuriamod.fog.FogRegistry;
+import net.Aziuria.aziuriamod.fog.FogVillagerAI;
 import net.Aziuria.aziuriamod.handler.LeafParticleHandler;
 import net.Aziuria.aziuriamod.block.entity.ModBlockEntities;
 import net.Aziuria.aziuriamod.client.ClientModInitializer;
@@ -24,6 +29,7 @@ import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.fml.loading.FMLEnvironment;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
+import net.neoforged.neoforge.event.RegisterCommandsEvent;
 import net.neoforged.neoforge.event.server.ServerStartingEvent;
 import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
 import net.neoforged.neoforge.capabilities.Capabilities;
@@ -49,6 +55,13 @@ public class AziuriaMod {
         NeoForge.EVENT_BUS.register(BlockDropHandler.class);
         NeoForge.EVENT_BUS.register(ModEvents.class);
         NeoForge.EVENT_BUS.register(LeafParticleHandler.class);
+
+
+        // ** Added registrations for fog features **
+        FogRegistry.init();                                           // Initialize fog system
+        NeoForge.EVENT_BUS.addListener(this::onRegisterCommands);     // Command setup listener
+        NeoForge.EVENT_BUS.register(new FogVillagerAI());             // AI handler
+        NeoForge.EVENT_BUS.register(new FogMobSpawnModifier());
 
         // Register all mod content
         ModCreativeModeTabs.register(modEventBus);
@@ -99,11 +112,17 @@ public class AziuriaMod {
         LOGGER.info("Server is starting...");
     }
 
+    private void onRegisterCommands(RegisterCommandsEvent event) {
+        FogCommand.register(event.getDispatcher());
+    }
+
+
     @EventBusSubscriber(modid = MOD_ID, bus = EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
     public static class ClientModEvents {
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event) {
             event.enqueueWork(() -> LOGGER.info("Client setup complete."));
+
         }
     }
 
