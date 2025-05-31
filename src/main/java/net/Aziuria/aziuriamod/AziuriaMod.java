@@ -2,6 +2,7 @@ package net.Aziuria.aziuriamod;
 
 import com.mojang.logging.LogUtils;
 import net.Aziuria.aziuriamod.block.ModBlocks;
+import net.Aziuria.aziuriamod.client.ModClientCommonBusEvents;
 import net.Aziuria.aziuriamod.client.ModClientEvents;
 import net.Aziuria.aziuriamod.command.FogCommand;
 import net.Aziuria.aziuriamod.fog.FogMobSpawnModifier;
@@ -62,6 +63,7 @@ public class AziuriaMod {
         NeoForge.EVENT_BUS.addListener(this::onRegisterCommands);     // Command setup listener
         NeoForge.EVENT_BUS.register(new FogVillagerAI());             // AI handler
         NeoForge.EVENT_BUS.register(new FogMobSpawnModifier());
+        NeoForge.EVENT_BUS.register(ModClientCommonBusEvents.class);
 
         // Register all mod content
         ModCreativeModeTabs.register(modEventBus);
