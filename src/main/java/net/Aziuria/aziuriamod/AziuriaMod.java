@@ -7,6 +7,7 @@ import net.Aziuria.aziuriamod.client.ModClientEvents;
 import net.Aziuria.aziuriamod.command.FogCommand;
 import net.Aziuria.aziuriamod.fog.FogMobSpawnModifier;
 import net.Aziuria.aziuriamod.fog.FogRegistry;
+import net.Aziuria.aziuriamod.fog.FogRendererHook;
 import net.Aziuria.aziuriamod.fog.FogVillagerAI;
 import net.Aziuria.aziuriamod.handler.LeafParticleHandler;
 import net.Aziuria.aziuriamod.block.entity.ModBlockEntities;
@@ -124,6 +125,8 @@ public class AziuriaMod {
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event) {
             event.enqueueWork(() -> LOGGER.info("Client setup complete."));
+
+            NeoForge.EVENT_BUS.register(new FogRendererHook());
 
         }
     }
