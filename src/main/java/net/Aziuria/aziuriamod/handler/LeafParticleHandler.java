@@ -1,13 +1,11 @@
 package net.Aziuria.aziuriamod.handler;
 
-import net.Aziuria.aziuriamod.particle.ModParticles;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.multiplayer.ClientLevel;
-import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.particles.SimpleParticleType;
+import net.minecraft.core.particles.BlockParticleOption;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.util.RandomSource;
-import net.minecraft.world.level.block.LeavesBlock;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -20,37 +18,42 @@ public class LeafParticleHandler {
     @SubscribeEvent
     public static void onClientTick(ClientTickEvent.Post event) {
         Minecraft mc = Minecraft.getInstance();
-        ClientLevel level = mc.level;
-        LocalPlayer player = mc.player;
+        if (mc.level == null || mc.player == null) return;
 
-        if (level == null || player == null) return;
+        RandomSource random = mc.level.getRandom();
+        int particleCount = 5 + random.nextInt(10);
 
-        RandomSource random = level.random;
+        for (int i = 0; i < particleCount; i++) {
+            int dx = random.nextInt(21) - 10; // ±10 blocks X
+            int dz = random.nextInt(21) - 10; // ±10 blocks Z
 
-        BlockPos.betweenClosedStream(
-                player.blockPosition().offset(-10, -4, -10),
-                player.blockPosition().offset(10, 4, 10)
-        ).forEach(pos -> {
-            BlockState state = level.getBlockState(pos);
-            if (state.getBlock() instanceof LeavesBlock && random.nextFloat() < 0.004f) {
+            int dy = random.nextInt(8) - 2; // From -2 to +5 blocks vertically
+            BlockPos pos = mc.player.blockPosition().offset(dx, dy, dz);
+            BlockState state = mc.level.getBlockState(pos);
+
+            if (isLeafBlock(state)) {
                 double px = pos.getX() + random.nextDouble();
-                double py = pos.getY() + random.nextDouble();
+                double py = pos.getY() + 0.1; // slightly above block
                 double pz = pos.getZ() + random.nextDouble();
 
-                // Add random sideways drift velocity between -0.01 and 0.01 on X and Z
-                double vx = (random.nextDouble() - 0.5) * 0.02;
-                double vy = -0.03; // consistent gentle fall speed
-                double vz = (random.nextDouble() - 0.5) * 0.02;
+                // Add sideways motion for natural falling
+                double vx = (random.nextDouble() - 0.5) * 0.02; // small sideways velocity X
+                double vy = -0.002 - random.nextDouble() * 0.001; // slow downward velocity Y
+                double vz = (random.nextDouble() - 0.5) * 0.02; // small sideways velocity Z
 
-                SimpleParticleType type = switch (random.nextInt(4)) {
-                    case 0 -> ModParticles.FALLING_LEAF_1.get();
-                    case 1 -> ModParticles.FALLING_LEAF_2.get();
-                    case 2 -> ModParticles.FALLING_LEAF_3.get();
-                    default -> ModParticles.FALLING_LEAF_4.get();
-                };
-
-                level.addParticle(type, px, py, pz, 0, -0.03, 0); // Fall down slowly
+                mc.level.addParticle(new BlockParticleOption(ParticleTypes.FALLING_DUST, state), px, py, pz, vx, vy, vz);
             }
-        });
+        }
+    }
+
+    private static boolean isLeafBlock(BlockState state) {
+        return state.is(Blocks.OAK_LEAVES)
+                || state.is(Blocks.BIRCH_LEAVES)
+                || state.is(Blocks.SPRUCE_LEAVES)
+                || state.is(Blocks.JUNGLE_LEAVES)
+                || state.is(Blocks.ACACIA_LEAVES)
+                || state.is(Blocks.DARK_OAK_LEAVES)
+                || state.is(Blocks.MANGROVE_LEAVES)
+                || state.is(Blocks.CHERRY_LEAVES);
     }
 }

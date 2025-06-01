@@ -6,8 +6,6 @@ import net.Aziuria.aziuriamod.block.entity.renderer.ShelfRenderer;
 import net.Aziuria.aziuriamod.block.entity.renderer.SteelBarrelRenderer;
 import net.Aziuria.aziuriamod.block.entity.renderer.StorageRenderer;
 import net.Aziuria.aziuriamod.fog.FogRendererHook;
-import net.Aziuria.aziuriamod.particle.FallingLeafParticle;
-import net.Aziuria.aziuriamod.particle.ModParticles;
 
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
@@ -15,14 +13,12 @@ import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
 
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
-import net.neoforged.neoforge.client.event.RegisterParticleProvidersEvent;
 import net.neoforged.neoforge.common.NeoForge;
 
 public class ClientModInitializer {
 
     public static void register(IEventBus modEventBus) {
         modEventBus.addListener(ClientModInitializer::onClientSetup);
-        modEventBus.addListener(ClientModInitializer::onRegisterParticles);
 
         NeoForge.EVENT_BUS.register(new FogRendererHook());
         ModClientEvents.register(modEventBus);
@@ -38,12 +34,6 @@ public class ClientModInitializer {
             ItemBlockRenderTypes.setRenderLayer(ModBlocks.UNBREAKABLE_GLASS.get(), RenderType.translucent());
             ItemBlockRenderTypes.setRenderLayer(ModBlocks.STEEL_BARREL_EMPTY.get(), RenderType.translucent());
         });
-    }
 
-    public static void onRegisterParticles(RegisterParticleProvidersEvent event) {
-        event.registerSpriteSet(ModParticles.FALLING_LEAF_1.get(), FallingLeafParticle.Provider::new);
-        event.registerSpriteSet(ModParticles.FALLING_LEAF_2.get(), FallingLeafParticle.Provider::new);
-        event.registerSpriteSet(ModParticles.FALLING_LEAF_3.get(), FallingLeafParticle.Provider::new);
-        event.registerSpriteSet(ModParticles.FALLING_LEAF_4.get(), FallingLeafParticle.Provider::new);
     }
 }

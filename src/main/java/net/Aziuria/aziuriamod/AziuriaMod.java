@@ -14,7 +14,6 @@ import net.Aziuria.aziuriamod.events.ModEvents;
 import net.Aziuria.aziuriamod.handler.BlockDropHandler;
 import net.Aziuria.aziuriamod.item.ModCreativeModeTabs;
 import net.Aziuria.aziuriamod.item.ModItems;
-import net.Aziuria.aziuriamod.particle.ModParticles;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.IEventBus;
@@ -70,7 +69,7 @@ public class AziuriaMod {
         ModBlockEntities.register(modEventBus);
         ModMenus.register(modEventBus);
         ModDataComponents.register(modEventBus);
-        ModParticles.register(modEventBus);
+
 
         // Config registration
         modContainer.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
