@@ -7,7 +7,7 @@ import net.minecraft.world.phys.Vec3;
 public class BasicFogType implements FogType {
     @Override
     public boolean shouldStart(ClientLevel level, RandomSource random) {
-        return random.nextInt(30000) == 0;
+        return random.nextInt(12000) == 0;
     }
 
     @Override
