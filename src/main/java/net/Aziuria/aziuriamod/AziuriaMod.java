@@ -14,6 +14,8 @@ import net.Aziuria.aziuriamod.events.ModEvents;
 import net.Aziuria.aziuriamod.handler.BlockDropHandler;
 import net.Aziuria.aziuriamod.item.ModCreativeModeTabs;
 import net.Aziuria.aziuriamod.item.ModItems;
+import net.Aziuria.aziuriamod.particle.FallingLeafParticle;
+import net.Aziuria.aziuriamod.particle.ModParticles;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.IEventBus;
@@ -25,6 +27,7 @@ import net.neoforged.fml.config.ModConfig;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.fml.loading.FMLEnvironment;
+import net.neoforged.neoforge.client.event.RegisterParticleProvidersEvent;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 import net.neoforged.neoforge.event.RegisterCommandsEvent;
@@ -69,6 +72,7 @@ public class AziuriaMod {
         ModBlockEntities.register(modEventBus);
         ModMenus.register(modEventBus);
         ModDataComponents.register(modEventBus);
+        ModParticles.register(modEventBus);
 
 
         // Config registration
@@ -124,8 +128,13 @@ public class AziuriaMod {
             event.enqueueWork(() -> LOGGER.info("Client setup complete."));
 
 
-
         }
+
+        @SubscribeEvent
+        public static void registerParticleFactories(RegisterParticleProvidersEvent event) {
+            event.registerSpriteSet(ModParticles.FALLING_LEAF_PARTICLE.get(), FallingLeafParticle.Provider::new);
+        }
+
     }
 
 }

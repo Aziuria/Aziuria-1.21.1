@@ -1,5 +1,6 @@
 package net.Aziuria.aziuriamod.handler;
 
+import net.Aziuria.aziuriamod.particle.ModParticles;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.BlockParticleOption;
@@ -41,7 +42,7 @@ public class LeafParticleHandler {
                 double vy = -0.002 - random.nextDouble() * 0.001; // slow downward velocity Y
                 double vz = (random.nextDouble() - 0.5) * 0.02; // small sideways velocity Z
 
-                mc.level.addParticle(new BlockParticleOption(ParticleTypes.FALLING_DUST, state), px, py, pz, vx, vy, vz);
+                mc.level.addParticle(ModParticles.FALLING_LEAF_PARTICLE.get(), px, py, pz, vx, vy, vz);
             }
         }
     }
