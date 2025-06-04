@@ -132,7 +132,10 @@ public class AziuriaMod {
 
         @SubscribeEvent
         public static void registerParticleFactories(RegisterParticleProvidersEvent event) {
-            event.registerSpriteSet(ModParticles.FALLING_LEAF_PARTICLE.get(), FallingLeafParticle.Provider::new);
+            event.registerSpriteSet(ModParticles.FALLING_LEAF_1.get(), FallingLeafParticle.Provider::new);
+            event.registerSpriteSet(ModParticles.FALLING_LEAF_2.get(), FallingLeafParticle.Provider::new);
+            event.registerSpriteSet(ModParticles.FALLING_LEAF_3.get(), FallingLeafParticle.Provider::new);
+            event.registerSpriteSet(ModParticles.FALLING_LEAF_4.get(), FallingLeafParticle.Provider::new);
         }
 
     }
