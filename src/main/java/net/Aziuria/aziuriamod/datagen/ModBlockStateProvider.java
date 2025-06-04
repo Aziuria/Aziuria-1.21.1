@@ -24,6 +24,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
         blockWithItem(ModBlocks.UNBREAKABLE_GLASS);
 
 
+
     }
 
     private void blockWithItem(DeferredBlock<?> deferredBlock) {

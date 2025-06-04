@@ -37,6 +37,7 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                 .add(ModBlocks.POTASSIUM_ORE.get())
                 .add(ModBlocks.DEEPSLATE_SULPHUR_ORE.get())
                 .add(ModBlocks.DEEPSLATE_POTASSIUM_ORE.get())
+                .add(ModBlocks.STEEL_BARS.get())
                 .add(ModBlocks.STEEL_BLOCK.get());
 
         tag(ModTags.Blocks.NEEDS_STEEL_TOOL)

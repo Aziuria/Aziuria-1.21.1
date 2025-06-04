@@ -38,6 +38,7 @@ public class ModCreativeModeTabs {
                         output.accept(ModBlocks.DEEPSLATE_POTASSIUM_ORE);
                         output.accept(ModBlocks.DEEPSLATE_SULPHUR_ORE);
                         output.accept(ModBlocks.STEEL_BLOCK);
+                        output.accept(ModBlocks.STEEL_BARS);
                         output.accept(ModBlocks.UNBREAKABLE_GLASS);
                         output.accept(ModBlocks.OAK_SHELF);
                         output.accept(ModBlocks.BIRCH_SHELF);

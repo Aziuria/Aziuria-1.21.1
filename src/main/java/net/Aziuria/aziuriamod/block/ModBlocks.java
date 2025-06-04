@@ -1,6 +1,7 @@
 package net.Aziuria.aziuriamod.block;
 
 import net.Aziuria.aziuriamod.AziuriaMod;
+import net.Aziuria.aziuriamod.block.entity.SteelBarsBlock;
 import net.Aziuria.aziuriamod.item.ModItems;
 import net.Aziuria.aziuriamod.item.custom.FuelItem;
 import net.minecraft.util.valueproviders.UniformInt;
@@ -176,6 +177,12 @@ public class ModBlocks {
                     .sound(SoundType.METAL)
                     .noOcclusion()));
 
+    public static final DeferredBlock<SteelBarsBlock> STEEL_BARS = registerBlock("steel_bars",
+            () -> new SteelBarsBlock(BlockBehaviour.Properties.of()
+                    .strength(5.0f)
+                    .requiresCorrectToolForDrops()
+                    .noOcclusion()));
+
     public static final DeferredBlock<LeafLitterBlock> LEAF_LITTER = registerBlock("leaf_litter",
             () -> new LeafLitterBlock(BlockBehaviour.Properties.of()
                     .mapColor(MapColor.PLANT)
@@ -184,6 +191,7 @@ public class ModBlocks {
                     .isViewBlocking((s, r, p) -> false)
                     .isSuffocating((s, r, p) -> false)),
             block -> new FuelItem(block, new Item.Properties(), 100)
+
 
     );
 
@@ -205,6 +213,8 @@ public class ModBlocks {
         ModItems.ITEMS.register(name, () -> itemFactory.apply(toReturn.get()));
         return toReturn;
     }
+
+
 
     public static void register(IEventBus eventBus) {
         BLOCKS.register(eventBus);
