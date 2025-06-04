@@ -1,9 +1,12 @@
 package net.Aziuria.aziuriamod.handler;
 
+import net.Aziuria.aziuriamod.particle.FallingLeafParticle;
 import net.Aziuria.aziuriamod.particle.ModParticles;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientLevel;
+import net.minecraft.client.particle.Particle;
 import net.minecraft.client.player.LocalPlayer;
+import net.minecraft.client.renderer.BiomeColors;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.util.RandomSource;
@@ -28,11 +31,11 @@ public class LeafParticleHandler {
         RandomSource random = level.random;
 
         BlockPos.betweenClosedStream(
-                player.blockPosition().offset(-10, -4, -10),
-                player.blockPosition().offset(10, 4, 10)
+                player.blockPosition().offset(-18, -6, -18),
+                player.blockPosition().offset(18, 6, 18)
         ).forEach(pos -> {
             BlockState state = level.getBlockState(pos);
-            if (state.getBlock() instanceof LeavesBlock && random.nextFloat() < 0.004f) {
+            if (state.getBlock() instanceof LeavesBlock && random.nextFloat() < 0.0025f) {
                 double px = pos.getX() + random.nextDouble();
                 double py = pos.getY() + random.nextDouble();
                 double pz = pos.getZ() + random.nextDouble();
@@ -49,7 +52,17 @@ public class LeafParticleHandler {
                     default -> ModParticles.FALLING_LEAF_4.get();
                 };
 
-                level.addParticle(type, px, py, pz, 0, -0.03, 0); // Fall down slowly
+                int color = BiomeColors.getAverageFoliageColor(level, pos);
+                float r = (color >> 16 & 255) / 255.0f;
+                float g = (color >> 8 & 255) / 255.0f;
+                float b = (color & 255) / 255.0f;
+
+                Particle particle = Minecraft.getInstance().particleEngine.createParticle(
+                        type, px, py, pz, vx, vy, vz);
+
+                if (particle instanceof FallingLeafParticle leafParticle) {
+                    leafParticle.setColor(r, g, b);
+                }
             }
         });
     }

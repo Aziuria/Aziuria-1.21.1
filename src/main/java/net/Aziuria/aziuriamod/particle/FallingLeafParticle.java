@@ -5,8 +5,6 @@ import net.minecraft.client.particle.*;
 import net.minecraft.core.particles.SimpleParticleType;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.Random;
-
 public class FallingLeafParticle extends TextureSheetParticle {
     private final SpriteSet spriteSet;
 
@@ -17,34 +15,49 @@ public class FallingLeafParticle extends TextureSheetParticle {
         this.spriteSet = spriteSet;
 
         this.friction = 0.85F;
-        this.gravity = 0.05F;
-        this.lifetime = 200 + level.random.nextInt(40); // 60–100 ticks
+        this.gravity = 0.08F;
+        this.lifetime = 200 + level.random.nextInt(40); // 200–240 ticks
 
         this.xd = xSpeed;
         this.yd = ySpeed;
         this.zd = zSpeed;
 
-        this.quadSize *= 0.5F + level.random.nextFloat(); // Randomize size
+        this.quadSize *= 0.4F + level.random.nextFloat() * 0.2F; // Randomize size
         this.setSpriteFromAge(spriteSet);
 
-        this.rCol = 1.0F;
-        this.gCol = 1.0F;
-        this.bCol = 1.0F;
+        // Default to white, you can override with setColor(r, g, b)
+        this.rCol = 1.0f;
+        this.gCol = 1.0f;
+        this.bCol = 1.0f;
+    }
+
+    // Allow setting color
+    public void setColor(float r, float g, float b) {
+        this.rCol = r;
+        this.gCol = g;
+        this.bCol = b;
     }
 
     @Override
     public void tick() {
         super.tick();
 
-        // Change sprite over time
+        // Update sprite as particle ages
         this.setSpriteFromAge(this.spriteSet);
 
-        // Extra flutter (optional wobble)
+        // Flutter / sway effect
         if (this.age % 2 == 0) {
-            this.xd += (this.random.nextDouble() - 0.5) * 0.01;
-            this.zd += (this.random.nextDouble() - 0.5) * 0.01;
+            double swayX = Math.sin(this.age * 0.3) * 0.02;
+            double swayZ = Math.cos(this.age * 0.3) * 0.02;
+            this.xd += swayX * 0.2;
+            this.zd += swayZ;
+
+            // Optional slight rotation for realism
+            this.roll += 0.02f;
+            this.oRoll = this.roll;
         }
 
+        // Remove particle on ground
         if (this.onGround) {
             this.remove();
         }
@@ -55,7 +68,7 @@ public class FallingLeafParticle extends TextureSheetParticle {
         return ParticleRenderType.PARTICLE_SHEET_TRANSLUCENT;
     }
 
-    // The factory that creates the particle
+    // Particle factory/provider class
     public static class Provider implements ParticleProvider<SimpleParticleType> {
         private final SpriteSet spriteSet;
 
