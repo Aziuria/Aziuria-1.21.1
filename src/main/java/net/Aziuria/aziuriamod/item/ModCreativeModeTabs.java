@@ -33,6 +33,12 @@ public class ModCreativeModeTabs {
                         output.accept(ModItems.STEEL_BOOTS);
                         output.accept(ModItems.STEEL_LEGGINGS);
                         output.accept(ModItems.STEEL_CHESTPLATE);
+                        output.accept(ModItems.RADISH);
+                        output.accept(ModItems.CUCUMBER);
+                        output.accept(ModItems.TOMATO);
+                        output.accept(ModItems.RADISH_SEEDS);
+                        output.accept(ModItems.TOMATO_SEEDS);
+                        output.accept(ModItems.CUCUMBER_SEEDS);
                         output.accept(ModBlocks.POTASSIUM_ORE);
                         output.accept(ModBlocks.SULPHUR_ORE);
                         output.accept(ModBlocks.DEEPSLATE_POTASSIUM_ORE);

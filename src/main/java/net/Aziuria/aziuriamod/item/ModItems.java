@@ -52,6 +52,21 @@ public class ModItems {
             () -> new ArmorItem(ModArmorMaterials.STEEL_ARMOR_MATERIAL, ArmorItem.Type.BOOTS,
                     new Item.Properties().durability(ArmorItem.Type.BOOTS.getDurability(19))));
 
+    public static final DeferredItem<Item> RADISH = ITEMS.register("radish",
+            () -> new Item(new Item.Properties().food(ModFoodProperties.RADISH)));
+    public static final DeferredItem<Item> RADISH_SEEDS = ITEMS.register("radish_seeds",
+            () -> new ItemNameBlockItem(ModBlocks.RADISH_CROP.get(), new Item.Properties()));
+
+    public static final DeferredItem<Item> CUCUMBER = ITEMS.register("cucumber",
+            () -> new Item(new Item.Properties().food(ModFoodProperties.CUCUMBER)));
+    public static final DeferredItem<Item> CUCUMBER_SEEDS = ITEMS.register("cucumber_seeds",
+            () -> new ItemNameBlockItem(ModBlocks.CUCUMBER_CROP.get(), new Item.Properties()));
+
+    public static final DeferredItem<Item> TOMATO = ITEMS.register("tomato",
+            () -> new Item(new Item.Properties().food(ModFoodProperties.TOMATO)));
+    public static final DeferredItem<Item> TOMATO_SEEDS = ITEMS.register("tomato_seeds",
+            () -> new ItemNameBlockItem(ModBlocks.TOMATO_CROP.get(), new Item.Properties()));
+
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);
 

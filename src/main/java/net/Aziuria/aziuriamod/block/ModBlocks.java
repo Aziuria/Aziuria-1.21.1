@@ -190,10 +190,14 @@ public class ModBlocks {
                     .noOcclusion()
                     .isViewBlocking((s, r, p) -> false)
                     .isSuffocating((s, r, p) -> false)),
-            block -> new FuelItem(block, new Item.Properties(), 100)
+            block -> new FuelItem(block, new Item.Properties(), 100));
 
-
-    );
+    public static final DeferredBlock<Block> RADISH_CROP = BLOCKS.register("radish_crop",
+            () -> new RadishCropBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.BEETROOTS)));
+    public static final DeferredBlock<Block> CUCUMBER_CROP = BLOCKS.register("cucumber_crop",
+            () -> new CucumberCropBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.BEETROOTS)));
+    public static final DeferredBlock<Block> TOMATO_CROP = BLOCKS.register("tomato_crop",
+            () -> new TomatoCropBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.BEETROOTS)));
 
 
 

@@ -17,7 +17,7 @@ public class LeafLitterHandler {
         RandomSource random = level.getRandom();
 
         level.players().forEach(player -> {
-            int placements = 1 + random.nextInt(5); // 1 to 5 placements
+            int placements = 3 + random.nextInt(8); // 3 to 10 placements
 
             for (int i = 0; i < placements; i++) {
                 // Choose a random nearby position within 100 blocks

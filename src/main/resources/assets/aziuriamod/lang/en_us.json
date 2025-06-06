@@ -47,6 +47,13 @@
   "block.aziuriamod.steel_bars": "Steel Bars",
   "block.aziuriamod.leaf_litter": "Leaf Litter",
 
+  "item.aziuriamod.radish": "Radish",
+  "item.aziuriamod.cucumber": "Cucumber",
+  "item.aziuriamod.tomato": "Tomato",
+  "item.aziuriamod.radish_seeds": "Radish Seeds",
+  "item.aziuriamod.cucumber_seeds": "Cucumber Seeds",
+  "item.aziuriamod.tomato_seeds": "Tomato Seeds",
+
 
 
   "creativetab.aziuriamod.useful_items_and_blocks": "Useful Items and Blocks"
