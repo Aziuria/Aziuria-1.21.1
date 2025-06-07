@@ -1,5 +1,6 @@
 package net.Aziuria.aziuriamod.handler;
 
+import net.Aziuria.aziuriamod.item.ModItems;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Blocks;
@@ -31,14 +32,20 @@ public class BlockDropHandler {
             return new ItemStack(Items.WHEAT_SEEDS);
         } else if (chance < 30) {
             return new ItemStack(Items.BEETROOT_SEEDS);
-        } else if (chance < 45) {
+        } else if (chance < 32) {
             return new ItemStack(Items.CARROT);
-        } else if (chance < 60) {
+        } else if (chance < 34) {
             return new ItemStack(Items.POTATO);
-        } else if (chance < 75) {
+        } else if (chance < 36) {
             return new ItemStack(Items.MELON_SEEDS);
-        } else if (chance < 90) {
+        } else if (chance < 38) {
             return new ItemStack(Items.PUMPKIN_SEEDS);
+        } else if (chance < 40) {
+            return new ItemStack(ModItems.TOMATO_SEEDS.get());
+        } else if (chance < 42) {
+            return new ItemStack(ModItems.CUCUMBER_SEEDS.get());
+        } else if (chance < 44) {
+            return new ItemStack(ModItems.RADISH_SEEDS.get());
         } else {
             return ItemStack.EMPTY;
         }

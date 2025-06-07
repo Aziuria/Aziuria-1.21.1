@@ -22,7 +22,8 @@ public class ModDataMapProvider extends DataMapProvider {
                 .add(ModItems.CUCUMBER_SEEDS.getId(), new Compostable(0.25f), false)
                 .add(ModItems.CUCUMBER.getId(), new Compostable(0.45f), false)
                 .add(ModItems.TOMATO_SEEDS.getId(), new Compostable(0.25f), false)
-                .add(ModItems.TOMATO.getId(), new Compostable(0.45f), false);
+                .add(ModItems.TOMATO.getId(), new Compostable(0.45f), false)
+                .add(ModItems.FLAX_FLOWER.getId(), new Compostable(0.45f), false);
 
 
     }
