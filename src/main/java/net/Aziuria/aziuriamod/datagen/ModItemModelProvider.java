@@ -52,6 +52,7 @@ public class ModItemModelProvider extends ItemModelProvider {
         basicItem(ModItems.RADISH_SEEDS.get());
         basicItem(ModItems.CUCUMBER_SEEDS.get());
         basicItem(ModItems.TOMATO_SEEDS.get());
+        basicItem(ModItems.FLAX_FLOWER.get());
 
         handheldItem(ModItems.STEEL_SWORD);
         handheldItem(ModItems.STEEL_PICKAXE);

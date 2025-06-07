@@ -39,6 +39,7 @@ public class ModCreativeModeTabs {
                         output.accept(ModItems.RADISH_SEEDS);
                         output.accept(ModItems.TOMATO_SEEDS);
                         output.accept(ModItems.CUCUMBER_SEEDS);
+                        output.accept(ModItems.FLAX_FLOWER);
                         output.accept(ModBlocks.POTASSIUM_ORE);
                         output.accept(ModBlocks.SULPHUR_ORE);
                         output.accept(ModBlocks.DEEPSLATE_POTASSIUM_ORE);

@@ -41,6 +41,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .unlockedBy("has_steel_ingot", has(ModItems.STEEL_INGOT))
                 .save(recipeOutput);
 
+
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.STEEL_PICKAXE.get())
                 .pattern("BBB")
                 .pattern(" K ")
@@ -116,6 +117,11 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .define('P', ModItems.POTASSIUM.get())
                 .define('S', ModItems.SULPHUR.get())
                 .unlockedBy("has_potassium", has(ModItems.POTASSIUM.get())).save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, Items.STRING, 4)
+                .pattern("SSS")
+                .define('S', ModItems.FLAX_FLOWER.get())
+                .unlockedBy("has_flax_flower", has(ModItems.FLAX_FLOWER.get())).save(recipeOutput);
 
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.SACK_ITEM.get())
                 .pattern("   ")

@@ -67,6 +67,9 @@ public class ModItems {
     public static final DeferredItem<Item> TOMATO_SEEDS = ITEMS.register("tomato_seeds",
             () -> new ItemNameBlockItem(ModBlocks.TOMATO_CROP.get(), new Item.Properties()));
 
+    public static final DeferredItem<Item> FLAX_FLOWER = ITEMS.register("flax_flower",
+            () -> new BlockItem(ModBlocks.FLAX_FLOWER_BLOCK.get(), new Item.Properties()));
+
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);
 

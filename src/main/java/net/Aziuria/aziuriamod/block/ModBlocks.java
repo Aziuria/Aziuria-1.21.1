@@ -199,6 +199,9 @@ public class ModBlocks {
     public static final DeferredBlock<Block> TOMATO_CROP = BLOCKS.register("tomato_crop",
             () -> new TomatoCropBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.BEETROOTS)));
 
+    public static final DeferredBlock<Block> FLAX_FLOWER_BLOCK = BLOCKS.register("flax_flower",
+            () -> new FlaxFlowerBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.DANDELION)));
+
 
 
 

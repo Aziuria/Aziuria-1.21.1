@@ -36,6 +36,15 @@ public class ModBlockStateProvider extends BlockStateProvider {
         makeCrop(((CropBlock) ModBlocks.CUCUMBER_CROP.get()), "cucumber_crop_stage", "cucumber_crop_stage");
         makeCrop(((CropBlock) ModBlocks.TOMATO_CROP.get()), "tomato_crop_stage", "tomato_crop_stage");
 
+        getVariantBuilder(ModBlocks.FLAX_FLOWER_BLOCK.get())
+                .partialState()
+                .setModels(new ConfiguredModel(
+                        models().cross("flax_flower", modLoc("block/flax_flower")).renderType("cutout")
+                ));
+
+        // Optional: register its block item model if you want it to use the block model
+        blockItem(ModBlocks.FLAX_FLOWER_BLOCK);
+
     }
 
     public void makeCrop(CropBlock block, String modelName, String textureName) {

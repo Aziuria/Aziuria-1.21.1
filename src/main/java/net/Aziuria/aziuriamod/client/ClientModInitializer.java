@@ -35,6 +35,7 @@ public class ClientModInitializer {
             ItemBlockRenderTypes.setRenderLayer(ModBlocks.STEEL_BARREL_EMPTY.get(), RenderType.translucent());
 
             ItemBlockRenderTypes.setRenderLayer(ModBlocks.STEEL_BARS.get(), RenderType.cutout());
+            ItemBlockRenderTypes.setRenderLayer(ModBlocks.FLAX_FLOWER_BLOCK.get(), RenderType.cutout());
         });
 
     }
