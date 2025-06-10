@@ -46,12 +46,12 @@ public class IslandGenerator {
 
                 double nx = x / (double)(width / 2);
                 double nz = z / (double)(length / 2);
-                double radialFalloff = 1.0 - Math.sqrt(nx * nx + nz * nz);
-                double noiseValue = noise.getValue(x * 0.1, z * 0.1, 0);
-                double shapeFactor = Math.min(Math.max(radialFalloff + noiseValue * 0.3, 0.0), 1.0);
+                double radialFalloff = 1.0 - Math.pow(nx * nx + nz * nz, 0.4);
+                double noiseValue = noise.getValue(x * 0.05, z * 0.05, 0);
+                double shapeFactor = Math.min(Math.max(radialFalloff + noiseValue * 0.15, 0.0), 1.0);
 
 // Scale island height by shape
-                int columnHeight = (int)(shapeFactor * maxIslandHeight);
+                int columnHeight = Math.max((int)(shapeFactor * maxIslandHeight), 2);
                 if (columnHeight < 1) continue;
 
                 int baseY = oceanFloorHeight;
@@ -100,6 +100,12 @@ public class IslandGenerator {
                         else if (oreRoll < 0.03) batcher.setBlock(pos, ModBlocks.SULPHUR_ORE.get().defaultBlockState());
                         else if (oreRoll < 0.06) batcher.setBlock(pos, ModBlocks.POTASSIUM_ORE.get().defaultBlockState());
                         else batcher.setBlock(pos, Blocks.STONE.defaultBlockState());
+                    }
+                }
+                for (int y = baseY - 1; y > oceanFloorHeight - 5; y--) {
+                    BlockPos fillPos = new BlockPos(worldX, y, worldZ);
+                    if (level.isEmptyBlock(fillPos)) {
+                        batcher.setBlock(fillPos, Blocks.STONE.defaultBlockState());
                     }
                 }
 
