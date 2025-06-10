@@ -53,6 +53,9 @@ public class ModItemModelProvider extends ItemModelProvider {
         basicItem(ModItems.CUCUMBER_SEEDS.get());
         basicItem(ModItems.TOMATO_SEEDS.get());
         basicItem(ModItems.FLAX_FLOWER.get());
+        basicItem(ModItems.ISLAND_GENERATOR_SMALL.get());
+        basicItem(ModItems.ISLAND_GENERATOR_MEDIUM.get());
+        basicItem(ModItems.ISLAND_GENERATOR_LARGE.get());
 
         handheldItem(ModItems.STEEL_SWORD);
         handheldItem(ModItems.STEEL_PICKAXE);

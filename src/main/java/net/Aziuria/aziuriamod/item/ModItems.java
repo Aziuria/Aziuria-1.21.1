@@ -2,7 +2,10 @@ package net.Aziuria.aziuriamod.item;
 
 import net.Aziuria.aziuriamod.AziuriaMod;
 import net.Aziuria.aziuriamod.block.ModBlocks;
+import net.Aziuria.aziuriamod.block.world.IslandBiomeType;
+import net.Aziuria.aziuriamod.block.world.IslandType;
 import net.Aziuria.aziuriamod.item.custom.FuelItem;
+import net.Aziuria.aziuriamod.item.custom.IslandThrowableItem;
 import net.minecraft.world.item.*;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredHolder;
@@ -69,6 +72,15 @@ public class ModItems {
 
     public static final DeferredItem<Item> FLAX_FLOWER = ITEMS.register("flax_flower",
             () -> new BlockItem(ModBlocks.FLAX_FLOWER_BLOCK.get(), new Item.Properties()));
+
+    public static final DeferredItem<Item> ISLAND_GENERATOR_SMALL = ITEMS.register("island_generator_small",
+            () -> new IslandThrowableItem(IslandType.SMALL, IslandBiomeType.PLAINS, new Item.Properties().stacksTo(16)));
+
+    public static final DeferredItem<Item> ISLAND_GENERATOR_MEDIUM = ITEMS.register("island_generator_medium",
+            () -> new IslandThrowableItem(IslandType.MEDIUM, IslandBiomeType.PLAINS, new Item.Properties().stacksTo(16)));
+
+    public static final DeferredItem<Item> ISLAND_GENERATOR_LARGE = ITEMS.register("island_generator_large",
+            () -> new IslandThrowableItem(IslandType.LARGE, IslandBiomeType.PLAINS, new Item.Properties().stacksTo(16)));
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);

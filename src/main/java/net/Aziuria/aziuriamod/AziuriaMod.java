@@ -2,6 +2,7 @@ package net.Aziuria.aziuriamod;
 
 import com.mojang.logging.LogUtils;
 import net.Aziuria.aziuriamod.block.ModBlocks;
+import net.Aziuria.aziuriamod.block.world.BlockBatcher;
 import net.Aziuria.aziuriamod.client.ModClientCommonBusEvents;
 import net.Aziuria.aziuriamod.command.FogCommand;
 import net.Aziuria.aziuriamod.fog.*;
@@ -14,6 +15,7 @@ import net.Aziuria.aziuriamod.events.ModEvents;
 import net.Aziuria.aziuriamod.handler.BlockDropHandler;
 import net.Aziuria.aziuriamod.item.ModCreativeModeTabs;
 import net.Aziuria.aziuriamod.item.ModItems;
+import net.Aziuria.aziuriamod.item.custom.entities.ModEntities;
 import net.Aziuria.aziuriamod.particle.FallingLeafParticle;
 import net.Aziuria.aziuriamod.particle.ModParticles;
 import net.minecraft.world.item.CreativeModeTabs;
@@ -64,6 +66,7 @@ public class AziuriaMod {
         NeoForge.EVENT_BUS.register(new FogMobSpawnModifier());
         NeoForge.EVENT_BUS.register(ModClientCommonBusEvents.class);
         NeoForge.EVENT_BUS.register(new FogZombieSpawner());
+        NeoForge.EVENT_BUS.register(BlockBatcher.class);
 
         // Register all mod content
         ModCreativeModeTabs.register(modEventBus);
@@ -73,6 +76,8 @@ public class AziuriaMod {
         ModMenus.register(modEventBus);
         ModDataComponents.register(modEventBus);
         ModParticles.register(modEventBus);
+        ModEntities.ENTITIES.register(modEventBus);
+
 
 
         // Config registration
