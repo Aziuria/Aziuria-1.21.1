@@ -2,10 +2,16 @@ package net.Aziuria.aziuriamod.block.world;
 
 import net.Aziuria.aziuriamod.block.ModBlocks;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Registry;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.data.worldgen.features.TreeFeatures;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.levelgen.Heightmap;
+import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.synth.SimplexNoise;
 
 public class IslandGenerator {
@@ -32,136 +38,161 @@ public class IslandGenerator {
 
                 int terrainHeight = level.getHeight(Heightmap.Types.WORLD_SURFACE_WG, worldX, worldZ);
                 int oceanFloorHeight = level.getHeight(Heightmap.Types.OCEAN_FLOOR_WG, worldX, worldZ);
-                int baseY = Math.max(terrainHeight, oceanFloorHeight + 1) - 1;
+                int waterHeight = level.getHeight(Heightmap.Types.WORLD_SURFACE_WG, worldX, worldZ);
+
+                int maxIslandTop = waterHeight + 5;
+                int maxIslandHeight = maxIslandTop - oceanFloorHeight;
+                if (maxIslandHeight <= 0) continue; // skip very shallow ocean
 
                 double nx = x / (double)(width / 2);
                 double nz = z / (double)(length / 2);
-                double distanceFalloff = 1.0 - Math.sqrt(nx * nx + nz * nz);
+                double radialFalloff = 1.0 - Math.sqrt(nx * nx + nz * nz);
                 double noiseValue = noise.getValue(x * 0.1, z * 0.1, 0);
-                double shapeFactor = Math.min(Math.max(distanceFalloff + noiseValue * 0.3, 0.0), 1.0);
+                double shapeFactor = Math.min(Math.max(radialFalloff + noiseValue * 0.3, 0.0), 1.0);
 
-                if (shapeFactor > 0) {
-                    int columnHeight = (int)(shapeFactor * maxHeight);
-                    int topY = baseY + columnHeight;
+// Scale island height by shape
+                int columnHeight = (int)(shapeFactor * maxIslandHeight);
+                if (columnHeight < 1) continue;
 
-                    // Fill under water
-                    for (int y = oceanFloorHeight; y <= topY; y++) {
-                        BlockPos fillPos = new BlockPos(worldX, y, worldZ);
-                        double verticalRatio = (y - oceanFloorHeight) / (double)(topY - oceanFloorHeight);
+                int baseY = oceanFloorHeight;
+                int topY = baseY + columnHeight;
 
-                        if (y >= baseY) continue;
+// Ocean floor smoothing: optional slight elevation before island base
+                for (int y = oceanFloorHeight - 3; y < baseY; y++) {
+                    BlockPos seabedPos = new BlockPos(worldX, y, worldZ);
+                    double blend = random.nextDouble();
+                    if (blend < 0.25) batcher.setBlock(seabedPos, Blocks.GRAVEL.defaultBlockState());
+                    else if (blend < 0.5) batcher.setBlock(seabedPos, Blocks.SAND.defaultBlockState());
+                    else if (blend < 0.75) batcher.setBlock(seabedPos, Blocks.DIRT.defaultBlockState());
+                    else batcher.setBlock(seabedPos, Blocks.CLAY.defaultBlockState());
+                }
 
-                        if (verticalRatio < 0.2) {
-                            batcher.setBlock(fillPos, Blocks.STONE.defaultBlockState());
-                        } else if (verticalRatio < 0.4) {
-                            batcher.setBlock(fillPos, random.nextDouble() < 0.5 ? Blocks.GRAVEL.defaultBlockState() : Blocks.CLAY.defaultBlockState());
+// Terrain shaping from ocean floor to island top
+                for (int y = baseY; y <= topY; y++) {
+                    BlockPos pos = new BlockPos(worldX, y, worldZ);
+                    double verticalRatio = (y - baseY) / (double)(columnHeight);
+
+                    if (y == topY) {
+                        // Top layer
+                        if (shapeFactor < 0.15 || y <= waterHeight) {
+                            batcher.setBlock(pos, Blocks.SAND.defaultBlockState());
                         } else {
-                            batcher.setBlock(fillPos, random.nextDouble() < 0.7 ? Blocks.DIRT.defaultBlockState() : Blocks.SAND.defaultBlockState());
-                        }
-                    }
-
-                    // Island terrain
-                    for (int y = 0; y <= columnHeight; y++) {
-                        BlockPos pos = new BlockPos(worldX, baseY + y, worldZ);
-
-                        if (y == columnHeight) {
-                            if (shapeFactor < 0.15) {
-                                batcher.setBlock(pos, Blocks.SAND.defaultBlockState());
-                            } else {
-                                switch (biomeType) {
-                                    case DESERT -> batcher.setBlock(pos, Blocks.SAND.defaultBlockState());
-                                    case SNOWY -> batcher.setBlock(pos, Blocks.SNOW_BLOCK.defaultBlockState());
-                                    case SWAMP -> batcher.setBlock(pos, Blocks.DIRT.defaultBlockState());
-                                    default -> batcher.setBlock(pos, Blocks.GRASS_BLOCK.defaultBlockState());
-                                }
-                            }
-                        } else if (y > columnHeight - 3) {
-                            batcher.setBlock(pos, Blocks.DIRT.defaultBlockState());
-                        } else {
-                            double oreRoll = random.nextDouble();
-                            if (oreRoll < 0.03) {
-                                batcher.setBlock(pos, ModBlocks.SULPHUR_ORE.get().defaultBlockState());
-                            } else if (oreRoll < 0.06) {
-                                batcher.setBlock(pos, ModBlocks.POTASSIUM_ORE.get().defaultBlockState());
-                            } else {
-                                batcher.setBlock(pos, Blocks.STONE.defaultBlockState());
+                            switch (biomeType) {
+                                case DESERT, BEACH -> batcher.setBlock(pos, Blocks.SAND.defaultBlockState());
+                                case SNOWY -> batcher.setBlock(pos, Blocks.SNOW_BLOCK.defaultBlockState());
+                                case SWAMP -> batcher.setBlock(pos, Blocks.DIRT.defaultBlockState());
+                                case MUSHROOM -> batcher.setBlock(pos, Blocks.MYCELIUM.defaultBlockState());
+                                default -> batcher.setBlock(pos, Blocks.GRASS_BLOCK.defaultBlockState());
                             }
                         }
+                    } else if (y > topY - 3) {
+                        batcher.setBlock(pos, Blocks.DIRT.defaultBlockState());
+                    } else {
+                        double oreRoll = random.nextDouble();
+                        if (oreRoll < 0.01) batcher.setBlock(pos, Blocks.COAL_ORE.defaultBlockState());
+                        else if (oreRoll < 0.015) batcher.setBlock(pos, Blocks.IRON_ORE.defaultBlockState());
+                        else if (oreRoll < 0.02) batcher.setBlock(pos, Blocks.COPPER_ORE.defaultBlockState());
+                        else if (oreRoll < 0.022) batcher.setBlock(pos, Blocks.REDSTONE_ORE.defaultBlockState());
+                        else if (oreRoll < 0.024) batcher.setBlock(pos, Blocks.LAPIS_ORE.defaultBlockState());
+                        else if (oreRoll < 0.025) batcher.setBlock(pos, Blocks.GOLD_ORE.defaultBlockState());
+                        else if (oreRoll < 0.026) batcher.setBlock(pos, Blocks.DIAMOND_ORE.defaultBlockState());
+                        else if (oreRoll < 0.027) batcher.setBlock(pos, Blocks.EMERALD_ORE.defaultBlockState());
+                        else if (oreRoll < 0.03) batcher.setBlock(pos, ModBlocks.SULPHUR_ORE.get().defaultBlockState());
+                        else if (oreRoll < 0.06) batcher.setBlock(pos, ModBlocks.POTASSIUM_ORE.get().defaultBlockState());
+                        else batcher.setBlock(pos, Blocks.STONE.defaultBlockState());
                     }
+                }
 
-                    // Decorations
-                    BlockPos decoPos = new BlockPos(worldX, baseY + columnHeight + 1, worldZ);
-                    double decoRoll = random.nextDouble();
+// Decorations
+                BlockPos decoPos = new BlockPos(worldX, baseY + columnHeight + 1, worldZ);
+                double decoRoll = random.nextDouble();
+                Block blockBelow = level.getBlockState(decoPos.below()).getBlock();
+                boolean isSkyAboveClear = level.isEmptyBlock(decoPos) && level.isEmptyBlock(decoPos.above());
 
-// Only place flowers/grass/flax on grass block underneath
-                    boolean isGrassBelow = level.getBlockState(decoPos.below()).is(Blocks.GRASS_BLOCK);
-
-                    if (isGrassBelow) {
-                        // Universal flax and tall grass chance
-                        if (decoRoll < 0.02) {
-                            batcher.setBlock(decoPos, Blocks.TALL_GRASS.defaultBlockState());
-                        } else if (decoRoll < 0.025) {
-                            batcher.setBlock(decoPos, ModBlocks.FLAX_FLOWER_BLOCK.get().defaultBlockState());
-                        }
-                    }
-
+                if (isSkyAboveClear && (blockBelow == Blocks.GRASS_BLOCK || blockBelow == Blocks.MYCELIUM)) {
                     switch (biomeType) {
                         case FOREST -> {
-                            if (decoRoll < 0.01) batcher.setBlock(decoPos, Blocks.OAK_SAPLING.defaultBlockState());
-                            else if (decoRoll < 0.015) batcher.setBlock(decoPos, Blocks.DANDELION.defaultBlockState());
-                            else if (decoRoll < 0.017) batcher.setBlock(decoPos, Blocks.ALLIUM.defaultBlockState());
-                            else if (decoRoll < 0.019) batcher.setBlock(decoPos, Blocks.BIRCH_SAPLING.defaultBlockState());
+                            if (decoRoll < 0.06) batcher.setBlock(decoPos, Blocks.TALL_GRASS.defaultBlockState());
+                            else if (decoRoll < 0.08) batcher.setBlock(decoPos, Blocks.DANDELION.defaultBlockState());
+                            else if (decoRoll < 0.10) batcher.setBlock(decoPos, Blocks.POPPY.defaultBlockState());
                         }
-                        case DESERT -> {
-                            if (decoRoll < 0.01) batcher.setBlock(decoPos, Blocks.CACTUS.defaultBlockState());
-                            else if (decoRoll < 0.015) batcher.setBlock(decoPos, Blocks.DEAD_BUSH.defaultBlockState());
-                        }
-                        case SNOWY -> {
-                            if (decoRoll < 0.012) batcher.setBlock(decoPos, Blocks.SPRUCE_SAPLING.defaultBlockState());
-                            else if (decoRoll < 0.015) batcher.setBlock(decoPos, Blocks.SNOW.defaultBlockState()); // snow patches
+                        case SNOWY, TAIGA -> {
+                            if (decoRoll < 0.06) batcher.setBlock(decoPos, Blocks.SWEET_BERRY_BUSH.defaultBlockState());
+                            else if (decoRoll < 0.09) batcher.setBlock(decoPos, Blocks.SNOW.defaultBlockState());
                         }
                         case SWAMP -> {
-                            if (decoRoll < 0.01) batcher.setBlock(decoPos, Blocks.BLUE_ORCHID.defaultBlockState());
-                            else if (decoRoll < 0.02) batcher.setBlock(decoPos, Blocks.OAK_SAPLING.defaultBlockState());
-                            else if (decoRoll < 0.025) batcher.setBlock(decoPos, Blocks.TALL_GRASS.defaultBlockState());
-                        }
-                        case PLAINS -> {
-                            if (decoRoll < 0.01) batcher.setBlock(decoPos, Blocks.DANDELION.defaultBlockState());
-                            else if (decoRoll < 0.015) batcher.setBlock(decoPos, Blocks.POPPY.defaultBlockState());
-                            else if (decoRoll < 0.02) batcher.setBlock(decoPos, Blocks.TALL_GRASS.defaultBlockState());
-                            else if (decoRoll < 0.025) batcher.setBlock(decoPos, Blocks.AZURE_BLUET.defaultBlockState());
-                        }
-                        case MOUNTAINS -> {
-                            if (decoRoll < 0.01) batcher.setBlock(decoPos, Blocks.POPPY.defaultBlockState());
-                            else if (decoRoll < 0.015) batcher.setBlock(decoPos, Blocks.TALL_GRASS.defaultBlockState());
-                            else if (decoRoll < 0.02) batcher.setBlock(decoPos, Blocks.DANDELION.defaultBlockState());
+                            if (decoRoll < 0.05) batcher.setBlock(decoPos, Blocks.FERN.defaultBlockState());
+                            else if (decoRoll < 0.08) batcher.setBlock(decoPos, Blocks.LILY_PAD.defaultBlockState());
                         }
                         case JUNGLE -> {
-                            if (decoRoll < 0.01) batcher.setBlock(decoPos, Blocks.JUNGLE_SAPLING.defaultBlockState());
-                            else if (decoRoll < 0.015) batcher.setBlock(decoPos, Blocks.LILY_OF_THE_VALLEY.defaultBlockState());
-                            else if (decoRoll < 0.02) batcher.setBlock(decoPos, Blocks.FERN.defaultBlockState());
+                            if (decoRoll < 0.04) batcher.setBlock(decoPos, Blocks.MELON.defaultBlockState());
+                            else if (decoRoll < 0.08) batcher.setBlock(decoPos, Blocks.FERN.defaultBlockState());
                         }
-                        case BADLANDS -> {
-                            if (decoRoll < 0.01) batcher.setBlock(decoPos, Blocks.DEAD_BUSH.defaultBlockState());
-                            else if (decoRoll < 0.02) batcher.setBlock(decoPos, Blocks.RED_TULIP.defaultBlockState());
+                        case PLAINS -> {
+                            if (decoRoll < 0.04) batcher.setBlock(decoPos, Blocks.DANDELION.defaultBlockState());
+                            else if (decoRoll < 0.07) batcher.setBlock(decoPos, Blocks.POPPY.defaultBlockState());
+                            else if (decoRoll < 0.12) batcher.setBlock(decoPos, Blocks.TALL_GRASS.defaultBlockState());
+                        }
+                        case MUSHROOM -> {
+                            if (decoRoll < 0.08) batcher.setBlock(decoPos, Blocks.RED_MUSHROOM.defaultBlockState());
+                            else if (decoRoll < 0.14) batcher.setBlock(decoPos, Blocks.BROWN_MUSHROOM.defaultBlockState());
+                        }
+                        case MEADOW -> {
+                            if (decoRoll < 0.05) batcher.setBlock(decoPos, Blocks.ALLIUM.defaultBlockState());
+                            else if (decoRoll < 0.09) batcher.setBlock(decoPos, Blocks.CORNFLOWER.defaultBlockState());
+                        }
+                        case DARK_FOREST -> {
+                            if (decoRoll < 0.05) batcher.setBlock(decoPos, Blocks.BROWN_MUSHROOM.defaultBlockState());
+                            else if (decoRoll < 0.09) batcher.setBlock(decoPos, Blocks.FERN.defaultBlockState());
                         }
                         case SAVANNA -> {
-                            if (decoRoll < 0.01) batcher.setBlock(decoPos, Blocks.ACACIA_SAPLING.defaultBlockState());
-                            else if (decoRoll < 0.02) batcher.setBlock(decoPos, Blocks.DANDELION.defaultBlockState());
-                        }
-                        case TAIGA -> {
-                            if (decoRoll < 0.01) batcher.setBlock(decoPos, Blocks.SPRUCE_SAPLING.defaultBlockState());
-                            else if (decoRoll < 0.02) batcher.setBlock(decoPos, Blocks.FERN.defaultBlockState());
-                        }
-                        default -> {
-                            // Fallback decorations
-                            if (decoRoll < 0.01) batcher.setBlock(decoPos, Blocks.POPPY.defaultBlockState());
+                            if (decoRoll < 0.05) batcher.setBlock(decoPos, Blocks.DEAD_BUSH.defaultBlockState());
                         }
                     }
+
+                    // Boosted flax generation
+                    if (decoRoll < 0.02) {
+                        batcher.setBlock(decoPos, ModBlocks.FLAX_FLOWER_BLOCK.get().defaultBlockState());
+                    }
+                }
+
+// Boosted tree generation chance
+                if (decoRoll < 0.03) {
+                    generateTree(level, decoPos, biomeType, random);
                 }
             }
         }
 
         batcher.flush();
+    }
+
+    private static void generateTree(ServerLevel level, BlockPos pos, IslandBiomeType biomeType, RandomSource random) {
+        if (!level.getBlockState(pos.below()).isSolid()) return;
+
+        ResourceKey<ConfiguredFeature<?, ?>> featureKey = switch (biomeType) {
+            case FOREST       -> random.nextDouble() < 0.2 ? TreeFeatures.FANCY_OAK : TreeFeatures.OAK;
+            case SNOWY        -> TreeFeatures.SPRUCE;
+            case TAIGA        -> random.nextDouble() < 0.2 ? TreeFeatures.PINE : TreeFeatures.SPRUCE;
+            case SWAMP        -> TreeFeatures.SWAMP_OAK;
+            case JUNGLE       -> random.nextDouble() < 0.2 ? TreeFeatures.MEGA_JUNGLE_TREE : TreeFeatures.JUNGLE_TREE;
+            case SAVANNA      -> TreeFeatures.ACACIA;
+            case BIRCH        -> TreeFeatures.BIRCH;
+            case DARK_FOREST  -> random.nextDouble() < 0.3 ? TreeFeatures.DARK_OAK : TreeFeatures.FANCY_OAK;
+            case PLAINS       -> random.nextDouble() < 0.2 ? TreeFeatures.FANCY_OAK : TreeFeatures.OAK;
+            case MOUNTAINS    -> TreeFeatures.SPRUCE;
+            case MEADOW       -> TreeFeatures.FANCY_OAK;
+            case BEACH, DESERT, MUSHROOM -> null;
+            default           -> TreeFeatures.OAK;
+        };
+
+        if (featureKey == null) return;
+
+        Registry<ConfiguredFeature<?, ?>> registry = level.registryAccess()
+                .registryOrThrow(Registries.CONFIGURED_FEATURE);
+
+        ConfiguredFeature<?, ?> feature = registry.get(featureKey);
+        if (feature != null) {
+            feature.place(level, level.getChunkSource().getGenerator(), random, pos);
+        }
     }
 }

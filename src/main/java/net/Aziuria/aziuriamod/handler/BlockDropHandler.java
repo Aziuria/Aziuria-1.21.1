@@ -30,21 +30,21 @@ public class BlockDropHandler {
 
         if (chance < 15) {
             return new ItemStack(Items.WHEAT_SEEDS);
-        } else if (chance < 30) {
+        } else if (chance < 50.0) {
             return new ItemStack(Items.BEETROOT_SEEDS);
-        } else if (chance < 32) {
+        } else if (chance < 50.1) {
             return new ItemStack(Items.CARROT);
-        } else if (chance < 34) {
+        } else if (chance < 50.2) {
             return new ItemStack(Items.POTATO);
-        } else if (chance < 36) {
+        } else if (chance < 50.3) {
             return new ItemStack(Items.MELON_SEEDS);
-        } else if (chance < 38) {
+        } else if (chance < 50.4) {
             return new ItemStack(Items.PUMPKIN_SEEDS);
-        } else if (chance < 40) {
+        } else if (chance < 50.5) {
             return new ItemStack(ModItems.TOMATO_SEEDS.get());
-        } else if (chance < 42) {
+        } else if (chance < 50.6) {
             return new ItemStack(ModItems.CUCUMBER_SEEDS.get());
-        } else if (chance < 44) {
+        } else if (chance < 50.7) {
             return new ItemStack(ModItems.RADISH_SEEDS.get());
         } else {
             return ItemStack.EMPTY;

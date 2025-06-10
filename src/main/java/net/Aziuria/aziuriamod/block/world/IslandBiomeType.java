@@ -1,14 +1,19 @@
 package net.Aziuria.aziuriamod.block.world;
 
 public enum IslandBiomeType {
-    FOREST,
     DESERT,
     SNOWY,
     SWAMP,
-    PLAINS,
-    MOUNTAINS,
+    FOREST,
     JUNGLE,
-    BADLANDS,
     SAVANNA,
-    TAIGA;
+    TAIGA,
+    BIRCH,
+    PLAINS,   // for default grass biome
+    MOUNTAINS,
+    MUSHROOM,
+    BEACH,
+    DARK_FOREST,
+    MEADOW,
+    // Add any other custom/modded ones too
 }
