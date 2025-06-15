@@ -19,7 +19,7 @@ public class PickupCustomItemsGoal extends Goal {
 
     public PickupCustomItemsGoal(Villager villager) {
         this.villager = villager;
-        this.setFlags(EnumSet.of(Flag.MOVE));
+        this.setFlags(EnumSet.of(Flag.MOVE, Flag.LOOK));
     }
 
     @Override
@@ -34,7 +34,6 @@ public class PickupCustomItemsGoal extends Goal {
 
         if (items.isEmpty()) return;
 
-
         ItemEntity nearest = null;
         double closestDistance = Double.MAX_VALUE;
 
@@ -47,6 +46,12 @@ public class PickupCustomItemsGoal extends Goal {
         }
 
         if (nearest != null) {
+            // If nearest item is fishing rod and villager already holds one, skip picking up
+            if (nearest.getItem().getItem() == Items.FISHING_ROD &&
+                    villager.getMainHandItem().getItem() == Items.FISHING_ROD) {
+                return;
+            }
+
             // Move towards it
             villager.getNavigation().moveTo(nearest, 1.0D);
 

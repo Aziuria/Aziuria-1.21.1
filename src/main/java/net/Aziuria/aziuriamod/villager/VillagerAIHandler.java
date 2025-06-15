@@ -16,42 +16,32 @@ public class VillagerAIHandler {
 
         if (villager.getVillagerData().getProfession() == VillagerProfession.FARMER) {
 
-            // Custom harvesting for custom crops (balanced with vanilla)
             villager.goalSelector.addGoal(5, new HarvestCropsGoal(villager, 1.0D));
-
-            // Pick up dropped seeds & crops (vanilla-like)
             villager.goalSelector.addGoal(6, new PickupCustomItemsGoal(villager));
-
-            // Store excess crops in chests
             villager.goalSelector.addGoal(7, new StoreCropsInChestGoal(villager, 1.0D));
 
-            // Give starter seeds
             addStartingSeeds(villager);
         }
 
         if (villager.getVillagerData().getProfession() == VillagerProfession.FISHERMAN) {
 
-            // Custom fishing goal (near water, holds rod)
             villager.goalSelector.addGoal(5, new FishermanFishingGoal(villager, 1.0D));
-
-            // Pick up dropped items (like fishing rod if found)
             villager.goalSelector.addGoal(6, new PickupCustomItemsGoal(villager));
-
-            // Store caught fish in chest
             villager.goalSelector.addGoal(7, new StoreFishInChestGoal(villager, 1.0D));
 
-            // Give starter fishing rod
             addStartingFishingRod(villager);
         }
     }
 
     private static void addStartingSeeds(Villager villager) {
-        villager.getInventory().addItem(new ItemStack(ModItems.CUCUMBER_SEEDS.get(), 8));
-        villager.getInventory().addItem(new ItemStack(ModItems.RADISH_SEEDS.get(), 8));
-        villager.getInventory().addItem(new ItemStack(ModItems.TOMATO_SEEDS.get(), 8));
+        // Add seeds to inventory
+        villager.getInventory().addItem(new ItemStack(ModItems.CUCUMBER_SEEDS.get(), 16));
+        villager.getInventory().addItem(new ItemStack(ModItems.RADISH_SEEDS.get(), 16));
+        villager.getInventory().addItem(new ItemStack(ModItems.TOMATO_SEEDS.get(), 16));
     }
 
     private static void addStartingFishingRod(Villager villager) {
+        // Add a fishing rod so they can start fishing immediately
         villager.getInventory().addItem(new ItemStack(Items.FISHING_ROD, 1));
     }
 }
