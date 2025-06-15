@@ -1,0 +1,12 @@
+{
+  "replace": false,
+  "values": [
+    "minecraft:carrots",
+    "minecraft:potatoes",
+    "minecraft:wheat",
+    "minecraft:beetroots",
+    "aziuriamod:cucumber_crop",
+    "aziuriamod:radish_crop",
+    "aziuriamod:tomato_crop"
+  ]
+}

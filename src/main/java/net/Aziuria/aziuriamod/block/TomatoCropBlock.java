@@ -51,4 +51,9 @@ public class TomatoCropBlock extends CropBlock {
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
         builder.add(AGE);
     }
+
+    // <-- Add this method:
+    public IntegerProperty getPublicAgeProperty() {
+        return AGE;
+    }
 }

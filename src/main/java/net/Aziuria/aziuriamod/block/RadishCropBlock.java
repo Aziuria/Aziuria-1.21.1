@@ -42,6 +42,12 @@ public class RadishCropBlock extends CropBlock {
         return AGE;
     }
 
+    // **ADD THIS**
+    public IntegerProperty getPublicAgeProperty() {
+        return AGE;
+
+    }
+
     @Override
     public int getMaxAge() {
         return MAX_AGE;
