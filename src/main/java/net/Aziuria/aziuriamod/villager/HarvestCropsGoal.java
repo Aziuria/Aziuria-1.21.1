@@ -8,11 +8,10 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.ai.goal.Goal;
 import net.minecraft.world.entity.npc.Villager;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.BeetrootBlock;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.CropBlock;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
+import net.minecraft.world.level.block.Blocks;
 
 import java.util.EnumSet;
 
@@ -21,7 +20,6 @@ public class HarvestCropsGoal extends Goal {
     private final Villager villager;
     private final double speed;
     private BlockPos targetCropPos = null;
-    private static final int MAX_AGE = 3;
 
     public HarvestCropsGoal(Villager villager, double speed) {
         this.villager = villager;
@@ -76,26 +74,42 @@ public class HarvestCropsGoal extends Goal {
         BlockState state = level.getBlockState(pos);
         Block block = state.getBlock();
 
-        IntegerProperty ageProp;
+        IntegerProperty ageProp = null;
+        int maxAge = -1;
+
+        // ✅ Custom crops
         if (block instanceof RadishCropBlock radish) {
             ageProp = radish.getPublicAgeProperty();
+            maxAge = 3;
         } else if (block instanceof CucumberCropBlock cucumber) {
             ageProp = cucumber.getPublicAgeProperty();
+            maxAge = 3;
         } else if (block instanceof TomatoCropBlock tomato) {
             ageProp = tomato.getPublicAgeProperty();
+            maxAge = 3;
+
+            // ✅ Vanilla crops: use Blocks.WHEAT etc.
+        } else if (block == Blocks.WHEAT) {
+            ageProp = CropBlock.AGE;
+            maxAge = 7;
+        } else if (block == Blocks.CARROTS) {
+            ageProp = CropBlock.AGE;
+            maxAge = 7;
+        } else if (block == Blocks.POTATOES) {
+            ageProp = CropBlock.AGE;
+            maxAge = 7;
         } else if (block instanceof BeetrootBlock) {
             ageProp = BeetrootBlock.AGE;
+            maxAge = 3;
         } else {
-            return; // skip unsupported
+            return; // unsupported
         }
 
         int age = state.getValue(ageProp);
-        if (age >= MAX_AGE) {
-            // Drop + inventory like vanilla
+        if (age >= maxAge) {
             Block.getDrops(state, (ServerLevel) level, pos, null).forEach(stack ->
                     villager.getInventory().addItem(stack)
             );
-            // Replant: set age to zero
             level.setBlock(pos, state.setValue(ageProp, 0), 3);
         }
     }
@@ -113,25 +127,43 @@ public class HarvestCropsGoal extends Goal {
                     Block block = state.getBlock();
 
                     IntegerProperty ageProp = null;
+                    int maxAge = -1;
+
+                    // ✅ Custom crops
                     if (block instanceof RadishCropBlock radish) {
                         ageProp = radish.getPublicAgeProperty();
+                        maxAge = 3;
                     } else if (block instanceof CucumberCropBlock cucumber) {
                         ageProp = cucumber.getPublicAgeProperty();
+                        maxAge = 3;
                     } else if (block instanceof TomatoCropBlock tomato) {
                         ageProp = tomato.getPublicAgeProperty();
+                        maxAge = 3;
+
+                        // ✅ Vanilla crops: check by block instance
+                    } else if (block == Blocks.WHEAT) {
+                        ageProp = CropBlock.AGE;
+                        maxAge = 7;
+                    } else if (block == Blocks.CARROTS) {
+                        ageProp = CropBlock.AGE;
+                        maxAge = 7;
+                    } else if (block == Blocks.POTATOES) {
+                        ageProp = CropBlock.AGE;
+                        maxAge = 7;
                     } else if (block instanceof BeetrootBlock) {
                         ageProp = BeetrootBlock.AGE;
+                        maxAge = 3;
                     } else {
-                        continue;
+                        continue; // unsupported
                     }
 
-                    if (state.getValue(ageProp) >= MAX_AGE) {
+                    if (state.getValue(ageProp) >= maxAge) {
                         return pos;
                     }
                 }
             }
         }
 
-        return null; // nothing found
+        return null; // none found
     }
 }

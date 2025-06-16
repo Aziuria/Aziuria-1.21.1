@@ -1,19 +1,14 @@
 package net.Aziuria.aziuriamod.villager;
 
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
-import net.minecraft.server.level.ServerLevel;
-import net.minecraft.sounds.SoundEvents;
-import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.FluidTags;
-import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.ai.goal.Goal;
 import net.minecraft.world.entity.npc.Villager;
 import net.minecraft.world.item.FishingRodItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.Blocks;
 
 import java.util.EnumSet;
 import java.util.Random;
@@ -29,6 +24,8 @@ public class FishermanFishingGoal extends Goal {
     private int fishingCastTime = 0;
     private int fishingCooldown = 0;
 
+    private int rodBreakCooldown = 0;
+
     public FishermanFishingGoal(Villager villager, double speed) {
         this.villager = villager;
         this.speed = speed;
@@ -37,23 +34,37 @@ public class FishermanFishingGoal extends Goal {
 
     @Override
     public boolean canUse() {
+        if (rodBreakCooldown > 0) {
+            rodBreakCooldown--;
+            System.out.println("[DEBUG] Rod break cooldown active: " + rodBreakCooldown);
+            return false;
+        }
+
         if (!hasFishingRod()) {
+            System.out.println("[DEBUG] No fishing rod equipped, trying to equip...");
             if (!equipFishingRodFromInventory()) {
+                System.out.println("[DEBUG] No fishing rod in inventory.");
                 return false;
+            } else {
+                System.out.println("[DEBUG] Fishing rod equipped from inventory.");
             }
         }
 
-        fishingSpot = findNearbyFishingSpot();
+        fishingSpot = findNearbyWater();
+        System.out.println("[DEBUG] Found fishing spot at: " + fishingSpot);
         return fishingSpot != null;
     }
 
     @Override
     public boolean canContinueToUse() {
-        return fishingSpot != null && villager.isAlive() && hasFishingRod();
+        boolean canContinue = fishingSpot != null && villager.isAlive() && hasFishingRod() && rodBreakCooldown == 0;
+        System.out.println("[DEBUG] canContinueToUse: " + canContinue);
+        return canContinue;
     }
 
     @Override
     public void stop() {
+        System.out.println("[DEBUG] Stopping fishing.");
         fishingSpot = null;
         isFishing = false;
         fishingCastTime = 0;
@@ -66,10 +77,9 @@ public class FishermanFishingGoal extends Goal {
     public void tick() {
         if (fishingSpot == null) return;
 
-        double distance = villager.distanceToSqr(fishingSpot.getX() + 0.5, fishingSpot.getY(), fishingSpot.getZ() + 0.5);
-
-        if (distance > 2.5 * 2.5) {
+        if (!villager.blockPosition().closerThan(fishingSpot, 2.0)) {
             if (villager.getNavigation().isDone()) {
+                System.out.println("[DEBUG] Moving to fishing spot...");
                 villager.getNavigation().moveTo(
                         fishingSpot.getX() + 0.5,
                         fishingSpot.getY(),
@@ -80,18 +90,19 @@ public class FishermanFishingGoal extends Goal {
             return;
         }
 
-        villager.getNavigation().stop();
-
         if (!isFishing) {
+            System.out.println("[DEBUG] Starting fishing.");
             isFishing = true;
             fishingCastTime = 0;
             holdFishingRod();
-            playCastSound();
         } else {
             fishingCastTime++;
             if (fishingCastTime >= 100) {
                 if (villager.level().random.nextFloat() < 0.5f) {
+                    System.out.println("[DEBUG] Catching fish now!");
                     catchFish();
+                } else {
+                    System.out.println("[DEBUG] Fishing attempt failed.");
                 }
                 fishingCooldown = 60 + villager.level().random.nextInt(40);
                 isFishing = false;
@@ -106,27 +117,27 @@ public class FishermanFishingGoal extends Goal {
     private void holdFishingRod() {
         ItemStack rod = getFishingRodInInventory();
         if (rod != null) {
-            villager.setItemSlot(EquipmentSlot.MAINHAND, rod.copy());
+            System.out.println("[DEBUG] Holding fishing rod.");
+            villager.setItemInHand(InteractionHand.MAIN_HAND, rod);
         }
     }
 
     private void unequipFishingRod() {
-        ItemStack held = villager.getMainHandItem();
-        if (!held.isEmpty() && held.getItem() instanceof FishingRodItem) {
-            villager.getInventory().addItem(held);
-        }
-        villager.setItemSlot(EquipmentSlot.MAINHAND, ItemStack.EMPTY);
+        System.out.println("[DEBUG] Unequipping fishing rod.");
+        villager.setItemInHand(InteractionHand.MAIN_HAND, ItemStack.EMPTY);
     }
 
     private boolean hasFishingRod() {
         ItemStack mainHand = villager.getMainHandItem();
-        return mainHand.getItem() instanceof FishingRodItem;
+        boolean hasRod = mainHand.getItem() instanceof FishingRodItem;
+        System.out.println("[DEBUG] Has fishing rod in main hand: " + hasRod);
+        return hasRod;
     }
 
     private boolean equipFishingRodFromInventory() {
         ItemStack rod = getFishingRodInInventory();
         if (rod != null) {
-            villager.setItemSlot(EquipmentSlot.MAINHAND, rod.copy());
+            villager.setItemInHand(InteractionHand.MAIN_HAND, rod);
             return true;
         }
         return false;
@@ -137,13 +148,17 @@ public class FishermanFishingGoal extends Goal {
         for (int i = 0; i < inventory.size(); i++) {
             ItemStack stack = inventory.get(i);
             if (!stack.isEmpty() && stack.getItem() instanceof FishingRodItem) {
-                return stack;
+                ItemStack rod = stack.split(1);
+                if (stack.isEmpty()) inventory.set(i, ItemStack.EMPTY);
+                System.out.println("[DEBUG] Found fishing rod in inventory at slot " + i);
+                return rod;
             }
         }
+        System.out.println("[DEBUG] No fishing rod found in inventory.");
         return null;
     }
 
-    private BlockPos findNearbyFishingSpot() {
+    private BlockPos findNearbyWater() {
         Level level = villager.level();
         BlockPos origin = villager.blockPosition();
         int radius = fishingRange;
@@ -151,31 +166,18 @@ public class FishermanFishingGoal extends Goal {
         for (int dx = -radius; dx <= radius; dx++) {
             for (int dz = -radius; dz <= radius; dz++) {
                 for (int dy = -1; dy <= 1; dy++) {
-                    BlockPos pos = origin.offset(dx, dy, dz);
-                    if (level.getFluidState(pos).is(FluidTags.WATER)) {
-                        BlockPos ground = pos.above();
-                        if (level.getBlockState(ground).isAir() &&
-                                level.getBlockState(ground.below()).isFaceSturdy(level, ground.below(), Direction.UP)) {
-                            if (!level.getFluidState(ground).is(FluidTags.WATER)) {
-                                return ground;
-                            }
+                    BlockPos checkPos = origin.offset(dx, dy, dz);
+                    if (level.getFluidState(checkPos).is(FluidTags.WATER)) {
+                        BlockPos above = checkPos.above();
+                        if (level.getBlockState(above).canBeReplaced()) {
+                            return above;
                         }
                     }
                 }
             }
         }
+        System.out.println("[DEBUG] No water found nearby for fishing.");
         return null;
-    }
-
-    private void playCastSound() {
-        villager.level().playSound(
-                null,
-                villager.blockPosition(),
-                SoundEvents.FISHING_BOBBER_THROW,
-                SoundSource.NEUTRAL,
-                1.0F,
-                1.0F
-        );
     }
 
     private void catchFish() {
@@ -188,27 +190,7 @@ public class FishermanFishingGoal extends Goal {
         else fish = new ItemStack(Items.TROPICAL_FISH);
         villager.getInventory().addItem(fish);
 
-        // Play splash sound
-        Level level = villager.level();
-        level.playSound(
-                null,
-                fishingSpot,
-                SoundEvents.FISHING_BOBBER_SPLASH,
-                SoundSource.NEUTRAL,
-                1.0F,
-                1.0F
-        );
-
-        // ✅ Send splash particles only if server side
-        if (level instanceof ServerLevel serverLevel) {
-            serverLevel.sendParticles(
-                    net.minecraft.core.particles.ParticleTypes.SPLASH,
-                    fishingSpot.getX() + 0.5,
-                    fishingSpot.getY(),
-                    fishingSpot.getZ() + 0.5,
-                    5,
-                    0.2, 0.1, 0.2, 0.0
-            );
-        }
+        System.out.println("[DEBUG] Villager caught fish: " + fish.getItem().toString());
     }
+
 }
