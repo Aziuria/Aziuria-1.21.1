@@ -49,9 +49,9 @@ public class VillagerAIHandler {
     }
 
     private static void addStartingSeeds(Villager villager) {
-        villager.getInventory().addItem(new ItemStack(ModItems.CUCUMBER_SEEDS.get(), 8));
-        villager.getInventory().addItem(new ItemStack(ModItems.RADISH_SEEDS.get(), 8));
-        villager.getInventory().addItem(new ItemStack(ModItems.TOMATO_SEEDS.get(), 8));
+        villager.getInventory().addItem(new ItemStack(ModItems.CUCUMBER_SEEDS.get(), 1));
+        villager.getInventory().addItem(new ItemStack(ModItems.RADISH_SEEDS.get(), 1));
+        villager.getInventory().addItem(new ItemStack(ModItems.TOMATO_SEEDS.get(), 1));
     }
 
     private static void addStartingFishingRod(Villager villager) {
