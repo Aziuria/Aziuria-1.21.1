@@ -51,28 +51,22 @@ public class FishermanFishingGoal extends Goal {
                 return false;
             }
             equipRetryCooldown = 40;
-            System.out.println("[FishermanGoal] No fishing rod found, retrying in 40 ticks");
             return false;
         }
 
         if (phase == null) {
             fishingSpot = findNearbyWaterSpot();
             if (fishingSpot == null) {
-                System.out.println("[FishermanGoal] No water spot found nearby, cannot start fishing");
                 return false;
             }
             phase = Phase.MOVING;
-            System.out.println("[FishermanGoal] Starting fishing cycle. Moving to fishing spot at " + fishingSpot);
         }
         return true;
     }
 
     @Override
     public boolean canContinueToUse() {
-        boolean cont = villager.isAlive() && phase != null;
-        if (!cont)
-            System.out.println("[FishermanGoal] Cannot continue: villager alive=" + villager.isAlive() + ", phase=" + phase);
-        return cont;
+        return villager.isAlive() && phase != null;
     }
 
     @Override
@@ -80,8 +74,7 @@ public class FishermanFishingGoal extends Goal {
         villager.getNavigation().stop();
         fishingTime = 0;
         equipRetryCooldown = 0;
-        fishCaughtCount = 0; // reset counter
-        System.out.println("[FishermanGoal] Stopping fishing goal");
+        fishCaughtCount = 0;
         phase = null;
         fishingSpot = null;
         waterPos = null;
@@ -92,7 +85,6 @@ public class FishermanFishingGoal extends Goal {
     public void tick() {
         if (!ensureFishingRodEquipped()) {
             equipRetryCooldown = 40;
-            System.out.println("[FishermanGoal] Lost fishing rod during tick, stopping goal and retrying later");
             stop();
             return;
         }
@@ -102,7 +94,6 @@ public class FishermanFishingGoal extends Goal {
                 double dist = villager.blockPosition().distSqr(fishingSpot);
                 if (dist > 2.0) {
                     if (villager.getNavigation().isDone() || !isNavigatingTo(fishingSpot)) {
-                        System.out.println("[FishermanGoal] Moving to fishing spot: " + fishingSpot);
                         villager.getNavigation().moveTo(
                                 fishingSpot.getX() + 0.5,
                                 fishingSpot.getY(),
@@ -110,13 +101,11 @@ public class FishermanFishingGoal extends Goal {
                                 SPEED
                         );
                     }
-                    // No repeated logging here while navigation in progress
                 } else {
-                    System.out.println("[FishermanGoal] Arrived at fishing spot, starting to fish");
                     villager.getNavigation().stop();
                     phase = Phase.FISHING;
                     fishingTime = 0;
-                    fishCaughtCount = 0; // reset when starting to fish
+                    fishCaughtCount = 0;
                 }
             }
 
@@ -132,19 +121,13 @@ public class FishermanFishingGoal extends Goal {
                     );
                 }
 
-                if (fishingTime % 40 == 0) {
-                    System.out.println("[FishermanGoal] Fishing... time: " + fishingTime);
-                }
-
                 if (fishingTime >= 200 + villager.level().random.nextInt(200)) {
                     if (!isFishSlotAvailable()) {
-                        System.out.println("[FishermanGoal] Cannot catch fish: no space for fish items");
                         phase = Phase.FINDING_STORAGE;
                     } else {
                         catchFish();
                         fishCaughtCount++;
                         if (fishCaughtCount >= 10) {
-                            System.out.println("[FishermanGoal] Caught 10 fish, going to store them");
                             phase = Phase.FINDING_STORAGE;
                         }
                     }
@@ -155,10 +138,8 @@ public class FishermanFishingGoal extends Goal {
             case FINDING_STORAGE -> {
                 storagePos = findNearbyChestOrBarrel();
                 if (storagePos != null) {
-                    System.out.println("[FishermanGoal] Found storage at " + storagePos + ", moving to store fish");
                     phase = Phase.STORING;
                 } else {
-                    System.out.println("[FishermanGoal] No storage found nearby, continuing to fish");
                     phase = Phase.FISHING;
                 }
             }
@@ -167,7 +148,6 @@ public class FishermanFishingGoal extends Goal {
                 double dist = villager.blockPosition().distSqr(storagePos);
                 if (dist > 2.0) {
                     if (villager.getNavigation().isDone() || !isNavigatingTo(storagePos)) {
-                        System.out.println("[FishermanGoal] Moving to storage at " + storagePos);
                         villager.getNavigation().moveTo(
                                 storagePos.getX() + 0.5,
                                 storagePos.getY(),
@@ -175,25 +155,20 @@ public class FishermanFishingGoal extends Goal {
                                 SPEED
                         );
                     }
-                    // No repeated logging here while navigation in progress
                 } else {
                     villager.getLookControl().setLookAt(
                             storagePos.getX() + 0.5,
                             storagePos.getY() + 0.5,
                             storagePos.getZ() + 0.5
                     );
-                    System.out.println("[FishermanGoal] Arrived at storage, storing fish");
                     storeFishInContainer();
-                    fishCaughtCount = 0; // reset after storing
-                    phase = null; // will restart next tick
+                    fishCaughtCount = 0;
+                    phase = null;
                 }
             }
         }
     }
 
-    /**
-     * Helper method to check if villager is already navigating to a given target position.
-     */
     private boolean isNavigatingTo(BlockPos pos) {
         if (!villager.getNavigation().isInProgress()) return false;
 
@@ -205,7 +180,6 @@ public class FishermanFishingGoal extends Goal {
         double dy = Math.abs(targetY - pos.getY());
         double dz = Math.abs(targetZ - (pos.getZ() + 0.5));
 
-        // Use a small tolerance to consider floating point rounding errors
         return dx < 0.1 && dy < 0.5 && dz < 0.1;
     }
 
@@ -221,8 +195,6 @@ public class FishermanFishingGoal extends Goal {
         for (ItemStack stack : villager.getInventory().getItems()) {
             if (stack.getItem() instanceof FishingRodItem) {
                 villager.setItemInHand(InteractionHand.MAIN_HAND, stack.copy());
-                // DO NOT shrink or remove from inventory
-                System.out.println("[FishermanGoal] Equipped fishing rod from inventory (without removing)");
                 equipRetryCooldown = 40;
                 return true;
             }
@@ -244,7 +216,6 @@ public class FishermanFishingGoal extends Goal {
                         BlockPos stand = findStandableSpotBesideWater(level, pos);
                         if (stand != null) {
                             waterPos = pos;
-                            System.out.println("[FishermanGoal] Found water at " + waterPos + " with standable spot at " + stand);
                             return stand;
                         }
                     }
@@ -272,7 +243,6 @@ public class FishermanFishingGoal extends Goal {
         for (BlockPos pos : BlockPos.betweenClosed(origin.offset(-10, -3, -10), origin.offset(10, 3, 10))) {
             BlockEntity be = level.getBlockEntity(pos);
             if (be instanceof ChestBlockEntity || be instanceof BarrelBlockEntity) {
-                System.out.println("[FishermanGoal] Found storage block at " + pos);
                 return pos.immutable();
             }
         }
@@ -288,10 +258,7 @@ public class FishermanFishingGoal extends Goal {
         else fish = new ItemStack(Items.TROPICAL_FISH);
 
         ItemStack leftover = villager.getInventory().addItem(fish);
-        if (leftover.isEmpty()) {
-            System.out.println("[FishermanGoal] Caught fish: " + fish.getItem().getName(fish).getString());
-        } else {
-            System.out.println("[FishermanGoal] Failed to add fish to inventory (full), finding storage");
+        if (!leftover.isEmpty()) {
             phase = Phase.FINDING_STORAGE;
         }
     }
@@ -314,7 +281,6 @@ public class FishermanFishingGoal extends Goal {
     private void storeFishInContainer() {
         BlockEntity be = villager.level().getBlockEntity(storagePos);
         if (!(be instanceof Container container)) {
-            System.out.println("[FishermanGoal] Storage at " + storagePos + " is not a valid container");
             return;
         }
 
@@ -326,8 +292,6 @@ public class FishermanFishingGoal extends Goal {
 
             if (stack.isEmpty() || !isFish(stack)) continue;
 
-            System.out.println("[FishermanGoal] Storing fish stack: " + stack.getCount() + "x " + stack.getItem().getName(stack).getString());
-
             while (!stack.isEmpty()) {
                 ItemStack toInsert = stack.copy();
                 toInsert.setCount(1);
@@ -338,7 +302,6 @@ public class FishermanFishingGoal extends Goal {
                     stack.shrink(1);
                     storedAny = true;
                 } else {
-                    System.out.println("[FishermanGoal] Storage container is full, cannot store more fish");
                     break;
                 }
             }
@@ -349,12 +312,8 @@ public class FishermanFishingGoal extends Goal {
         }
 
         if (storedAny) {
-            System.out.println("[FishermanGoal] Finished storing fish in container at " + storagePos);
-        } else {
-            System.out.println("[FishermanGoal] No fish were stored (storage full or no fish)");
+            ensureFishingRodEquipped();
         }
-
-        ensureFishingRodEquipped();
     }
 
     private ItemStack tryInsertItem(Container container, ItemStack stack) {
