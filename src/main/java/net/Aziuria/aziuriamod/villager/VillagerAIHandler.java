@@ -1,50 +1,57 @@
 package net.Aziuria.aziuriamod.villager;
 
 import net.Aziuria.aziuriamod.item.ModItems;
+import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.ai.goal.AvoidEntityGoal;
-import net.minecraft.world.entity.ai.goal.LookAtPlayerGoal;
 import net.minecraft.world.entity.ai.goal.PanicGoal;
-import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.npc.Villager;
 import net.minecraft.world.entity.npc.VillagerProfession;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.neoforge.event.entity.EntityJoinLevelEvent;
 
+import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
+
 public class VillagerAIHandler {
+
+    public static final Set<Villager> pendingVillagers = ConcurrentHashMap.newKeySet();
 
     @SubscribeEvent
     public static void onEntityJoinLevel(EntityJoinLevelEvent event) {
         if (!(event.getEntity() instanceof Villager villager)) return;
 
-        System.out.println("[DEBUG] Villager spawned with profession: " + villager.getVillagerData().getProfession());
+        VillagerProfession prof = villager.getVillagerData().getProfession();
+        System.out.println("[DEBUG] Villager spawned with profession: " + prof);
 
-        if (villager.getVillagerData().getProfession() == VillagerProfession.FARMER) {
+        if (prof == VillagerProfession.NONE) {
+            pendingVillagers.add(villager);
+            return;
+        }
 
-            villager.goalSelector.addGoal(2, new PanicGoal(villager, 1.5D));
-            villager.goalSelector.addGoal(3, new AvoidEntityGoal<>(villager, Monster.class, 8.0F, 1.5D, 1.2D));
-            villager.goalSelector.addGoal(5, new HarvestCropsGoal(villager, 1.2D));
-            villager.goalSelector.addGoal(6, new LookAtPlayerGoal(villager, Player.class, 6.0F));
-            villager.goalSelector.addGoal(7, new PickupCustomItemsGoal(villager));
-            villager.goalSelector.addGoal(8, new StoreCropsInChestGoal(villager, 1.2D));
+        setupVillagerGoalsAndItems(villager, prof);
+    }
+
+    public static void setupVillagerGoalsAndItems(Villager villager, VillagerProfession prof) {
+        // ✅ Remove unwanted defaults
+        villager.goalSelector.removeAllGoals(goal ->
+                goal instanceof PanicGoal || goal instanceof AvoidEntityGoal<?>);
+
+        if (prof == VillagerProfession.FARMER) {
+            villager.goalSelector.addGoal(1, new HarvestCropsGoal(villager, 1.2D));
+            villager.goalSelector.addGoal(2, new StoreCropsInChestGoal(villager, 1.2D));
+            villager.goalSelector.addGoal(3, new PickupCustomItemsGoal(villager));
             addStartingSeeds(villager);
         }
 
-        if (villager.getVillagerData().getProfession() == VillagerProfession.FISHERMAN) {
-
-            villager.goalSelector.addGoal(2, new PanicGoal(villager, 1.5D));
-            villager.goalSelector.addGoal(3, new AvoidEntityGoal<>(villager, Monster.class, 8.0F, 1.5D, 1.2D));
-            villager.goalSelector.addGoal(5, new FishermanFishingGoal(villager, 1.0D));
-            villager.goalSelector.addGoal(6, new LookAtPlayerGoal(villager, Player.class, 6.0F));
-            villager.goalSelector.addGoal(7, new PickupCustomItemsGoal(villager));
-            villager.goalSelector.addGoal(8, new StoreFishInChestGoal(villager, 1.0D));
+        if (prof == VillagerProfession.FISHERMAN) {
+            // ✅ USE THE FIXED SINGLE GOAL ONLY
+            villager.goalSelector.addGoal(1, new FishermanFishingGoal(villager));
+            villager.goalSelector.addGoal(2, new PickupCustomItemsGoal(villager));
             addStartingFishingRod(villager);
 
-            System.out.println("[DEBUG] Fisherman fishing rod added. Inventory: " + villager.getInventory().getItems());
-
-
+            System.out.println("[DEBUG] Fisherman AI setup complete. Inventory: " + villager.getInventory().getItems());
         }
     }
 
@@ -56,5 +63,6 @@ public class VillagerAIHandler {
 
     private static void addStartingFishingRod(Villager villager) {
         villager.getInventory().addItem(new ItemStack(Items.FISHING_ROD, 1));
+        System.out.println("[DEBUG] Added fishing rod to villager inventory on spawn.");
     }
 }

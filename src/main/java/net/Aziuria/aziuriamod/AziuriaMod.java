@@ -20,6 +20,7 @@ import net.Aziuria.aziuriamod.particle.FallingLeafParticle;
 import net.Aziuria.aziuriamod.particle.ModParticles;
 import net.Aziuria.aziuriamod.villager.ModVillagerTrades;
 import net.Aziuria.aziuriamod.villager.VillagerAIHandler;
+import net.Aziuria.aziuriamod.villager.VillagerProfessionTickHandler;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.IEventBus;
@@ -70,6 +71,7 @@ public class AziuriaMod {
         NeoForge.EVENT_BUS.register(new FogZombieSpawner());
         NeoForge.EVENT_BUS.register(BlockBatcher.class);
         NeoForge.EVENT_BUS.register(VillagerAIHandler.class);
+        NeoForge.EVENT_BUS.register(VillagerProfessionTickHandler.class);
         NeoForge.EVENT_BUS.addListener(ModVillagerTrades::onVillagerTrades);
 
         // Register all mod content
