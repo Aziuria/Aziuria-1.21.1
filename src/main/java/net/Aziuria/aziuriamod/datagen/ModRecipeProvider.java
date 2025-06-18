@@ -9,6 +9,7 @@ import net.minecraft.data.recipes.*;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.ItemLike;
+import net.minecraft.world.level.block.Blocks;
 import net.neoforged.neoforge.common.conditions.IConditionBuilder;
 
 import java.util.List;
@@ -48,6 +49,15 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .pattern(" K ")
                 .define('K', Items.STICK)
                 .define('B', ModItems.STEEL_INGOT.get())
+                .unlockedBy("has_steel_ingot", has(ModItems.STEEL_INGOT)).save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.DEMAECATION_POST.get())
+                .pattern(" W ")
+                .pattern(" B ")
+                .pattern("GGG")
+                .define('G', Blocks.GRAY_CONCRETE)
+                .define('W', Blocks.WHITE_CONCRETE)
+                .define('B', Blocks.BLACK_CONCRETE)
                 .unlockedBy("has_steel_ingot", has(ModItems.STEEL_INGOT)).save(recipeOutput);
 
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.STEEL_AXE.get())
