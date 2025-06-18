@@ -192,6 +192,12 @@ public class ModBlocks {
                     .isSuffocating((s, r, p) -> false)),
             block -> new FuelItem(block, new Item.Properties(), 100));
 
+    public static final DeferredBlock<DemarcationPostBlock> DEMAECATION_POST = registerBlock("demarcation_post_a",
+            () -> new DemarcationPostBlock(BlockBehaviour.Properties.of()
+                    .strength(1.5f)
+                    .sound(SoundType.STONE)
+                    .noOcclusion()));
+
     public static final DeferredBlock<Block> RADISH_CROP = BLOCKS.register("radish_crop",
             () -> new RadishCropBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.BEETROOTS)));
     public static final DeferredBlock<Block> CUCUMBER_CROP = BLOCKS.register("cucumber_crop",
