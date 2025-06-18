@@ -2,6 +2,9 @@ package net.Aziuria.aziuriamod.villager;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.world.Container;
 import net.minecraft.world.InteractionHand;
@@ -106,6 +109,7 @@ public class FishermanFishingGoal extends Goal {
                     phase = Phase.FISHING;
                     fishingTime = 0;
                     fishCaughtCount = 0;
+                    playSound(SoundEvents.FISHING_BOBBER_THROW, villager.blockPosition());
                 }
             }
 
@@ -127,7 +131,7 @@ public class FishermanFishingGoal extends Goal {
                     } else {
                         catchFish();
                         fishCaughtCount++;
-                        if (fishCaughtCount >= 10) {
+                        if (fishCaughtCount >= 5) {
                             phase = Phase.FINDING_STORAGE;
                         }
                     }
@@ -258,7 +262,9 @@ public class FishermanFishingGoal extends Goal {
         else fish = new ItemStack(Items.TROPICAL_FISH);
 
         ItemStack leftover = villager.getInventory().addItem(fish);
-        if (!leftover.isEmpty()) {
+        if (leftover.isEmpty()) {
+            playSound(SoundEvents.FISHING_BOBBER_RETRIEVE, villager.blockPosition());
+        } else {
             phase = Phase.FINDING_STORAGE;
         }
     }
@@ -283,6 +289,8 @@ public class FishermanFishingGoal extends Goal {
         if (!(be instanceof Container container)) {
             return;
         }
+
+        playSound(SoundEvents.CHEST_OPEN, storagePos);
 
         var inventory = villager.getInventory().getItems();
         boolean storedAny = false;
@@ -311,9 +319,9 @@ public class FishermanFishingGoal extends Goal {
             }
         }
 
-        if (storedAny) {
-            ensureFishingRodEquipped();
-        }
+        playSound(SoundEvents.CHEST_CLOSE, storagePos);
+
+        ensureFishingRodEquipped();
     }
 
     private ItemStack tryInsertItem(Container container, ItemStack stack) {
@@ -333,5 +341,16 @@ public class FishermanFishingGoal extends Goal {
             }
         }
         return stack;
+    }
+
+    private void playSound(SoundEvent sound, BlockPos pos) {
+        villager.level().playSound(
+                null,
+                pos,
+                sound,
+                SoundSource.NEUTRAL,
+                1.0F,
+                1.0F
+        );
     }
 }

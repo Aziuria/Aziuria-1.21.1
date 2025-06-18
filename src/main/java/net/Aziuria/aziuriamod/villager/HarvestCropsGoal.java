@@ -88,7 +88,7 @@ public class HarvestCropsGoal extends Goal {
             ageProp = tomato.getPublicAgeProperty();
             maxAge = 3;
 
-            // ✅ Vanilla crops: use Blocks.WHEAT etc.
+            // ✅ Vanilla crops
         } else if (block == Blocks.WHEAT) {
             ageProp = CropBlock.AGE;
             maxAge = 7;
@@ -107,6 +107,16 @@ public class HarvestCropsGoal extends Goal {
 
         int age = state.getValue(ageProp);
         if (age >= maxAge) {
+            // ✅ Play crop break sound
+            level.playSound(
+                    null,
+                    pos,
+                    block.getSoundType(state, level, pos, villager).getBreakSound(),
+                    net.minecraft.sounds.SoundSource.BLOCKS,
+                    1.0F,
+                    1.0F
+            );
+
             Block.getDrops(state, (ServerLevel) level, pos, null).forEach(stack ->
                     villager.getInventory().addItem(stack)
             );

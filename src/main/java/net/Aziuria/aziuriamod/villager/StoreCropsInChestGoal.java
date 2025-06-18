@@ -2,6 +2,8 @@ package net.Aziuria.aziuriamod.villager;
 
 import net.Aziuria.aziuriamod.item.ModItems;
 import net.minecraft.core.BlockPos;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.Container;
 import net.minecraft.world.entity.ai.goal.MoveToBlockGoal;
 import net.minecraft.world.entity.npc.Villager;
@@ -13,6 +15,7 @@ import net.minecraft.world.level.block.entity.ChestBlockEntity;
 
 public class StoreCropsInChestGoal extends MoveToBlockGoal {
     private final Villager villager;
+    private boolean hasPlayedOpenSound = false;
 
     public StoreCropsInChestGoal(Villager villager, double speed) {
         super(villager, speed, 8);
@@ -27,7 +30,6 @@ public class StoreCropsInChestGoal extends MoveToBlockGoal {
 
     @Override
     public boolean canUse() {
-        // Only run if the villager actually has storable items
         for (ItemStack stack : villager.getInventory().getItems()) {
             if (!stack.isEmpty() && isStorableItem(stack)) {
                 return super.canUse();
@@ -54,19 +56,25 @@ public class StoreCropsInChestGoal extends MoveToBlockGoal {
         super.tick();
 
         if (isReachedTarget()) {
+            if (!hasPlayedOpenSound) {
+                villager.level().playSound(
+                        null, blockPos, SoundEvents.CHEST_OPEN, SoundSource.BLOCKS,
+                        1.0F, 1.0F
+                );
+                hasPlayedOpenSound = true;
+            }
+
             BlockEntity be = villager.level().getBlockEntity(blockPos);
             if (be instanceof ChestBlockEntity chest) {
                 Container container = chest;
                 var inventory = villager.getInventory().getItems();
 
-                // Iterate by index so we can modify inventory safely
                 for (int i = 0; i < inventory.size(); i++) {
                     ItemStack stack = inventory.get(i);
 
                     if (stack.isEmpty()) continue;
                     if (!isStorableItem(stack)) continue;
 
-                    // Deposit all of this stack, one by one
                     while (!stack.isEmpty()) {
                         ItemStack toInsert = stack.copy();
                         toInsert.setCount(1);
@@ -80,7 +88,6 @@ public class StoreCropsInChestGoal extends MoveToBlockGoal {
                                 break;
                             }
                         } else {
-                            // Chest is full for this item
                             break;
                         }
                     }
@@ -89,10 +96,18 @@ public class StoreCropsInChestGoal extends MoveToBlockGoal {
         }
     }
 
-    /**
-     * Tries to insert the given ItemStack into the container.
-     * Returns leftover if not all could be inserted.
-     */
+    @Override
+    public void stop() {
+        super.stop();
+        if (hasPlayedOpenSound) {
+            villager.level().playSound(
+                    null, blockPos, SoundEvents.CHEST_CLOSE, SoundSource.BLOCKS,
+                    1.0F, 1.0F
+            );
+        }
+        hasPlayedOpenSound = false;
+    }
+
     private ItemStack tryInsertItem(Container container, ItemStack stack) {
         for (int slot = 0; slot < container.getContainerSize(); slot++) {
             ItemStack slotStack = container.getItem(slot);
