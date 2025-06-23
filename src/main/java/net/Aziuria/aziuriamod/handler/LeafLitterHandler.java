@@ -47,8 +47,8 @@ public class LeafLitterHandler {
 
                 float chance = random.nextFloat();
 
-                // Check for nearby trees
-                if (isNearTree(level, surfacePos, 9)) {
+                // Check for nearby leaves instead of logs
+                if (isNearLeaves(level, surfacePos, 6)) {
                     if (chance < 1.0f) {
                         level.setBlock(surfacePos, ModBlocks.LEAF_LITTER.get().defaultBlockState(), 3);
                     }
@@ -57,14 +57,14 @@ public class LeafLitterHandler {
         });
     }
 
-    private static boolean isNearTree(ServerLevel level, BlockPos pos, int radius) {
+    private static boolean isNearLeaves(ServerLevel level, BlockPos pos, int radius) {
         for (int dx = -radius; dx <= radius; dx++) {
-            for (int dy = -2; dy <= 5; dy++) {
+            for (int dy = -4; dy <= 9; dy++) {  // Changed from -2..5 to -4..9
                 for (int dz = -radius; dz <= radius; dz++) {
                     BlockPos checkPos = pos.offset(dx, dy, dz);
                     BlockState state = level.getBlockState(checkPos);
 
-                    if (isLogBlock(state)) {
+                    if (isLeafBlock(state)) {
                         return true;
                     }
                 }
@@ -73,14 +73,14 @@ public class LeafLitterHandler {
         return false;
     }
 
-    private static boolean isLogBlock(BlockState state) {
-        return state.is(Blocks.OAK_LOG)
-                || state.is(Blocks.BIRCH_LOG)
-                || state.is(Blocks.SPRUCE_LOG)
-                || state.is(Blocks.JUNGLE_LOG)
-                || state.is(Blocks.ACACIA_LOG)
-                || state.is(Blocks.DARK_OAK_LOG)
-                || state.is(Blocks.MANGROVE_LOG)
-                || state.is(Blocks.CHERRY_LOG);
+    private static boolean isLeafBlock(BlockState state) {
+        return state.is(Blocks.OAK_LEAVES)
+                || state.is(Blocks.BIRCH_LEAVES)
+                || state.is(Blocks.SPRUCE_LEAVES)
+                || state.is(Blocks.JUNGLE_LEAVES)
+                || state.is(Blocks.ACACIA_LEAVES)
+                || state.is(Blocks.DARK_OAK_LEAVES)
+                || state.is(Blocks.MANGROVE_LEAVES)
+                || state.is(Blocks.CHERRY_LEAVES);
     }
 }
