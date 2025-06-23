@@ -207,8 +207,8 @@ public class IslandGenerator {
 
         batcher.flush();
 
-// Schedule trees generation after 400 ticks delay, reuse the existing 'random'
-        DelayedExecutor.schedule(level, 400L, () -> {
+// Schedule trees generation after 600 ticks delay, reuse the existing 'random'
+        DelayedExecutor.schedule(level, 600L, () -> {
             for (BlockPos pos : treePositions) {
                 TreeGenerator.generateTree(level, pos, biomeType, random);
             }

@@ -189,6 +189,12 @@ public class VegetationGrowthHandler {
 
     private static void handleRiverGrowth(ServerLevel level, BlockPos pos, float chance) {
         if (chance < 0.10f) level.setBlock(pos, Blocks.SUGAR_CANE.defaultBlockState(), 3);
+        else if (chance < 0.11f) level.setBlock(pos, Blocks.POPPY.defaultBlockState(), 3);
+        else if (chance < 0.12f) level.setBlock(pos, Blocks.DANDELION.defaultBlockState(), 3);
+        else if (chance < 0.15f) level.setBlock(pos, Blocks.OXEYE_DAISY.defaultBlockState(), 3);
+        else if (chance < 0.20f) level.setBlock(pos, ModBlocks.FLAX_FLOWER_BLOCK.get().defaultBlockState(), 3);
+        else if (chance < 0.25f) level.setBlock(pos, Blocks.CORNFLOWER.defaultBlockState(), 3);
+        else if (chance < 0.30f) level.setBlock(pos, Blocks.TALL_GRASS.defaultBlockState(), 3);
     }
 
     private static void handleCherryGrowth(ServerLevel level, BlockPos pos, float chance) {
