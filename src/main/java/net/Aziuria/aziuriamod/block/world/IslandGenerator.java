@@ -27,8 +27,8 @@ public class IslandGenerator {
         long combinedSeed = seed ^ (center.getX() * 341873128712L) ^ (center.getZ() * 132897987541L);
         RandomSource random = RandomSource.create(combinedSeed);
 
-        int width = type.getRandomWidth(random);
-        int length = type.getRandomLength(random);
+        int width = type.getRandomWidth(random) + 50;
+        int length = type.getRandomLength(random) + 50;
         int maxHeight = type.getMaxHeight();
 
         BlockBatcher batcher = new BlockBatcher(level, 500);
@@ -46,14 +46,21 @@ public class IslandGenerator {
                 int oceanFloorHeight = level.getHeight(Heightmap.Types.OCEAN_FLOOR_WG, worldX, worldZ);
                 int waterHeight = terrainHeight;
 
-                int maxIslandTop = waterHeight + (int)(type.getMaxHeight() * 0.8);
+                int maxIslandTop = waterHeight + (int)(maxHeight * 0.8);
                 int maxIslandHeight = maxIslandTop - oceanFloorHeight;
                 if (maxIslandHeight <= 0) continue;
 
                 double nx = x / (double)(width / 2);
                 double nz = z / (double)(length / 2);
-                double radialFalloff = 1.0 - Math.pow(nx * nx + nz * nz, 0.4);
-                double noiseValue = noise.getValue(x * 0.05, z * 0.05, 0);
+
+                // Smooth radial falloff (cubic)
+                double dist = Math.sqrt(nx * nx + nz * nz);
+                double radialFalloff = Math.max(0, 1 - Math.pow(dist, 3));
+
+                // Multi-octave noise for natural terrain
+                double noiseValue = getMultiOctaveNoise(noise, x * 0.05, z * 0.05);
+
+                // Combine radial falloff and noise for shape factor
                 double shapeFactor = Math.min(Math.max(radialFalloff + noiseValue * 0.15, 0.0), 1.0);
 
                 int columnHeight = Math.max((int)(shapeFactor * maxIslandHeight), 2);
@@ -74,7 +81,7 @@ public class IslandGenerator {
 
                 Block topBlock = Blocks.GRASS_BLOCK;
 
-                // Column
+                // Column (from baseY to topY)
                 for (int y = baseY; y <= topY; y++) {
                     BlockPos pos = new BlockPos(worldX, y, worldZ);
                     if (y == topY) {
@@ -108,6 +115,7 @@ public class IslandGenerator {
                     }
                 }
 
+                // Fill gaps below baseY to oceanFloorHeight with stone if empty
                 for (int y = baseY - 1; y > oceanFloorHeight - 5; y--) {
                     BlockPos fillPos = new BlockPos(worldX, y, worldZ);
                     if (level.isEmptyBlock(fillPos)) {
@@ -126,56 +134,72 @@ public class IslandGenerator {
                 if (isGoodSoil) {
                     switch (biomeType) {
                         case FOREST -> {
-                            if (decoRoll < 0.06) batcher.setBlock(decoPos, Blocks.TALL_GRASS.defaultBlockState());
-                            else if (decoRoll < 0.08) batcher.setBlock(decoPos, Blocks.DANDELION.defaultBlockState());
-                            else if (decoRoll < 0.10) batcher.setBlock(decoPos, Blocks.POPPY.defaultBlockState());
+                            if (decoRoll < 0.04) batcher.setBlock(decoPos, Blocks.TALL_GRASS.defaultBlockState());
+                            else if (decoRoll < 0.07) batcher.setBlock(decoPos, Blocks.FERN.defaultBlockState());
+                            else if (decoRoll < 0.09) batcher.setBlock(decoPos, Blocks.DANDELION.defaultBlockState());
+                            else if (decoRoll < 0.11) batcher.setBlock(decoPos, Blocks.POPPY.defaultBlockState());
+                            else if (decoRoll < 0.12) batcher.setBlock(decoPos, Blocks.BLUE_ORCHID.defaultBlockState());
+                            else if (decoRoll < 0.13) batcher.setBlock(decoPos, Blocks.LILAC.defaultBlockState());   // Small shrubs, flower bushes
                         }
                         case SNOWY, TAIGA -> {
-                            if (decoRoll < 0.06) batcher.setBlock(decoPos, Blocks.SWEET_BERRY_BUSH.defaultBlockState());
-                            else if (decoRoll < 0.09) batcher.setBlock(decoPos, Blocks.SNOW.defaultBlockState());
+                            if (decoRoll < 0.04) batcher.setBlock(decoPos, Blocks.SWEET_BERRY_BUSH.defaultBlockState());
+                            else if (decoRoll < 0.06) batcher.setBlock(decoPos, Blocks.SPRUCE_SAPLING.defaultBlockState()); // Small spruce saplings
+                            else if (decoRoll < 0.08) batcher.setBlock(decoPos, Blocks.FERN.defaultBlockState());
+                            else if (decoRoll < 0.10) batcher.setBlock(decoPos, Blocks.SNOW.defaultBlockState());
+                            else if (decoRoll < 0.11) batcher.setBlock(decoPos, Blocks.BROWN_MUSHROOM.defaultBlockState()); // Mushrooms can appear under snow/forest
                         }
                         case SWAMP -> {
                             if (decoRoll < 0.05) batcher.setBlock(decoPos, Blocks.FERN.defaultBlockState());
+                            else if (decoRoll < 0.07) batcher.setBlock(decoPos, Blocks.SUGAR_CANE.defaultBlockState()); // Swamp edges and water plants
+                            else if (decoRoll < 0.09) batcher.setBlock(decoPos, Blocks.LILY_PAD.defaultBlockState());
                         }
                         case JUNGLE -> {
-                            if (decoRoll < 0.04) batcher.setBlock(decoPos, Blocks.MELON.defaultBlockState());
+                            if (decoRoll < 0.03) batcher.setBlock(decoPos, Blocks.MELON.defaultBlockState());
+                            else if (decoRoll < 0.06) batcher.setBlock(decoPos, Blocks.LARGE_FERN.defaultBlockState());
                             else if (decoRoll < 0.08) batcher.setBlock(decoPos, Blocks.FERN.defaultBlockState());
+                            else if (decoRoll < 0.10) batcher.setBlock(decoPos, Blocks.VINE.defaultBlockState()); // Jungle vines on ground to grow up trees
                         }
                         case PLAINS -> {
-                            if (decoRoll < 0.04) batcher.setBlock(decoPos, Blocks.DANDELION.defaultBlockState());
-                            else if (decoRoll < 0.07) batcher.setBlock(decoPos, Blocks.POPPY.defaultBlockState());
-                            else if (decoRoll < 0.12) batcher.setBlock(decoPos, Blocks.TALL_GRASS.defaultBlockState());
+                            if (decoRoll < 0.03) batcher.setBlock(decoPos, Blocks.DANDELION.defaultBlockState());
+                            else if (decoRoll < 0.06) batcher.setBlock(decoPos, Blocks.POPPY.defaultBlockState());
+                            else if (decoRoll < 0.09) batcher.setBlock(decoPos, Blocks.TALL_GRASS.defaultBlockState());
+                            else if (decoRoll < 0.10) batcher.setBlock(decoPos, Blocks.SUNFLOWER.defaultBlockState());
                         }
                         case MUSHROOM -> {
-                            if (decoRoll < 0.08) batcher.setBlock(decoPos, Blocks.RED_MUSHROOM.defaultBlockState());
-                            else if (decoRoll < 0.14) batcher.setBlock(decoPos, Blocks.BROWN_MUSHROOM.defaultBlockState());
+                            if (decoRoll < 0.07) batcher.setBlock(decoPos, Blocks.RED_MUSHROOM.defaultBlockState());
+                            else if (decoRoll < 0.13) batcher.setBlock(decoPos, Blocks.BROWN_MUSHROOM.defaultBlockState());
+                            else if (decoRoll < 0.15) batcher.setBlock(decoPos, Blocks.MYCELIUM.defaultBlockState()); // Sometimes spread mycelium patches
                         }
                         case MEADOW -> {
-                            if (decoRoll < 0.05) batcher.setBlock(decoPos, Blocks.ALLIUM.defaultBlockState());
-                            else if (decoRoll < 0.09) batcher.setBlock(decoPos, Blocks.CORNFLOWER.defaultBlockState());
+                            if (decoRoll < 0.04) batcher.setBlock(decoPos, Blocks.ALLIUM.defaultBlockState());
+                            else if (decoRoll < 0.07) batcher.setBlock(decoPos, Blocks.CORNFLOWER.defaultBlockState());
+                            else if (decoRoll < 0.10) batcher.setBlock(decoPos, Blocks.PEONY.defaultBlockState());  // Bigger flowers in meadows
+                            else if (decoRoll < 0.12) batcher.setBlock(decoPos, Blocks.LILAC.defaultBlockState());
                         }
                         case DARK_FOREST -> {
-                            if (decoRoll < 0.05) batcher.setBlock(decoPos, Blocks.BROWN_MUSHROOM.defaultBlockState());
-                            else if (decoRoll < 0.09) batcher.setBlock(decoPos, Blocks.FERN.defaultBlockState());
+                            if (decoRoll < 0.04) batcher.setBlock(decoPos, Blocks.BROWN_MUSHROOM.defaultBlockState());
+                            else if (decoRoll < 0.08) batcher.setBlock(decoPos, Blocks.FERN.defaultBlockState());
+                            else if (decoRoll < 0.10) batcher.setBlock(decoPos, Blocks.COBWEB.defaultBlockState()); // Adds spooky feel
                         }
                         case SAVANNA -> {
-                            if (decoRoll < 0.05) batcher.setBlock(decoPos, Blocks.DEAD_BUSH.defaultBlockState());
+                            if (decoRoll < 0.04) batcher.setBlock(decoPos, Blocks.DEAD_BUSH.defaultBlockState());
+                            else if (decoRoll < 0.06) batcher.setBlock(decoPos, Blocks.TALL_GRASS.defaultBlockState());
+                            else if (decoRoll < 0.08) batcher.setBlock(decoPos, Blocks.ACACIA_SAPLING.defaultBlockState());
                         }
                     }
-
                     if (decoRoll < 0.02) {
                         batcher.setBlock(decoPos, ModBlocks.FLAX_FLOWER_BLOCK.get().defaultBlockState());
+
                     }
 
-                    if (decoRoll < 0.03) {
-                        // Save exact spot for tree or sapling, soil height + 1
+                    // Tree candidate spot for later planting
+                    if (decoRoll > 0.9) {
                         treePositions.add(decoPos);
                     }
                 }
             }
         }
 
-        // Flush terrain + decorations first
         batcher.flush();
 
         // NOW reliably plant trees or saplings
@@ -190,6 +214,22 @@ public class IslandGenerator {
             }
         }
     }
+
+    private static double getMultiOctaveNoise(SimplexNoise noise, double x, double z) {
+        double total = 0;
+        double frequency = 1.0;
+        double amplitude = 1.0;
+        double maxValue = 0;
+
+        for (int octave = 0; octave < 4; octave++) {
+            total += noise.getValue(x * frequency, z * frequency, 0) * amplitude;
+            maxValue += amplitude;
+            amplitude *= 0.5;
+            frequency *= 2.0;
+        }
+        return total / maxValue;
+    }
+
 
     private static void generateTree(ServerLevel level, BlockPos pos, IslandBiomeType biomeType, RandomSource random) {
         ResourceKey<ConfiguredFeature<?, ?>> featureKey = switch (biomeType) {

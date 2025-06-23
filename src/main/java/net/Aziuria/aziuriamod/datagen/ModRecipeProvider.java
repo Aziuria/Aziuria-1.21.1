@@ -35,6 +35,38 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .define('I', Items.RAW_IRON)
                 .unlockedBy("has_raw_iron", has(Items.RAW_IRON)).save(recipeOutput);
 
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, Items.NAME_TAG)
+                .pattern("C  ")
+                .pattern("FIF")
+                .pattern(" F ")
+                .define('C', Items.PAPER)
+                .define('F', Items.IRON_NUGGET)
+                .define('I', Items.STRING)
+                .unlockedBy("has_string", has(Items.STRING)).save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, Blocks.COBWEB)
+                .pattern("SSS")
+                .pattern("SSS")
+                .pattern("SSS")
+                .define('S', Items.STRING)
+                .unlockedBy("has_string", has(Items.STRING)).save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, Items.SADDLE)
+                .pattern(" C ")
+                .pattern("CFC")
+                .pattern("   ")
+                .define('C', Items.LEATHER)
+                .define('F', Items.IRON_BARS)
+                .unlockedBy("has_leather", has(Items.LEATHER)).save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, Items.GOLDEN_APPLE)
+                .pattern("FFF")
+                .pattern("FCF")
+                .pattern("FFF")
+                .define('C', Items.APPLE)
+                .define('F', Items.GOLD_INGOT)
+                .unlockedBy("has_apple", has(Items.APPLE)).save(recipeOutput);
+
         ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ModBlocks.STEEL_BARS.get(), 16)
                 .pattern("SSS")
                 .pattern("SSS")
@@ -58,7 +90,34 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .define('G', Blocks.GRAY_CONCRETE)
                 .define('W', Blocks.WHITE_CONCRETE)
                 .define('B', Blocks.BLACK_CONCRETE)
-                .unlockedBy("has_steel_ingot", has(ModItems.STEEL_INGOT)).save(recipeOutput);
+                .unlockedBy("has_gray_concrete", has(Blocks.GRAY_CONCRETE)).save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.DEMAECATION_POST_B.get())
+                .pattern(" R ")
+                .pattern(" B ")
+                .pattern("GGG")
+                .define('G', Blocks.GRAY_CONCRETE)
+                .define('R', Blocks.RED_CONCRETE)
+                .define('B', Blocks.GREEN_CONCRETE)
+                .unlockedBy("has_gray_concrete", has(Blocks.GRAY_CONCRETE)).save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.DEMAECATION_POST_C.get())
+                .pattern(" W ")
+                .pattern(" Y ")
+                .pattern("GGG")
+                .define('G', Blocks.GRAY_CONCRETE)
+                .define('W', Blocks.LIGHT_BLUE_CONCRETE)
+                .define('Y', Blocks.YELLOW_CONCRETE)
+                .unlockedBy("has_gray_concrete", has(Blocks.GRAY_CONCRETE)).save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.DEMAECATION_POST_D.get())
+                .pattern(" W ")
+                .pattern(" S ")
+                .pattern("GGG")
+                .define('G', Blocks.GRAY_CONCRETE)
+                .define('W', Blocks.WHITE_CONCRETE)
+                .define('S', Blocks.RED_CONCRETE)
+                .unlockedBy("has_gray_concrete", has(Blocks.GRAY_CONCRETE)).save(recipeOutput);
 
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.STEEL_AXE.get())
                 .pattern("BB ")
@@ -352,6 +411,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.STEEL_INGOT.get(), 9)
                 .requires(ModBlocks.STEEL_BLOCK)
                 .unlockedBy("has_steel_block", has(ModBlocks.STEEL_BLOCK)).save(recipeOutput);
+
 
         oreSmelting(recipeOutput, STEEL_ALLOY_MESH_SMELTABLES, RecipeCategory.MISC, ModItems.STEEL_INGOT.get(), 0.25f, 200, "steel_ingot");
         oreBlasting(recipeOutput, STEEL_ALLOY_MESH_SMELTABLES, RecipeCategory.MISC, ModItems.STEEL_INGOT.get(), 0.25f, 100, "steel_ingot");

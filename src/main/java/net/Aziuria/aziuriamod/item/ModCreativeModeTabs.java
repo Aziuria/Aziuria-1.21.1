@@ -72,6 +72,9 @@ public class ModCreativeModeTabs {
                         output.accept(ModBlocks.IRON_BARREL_EMPTY);
                         output.accept(ModBlocks.LEAF_LITTER);
                         output.accept(ModBlocks.DEMAECATION_POST);
+                        output.accept(ModBlocks.DEMAECATION_POST_B);
+                        output.accept(ModBlocks.DEMAECATION_POST_C);
+                        output.accept(ModBlocks.DEMAECATION_POST_D);
                     }).build());
 
 

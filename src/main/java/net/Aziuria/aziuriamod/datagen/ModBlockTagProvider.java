@@ -31,6 +31,9 @@ public class ModBlockTagProvider extends BlockTagsProvider {
         tag(BlockTags.NEEDS_STONE_TOOL)
                 .add(ModBlocks.IRON_BARREL_EMPTY.get())
                 .add(ModBlocks.DEMAECATION_POST.get())
+                .add(ModBlocks.DEMAECATION_POST_B.get())
+                .add(ModBlocks.DEMAECATION_POST_C.get())
+                .add(ModBlocks.DEMAECATION_POST_D.get())
                 .add(ModBlocks.STEEL_BARREL_EMPTY.get());
 
         tag(BlockTags.NEEDS_IRON_TOOL)
