@@ -1,5 +1,6 @@
 package net.Aziuria.aziuriamod.datagen;
 
+import net.Aziuria.aziuriamod.block.ModBlocks;
 import net.Aziuria.aziuriamod.item.ModItems;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
@@ -29,6 +30,7 @@ public class ModDataMapProvider extends DataMapProvider {
                 .add(ModItems.ONION.getId(), new Compostable(0.45f), false)
                 .add(ModItems.SPRING_ONION_SEEDS.getId(), new Compostable(0.25f), false)
                 .add(ModItems.SPRING_ONION.getId(), new Compostable(0.45f), false)
+                .add(ModBlocks.LEAF_LITTER.getId(), new Compostable(0.45f), false)
                 .add(ModItems.FLAX_FLOWER.getId(), new Compostable(0.45f), false);
 
 
