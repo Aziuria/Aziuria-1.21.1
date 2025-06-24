@@ -1,11 +1,13 @@
 package net.Aziuria.aziuriamod.handler;
 
+import net.Aziuria.aziuriamod.block.ModBlocks;
 import net.Aziuria.aziuriamod.data.ModDataComponents;
 import net.Aziuria.aziuriamod.item.ModItems;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.items.ItemStackHandler;
 import net.minecraft.nbt.CompoundTag;
 
@@ -20,6 +22,7 @@ public class SackItemInventoryHandler {
 
         // Set of allowed items
         private static final Set<Item> ALLOWED_ITEMS = new HashSet<>();
+        private static final Set<Block> ALLOWED_BLOCKS = new HashSet<>();
 
         static {
             // Seeds
@@ -72,6 +75,9 @@ public class SackItemInventoryHandler {
 
             // Apples
             ALLOWED_ITEMS.add(Items.APPLE);
+
+            // Misc
+            ALLOWED_BLOCKS.add(ModBlocks.LEAF_LITTER.get());
         }
 
         public SackHandler(ItemStack stack, HolderLookup.Provider registries) {
