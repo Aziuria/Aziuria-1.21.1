@@ -79,8 +79,14 @@ public class PickupCustomItemsGoal extends Goal {
     private boolean isFarmerItem(Item item) {
         return item == ModItems.CUCUMBER_SEEDS.get()
                 || item == ModItems.RADISH_SEEDS.get()
+                || item == ModItems.LETTUCE_SEEDS.get()
+                || item == ModItems.ONION_SEEDS.get()
+                || item == ModItems.SPRING_ONION_SEEDS.get()
                 || item == ModItems.TOMATO_SEEDS.get()
                 || item == ModItems.CUCUMBER.get()
+                || item == ModItems.LETTUCE.get()
+                || item == ModItems.ONION.get()
+                || item == ModItems.SPRING_ONION.get()
                 || item == ModItems.RADISH.get()
                 || item == ModItems.TOMATO.get();
     }

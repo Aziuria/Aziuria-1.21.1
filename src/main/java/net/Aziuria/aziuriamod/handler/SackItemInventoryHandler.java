@@ -1,6 +1,7 @@
 package net.Aziuria.aziuriamod.handler;
 
 import net.Aziuria.aziuriamod.data.ModDataComponents;
+import net.Aziuria.aziuriamod.item.ModItems;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -26,10 +27,22 @@ public class SackItemInventoryHandler {
             ALLOWED_ITEMS.add(Items.POTATO);
             ALLOWED_ITEMS.add(Items.BEETROOT);
             ALLOWED_ITEMS.add(Items.WHEAT);
+            ALLOWED_ITEMS.add(ModItems.RADISH.get());
+            ALLOWED_ITEMS.add(ModItems.CUCUMBER.get());
+            ALLOWED_ITEMS.add(ModItems.TOMATO.get());
+            ALLOWED_ITEMS.add(ModItems.LETTUCE.get());
+            ALLOWED_ITEMS.add(ModItems.ONION.get());
+            ALLOWED_ITEMS.add(ModItems.SPRING_ONION.get());
             ALLOWED_ITEMS.add(Items.MELON_SEEDS);
             ALLOWED_ITEMS.add(Items.PUMPKIN_SEEDS);
             ALLOWED_ITEMS.add(Items.BEETROOT_SEEDS);
             ALLOWED_ITEMS.add(Items.WHEAT_SEEDS);
+            ALLOWED_ITEMS.add(ModItems.RADISH_SEEDS.get());
+            ALLOWED_ITEMS.add(ModItems.CUCUMBER_SEEDS.get());
+            ALLOWED_ITEMS.add(ModItems.TOMATO_SEEDS.get());
+            ALLOWED_ITEMS.add(ModItems.LETTUCE_SEEDS.get());
+            ALLOWED_ITEMS.add(ModItems.ONION_SEEDS.get());
+            ALLOWED_ITEMS.add(ModItems.SPRING_ONION_SEEDS.get());
 
             // Saplings
             ALLOWED_ITEMS.add(Items.OAK_SAPLING);
@@ -55,6 +68,7 @@ public class SackItemInventoryHandler {
             ALLOWED_ITEMS.add(Items.ORANGE_TULIP);
             ALLOWED_ITEMS.add(Items.WHITE_TULIP);
             ALLOWED_ITEMS.add(Items.BLACK_DYE); // Black flowers
+            ALLOWED_ITEMS.add(ModItems.FLAX_FLOWER.get());
 
             // Apples
             ALLOWED_ITEMS.add(Items.APPLE);

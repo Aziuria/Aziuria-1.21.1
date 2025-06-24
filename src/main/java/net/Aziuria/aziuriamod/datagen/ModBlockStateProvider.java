@@ -1,10 +1,7 @@
 package net.Aziuria.aziuriamod.datagen;
 
 import net.Aziuria.aziuriamod.AziuriaMod;
-import net.Aziuria.aziuriamod.block.CucumberCropBlock;
-import net.Aziuria.aziuriamod.block.ModBlocks;
-import net.Aziuria.aziuriamod.block.RadishCropBlock;
-import net.Aziuria.aziuriamod.block.TomatoCropBlock;
+import net.Aziuria.aziuriamod.block.*;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.CropBlock;
@@ -35,6 +32,9 @@ public class ModBlockStateProvider extends BlockStateProvider {
         makeCrop(((CropBlock) ModBlocks.RADISH_CROP.get()), "radish_crop_stage", "radish_crop_stage");
         makeCrop(((CropBlock) ModBlocks.CUCUMBER_CROP.get()), "cucumber_crop_stage", "cucumber_crop_stage");
         makeCrop(((CropBlock) ModBlocks.TOMATO_CROP.get()), "tomato_crop_stage", "tomato_crop_stage");
+        makeCrop(((CropBlock) ModBlocks.LETTUCE_CROP.get()), "lettuce_crop_stage", "lettuce_crop_stage");
+        makeCrop(((CropBlock) ModBlocks.ONION_CROP.get()), "onion_crop_stage", "onion_crop_stage");
+        makeCrop(((CropBlock) ModBlocks.SPRING_ONION_CROP.get()), "spring_onion_crop_stage", "spring_onion_crop_stage");
 
         getVariantBuilder(ModBlocks.FLAX_FLOWER_BLOCK.get())
                 .partialState()
@@ -60,8 +60,14 @@ public class ModBlockStateProvider extends BlockStateProvider {
             age = state.getValue(CucumberCropBlock.AGE);
         } else if (block instanceof TomatoCropBlock) {
             age = state.getValue(TomatoCropBlock.AGE);
+        } else if (block instanceof LettuceCropBlock) {
+            age = state.getValue(LettuceCropBlock.AGE);
+        } else if (block instanceof OnionCropBlock) {
+            age = state.getValue(OnionCropBlock.AGE);
+        } else if (block instanceof SpringOnionCropBlock) {
+            age = state.getValue(SpringOnionCropBlock.AGE);
         } else {
-            age = 0; // fallback or throw exception if unexpected
+            age = 0; // fallback or throw exception for safety
         }
 
         return new ConfiguredModel[] {

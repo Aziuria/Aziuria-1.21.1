@@ -1,9 +1,6 @@
 package net.Aziuria.aziuriamod.datagen;
 
-import net.Aziuria.aziuriamod.block.CucumberCropBlock;
-import net.Aziuria.aziuriamod.block.ModBlocks;
-import net.Aziuria.aziuriamod.block.RadishCropBlock;
-import net.Aziuria.aziuriamod.block.TomatoCropBlock;
+import net.Aziuria.aziuriamod.block.*;
 import net.Aziuria.aziuriamod.item.ModItems;
 import net.minecraft.advancements.critereon.StatePropertiesPredicate;
 import net.minecraft.core.Holder;
@@ -90,6 +87,24 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
 
         this.add(ModBlocks.TOMATO_CROP.get(), this.createCropDrops(ModBlocks.TOMATO_CROP.get(),
                 ModItems.TOMATO.get(), ModItems.TOMATO_SEEDS.get(), tomatoCondition));
+
+        // ✅ NEW crops: Lettuce
+        LootItemCondition.Builder lettuceCondition = LootItemBlockStatePropertyCondition.hasBlockStateProperties(ModBlocks.LETTUCE_CROP.get())
+                .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(LettuceCropBlock.AGE, 3));
+        this.add(ModBlocks.LETTUCE_CROP.get(), this.createCropDrops(ModBlocks.LETTUCE_CROP.get(),
+                ModItems.LETTUCE.get(), ModItems.LETTUCE_SEEDS.get(), lettuceCondition));
+
+// ✅ NEW crops: Onion
+        LootItemCondition.Builder onionCondition = LootItemBlockStatePropertyCondition.hasBlockStateProperties(ModBlocks.ONION_CROP.get())
+                .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(OnionCropBlock.AGE, 3));
+        this.add(ModBlocks.ONION_CROP.get(), this.createCropDrops(ModBlocks.ONION_CROP.get(),
+                ModItems.ONION.get(), ModItems.ONION_SEEDS.get(), onionCondition));
+
+// ✅ NEW crops: Spring Onion
+        LootItemCondition.Builder springOnionCondition = LootItemBlockStatePropertyCondition.hasBlockStateProperties(ModBlocks.SPRING_ONION_CROP.get())
+                .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(SpringOnionCropBlock.AGE, 3));
+        this.add(ModBlocks.SPRING_ONION_CROP.get(), this.createCropDrops(ModBlocks.SPRING_ONION_CROP.get(),
+                ModItems.SPRING_ONION.get(), ModItems.SPRING_ONION_SEEDS.get(), springOnionCondition));
 
 
     }

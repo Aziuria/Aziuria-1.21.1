@@ -7,6 +7,9 @@
     "minecraft:beetroots",
     "aziuriamod:cucumber_crop",
     "aziuriamod:radish_crop",
+    "aziuriamod:lettuce_crop",
+    "aziuriamod:onion_crop",
+    "aziuriamod:spring_onion_crop",
     "aziuriamod:tomato_crop"
   ]
 }

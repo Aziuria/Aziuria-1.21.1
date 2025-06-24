@@ -3,6 +3,9 @@
   "values": [
     "aziuriamod:cucumber_seeds",
     "aziuriamod:tomato_seeds",
-    "aziuriamod:radish_seeds"
+    "aziuriamod:radish_seeds",
+    "aziuriamod:lettuce_seeds",
+    "aziuriamod:onion_seeds",
+    "aziuriamod:spring_onion_seeds"
   ]
 }

@@ -39,6 +39,12 @@ public class ModCreativeModeTabs {
                         output.accept(ModItems.RADISH_SEEDS);
                         output.accept(ModItems.TOMATO_SEEDS);
                         output.accept(ModItems.CUCUMBER_SEEDS);
+                        output.accept(ModItems.LETTUCE);
+                        output.accept(ModItems.ONION);
+                        output.accept(ModItems.SPRING_ONION);
+                        output.accept(ModItems.LETTUCE_SEEDS);
+                        output.accept(ModItems.ONION_SEEDS);
+                        output.accept(ModItems.SPRING_ONION_SEEDS);
                         output.accept(ModItems.FLAX_FLOWER);
                         output.accept(ModItems.ISLAND_GENERATOR_SMALL);
                         output.accept(ModItems.ISLAND_GENERATOR_MEDIUM);

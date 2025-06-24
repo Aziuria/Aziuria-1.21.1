@@ -42,12 +42,18 @@ public class StoreCropsInChestGoal extends MoveToBlockGoal {
         return stack.getItem() == ModItems.CUCUMBER.get()
                 || stack.getItem() == ModItems.RADISH.get()
                 || stack.getItem() == ModItems.TOMATO.get()
+                || stack.getItem() == ModItems.LETTUCE.get()
+                || stack.getItem() == ModItems.SPRING_ONION.get()
+                || stack.getItem() == ModItems.ONION.get()
                 || stack.getItem() == Items.CARROT
                 || stack.getItem() == Items.POTATO
                 || stack.getItem() == Items.WHEAT
                 || stack.getItem() == Items.BEETROOT
                 || stack.getItem() == ModItems.CUCUMBER_SEEDS.get()
                 || stack.getItem() == ModItems.RADISH_SEEDS.get()
+                || stack.getItem() == ModItems.SPRING_ONION_SEEDS.get()
+                || stack.getItem() == ModItems.ONION_SEEDS.get()
+                || stack.getItem() == ModItems.LETTUCE_SEEDS.get()
                 || stack.getItem() == ModItems.TOMATO_SEEDS.get();
     }
 

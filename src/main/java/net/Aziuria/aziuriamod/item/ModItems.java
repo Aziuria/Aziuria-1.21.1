@@ -70,6 +70,21 @@ public class ModItems {
     public static final DeferredItem<Item> TOMATO_SEEDS = ITEMS.register("tomato_seeds",
             () -> new ItemNameBlockItem(ModBlocks.TOMATO_CROP.get(), new Item.Properties()));
 
+    public static final DeferredItem<Item> ONION = ITEMS.register("onion",
+            () -> new Item(new Item.Properties().food(ModFoodProperties.ONION)));
+    public static final DeferredItem<Item> ONION_SEEDS = ITEMS.register("onion_seeds",
+            () -> new ItemNameBlockItem(ModBlocks.ONION_CROP.get(), new Item.Properties()));
+
+    public static final DeferredItem<Item> LETTUCE = ITEMS.register("lettuce",
+            () -> new Item(new Item.Properties().food(ModFoodProperties.LETTUCE)));
+    public static final DeferredItem<Item> LETTUCE_SEEDS = ITEMS.register("lettuce_seeds",
+            () -> new ItemNameBlockItem(ModBlocks.LETTUCE_CROP.get(), new Item.Properties()));
+
+    public static final DeferredItem<Item> SPRING_ONION = ITEMS.register("spring_onion",
+            () -> new Item(new Item.Properties().food(ModFoodProperties.SPRING_ONION)));
+    public static final DeferredItem<Item> SPRING_ONION_SEEDS = ITEMS.register("spring_onion_seeds",
+            () -> new ItemNameBlockItem(ModBlocks.SPRING_ONION_CROP.get(), new Item.Properties()));
+
     public static final DeferredItem<Item> FLAX_FLOWER = ITEMS.register("flax_flower",
             () -> new BlockItem(ModBlocks.FLAX_FLOWER_BLOCK.get(), new Item.Properties()));
 

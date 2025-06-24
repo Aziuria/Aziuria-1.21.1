@@ -1,8 +1,6 @@
 package net.Aziuria.aziuriamod.villager;
 
-import net.Aziuria.aziuriamod.block.CucumberCropBlock;
-import net.Aziuria.aziuriamod.block.RadishCropBlock;
-import net.Aziuria.aziuriamod.block.TomatoCropBlock;
+import net.Aziuria.aziuriamod.block.*;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.ai.goal.Goal;
@@ -87,6 +85,16 @@ public class HarvestCropsGoal extends Goal {
         } else if (block instanceof TomatoCropBlock tomato) {
             ageProp = tomato.getPublicAgeProperty();
             maxAge = 3;
+        } else if (block instanceof LettuceCropBlock lettuce) {
+            ageProp = lettuce.getPublicAgeProperty();
+            maxAge = 3;
+        } else if (block instanceof OnionCropBlock onion) {
+            ageProp = onion.getPublicAgeProperty();
+            maxAge = 3;
+        } else if (block instanceof SpringOnionCropBlock springOnion) {
+            ageProp = springOnion.getPublicAgeProperty();
+            maxAge = 3;
+
 
             // ✅ Vanilla crops
         } else if (block == Blocks.WHEAT) {
