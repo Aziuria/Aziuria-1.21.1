@@ -119,6 +119,15 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .define('S', Blocks.RED_CONCRETE)
                 .unlockedBy("has_gray_concrete", has(Blocks.GRAY_CONCRETE)).save(recipeOutput);
 
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.DEMAECATION_POST_E.get())
+                .pattern(" W ")
+                .pattern(" Y ")
+                .pattern("GGG")
+                .define('G', Blocks.GRAY_CONCRETE)
+                .define('W', Blocks.LIGHT_BLUE_CONCRETE)
+                .define('Y', Blocks.WHITE_CONCRETE)
+                .unlockedBy("has_gray_concrete", has(Blocks.GRAY_CONCRETE)).save(recipeOutput);
+
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.STEEL_AXE.get())
                 .pattern("BB ")
                 .pattern("BK ")

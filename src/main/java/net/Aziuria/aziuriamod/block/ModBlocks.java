@@ -216,6 +216,12 @@ public class ModBlocks {
                     .sound(SoundType.STONE)
                     .noOcclusion()));
 
+    public static final DeferredBlock<DemarcationPostBlock> DEMAECATION_POST_E = registerBlock("demarcation_post_e",
+            () -> new DemarcationPostBlock(BlockBehaviour.Properties.of()
+                    .strength(1.5f)
+                    .sound(SoundType.STONE)
+                    .noOcclusion()));
+
     public static final DeferredBlock<Block> RADISH_CROP = BLOCKS.register("radish_crop",
             () -> new RadishCropBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.BEETROOTS)));
     public static final DeferredBlock<Block> CUCUMBER_CROP = BLOCKS.register("cucumber_crop",

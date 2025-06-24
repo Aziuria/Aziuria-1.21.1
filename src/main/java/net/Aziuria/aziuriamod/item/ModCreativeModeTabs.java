@@ -81,6 +81,7 @@ public class ModCreativeModeTabs {
                         output.accept(ModBlocks.DEMAECATION_POST_B);
                         output.accept(ModBlocks.DEMAECATION_POST_C);
                         output.accept(ModBlocks.DEMAECATION_POST_D);
+                        output.accept(ModBlocks.DEMAECATION_POST_E);
                     }).build());
 
 
