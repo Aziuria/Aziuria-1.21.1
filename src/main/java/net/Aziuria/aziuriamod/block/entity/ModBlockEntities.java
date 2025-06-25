@@ -53,6 +53,14 @@ public class ModBlockEntities {
 
             );
 
+    public static final Supplier<BlockEntityType<SpeakerBlockEntity>> SPEAKER =
+            BLOCK_ENTITIES.register("speaker", () ->
+                    BlockEntityType.Builder.of(
+                            SpeakerBlockEntity::new,
+                            ModBlocks.SPEAKER.get()
+                    ).build(null)
+            );
+
 
     public static void register(IEventBus eventBus) {
         BLOCK_ENTITIES.register(eventBus);

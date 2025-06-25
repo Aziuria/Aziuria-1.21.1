@@ -1,0 +1,11 @@
+{
+	"siren": {
+		"subtitle": "sounds.aziuriamod.siren",
+		"sounds": [
+			{
+				"name": "aziuriamod:siren",
+				"stream": false
+			}
+		]
+	}
+}

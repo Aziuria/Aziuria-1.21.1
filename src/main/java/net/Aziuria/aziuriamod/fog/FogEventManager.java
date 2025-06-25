@@ -1,9 +1,15 @@
 package net.Aziuria.aziuriamod.fog;
 
+import net.Aziuria.aziuriamod.block.entity.SpeakerBlockEntity;
+import net.Aziuria.aziuriamod.sounds.FadingSirenSoundInstance;
+import net.Aziuria.aziuriamod.sounds.ModSounds;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientLevel;
+import net.minecraft.client.sounds.SoundManager;
+import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.util.RandomSource;
+import net.minecraft.sounds.SoundSource;
 
 public class FogEventManager {
     private static final Minecraft mc = Minecraft.getInstance();
@@ -20,9 +26,9 @@ public class FogEventManager {
     private static boolean dissipatingMessageSent = false;
 
     private static final int TRANSITION_DURATION = 20 * 6; // 6 seconds (60 ticks)
+    private static final int FOG_COOLDOWN_TICKS = 20 * 60 * 5; // 5 minutes cooldown
 
     private static long nextFogCheckTime = 0;
-    private static final int FOG_COOLDOWN_TICKS = 20 * 60 * 5; // 5 minutes cooldown
 
     public static void tick() {
         ClientLevel level = mc.level;
@@ -40,11 +46,12 @@ public class FogEventManager {
                 dissipatingMessageSent = true;
             }
 
-            // After fade-out completes, clear the fog
+            // After fade-out completes, clear the fog and stop sirens
             if (time >= fogEnd + TRANSITION_DURATION) {
                 activeFog = null;
                 dissipatingMessageSent = false;
                 nextFogCheckTime = time + FOG_COOLDOWN_TICKS;
+                stopAllSirens();  // <-- Stop siren sounds here
             }
         }
 
@@ -64,7 +71,7 @@ public class FogEventManager {
     }
 
     public static void startFogNow(FogType type) {
-        if (mc.level == null) return;
+        if (mc.level == null || mc.player == null) return;
 
         activeFog = type;
         currentIntensity = FogIntensity.values()[random.nextInt(FogIntensity.values().length)];
@@ -76,8 +83,19 @@ public class FogEventManager {
         fogFadeOutStart = time + duration - TRANSITION_DURATION;
         fogEnd = time + duration;
 
-        dissipatingMessageSent = false; // Reset flag on new fog start
+        dissipatingMessageSent = false;
         nextFogCheckTime = fogEnd + FOG_COOLDOWN_TICKS;
+
+        BlockPos playerPos = mc.player.blockPosition();
+
+        // Check if there's a speaker block nearby before playing the siren
+        int radius = 150;
+        for (BlockPos pos : BlockPos.betweenClosed(playerPos.offset(-radius, -radius, -radius),
+                playerPos.offset(radius, radius, radius))) {
+            if (mc.level.getBlockEntity(pos) instanceof SpeakerBlockEntity) {
+                mc.getSoundManager().play(new FadingSirenSoundInstance(ModSounds.SIREN.get(), pos.immutable()));
+            }
+        }
     }
 
     public static void stopFogNow() {
@@ -90,6 +108,16 @@ public class FogEventManager {
 
         if (mc.level != null)
             nextFogCheckTime = mc.level.getGameTime() + FOG_COOLDOWN_TICKS;
+
+        stopAllSirens(); // <-- Also stop sirens if fog is stopped manually
+    }
+
+    private static void stopAllSirens() {
+        if (mc == null || mc.getSoundManager() == null) return;
+
+        SoundManager soundManager = mc.getSoundManager();
+        // Stop all siren sounds on BLOCKS source channel
+        soundManager.stop(ModSounds.SIREN.get().getLocation(), SoundSource.BLOCKS);
     }
 
     public static FogType getActiveFog() {
@@ -110,14 +138,12 @@ public class FogEventManager {
 
         if (time <= fogFadeInEnd) {
             float progress = clamp((time - fogStart) / (float) TRANSITION_DURATION);
-            // Fade IN: fog approaches from horizonDistance to target distance
             return horizonDistance - (horizonDistance - target) * progress;
         } else if (time >= fogFadeOutStart) {
             float progress = clamp((time - fogFadeOutStart) / (float) TRANSITION_DURATION);
-            // Fade OUT: fog recedes from target distance back to horizonDistance (reverse of fade-in)
             return target + (horizonDistance - target) * progress;
         } else {
-            return target; // Fully active fog
+            return target;
         }
     }
 

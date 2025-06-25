@@ -35,6 +35,7 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                 .add(ModBlocks.DEMAECATION_POST_C.get())
                 .add(ModBlocks.DEMAECATION_POST_D.get())
                 .add(ModBlocks.DEMAECATION_POST_E.get())
+                .add(ModBlocks.SPEAKER.get())
                 .add(ModBlocks.STEEL_BARREL_EMPTY.get());
 
         tag(BlockTags.NEEDS_IRON_TOOL)

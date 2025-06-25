@@ -222,6 +222,12 @@ public class ModBlocks {
                     .sound(SoundType.STONE)
                     .noOcclusion()));
 
+    public static final DeferredBlock<SpeakerBlock> SPEAKER = registerBlock("speaker",
+            () -> new SpeakerBlock(BlockBehaviour.Properties.of()
+                    .strength(2.0f)
+                    .sound(SoundType.METAL)
+                    .noOcclusion()));
+
     public static final DeferredBlock<Block> RADISH_CROP = BLOCKS.register("radish_crop",
             () -> new RadishCropBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.BEETROOTS)));
     public static final DeferredBlock<Block> CUCUMBER_CROP = BLOCKS.register("cucumber_crop",

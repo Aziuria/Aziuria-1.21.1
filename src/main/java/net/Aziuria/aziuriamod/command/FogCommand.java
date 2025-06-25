@@ -5,9 +5,13 @@ import com.mojang.brigadier.arguments.StringArgumentType;
 import net.Aziuria.aziuriamod.fog.FogEventManager;
 import net.Aziuria.aziuriamod.fog.FogRegistry;
 import net.Aziuria.aziuriamod.fog.FogType;
+import net.Aziuria.aziuriamod.sounds.ModSounds;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.resources.sounds.SimpleSoundInstance;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
 import net.minecraft.network.chat.Component;
+import net.minecraft.sounds.SoundSource;
 
 public class FogCommand {
     public static void register(CommandDispatcher<CommandSourceStack> dispatcher) {
@@ -19,13 +23,13 @@ public class FogCommand {
                                     for (FogType type : FogRegistry.getAll()) {
                                         builder.suggest(type.getId());
                                     }
-                                    builder.suggest("stop");  // ← Add "stop" to suggestions
+                                    builder.suggest("stop");
                                     return builder.buildFuture();
                                 })
                                 .executes(ctx -> {
                                     String id = StringArgumentType.getString(ctx, "type");
 
-                                    if ("stop".equalsIgnoreCase(id)) {  // ← Handle stopping fog command
+                                    if ("stop".equalsIgnoreCase(id)) {
                                         FogEventManager.stopFogNow();
                                         ctx.getSource().sendSuccess(() -> Component.literal("Fog stopped."), false);
                                         return 1;
@@ -45,6 +49,30 @@ public class FogCommand {
                                         return 0;
                                     }
                                 })
+                        )
+        );
+
+        // New command: /play sound siren
+        dispatcher.register(
+                Commands.literal("play")
+                        .then(Commands.literal("sound")
+                                .then(Commands.literal("siren")
+                                        .executes(ctx -> {
+                                            Minecraft mc = Minecraft.getInstance();
+                                            if (mc != null && mc.player != null) {
+                                                mc.getSoundManager().play(
+                                                        SimpleSoundInstance.forUI(
+                                                                ModSounds.SIREN.get(),
+                                                                1.0F
+                                                        )
+                                                );
+                                                ctx.getSource().sendSuccess(() -> Component.literal("Played siren sound"), false);
+                                            } else {
+                                                ctx.getSource().sendFailure(Component.literal("Cannot play sound: no client player found."));
+                                            }
+                                            return 1;
+                                        })
+                                )
                         )
         );
     }
