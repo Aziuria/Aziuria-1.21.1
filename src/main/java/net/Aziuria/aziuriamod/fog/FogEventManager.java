@@ -8,13 +8,16 @@ import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.sounds.SoundManager;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
-import net.minecraft.util.RandomSource;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.level.Level;
+import net.minecraft.util.RandomSource;
 
 public class FogEventManager {
     private static final Minecraft mc = Minecraft.getInstance();
     private static final RandomSource random = RandomSource.create();
 
+    // Fog state (persisted)
     private static FogType activeFog = null;
     private static FogIntensity currentIntensity = FogIntensity.MEDIUM;
 
@@ -30,6 +33,47 @@ public class FogEventManager {
 
     private static long nextFogCheckTime = 0;
 
+    // Call this to load fog state from world saved data (e.g. on world load)
+    public static void loadFromSavedData(Level level) {
+        if (!(level instanceof ServerLevel serverLevel)) return;
+
+        FogEventSavedData data = FogEventSavedData.get(serverLevel);
+        activeFog = FogRegistry.getAll().stream()
+                .filter(f -> f.getId().equals(data.getActiveFogId()))
+                .findFirst()
+                .orElse(null);
+
+        int ordinal = data.getCurrentIntensityOrdinal();
+        if (ordinal >= 0 && ordinal < FogIntensity.values().length) {
+            currentIntensity = FogIntensity.values()[ordinal];
+        } else {
+            currentIntensity = FogIntensity.MEDIUM;
+        }
+
+        fogStart = data.getFogStart();
+        fogEnd = data.getFogEnd();
+        fogFadeInEnd = data.getFogFadeInEnd();
+        fogFadeOutStart = data.getFogFadeOutStart();
+        dissipatingMessageSent = data.getDissipatingMessageSent();
+        nextFogCheckTime = data.getNextFogCheckTime();
+    }
+
+    // Call this to save fog state to world saved data (call after any state change)
+    public static void saveToSavedData(Level level) {
+        if (!(level instanceof ServerLevel serverLevel)) return;
+
+        FogEventSavedData data = FogEventSavedData.get(serverLevel);
+        data.setActiveFogId(activeFog == null ? "" : activeFog.getId());
+        data.setCurrentIntensityOrdinal(currentIntensity == null ? 0 : currentIntensity.ordinal());
+        data.setFogStart(fogStart);
+        data.setFogEnd(fogEnd);
+        data.setFogFadeInEnd(fogFadeInEnd);
+        data.setFogFadeOutStart(fogFadeOutStart);
+        data.setDissipatingMessageSent(dissipatingMessageSent);
+        data.setNextFogCheckTime(nextFogCheckTime);
+    }
+
+    // Called every client tick
     public static void tick() {
         ClientLevel level = mc.level;
         if (level == null || mc.isPaused()) return;
@@ -44,6 +88,7 @@ public class FogEventManager {
                 mc.player.sendSystemMessage(Component.literal("⚠ Fog is dissipating...")
                         .withStyle(style -> style.withColor(net.minecraft.ChatFormatting.YELLOW)));
                 dissipatingMessageSent = true;
+                saveToSavedData(level); // Save after state change
             }
 
             // After fade-out completes, clear the fog and stop sirens
@@ -51,7 +96,8 @@ public class FogEventManager {
                 activeFog = null;
                 dissipatingMessageSent = false;
                 nextFogCheckTime = time + FOG_COOLDOWN_TICKS;
-                stopAllSirens();  // <-- Stop siren sounds here
+                stopAllSirens();
+                saveToSavedData(level); // Save fog cleared
             }
         }
 
@@ -64,6 +110,7 @@ public class FogEventManager {
                                 .withStyle(style -> style.withColor(net.minecraft.ChatFormatting.RED)));
                     }
                     startFogNow(type);
+                    saveToSavedData(level); // Save new fog start
                     break;
                 }
             }
@@ -88,7 +135,7 @@ public class FogEventManager {
 
         BlockPos playerPos = mc.player.blockPosition();
 
-        // Check if there's a speaker block nearby before playing the siren
+        // Play siren at all speaker blocks near player
         int radius = 150;
         for (BlockPos pos : BlockPos.betweenClosed(playerPos.offset(-radius, -radius, -radius),
                 playerPos.offset(radius, radius, radius))) {
@@ -109,14 +156,16 @@ public class FogEventManager {
         if (mc.level != null)
             nextFogCheckTime = mc.level.getGameTime() + FOG_COOLDOWN_TICKS;
 
-        stopAllSirens(); // <-- Also stop sirens if fog is stopped manually
+        stopAllSirens();
+
+        if (mc.level != null)
+            saveToSavedData(mc.level); // Save fog stopped
     }
 
     private static void stopAllSirens() {
         if (mc == null || mc.getSoundManager() == null) return;
 
         SoundManager soundManager = mc.getSoundManager();
-        // Stop all siren sounds on BLOCKS source channel
         soundManager.stop(ModSounds.SIREN.get().getLocation(), SoundSource.BLOCKS);
     }
 
