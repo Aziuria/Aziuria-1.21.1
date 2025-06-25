@@ -14,13 +14,15 @@ public class FogEventManager {
 
     private static long fogStart = 0;
     private static long fogEnd = 0;
-    private static final int TRANSITION_DURATION = 60; // ticks (3 seconds)
+    private static long fogFadeInEnd = 0;
+    private static long fogFadeOutStart = 0;
 
-    private static boolean isFadingOut = false;
+    private static boolean dissipatingMessageSent = false;
 
-    // ⬇️ NEW: cooldown before next fog can start again
-    private static long nextFogCheckTime = 0; // ⬅️ timestamp for when fog can next be considered
-    private static final int FOG_COOLDOWN_TICKS = 20 * 60 * 5; // ⬅️ 5 minutes cooldown
+    private static final int TRANSITION_DURATION = 20 * 6; // 6 seconds (60 ticks)
+
+    private static long nextFogCheckTime = 0;
+    private static final int FOG_COOLDOWN_TICKS = 20 * 60 * 5; // 5 minutes cooldown
 
     public static void tick() {
         ClientLevel level = mc.level;
@@ -28,34 +30,32 @@ public class FogEventManager {
 
         long time = level.getGameTime();
 
-        // ⬇️ NEW: Skip if cooldown not yet over
-        if (activeFog == null && !isFadingOut && time < nextFogCheckTime) return;
+        if (activeFog == null && time < nextFogCheckTime) return;
 
-        // ⬇️ Fade-out handling
+        // End fog after full duration
         if (activeFog != null && time >= fogEnd) {
-            if (!isFadingOut) {
-                isFadingOut = true;
-                fogEnd = time + TRANSITION_DURATION;
-            } else if (time >= fogEnd) {
-                activeFog = null;
-                isFadingOut = false;
+            if (!dissipatingMessageSent && mc.player != null) {
+                mc.player.sendSystemMessage(Component.literal("⚠ Fog is dissipating...")
+                        .withStyle(style -> style.withColor(net.minecraft.ChatFormatting.YELLOW)));
+                dissipatingMessageSent = true;
+            }
 
-                // ⬇️ Set next check time after fog ends
-                nextFogCheckTime = time + FOG_COOLDOWN_TICKS; // ⬅️ wait 5 minutes after fog ends
+            // After fade-out completes, clear the fog
+            if (time >= fogEnd + TRANSITION_DURATION) {
+                activeFog = null;
+                dissipatingMessageSent = false;
+                nextFogCheckTime = time + FOG_COOLDOWN_TICKS;
             }
         }
 
-        // ⬇️ NEW: Try to start new fog only after cooldown
-        if (activeFog == null && !isFadingOut && time >= nextFogCheckTime) {
+        // Start new fog if none active and cooldown passed
+        if (activeFog == null && time >= nextFogCheckTime) {
             for (FogType type : FogRegistry.getAll()) {
                 if (type.shouldStart(level, random)) {
-
-                    // Show red warning in chat
                     if (mc.player != null) {
                         mc.player.sendSystemMessage(Component.literal("⚠ Fog is approaching...")
                                 .withStyle(style -> style.withColor(net.minecraft.ChatFormatting.RED)));
                     }
-
                     startFogNow(type);
                     break;
                 }
@@ -65,14 +65,18 @@ public class FogEventManager {
 
     public static void startFogNow(FogType type) {
         if (mc.level == null) return;
+
         activeFog = type;
         currentIntensity = FogIntensity.values()[random.nextInt(FogIntensity.values().length)];
         long time = mc.level.getGameTime();
-        fogStart = time;
-        fogEnd = time + type.getDurationTicks(random);
-        isFadingOut = false;
 
-        // ⬇️ Reset the cooldown when fog starts (optional safety)
+        long duration = type.getDurationTicks(random);
+        fogStart = time;
+        fogFadeInEnd = time + TRANSITION_DURATION;
+        fogFadeOutStart = time + duration - TRANSITION_DURATION;
+        fogEnd = time + duration;
+
+        dissipatingMessageSent = false; // Reset flag on new fog start
         nextFogCheckTime = fogEnd + FOG_COOLDOWN_TICKS;
     }
 
@@ -80,9 +84,10 @@ public class FogEventManager {
         activeFog = null;
         fogStart = 0;
         fogEnd = 0;
-        isFadingOut = false;
+        fogFadeInEnd = 0;
+        fogFadeOutStart = 0;
+        dissipatingMessageSent = false;
 
-        // ⬇️ Start cooldown if fog manually stopped
         if (mc.level != null)
             nextFogCheckTime = mc.level.getGameTime() + FOG_COOLDOWN_TICKS;
     }
@@ -96,18 +101,28 @@ public class FogEventManager {
     }
 
     public static float getFogEndDistance() {
-        if (activeFog == null && !isFadingOut) return 0f;
+        if (activeFog == null) return 0f;
 
         long time = mc.level.getGameTime();
-        float target = activeFog != null ? activeFog.getFogEnd(currentIntensity) : 0f;
+        float target = activeFog.getFogEnd(currentIntensity);
 
-        if (isFadingOut) {
-            float progress = 1.0f - Math.min(1.0f, (time - (fogEnd - TRANSITION_DURATION)) / (float) TRANSITION_DURATION);
-            return target * progress;
+        float horizonDistance = 50 * 16f; // 30 chunks away (800 blocks)
+
+        if (time <= fogFadeInEnd) {
+            float progress = clamp((time - fogStart) / (float) TRANSITION_DURATION);
+            // Fade IN: fog approaches from horizonDistance to target distance
+            return horizonDistance - (horizonDistance - target) * progress;
+        } else if (time >= fogFadeOutStart) {
+            float progress = clamp((time - fogFadeOutStart) / (float) TRANSITION_DURATION);
+            // Fade OUT: fog recedes from target distance back to horizonDistance (reverse of fade-in)
+            return target + (horizonDistance - target) * progress;
         } else {
-            float progress = Math.min(1.0f, (time - fogStart) / (float) TRANSITION_DURATION);
-            return target * progress;
+            return target; // Fully active fog
         }
+    }
+
+    private static float clamp(float v) {
+        return Math.max(0f, Math.min(1f, v));
     }
 
     public static boolean isEvilFogActive() {
