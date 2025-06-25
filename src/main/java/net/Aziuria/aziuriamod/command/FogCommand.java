@@ -52,28 +52,5 @@ public class FogCommand {
                         )
         );
 
-        // New command: /play sound siren
-        dispatcher.register(
-                Commands.literal("play")
-                        .then(Commands.literal("sound")
-                                .then(Commands.literal("siren")
-                                        .executes(ctx -> {
-                                            Minecraft mc = Minecraft.getInstance();
-                                            if (mc != null && mc.player != null) {
-                                                mc.getSoundManager().play(
-                                                        SimpleSoundInstance.forUI(
-                                                                ModSounds.SIREN.get(),
-                                                                1.0F
-                                                        )
-                                                );
-                                                ctx.getSource().sendSuccess(() -> Component.literal("Played siren sound"), false);
-                                            } else {
-                                                ctx.getSource().sendFailure(Component.literal("Cannot play sound: no client player found."));
-                                            }
-                                            return 1;
-                                        })
-                                )
-                        )
-        );
     }
 }

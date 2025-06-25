@@ -31,7 +31,6 @@ public class SpeakerBlockEntity extends BlockEntity {
         super.onLoad();
         if (level != null && level.isClientSide) {
             LOADED_SPEAKERS.add(this);
-            System.out.println("Speaker loaded at " + this.worldPosition);
         }
     }
 
@@ -39,7 +38,6 @@ public class SpeakerBlockEntity extends BlockEntity {
     public void setRemoved() {
         if (level != null && level.isClientSide) {
             LOADED_SPEAKERS.remove(this);
-            System.out.println("Speaker removed at " + getBlockPos());
         }
         super.setRemoved();
     }
@@ -54,12 +52,10 @@ public class SpeakerBlockEntity extends BlockEntity {
 
         for (SpeakerBlockEntity speaker : LOADED_SPEAKERS) {
             final BlockPos pos = speaker.getBlockPos();
-            System.out.println("Playing siren at " + pos);
 
             // Only play for nearby players
             for (Player player : level.players()) {
                 double distanceSq = player.distanceToSqr(pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5);
-                System.out.println("Distance to speaker: " + Math.sqrt(distanceSq));
 
                 if (distanceSq <= 100 * 100) {
                     RenderSystem.recordRenderCall(() -> {
@@ -73,10 +69,4 @@ public class SpeakerBlockEntity extends BlockEntity {
         lastSirenTime = currentTime;
     }
 
-    public static void debugPrintLoadedSpeakers() {
-        System.out.println("Registered speakers:");
-        for (SpeakerBlockEntity speaker : LOADED_SPEAKERS) {
-            System.out.println(" - " + speaker.getBlockPos());
-        }
-    }
 }
