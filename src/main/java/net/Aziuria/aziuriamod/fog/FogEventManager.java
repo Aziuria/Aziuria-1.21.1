@@ -122,6 +122,9 @@ public class FogEventManager {
         dissipatingMessageSent = false;
         nextFogCheckTime = fogEnd + FOG_COOLDOWN_TICKS;
 
+        // ← Added saving here to persist fog state immediately after starting
+        saveToSavedData(mc.level);  // ← here
+
         BlockPos playerPos = mc.player.blockPosition();
         int radius = 150;
 
@@ -208,7 +211,7 @@ public class FogEventManager {
             for (FogType type : FogRegistry.getAll()) {
                 if (type.shouldStart(level, level.getRandom())) {  // ✅ Server-side check
                     startFogNow(level, type);
-                    saveToSavedData(level);
+                    saveToSavedData(level); // ← Added saving here after starting fog server-side
                     break;
                 }
             }
@@ -227,5 +230,9 @@ public class FogEventManager {
         fogEnd = time + duration;
         dissipatingMessageSent = false;
         nextFogCheckTime = fogEnd + FOG_COOLDOWN_TICKS;
+
+        // ← Added saving here to persist fog state immediately after starting server-side
+        saveToSavedData(level);  // ← here
     }
+
 }

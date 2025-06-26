@@ -24,4 +24,14 @@ public class FogEventWorldLoadHandler {
             FogEventManager.saveToSavedData(level);
         }
     }
+
+    @SubscribeEvent
+    public static void onWorldUnload(LevelEvent.Unload event) {
+        Level level = (Level) event.getLevel();
+
+        if (!level.isClientSide()) {
+            FogEventManager.saveToSavedData(level);
+        }
+    }
+
 }
