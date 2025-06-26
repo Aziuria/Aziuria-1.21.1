@@ -119,6 +119,10 @@ public class FogVillagerAI {
             } else {
                 villager.getPersistentData().remove(TAG_IS_FLEEING_FROM_FOG);
             }
+        } else {
+            // ⬅️ NEW: Fog inactive, clear look & walk targets so villager behaves normally
+            villager.getBrain().eraseMemory(MemoryModuleType.LOOK_TARGET);
+            villager.getBrain().eraseMemory(MemoryModuleType.WALK_TARGET);
         }
     }
 }

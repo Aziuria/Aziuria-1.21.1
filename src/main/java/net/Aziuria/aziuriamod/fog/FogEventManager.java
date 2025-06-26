@@ -27,7 +27,7 @@ public class FogEventManager {
     private static boolean dissipatingMessageSent = false;
 
     private static final int TRANSITION_DURATION = 20 * 6;
-    private static final int FOG_COOLDOWN_TICKS = 20 * 60 * 1;
+    private static final int FOG_COOLDOWN_TICKS = 20 * 60 * 5;
 
     private static long nextFogCheckTime = 0;
 
@@ -105,6 +105,7 @@ public class FogEventManager {
                 }
             }
         }
+
     }
 
     public static void startFogNow(FogType type) {
