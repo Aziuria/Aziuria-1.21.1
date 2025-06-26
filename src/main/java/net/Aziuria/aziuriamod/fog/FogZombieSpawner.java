@@ -1,16 +1,20 @@
 package net.Aziuria.aziuriamod.fog;
 
-import net.minecraft.server.level.ServerLevel;
 import net.minecraft.core.BlockPos;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.monster.Zombie;
-import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.entity.npc.Villager;
+import net.minecraft.world.entity.player.Player;
 
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.neoforge.event.tick.LevelTickEvent;
+
+import java.util.List;
 
 public class FogZombieSpawner {
 
@@ -34,10 +38,10 @@ public class FogZombieSpawner {
 
         // 15% chance every 10 seconds to spawn zombies
         if (random.nextInt(100) < 15) {
-            int zombiesToSpawn = 3 + random.nextInt(6); // 3 to 8 zombies
+            int zombiesToSpawn = 4 + random.nextInt(7); // 4 to 10 zombies
 
             for (int i = 0; i < zombiesToSpawn; i++) {
-                var player = level.players().get(random.nextInt(level.players().size()));
+                Player player = level.players().get(random.nextInt(level.players().size()));
 
                 BlockPos pos = player.blockPosition().offset(
                         random.nextInt(101) - 50,    // -50 to +50
@@ -53,6 +57,24 @@ public class FogZombieSpawner {
                         zombie.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 20 * 60, 1));
                         zombie.addEffect(new MobEffectInstance(MobEffects.DAMAGE_BOOST, 20 * 60, 0));
                         level.addFreshEntity(zombie);
+
+                        // Make zombie hear nearby non-crouching or sprinting players
+                        for (Player nearbyPlayer : level.players()) {
+                            boolean isMovingLoudly = !nearbyPlayer.isCrouching() || nearbyPlayer.isSprinting();
+                            double distanceSq = zombie.distanceToSqr(nearbyPlayer);
+
+                            if (isMovingLoudly && distanceSq <= 40 * 40 && zombie.getTarget() == null) {
+                                zombie.setTarget(nearbyPlayer);
+                            }
+                        }
+
+                        // Also target nearby villagers
+                        List<Villager> villagers = level.getEntitiesOfClass(Villager.class, zombie.getBoundingBox().inflate(40));
+                        for (Villager villager : villagers) {
+                            if (zombie.getTarget() == null) {
+                                zombie.setTarget(villager);
+                            }
+                        }
                     }
                 }
             }
