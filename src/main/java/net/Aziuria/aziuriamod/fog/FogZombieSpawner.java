@@ -24,7 +24,16 @@ public class FogZombieSpawner {
     @SubscribeEvent
     public void onWorldTick(LevelTickEvent.Post event) {
         if (!(event.getLevel() instanceof ServerLevel level)) return;
-        if (!FogEventManager.isEvilFogActive()) return;
+
+        if (!FogEventManager.isEvilFogActive()) {
+            List<Zombie> allZombies = level.getEntitiesOfClass(Zombie.class, level.getWorldBorder().getCollisionShape().bounds());
+            for (Zombie zombie : allZombies) {
+                if (zombie.getPersistentData().getBoolean("SpawnedByFog")) {
+                    zombie.discard(); // instantly removes the zombie from the world
+                }
+            }
+            return; // skip rest if no fog is active
+        }
         if (level.players().isEmpty()) return;
 
         // Countdown cooldown timer
@@ -52,6 +61,7 @@ public class FogZombieSpawner {
                 if (level.getWorldBorder().isWithinBounds(pos) && level.isEmptyBlock(pos)) {
                     Zombie zombie = EntityType.ZOMBIE.create(level);
                     if (zombie != null) {
+                        zombie.getPersistentData().putBoolean("SpawnedByFog", true);
                         zombie.moveTo(pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5, 0, 0);
                         zombie.getAttribute(Attributes.FOLLOW_RANGE).setBaseValue(40.0D);
                         zombie.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 20 * 60, 1));

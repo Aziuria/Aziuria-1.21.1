@@ -10,14 +10,13 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.world.level.Level;
 import net.minecraft.util.RandomSource;
+import net.minecraft.world.level.Level;
 
 public class FogEventManager {
     private static final Minecraft mc = Minecraft.getInstance();
     private static final RandomSource random = RandomSource.create();
 
-    // Fog state (persisted)
     private static FogType activeFog = null;
     private static FogIntensity currentIntensity = FogIntensity.MEDIUM;
 
@@ -25,15 +24,13 @@ public class FogEventManager {
     private static long fogEnd = 0;
     private static long fogFadeInEnd = 0;
     private static long fogFadeOutStart = 0;
-
     private static boolean dissipatingMessageSent = false;
 
-    private static final int TRANSITION_DURATION = 20 * 6; // 6 seconds (60 ticks)
-    private static final int FOG_COOLDOWN_TICKS = 20 * 60 * 5; // 5 minutes cooldown
+    private static final int TRANSITION_DURATION = 20 * 6;
+    private static final int FOG_COOLDOWN_TICKS = 20 * 60 * 5;
 
     private static long nextFogCheckTime = 0;
 
-    // Call this to load fog state from world saved data (e.g. on world load)
     public static void loadFromSavedData(Level level) {
         if (!(level instanceof ServerLevel serverLevel)) return;
 
@@ -44,11 +41,9 @@ public class FogEventManager {
                 .orElse(null);
 
         int ordinal = data.getCurrentIntensityOrdinal();
-        if (ordinal >= 0 && ordinal < FogIntensity.values().length) {
-            currentIntensity = FogIntensity.values()[ordinal];
-        } else {
-            currentIntensity = FogIntensity.MEDIUM;
-        }
+        currentIntensity = ordinal >= 0 && ordinal < FogIntensity.values().length
+                ? FogIntensity.values()[ordinal]
+                : FogIntensity.MEDIUM;
 
         fogStart = data.getFogStart();
         fogEnd = data.getFogEnd();
@@ -58,7 +53,6 @@ public class FogEventManager {
         nextFogCheckTime = data.getNextFogCheckTime();
     }
 
-    // Call this to save fog state to world saved data (call after any state change)
     public static void saveToSavedData(Level level) {
         if (!(level instanceof ServerLevel serverLevel)) return;
 
@@ -73,7 +67,6 @@ public class FogEventManager {
         data.setNextFogCheckTime(nextFogCheckTime);
     }
 
-    // Called every client tick
     public static void tick() {
         ClientLevel level = mc.level;
         if (level == null || mc.isPaused()) return;
@@ -82,35 +75,32 @@ public class FogEventManager {
 
         if (activeFog == null && time < nextFogCheckTime) return;
 
-        // End fog after full duration
         if (activeFog != null && time >= fogEnd) {
             if (!dissipatingMessageSent && mc.player != null) {
                 mc.player.sendSystemMessage(Component.literal("⚠ Fog is dissipating...")
                         .withStyle(style -> style.withColor(net.minecraft.ChatFormatting.YELLOW)));
                 dissipatingMessageSent = true;
-                saveToSavedData(level); // Save after state change
+                saveToSavedData(level);
             }
 
-            // After fade-out completes, clear the fog and stop sirens
             if (time >= fogEnd + TRANSITION_DURATION) {
                 activeFog = null;
                 dissipatingMessageSent = false;
                 nextFogCheckTime = time + FOG_COOLDOWN_TICKS;
                 stopAllSirens();
-                saveToSavedData(level); // Save fog cleared
+                saveToSavedData(level);
             }
         }
 
-        // Start new fog if none active and cooldown passed
         if (activeFog == null && time >= nextFogCheckTime) {
             for (FogType type : FogRegistry.getAll()) {
-                if (type.shouldStart(level, random)) {
+                if (type.shouldStart(level, random)) {  // ✅ Client-side check
                     if (mc.player != null) {
                         mc.player.sendSystemMessage(Component.literal("⚠ Fog is approaching...")
                                 .withStyle(style -> style.withColor(net.minecraft.ChatFormatting.RED)));
                     }
                     startFogNow(type);
-                    saveToSavedData(level); // Save new fog start
+                    saveToSavedData(level);
                     break;
                 }
             }
@@ -129,14 +119,12 @@ public class FogEventManager {
         fogFadeInEnd = time + TRANSITION_DURATION;
         fogFadeOutStart = time + duration - TRANSITION_DURATION;
         fogEnd = time + duration;
-
         dissipatingMessageSent = false;
         nextFogCheckTime = fogEnd + FOG_COOLDOWN_TICKS;
 
         BlockPos playerPos = mc.player.blockPosition();
-
-        // Play siren at all speaker blocks near player
         int radius = 150;
+
         for (BlockPos pos : BlockPos.betweenClosed(playerPos.offset(-radius, -radius, -radius),
                 playerPos.offset(radius, radius, radius))) {
             if (mc.level.getBlockEntity(pos) instanceof SpeakerBlockEntity) {
@@ -153,18 +141,16 @@ public class FogEventManager {
         fogFadeOutStart = 0;
         dissipatingMessageSent = false;
 
-        if (mc.level != null)
+        if (mc.level != null) {
             nextFogCheckTime = mc.level.getGameTime() + FOG_COOLDOWN_TICKS;
+            saveToSavedData(mc.level);
+        }
 
         stopAllSirens();
-
-        if (mc.level != null)
-            saveToSavedData(mc.level); // Save fog stopped
     }
 
     private static void stopAllSirens() {
         if (mc == null || mc.getSoundManager() == null) return;
-
         SoundManager soundManager = mc.getSoundManager();
         soundManager.stop(ModSounds.SIREN.get().getLocation(), SoundSource.BLOCKS);
     }
@@ -182,8 +168,7 @@ public class FogEventManager {
 
         long time = mc.level.getGameTime();
         float target = activeFog.getFogEnd(currentIntensity);
-
-        float horizonDistance = 50 * 16f; // 30 chunks away (800 blocks)
+        float horizonDistance = 50 * 16f;
 
         if (time <= fogFadeInEnd) {
             float progress = clamp((time - fogStart) / (float) TRANSITION_DURATION);
@@ -202,5 +187,45 @@ public class FogEventManager {
 
     public static boolean isEvilFogActive() {
         return activeFog != null && "evil".equals(activeFog.getId());
+    }
+
+    public static void serverTick(ServerLevel level) {
+        long time = level.getGameTime();
+
+        if (activeFog != null && time >= fogEnd + TRANSITION_DURATION) {
+            activeFog = null;
+            currentIntensity = FogIntensity.MEDIUM;
+            fogStart = 0;
+            fogEnd = 0;
+            fogFadeInEnd = 0;
+            fogFadeOutStart = 0;
+            dissipatingMessageSent = false;
+            nextFogCheckTime = time + FOG_COOLDOWN_TICKS;
+            saveToSavedData(level);
+        }
+
+        if (activeFog == null && time >= nextFogCheckTime) {
+            for (FogType type : FogRegistry.getAll()) {
+                if (type.shouldStart(level, level.getRandom())) {  // ✅ Server-side check
+                    startFogNow(level, type);
+                    saveToSavedData(level);
+                    break;
+                }
+            }
+        }
+    }
+
+    public static void startFogNow(ServerLevel level, FogType type) {
+        activeFog = type;
+        currentIntensity = FogIntensity.values()[random.nextInt(FogIntensity.values().length)];
+        long time = level.getGameTime();
+
+        long duration = type.getDurationTicks(random);
+        fogStart = time;
+        fogFadeInEnd = time + TRANSITION_DURATION;
+        fogFadeOutStart = time + duration - TRANSITION_DURATION;
+        fogEnd = time + duration;
+        dissipatingMessageSent = false;
+        nextFogCheckTime = fogEnd + FOG_COOLDOWN_TICKS;
     }
 }

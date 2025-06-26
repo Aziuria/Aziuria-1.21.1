@@ -22,10 +22,24 @@ import java.util.List;
 
 public class FogVillagerAI {
 
+    private static final String TAG_IS_FLEEING_FROM_FOG = "IsFleeingFromFog";
+
     @SubscribeEvent
     public void onEntityTick(EntityTickEvent.Post event) {
         if (!(event.getEntity() instanceof Villager villager)) return;
         if (villager.level().isClientSide()) return;
+
+        // ⬅️ ADDED: Restore panic state if previously set and fog is active
+        if (villager.getPersistentData().getBoolean(TAG_IS_FLEEING_FROM_FOG)) {
+            if (FogEventManager.getActiveFog() != null) {
+                if (!villager.hasEffect(MobEffects.MOVEMENT_SPEED)) {
+                    villager.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 100, 1));
+                }
+            } else {
+                villager.getPersistentData().remove(TAG_IS_FLEEING_FROM_FOG);
+            }
+        }
+        // ⬆️ END ADDED
 
         if (FogEventManager.getActiveFog() != null) {
             BlockPos home = villager.getBrain().getMemory(MemoryModuleType.HOME)
@@ -41,6 +55,8 @@ public class FogVillagerAI {
             List<?> nearbyZombies = level.getEntitiesOfClass(net.minecraft.world.entity.monster.Zombie.class, villager.getBoundingBox().inflate(12));
 
             if (!nearbyZombies.isEmpty()) {
+
+                villager.getPersistentData().putBoolean(TAG_IS_FLEEING_FROM_FOG, true);
                 // Calculate average flee direction away from all nearby zombies
                 Vec3 fleeDir = Vec3.ZERO;
                 for (Object entity : nearbyZombies) {
@@ -73,6 +89,8 @@ public class FogVillagerAI {
                     }
                     return; // flee takes priority, skip rest
                 }
+            } else {
+                villager.getPersistentData().remove(TAG_IS_FLEEING_FROM_FOG);
             }
 
             // No zombies nearby, proceed with normal home logic
@@ -98,6 +116,8 @@ public class FogVillagerAI {
                         }
                     }
                 }
+            } else {
+                villager.getPersistentData().remove(TAG_IS_FLEEING_FROM_FOG);
             }
         }
     }
