@@ -27,7 +27,7 @@ public class FogEventManager {
     private static boolean dissipatingMessageSent = false;
 
     private static final int TRANSITION_DURATION = 20 * 6;
-    private static final int FOG_COOLDOWN_TICKS = 20 * 60 * 5;
+    private static final int FOG_COOLDOWN_TICKS = 20 * 60 * 1;
 
     private static long nextFogCheckTime = 0;
 
@@ -190,49 +190,6 @@ public class FogEventManager {
 
     public static boolean isEvilFogActive() {
         return activeFog != null && "evil".equals(activeFog.getId());
-    }
-
-    public static void serverTick(ServerLevel level) {
-        long time = level.getGameTime();
-
-        if (activeFog != null && time >= fogEnd + TRANSITION_DURATION) {
-            activeFog = null;
-            currentIntensity = FogIntensity.MEDIUM;
-            fogStart = 0;
-            fogEnd = 0;
-            fogFadeInEnd = 0;
-            fogFadeOutStart = 0;
-            dissipatingMessageSent = false;
-            nextFogCheckTime = time + FOG_COOLDOWN_TICKS;
-            saveToSavedData(level);
-        }
-
-        if (activeFog == null && time >= nextFogCheckTime) {
-            for (FogType type : FogRegistry.getAll()) {
-                if (type.shouldStart(level, level.getRandom())) {  // ✅ Server-side check
-                    startFogNow(level, type);
-                    saveToSavedData(level); // ← Added saving here after starting fog server-side
-                    break;
-                }
-            }
-        }
-    }
-
-    public static void startFogNow(ServerLevel level, FogType type) {
-        activeFog = type;
-        currentIntensity = FogIntensity.values()[random.nextInt(FogIntensity.values().length)];
-        long time = level.getGameTime();
-
-        long duration = type.getDurationTicks(random);
-        fogStart = time;
-        fogFadeInEnd = time + TRANSITION_DURATION;
-        fogFadeOutStart = time + duration - TRANSITION_DURATION;
-        fogEnd = time + duration;
-        dissipatingMessageSent = false;
-        nextFogCheckTime = fogEnd + FOG_COOLDOWN_TICKS;
-
-        // ← Added saving here to persist fog state immediately after starting server-side
-        saveToSavedData(level);  // ← here
     }
 
 }
