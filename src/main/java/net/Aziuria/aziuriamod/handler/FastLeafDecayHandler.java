@@ -1,6 +1,8 @@
 package net.Aziuria.aziuriamod.handler;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.particles.BlockParticleOption;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -45,9 +47,20 @@ public class FastLeafDecayHandler {
                         if (state.getValue(BlockStateProperties.DISTANCE) >= 7 &&
                                 !state.getValue(BlockStateProperties.PERSISTENT)) {
 
-                            // Remove block with quiet sound
+                            // Spawn crumble particles before removal
+                            level.sendParticles(
+                                    new BlockParticleOption(ParticleTypes.BLOCK, state),
+                                    pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5,
+                                    8, // particle count
+                                    0.25, 0.25, 0.25, // x, y, z spread
+                                    0.02 // speed
+                            );
+
+                            // Remove block
                             level.setBlock(pos, Blocks.AIR.defaultBlockState(), 2);
-                            level.playSound(null, pos, SoundEvents.GRASS_BREAK, SoundSource.BLOCKS, 0.01f, 1.0f);
+
+                            // Play leaf break sound quietly (0.02f or 0.0f)
+                            level.playSound(null, pos, SoundEvents.GRASS_BREAK, SoundSource.BLOCKS, 0.0f, 1.0f);
 
                             // Spread decay to adjacent leaves
                             for (BlockPos nearby : BlockPos.betweenClosed(pos.offset(-1, -1, -1), pos.offset(1, 1, 1))) {
