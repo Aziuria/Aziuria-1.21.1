@@ -80,7 +80,7 @@ public class FastLeafDecayHandler {
                             level.setBlock(pos, Blocks.AIR.defaultBlockState(), 3);
 
                             // Play leaf break sound quietly
-                            level.playSound(null, pos, SoundEvents.GRASS_BREAK, SoundSource.BLOCKS, 0.1f, 1.0f);
+                            level.playSound(null, pos, SoundEvents.GRASS_BREAK, SoundSource.BLOCKS, 0.01f, 1.0f);
 
                             // Spread decay to adjacent leaves
                             for (BlockPos nearby : BlockPos.betweenClosed(pos.offset(-1, -1, -1), pos.offset(1, 1, 1))) {
