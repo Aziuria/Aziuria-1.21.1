@@ -6,6 +6,7 @@ import net.Aziuria.aziuriamod.block.world.BlockBatcher;
 import net.Aziuria.aziuriamod.client.ModClientCommonBusEvents;
 import net.Aziuria.aziuriamod.command.FogCommand;
 import net.Aziuria.aziuriamod.fog.*;
+import net.Aziuria.aziuriamod.handler.FastLeafDecayHandler;
 import net.Aziuria.aziuriamod.handler.LeafParticleHandler;
 import net.Aziuria.aziuriamod.block.entity.ModBlockEntities;
 import net.Aziuria.aziuriamod.client.ClientModInitializer;
@@ -63,6 +64,7 @@ public class AziuriaMod {
         NeoForge.EVENT_BUS.register(LeafParticleHandler.class);
 
 
+
         // ** Added registrations for fog features **
         FogRegistry.init();                                           // Initialize fog system
         NeoForge.EVENT_BUS.addListener(this::onRegisterCommands);     // Command setup listener
@@ -74,6 +76,7 @@ public class AziuriaMod {
         NeoForge.EVENT_BUS.register(VillagerAIHandler.class);
         NeoForge.EVENT_BUS.register(VillagerProfessionTickHandler.class);
         NeoForge.EVENT_BUS.addListener(ModVillagerTrades::onVillagerTrades);
+        NeoForge.EVENT_BUS.addListener(FastLeafDecayHandler::onServerTick);
 
         // Register all mod content
         ModCreativeModeTabs.register(modEventBus);

@@ -123,8 +123,8 @@ public class VegetationGrowthHandler {
         else if (chance < 0.15f) level.setBlock(pos, Blocks.OXEYE_DAISY.defaultBlockState(), 3);
         else if (chance < 0.25f) level.setBlock(pos, ModBlocks.FLAX_FLOWER_BLOCK.get().defaultBlockState(), 3);
         else if (chance < 0.30f) level.setBlock(pos, Blocks.CORNFLOWER.defaultBlockState(), 3);
-        else if (chance < 0.45f) level.setBlock(pos, Blocks.TALL_GRASS.defaultBlockState(), 3);
-        else if (chance < 0.60f) level.setBlock(pos, Blocks.SHORT_GRASS.defaultBlockState(), 3);
+        else if (chance < 0.65f) level.setBlock(pos, Blocks.TALL_GRASS.defaultBlockState(), 3);
+        else if (chance < 0.80f) level.setBlock(pos, Blocks.SHORT_GRASS.defaultBlockState(), 3);
     }
 
     private static void handlePlainsGrowth(ServerLevel level, BlockPos pos, float chance) {
@@ -133,8 +133,8 @@ public class VegetationGrowthHandler {
         else if (chance < 0.15f) level.setBlock(pos, Blocks.OXEYE_DAISY.defaultBlockState(), 3);
         else if (chance < 0.25f) level.setBlock(pos, ModBlocks.FLAX_FLOWER_BLOCK.get().defaultBlockState(), 3);
         else if (chance < 0.30f) level.setBlock(pos, Blocks.CORNFLOWER.defaultBlockState(), 3);
-        else if (chance < 0.45f) level.setBlock(pos, Blocks.TALL_GRASS.defaultBlockState(), 3);
-        else if (chance < 0.60f) level.setBlock(pos, Blocks.SHORT_GRASS.defaultBlockState(), 3);
+        else if (chance < 0.65f) level.setBlock(pos, Blocks.TALL_GRASS.defaultBlockState(), 3);
+        else if (chance < 0.80f) level.setBlock(pos, Blocks.SHORT_GRASS.defaultBlockState(), 3);
     }
 
     private static void handleForestGrowth(ServerLevel level, BlockPos pos, float chance) {
@@ -196,8 +196,8 @@ public class VegetationGrowthHandler {
         else if (chance < 0.20f) level.setBlock(pos, Blocks.OXEYE_DAISY.defaultBlockState(), 3);
         else if (chance < 0.30f) level.setBlock(pos, ModBlocks.FLAX_FLOWER_BLOCK.get().defaultBlockState(), 3);
         else if (chance < 0.35f) level.setBlock(pos, Blocks.CORNFLOWER.defaultBlockState(), 3);
-        else if (chance < 0.50f) level.setBlock(pos, Blocks.TALL_GRASS.defaultBlockState(), 3);
-        else if (chance < 0.65f) level.setBlock(pos, Blocks.SHORT_GRASS.defaultBlockState(), 3);
+        else if (chance < 0.64f) level.setBlock(pos, Blocks.TALL_GRASS.defaultBlockState(), 3);
+        else if (chance < 0.98f) level.setBlock(pos, Blocks.SHORT_GRASS.defaultBlockState(), 3);
     }
 
     private static void handleCherryGrowth(ServerLevel level, BlockPos pos, float chance) {
