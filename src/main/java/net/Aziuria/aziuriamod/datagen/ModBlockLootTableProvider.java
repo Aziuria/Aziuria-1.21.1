@@ -31,6 +31,7 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
     protected void generate() {
         dropSelf(ModBlocks.STEEL_BLOCK.get());
         dropSelf(ModBlocks.STEEL_BARS.get());
+
         dropSelf(ModBlocks.OAK_SHELF.get());
         dropSelf(ModBlocks.ACACIA_SHELF.get());
         dropSelf(ModBlocks.BAMBOO_SHELF.get());
@@ -50,6 +51,7 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
         dropSelf(ModBlocks.JUNGLE_STORAGE.get());
         dropSelf(ModBlocks.MANGROVE_STORAGE.get());
         dropSelf(ModBlocks.SPRUCE_STORAGE.get());
+
         dropSelf(ModBlocks.DEMAECATION_POST.get());
         dropSelf(ModBlocks.DEMAECATION_POST_B.get());
         dropSelf(ModBlocks.DEMAECATION_POST_C.get());
