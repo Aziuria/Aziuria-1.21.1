@@ -413,7 +413,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .pattern("BS ")
                 .pattern(" BB")
                 .define('B', ModItems.STEEL_INGOT.get())
-                .define('S', Items.IRON_BARS)
+                .define('S', Items.IRON_INGOT)
                 .unlockedBy("has_steel_ingot", has(ModItems.STEEL_INGOT)).save(recipeOutput);
 
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.IRON_BARREL_EMPTY.get())
@@ -424,10 +424,43 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .define('S', Items.IRON_BLOCK)
                 .unlockedBy("has_iron_ingot", has(Items.IRON_INGOT)).save(recipeOutput);
 
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.WOODCUTTER_BENCH.get())
+                .pattern("RRR")
+                .pattern("BSB")
+                .pattern("BSB")
+                .define('B', Items.STICK)
+                .define('S', Items.OAK_SLAB)
+                .define('R', ModBlocks.STEEL_BLOCK.get())
+                .unlockedBy("has_stick", has(Items.STICK)).save(recipeOutput);
+
 
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.STEEL_INGOT.get(), 9)
                 .requires(ModBlocks.STEEL_BLOCK)
                 .unlockedBy("has_steel_block", has(ModBlocks.STEEL_BLOCK)).save(recipeOutput);
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.CUCUMBER_SEEDS.get(), 3)
+                .requires(ModItems.CUCUMBER.get())
+                .unlockedBy("has_cucumber", has(ModItems.CUCUMBER.get())).save(recipeOutput);
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.TOMATO_SEEDS.get(), 3)
+                .requires(ModItems.TOMATO.get())
+                .unlockedBy("has_tomato", has(ModItems.TOMATO.get())).save(recipeOutput);
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.RADISH_SEEDS.get(), 3)
+                .requires(ModItems.RADISH.get())
+                .unlockedBy("has_radish", has(ModItems.RADISH.get())).save(recipeOutput);
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.ONION_SEEDS.get(), 3)
+                .requires(ModItems.ONION.get())
+                .unlockedBy("has_onion", has(ModItems.ONION.get())).save(recipeOutput);
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.SPRING_ONION_SEEDS.get(), 3)
+                .requires(ModItems.SPRING_ONION.get())
+                .unlockedBy("has_spring_onion", has(ModItems.SPRING_ONION.get())).save(recipeOutput);
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.LETTUCE_SEEDS.get(), 3)
+                .requires(ModItems.LETTUCE.get())
+                .unlockedBy("has_lettuce", has(ModItems.LETTUCE.get())).save(recipeOutput);
 
 
         oreSmelting(recipeOutput, STEEL_ALLOY_MESH_SMELTABLES, RecipeCategory.MISC, ModItems.STEEL_INGOT.get(), 0.25f, 200, "steel_ingot");

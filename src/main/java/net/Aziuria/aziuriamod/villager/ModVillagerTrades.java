@@ -13,154 +13,73 @@ public class ModVillagerTrades {
         if (event.getType() == VillagerProfession.FARMER) {
 
             // === LEVEL 1 TRADES (early game, XP = 2) ===
+            addBuyTrade(event, 1, ModItems.CUCUMBER.get().getDefaultInstance(), 3, 2);
+            addSellTrade(event, 1, ModItems.CUCUMBER.get().getDefaultInstance(), 8, 1, 2);
 
-            // Cucumbers
-            event.getTrades().get(1).add(new BasicItemListing(
-                    new ItemStack(Items.EMERALD, 3),
-                    new ItemStack(ModItems.CUCUMBER.get(), 2),
-                    8, 2, 0.05F
-            ));
-            event.getTrades().get(1).add(new BasicItemListing(
-                    new ItemStack(ModItems.CUCUMBER.get(), 8),
-                    new ItemStack(Items.EMERALD, 1),
-                    8, 2, 0.05F
-            ));
+            addBuyTrade(event, 1, ModItems.CUCUMBER_SEEDS.get().getDefaultInstance(), 3, 2);
+            addSellTrade(event, 1, ModItems.CUCUMBER_SEEDS.get().getDefaultInstance(), 10, 1, 2);
 
-            // Cucumber Seeds
-            event.getTrades().get(1).add(new BasicItemListing(
-                    new ItemStack(Items.EMERALD, 3),
-                    new ItemStack(ModItems.CUCUMBER_SEEDS.get(), 2),
-                    8, 2, 0.05F
-            ));
-            event.getTrades().get(1).add(new BasicItemListing(
-                    new ItemStack(ModItems.CUCUMBER_SEEDS.get(), 10),
-                    new ItemStack(Items.EMERALD, 1),
-                    8, 2, 0.05F
-            ));
+            addBuyTrade(event, 1, ModItems.TOMATO_SEEDS.get().getDefaultInstance(), 3, 2);
+            addSellTrade(event, 1, ModItems.TOMATO_SEEDS.get().getDefaultInstance(), 10, 1, 2);
 
-            // Tomato Seeds
-            event.getTrades().get(1).add(new BasicItemListing(
-                    new ItemStack(Items.EMERALD, 3),
-                    new ItemStack(ModItems.TOMATO_SEEDS.get(), 2),
-                    8, 2, 0.05F
-            ));
-            event.getTrades().get(1).add(new BasicItemListing(
-                    new ItemStack(ModItems.TOMATO_SEEDS.get(), 10),
-                    new ItemStack(Items.EMERALD, 1),
-                    8, 2, 0.05F
-            ));
+            addBuyTrade(event, 1, ModItems.RADISH_SEEDS.get().getDefaultInstance(), 3, 2);
+            addSellTrade(event, 1, ModItems.RADISH_SEEDS.get().getDefaultInstance(), 10, 1, 2);
 
-            // Radish Seeds
-            event.getTrades().get(1).add(new BasicItemListing(
-                    new ItemStack(Items.EMERALD, 3),
-                    new ItemStack(ModItems.RADISH_SEEDS.get(), 2),
-                    8, 2, 0.05F
-            ));
-            event.getTrades().get(1).add(new BasicItemListing(
-                    new ItemStack(ModItems.RADISH_SEEDS.get(), 10),
-                    new ItemStack(Items.EMERALD, 1),
-                    8, 2, 0.05F
-            ));
+            addBuyTrade(event, 1, ModItems.LETTUCE_SEEDS.get().getDefaultInstance(), 3, 2);
+            addSellTrade(event, 1, ModItems.LETTUCE_SEEDS.get().getDefaultInstance(), 10, 1, 2);
 
-            // Lettuce Seeds
-            event.getTrades().get(1).add(new BasicItemListing(
-                    new ItemStack(Items.EMERALD, 3),
-                    new ItemStack(ModItems.LETTUCE_SEEDS.get(), 2),
-                    8, 2, 0.05F
-            ));
-            event.getTrades().get(1).add(new BasicItemListing(
-                    new ItemStack(ModItems.LETTUCE_SEEDS.get(), 10),
-                    new ItemStack(Items.EMERALD, 1),
-                    8, 2, 0.05F
-            ));
+            addBuyTrade(event, 1, ModItems.ONION_SEEDS.get().getDefaultInstance(), 3, 2);
+            addSellTrade(event, 1, ModItems.ONION_SEEDS.get().getDefaultInstance(), 10, 1, 2);
 
-            // Onion Seeds
-            event.getTrades().get(1).add(new BasicItemListing(
-                    new ItemStack(Items.EMERALD, 3),
-                    new ItemStack(ModItems.ONION_SEEDS.get(), 2),
-                    8, 2, 0.05F
-            ));
-            event.getTrades().get(1).add(new BasicItemListing(
-                    new ItemStack(ModItems.ONION_SEEDS.get(), 10),
-                    new ItemStack(Items.EMERALD, 1),
-                    8, 2, 0.05F
-            ));
-
-            // Spring Onion Seeds
-            event.getTrades().get(1).add(new BasicItemListing(
-                    new ItemStack(Items.EMERALD, 3),
-                    new ItemStack(ModItems.SPRING_ONION_SEEDS.get(), 2),
-                    8, 2, 0.05F
-            ));
-            event.getTrades().get(1).add(new BasicItemListing(
-                    new ItemStack(ModItems.SPRING_ONION_SEEDS.get(), 10),
-                    new ItemStack(Items.EMERALD, 1),
-                    8, 2, 0.05F
-            ));
+            addBuyTrade(event, 1, ModItems.SPRING_ONION_SEEDS.get().getDefaultInstance(), 3, 2);
+            addSellTrade(event, 1, ModItems.SPRING_ONION_SEEDS.get().getDefaultInstance(), 10, 1, 2);
 
             // === LEVEL 2 TRADES (mid game, XP = 5) ===
+            addBuyTrade(event, 2, ModItems.TOMATO.get().getDefaultInstance(), 4, 2, 5);
+            addSellTrade(event, 2, ModItems.TOMATO.get().getDefaultInstance(), 7, 1, 5);
 
-            // Tomatoes
-            event.getTrades().get(2).add(new BasicItemListing(
-                    new ItemStack(Items.EMERALD, 4),
-                    new ItemStack(ModItems.TOMATO.get(), 2),
-                    8, 5, 0.05F
-            ));
-            event.getTrades().get(2).add(new BasicItemListing(
-                    new ItemStack(ModItems.TOMATO.get(), 7),
-                    new ItemStack(Items.EMERALD, 1),
-                    8, 5, 0.05F
-            ));
+            addBuyTrade(event, 2, ModItems.LETTUCE.get().getDefaultInstance(), 4, 2, 5);
+            addSellTrade(event, 2, ModItems.LETTUCE.get().getDefaultInstance(), 7, 1, 5);
 
-            // Lettuce
-            event.getTrades().get(2).add(new BasicItemListing(
-                    new ItemStack(Items.EMERALD, 4),
-                    new ItemStack(ModItems.LETTUCE.get(), 2),
-                    8, 5, 0.05F
-            ));
-            event.getTrades().get(2).add(new BasicItemListing(
-                    new ItemStack(ModItems.LETTUCE.get(), 7),
-                    new ItemStack(Items.EMERALD, 1),
-                    8, 5, 0.05F
-            ));
+            addBuyTrade(event, 2, ModItems.ONION.get().getDefaultInstance(), 4, 2, 5);
+            addSellTrade(event, 2, ModItems.ONION.get().getDefaultInstance(), 7, 1, 5);
 
-            // Onion
-            event.getTrades().get(2).add(new BasicItemListing(
-                    new ItemStack(Items.EMERALD, 4),
-                    new ItemStack(ModItems.ONION.get(), 2),
-                    8, 5, 0.05F
-            ));
-            event.getTrades().get(2).add(new BasicItemListing(
-                    new ItemStack(ModItems.ONION.get(), 7),
-                    new ItemStack(Items.EMERALD, 1),
-                    8, 5, 0.05F
-            ));
-
-            // Spring Onion
-            event.getTrades().get(2).add(new BasicItemListing(
-                    new ItemStack(Items.EMERALD, 4),
-                    new ItemStack(ModItems.SPRING_ONION.get(), 2),
-                    8, 5, 0.05F
-            ));
-            event.getTrades().get(2).add(new BasicItemListing(
-                    new ItemStack(ModItems.SPRING_ONION.get(), 7),
-                    new ItemStack(Items.EMERALD, 1),
-                    8, 5, 0.05F
-            ));
+            addBuyTrade(event, 2, ModItems.SPRING_ONION.get().getDefaultInstance(), 4, 2, 5);
+            addSellTrade(event, 2, ModItems.SPRING_ONION.get().getDefaultInstance(), 7, 1, 5);
 
             // === LEVEL 3 TRADES (late game, XP = 10) ===
-
-            // Radish
-            event.getTrades().get(3).add(new BasicItemListing(
-                    new ItemStack(Items.EMERALD, 5),
-                    new ItemStack(ModItems.RADISH.get(), 3),
-                    6, 10, 0.05F
-            ));
-            event.getTrades().get(3).add(new BasicItemListing(
-                    new ItemStack(ModItems.RADISH.get(), 9),
-                    new ItemStack(Items.EMERALD, 1),
-                    6, 10, 0.05F
-            ));
+            addBuyTrade(event, 3, ModItems.RADISH.get().getDefaultInstance(), 5, 3, 10);
+            addSellTrade(event, 3, ModItems.RADISH.get().getDefaultInstance(), 9, 1, 10);
         }
+    }
+
+    private static void addBuyTrade(VillagerTradesEvent event, int level, ItemStack sellingItem, int price, int count) {
+        event.getTrades().get(level).add(new BasicItemListing(
+                price,
+                sellingItem.copyWithCount(count),
+                Integer.MAX_VALUE,
+                2,
+                0.05F
+        ));
+    }
+
+    private static void addBuyTrade(VillagerTradesEvent event, int level, ItemStack sellingItem, int price, int count, int xp) {
+        event.getTrades().get(level).add(new BasicItemListing(
+                price,
+                sellingItem.copyWithCount(count),
+                Integer.MAX_VALUE,
+                xp,
+                0.05F
+        ));
+    }
+
+    private static void addSellTrade(VillagerTradesEvent event, int level, ItemStack buyingItem, int count, int emeraldsReceived, int xp) {
+        event.getTrades().get(level).add(new BasicItemListing(
+                buyingItem.copyWithCount(count),
+                new ItemStack(Items.EMERALD, emeraldsReceived),
+                Integer.MAX_VALUE,
+                xp,
+                0.05F
+        ));
     }
 }

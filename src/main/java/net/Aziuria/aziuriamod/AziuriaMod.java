@@ -66,6 +66,7 @@ public class AziuriaMod {
 
 
 
+
         // ** Added registrations for fog features **
         FogRegistry.init();                                           // Initialize fog system
         NeoForge.EVENT_BUS.addListener(this::onRegisterCommands);     // Command setup listener

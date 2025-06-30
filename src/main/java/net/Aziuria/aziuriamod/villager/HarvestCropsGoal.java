@@ -94,6 +94,9 @@ public class HarvestCropsGoal extends Goal {
         } else if (block instanceof SpringOnionCropBlock springOnion) {
             ageProp = springOnion.getPublicAgeProperty();
             maxAge = 3;
+        } else if (block instanceof LettuceCropBlock lettuce) {
+            ageProp = lettuce.getPublicAgeProperty();
+            maxAge = 3;
 
 
             // ✅ Vanilla crops

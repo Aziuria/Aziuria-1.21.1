@@ -1,0 +1,19 @@
+{
+	"variants": {
+		"facing=north": {
+			"model": "aziuriamod:block/woodcutter_bench"
+		},
+		"facing=south": {
+			"model": "aziuriamod:block/woodcutter_bench",
+			"y": 180
+		},
+		"facing=east": {
+			"model": "aziuriamod:block/woodcutter_bench",
+			"y": 90
+		},
+		"facing=west": {
+			"model": "aziuriamod:block/woodcutter_bench",
+			"y": 270
+		}
+	}
+}

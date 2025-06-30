@@ -61,6 +61,14 @@ public class ModBlockEntities {
                     ).build(null)
             );
 
+    public static final Supplier<BlockEntityType<WoodcutterBenchBlockEntity>> WOODCUTTER_BENCH =
+            BLOCK_ENTITIES.register("woodcutter_bench", () ->
+                    BlockEntityType.Builder.of(
+                            WoodcutterBenchBlockEntity::new,
+                            ModBlocks.WOODCUTTER_BENCH.get()
+                    ).build(null)
+            );
+
 
     public static void register(IEventBus eventBus) {
         BLOCK_ENTITIES.register(eventBus);
