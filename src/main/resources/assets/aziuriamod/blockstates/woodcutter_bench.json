@@ -1,19 +1,17 @@
 {
+	"properties": {
+		"facing": ["north", "south", "east", "west"],
+		"part": ["left", "right"]
+	},
 	"variants": {
-		"facing=north": {
-			"model": "aziuriamod:block/woodcutter_bench"
-		},
-		"facing=south": {
-			"model": "aziuriamod:block/woodcutter_bench",
-			"y": 180
-		},
-		"facing=east": {
-			"model": "aziuriamod:block/woodcutter_bench",
-			"y": 90
-		},
-		"facing=west": {
-			"model": "aziuriamod:block/woodcutter_bench",
-			"y": 270
-		}
+		"facing=north,part=left":  { "model": "aziuriamod:block/woodcutter_bench_left" },
+		"facing=south,part=left":  { "model": "aziuriamod:block/woodcutter_bench_left", "y": 180 },
+		"facing=east,part=left":   { "model": "aziuriamod:block/woodcutter_bench_left", "y": 90 },
+		"facing=west,part=left":   { "model": "aziuriamod:block/woodcutter_bench_left", "y": 270 },
+
+		"facing=north,part=right": { "model": "aziuriamod:block/woodcutter_bench_right" },
+		"facing=south,part=right": { "model": "aziuriamod:block/woodcutter_bench_right", "y": 180 },
+		"facing=east,part=right":  { "model": "aziuriamod:block/woodcutter_bench_right", "y": 90 },
+		"facing=west,part=right":  { "model": "aziuriamod:block/woodcutter_bench_right", "y": 270 }
 	}
 }

@@ -10,5 +10,5 @@ public class WoodcutterBenchBlockEntity extends BlockEntity {
         super(ModBlockEntities.WOODCUTTER_BENCH.get(), pos, state);
     }
 
-    // No inventory or NBT save/load needed here
+    // No inventory or NBT needed here
 }
