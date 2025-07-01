@@ -3,24 +3,30 @@ package net.Aziuria.aziuriamod.block;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
-import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.HorizontalDirectionalBlock;
+import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
+import net.minecraft.world.level.block.Mirror;
+import net.minecraft.world.level.block.Rotation;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import net.minecraft.world.level.material.MapColor;
+import net.minecraft.util.RandomSource;
 
 public class LeafLitterBlock extends Block {
     public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
 
     public static final MapCodec<LeafLitterBlock> CODEC = MapCodec.unit(() ->
             new LeafLitterBlock(BlockBehaviour.Properties.of()
-                    .mapColor(MapColor.PLANT)
+                    .mapColor(net.minecraft.world.level.material.MapColor.PLANT)
                     .strength(0.2f)
                     .noOcclusion()
                     .isViewBlocking((s, r, p) -> false)
@@ -68,5 +74,29 @@ public class LeafLitterBlock extends Block {
         return Shapes.box(0.0, 0.0, 0.0, 1.0, 0.0625, 1.0);
     }
 
+    @Override
+    public void neighborChanged(BlockState state, Level level, BlockPos pos, Block blockIn, BlockPos fromPos, boolean isMoving) {
+        super.neighborChanged(state, level, pos, blockIn, fromPos, isMoving);
+        if (!level.isClientSide) {
+            if (!level.getBlockState(pos.below()).isFaceSturdy(level, pos.below(), Direction.UP)) {
+                level.destroyBlock(pos, true); // Changed from false to true to drop item
+            }
+        }
+    }
 
+    @Override
+    public void tick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
+        if (!level.getBlockState(pos.below()).isFaceSturdy(level, pos.below(), Direction.UP)) {
+            level.destroyBlock(pos, true); // Changed from false to true to drop item
+        }
+    }
+
+    @Override
+    public void onPlace(BlockState state, Level level, BlockPos pos, BlockState oldState, boolean isMoving) {
+        super.onPlace(state, level, pos, oldState, isMoving);
+
+        if (!level.isClientSide()) {
+            level.scheduleTick(pos, this, 1);  // Schedule tick to validate block stability
+        }
+    }
 }
