@@ -2,10 +2,7 @@ package net.Aziuria.aziuriamod.client;
 
 import net.Aziuria.aziuriamod.block.ModBlocks;
 import net.Aziuria.aziuriamod.block.entity.ModBlockEntities;
-import net.Aziuria.aziuriamod.block.entity.renderer.ShelfRenderer;
-import net.Aziuria.aziuriamod.block.entity.renderer.SteelBarrelRenderer;
-import net.Aziuria.aziuriamod.block.entity.renderer.StorageRenderer;
-import net.Aziuria.aziuriamod.block.entity.renderer.WoodcutterBenchRenderer;
+import net.Aziuria.aziuriamod.block.entity.renderer.*;
 import net.Aziuria.aziuriamod.fog.FogRendererHook;
 
 import net.Aziuria.aziuriamod.item.custom.entities.IslandThrowableRenderer;
@@ -34,6 +31,7 @@ public class ClientModInitializer {
             BlockEntityRenderers.register(ModBlockEntities.STORAGE_BLOCK_ENTITY.get(), StorageRenderer::new);
             BlockEntityRenderers.register(ModBlockEntities.STEEL_BARREL_BLOCK_ENTITY.get(), SteelBarrelRenderer::new);
             BlockEntityRenderers.register(ModBlockEntities.WOODCUTTER_BENCH.get(), WoodcutterBenchRenderer::new);
+            BlockEntityRenderers.register(ModBlockEntities.MINER_BENCH.get(), MinerBenchRenderer::new);
 
             ItemBlockRenderTypes.setRenderLayer(ModBlocks.OAK_SHELF.get(), RenderType.solid());
             ItemBlockRenderTypes.setRenderLayer(ModBlocks.UNBREAKABLE_GLASS.get(), RenderType.translucent());

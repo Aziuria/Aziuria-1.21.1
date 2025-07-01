@@ -69,6 +69,14 @@ public class ModBlockEntities {
                     ).build(null)
             );
 
+    public static final Supplier<BlockEntityType<MinerBenchBlockEntity>> MINER_BENCH =
+            BLOCK_ENTITIES.register("miner_bench", () ->
+                    BlockEntityType.Builder.of(
+                            MinerBenchBlockEntity::new,
+                            ModBlocks.MINER_BENCH.get()
+                    ).build(null)
+            );
+
 
     public static void register(IEventBus eventBus) {
         BLOCK_ENTITIES.register(eventBus);

@@ -84,6 +84,7 @@ public class ModCreativeModeTabs {
                         output.accept(ModBlocks.DEMAECATION_POST_E);
                         output.accept(ModBlocks.SPEAKER);
                         output.accept(ModBlocks.WOODCUTTER_BENCH);
+                        output.accept(ModBlocks.MINER_BENCH);
                     }).build());
 
 

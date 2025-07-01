@@ -29,7 +29,8 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                 .add(ModBlocks.STEEL_BLOCK.get());
 
         tag(BlockTags.MINEABLE_WITH_AXE)
-                        .add(ModBlocks.WOODCUTTER_BENCH.get());
+                .add(ModBlocks.WOODCUTTER_BENCH.get())
+                .add(ModBlocks.MINER_BENCH.get());
 
 
         tag(BlockTags.NEEDS_STONE_TOOL)

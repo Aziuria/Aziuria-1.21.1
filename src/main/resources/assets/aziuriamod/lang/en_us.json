@@ -52,7 +52,8 @@
   "block.aziuriamod.demarcation_post_d": "Demarcation Post",
   "block.aziuriamod.demarcation_post_e": "Demarcation Post",
   "block.aziuriamod.leaf_litter": "Leaf Litter",
-  "block.aziuriamod.woodcutter_bench_left": "Woodcutter Bench",
+  "block.aziuriamod.woodcutter_bench": "Woodcutter Bench",
+  "block.aziuriamod.miner_bench": "Miner Bench",
 
   "item.aziuriamod.lettuce": "Lettuce",
   "item.aziuriamod.onion": "Onion",
