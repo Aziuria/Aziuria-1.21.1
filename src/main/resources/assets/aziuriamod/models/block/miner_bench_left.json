@@ -1,6 +1,7 @@
 {
 	"format_version": "1.9.0",
 	"credit": "Made with Blockbench",
+	"ambientocclusion": false,
 	"textures": {
 		"0": "aziuriamod:block/steel_block",
 		"1": "aziuriamod:block/oak_shelf_out",
@@ -198,7 +199,7 @@
 			"origin": [8, 8, 8],
 			"color": 0,
 			"children": []
-		},
-		9
+		}
+
 	]
 }
