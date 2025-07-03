@@ -74,6 +74,28 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .unlockedBy("has_steel_ingot", has(ModItems.STEEL_INGOT))
                 .save(recipeOutput);
 
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.MINER_BENCH.get())
+                .pattern("SSA")
+                .pattern("FOF")
+                .pattern("FOF")
+                .define('S', ModBlocks.STEEL_BLOCK.get())
+                .define('F', Items.OAK_FENCE)
+                .define('O', Items.OAK_LOG)
+                .define('A', ModItems.STEEL_PICKAXE.get())
+                .unlockedBy("has_steel_block", has(ModBlocks.STEEL_BLOCK.get()))
+                .save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.WOODCUTTER_BENCH.get())
+                .pattern("SSD")
+                .pattern("FOF")
+                .pattern("FOF")
+                .define('S', ModBlocks.STEEL_BLOCK.get())
+                .define('F', Items.OAK_FENCE)
+                .define('O', Items.OAK_LOG)
+                .define('D', ModItems.STEEL_AXE.get())
+                .unlockedBy("has_steel_block", has(ModBlocks.STEEL_BLOCK.get()))
+                .save(recipeOutput);
+
 
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.STEEL_PICKAXE.get())
                 .pattern("BBB")
@@ -423,15 +445,6 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .define('B', Items.IRON_INGOT)
                 .define('S', Items.IRON_BLOCK)
                 .unlockedBy("has_iron_ingot", has(Items.IRON_INGOT)).save(recipeOutput);
-
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.WOODCUTTER_BENCH.get())
-                .pattern("RRR")
-                .pattern("BSB")
-                .pattern("BSB")
-                .define('B', Items.STICK)
-                .define('S', Items.OAK_SLAB)
-                .define('R', ModBlocks.STEEL_BLOCK.get())
-                .unlockedBy("has_stick", has(Items.STICK)).save(recipeOutput);
 
 
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.STEEL_INGOT.get(), 9)
