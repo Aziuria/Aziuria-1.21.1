@@ -4,8 +4,10 @@ import net.Aziuria.aziuriamod.AziuriaMod;
 import net.Aziuria.aziuriamod.block.ModBlocks;
 import net.Aziuria.aziuriamod.block.world.IslandBiomeType;
 import net.Aziuria.aziuriamod.block.world.IslandType;
+import net.Aziuria.aziuriamod.item.custom.DrinkableItem;
 import net.Aziuria.aziuriamod.item.custom.FuelItem;
 import net.Aziuria.aziuriamod.item.custom.IslandThrowableItem;
+import net.Aziuria.aziuriamod.item.custom.KnifeItem;
 import net.minecraft.world.item.*;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredHolder;
@@ -41,6 +43,9 @@ public class ModItems {
     public static final DeferredItem<HoeItem> STEEL_HOE = ITEMS.register("steel_hoe",
             () -> new HoeItem(ModToolTiers.STEEL, new Item.Properties()
                     .attributes(HoeItem.createAttributes(ModToolTiers.STEEL, 1F, -3.0f))));
+    public static final DeferredItem<KnifeItem> KNIFE = ITEMS.register("knife",
+            () -> new KnifeItem(new Item.Properties().durability(59)));
+
 
     public static final DeferredItem<ArmorItem> STEEL_HELMET = ITEMS.register("steel_helmet",
             () -> new ArmorItem(ModArmorMaterials.STEEL_ARMOR_MATERIAL, ArmorItem.Type.HELMET,
@@ -85,8 +90,51 @@ public class ModItems {
     public static final DeferredItem<Item> SPRING_ONION_SEEDS = ITEMS.register("spring_onion_seeds",
             () -> new ItemNameBlockItem(ModBlocks.SPRING_ONION_CROP.get(), new Item.Properties()));
 
+    public static final DeferredItem<Item> PINEAPPLE = ITEMS.register("pineapple",
+            () -> new Item(new Item.Properties().food(ModFoodProperties.PINEAPPLE)));
+
+    public static final DeferredItem<Item> CORN = ITEMS.register("corn",
+            () -> new Item(new Item.Properties().food(ModFoodProperties.CORN)));
+
     public static final DeferredItem<Item> FLAX_FLOWER = ITEMS.register("flax_flower",
             () -> new BlockItem(ModBlocks.FLAX_FLOWER_BLOCK.get(), new Item.Properties()));
+
+    public static final DeferredItem<Item> FLOUR = ITEMS.register("flour",
+            () -> new Item(new Item.Properties()));
+    public static final DeferredItem<Item> PANCAKE_DOUGH = ITEMS.register("pancake_dough",
+            () -> new Item(new Item.Properties()));
+    public static final DeferredItem<Item> BATTERED_CHICKEN = ITEMS.register("battered_chicken",
+            () -> new Item(new Item.Properties()));
+    public static final DeferredItem<Item> DICED_CHICKEN = ITEMS.register("diced_chicken",
+            () -> new Item(new Item.Properties()));
+    public static final DeferredItem<Item> CHICKEN_NUGGETS = ITEMS.register("chicken_nuggets",
+            () -> new Item(new Item.Properties().food(ModFoodProperties.CHICKEN_NUGGETS)));
+    public static final DeferredItem<Item> FRENCH_FRIES = ITEMS.register("french_fries",
+            () -> new Item(new Item.Properties().food(ModFoodProperties.FRENCH_FRIES)));
+    public static final DeferredItem<Item> BEEF_BURGER = ITEMS.register("beef_burger",
+            () -> new Item(new Item.Properties().food(ModFoodProperties.BEEF_BURGER)));
+    public static final DeferredItem<Item> CHEESE = ITEMS.register("cheese",
+            () -> new Item(new Item.Properties().food(ModFoodProperties.CHEESE)));
+    public static final DeferredItem<Item> PANCAKE = ITEMS.register("pancake",
+            () -> new Item(new Item.Properties().food(ModFoodProperties.PANCAKE)));
+
+    public static final DeferredItem<DrinkableItem> APPLE_JUICE = ITEMS.register("apple_juice",
+            () -> new DrinkableItem(
+                    new Item.Properties()
+                            .food(ModFoodProperties.APPLE_JUICE)
+                            .stacksTo(1)
+                            .craftRemainder(Items.GLASS_BOTTLE),
+                    32,
+                    UseAnim.DRINK));
+
+    public static final DeferredItem<DrinkableItem> PINEAPPLE_JUICE = ITEMS.register("pineapple_juice",
+            () -> new DrinkableItem(
+                    new Item.Properties()
+                            .food(ModFoodProperties.PINEAPPLE_JUICE)
+                            .stacksTo(1)
+                            .craftRemainder(Items.GLASS_BOTTLE),
+                    32,
+                    UseAnim.DRINK));
 
     public static final DeferredItem<Item> ISLAND_GENERATOR_SMALL = ITEMS.register("island_generator_small",
             () -> new IslandThrowableItem(IslandType.SMALL, IslandBiomeType.PLAINS, new Item.Properties().stacksTo(16)));

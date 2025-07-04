@@ -4,7 +4,6 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import net.Aziuria.aziuriamod.block.MinerBenchBlock;
 import net.Aziuria.aziuriamod.block.MinerPart;
 import net.Aziuria.aziuriamod.block.entity.MinerBenchBlockEntity;
-import net.Aziuria.aziuriamod.block.entity.WoodcutterBenchBlockEntity;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.block.BlockRenderDispatcher;
@@ -30,20 +29,23 @@ public class MinerBenchRenderer implements BlockEntityRenderer<MinerBenchBlockEn
 
         double offset = 0.001;
 
+        // ⬇️ Added ONLY this line for Y-offset for top-down anti-flicker
+        double yOffset = (part == MinerPart.LEFT) ? -offset : offset; // ⬅️ changed
+
         switch (facing) {
             case NORTH, SOUTH -> {
-                // For north/south facing, offset X for sides and Z for front/back
                 double xOffset = (part == MinerPart.LEFT) ? -offset : offset;
                 double zOffset = (part == MinerPart.LEFT) ? offset : -offset;
-                poseStack.translate(xOffset, 0, zOffset);
+                poseStack.translate(xOffset, yOffset, zOffset); // ⬅️ changed
             }
             case EAST, WEST -> {
-                // For east/west facing, offset Z for sides and X for front/back
                 double zOffset = (part == MinerPart.LEFT) ? -offset : offset;
                 double xOffset = (part == MinerPart.LEFT) ? offset : -offset;
-                poseStack.translate(xOffset, 0, zOffset);
+                poseStack.translate(xOffset, yOffset, zOffset); // ⬅️ changed
             }
-            default -> {}
+            default -> {
+                poseStack.translate(0, yOffset, 0); // ⬅️ changed
+            }
         }
 
         blockRenderer.renderSingleBlock(state, poseStack, bufferSource, combinedLight, combinedOverlay);

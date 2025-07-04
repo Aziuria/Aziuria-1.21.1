@@ -70,8 +70,78 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ModBlocks.STEEL_BARS.get(), 16)
                 .pattern("SSS")
                 .pattern("SSS")
-                .define('S', ModItems.STEEL_INGOT)
+                .define('S', ModItems.STEEL_INGOT.get())
                 .unlockedBy("has_steel_ingot", has(ModItems.STEEL_INGOT))
+                .save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.FOOD, ModItems.FLOUR.get(), 9)
+                .pattern("SSS")
+                .define('S', Items.WHEAT)
+                .unlockedBy("has_wheat", has(Items.WHEAT))
+                .save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.FOOD, ModItems.DICED_CHICKEN.get(), 3)
+                .pattern("SA")
+                .define('S', Items.CHICKEN)
+                .define('A', ModItems.KNIFE.get())
+                .unlockedBy("has_chicken", has(Items.CHICKEN))
+                .save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.FOOD, ModItems.BATTERED_CHICKEN.get(), 3)
+                .pattern("SSS")
+                .pattern(" A ")
+                .pattern(" F ")
+                .define('S', ModItems.DICED_CHICKEN.get())
+                .define('A', ModItems.FLOUR.get())
+                .define('F', Items.WATER_BUCKET)
+                .unlockedBy("has_diced_chicken", has(ModItems.DICED_CHICKEN.get()))
+                .save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.FOOD, ModItems.BEEF_BURGER.get(), 1)
+                .pattern("QAR")
+                .pattern("SOF")
+                .pattern(" A ")
+                .define('S', ModItems.TOMATO.get())
+                .define('R', ModItems.KNIFE.get())
+                .define('O', ModItems.LETTUCE.get())
+                .define('Q', ModItems.CHEESE.get())
+                .define('A', Items.BREAD)
+                .define('F', Items.COOKED_BEEF)
+                .unlockedBy("has_bread", has(Items.BREAD))
+                .save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.FOOD, ModItems.PANCAKE_DOUGH.get(), 6)
+                .pattern("SA ")
+                .pattern("FQ ")
+                .pattern("   ")
+                .define('S', ModItems.FLOUR.get())
+                .define('A', Items.EGG)
+                .define('F', Items.MILK_BUCKET)
+                .define('Q', Items.SUGAR)
+                .unlockedBy("has_sugar", has(Items.SUGAR))
+                .save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.FOOD, ModItems.CHEESE.get(), 4)
+                .pattern(" F ")
+                .define('F', Items.MILK_BUCKET)
+                .unlockedBy("has_milk_bucket", has(Items.MILK_BUCKET))
+                .save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.FOOD, ModItems.FRENCH_FRIES.get(), 1)
+                .pattern("SF")
+                .define('S', Items.BAKED_POTATO)
+                .define('F', ModItems.KNIFE.get())
+                .unlockedBy("has_baked_potato", has(Items.BAKED_POTATO))
+                .save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.KNIFE.get())
+                .pattern("  S")
+                .pattern(" A ")
+                .pattern("F  ")
+                .define('S', ModItems.STEEL_INGOT.get())
+                .define('A', Items.IRON_INGOT)
+                .define('F', Items.STICK)
+                .unlockedBy("has_stick", has(Items.STICK))
                 .save(recipeOutput);
 
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.MINER_BENCH.get())
@@ -475,15 +545,61 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .requires(ModItems.LETTUCE.get())
                 .unlockedBy("has_lettuce", has(ModItems.LETTUCE.get())).save(recipeOutput);
 
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, ModItems.APPLE_JUICE.get(), 1)
+                .requires(Items.APPLE)
+                .requires(Items.POTION)  // Vanilla water bottle (glass bottle + water)
+                .unlockedBy("has_apple", has(Items.APPLE))
+                .save(recipeOutput);
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, ModItems.PINEAPPLE_JUICE.get(), 1)
+                .requires(ModItems.PINEAPPLE.get())
+                .requires(Items.POTION)  // Vanilla water bottle (glass bottle + water)
+                .unlockedBy("has_pineapple", has(ModItems.PINEAPPLE.get()))
+                .save(recipeOutput);
+
 
         oreSmelting(recipeOutput, STEEL_ALLOY_MESH_SMELTABLES, RecipeCategory.MISC, ModItems.STEEL_INGOT.get(), 0.25f, 200, "steel_ingot");
         oreBlasting(recipeOutput, STEEL_ALLOY_MESH_SMELTABLES, RecipeCategory.MISC, ModItems.STEEL_INGOT.get(), 0.25f, 100, "steel_ingot");
+
         oreSmelting(recipeOutput, SULPHUR, RecipeCategory.MISC, ModItems.SULPHUR.get(), 0.25f, 200, "sulphur");
         oreBlasting(recipeOutput, SULPHUR, RecipeCategory.MISC, ModItems.SULPHUR.get(), 0.25f, 100, "sulphur");
+
         oreSmelting(recipeOutput, POTASSIUM, RecipeCategory.MISC, ModItems.POTASSIUM.get(), 0.25f, 200, "potassium");
         oreBlasting(recipeOutput, POTASSIUM, RecipeCategory.MISC, ModItems.POTASSIUM.get(), 0.25f, 100, "potassium");
 
+        // === Chicken Nuggets from Battered Chicken ===
+        oreSmelting(recipeOutput,
+                List.of(ModItems.BATTERED_CHICKEN.get()),
+                RecipeCategory.FOOD,
+                ModItems.CHICKEN_NUGGETS.get(),
+                0.35f, // experience
+                200,   // cook time
+                "chicken_nuggets");
 
+        oreBlasting(recipeOutput,
+                List.of(ModItems.BATTERED_CHICKEN.get()),
+                RecipeCategory.FOOD,
+                ModItems.CHICKEN_NUGGETS.get(),
+                0.35f, // experience
+                100,   // cook time
+                "chicken_nuggets");
+
+        // === Pancakes from Pancake Dough ===
+        oreSmelting(recipeOutput,
+                List.of(ModItems.PANCAKE_DOUGH.get()),
+                RecipeCategory.FOOD,
+                ModItems.PANCAKE.get(),
+                0.35f, // experience
+                200,   // cook time
+                "pancake");
+
+        oreBlasting(recipeOutput,
+                List.of(ModItems.PANCAKE_DOUGH.get()),
+                RecipeCategory.FOOD,
+                ModItems.PANCAKE.get(),
+                0.35f, // experience
+                100,   // cook time
+                "pancake");
     }
     protected static void oreSmelting(RecipeOutput recipeOutput, List<ItemLike> pIngredients, RecipeCategory pCategory, ItemLike pResult,
                                       float pExperience, int pCookingTIme, String pGroup) {

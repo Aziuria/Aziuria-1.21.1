@@ -29,6 +29,7 @@ public class ModCreativeModeTabs {
                         output.accept(ModItems.STEEL_SWORD);
                         output.accept(ModItems.STEEL_SHOVEL);
                         output.accept(ModItems.STEEL_HOE);
+                        output.accept(ModItems.KNIFE);
                         output.accept(ModItems.STEEL_HELMET);
                         output.accept(ModItems.STEEL_BOOTS);
                         output.accept(ModItems.STEEL_LEGGINGS);
@@ -46,6 +47,19 @@ public class ModCreativeModeTabs {
                         output.accept(ModItems.ONION_SEEDS);
                         output.accept(ModItems.SPRING_ONION_SEEDS);
                         output.accept(ModItems.FLAX_FLOWER);
+                        output.accept(ModItems.FLOUR);
+                        output.accept(ModItems.BATTERED_CHICKEN);
+                        output.accept(ModItems.CHICKEN_NUGGETS);
+                        output.accept(ModItems.DICED_CHICKEN);
+                        output.accept(ModItems.FRENCH_FRIES);
+                        output.accept(ModItems.BEEF_BURGER);
+                        output.accept(ModItems.CHEESE);
+                        output.accept(ModItems.PANCAKE_DOUGH);
+                        output.accept(ModItems.PANCAKE);
+                        output.accept(ModItems.PINEAPPLE);
+                        output.accept(ModItems.CORN);
+                        output.accept(ModItems.APPLE_JUICE);
+                        output.accept(ModItems.PINEAPPLE_JUICE);
                         output.accept(ModItems.ISLAND_GENERATOR_SMALL);
                         output.accept(ModItems.ISLAND_GENERATOR_MEDIUM);
                         output.accept(ModItems.ISLAND_GENERATOR_LARGE);

@@ -1,11 +1,8 @@
 package net.Aziuria.aziuriamod.block.entity.renderer;
 
 import com.mojang.blaze3d.vertex.PoseStack;
-import net.Aziuria.aziuriamod.block.MinerBenchBlock;
-import net.Aziuria.aziuriamod.block.MinerPart;
 import net.Aziuria.aziuriamod.block.WoodcutterBenchBlock;
 import net.Aziuria.aziuriamod.block.WoodcutterPart;
-import net.Aziuria.aziuriamod.block.entity.MinerBenchBlockEntity;
 import net.Aziuria.aziuriamod.block.entity.WoodcutterBenchBlockEntity;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MultiBufferSource;
@@ -32,18 +29,23 @@ public class WoodcutterBenchRenderer implements BlockEntityRenderer<WoodcutterBe
 
         double offset = 0.001;
 
+        // ⬇️ Added ONLY this line for Y-offset for top-down anti-flicker
+        double yOffset = (part == WoodcutterPart.LEFT) ? -offset : offset; // ⬅️ changed
+
         switch (facing) {
             case NORTH, SOUTH -> {
                 double xOffset = (part == WoodcutterPart.LEFT) ? -offset : offset;
                 double zOffset = (part == WoodcutterPart.LEFT) ? offset : -offset;
-                poseStack.translate(xOffset, 0, zOffset);
+                poseStack.translate(xOffset, yOffset, zOffset); // ⬅️ changed
             }
             case EAST, WEST -> {
                 double zOffset = (part == WoodcutterPart.LEFT) ? -offset : offset;
                 double xOffset = (part == WoodcutterPart.LEFT) ? offset : -offset;
-                poseStack.translate(xOffset, 0, zOffset);
+                poseStack.translate(xOffset, yOffset, zOffset); // ⬅️ changed
             }
-            default -> {}
+            default -> {
+                poseStack.translate(0, yOffset, 0); // ⬅️ changed, covers UP/DOWN fallback safely
+            }
         }
 
         blockRenderer.renderSingleBlock(state, poseStack, bufferSource, combinedLight, combinedOverlay);

@@ -9,6 +9,7 @@
   "item.aziuriamod.steel_pickaxe": "Steel Pickaxe",
   "item.aziuriamod.steel_shovel": "Steel Shovel",
   "item.aziuriamod.steel_hoe": "Steel Hoe",
+  "item.aziuriamod.knife": "Knife",
 
   "item.aziuriamod.steel_helmet": "Steel Helmet",
   "item.aziuriamod.steel_leggings": "Steel Leggings",
@@ -42,25 +43,46 @@
   "block.aziuriamod.jungle_storage": "Jungle Storage",
   "block.aziuriamod.mangrove_storage": "Mangrove Storage",
   "block.aziuriamod.spruce_storage": "Spruce Storage",
+
   "block.aziuriamod.steel_barrel_empty": "Steel Barrel",
-  "block.aziuriamod.speaker": "Speaker",
   "block.aziuriamod.iron_barrel_empty": "Iron Barrel",
+
+  "block.aziuriamod.speaker": "Speaker",
+
   "block.aziuriamod.steel_bars": "Steel Bars",
+
   "block.aziuriamod.demarcation_post_a": "Demarcation Post",
   "block.aziuriamod.demarcation_post_b": "Demarcation Post",
   "block.aziuriamod.demarcation_post_c": "Demarcation Post",
   "block.aziuriamod.demarcation_post_d": "Demarcation Post",
   "block.aziuriamod.demarcation_post_e": "Demarcation Post",
+
   "block.aziuriamod.leaf_litter": "Leaf Litter",
   "block.aziuriamod.woodcutter_bench": "Woodcutter Bench",
   "block.aziuriamod.miner_bench": "Miner Bench",
 
   "item.aziuriamod.lettuce": "Lettuce",
+  "item.aziuriamod.pineapple": "Pineapple",
+  "item.aziuriamod.corn": "Corncob",
   "item.aziuriamod.onion": "Onion",
   "item.aziuriamod.spring_onion": "Spring Onion",
   "item.aziuriamod.radish": "Radish",
   "item.aziuriamod.cucumber": "Cucumber",
   "item.aziuriamod.tomato": "Tomato",
+  "item.aziuriamod.flour": "Flour",
+  "item.aziuriamod.diced_chicken": "Diced chicken",
+  "item.aziuriamod.battered_chicken": "Raw Chicken Nuggets",
+  "item.aziuriamod.chicken_nuggets": "Chicken Nuggets",
+  "item.aziuriamod.french_fries": "French Fries",
+  "item.aziuriamod.beef_burger": "Beef Burger",
+  "item.aziuriamod.cheese": "Cheese",
+  "item.aziuriamod.pancake_dough": "Pancake Dough",
+  "item.aziuriamod.pancake": "Pancake",
+
+
+  "item.aziuriamod.apple_juice": "Apple Juice",
+  "item.aziuriamod.pineapple_juice": "Pinepple Juice",
+
   "item.aziuriamod.radish_seeds": "Radish Seeds",
   "block.aziuriamod.radish_crop": "Radish Crop",
   "item.aziuriamod.lettuce_seeds": "Lettuce Seeds",
@@ -73,7 +95,9 @@
   "item.aziuriamod.cucumber_seeds": "Cucumber Seeds",
   "block.aziuriamod.tomato_crop": "Tomato Crop",
   "item.aziuriamod.tomato_seeds": "Tomato Seeds",
+
   "block.aziuriamod.flax_flower": "Flax",
+
   "item.aziuriamod.island_generator_small": "Small Island Generator",
   "item.aziuriamod.island_generator_medium": "Medium Island generator",
   "item.aziuriamod.island_generator_large": "Large Island generator",

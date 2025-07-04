@@ -45,17 +45,30 @@ public class ModItemModelProvider extends ItemModelProvider {
     protected void registerModels() {
         basicItem(ModItems.SULPHUR.get());
         basicItem(ModItems.POTASSIUM.get());
-
         basicItem(ModItems.STEEL_INGOT.get());
         basicItem(ModItems.SACK_ITEM.get());
         basicItem(ModItems.STEEL_ALLOY_MESH.get());
+
         basicItem(ModItems.RADISH_SEEDS.get());
         basicItem(ModItems.CUCUMBER_SEEDS.get());
         basicItem(ModItems.TOMATO_SEEDS.get());
         basicItem(ModItems.LETTUCE_SEEDS.get());
         basicItem(ModItems.ONION_SEEDS.get());
+        basicItem(ModItems.FLOUR.get());
+        basicItem(ModItems.PANCAKE_DOUGH.get());
+        basicItem(ModItems.PANCAKE.get());
+        basicItem(ModItems.CHICKEN_NUGGETS.get());
+        basicItem(ModItems.BEEF_BURGER.get());
+        basicItem(ModItems.CHEESE.get());
+        basicItem(ModItems.FRENCH_FRIES.get());
+        basicItem(ModItems.PINEAPPLE.get());
+        basicItem(ModItems.CORN.get());
+        basicItem(ModItems.APPLE_JUICE.get());
+        basicItem(ModItems.PINEAPPLE_JUICE.get());
+        basicItem(ModItems.DICED_CHICKEN.get());
+        basicItem(ModItems.BATTERED_CHICKEN.get());
         basicItem(ModItems.SPRING_ONION_SEEDS.get());
-        basicItem(ModItems.FLAX_FLOWER.get());
+
         basicItem(ModItems.ISLAND_GENERATOR_SMALL.get());
         basicItem(ModItems.ISLAND_GENERATOR_MEDIUM.get());
         basicItem(ModItems.ISLAND_GENERATOR_LARGE.get());
@@ -65,6 +78,7 @@ public class ModItemModelProvider extends ItemModelProvider {
         handheldItem(ModItems.STEEL_SHOVEL);
         handheldItem(ModItems.STEEL_AXE);
         handheldItem(ModItems.STEEL_HOE);
+     //   handheldItem(ModItems.KNIFE);
 
         trimmedArmorItem(ModItems.STEEL_HELMET);
         trimmedArmorItem(ModItems.STEEL_CHESTPLATE);
