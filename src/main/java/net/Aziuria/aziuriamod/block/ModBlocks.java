@@ -252,6 +252,10 @@ public class ModBlocks {
             () -> new OnionCropBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.BEETROOTS)));
     public static final DeferredBlock<Block> SPRING_ONION_CROP = BLOCKS.register("spring_onion_crop",
             () -> new SpringOnionCropBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.BEETROOTS)));
+    public static final DeferredBlock<Block> PINEAPPLE_CROP = BLOCKS.register("pineapple_crop",
+            () -> new PineappleCropBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.BEETROOTS)));
+    public static final DeferredBlock<Block> CORN_CROP = BLOCKS.register("corn_crop",
+            () -> new CornCropBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.WHEAT)));
 
     public static final DeferredBlock<Block> FLAX_FLOWER_BLOCK = BLOCKS.register("flax_flower",
             () -> new FlaxFlowerBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.DANDELION)));

@@ -94,8 +94,11 @@ public class HarvestCropsGoal extends Goal {
         } else if (block instanceof SpringOnionCropBlock springOnion) {
             ageProp = springOnion.getPublicAgeProperty();
             maxAge = 3;
-        } else if (block instanceof LettuceCropBlock lettuce) {
-            ageProp = lettuce.getPublicAgeProperty();
+        } else if (block instanceof PineappleCropBlock pineapple) {
+            ageProp = pineapple.getPublicAgeProperty();
+            maxAge = 3;
+        } else if (block instanceof CornCropBlock corn) {
+            ageProp = corn.getPublicAgeProperty();
             maxAge = 3;
 
 
@@ -160,6 +163,22 @@ public class HarvestCropsGoal extends Goal {
                     } else if (block instanceof TomatoCropBlock tomato) {
                         ageProp = tomato.getPublicAgeProperty();
                         maxAge = 3;
+                    } else if (block instanceof LettuceCropBlock lettuce) {
+                        ageProp = lettuce.getPublicAgeProperty();
+                        maxAge = 3;
+                    } else if (block instanceof OnionCropBlock onion) {
+                        ageProp = onion.getPublicAgeProperty();
+                        maxAge = 3;
+                    } else if (block instanceof SpringOnionCropBlock springOnion) {
+                        ageProp = springOnion.getPublicAgeProperty();
+                        maxAge = 3;
+                    } else if (block instanceof PineappleCropBlock pineapple) {
+                        ageProp = pineapple.getPublicAgeProperty();
+                        maxAge = 3;
+                    } else if (block instanceof CornCropBlock corn) {
+                        ageProp = corn.getPublicAgeProperty();
+                        maxAge = 3;
+
 
                         // ✅ Vanilla crops: check by block instance
                     } else if (block == Blocks.WHEAT) {

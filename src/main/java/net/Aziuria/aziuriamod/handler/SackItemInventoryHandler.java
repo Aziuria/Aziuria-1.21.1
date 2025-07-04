@@ -31,6 +31,8 @@ public class SackItemInventoryHandler {
             ALLOWED_ITEMS.add(Items.BEETROOT);
             ALLOWED_ITEMS.add(Items.WHEAT);
             ALLOWED_ITEMS.add(ModItems.RADISH.get());
+            ALLOWED_ITEMS.add(ModItems.CORN.get());
+            ALLOWED_ITEMS.add(ModItems.PINEAPPLE.get());
             ALLOWED_ITEMS.add(ModItems.CUCUMBER.get());
             ALLOWED_ITEMS.add(ModItems.TOMATO.get());
             ALLOWED_ITEMS.add(ModItems.LETTUCE.get());
@@ -41,6 +43,8 @@ public class SackItemInventoryHandler {
             ALLOWED_ITEMS.add(Items.BEETROOT_SEEDS);
             ALLOWED_ITEMS.add(Items.WHEAT_SEEDS);
             ALLOWED_ITEMS.add(ModItems.RADISH_SEEDS.get());
+            ALLOWED_ITEMS.add(ModItems.PINEAPPLE_SEEDS.get());
+            ALLOWED_ITEMS.add(ModItems.CORN_SEEDS.get());
             ALLOWED_ITEMS.add(ModItems.CUCUMBER_SEEDS.get());
             ALLOWED_ITEMS.add(ModItems.TOMATO_SEEDS.get());
             ALLOWED_ITEMS.add(ModItems.LETTUCE_SEEDS.get());

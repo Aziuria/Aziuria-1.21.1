@@ -112,6 +112,18 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
         this.add(ModBlocks.SPRING_ONION_CROP.get(), this.createCropDrops(ModBlocks.SPRING_ONION_CROP.get(),
                 ModItems.SPRING_ONION.get(), ModItems.SPRING_ONION_SEEDS.get(), springOnionCondition));
 
+        // ✅ NEW crops: Corn
+        LootItemCondition.Builder cornCondition = LootItemBlockStatePropertyCondition.hasBlockStateProperties(ModBlocks.CORN_CROP.get())
+                .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(CornCropBlock.AGE, 3));
+        this.add(ModBlocks.CORN_CROP.get(), this.createCropDrops(ModBlocks.CORN_CROP.get(),
+                ModItems.CORN.get(), ModItems.CORN_SEEDS.get(), cornCondition));
+
+        // ✅ NEW crops: Pineapple
+        LootItemCondition.Builder pineappleCondition = LootItemBlockStatePropertyCondition.hasBlockStateProperties(ModBlocks.PINEAPPLE_CROP.get())
+                .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(PineappleCropBlock.AGE, 3));
+        this.add(ModBlocks.PINEAPPLE_CROP.get(), this.createCropDrops(ModBlocks.PINEAPPLE_CROP.get(),
+                ModItems.PINEAPPLE.get(), ModItems.PINEAPPLE_SEEDS.get(), pineappleCondition));
+
 
     }
 

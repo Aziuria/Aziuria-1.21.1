@@ -92,9 +92,13 @@ public class ModItems {
 
     public static final DeferredItem<Item> PINEAPPLE = ITEMS.register("pineapple",
             () -> new Item(new Item.Properties().food(ModFoodProperties.PINEAPPLE)));
+    public static final DeferredItem<Item> PINEAPPLE_SEEDS = ITEMS.register("pineapple_seeds",
+            () -> new ItemNameBlockItem(ModBlocks.PINEAPPLE_CROP.get(), new Item.Properties()));
 
     public static final DeferredItem<Item> CORN = ITEMS.register("corn",
             () -> new Item(new Item.Properties().food(ModFoodProperties.CORN)));
+    public static final DeferredItem<Item> CORN_SEEDS = ITEMS.register("corn_seeds",
+            () -> new ItemNameBlockItem(ModBlocks.CORN_CROP.get(), new Item.Properties()));
 
     public static final DeferredItem<Item> FLAX_FLOWER = ITEMS.register("flax_flower",
             () -> new BlockItem(ModBlocks.FLAX_FLOWER_BLOCK.get(), new Item.Properties()));

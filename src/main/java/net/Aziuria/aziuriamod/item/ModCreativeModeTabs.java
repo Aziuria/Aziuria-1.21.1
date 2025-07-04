@@ -44,6 +44,8 @@ public class ModCreativeModeTabs {
                         output.accept(ModItems.ONION);
                         output.accept(ModItems.SPRING_ONION);
                         output.accept(ModItems.LETTUCE_SEEDS);
+                        output.accept(ModItems.PINEAPPLE_SEEDS);
+                        output.accept(ModItems.CORN_SEEDS);
                         output.accept(ModItems.ONION_SEEDS);
                         output.accept(ModItems.SPRING_ONION_SEEDS);
                         output.accept(ModItems.FLAX_FLOWER);

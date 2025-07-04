@@ -34,6 +34,13 @@ public class ModVillagerTrades {
             addBuyTrade(event, 1, ModItems.SPRING_ONION_SEEDS.get().getDefaultInstance(), 3, 2);
             addSellTrade(event, 1, ModItems.SPRING_ONION_SEEDS.get().getDefaultInstance(), 10, 1, 2);
 
+            // === NEW LEVEL 1 SEED TRADES ===
+            addBuyTrade(event, 1, ModItems.PINEAPPLE_SEEDS.get().getDefaultInstance(), 3, 2);
+            addSellTrade(event, 1, ModItems.PINEAPPLE_SEEDS.get().getDefaultInstance(), 10, 1, 2);
+
+            addBuyTrade(event, 1, ModItems.CORN_SEEDS.get().getDefaultInstance(), 3, 2);
+            addSellTrade(event, 1, ModItems.CORN_SEEDS.get().getDefaultInstance(), 10, 1, 2);
+
             // === LEVEL 2 TRADES (mid game, XP = 5) ===
             addBuyTrade(event, 2, ModItems.TOMATO.get().getDefaultInstance(), 4, 2, 5);
             addSellTrade(event, 2, ModItems.TOMATO.get().getDefaultInstance(), 7, 1, 5);
@@ -46,6 +53,13 @@ public class ModVillagerTrades {
 
             addBuyTrade(event, 2, ModItems.SPRING_ONION.get().getDefaultInstance(), 4, 2, 5);
             addSellTrade(event, 2, ModItems.SPRING_ONION.get().getDefaultInstance(), 7, 1, 5);
+
+            // === NEW LEVEL 2 CROP TRADES ===
+            addBuyTrade(event, 2, ModItems.CORN.get().getDefaultInstance(), 4, 2, 5);
+            addSellTrade(event, 2, ModItems.CORN.get().getDefaultInstance(), 7, 1, 5);
+
+            addBuyTrade(event, 2, ModItems.PINEAPPLE.get().getDefaultInstance(), 4, 2, 5);
+            addSellTrade(event, 2, ModItems.PINEAPPLE.get().getDefaultInstance(), 7, 1, 5);
 
             // === LEVEL 3 TRADES (late game, XP = 10) ===
             addBuyTrade(event, 3, ModItems.RADISH.get().getDefaultInstance(), 5, 3, 10);

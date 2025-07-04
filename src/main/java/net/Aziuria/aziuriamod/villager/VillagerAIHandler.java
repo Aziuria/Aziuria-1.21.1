@@ -20,6 +20,8 @@ public class VillagerAIHandler {
 
     @SubscribeEvent
     public static void onEntityJoinLevel(EntityJoinLevelEvent event) {
+
+        if (event.getLevel().isClientSide()) return;
         if (!(event.getEntity() instanceof Villager villager)) return;
 
         VillagerProfession prof = villager.getVillagerData().getProfession();

@@ -35,6 +35,8 @@ public class ModBlockStateProvider extends BlockStateProvider {
         makeCrop(((CropBlock) ModBlocks.LETTUCE_CROP.get()), "lettuce_crop_stage", "lettuce_crop_stage");
         makeCrop(((CropBlock) ModBlocks.ONION_CROP.get()), "onion_crop_stage", "onion_crop_stage");
         makeCrop(((CropBlock) ModBlocks.SPRING_ONION_CROP.get()), "spring_onion_crop_stage", "spring_onion_crop_stage");
+        makeCrop(((CropBlock) ModBlocks.CORN_CROP.get()), "corn_crop_stage", "corn_crop_stage");
+        makeCrop(((CropBlock) ModBlocks.PINEAPPLE_CROP.get()), "pineapple_crop_stage", "pineapple_crop_stage");
 
         getVariantBuilder(ModBlocks.FLAX_FLOWER_BLOCK.get())
                 .partialState()
@@ -66,6 +68,10 @@ public class ModBlockStateProvider extends BlockStateProvider {
             age = state.getValue(OnionCropBlock.AGE);
         } else if (block instanceof SpringOnionCropBlock) {
             age = state.getValue(SpringOnionCropBlock.AGE);
+        } else if (block instanceof CornCropBlock) {
+            age = state.getValue(CornCropBlock.AGE);
+        } else if (block instanceof PineappleCropBlock) {
+            age = state.getValue(PineappleCropBlock.AGE);
         } else {
             age = 0; // fallback or throw exception for safety
         }

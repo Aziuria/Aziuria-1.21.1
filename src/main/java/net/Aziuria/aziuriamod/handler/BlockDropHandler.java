@@ -52,6 +52,10 @@ public class BlockDropHandler {
             return new ItemStack(ModItems.ONION_SEEDS.get());
         } else if (chance < 60.0) {
             return new ItemStack(ModItems.SPRING_ONION_SEEDS.get());
+        } else if (chance < 65.0) {
+            return new ItemStack(ModItems.CORN_SEEDS.get());
+        } else if (chance < 70.0) {
+            return new ItemStack(ModItems.PINEAPPLE_SEEDS.get());
         } else {
             return ItemStack.EMPTY;
         }
