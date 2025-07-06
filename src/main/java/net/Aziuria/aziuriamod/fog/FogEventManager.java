@@ -1,6 +1,8 @@
 package net.Aziuria.aziuriamod.fog;
 
 import net.Aziuria.aziuriamod.block.entity.SpeakerBlockEntity;
+import net.Aziuria.aziuriamod.fog.network.FogStateSyncPacket;   // ← Packet import
+import net.Aziuria.aziuriamod.fog.network.NetworkHandler;       // ← Network handler import
 import net.Aziuria.aziuriamod.sounds.FadingSirenSoundInstance;
 import net.Aziuria.aziuriamod.sounds.ModSounds;
 import net.minecraft.client.Minecraft;
@@ -9,7 +11,7 @@ import net.minecraft.client.sounds.SoundManager;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundSource;
-import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerLevel;                // ← ServerLevel import
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.Level;
 
@@ -31,6 +33,8 @@ public class FogEventManager {
 
     private static long nextFogCheckTime = 0;
 
+
+    // LOAD SAVED DATA & SYNC TO CLIENTS ON SERVER STARTUP
     public static void loadFromSavedData(Level level) {
         if (!(level instanceof ServerLevel serverLevel)) return;
 
@@ -51,8 +55,21 @@ public class FogEventManager {
         fogFadeOutStart = data.getFogFadeOutStart();
         dissipatingMessageSent = data.getDissipatingMessageSent();
         nextFogCheckTime = data.getNextFogCheckTime();
+
+
+        // SEND CURRENT FOG STATE TO ALL CLIENTS
+        NetworkHandler.sendFogStateToAll(new FogStateSyncPacket(
+                activeFog == null ? "" : activeFog.getId(),
+                currentIntensity == null ? 0 : currentIntensity.ordinal(),
+                fogStart,
+                fogEnd,
+                fogFadeInEnd,
+                fogFadeOutStart
+        ));
+
     }
 
+    // SAVE CURRENT FOG DATA
     public static void saveToSavedData(Level level) {
         if (!(level instanceof ServerLevel serverLevel)) return;
 
@@ -67,47 +84,108 @@ public class FogEventManager {
         data.setNextFogCheckTime(nextFogCheckTime);
     }
 
-    public static void tick() {
-        ClientLevel level = mc.level;
-        if (level == null || mc.isPaused()) return;
+    // MAIN TICK FUNCTION
+    public static void tick(Level level) {
+        if (level.isClientSide()) {
+            // CLIENT SIDE LOGIC
+            ClientLevel clientLevel = (ClientLevel) level;
+            if (mc.isPaused()) return;
 
-        long time = level.getGameTime();
+            long time = clientLevel.getGameTime();
 
-        if (activeFog == null && time < nextFogCheckTime) return;
+            if (activeFog == null && time < nextFogCheckTime) return;
 
-        if (activeFog != null && time >= fogEnd) {
-            if (!dissipatingMessageSent && mc.player != null) {
-                mc.player.sendSystemMessage(Component.literal("⚠ Fog is dissipating...")
-                        .withStyle(style -> style.withColor(net.minecraft.ChatFormatting.YELLOW)));
-                dissipatingMessageSent = true;
-                saveToSavedData(level);
+            if (activeFog != null && time >= fogEnd) {
+                if (!dissipatingMessageSent && mc.player != null) {
+                    mc.player.sendSystemMessage(Component.literal("⚠ Fog is dissipating...")
+                            .withStyle(style -> style.withColor(net.minecraft.ChatFormatting.YELLOW)));
+                    dissipatingMessageSent = true;
+                    saveToSavedData(level);
+                }
+
+                if (time >= fogEnd + TRANSITION_DURATION) {
+                    activeFog = null;
+                    dissipatingMessageSent = false;
+                    nextFogCheckTime = time + FOG_COOLDOWN_TICKS;
+                    stopAllSirens();
+                    saveToSavedData(level);
+                }
             }
 
-            if (time >= fogEnd + TRANSITION_DURATION) {
+            if (activeFog == null && time >= nextFogCheckTime) {
+                for (FogType type : FogRegistry.getAll()) {
+                    if (type.shouldStart(clientLevel, random)) {
+                        if (mc.player != null) {
+                            mc.player.sendSystemMessage(Component.literal("⚠ Fog is approaching...")
+                                    .withStyle(style -> style.withColor(net.minecraft.ChatFormatting.RED)));
+                        }
+                        startFogNow(type);
+                        saveToSavedData(level);
+                        break;
+                    }
+                }
+            }
+        } else {
+            // SERVER SIDE LOGIC
+            ServerLevel serverLevel = (ServerLevel) level;
+            long time = serverLevel.getGameTime();
+
+            if (activeFog == null && time < nextFogCheckTime) return;
+
+            if (activeFog != null && time >= fogEnd) {
+
                 activeFog = null;
                 dissipatingMessageSent = false;
                 nextFogCheckTime = time + FOG_COOLDOWN_TICKS;
-                stopAllSirens();
-                saveToSavedData(level);
-            }
-        }
 
-        if (activeFog == null && time >= nextFogCheckTime) {
-            for (FogType type : FogRegistry.getAll()) {
-                if (type.shouldStart(level, random)) {  // ✅ Client-side check
-                    if (mc.player != null) {
-                        mc.player.sendSystemMessage(Component.literal("⚠ Fog is approaching...")
-                                .withStyle(style -> style.withColor(net.minecraft.ChatFormatting.RED)));
+                NetworkHandler.sendFogStateToAll(new FogStateSyncPacket(
+                        "", 0, 0, 0, 0, 0
+                ));
+                saveToSavedData(level);
+                return;
+
+            }
+
+            if (activeFog == null && time >= nextFogCheckTime) {
+                for (FogType type : FogRegistry.getAll()) {
+                    if (type.shouldStart(serverLevel, random)) {
+
+                        startFogNow(type, serverLevel);
+                        saveToSavedData(level);
+                        break;
+
                     }
-                    startFogNow(type);
-                    saveToSavedData(level);
-                    break;
                 }
             }
         }
-
     }
 
+
+    public static void startFogNow(FogType type, ServerLevel serverLevel) {
+        activeFog = type;
+        currentIntensity = FogIntensity.values()[random.nextInt(FogIntensity.values().length)];
+        long time = serverLevel.getGameTime();
+
+        long duration = type.getDurationTicks(random);
+        fogStart = time;
+        fogFadeInEnd = time + TRANSITION_DURATION;
+        fogFadeOutStart = time + duration - TRANSITION_DURATION;
+        fogEnd = time + duration;
+        dissipatingMessageSent = false;
+        nextFogCheckTime = fogEnd + FOG_COOLDOWN_TICKS;
+
+
+        NetworkHandler.sendFogStateToAll(new FogStateSyncPacket(
+                activeFog.getId(),
+                currentIntensity.ordinal(),
+                fogStart,
+                fogEnd,
+                fogFadeInEnd,
+                fogFadeOutStart
+        ));
+    }
+
+    // CLIENT-SIDE: START FOG WITHOUT SYNC (used only by client visuals)
     public static void startFogNow(FogType type) {
         if (mc.level == null || mc.player == null) return;
 
@@ -123,8 +201,7 @@ public class FogEventManager {
         dissipatingMessageSent = false;
         nextFogCheckTime = fogEnd + FOG_COOLDOWN_TICKS;
 
-        // ← Added saving here to persist fog state immediately after starting
-        saveToSavedData(mc.level);  // ← here
+        saveToSavedData(mc.level);
 
         BlockPos playerPos = mc.player.blockPosition();
         int radius = 150;
@@ -193,4 +270,19 @@ public class FogEventManager {
         return activeFog != null && "evil".equals(activeFog.getId());
     }
 
+    public static long getFogStart() {
+        return fogStart;
+    }
+
+    public static long getFogEnd() {
+        return fogEnd;
+    }
+
+    public static long getFogFadeInEnd() {
+        return fogFadeInEnd;
+    }
+
+    public static long getFogFadeOutStart() {
+        return fogFadeOutStart;
+    }
 }

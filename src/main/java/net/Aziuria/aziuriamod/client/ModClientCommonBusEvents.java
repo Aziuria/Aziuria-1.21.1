@@ -10,7 +10,7 @@ public class ModClientCommonBusEvents {
     @SubscribeEvent
     public static void onClientTick(Post event) {
         if (Minecraft.getInstance().level != null) {
-            FogEventManager.tick();
+            FogEventManager.tick(Minecraft.getInstance().level); // ✅ pass level here
         }
     }
 }

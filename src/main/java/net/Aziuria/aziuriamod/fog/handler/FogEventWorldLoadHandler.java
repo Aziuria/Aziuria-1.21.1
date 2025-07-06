@@ -1,4 +1,4 @@
-package net.Aziuria.aziuriamod.handler;
+package net.Aziuria.aziuriamod.fog.handler;
 
 import net.Aziuria.aziuriamod.fog.FogEventManager;
 import net.minecraft.world.level.Level;

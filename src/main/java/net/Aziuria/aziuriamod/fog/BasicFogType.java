@@ -1,12 +1,20 @@
 package net.Aziuria.aziuriamod.fog;
 
 import net.minecraft.client.multiplayer.ClientLevel;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.phys.Vec3;
 
 public class BasicFogType implements FogType {
     @Override
     public boolean shouldStart(ClientLevel level, RandomSource random) {
+        // Client-side logic for fog spawning chance
+        return random.nextInt(30000) == 0;
+    }
+
+    @Override
+    public boolean shouldStart(ServerLevel level, RandomSource random) {
+        // Server-side logic for fog spawning chance - can be the same or adjusted
         return random.nextInt(30000) == 0;
     }
 

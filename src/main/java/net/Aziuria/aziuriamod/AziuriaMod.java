@@ -7,7 +7,9 @@ import net.Aziuria.aziuriamod.client.ModClientCommonBusEvents;
 import net.Aziuria.aziuriamod.command.DecayCommand;
 import net.Aziuria.aziuriamod.command.FogCommand;
 import net.Aziuria.aziuriamod.fog.*;
+import net.Aziuria.aziuriamod.fog.handler.FogZombieTickHandler;
 import net.Aziuria.aziuriamod.handler.FastLeafDecayHandler;
+import net.Aziuria.aziuriamod.fog.handler.FogEventWorldLoadHandler;
 import net.Aziuria.aziuriamod.handler.LeafParticleHandler;
 import net.Aziuria.aziuriamod.block.entity.ModBlockEntities;
 import net.Aziuria.aziuriamod.client.ClientModInitializer;
@@ -18,6 +20,8 @@ import net.Aziuria.aziuriamod.handler.BlockDropHandler;
 import net.Aziuria.aziuriamod.item.ModCreativeModeTabs;
 import net.Aziuria.aziuriamod.item.ModItems;
 import net.Aziuria.aziuriamod.item.custom.entities.ModEntities;
+import net.Aziuria.aziuriamod.fog.network.NetworkHandler;
+import net.Aziuria.aziuriamod.fog.network.PlayerJoinHandler;
 import net.Aziuria.aziuriamod.particle.FallingLeafParticle;
 import net.Aziuria.aziuriamod.particle.ModParticles;
 import net.Aziuria.aziuriamod.sounds.ModSounds;
@@ -54,6 +58,7 @@ public class AziuriaMod {
         modEventBus.addListener(this::commonSetup);
         modEventBus.addListener(this::registerCapabilities); // <-- Register capabilities
         modEventBus.addListener(this::addCreative);
+        modEventBus.addListener(NetworkHandler::register);
 
         if (FMLEnvironment.dist == Dist.CLIENT) {
             ClientModInitializer.register(modEventBus);
@@ -63,6 +68,8 @@ public class AziuriaMod {
         NeoForge.EVENT_BUS.register(BlockDropHandler.class);
         NeoForge.EVENT_BUS.register(ModEvents.class);
         NeoForge.EVENT_BUS.register(LeafParticleHandler.class);
+        NeoForge.EVENT_BUS.register(FogEventWorldLoadHandler.class);
+        NeoForge.EVENT_BUS.register(PlayerJoinHandler.class);
 
 
 
@@ -72,6 +79,7 @@ public class AziuriaMod {
         NeoForge.EVENT_BUS.addListener(this::onRegisterCommands);     // Command setup listener
         NeoForge.EVENT_BUS.register(new FogVillagerAI());             // AI handler
         NeoForge.EVENT_BUS.register(new FogMobSpawnModifier());
+        NeoForge.EVENT_BUS.register(new FogZombieTickHandler());
         NeoForge.EVENT_BUS.register(ModClientCommonBusEvents.class);
         NeoForge.EVENT_BUS.register(new FogZombieSpawner());
         NeoForge.EVENT_BUS.register(BlockBatcher.class);

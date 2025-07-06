@@ -1,12 +1,18 @@
 package net.Aziuria.aziuriamod.fog;
 
 import net.minecraft.client.multiplayer.ClientLevel;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.phys.Vec3;
 
 public class EvilFogType implements FogType {
     @Override
     public boolean shouldStart(ClientLevel level, RandomSource random) {
+        return level.isNight() && random.nextInt(30000) == 0;
+    }
+
+    @Override
+    public boolean shouldStart(ServerLevel level, RandomSource random) {
         return level.isNight() && random.nextInt(30000) == 0;
     }
 
@@ -31,7 +37,7 @@ public class EvilFogType implements FogType {
 
     @Override
     public Vec3 getFogColor() {
-        return new Vec3(0.7, 0.7, 0.7); // same as BasicFog
+        return new Vec3(0.7, 0.7, 0.7);
     }
 
     @Override
