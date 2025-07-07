@@ -17,10 +17,15 @@ public class ModBiomeModifiers {
 
     public static final ResourceKey<BiomeModifier> ADD_SULPHUR_ORE = registerKey("add_sulphur_ore");
     public static final ResourceKey<BiomeModifier> ADD_POTASSIUM_ORE = registerKey("add_potassium_ore");
-   // public static final ResourceKey<BiomeModifier> ADD_NETHER_BISMUTH_ORE = registerKey("add_nether_bismuth_ore");
-   // public static final ResourceKey<BiomeModifier> ADD_END_BISMUTH_ORE = registerKey("add_end_bismuth_ore");
+    public static final ResourceKey<BiomeModifier> ADD_SULPHUR_ORE_RARE_MID = registerKey("add_sulphur_ore_rare_mid");
+    public static final ResourceKey<BiomeModifier> ADD_POTASSIUM_ORE_RARE_MID = registerKey("add_potassium_ore_rare_mid");
+    public static final ResourceKey<BiomeModifier> ADD_SULPHUR_ORE_SURFACE_RARE = registerKey("add_sulphur_ore_surface_rare");
+    public static final ResourceKey<BiomeModifier> ADD_POTASSIUM_ORE_SURFACE_RARE = registerKey("add_potassium_ore_surface_rare");
 
     public static final ResourceKey<BiomeModifier> ADD_LEAF_LITTER = registerKey("add_leaf_litter");
+    public static final ResourceKey<BiomeModifier> ADD_LEAF_LITTER_EXTRA = registerKey("add_leaf_litter_extra");
+    public static final ResourceKey<BiomeModifier> ADD_LEAF_LITTER_EXTRA2 = registerKey("add_leaf_litter_extra2");
+    public static final ResourceKey<BiomeModifier> ADD_LEAF_LITTER_EXTRA3 = registerKey("add_leaf_litter_extra3");
 
     public static void bootstrap(BootstrapContext<BiomeModifier> context) {
         // CF -> PF -> BM
@@ -37,40 +42,46 @@ public class ModBiomeModifiers {
                 HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.POTASSIUM_ORE_PLACED_KEY)),
                 GenerationStep.Decoration.UNDERGROUND_ORES));
 
-        // Example for individual Biomes!
-        // context.register(ADD_BISMUTH_ORE, new BiomeModifiers.AddFeaturesBiomeModifier(
-        //         HolderSet.direct(biomes.getOrThrow(Biomes.PLAINS), biomes.getOrThrow(Biomes.SAVANNA)),
-        //         HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.BISMUTH_ORE_PLACED_KEY)),
-        //         GenerationStep.Decoration.UNDERGROUND_ORES));
+        context.register(ADD_SULPHUR_ORE_RARE_MID, new BiomeModifiers.AddFeaturesBiomeModifier(
+                biomes.getOrThrow(BiomeTags.IS_OVERWORLD),
+                HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.SULPHUR_ORE_RARE_MID_PLACED_KEY)),
+                GenerationStep.Decoration.UNDERGROUND_ORES));
 
-      //  context.register(ADD_NETHER_BISMUTH_ORE, new BiomeModifiers.AddFeaturesBiomeModifier(
-      //          biomes.getOrThrow(BiomeTags.IS_NETHER),
-      //          HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.NETHER_BISMUTH_ORE_PLACED_KEY)),
-      //          GenerationStep.Decoration.UNDERGROUND_ORES));
+        context.register(ADD_POTASSIUM_ORE_RARE_MID, new BiomeModifiers.AddFeaturesBiomeModifier(
+                biomes.getOrThrow(BiomeTags.IS_OVERWORLD),
+                HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.POTASSIUM_ORE_RARE_MID_PLACED_KEY)),
+                GenerationStep.Decoration.UNDERGROUND_ORES));
 
-      //  context.register(ADD_END_BISMUTH_ORE, new BiomeModifiers.AddFeaturesBiomeModifier(
-      //          biomes.getOrThrow(BiomeTags.IS_END),
-      //          HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.END_BISMUTH_ORE_PLACED_KEY)),
-      //          GenerationStep.Decoration.UNDERGROUND_ORES));
+        context.register(ADD_SULPHUR_ORE_SURFACE_RARE, new BiomeModifiers.AddFeaturesBiomeModifier(
+                biomes.getOrThrow(BiomeTags.IS_OVERWORLD),
+                HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.SULPHUR_ORE_SURFACE_RARE_PLACED_KEY)),
+                GenerationStep.Decoration.UNDERGROUND_ORES));
+
+        context.register(ADD_POTASSIUM_ORE_SURFACE_RARE, new BiomeModifiers.AddFeaturesBiomeModifier(
+                biomes.getOrThrow(BiomeTags.IS_OVERWORLD),
+                HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.POTASSIUM_ORE_SURFACE_RARE_PLACED_KEY)),
+                GenerationStep.Decoration.UNDERGROUND_ORES));
+
 
 
         context.register(ADD_LEAF_LITTER, new BiomeModifiers.AddFeaturesBiomeModifier(
-                HolderSet.direct(
-                        biomes.getOrThrow(Biomes.FOREST),
-                        biomes.getOrThrow(Biomes.DARK_FOREST),
-                        biomes.getOrThrow(Biomes.BIRCH_FOREST),
-                        biomes.getOrThrow(Biomes.TAIGA),
-                        biomes.getOrThrow(Biomes.OLD_GROWTH_PINE_TAIGA),
-                        biomes.getOrThrow(Biomes.OLD_GROWTH_SPRUCE_TAIGA),
-                        biomes.getOrThrow(Biomes.SNOWY_TAIGA),
-                        biomes.getOrThrow(Biomes.SWAMP),
-                        biomes.getOrThrow(Biomes.SAVANNA),
-                        biomes.getOrThrow(Biomes.SAVANNA_PLATEAU),
-                        biomes.getOrThrow(Biomes.JUNGLE),
-                        biomes.getOrThrow(Biomes.BAMBOO_JUNGLE),
-                        biomes.getOrThrow(Biomes.MEADOW)
-                ),
+                biomes.getOrThrow(BiomeTags.IS_OVERWORLD), // ← Changed from explicit biomes list
                 HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.LEAF_LITTER_PLACED_KEY)),
+                GenerationStep.Decoration.VEGETAL_DECORATION));
+
+        context.register(ADD_LEAF_LITTER_EXTRA, new BiomeModifiers.AddFeaturesBiomeModifier(
+                biomes.getOrThrow(BiomeTags.IS_OVERWORLD),
+                HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.LEAF_LITTER_EXTRA_PLACED_KEY)),
+                GenerationStep.Decoration.VEGETAL_DECORATION));
+
+        context.register(ADD_LEAF_LITTER_EXTRA2, new BiomeModifiers.AddFeaturesBiomeModifier(
+                biomes.getOrThrow(BiomeTags.IS_OVERWORLD),
+                HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.LEAF_LITTER_EXTRA2_PLACED_KEY)),
+                GenerationStep.Decoration.VEGETAL_DECORATION));
+
+        context.register(ADD_LEAF_LITTER_EXTRA3, new BiomeModifiers.AddFeaturesBiomeModifier(
+                biomes.getOrThrow(BiomeTags.IS_OVERWORLD),
+                HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.LEAF_LITTER_EXTRA3_PLACED_KEY)),
                 GenerationStep.Decoration.VEGETAL_DECORATION));
     }
 

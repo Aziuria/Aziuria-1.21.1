@@ -24,14 +24,20 @@ import java.util.List;
 public class ModConfiguredFeatures {
     public static final ResourceKey<ConfiguredFeature<?, ?>> OVERWORLD_SULPHUR_ORE_KEY = registerKey("sulphur_ore");
     public static final ResourceKey<ConfiguredFeature<?, ?>> OVERWORLD_POTASSIUM_ORE_KEY = registerKey("potassium_ore");
+
+    public static final ResourceKey<ConfiguredFeature<?, ?>> OVERWORLD_SULPHUR_ORE_RARE_MID_KEY = registerKey("sulphur_ore_rare_mid");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> OVERWORLD_POTASSIUM_ORE_RARE_MID_KEY = registerKey("potassium_ore_rare_mid");
+
+    // New rare surface ore keys
+    public static final ResourceKey<ConfiguredFeature<?, ?>> OVERWORLD_SULPHUR_ORE_SURFACE_RARE_KEY = registerKey("sulphur_ore_surface_rare");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> OVERWORLD_POTASSIUM_ORE_SURFACE_RARE_KEY = registerKey("potassium_ore_surface_rare");
+
     public static final ResourceKey<ConfiguredFeature<?, ?>> LEAF_LITTER_KEY = registerKey("leaf_litter");
 
     public static void bootstrap(BootstrapContext<ConfiguredFeature<?, ?>> context) {
 
         RuleTest stoneReplaceables = new TagMatchTest(BlockTags.STONE_ORE_REPLACEABLES);
         RuleTest deepslateReplaceables = new TagMatchTest(BlockTags.DEEPSLATE_ORE_REPLACEABLES);
-       // RuleTest netherrackReplaceables = new BlockMatchTest(Blocks.NETHERRACK);
-       // RuleTest endReplaceables = new BlockMatchTest(Blocks.END_STONE);
 
 
         List<OreConfiguration.TargetBlockState> overworldSulphurOres = List.of(
@@ -44,10 +50,13 @@ public class ModConfiguredFeatures {
 
         register(context, OVERWORLD_SULPHUR_ORE_KEY, Feature.ORE, new OreConfiguration(overworldSulphurOres, 9));
         register(context, OVERWORLD_POTASSIUM_ORE_KEY, Feature.ORE, new OreConfiguration(overworldPotassiumOres, 9));
-      //  register(context, NETHER_BISMUTH_ORE_KEY, Feature.ORE, new OreConfiguration(netherrackReplaceables,
-      //          ModBlocks.BISMUTH_NETHER_ORE.get().defaultBlockState(), 9));
-      //  register(context, END_BISMUTH_ORE_KEY, Feature.ORE, new OreConfiguration(endReplaceables,
-      //          ModBlocks.BISMUTH_END_ORE.get().defaultBlockState(), 9));
+
+        register(context, OVERWORLD_SULPHUR_ORE_RARE_MID_KEY, Feature.ORE, new OreConfiguration(overworldSulphurOres, 5));
+        register(context, OVERWORLD_POTASSIUM_ORE_RARE_MID_KEY, Feature.ORE, new OreConfiguration(overworldPotassiumOres, 5));
+
+        // Rare surface ores - even smaller vein size (e.g. 4)
+        register(context, OVERWORLD_SULPHUR_ORE_SURFACE_RARE_KEY, Feature.ORE, new OreConfiguration(overworldSulphurOres, 2));
+        register(context, OVERWORLD_POTASSIUM_ORE_SURFACE_RARE_KEY, Feature.ORE, new OreConfiguration(overworldPotassiumOres, 2));
 
         register(context, LEAF_LITTER_KEY, Feature.RANDOM_PATCH,
                 FeatureUtils.simplePatchConfiguration(
