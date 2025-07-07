@@ -4,6 +4,7 @@ import net.Aziuria.aziuriamod.AziuriaMod;
 import net.Aziuria.aziuriamod.block.ModBlocks;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstrapContext;
+import net.minecraft.data.worldgen.features.FeatureUtils;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
@@ -23,7 +24,7 @@ import java.util.List;
 public class ModConfiguredFeatures {
     public static final ResourceKey<ConfiguredFeature<?, ?>> OVERWORLD_SULPHUR_ORE_KEY = registerKey("sulphur_ore");
     public static final ResourceKey<ConfiguredFeature<?, ?>> OVERWORLD_POTASSIUM_ORE_KEY = registerKey("potassium_ore");
-
+    public static final ResourceKey<ConfiguredFeature<?, ?>> LEAF_LITTER_KEY = registerKey("leaf_litter");
 
     public static void bootstrap(BootstrapContext<ConfiguredFeature<?, ?>> context) {
 
@@ -31,6 +32,7 @@ public class ModConfiguredFeatures {
         RuleTest deepslateReplaceables = new TagMatchTest(BlockTags.DEEPSLATE_ORE_REPLACEABLES);
        // RuleTest netherrackReplaceables = new BlockMatchTest(Blocks.NETHERRACK);
        // RuleTest endReplaceables = new BlockMatchTest(Blocks.END_STONE);
+
 
         List<OreConfiguration.TargetBlockState> overworldSulphurOres = List.of(
                 OreConfiguration.target(stoneReplaceables, ModBlocks.SULPHUR_ORE.get().defaultBlockState()),
@@ -47,6 +49,13 @@ public class ModConfiguredFeatures {
       //  register(context, END_BISMUTH_ORE_KEY, Feature.ORE, new OreConfiguration(endReplaceables,
       //          ModBlocks.BISMUTH_END_ORE.get().defaultBlockState(), 9));
 
+        register(context, LEAF_LITTER_KEY, Feature.RANDOM_PATCH,
+                FeatureUtils.simplePatchConfiguration(
+                        Feature.SIMPLE_BLOCK,
+                        new SimpleBlockConfiguration(BlockStateProvider.simple(ModBlocks.LEAF_LITTER.get().defaultBlockState())),
+                        List.of(Blocks.GRASS_BLOCK)
+                )
+        );
     }
 
     public static ResourceKey<ConfiguredFeature<?, ?>> registerKey(String name) {

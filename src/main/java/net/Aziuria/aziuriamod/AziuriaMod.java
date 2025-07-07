@@ -28,6 +28,7 @@ import net.Aziuria.aziuriamod.sounds.ModSounds;
 import net.Aziuria.aziuriamod.villager.ModVillagerTrades;
 import net.Aziuria.aziuriamod.villager.VillagerAIHandler;
 import net.Aziuria.aziuriamod.villager.VillagerProfessionTickHandler;
+import net.Aziuria.aziuriamod.worldgen.ModPlacementModifier;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.IEventBus;
@@ -98,7 +99,7 @@ public class AziuriaMod {
         ModDataComponents.register(modEventBus);
         ModParticles.register(modEventBus);
         ModEntities.ENTITIES.register(modEventBus);
-
+        ModPlacementModifier.PLACEMENT_MODIFIERS.register(modEventBus);
 
 
         // Config registration

@@ -7,6 +7,7 @@ import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BiomeTags;
+import net.minecraft.world.level.biome.Biomes;
 import net.minecraft.world.level.levelgen.GenerationStep;
 import net.neoforged.neoforge.common.world.BiomeModifier;
 import net.neoforged.neoforge.common.world.BiomeModifiers;
@@ -18,6 +19,8 @@ public class ModBiomeModifiers {
     public static final ResourceKey<BiomeModifier> ADD_POTASSIUM_ORE = registerKey("add_potassium_ore");
    // public static final ResourceKey<BiomeModifier> ADD_NETHER_BISMUTH_ORE = registerKey("add_nether_bismuth_ore");
    // public static final ResourceKey<BiomeModifier> ADD_END_BISMUTH_ORE = registerKey("add_end_bismuth_ore");
+
+    public static final ResourceKey<BiomeModifier> ADD_LEAF_LITTER = registerKey("add_leaf_litter");
 
     public static void bootstrap(BootstrapContext<BiomeModifier> context) {
         // CF -> PF -> BM
@@ -51,6 +54,24 @@ public class ModBiomeModifiers {
       //          GenerationStep.Decoration.UNDERGROUND_ORES));
 
 
+        context.register(ADD_LEAF_LITTER, new BiomeModifiers.AddFeaturesBiomeModifier(
+                HolderSet.direct(
+                        biomes.getOrThrow(Biomes.FOREST),
+                        biomes.getOrThrow(Biomes.DARK_FOREST),
+                        biomes.getOrThrow(Biomes.BIRCH_FOREST),
+                        biomes.getOrThrow(Biomes.TAIGA),
+                        biomes.getOrThrow(Biomes.OLD_GROWTH_PINE_TAIGA),
+                        biomes.getOrThrow(Biomes.OLD_GROWTH_SPRUCE_TAIGA),
+                        biomes.getOrThrow(Biomes.SNOWY_TAIGA),
+                        biomes.getOrThrow(Biomes.SWAMP),
+                        biomes.getOrThrow(Biomes.SAVANNA),
+                        biomes.getOrThrow(Biomes.SAVANNA_PLATEAU),
+                        biomes.getOrThrow(Biomes.JUNGLE),
+                        biomes.getOrThrow(Biomes.BAMBOO_JUNGLE),
+                        biomes.getOrThrow(Biomes.MEADOW)
+                ),
+                HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.LEAF_LITTER_PLACED_KEY)),
+                GenerationStep.Decoration.VEGETAL_DECORATION));
     }
 
     private static ResourceKey<BiomeModifier> registerKey(String name) {
