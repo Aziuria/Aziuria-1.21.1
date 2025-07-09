@@ -102,6 +102,9 @@
 
   "block.aziuriamod.flax_flower": "Flax",
 
+  "block.aziuriamod.apple_leaves": "Apple Tree Leaves",
+  "block.aziuriamod.apple_sapling": "Apple Tree Sapling",
+
   "item.aziuriamod.island_generator_small": "Small Island Generator",
   "item.aziuriamod.island_generator_medium": "Medium Island generator",
   "item.aziuriamod.island_generator_large": "Large Island generator",

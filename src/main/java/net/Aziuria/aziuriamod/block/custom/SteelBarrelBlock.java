@@ -1,12 +1,10 @@
-package net.Aziuria.aziuriamod.block;
+package net.Aziuria.aziuriamod.block.custom;
 
 import com.mojang.serialization.MapCodec;
-import net.Aziuria.aziuriamod.AziuriaMod;
 import net.Aziuria.aziuriamod.block.entity.SteelBarrelBlockEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
 import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;

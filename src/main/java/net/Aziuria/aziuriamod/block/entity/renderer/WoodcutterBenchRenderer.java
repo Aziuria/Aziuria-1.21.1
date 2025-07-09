@@ -1,8 +1,8 @@
 package net.Aziuria.aziuriamod.block.entity.renderer;
 
 import com.mojang.blaze3d.vertex.PoseStack;
-import net.Aziuria.aziuriamod.block.WoodcutterBenchBlock;
-import net.Aziuria.aziuriamod.block.WoodcutterPart;
+import net.Aziuria.aziuriamod.block.custom.WoodcutterBenchBlock;
+import net.Aziuria.aziuriamod.block.part.WoodcutterPart;
 import net.Aziuria.aziuriamod.block.entity.WoodcutterBenchBlockEntity;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MultiBufferSource;

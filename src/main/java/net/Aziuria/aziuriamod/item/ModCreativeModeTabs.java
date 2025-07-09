@@ -101,6 +101,8 @@ public class ModCreativeModeTabs {
                         output.accept(ModItems.CORN_SEEDS);
                         output.accept(ModItems.ONION_SEEDS);
                         output.accept(ModItems.SPRING_ONION_SEEDS);
+                        output.accept(ModBlocks.APPLE_SAPLING.get());
+                        output.accept(ModBlocks.APPLE_LEAVES.get());
                     }).build());
 
 

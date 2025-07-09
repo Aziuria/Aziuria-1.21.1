@@ -1,4 +1,4 @@
-package net.Aziuria.aziuriamod.block;
+package net.Aziuria.aziuriamod.block.custom;
 
 import net.Aziuria.aziuriamod.item.ModItems;
 import net.minecraft.core.BlockPos;
@@ -12,7 +12,7 @@ import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-public class TomatoCropBlock extends CropBlock {
+public class LettuceCropBlock extends CropBlock {
     public static final int MAX_AGE = 3;
     public static final IntegerProperty AGE = IntegerProperty.create("age", 0, 3);
     private static final VoxelShape[] SHAPE_BY_AGE =
@@ -23,7 +23,7 @@ public class TomatoCropBlock extends CropBlock {
                     Block.box(0.0, 0.0, 0.0, 16.0, 8.0, 16.0)};
 
 
-    public TomatoCropBlock(Properties properties) {
+    public LettuceCropBlock(Properties properties) {
         super(properties);
     }
 
@@ -34,7 +34,7 @@ public class TomatoCropBlock extends CropBlock {
 
     @Override
     protected ItemLike getBaseSeedId() {
-        return ModItems.TOMATO_SEEDS;
+        return ModItems.LETTUCE_SEEDS;
     }
 
     @Override

@@ -2,8 +2,11 @@ package net.Aziuria.aziuriamod.datagen;
 
 import net.Aziuria.aziuriamod.AziuriaMod;
 import net.Aziuria.aziuriamod.block.*;
+import net.Aziuria.aziuriamod.block.custom.*;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.CropBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.client.model.generators.BlockStateProvider;
@@ -47,6 +50,22 @@ public class ModBlockStateProvider extends BlockStateProvider {
         // Optional: register its block item model if you want it to use the block model
         blockItem(ModBlocks.FLAX_FLOWER_BLOCK);
 
+        leavesBlock(ModBlocks.APPLE_LEAVES);
+        saplingBlock(ModBlocks.APPLE_SAPLING);
+
+    }
+
+    private void saplingBlock(DeferredBlock<Block> blockRegistryObject) {
+        simpleBlock(blockRegistryObject.get(),
+                models().cross(BuiltInRegistries.BLOCK.getKey(blockRegistryObject.get()).getPath(), blockTexture(blockRegistryObject.get())).renderType("cutout"));
+    }
+
+    private void leavesBlock(DeferredBlock<Block> blockRegistryObject) {
+        simpleBlockWithItem(blockRegistryObject.get(),
+                models().singleTexture(BuiltInRegistries.BLOCK.getKey(blockRegistryObject.get()).getPath(), ResourceLocation.parse("minecraft:block/leaves"),
+                        "all", blockTexture(blockRegistryObject.get())).renderType("cutout"));
+
+
     }
 
     public void makeCrop(CropBlock block, String modelName, String textureName) {
@@ -82,6 +101,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
                         ResourceLocation.fromNamespaceAndPath(AziuriaMod.MOD_ID, "block/" + textureName + age)
                 ).renderType("cutout"))
         };
+
     }
 
     private void blockWithItem(DeferredBlock<?> deferredBlock) {

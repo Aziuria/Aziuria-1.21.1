@@ -1,14 +1,14 @@
-package net.Aziuria.aziuriamod.block;
+package net.Aziuria.aziuriamod.block.part;
 
 import net.minecraft.util.StringRepresentable;
 
-public enum WoodcutterPart implements StringRepresentable {
+public enum MinerPart implements StringRepresentable {
     LEFT("left"),
     RIGHT("right");
 
     private final String name;
 
-    WoodcutterPart(String name) {
+    MinerPart(String name) {
         this.name = name;
     }
 

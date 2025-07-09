@@ -1,6 +1,7 @@
 package net.Aziuria.aziuriamod.datagen;
 
 import net.Aziuria.aziuriamod.block.*;
+import net.Aziuria.aziuriamod.block.custom.*;
 import net.Aziuria.aziuriamod.item.ModItems;
 import net.minecraft.advancements.critereon.StatePropertiesPredicate;
 import net.minecraft.core.Holder;
@@ -65,7 +66,11 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
         dropSelf(ModBlocks.IRON_BARREL_EMPTY.get());
 
         dropSelf(ModBlocks.LEAF_LITTER.get());
+        dropSelf(ModBlocks.APPLE_SAPLING.get());
         dropSelf(ModBlocks.FLAX_FLOWER_BLOCK.get());
+
+        this.add(ModBlocks.APPLE_LEAVES.get(), block ->
+                createLeavesDrops(block, ModBlocks.APPLE_SAPLING.get(), NORMAL_LEAVES_SAPLING_CHANCES));
 
         add(ModBlocks.SULPHUR_ORE.get(),
         block -> createOreDrop(ModBlocks.SULPHUR_ORE.get(), ModItems.SULPHUR.get()));

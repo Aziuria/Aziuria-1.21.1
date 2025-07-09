@@ -1,4 +1,4 @@
-package net.Aziuria.aziuriamod.block;
+package net.Aziuria.aziuriamod.block.custom;
 
 import net.Aziuria.aziuriamod.item.ModItems;
 import net.minecraft.core.BlockPos;

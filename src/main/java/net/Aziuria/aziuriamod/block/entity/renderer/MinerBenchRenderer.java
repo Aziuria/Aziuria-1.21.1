@@ -1,8 +1,8 @@
 package net.Aziuria.aziuriamod.block.entity.renderer;
 
 import com.mojang.blaze3d.vertex.PoseStack;
-import net.Aziuria.aziuriamod.block.MinerBenchBlock;
-import net.Aziuria.aziuriamod.block.MinerPart;
+import net.Aziuria.aziuriamod.block.custom.MinerBenchBlock;
+import net.Aziuria.aziuriamod.block.part.MinerPart;
 import net.Aziuria.aziuriamod.block.entity.MinerBenchBlockEntity;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MultiBufferSource;

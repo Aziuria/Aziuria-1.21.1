@@ -86,6 +86,15 @@ public class ModItemModelProvider extends ItemModelProvider {
         trimmedArmorItem(ModItems.STEEL_CHESTPLATE);
         trimmedArmorItem(ModItems.STEEL_LEGGINGS);
         trimmedArmorItem(ModItems.STEEL_BOOTS);
+
+        saplingItem(ModBlocks.APPLE_SAPLING);
+    }
+
+    private ItemModelBuilder saplingItem(DeferredBlock<Block> item) {
+        return withExistingParent(item.getId().getPath(),
+                ResourceLocation.parse("item/generated")).texture("layer0",
+                ResourceLocation.fromNamespaceAndPath(AziuriaMod.MOD_ID,"block/" + item.getId().getPath()));
+
     }
 
     // Shoutout to El_Redstoniano for making this

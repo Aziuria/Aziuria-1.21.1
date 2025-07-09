@@ -1,4 +1,4 @@
-package net.Aziuria.aziuriamod.block;
+package net.Aziuria.aziuriamod.block.custom;
 
 import net.Aziuria.aziuriamod.item.ModItems;
 import net.minecraft.core.BlockPos;
@@ -12,7 +12,7 @@ import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-public class RadishCropBlock extends CropBlock {
+public class SpringOnionCropBlock extends CropBlock {
     public static final int MAX_AGE = 3;
     public static final IntegerProperty AGE = IntegerProperty.create("age", 0, 3);
     private static final VoxelShape[] SHAPE_BY_AGE =
@@ -23,7 +23,7 @@ public class RadishCropBlock extends CropBlock {
                     Block.box(0.0, 0.0, 0.0, 16.0, 8.0, 16.0)};
 
 
-    public RadishCropBlock(Properties properties) {
+    public SpringOnionCropBlock(Properties properties) {
         super(properties);
     }
 
@@ -34,18 +34,12 @@ public class RadishCropBlock extends CropBlock {
 
     @Override
     protected ItemLike getBaseSeedId() {
-        return ModItems.RADISH_SEEDS;
+        return ModItems.SPRING_ONION_SEEDS;
     }
 
     @Override
     public IntegerProperty getAgeProperty() {
         return AGE;
-    }
-
-    // **ADD THIS**
-    public IntegerProperty getPublicAgeProperty() {
-        return AGE;
-
     }
 
     @Override
@@ -58,4 +52,8 @@ public class RadishCropBlock extends CropBlock {
         builder.add(AGE);
     }
 
+    // <-- Add this method:
+    public IntegerProperty getPublicAgeProperty() {
+        return AGE;
+    }
 }

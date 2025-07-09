@@ -1,10 +1,9 @@
-package net.Aziuria.aziuriamod.block;
+package net.Aziuria.aziuriamod.block.custom;
 
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.level.block.FlowerBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.BlockGetter;

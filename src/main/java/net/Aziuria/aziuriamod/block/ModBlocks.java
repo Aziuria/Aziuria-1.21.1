@@ -1,14 +1,20 @@
 package net.Aziuria.aziuriamod.block;
 
 import net.Aziuria.aziuriamod.AziuriaMod;
+import net.Aziuria.aziuriamod.block.custom.*;
 import net.Aziuria.aziuriamod.block.entity.SteelBarsBlock;
 import net.Aziuria.aziuriamod.item.ModItems;
 import net.Aziuria.aziuriamod.item.custom.FuelItem;
+import net.Aziuria.aziuriamod.worldgen.tree.ModTreeGrowers;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.MapColor;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredBlock;
@@ -259,6 +265,19 @@ public class ModBlocks {
 
     public static final DeferredBlock<Block> FLAX_FLOWER_BLOCK = BLOCKS.register("flax_flower",
             () -> new FlaxFlowerBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.DANDELION)));
+
+    public static final DeferredBlock<Block> APPLE_LEAVES = registerBlock("apple_leaves",
+            () -> new ModAppleLeavesBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_LEAVES)) {
+                @Override
+                public boolean isFlammable(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
+                    return true;
+                }
+
+            });
+
+    public static final DeferredBlock<Block> APPLE_SAPLING = registerBlock("apple_sapling",
+            () -> new ModAppleSaplingBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_SAPLING)));
+
 
 
 

@@ -1,6 +1,6 @@
 package net.Aziuria.aziuriamod.villager;
 
-import net.Aziuria.aziuriamod.block.*;
+import net.Aziuria.aziuriamod.block.custom.*;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.ai.goal.Goal;

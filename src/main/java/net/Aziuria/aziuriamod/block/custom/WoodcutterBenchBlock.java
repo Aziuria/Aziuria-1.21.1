@@ -1,6 +1,7 @@
-package net.Aziuria.aziuriamod.block;
+package net.Aziuria.aziuriamod.block.custom;
 
 import com.mojang.serialization.MapCodec;
+import net.Aziuria.aziuriamod.block.part.WoodcutterPart;
 import net.Aziuria.aziuriamod.block.entity.WoodcutterBenchBlockEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
