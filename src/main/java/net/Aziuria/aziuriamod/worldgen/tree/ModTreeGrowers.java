@@ -40,5 +40,4 @@ public class ModTreeGrowers {
             Optional.empty(), Optional.of(ModConfiguredFeatures.APPLE_KEY_VARIANT_10), Optional.empty());
 
 
-
 }

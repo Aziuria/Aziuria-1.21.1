@@ -1,6 +1,8 @@
-package net.Aziuria.aziuriamod.worldgen;
+package net.Aziuria.aziuriamod.worldgen.rules.registry;
 
 import net.Aziuria.aziuriamod.AziuriaMod;
+import net.Aziuria.aziuriamod.worldgen.rules.NearLogPlacementModifier;
+import net.Aziuria.aziuriamod.worldgen.rules.NearbyWaterRadiusFilter;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.level.levelgen.placement.PlacementModifierType;
 import net.neoforged.neoforge.registries.DeferredHolder;
@@ -13,5 +15,8 @@ public class ModPlacementModifier {
 
     public static final DeferredHolder<PlacementModifierType<?>, PlacementModifierType<?>> NEAR_LOG =
             PLACEMENT_MODIFIERS.register("near_log", () -> NearLogPlacementModifier.TYPE);
+
+    public static final DeferredHolder<PlacementModifierType<?>, PlacementModifierType<?>> NEARBY_WATER_RADIUS_FILTER =
+            PLACEMENT_MODIFIERS.register("nearby_water_radius_filter", () -> NearbyWaterRadiusFilter.TYPE);
 
 }

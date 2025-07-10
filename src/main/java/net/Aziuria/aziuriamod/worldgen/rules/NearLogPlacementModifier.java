@@ -1,4 +1,4 @@
-package net.Aziuria.aziuriamod.worldgen;
+package net.Aziuria.aziuriamod.worldgen.rules;
 
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
@@ -68,6 +68,11 @@ public class NearLogPlacementModifier extends PlacementModifier {
 
                     if (dxNorm * dxNorm + dyNorm * dyNorm + dzNorm * dzNorm <= 1.0) {
                         BlockPos checkPos = pos.offset(dx, dy, dz);
+
+                        if (level.getBlockState(checkPos).is(BlockTags.PLANKS) || level.getBlockState(checkPos).is(BlockTags.FENCES)) {
+                            return Stream.empty();
+                        }
+
                         if (level.getBlockState(checkPos).is(BlockTags.LOGS)) {
                             foundLogs = true;
                         }

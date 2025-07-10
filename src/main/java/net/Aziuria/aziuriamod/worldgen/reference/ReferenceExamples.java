@@ -1,4 +1,4 @@
-package net.Aziuria.aziuriamod.worldgen;
+package net.Aziuria.aziuriamod.worldgen.reference;
 
 /**
  * ReferenceExamples
