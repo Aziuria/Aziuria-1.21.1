@@ -48,7 +48,7 @@ public class StorageBlockEntity extends BlockEntity {
         // Try placing the item into the slot
         if (slotStack.isEmpty()) {
             if (!heldItem.isEmpty()) {
-                int stackSize = Math.min(heldItem.getMaxStackSize(), 64);  // Ensure the stack does not exceed 64
+                int stackSize = Math.min(heldItem.getCount(), heldItem.getMaxStackSize());
                 inventory.set(slot, heldItem.copyWithCount(stackSize));
                 heldItem.shrink(stackSize);
                 setChanged();

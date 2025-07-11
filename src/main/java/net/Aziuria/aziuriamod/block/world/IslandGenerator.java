@@ -198,7 +198,7 @@ public class IslandGenerator {
                     }
 
                     // --- ▲▲▲ Collect tree candidate positions for delayed generation ▲▲▲ ---
-                    if (decoRoll > 0.91 && isGoodSoil) {
+                    if (decoRoll > 0.985 && isGoodSoil) {
                         treePositions.add(decoPos);
                     }
                 }
@@ -207,12 +207,22 @@ public class IslandGenerator {
 
         batcher.flush();
 
-// Schedule trees generation after 600 ticks delay, reuse the existing 'random'
-        DelayedExecutor.schedule(level, 600L, () -> {
+        batcher.flush();
+
+        long delayTicks;
+        switch (type) {
+            case SMALL -> delayTicks = 300L;   // Small islands spawn trees faster
+            case MEDIUM -> delayTicks = 1100L;  // Medium islands moderate delay
+            case LARGE -> delayTicks = 6000L;   // Large islands spawn trees slower
+            default -> delayTicks = 1100L;
+        }
+
+// Schedule tree generation after delay based on island size
+        DelayedExecutor.schedule(level, delayTicks, () -> {
             for (BlockPos pos : treePositions) {
                 TreeGenerator.generateTree(level, pos, biomeType, random);
             }
-            System.out.println("[IslandGenerator] Trees generated for biome: " + biomeType);
+            System.out.println("[IslandGenerator] Trees generated for biome: " + biomeType + " after delay " + delayTicks);
         });
 
         System.out.println("[IslandGenerator] Island generated with " + treePositions.size() + " tree candidates.");

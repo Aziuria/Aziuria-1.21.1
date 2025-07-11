@@ -1,5 +1,6 @@
 package net.Aziuria.aziuriamod.events;
 
+import net.Aziuria.aziuriamod.block.world.DelayedExecutor;
 import net.Aziuria.aziuriamod.handler.FastLeafDecayHandler;
 import net.Aziuria.aziuriamod.handler.LeafLitterHandler;
 import net.minecraft.server.level.ServerLevel;
@@ -20,6 +21,8 @@ public class ModEvents {
         if (!(event.getLevel() instanceof ServerLevel level)) return;
 
         tickCounter++;
+
+        DelayedExecutor.tick(level);
 
         if (tickCounter % 500 == 0) {
             VegetationGrowthHandler.spreadPlants(level);

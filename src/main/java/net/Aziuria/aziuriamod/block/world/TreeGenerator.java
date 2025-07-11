@@ -11,10 +11,7 @@ import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 
 public class TreeGenerator {
 
-    /**
-     * Generates a vanilla-shaped tree at the given position,
-     * using Minecraft's built-in ConfiguredFeature.
-     */
+
     public static void generateTree(ServerLevel level, BlockPos pos, IslandBiomeType biomeType, RandomSource random) {
 
         if (random.nextDouble() < 0.5) return;

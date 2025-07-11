@@ -1,22 +1,18 @@
 package net.Aziuria.aziuriamod.block.world;
 
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.server.MinecraftServer;
-import net.minecraft.server.TickTask;
+
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
 
 public class DelayedExecutor {
 
-    /**
-     * Schedules a task to run after a delay in server ticks.
-     *
-     * @param level      The server level where the task will run.
-     * @param delayTicks Delay in ticks before running the task.
-     * @param task       The Runnable task to execute.
-     */
+    private static final List<ScheduledTask> TASKS = new LinkedList<>();
+
     public static void schedule(ServerLevel level, long delayTicks, Runnable task) {
-        MinecraftServer server = level.getServer();
-        if (server == null) {
-            System.err.println("[DelayedExecutor] Server instance is null, cannot schedule task.");
+        if (level == null) {
+            System.err.println("[DelayedExecutor] ServerLevel is null, cannot schedule task.");
             return;
         }
 
@@ -25,19 +21,45 @@ public class DelayedExecutor {
             delayTicks = 0;
         }
 
-        // Calculate the tick to run the task on
-        int executeTick = server.getTickCount() + (int) delayTicks;
+        long executeTick = level.getGameTime() + delayTicks;
 
-        server.tell(new TickTask(executeTick, () -> {
-            try {
-                System.out.println("[DelayedExecutor] Running delayed task at server tick " + executeTick);
-                task.run();
-            } catch (Exception e) {
-                System.err.println("[DelayedExecutor] Exception during delayed task execution:");
-                e.printStackTrace();
+        synchronized (TASKS) {
+            TASKS.add(new ScheduledTask(level, executeTick, task));
+        }
+    }
+
+    /**
+     * Call this method on each server tick from your NeoForge tick event listener.
+     */
+    public static void tick(ServerLevel level) {
+        synchronized (TASKS) {
+            Iterator<ScheduledTask> iterator = TASKS.iterator();
+            long currentTick = level.getGameTime();
+
+            while (iterator.hasNext()) {
+                ScheduledTask scheduled = iterator.next();
+                if (scheduled.level == level && currentTick >= scheduled.executeTick) {
+                    try {
+                        scheduled.task.run();
+                    } catch (Exception e) {
+                        System.err.println("[DelayedExecutor] Exception during delayed task execution:");
+                        e.printStackTrace();
+                    }
+                    iterator.remove();
+                }
             }
-        }));
+        }
+    }
 
-        // --- ▲▲▲ Scheduled delayed task at tick: " + executeTick + " ▲▲▲ ---
+    private static class ScheduledTask {
+        final ServerLevel level;
+        final long executeTick;
+        final Runnable task;
+
+        ScheduledTask(ServerLevel level, long executeTick, Runnable task) {
+            this.level = level;
+            this.executeTick = executeTick;
+            this.task = task;
+        }
     }
 }
