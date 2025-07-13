@@ -20,7 +20,7 @@ import java.util.List;
 public class IslandGenerator {
 
     private static final double FOREST_THRESHOLD = 0.3;
-    private static final double TREE_SPAWN_CHANCE = 0.10;
+    private static final double TREE_SPAWN_CHANCE = 0.07;
 
     public static void generateIsland(ServerLevel level, BlockPos center, IslandType type, IslandBiomeType biomeType, long seed) {
         if (level == null || center == null || type == null || biomeType == null) {
@@ -64,7 +64,9 @@ public class IslandGenerator {
                 double noiseValue = getMultiOctaveNoise(noise, x * 0.05, z * 0.05);
 
                 // Combine radial falloff and noise for shape factor
-                double shapeFactor = Math.min(Math.max(radialFalloff + noiseValue * 0.15, 0.0), 1.0);
+                double noiseInfluence = 0.15;
+                double noiseFade = Math.min(Math.pow(dist * 2, 2), 1.0);  // ---> Noise fades from 0 at center to full at ~1/3 radius
+                double shapeFactor = Math.min(Math.max(radialFalloff + noiseValue * noiseInfluence * noiseFade, 0.0), 1.0);
 
                 int columnHeight = Math.max((int) (shapeFactor * maxIslandHeight), 2);
                 if (columnHeight < 1) continue;

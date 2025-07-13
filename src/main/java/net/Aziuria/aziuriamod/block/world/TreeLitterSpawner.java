@@ -18,16 +18,18 @@ public class TreeLitterSpawner {
                 ModBlocks.LEAF_LITTER.get(),    // Add your mod's leaf litter block(s)
         };
 
-        NearLogPlacementModifier litterPlacement = new NearLogPlacementModifier(9, 4.0);
+        NearLogPlacementModifier litterPlacement = new NearLogPlacementModifier(9, 8.0);
 
-        // Create SimplePlacementContext properly with all required parameters
         var ctx = new SimplePlacementContext(level, chunkGenerator, Optional.empty());
 
-        litterPlacement.getPositions(ctx, random, treePos).forEach(pos -> {
-            if (level.isEmptyBlock(pos)) {
-                var chosen = litterBlocks[random.nextInt(litterBlocks.length)];
-                level.setBlock(pos, chosen.defaultBlockState(), 2);
-            }
-        });
+// Run 2 times to double litter amount roughly
+        for (int i = 0; i < 4; i++) {
+            litterPlacement.getPositions(ctx, random, treePos).forEach(pos -> {
+                if (level.isEmptyBlock(pos)) {
+                    var chosen = litterBlocks[random.nextInt(litterBlocks.length)];
+                    level.setBlock(pos, chosen.defaultBlockState(), 2);
+                }
+            });
+        }
     }
 }
