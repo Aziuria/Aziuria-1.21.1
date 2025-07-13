@@ -37,6 +37,7 @@ public class BlockBatcher {
         }
     }
 
+
     private void processQueue() {
         int count = 0;
 

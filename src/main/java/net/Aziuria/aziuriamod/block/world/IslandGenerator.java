@@ -71,11 +71,39 @@ public class IslandGenerator {
                 int columnHeight = Math.max((int) (shapeFactor * maxIslandHeight), 2);
                 if (columnHeight < 1) continue;
 
-                int baseY = oceanFloorHeight;
+                int baseY = oceanFloorHeight - 2;
                 int topY = baseY + columnHeight;
 
-                // Seabed
-                for (int y = oceanFloorHeight - 3; y < baseY; y++) {
+
+                //seabed stuff
+                double maxLowering = 3.0;
+                double seabedLoweringExact = (1 - shapeFactor) * maxLowering;
+                double easing = Math.pow(seabedLoweringExact, 3);
+                int seabedLowering = (int) Math.round(easing);
+
+                int seabedTopY = baseY - seabedLowering;
+
+// Sample average ocean floor height around (worldX, worldZ)
+                int sampleRadius = 2;
+                int sumOceanFloor = 0;
+                int count = 0;
+                for (int dx = -sampleRadius; dx <= sampleRadius; dx++) {
+                    for (int dz = -sampleRadius; dz <= sampleRadius; dz++) {
+                        int sampleX = worldX + dx;
+                        int sampleZ = worldZ + dz;
+                        int sampleHeight = level.getHeight(Heightmap.Types.OCEAN_FLOOR_WG, sampleX, sampleZ);
+                        sumOceanFloor += sampleHeight;
+                        count++;
+                    }
+                }
+                int avgOceanFloor = sumOceanFloor / count;
+
+// Clamp seabedTopY to avoid big cliffs
+                seabedTopY = Math.max(seabedTopY, avgOceanFloor - 3);
+                seabedTopY = Math.min(seabedTopY, avgOceanFloor + 1);
+
+// Fill seabed blocks smoothly
+                for (int y = seabedTopY; y < avgOceanFloor - 3; y++) {
                     BlockPos seabedPos = new BlockPos(worldX, y, worldZ);
                     double blend = random.nextDouble();
                     if (blend < 0.25) batcher.setBlock(seabedPos, Blocks.GRAVEL.defaultBlockState());
@@ -105,19 +133,64 @@ public class IslandGenerator {
                     } else if (y > topY - 3) {
                         batcher.setBlock(pos, Blocks.DIRT.defaultBlockState());
                     } else {
-                        double oreRoll = random.nextDouble();
-                        if (oreRoll < 0.01) batcher.setBlock(pos, Blocks.COAL_ORE.defaultBlockState());
-                        else if (oreRoll < 0.015) batcher.setBlock(pos, Blocks.IRON_ORE.defaultBlockState());
-                        else if (oreRoll < 0.02) batcher.setBlock(pos, Blocks.COPPER_ORE.defaultBlockState());
-                        else if (oreRoll < 0.022) batcher.setBlock(pos, Blocks.REDSTONE_ORE.defaultBlockState());
-                        else if (oreRoll < 0.024) batcher.setBlock(pos, Blocks.LAPIS_ORE.defaultBlockState());
-                        else if (oreRoll < 0.025) batcher.setBlock(pos, Blocks.GOLD_ORE.defaultBlockState());
-                        else if (oreRoll < 0.026) batcher.setBlock(pos, Blocks.DIAMOND_ORE.defaultBlockState());
-                        else if (oreRoll < 0.027) batcher.setBlock(pos, Blocks.EMERALD_ORE.defaultBlockState());
-                        else if (oreRoll < 0.03) batcher.setBlock(pos, ModBlocks.SULPHUR_ORE.get().defaultBlockState());
-                        else if (oreRoll < 0.06)
-                            batcher.setBlock(pos, ModBlocks.POTASSIUM_ORE.get().defaultBlockState());
-                        else batcher.setBlock(pos, Blocks.STONE.defaultBlockState());
+                        if (random.nextDouble() < 0.005) { // 0.5% per column chance
+                            Block oreBlock;
+                            double oreTypeRoll = random.nextDouble();
+                            int veinSize = 4; // default vein size
+
+                            if (oreTypeRoll < 0.3) { // 30%
+                                oreBlock = Blocks.COAL_ORE;
+                                veinSize = 8 + random.nextInt(5); // 8–12
+                            } else if (oreTypeRoll < 0.5) { // 20%
+                                oreBlock = Blocks.IRON_ORE;
+                                veinSize = 4 + random.nextInt(6); // 4–9
+                            } else if (oreTypeRoll < 0.6) { // 10%
+                                oreBlock = Blocks.COPPER_ORE;
+                            } else if (oreTypeRoll < 0.7) { // 10%
+                                oreBlock = Blocks.REDSTONE_ORE;
+                                veinSize = 4 + random.nextInt(3); // 4–6
+                            } else if (oreTypeRoll < 0.75) { // 5%
+                                oreBlock = Blocks.LAPIS_ORE;
+                            } else if (oreTypeRoll < 0.8) { // 5%
+                                oreBlock = Blocks.GOLD_ORE;
+                            } else if (oreTypeRoll < 0.82) { // 2%
+                                oreBlock = Blocks.DIAMOND_ORE;
+                                veinSize = 2; // fixed
+                            } else if (oreTypeRoll < 0.84) { // 2%
+                                oreBlock = ModBlocks.SULPHUR_ORE.get();
+                                veinSize = 2; // fixed
+                            } else if (oreTypeRoll < 0.86) { // 2%
+                                oreBlock = ModBlocks.POTASSIUM_ORE.get();
+                                veinSize = 2; // fixed
+                            } else if (oreTypeRoll < 0.91) { // 5%
+                                oreBlock = Blocks.EMERALD_ORE;
+                                veinSize = 1; // single block
+                            } else { // 9%
+                                oreBlock = Blocks.STONE;
+                            }
+
+                            // Starting position for vein
+                            BlockPos veinPos = pos;
+
+                            for (int i = 0; i < veinSize; i++) {
+                                if (veinPos.getY() < topY - 3 && veinPos.getY() >= baseY) {
+                                    batcher.setBlock(veinPos, oreBlock.defaultBlockState());
+                                }
+
+                                // Move veinPos by 1 block in a random direction (X, Y, or Z)
+                                int direction = random.nextInt(6); // 0-5 for 6 directions
+                                switch (direction) {
+                                    case 0 -> veinPos = veinPos.offset(1, 0, 0);   // +X
+                                    case 1 -> veinPos = veinPos.offset(-1, 0, 0);  // -X
+                                    case 2 -> veinPos = veinPos.offset(0, 1, 0);   // +Y
+                                    case 3 -> veinPos = veinPos.offset(0, -1, 0);  // -Y
+                                    case 4 -> veinPos = veinPos.offset(0, 0, 1);   // +Z
+                                    case 5 -> veinPos = veinPos.offset(0, 0, -1);  // -Z
+                                }
+                            }
+                        } else {
+                            batcher.setBlock(pos, Blocks.STONE.defaultBlockState());
+                        }
                     }
                 }
 
