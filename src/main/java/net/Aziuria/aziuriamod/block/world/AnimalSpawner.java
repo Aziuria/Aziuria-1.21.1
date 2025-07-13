@@ -5,6 +5,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.level.levelgen.Heightmap;
+import net.Aziuria.aziuriamod.block.world.IslandType;
 
 import java.util.List;
 import java.util.Random;
@@ -35,13 +36,25 @@ public class AnimalSpawner {
     private static final int MIN_SPAWN_RADIUS = 20;
     private static final int MAX_SPAWN_RADIUS = 40;
 
-    public static void spawnAnimalsNearPlayer(ServerLevel level, ServerPlayer player, Random random) {
+    // New method to get max animals by island type
+    private static int getMaxAnimalsForIsland(IslandType islandType) {
+        return switch (islandType) {
+            case SMALL -> 5;
+            case MEDIUM -> 12;
+            case LARGE -> 24;
+        };
+    }
+
+    // Updated method signature with IslandType parameter
+    public static void spawnAnimalsNearPlayer(ServerLevel level, ServerPlayer player, Random random, IslandType islandType) {
         BlockPos playerPos = player.blockPosition();
 
         // Calculate total weight sum once
         double totalChance = ANIMALS.stream().mapToDouble(a -> a.chance).sum();
 
-        for (int i = 0; i < 9; i++) {
+        int maxAnimals = getMaxAnimalsForIsland(islandType);
+
+        for (int i = 0; i < maxAnimals; i++) {
             // Random distance between MIN_SPAWN_RADIUS and MAX_SPAWN_RADIUS
             double distance = MIN_SPAWN_RADIUS + random.nextDouble() * (MAX_SPAWN_RADIUS - MIN_SPAWN_RADIUS);
             double angle = random.nextDouble() * 2 * Math.PI;

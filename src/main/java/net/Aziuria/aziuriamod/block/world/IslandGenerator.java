@@ -21,7 +21,7 @@ import java.util.List;
 
 public class IslandGenerator {
 
-    private static final double FOREST_THRESHOLD = 0.3;
+    private static final double FOREST_THRESHOLD = 0.25;
     private static final double TREE_SPAWN_CHANCE = 0.07;
 
     public static void generateIsland(ServerLevel level, BlockPos center, IslandType type, IslandBiomeType biomeType, long seed) {
@@ -244,7 +244,7 @@ public class IslandGenerator {
                             if (decoRoll < 0.03) batcher.setBlock(decoPos, Blocks.DANDELION.defaultBlockState());
                             else if (decoRoll < 0.06) batcher.setBlock(decoPos, Blocks.POPPY.defaultBlockState());
                             else if (decoRoll < 0.09) batcher.setBlock(decoPos, Blocks.TALL_GRASS.defaultBlockState());
-                            else if (decoRoll < 0.10) batcher.setBlock(decoPos, Blocks.SUNFLOWER.defaultBlockState());
+                            else if (decoRoll < 0.10) batcher.setBlock(decoPos, Blocks.SHORT_GRASS.defaultBlockState());
                         }
                         case MUSHROOM -> {
                             if (decoRoll < 0.07) batcher.setBlock(decoPos, Blocks.RED_MUSHROOM.defaultBlockState());
@@ -304,18 +304,18 @@ public class IslandGenerator {
                 TreeGenerator.generateTree(level, pos, biomeType, random);
                 TreeLitterSpawner.spawnLitterAroundTree(level, level.getChunkSource().getGenerator(), pos, random, biomeType);
             }
-            System.out.println("[IslandGenerator] Trees generated for biome: " + biomeType + " after delay " + delayTicks);
         });
 
-        System.out.println("[IslandGenerator] Island generated with " + treePositions.size() + " tree candidates.");
 
         DelayedExecutor.schedule(level, delayTicks, () -> {
             Player player = level.getNearestPlayer(center.getX(), center.getY(), center.getZ(), 40, false);
             if (player instanceof ServerPlayer serverPlayer) {
-                AnimalSpawner.spawnAnimalsNearPlayer(level, serverPlayer, new java.util.Random(random.nextLong()));
-                System.out.println("[IslandGenerator] Animals spawned near player after delay " + delayTicks);
-            } else {
-                System.out.println("[IslandGenerator] No ServerPlayer found nearby to spawn animals.");
+                AnimalSpawner.spawnAnimalsNearPlayer(
+                        level,
+                        serverPlayer,
+                        new java.util.Random(random.nextLong()),
+                        type   // Use the instance field here
+                );
             }
         });
 

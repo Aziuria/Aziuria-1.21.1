@@ -1,5 +1,6 @@
 package net.Aziuria.aziuriamod.block.world;
 
+import net.Aziuria.aziuriamod.worldgen.ModConfiguredFeatures;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.Registries;
@@ -19,7 +20,8 @@ public class TreeGenerator {
 
             case FOREST, PLAINS -> {
                 double chance = random.nextDouble();
-                if (chance < 0.1) yield TreeFeatures.BIRCH;
+                if (chance < 0.01) yield ModConfiguredFeatures.APPLE_KEY_VARIANT_1;  // 1% chance apple tree
+                else if (chance < 0.1) yield TreeFeatures.BIRCH;
                 else if (chance < 0.3) yield TreeFeatures.FANCY_OAK;
                 else yield TreeFeatures.OAK;
             }
