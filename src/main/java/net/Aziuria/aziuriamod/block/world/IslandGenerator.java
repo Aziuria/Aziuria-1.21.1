@@ -7,7 +7,9 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.features.TreeFeatures;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.util.RandomSource;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.levelgen.Heightmap;
@@ -118,7 +120,7 @@ public class IslandGenerator {
                 for (int y = baseY; y <= topY; y++) {
                     BlockPos pos = new BlockPos(worldX, y, worldZ);
                     if (y == topY) {
-                        if (shapeFactor < 0.15 || y <= waterHeight) {
+                        if (shapeFactor < 0.15 || y <= waterHeight - 1) {
                             topBlock = Blocks.SAND;
                         } else {
                             switch (biomeType) {
@@ -290,10 +292,10 @@ public class IslandGenerator {
 
         long delayTicks;
         switch (type) {
-            case SMALL -> delayTicks = 300L;   // Small islands spawn trees faster
-            case MEDIUM -> delayTicks = 1100L;  // Medium islands moderate delay
-            case LARGE -> delayTicks = 6000L;   // Large islands spawn trees slower
-            default -> delayTicks = 1100L;
+            case SMALL -> delayTicks = 160L;   // Small islands spawn trees faster
+            case MEDIUM -> delayTicks = 600L;  // Medium islands moderate delay
+            case LARGE -> delayTicks = 5100L;   // Large islands spawn trees slower
+            default -> delayTicks = 600L;
         }
 
 // Schedule tree generation after delay based on island size
@@ -306,6 +308,17 @@ public class IslandGenerator {
         });
 
         System.out.println("[IslandGenerator] Island generated with " + treePositions.size() + " tree candidates.");
+
+        DelayedExecutor.schedule(level, delayTicks, () -> {
+            Player player = level.getNearestPlayer(center.getX(), center.getY(), center.getZ(), 40, false);
+            if (player instanceof ServerPlayer serverPlayer) {
+                AnimalSpawner.spawnAnimalsNearPlayer(level, serverPlayer, new java.util.Random(random.nextLong()));
+                System.out.println("[IslandGenerator] Animals spawned near player after delay " + delayTicks);
+            } else {
+                System.out.println("[IslandGenerator] No ServerPlayer found nearby to spawn animals.");
+            }
+        });
+
     }
 
     private static double getMultiOctaveNoise(SimplexNoise noise, double x, double z) {
