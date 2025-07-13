@@ -1,0 +1,33 @@
+package net.Aziuria.aziuriamod.block.world;
+
+import net.Aziuria.aziuriamod.block.ModBlocks;
+import net.Aziuria.aziuriamod.worldgen.rules.NearLogPlacementModifier;
+import net.minecraft.core.BlockPos;
+import net.minecraft.util.RandomSource;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.WorldGenLevel;
+
+import java.util.Optional;
+import net.minecraft.util.RandomSource;
+import net.minecraft.world.level.chunk.ChunkGenerator;
+
+public class TreeLitterSpawner {
+
+    public static void spawnLitterAroundTree(WorldGenLevel level, ChunkGenerator chunkGenerator, BlockPos treePos, RandomSource random, IslandBiomeType biomeType) {
+        var litterBlocks = new net.minecraft.world.level.block.Block[]{
+                ModBlocks.LEAF_LITTER.get(),    // Add your mod's leaf litter block(s)
+        };
+
+        NearLogPlacementModifier litterPlacement = new NearLogPlacementModifier(9, 4.0);
+
+        // Create SimplePlacementContext properly with all required parameters
+        var ctx = new SimplePlacementContext(level, chunkGenerator, Optional.empty());
+
+        litterPlacement.getPositions(ctx, random, treePos).forEach(pos -> {
+            if (level.isEmptyBlock(pos)) {
+                var chosen = litterBlocks[random.nextInt(litterBlocks.length)];
+                level.setBlock(pos, chosen.defaultBlockState(), 2);
+            }
+        });
+    }
+}

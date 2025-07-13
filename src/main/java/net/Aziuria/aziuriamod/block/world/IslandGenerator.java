@@ -19,6 +19,9 @@ import java.util.List;
 
 public class IslandGenerator {
 
+    private static final double FOREST_THRESHOLD = 0.3;
+    private static final double TREE_SPAWN_CHANCE = 0.10;
+
     public static void generateIsland(ServerLevel level, BlockPos center, IslandType type, IslandBiomeType biomeType, long seed) {
         if (level == null || center == null || type == null || biomeType == null) {
             throw new IllegalArgumentException("Level, center, type or biomeType cannot be null");
@@ -198,7 +201,8 @@ public class IslandGenerator {
                     }
 
                     // --- ▲▲▲ Collect tree candidate positions for delayed generation ▲▲▲ ---
-                    if (decoRoll > 0.985 && isGoodSoil) {
+                    double forestNoise = noise.getValue(worldX * 0.01, worldZ * 0.01, 0); // low frequency
+                    if (forestNoise > FOREST_THRESHOLD && isGoodSoil && random.nextDouble() < TREE_SPAWN_CHANCE) {
                         treePositions.add(decoPos);
                     }
                 }
@@ -221,6 +225,7 @@ public class IslandGenerator {
         DelayedExecutor.schedule(level, delayTicks, () -> {
             for (BlockPos pos : treePositions) {
                 TreeGenerator.generateTree(level, pos, biomeType, random);
+                TreeLitterSpawner.spawnLitterAroundTree(level, level.getChunkSource().getGenerator(), pos, random, biomeType);
             }
             System.out.println("[IslandGenerator] Trees generated for biome: " + biomeType + " after delay " + delayTicks);
         });
