@@ -34,7 +34,7 @@ public class AnimalSpawner {
     );
 
     private static final int MIN_SPAWN_RADIUS = 20;
-    private static final int MAX_SPAWN_RADIUS = 40;
+    private static final int MAX_SPAWN_RADIUS = 0;
 
     // New method to get max animals by island type
     private static int getMaxAnimalsForIsland(IslandType islandType) {

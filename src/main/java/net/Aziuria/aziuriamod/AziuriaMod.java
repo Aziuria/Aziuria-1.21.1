@@ -26,6 +26,7 @@ import net.Aziuria.aziuriamod.particle.FallingLeafParticle;
 import net.Aziuria.aziuriamod.particle.ModParticles;
 import net.Aziuria.aziuriamod.sounds.ModSounds;
 import net.Aziuria.aziuriamod.villager.ModVillagerTrades;
+import net.Aziuria.aziuriamod.villager.ModVillagers;
 import net.Aziuria.aziuriamod.villager.VillagerAIHandler;
 import net.Aziuria.aziuriamod.villager.VillagerProfessionTickHandler;
 import net.Aziuria.aziuriamod.worldgen.rules.registry.ModPlacementModifier;
@@ -94,6 +95,7 @@ public class AziuriaMod {
         ModItems.register(modEventBus);
         ModBlocks.register(modEventBus);
         ModSounds.register(modEventBus);
+        ModVillagers.register(modEventBus);
         ModBlockEntities.register(modEventBus);
         ModMenus.register(modEventBus);
         ModDataComponents.register(modEventBus);

@@ -109,6 +109,9 @@
   "item.aziuriamod.island_generator_medium": "Medium Island generator",
   "item.aziuriamod.island_generator_large": "Large Island generator",
 
+  "entity.minecraft.villager.aziuriamod.woodcutter": "Woodcutter",
+  "entity.minecraft.villager.aziuriamod.miner": "Miner",
+
 
 
   "creativetab.aziuriamod.useful_items_and_blocks": "Useful Items and Blocks"

@@ -1,0 +1,13 @@
+{
+  "replace": false,
+  "values": [
+    {
+      "id": "aziuriamod:woodcutter_poi",
+      "required": false
+    },
+    {
+      "id": "aziuriamod:miner_poi",
+      "required": false
+    }
+  ]
+}
