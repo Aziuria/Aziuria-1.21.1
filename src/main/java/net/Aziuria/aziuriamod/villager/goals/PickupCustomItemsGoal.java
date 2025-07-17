@@ -1,6 +1,8 @@
-package net.Aziuria.aziuriamod.villager;
+package net.Aziuria.aziuriamod.villager.goals;
 
+import net.Aziuria.aziuriamod.block.ModBlocks;
 import net.Aziuria.aziuriamod.item.ModItems;
+import net.Aziuria.aziuriamod.villager.ModVillagers;
 import net.minecraft.world.entity.ai.goal.Goal;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.npc.Villager;
@@ -66,11 +68,17 @@ public class PickupCustomItemsGoal extends Goal {
                 entity -> {
                     Item item = entity.getItem().getItem();
                     VillagerProfession profession = villager.getVillagerData().getProfession();
+
                     if (profession == VillagerProfession.FARMER) {
                         return isFarmerItem(item);
                     } else if (profession == VillagerProfession.FISHERMAN) {
                         return isFishermanItem(item);
+                    } else if (profession == ModVillagers.WOODCUTTER.value()) {
+                        return isWoodcutterItem(item);
+                    } else if (profession == ModVillagers.MINER.value()) {
+                        return isMinerItem(item);
                     }
+
                     return false;
                 }
         );
@@ -97,5 +105,77 @@ public class PickupCustomItemsGoal extends Goal {
                 || item == Items.SALMON
                 || item == Items.PUFFERFISH
                 || item == Items.TROPICAL_FISH;
+    }
+
+    private boolean isWoodcutterItem(Item item) {
+        // Vanilla axes
+        if (item == Items.WOODEN_AXE
+                || item == Items.STONE_AXE
+                || item == Items.IRON_AXE
+                || item == Items.DIAMOND_AXE
+                || item == Items.NETHERITE_AXE) {
+            return true;
+        }
+
+        // Vanilla logs
+        if (item == Items.OAK_LOG
+                || item == Items.BIRCH_LOG
+                || item == Items.SPRUCE_LOG
+                || item == Items.JUNGLE_LOG
+                || item == Items.ACACIA_LOG
+                || item == Items.DARK_OAK_LOG
+                || item == Items.MANGROVE_LOG
+                || item == Items.CHERRY_LOG) {
+            return true;
+        }
+
+        // Vanilla wood blocks
+        if (item == Items.OAK_WOOD
+                || item == Items.BIRCH_WOOD
+                || item == Items.SPRUCE_WOOD
+                || item == Items.JUNGLE_WOOD
+                || item == Items.ACACIA_WOOD
+                || item == Items.DARK_OAK_WOOD
+                || item == Items.MANGROVE_WOOD
+                || item == Items.CHERRY_WOOD) {
+            return true;
+        }
+
+        // Vanilla saplings + mangrove propagule
+        if (item == Items.OAK_SAPLING
+                || item == Items.BIRCH_SAPLING
+                || item == Items.SPRUCE_SAPLING
+                || item == Items.JUNGLE_SAPLING
+                || item == Items.ACACIA_SAPLING
+                || item == Items.DARK_OAK_SAPLING
+                || item == Items.MANGROVE_PROPAGULE
+                || item == Items.CHERRY_SAPLING
+                || item == ModBlocks.APPLE_SAPLING.get().asItem()) { // <-- Your modded apple sapling here
+            return true;
+        }
+
+        // Modded steel axe
+        if (item == ModItems.STEEL_AXE.get()) {
+            return true;
+        }
+
+        return false;
+    }
+
+    private boolean isMinerItem(Item item) {
+        return item == Items.COAL
+                || item == Items.RAW_IRON
+                || item == Items.RAW_GOLD
+                || item == Items.DIAMOND
+                || item == Items.EMERALD
+                || item == Items.QUARTZ
+                || item == Items.ANCIENT_DEBRIS
+                || item == Items.LAPIS_LAZULI
+                || item == Items.REDSTONE
+                || item == Items.STONE
+                || item == Items.COBBLESTONE
+                || item == ModItems.POTASSIUM.get()
+                || item == ModItems.SULPHUR.get()
+                || item == ModItems.STEEL_PICKAXE.get();
     }
 }

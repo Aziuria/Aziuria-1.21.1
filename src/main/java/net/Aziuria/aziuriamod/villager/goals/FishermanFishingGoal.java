@@ -1,4 +1,4 @@
-package net.Aziuria.aziuriamod.villager;
+package net.Aziuria.aziuriamod.villager.goals;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -191,21 +191,9 @@ public class FishermanFishingGoal extends Goal {
         ItemStack main = villager.getMainHandItem();
         if (main.getItem() instanceof FishingRodItem) return true;
 
-        if (equipRetryCooldown > 0) {
-            equipRetryCooldown--;
-            return false;
-        }
-
-        for (ItemStack stack : villager.getInventory().getItems()) {
-            if (stack.getItem() instanceof FishingRodItem) {
-                villager.setItemInHand(InteractionHand.MAIN_HAND, stack.copy());
-                equipRetryCooldown = 40;
-                return true;
-            }
-        }
-
-        equipRetryCooldown = 40;
-        return false;
+        // Instantly give a new fishing rod without checking inventory
+        villager.setItemInHand(InteractionHand.MAIN_HAND, new ItemStack(Items.FISHING_ROD));
+        return true;
     }
 
     private BlockPos findNearbyWaterSpot() {

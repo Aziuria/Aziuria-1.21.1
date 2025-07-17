@@ -1,4 +1,4 @@
-package net.Aziuria.aziuriamod.villager;
+package net.Aziuria.aziuriamod.villager.goals;
 
 import net.Aziuria.aziuriamod.block.custom.*;
 import net.minecraft.core.BlockPos;

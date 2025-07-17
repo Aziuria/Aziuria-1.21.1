@@ -1,7 +1,6 @@
 package net.Aziuria.aziuriamod.villager;
 
-import net.Aziuria.aziuriamod.item.ModItems;
-import net.minecraft.core.BlockPos;
+import net.Aziuria.aziuriamod.villager.goals.*;
 import net.minecraft.world.entity.ai.goal.AvoidEntityGoal;
 import net.minecraft.world.entity.ai.goal.PanicGoal;
 import net.minecraft.world.entity.npc.Villager;
@@ -52,6 +51,21 @@ public class VillagerAIHandler {
             villager.goalSelector.addGoal(2, new PickupCustomItemsGoal(villager));
             addStartingFishingRod(villager);
         }
+
+        // Add Woodcutter profession and goals here
+        if (prof == ModVillagers.WOODCUTTER.value()) {
+            villager.goalSelector.addGoal(1, new CutTreeGoal(villager, 0.6D));  // Your tree cutting goal (you'll need to implement this)
+            villager.goalSelector.addGoal(2, new StoreWoodInChestGoal(villager, 0.6D));  // The storing goal you provided
+            villager.goalSelector.addGoal(3, new PickupCustomItemsGoal(villager));  // Assuming you want this too
+            addStartingAxe(villager);
+        }
+
+        if (prof == ModVillagers.MINER.value()) {
+            villager.goalSelector.addGoal(1, new MineBlockGoal(villager, 0.6D)); // you'll create this goal
+            villager.goalSelector.addGoal(2, new StoreOreInChestGoal(villager, 0.6D)); // you can create this storing goal too
+            villager.goalSelector.addGoal(3, new PickupCustomItemsGoal(villager));
+            addStartingPickaxe(villager);
+        }
     }
 
     private static void addStartingSeeds(Villager villager) {
@@ -63,4 +77,13 @@ public class VillagerAIHandler {
     private static void addStartingFishingRod(Villager villager) {
         villager.getInventory().addItem(new ItemStack(Items.FISHING_ROD, 1));
     }
+
+    private static void addStartingAxe(Villager villager) {
+        villager.getInventory().addItem(new ItemStack(Items.IRON_AXE, 1));
+    }
+
+    private static void addStartingPickaxe(Villager villager) {
+        villager.getInventory().addItem(new ItemStack(Items.IRON_PICKAXE, 1));
+    }
+
 }

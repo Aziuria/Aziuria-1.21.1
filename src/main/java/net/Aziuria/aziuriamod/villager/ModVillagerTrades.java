@@ -1,5 +1,6 @@
 package net.Aziuria.aziuriamod.villager;
 
+import net.Aziuria.aziuriamod.block.ModBlocks;
 import net.Aziuria.aziuriamod.item.ModItems;
 import net.minecraft.world.entity.npc.VillagerProfession;
 import net.minecraft.world.item.ItemStack;
@@ -166,14 +167,14 @@ public class ModVillagerTrades {
 
             // LEVEL 3 - MINER
 
-            addBuyTrade(event, 2, Items.IRON_INGOT.getDefaultInstance(), 7, 2, 6);
-            addSellTrade(event, 2, Items.IRON_INGOT.getDefaultInstance(), 8, 2, 6);
+            addBuyTrade(event, 3, Items.IRON_INGOT.getDefaultInstance(), 7, 2, 6);
+            addSellTrade(event, 3, Items.IRON_INGOT.getDefaultInstance(), 8, 2, 6);
 
-            addBuyTrade(event, 2, Items.GOLD_INGOT.getDefaultInstance(), 7, 2, 6);
-            addSellTrade(event, 2, Items.GOLD_INGOT.getDefaultInstance(), 9, 1, 6);
+            addBuyTrade(event, 3, Items.GOLD_INGOT.getDefaultInstance(), 7, 2, 6);
+            addSellTrade(event, 3, Items.GOLD_INGOT.getDefaultInstance(), 9, 1, 6);
 
-            addBuyTrade(event, 2, Items.DIAMOND.getDefaultInstance(), 11, 2, 6);
-            addSellTrade(event, 2, Items.DIAMOND.getDefaultInstance(), 7, 3, 6);
+            addBuyTrade(event, 3, Items.DIAMOND.getDefaultInstance(), 11, 2, 6);
+            addSellTrade(event, 3, Items.DIAMOND.getDefaultInstance(), 7, 3, 6);
 
             addBuyTrade(event, 3, Items.DIAMOND_ORE.getDefaultInstance(), 10, 2, 6);
             addSellTrade(event, 3, Items.DIAMOND_ORE.getDefaultInstance(), 6, 3, 6);
@@ -193,46 +194,149 @@ public class ModVillagerTrades {
 
             // LEVEL 5 - MINER
 
-            addBuyTrade(event, 5, Items.DIAMOND_PICKAXE.getDefaultInstance(), 22, 1, 20);
-            addSellTrade(event, 5, Items.DIAMOND_PICKAXE.getDefaultInstance(), 1, 4, 20);
+            addBuyTrade(event, 5, Items.DIAMOND_PICKAXE.getDefaultInstance(), 22, 1, 10);
+            addSellTrade(event, 5, Items.DIAMOND_PICKAXE.getDefaultInstance(), 1, 4, 10);
 
-            addBuyTrade(event, 5, Items.NETHERITE_PICKAXE.getDefaultInstance(), 28, 1, 20);
-            addSellTrade(event, 5, Items.NETHERITE_PICKAXE.getDefaultInstance(), 1, 5, 20);
+            addBuyTrade(event, 5, Items.NETHERITE_PICKAXE.getDefaultInstance(), 28, 1, 10);
+            addSellTrade(event, 5, Items.NETHERITE_PICKAXE.getDefaultInstance(), 1, 5, 10);
 
-            addBuyTrade(event, 5, Items.DIAMOND.getDefaultInstance(), 18, 6, 20);
-            addSellTrade(event, 5, Items.DIAMOND.getDefaultInstance(), 10, 6, 20);
+            addBuyTrade(event, 5, Items.DIAMOND.getDefaultInstance(), 18, 6, 10);
+            addSellTrade(event, 5, Items.DIAMOND.getDefaultInstance(), 10, 6, 10);
         }
 
         if (event.getType() == ModVillagers.WOODCUTTER.value()) {
             // === WOODCUTTER TRADES ===
 
-            // LEVEL 1 - Logs
-            addBuyTrade(event, 1, Items.OAK_LOG.getDefaultInstance(), 4, 4);
-            addBuyTrade(event, 1, Items.SPRUCE_LOG.getDefaultInstance(), 4, 4);
-            addBuyTrade(event, 1, Items.BIRCH_LOG.getDefaultInstance(), 4, 4);
+            // LEVEL 1 - WOODCUTTER
 
+            addBuyTrade(event, 1, Items.OAK_LOG.getDefaultInstance(), 2, 5,2);
             addSellTrade(event, 1, Items.OAK_LOG.getDefaultInstance(), 6, 1, 2);
+
+            addBuyTrade(event, 1, Items.SPRUCE_LOG.getDefaultInstance(), 2, 5,2);
             addSellTrade(event, 1, Items.SPRUCE_LOG.getDefaultInstance(), 6, 1, 2);
 
-            // LEVEL 2 - Planks
-            addBuyTrade(event, 2, Items.OAK_PLANKS.getDefaultInstance(), 2, 6, 5);
-            addBuyTrade(event, 2, Items.SPRUCE_PLANKS.getDefaultInstance(), 2, 6, 5);
-            addSellTrade(event, 2, Items.OAK_PLANKS.getDefaultInstance(), 4, 1, 5);
-            addSellTrade(event, 2, Items.SPRUCE_PLANKS.getDefaultInstance(), 4, 1, 5);
+            addBuyTrade(event, 1, Items.BIRCH_LOG.getDefaultInstance(), 2, 4,2);
+            addSellTrade(event, 1, Items.BIRCH_LOG.getDefaultInstance(), 6, 1, 2);
 
-            // LEVEL 3 - Axes
-            addBuyTrade(event, 3, Items.STONE_AXE.getDefaultInstance(), 8, 1, 8);
-            addBuyTrade(event, 3, Items.IRON_AXE.getDefaultInstance(), 12, 1, 8);
-            addSellTrade(event, 3, Items.STONE_AXE.getDefaultInstance(), 1, 3, 8);
-            addSellTrade(event, 3, Items.IRON_AXE.getDefaultInstance(), 1, 5, 8);
+            addBuyTrade(event, 1, Items.JUNGLE_LOG.getDefaultInstance(), 2, 4,2);
+            addSellTrade(event, 1, Items.JUNGLE_LOG.getDefaultInstance(), 6, 1, 2);
 
-            // LEVEL 4 - Better axes
-            addBuyTrade(event, 4, Items.DIAMOND_AXE.getDefaultInstance(), 25, 1, 12);
-            addSellTrade(event, 4, Items.DIAMOND_AXE.getDefaultInstance(), 1, 10, 12);
+            addBuyTrade(event, 1, Items.ACACIA_LOG.getDefaultInstance(), 2, 4,2);
+            addSellTrade(event, 1, Items.ACACIA_LOG.getDefaultInstance(), 6, 1, 2);
+
+            addBuyTrade(event, 1, Items.DARK_OAK_LOG.getDefaultInstance(), 2, 4,2);
+            addSellTrade(event, 1, Items.DARK_OAK_LOG.getDefaultInstance(), 6, 1, 2);
+
+            addBuyTrade(event, 1, Items.CHERRY_LOG.getDefaultInstance(), 2, 4,2);
+            addSellTrade(event, 1, Items.CHERRY_LOG.getDefaultInstance(), 6, 1, 2);
+
+            addBuyTrade(event, 1, Items.MANGROVE_LOG.getDefaultInstance(), 2, 4,2);
+            addSellTrade(event, 1, Items.MANGROVE_LOG.getDefaultInstance(), 6, 1, 2);
+
+            addBuyTrade(event, 1, Items.WOODEN_AXE.getDefaultInstance(), 4, 1, 2);
+            addSellTrade(event, 1, Items.WOODEN_AXE.getDefaultInstance(), 1, 1, 2);
+
+            // LEVEL 2 - WOODCUTTER
+
+            addBuyTrade(event, 2, Items.OAK_SAPLING.getDefaultInstance(), 2, 5,4);
+            addSellTrade(event, 2, Items.OAK_SAPLING.getDefaultInstance(), 6, 1, 4);
+
+            addBuyTrade(event, 2, Items.SPRUCE_SAPLING.getDefaultInstance(), 2, 5,4);
+            addSellTrade(event, 2, Items.SPRUCE_SAPLING.getDefaultInstance(), 6, 1, 4);
+
+            addBuyTrade(event, 2, Items.BIRCH_SAPLING.getDefaultInstance(), 2, 4,4);
+            addSellTrade(event, 2, Items.BIRCH_SAPLING.getDefaultInstance(), 6, 1, 4);
+
+            addBuyTrade(event, 2, Items.JUNGLE_SAPLING.getDefaultInstance(), 2, 4,4);
+            addSellTrade(event, 2, Items.JUNGLE_SAPLING.getDefaultInstance(), 6, 1, 4);
+
+            addBuyTrade(event, 2, Items.ACACIA_SAPLING.getDefaultInstance(), 2, 4,4);
+            addSellTrade(event, 2, Items.ACACIA_SAPLING.getDefaultInstance(), 6, 1, 4);
+
+            addBuyTrade(event, 2, Items.DARK_OAK_SAPLING.getDefaultInstance(), 2, 4,4);
+            addSellTrade(event, 2, Items.DARK_OAK_SAPLING.getDefaultInstance(), 6, 1, 4);
+
+            addBuyTrade(event, 2, Items.CHERRY_SAPLING.getDefaultInstance(), 2, 4,4);
+            addSellTrade(event, 2, Items.CHERRY_SAPLING.getDefaultInstance(), 6, 1, 4);
+
+            addBuyTrade(event, 2, Items.MANGROVE_PROPAGULE.getDefaultInstance(), 2, 4,4);
+            addSellTrade(event, 2, Items.MANGROVE_PROPAGULE.getDefaultInstance(), 6, 1, 4);
+
+            addBuyTrade(event, 2, ModBlocks.APPLE_SAPLING.get().asItem().getDefaultInstance(), 2, 4, 4);
+            addSellTrade(event, 2, ModBlocks.APPLE_SAPLING.get().asItem().getDefaultInstance(), 6, 1, 4);
+
+            addBuyTrade(event, 2, Items.STONE_AXE.getDefaultInstance(), 4, 1, 4);
+            addSellTrade(event, 2, Items.STONE_AXE.getDefaultInstance(), 1, 1, 4);
+
+            // LEVEL 3 - WOODCUTTER
+
+            addBuyTrade(event, 3, Items.STRIPPED_OAK_LOG.getDefaultInstance(), 2, 6, 6);
+            addSellTrade(event, 3, Items.STRIPPED_OAK_LOG.getDefaultInstance(), 6, 1, 6);
+
+            addBuyTrade(event, 3, Items.STRIPPED_SPRUCE_LOG.getDefaultInstance(), 2, 6, 6);
+            addSellTrade(event, 3, Items.STRIPPED_SPRUCE_LOG.getDefaultInstance(), 6, 1, 6);
+
+            addBuyTrade(event, 3, Items.STRIPPED_BIRCH_LOG.getDefaultInstance(), 2, 6, 6);
+            addSellTrade(event, 3, Items.STRIPPED_BIRCH_LOG.getDefaultInstance(), 6, 1, 6);
+
+            addBuyTrade(event, 3, Items.STRIPPED_JUNGLE_LOG.getDefaultInstance(), 2, 6, 6);
+            addSellTrade(event, 3, Items.STRIPPED_JUNGLE_LOG.getDefaultInstance(), 6, 1, 6);
+
+            addBuyTrade(event, 3, Items.STRIPPED_ACACIA_LOG.getDefaultInstance(), 2, 6, 6);
+            addSellTrade(event, 3, Items.STRIPPED_ACACIA_LOG.getDefaultInstance(), 6, 1, 6);
+
+            addBuyTrade(event, 3, Items.STRIPPED_DARK_OAK_LOG.getDefaultInstance(), 2, 6, 6);
+            addSellTrade(event, 3, Items.STRIPPED_DARK_OAK_LOG.getDefaultInstance(), 6, 1, 6);
+
+            addBuyTrade(event, 3, Items.STRIPPED_CHERRY_LOG.getDefaultInstance(), 2, 6, 6);
+            addSellTrade(event, 3, Items.STRIPPED_CHERRY_LOG.getDefaultInstance(), 6, 1, 6);
+
+            addBuyTrade(event, 3, Items.STRIPPED_MANGROVE_LOG.getDefaultInstance(), 2, 6, 6);
+            addSellTrade(event, 3, Items.STRIPPED_MANGROVE_LOG.getDefaultInstance(), 6, 1, 6);
+
+            // LEVEL 4 - WOODCUTTER
+
+            addBuyTrade(event, 4, Items.OAK_PLANKS.getDefaultInstance(), 2, 6, 8);
+            addSellTrade(event, 4, Items.OAK_PLANKS.getDefaultInstance(), 6, 1, 8);
+
+            addBuyTrade(event, 4, Items.SPRUCE_PLANKS.getDefaultInstance(), 2, 6, 8);
+            addSellTrade(event, 4, Items.SPRUCE_PLANKS.getDefaultInstance(), 6, 1, 8);
+
+            addBuyTrade(event, 4, Items.BIRCH_PLANKS.getDefaultInstance(), 2, 6, 8);
+            addSellTrade(event, 4, Items.BIRCH_PLANKS.getDefaultInstance(), 6, 1, 8);
+
+            addBuyTrade(event, 4, Items.JUNGLE_PLANKS.getDefaultInstance(), 2, 6, 8);
+            addSellTrade(event, 4, Items.JUNGLE_PLANKS.getDefaultInstance(), 6, 1, 8);
+
+            addBuyTrade(event, 4, Items.ACACIA_PLANKS.getDefaultInstance(), 2, 6, 8);
+            addSellTrade(event, 4, Items.ACACIA_PLANKS.getDefaultInstance(), 6, 1, 8);
+
+            addBuyTrade(event, 4, Items.DARK_OAK_PLANKS.getDefaultInstance(), 2, 6, 8);
+            addSellTrade(event, 4, Items.DARK_OAK_PLANKS.getDefaultInstance(), 6, 1, 8);
+
+            addBuyTrade(event, 4, Items.CHERRY_PLANKS.getDefaultInstance(), 2, 6, 8);
+            addSellTrade(event, 4, Items.CHERRY_PLANKS.getDefaultInstance(), 6, 1, 8);
+
+            addBuyTrade(event, 4, Items.MANGROVE_PLANKS.getDefaultInstance(), 2, 6, 8);
+            addSellTrade(event, 4, Items.MANGROVE_PLANKS.getDefaultInstance(), 6, 1, 8);
+
+            addBuyTrade(event, 4, Items.IRON_AXE.getDefaultInstance(), 12, 1, 8);
+            addSellTrade(event, 4, Items.IRON_AXE.getDefaultInstance(), 1, 2, 8);
+
+            addBuyTrade(event, 4, ModItems.STEEL_AXE.get().getDefaultInstance(), 16, 1, 8);
+            addSellTrade(event, 4, ModItems.STEEL_AXE.get().getDefaultInstance(), 1, 3, 8);
+
+            addBuyTrade(event, 4, Items.GOLDEN_AXE.getDefaultInstance(), 11, 1, 8);
+            addSellTrade(event, 4, Items.GOLDEN_AXE.getDefaultInstance(), 1, 4, 8);
+
 
             // LEVEL 5 - Advanced or custom axe
-            addBuyTrade(event, 5, Items.NETHERITE_AXE.getDefaultInstance(), 40, 1, 20);
-            addSellTrade(event, 5, Items.NETHERITE_AXE.getDefaultInstance(), 1, 15, 20);
+
+            addBuyTrade(event, 4, Items.DIAMOND_AXE.getDefaultInstance(), 25, 1, 10);
+            addSellTrade(event, 4, Items.DIAMOND_AXE.getDefaultInstance(), 1, 10, 10);
+
+            addBuyTrade(event, 5, Items.NETHERITE_AXE.getDefaultInstance(), 40, 1, 10);
+            addSellTrade(event, 5, Items.NETHERITE_AXE.getDefaultInstance(), 1, 15, 10);
         }
 
     }
