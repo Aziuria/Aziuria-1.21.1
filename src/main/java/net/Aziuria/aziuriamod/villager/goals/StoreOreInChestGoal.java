@@ -51,6 +51,8 @@ public class StoreOreInChestGoal extends MoveToBlockGoal {
                 || stack.getItem() == Items.REDSTONE       // redstone dust
                 || stack.getItem() == Items.STONE          // stone block
                 || stack.getItem() == Items.COBBLESTONE    // cobblestone
+                || stack.getItem() == Items.AMETHYST_SHARD // amethyst shard
+                || stack.getItem() == Items.OBSIDIAN       // obsidian block item (if supported)
                 || stack.getItem() == ModItems.POTASSIUM.get()  // custom potassium ore
                 || stack.getItem() == ModItems.SULPHUR.get();   // custom sulphur ore
     }

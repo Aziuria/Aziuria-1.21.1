@@ -149,6 +149,8 @@ public class PickupCustomItemsGoal extends Goal {
                 || item == Items.ACACIA_SAPLING
                 || item == Items.DARK_OAK_SAPLING
                 || item == Items.MANGROVE_PROPAGULE
+                || item == Items.STICK
+                || item == Items.APPLE
                 || item == Items.CHERRY_SAPLING
                 || item == ModBlocks.APPLE_SAPLING.get().asItem()) { // <-- Your modded apple sapling here
             return true;
@@ -174,6 +176,8 @@ public class PickupCustomItemsGoal extends Goal {
                 || item == Items.REDSTONE
                 || item == Items.STONE
                 || item == Items.COBBLESTONE
+                || item == Items.AMETHYST_SHARD
+                || item == Items.OBSIDIAN
                 || item == ModItems.POTASSIUM.get()
                 || item == ModItems.SULPHUR.get()
                 || item == ModItems.STEEL_PICKAXE.get();
