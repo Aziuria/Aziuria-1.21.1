@@ -6,6 +6,7 @@ import net.Aziuria.aziuriamod.block.world.BlockBatcher;
 import net.Aziuria.aziuriamod.client.ModClientCommonBusEvents;
 import net.Aziuria.aziuriamod.command.DecayCommand;
 import net.Aziuria.aziuriamod.command.FogCommand;
+import net.Aziuria.aziuriamod.command.SpawnTreeVariantCommand;
 import net.Aziuria.aziuriamod.fog.*;
 import net.Aziuria.aziuriamod.fog.handler.FogZombieTickHandler;
 import net.Aziuria.aziuriamod.handler.FastLeafDecayHandler;
@@ -148,6 +149,7 @@ public class AziuriaMod {
     private void onRegisterCommands(RegisterCommandsEvent event) {
         FogCommand.register(event.getDispatcher());
         DecayCommand.register(event.getDispatcher());
+        SpawnTreeVariantCommand.register(event.getDispatcher());
     }
 
 

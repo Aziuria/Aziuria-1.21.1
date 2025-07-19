@@ -74,7 +74,18 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .unlockedBy("has_steel_ingot", has(ModItems.STEEL_INGOT))
                 .save(recipeOutput);
 
-        ShapedRecipeBuilder.shaped(RecipeCategory.FOOD, ModItems.FLOUR.get(), 9)
+        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ModBlocks.APPLE_SAPLING.get(), 1)
+                .pattern(" A ")
+                .pattern(" D ")
+                .pattern(" B ")
+                .define('A', Items.APPLE)
+                .define('B', Items.BUCKET)
+                .define('D', Blocks.DIRT)
+                .unlockedBy("has_apple", has(Items.APPLE))
+                .save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.FOOD, ModItems.FLOUR.get(), 12)
+                .pattern("SSS")
                 .pattern("SSS")
                 .define('S', Items.WHEAT)
                 .unlockedBy("has_wheat", has(Items.WHEAT))
@@ -585,6 +596,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 0.35f, // experience
                 100,   // cook time
                 "chicken_nuggets");
+
 
         // === Pancakes from Pancake Dough ===
         oreSmelting(recipeOutput,

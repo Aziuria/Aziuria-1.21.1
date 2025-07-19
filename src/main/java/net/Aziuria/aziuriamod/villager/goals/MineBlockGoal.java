@@ -42,7 +42,7 @@ public class MineBlockGoal extends Goal {
 
     private int minedCount = 0;
     private int cooldownTicks = 0;
-    private static final int COOLDOWN_DURATION = 200;
+    private static final int COOLDOWN_DURATION = 100;
 
     private enum Phase {
         MOVING,
@@ -151,6 +151,11 @@ public class MineBlockGoal extends Goal {
 
         switch (phase) {
             case MOVING -> {
+                if (targetBlockPos == null) {
+                    stop();
+                    return;
+                }
+
                 if (!villager.getNavigation().isInProgress()) {
                     boolean pathStarted = villager.getNavigation().moveTo(
                             targetBlockPos.getX() + 0.5,
@@ -194,7 +199,8 @@ public class MineBlockGoal extends Goal {
                     stuckTicks = 0;
                 }
 
-                if (villager.blockPosition().closerThan(targetBlockPos, 1.5)) {
+                // Switch to MINING phase if close enough
+                if (isWithinMiningRange(targetBlockPos)) {
                     villager.getNavigation().stop();
                     miningProgress = 0;
                     phase = Phase.MINING;
@@ -202,7 +208,13 @@ public class MineBlockGoal extends Goal {
                 }
             }
             case MINING -> {
-                if (!villager.blockPosition().closerThan(targetBlockPos, 2.0)) {
+                if (targetBlockPos == null) {
+                    stop();
+                    return;
+                }
+
+                // If too far, switch back to MOVING
+                if (!isWithinMiningRange(targetBlockPos)) {
                     phase = Phase.MOVING;
                     miningProgress = 0;
                     stuckTicks = 0;
@@ -242,7 +254,6 @@ public class MineBlockGoal extends Goal {
                     mineBlock(targetBlockPos);
                     targetBlockPos = null;
                     phase = null;
-
                 }
             }
         }
@@ -270,7 +281,7 @@ public class MineBlockGoal extends Goal {
         level.setBlock(pos, Blocks.AIR.defaultBlockState(), 3);
 
         minedCount++;
-        if (minedCount >= 7) {
+        if (minedCount >= 16) {
             cooldownTicks = COOLDOWN_DURATION;
             stop(); // Stop mining and reset target
         }
@@ -285,8 +296,9 @@ public class MineBlockGoal extends Goal {
         BlockPos closestPos = null;
         double closestDistSq = Double.MAX_VALUE;
 
+        // Search for ORE blocks only from current level up to 6 blocks above
         for (int dx = -radius; dx <= radius; dx++) {
-            for (int dy = -radius; dy <= radius; dy++) {
+            for (int dy = 0; dy <= 6; dy++) {  // vertical range limited here
                 for (int dz = -radius; dz <= radius; dz++) {
                     BlockPos pos = origin.offset(dx, dy, dz);
                     BlockState state = level.getBlockState(pos);
@@ -304,8 +316,9 @@ public class MineBlockGoal extends Goal {
 
         if (closestPos != null) return closestPos;
 
+        // Search for STONE blocks only from current level up to 6 blocks above
         for (int dx = -radius; dx <= radius; dx++) {
-            for (int dy = -radius; dy <= radius; dy++) {
+            for (int dy = 0; dy <= 6; dy++) {  // changed here too
                 for (int dz = -radius; dz <= radius; dz++) {
                     BlockPos pos = origin.offset(dx, dy, dz);
                     BlockState state = level.getBlockState(pos);
@@ -400,7 +413,27 @@ public class MineBlockGoal extends Goal {
                 for (int dz = -radius; dz <= radius; dz++) {
                     BlockPos checkPos = pos.offset(dx, dy, dz);
                     Block block = level.getBlockState(checkPos).getBlock();
-                    if (block == Blocks.GLASS || block == Blocks.GLASS_PANE) {
+
+                    if (block == Blocks.GLASS || block == Blocks.GLASS_PANE
+                            || block == Blocks.TINTED_GLASS
+                            // Stained glass blocks
+                            || block == Blocks.WHITE_STAINED_GLASS || block == Blocks.ORANGE_STAINED_GLASS
+                            || block == Blocks.MAGENTA_STAINED_GLASS || block == Blocks.LIGHT_BLUE_STAINED_GLASS
+                            || block == Blocks.YELLOW_STAINED_GLASS || block == Blocks.LIME_STAINED_GLASS
+                            || block == Blocks.PINK_STAINED_GLASS || block == Blocks.GRAY_STAINED_GLASS
+                            || block == Blocks.LIGHT_GRAY_STAINED_GLASS || block == Blocks.CYAN_STAINED_GLASS
+                            || block == Blocks.PURPLE_STAINED_GLASS || block == Blocks.BLUE_STAINED_GLASS
+                            || block == Blocks.BROWN_STAINED_GLASS || block == Blocks.GREEN_STAINED_GLASS
+                            || block == Blocks.RED_STAINED_GLASS || block == Blocks.BLACK_STAINED_GLASS
+                            // Stained glass panes
+                            || block == Blocks.WHITE_STAINED_GLASS_PANE || block == Blocks.ORANGE_STAINED_GLASS_PANE
+                            || block == Blocks.MAGENTA_STAINED_GLASS_PANE || block == Blocks.LIGHT_BLUE_STAINED_GLASS_PANE
+                            || block == Blocks.YELLOW_STAINED_GLASS_PANE || block == Blocks.LIME_STAINED_GLASS_PANE
+                            || block == Blocks.PINK_STAINED_GLASS_PANE || block == Blocks.GRAY_STAINED_GLASS_PANE
+                            || block == Blocks.LIGHT_GRAY_STAINED_GLASS_PANE || block == Blocks.CYAN_STAINED_GLASS_PANE
+                            || block == Blocks.PURPLE_STAINED_GLASS_PANE || block == Blocks.BLUE_STAINED_GLASS_PANE
+                            || block == Blocks.BROWN_STAINED_GLASS_PANE || block == Blocks.GREEN_STAINED_GLASS_PANE
+                            || block == Blocks.RED_STAINED_GLASS_PANE || block == Blocks.BLACK_STAINED_GLASS_PANE) {
                         return true;
                     }
                 }
@@ -413,5 +446,14 @@ public class MineBlockGoal extends Goal {
         if (!(villager.getMainHandItem().getItem() instanceof PickaxeItem)) {
             villager.setItemInHand(InteractionHand.MAIN_HAND, new ItemStack(Items.IRON_PICKAXE));
         }
+    }
+
+    private boolean isWithinMiningRange(BlockPos target) {
+        Vec3 villagerPos = villager.position();
+        double horizontalDistanceSq =
+                Math.pow(villagerPos.x - (target.getX() + 0.5), 2) +
+                        Math.pow(villagerPos.z - (target.getZ() + 0.5), 2);
+        double verticalDistance = Math.abs(villagerPos.y - (target.getY() + 0.5));
+        return horizontalDistanceSq <= 2.25 && verticalDistance <= 6.0;
     }
 }

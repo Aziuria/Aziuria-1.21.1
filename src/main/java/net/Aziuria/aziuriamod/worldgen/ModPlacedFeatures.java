@@ -49,9 +49,7 @@ public class ModPlacedFeatures {
     public static final ResourceKey<PlacedFeature> APPLE_KEY_VARIANT_5 = registerKey("apple_variant_5");
     public static final ResourceKey<PlacedFeature> APPLE_KEY_VARIANT_6 = registerKey("apple_variant_6");
     public static final ResourceKey<PlacedFeature> APPLE_KEY_VARIANT_7 = registerKey("apple_variant_7");
-    public static final ResourceKey<PlacedFeature> APPLE_KEY_VARIANT_8 = registerKey("apple_variant_8");
-    public static final ResourceKey<PlacedFeature> APPLE_KEY_VARIANT_9 = registerKey("apple_variant_9");
-    public static final ResourceKey<PlacedFeature> APPLE_KEY_VARIANT_10 = registerKey("apple_variant_10");
+
 
     public static final ResourceKey<PlacedFeature> DARK_OAK_KEY_VARIANT_1 = registerKey("dark_oak_variant_1");
     public static final ResourceKey<PlacedFeature> DARK_OAK_KEY_VARIANT_2 = registerKey("dark_oak_variant_2");
@@ -256,47 +254,6 @@ public class ModPlacedFeatures {
             );
         }
 
-// Apple Variant 8
-        {
-            List<PlacementModifier> modifiers = new ArrayList<>(VegetationPlacements.treePlacement(
-                    NoiseThresholdCountPlacement.of(0.8, 0, 1),
-                    ModBlocks.APPLE_SAPLING.get()
-            ));
-            modifiers.add(RarityFilter.onAverageOnceEvery(15));
-
-            register(context, APPLE_KEY_VARIANT_8,
-                    configuredFeatures.getOrThrow(ModConfiguredFeatures.APPLE_KEY_VARIANT_8),
-                    modifiers
-            );
-        }
-
-// Apple Variant 9
-        {
-            List<PlacementModifier> modifiers = new ArrayList<>(VegetationPlacements.treePlacement(
-                    NoiseThresholdCountPlacement.of(0.8, 0, 2),
-                    ModBlocks.APPLE_SAPLING.get()
-            ));
-            modifiers.add(RarityFilter.onAverageOnceEvery(13));
-
-            register(context, APPLE_KEY_VARIANT_9,
-                    configuredFeatures.getOrThrow(ModConfiguredFeatures.APPLE_KEY_VARIANT_9),
-                    modifiers
-            );
-        }
-
-// Apple Variant 10
-        {
-            List<PlacementModifier> modifiers = new ArrayList<>(VegetationPlacements.treePlacement(
-                    NoiseThresholdCountPlacement.of(0.8, 0, 1),
-                    ModBlocks.APPLE_SAPLING.get()
-            ));
-            modifiers.add(RarityFilter.onAverageOnceEvery(15));
-
-            register(context, APPLE_KEY_VARIANT_10,
-                    configuredFeatures.getOrThrow(ModConfiguredFeatures.APPLE_KEY_VARIANT_10),
-                    modifiers
-            );
-        }
 
 // Dark Oak Variant 1
         {

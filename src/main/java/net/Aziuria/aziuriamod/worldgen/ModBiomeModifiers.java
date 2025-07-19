@@ -43,9 +43,7 @@ public class ModBiomeModifiers {
     public static final ResourceKey<BiomeModifier> APPLE_KEY_VARIANT_5 = registerKey("apple_variant_5");
     public static final ResourceKey<BiomeModifier> APPLE_KEY_VARIANT_6 = registerKey("apple_variant_6");
     public static final ResourceKey<BiomeModifier> APPLE_KEY_VARIANT_7 = registerKey("apple_variant_7");
-    public static final ResourceKey<BiomeModifier> APPLE_KEY_VARIANT_8 = registerKey("apple_variant_8");
-    public static final ResourceKey<BiomeModifier> APPLE_KEY_VARIANT_9 = registerKey("apple_variant_9");
-    public static final ResourceKey<BiomeModifier> APPLE_KEY_VARIANT_10 = registerKey("apple_variant_10");
+
 
     public static final ResourceKey<BiomeModifier> DARK_OAK_KEY_VARIANT_1 = registerKey("dark_oak_variant_1");
     public static final ResourceKey<BiomeModifier> DARK_OAK_KEY_VARIANT_2 = registerKey("dark_oak_variant_2");
@@ -188,31 +186,6 @@ public class ModBiomeModifiers {
                         biomes.getOrThrow(Biomes.FOREST)
                 ),
                 HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.APPLE_KEY_VARIANT_7)),
-                GenerationStep.Decoration.VEGETAL_DECORATION));
-
-        context.register(APPLE_KEY_VARIANT_8, new BiomeModifiers.AddFeaturesBiomeModifier(
-                HolderSet.direct(
-                        biomes.getOrThrow(Biomes.MEADOW),
-                        biomes.getOrThrow(Biomes.PLAINS),
-                        biomes.getOrThrow(Biomes.CHERRY_GROVE)
-                ),
-                HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.APPLE_KEY_VARIANT_8)),
-                GenerationStep.Decoration.VEGETAL_DECORATION));
-
-        context.register(APPLE_KEY_VARIANT_9, new BiomeModifiers.AddFeaturesBiomeModifier(
-                HolderSet.direct(
-                        biomes.getOrThrow(Biomes.MEADOW),
-                        biomes.getOrThrow(Biomes.FOREST)
-                ),
-                HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.APPLE_KEY_VARIANT_9)),
-                GenerationStep.Decoration.VEGETAL_DECORATION));
-
-        context.register(APPLE_KEY_VARIANT_10, new BiomeModifiers.AddFeaturesBiomeModifier(
-                HolderSet.direct(
-                        biomes.getOrThrow(Biomes.MEADOW),
-                        biomes.getOrThrow(Biomes.FOREST)
-                ),
-                HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.APPLE_KEY_VARIANT_10)),
                 GenerationStep.Decoration.VEGETAL_DECORATION));
 
         context.register(DARK_OAK_KEY_VARIANT_1, new BiomeModifiers.AddFeaturesBiomeModifier(

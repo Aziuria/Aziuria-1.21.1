@@ -51,9 +51,7 @@ public class ModConfiguredFeatures {
     public static final ResourceKey<ConfiguredFeature<?, ?>> APPLE_KEY_VARIANT_5 = registerKey("apple_variant_5");
     public static final ResourceKey<ConfiguredFeature<?, ?>> APPLE_KEY_VARIANT_6 = registerKey("apple_variant_6");
     public static final ResourceKey<ConfiguredFeature<?, ?>> APPLE_KEY_VARIANT_7 = registerKey("apple_variant_7");
-    public static final ResourceKey<ConfiguredFeature<?, ?>> APPLE_KEY_VARIANT_8 = registerKey("apple_variant_8");
-    public static final ResourceKey<ConfiguredFeature<?, ?>> APPLE_KEY_VARIANT_9 = registerKey("apple_variant_9");
-    public static final ResourceKey<ConfiguredFeature<?, ?>> APPLE_KEY_VARIANT_10 = registerKey("apple_variant_10");
+
 
     public static final ResourceKey<ConfiguredFeature<?, ?>> DARK_OAK_VARIANT_1 = registerKey("dark_oak_variant_1");
     public static final ResourceKey<ConfiguredFeature<?, ?>> DARK_OAK_VARIANT_2 = registerKey("dark_oak_variant_2");
@@ -124,7 +122,7 @@ public class ModConfiguredFeatures {
 // Variant 3 - Tall, slim
         register(context, APPLE_KEY_VARIANT_3, Feature.TREE, new TreeConfiguration.TreeConfigurationBuilder(
                 BlockStateProvider.simple(Blocks.OAK_LOG),
-                new StraightTrunkPlacer(4, 1, 0),
+                new StraightTrunkPlacer(6, 1, 0),
                 BlockStateProvider.simple(ModBlocks.APPLE_LEAVES.get()),
                 new FancyFoliagePlacer(ConstantInt.of(4), ConstantInt.of(0), 5),
                 new ThreeLayersFeatureSize(2, 1, 2, 3, 2, OptionalInt.of(3))
@@ -162,31 +160,6 @@ public class ModConfiguredFeatures {
                 new BlobFoliagePlacer(ConstantInt.of(2), ConstantInt.of(2), 4),
                 new TwoLayersFeatureSize(2, 0, 2)).build());
 
-// Variant 8 - Taller and fluffier apple tree
-        register(context, APPLE_KEY_VARIANT_8, Feature.TREE, new TreeConfiguration.TreeConfigurationBuilder(
-                BlockStateProvider.simple(Blocks.OAK_LOG),
-                new ForkingTrunkPlacer(6, 2, 2),  // taller trunk with more branches
-                BlockStateProvider.simple(ModBlocks.APPLE_LEAVES.get()),
-                new FancyFoliagePlacer(ConstantInt.of(3), ConstantInt.of(4), 3),  // fluffier, more natural canopy
-                new TwoLayersFeatureSize(2, 1, 2)  // larger tree size
-        ).build());
-
-// Variant 9 - Tall, fluffy canopy
-        register(context, APPLE_KEY_VARIANT_9, Feature.TREE, new TreeConfiguration.TreeConfigurationBuilder(
-                BlockStateProvider.simple(Blocks.OAK_LOG),
-                new ForkingTrunkPlacer(7, 3, 2),
-                BlockStateProvider.simple(ModBlocks.APPLE_LEAVES.get()),
-                new FancyFoliagePlacer(ConstantInt.of(2), ConstantInt.of(4), 4),  // fancy, layered leaves
-                new TwoLayersFeatureSize(3, 1, 3)
-        ).build());
-
-// Variant 10 - Large, layered, lush
-        register(context, APPLE_KEY_VARIANT_10, Feature.TREE, new TreeConfiguration.TreeConfigurationBuilder(
-                BlockStateProvider.simple(Blocks.OAK_LOG),
-                new ForkingTrunkPlacer(6, 3, 2),
-                BlockStateProvider.simple(ModBlocks.APPLE_LEAVES.get()),
-                new BlobFoliagePlacer(ConstantInt.of(3), ConstantInt.of(3), 4),
-                new TwoLayersFeatureSize(2, 1, 3)).build());
 
         // Variant 1 - Small, bushy dark oak
         register(context, DARK_OAK_VARIANT_1, Feature.TREE, new TreeConfiguration.TreeConfigurationBuilder(
@@ -209,7 +182,7 @@ public class ModConfiguredFeatures {
                 BlockStateProvider.simple(Blocks.BIRCH_LOG),
                 new ForkingTrunkPlacer(6, 2, 1), // mostly straight, some branching
                 BlockStateProvider.simple(Blocks.BIRCH_LEAVES),
-                new FancyFoliagePlacer(ConstantInt.of(2), ConstantInt.of(3), 2), // moderate leaf radius & offset
+                new FancyFoliagePlacer(ConstantInt.of(3), ConstantInt.of(1), 3), // moderate leaf radius & offset
                 new ThreeLayersFeatureSize(1, 0, 1, 2, 1, OptionalInt.empty())// three layers with subtle variation
         ).build());
 
