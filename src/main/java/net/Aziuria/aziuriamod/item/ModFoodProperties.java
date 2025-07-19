@@ -41,10 +41,19 @@ public class ModFoodProperties {
             .build();
 
     public static final FoodProperties BEEF_BURGER = new FoodProperties.Builder()
-            .nutrition(8)
-            .saturationModifier(0.8f)
+            .nutrition(12) // higher due to multiple stacked ingredients
+            .saturationModifier(0.85f) // slight increase, consistent with dense foods
             .effect(() -> new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 200), 0.3f)
             .effect(() -> new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 100, 0), 0.2f)
+            .effect(() -> new MobEffectInstance(MobEffects.HEALTH_BOOST, 200), 0.15f) // optional bonus for premium food
+            .build();
+
+    public static final FoodProperties CHEESEBURGER = new FoodProperties.Builder()
+            .nutrition(10) // beef + cheese + bread
+            .saturationModifier(0.85f) // high saturation, realistic for a cheeseburger
+            .effect(() -> new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 200), 0.3f) // beef strength
+            .effect(() -> new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 100, 0), 0.2f) // energy boost
+            .effect(() -> new MobEffectInstance(MobEffects.ABSORPTION, 200), 0.15f) // cheese shielding
             .build();
 
     public static final FoodProperties CHEESE = new FoodProperties.Builder()
@@ -67,10 +76,23 @@ public class ModFoodProperties {
             .effect(() -> new MobEffectInstance(MobEffects.JUMP, 200, 0), 0.15f) // pancakes give you "bounce"
             .build();
 
+    public static final FoodProperties PEAR = new FoodProperties.Builder()
+            .nutrition(4) // similar to apple
+            .saturationModifier(0.4f) // moderate
+            .effect(() -> new MobEffectInstance(MobEffects.REGENERATION, 60, 0), 0.15f)
+            .build();
+
+    public static final FoodProperties CHERRY = new FoodProperties.Builder()
+            .nutrition(3) // small, light snack
+            .saturationModifier(0.3f) // moderate for a berry
+            .effect(() -> new MobEffectInstance(MobEffects.REGENERATION, 60, 0), 0.15f)
+            .effect(() -> new MobEffectInstance(MobEffects.NIGHT_VISION, 100, 0), 0.05f) // rare thematic bonus
+            .build();
+
     public static final FoodProperties APPLE_JUICE = new FoodProperties.Builder()
             .nutrition(2) // small amount
             .saturationModifier(0.3f)
-            .effect(() -> new MobEffectInstance(MobEffects.HEAL, 1, 0), 1.0f) // instant heal 1
+            .effect(() -> new MobEffectInstance(MobEffects.HEAL, 1, 0), 1.0f)
             .build();
 
     public static final FoodProperties PINEAPPLE_JUICE = new FoodProperties.Builder()
@@ -78,6 +100,21 @@ public class ModFoodProperties {
             .saturationModifier(0.35f)
             .effect(() -> new MobEffectInstance(MobEffects.HEAL, 1, 0), 1.0f)
             .effect(() -> new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 100, 0), 0.25f)
+            .build();
+
+    public static final FoodProperties PEAR_JUICE = new FoodProperties.Builder()
+            .nutrition(2)
+            .saturationModifier(0.35f)
+            .effect(() -> new MobEffectInstance(MobEffects.HEAL, 1, 0), 1.0f)
+            .effect(() -> new MobEffectInstance(MobEffects.REGENERATION, 60, 0), 0.15f)
+            .build();
+
+    public static final FoodProperties CHERRY_JUICE = new FoodProperties.Builder()
+            .nutrition(2)
+            .saturationModifier(0.3f)
+            .effect(() -> new MobEffectInstance(MobEffects.HEAL, 1, 0), 1.0f) // instant heal 1
+            .effect(() -> new MobEffectInstance(MobEffects.REGENERATION, 100, 0), 0.20f) // better regen chance than pear
+            .effect(() -> new MobEffectInstance(MobEffects.NIGHT_VISION, 100, 0), 0.10f) // rare, thematic bonus
             .build();
 
 }

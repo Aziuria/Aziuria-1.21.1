@@ -123,6 +123,17 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .unlockedBy("has_bread", has(Items.BREAD))
                 .save(recipeOutput);
 
+        ShapedRecipeBuilder.shaped(RecipeCategory.FOOD, ModItems.CHEESEBURGER.get(), 1)
+                .pattern(" AR")
+                .pattern(" QF")
+                .pattern(" A ")
+                .define('R', ModItems.KNIFE.get())
+                .define('Q', ModItems.CHEESE.get())
+                .define('A', Items.BREAD)
+                .define('F', Items.COOKED_BEEF)
+                .unlockedBy("has_bread", has(Items.BREAD))
+                .save(recipeOutput);
+
         ShapedRecipeBuilder.shaped(RecipeCategory.FOOD, ModItems.PANCAKE_DOUGH.get(), 6)
                 .pattern("SA ")
                 .pattern("FQ ")
@@ -562,6 +573,18 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .requires(Items.APPLE)
                 .requires(Items.POTION)  // Vanilla water bottle (glass bottle + water)
                 .unlockedBy("has_apple", has(Items.APPLE))
+                .save(recipeOutput);
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, ModItems.PEAR_JUICE.get(), 1)
+                .requires(ModItems.PEAR.get())
+                .requires(Items.POTION)  // Vanilla water bottle (glass bottle + water)
+                .unlockedBy("has_pear", has(ModItems.PEAR.get()))
+                .save(recipeOutput);
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, ModItems.CHERRY_JUICE.get(), 1)
+                .requires(ModItems.CHERRY.get())
+                .requires(Items.POTION)  // Vanilla water bottle (glass bottle + water)
+                .unlockedBy("has_cherry", has(ModItems.CHERRY.get()))
                 .save(recipeOutput);
 
         ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, ModItems.PINEAPPLE_JUICE.get(), 1)

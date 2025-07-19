@@ -69,18 +69,23 @@
   "item.aziuriamod.radish": "Radish",
   "item.aziuriamod.cucumber": "Cucumber",
   "item.aziuriamod.tomato": "Tomato",
+  "item.aziuriamod.pear": "Pear",
+  "item.aziuriamod.cherry": "Cherry",
   "item.aziuriamod.flour": "Flour",
   "item.aziuriamod.diced_chicken": "Diced chicken",
   "item.aziuriamod.battered_chicken": "Raw Chicken Nuggets",
   "item.aziuriamod.chicken_nuggets": "Chicken Nuggets",
   "item.aziuriamod.french_fries": "French Fries",
   "item.aziuriamod.beef_burger": "Beef Burger",
+  "item.aziuriamod.cheeseburger": "Cheese Burger",
   "item.aziuriamod.cheese": "Cheese",
   "item.aziuriamod.pancake_dough": "Pancake Dough",
   "item.aziuriamod.pancake": "Pancake",
 
 
   "item.aziuriamod.apple_juice": "Apple Juice",
+  "item.aziuriamod.pear_juice": "Pear Juice",
+  "item.aziuriamod.cherry_juice": "Cherry Juice",
   "item.aziuriamod.pineapple_juice": "Pinepple Juice",
 
   "item.aziuriamod.radish_seeds": "Radish Seeds",
@@ -104,6 +109,10 @@
 
   "block.aziuriamod.apple_leaves": "Apple Tree Leaves",
   "block.aziuriamod.apple_sapling": "Apple Tree Sapling",
+  "block.aziuriamod.pear_leaves": "Pear Tree Leaves",
+  "block.aziuriamod.pear_sapling": "Pear Tree Sapling",
+  "block.aziuriamod.cherry_leaves": "Cherry Tree Leaves",
+  "block.aziuriamod.cherry_sapling": "Cherry Tree Sapling",
 
   "item.aziuriamod.island_generator_small": "Small Island Generator",
   "item.aziuriamod.island_generator_medium": "Medium Island generator",

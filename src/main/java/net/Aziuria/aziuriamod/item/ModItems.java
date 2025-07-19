@@ -117,10 +117,16 @@ public class ModItems {
             () -> new Item(new Item.Properties().food(ModFoodProperties.FRENCH_FRIES)));
     public static final DeferredItem<Item> BEEF_BURGER = ITEMS.register("beef_burger",
             () -> new Item(new Item.Properties().food(ModFoodProperties.BEEF_BURGER)));
+    public static final DeferredItem<Item> CHEESEBURGER = ITEMS.register("cheeseburger",
+            () -> new Item(new Item.Properties().food(ModFoodProperties.CHEESEBURGER)));
     public static final DeferredItem<Item> CHEESE = ITEMS.register("cheese",
             () -> new Item(new Item.Properties().food(ModFoodProperties.CHEESE)));
     public static final DeferredItem<Item> PANCAKE = ITEMS.register("pancake",
             () -> new Item(new Item.Properties().food(ModFoodProperties.PANCAKE)));
+    public static final DeferredItem<Item> PEAR = ITEMS.register("pear",
+            () -> new Item(new Item.Properties().food(ModFoodProperties.PEAR)));
+    public static final DeferredItem<Item> CHERRY = ITEMS.register("cherry",
+            () -> new Item(new Item.Properties().food(ModFoodProperties.CHERRY)));
 
     public static final DeferredItem<DrinkableItem> APPLE_JUICE = ITEMS.register("apple_juice",
             () -> new DrinkableItem(
@@ -135,6 +141,24 @@ public class ModItems {
             () -> new DrinkableItem(
                     new Item.Properties()
                             .food(ModFoodProperties.PINEAPPLE_JUICE)
+                            .stacksTo(1)
+                            .craftRemainder(Items.GLASS_BOTTLE),
+                    32,
+                    UseAnim.DRINK));
+
+    public static final DeferredItem<DrinkableItem> PEAR_JUICE = ITEMS.register("pear_juice",
+            () -> new DrinkableItem(
+                    new Item.Properties()
+                            .food(ModFoodProperties.PEAR_JUICE)
+                            .stacksTo(1)
+                            .craftRemainder(Items.GLASS_BOTTLE),
+                    32,
+                    UseAnim.DRINK));
+
+    public static final DeferredItem<DrinkableItem> CHERRY_JUICE = ITEMS.register("cherry_juice",
+            () -> new DrinkableItem(
+                    new Item.Properties()
+                            .food(ModFoodProperties.CHERRY_JUICE)
                             .stacksTo(1)
                             .craftRemainder(Items.GLASS_BOTTLE),
                     32,
