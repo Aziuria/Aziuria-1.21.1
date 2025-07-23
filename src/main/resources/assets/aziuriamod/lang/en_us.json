@@ -71,6 +71,7 @@
   "item.aziuriamod.tomato": "Tomato",
   "item.aziuriamod.pear": "Pear",
   "item.aziuriamod.cherry": "Cherry",
+  "item.aziuriamod.blackcurrant": "Blackcurrant",
   "item.aziuriamod.flour": "Flour",
   "item.aziuriamod.diced_chicken": "Diced chicken",
   "item.aziuriamod.battered_chicken": "Raw Chicken Nuggets",
@@ -88,6 +89,9 @@
   "item.aziuriamod.pear_juice": "Pear Juice",
   "item.aziuriamod.cherry_juice": "Cherry Juice",
   "item.aziuriamod.pineapple_juice": "Pinepple Juice",
+  "item.aziuriamod.blackcurrant_juice": "Blackcurrant Juice",
+  "item.aziuriamod.sweetberry_juice": "Sweetberry Juice",
+  "item.aziuriamod.glowberry_juice": "Glowberry Juice",
 
   "item.aziuriamod.radish_seeds": "Radish Seeds",
   "block.aziuriamod.radish_crop": "Radish Crop",

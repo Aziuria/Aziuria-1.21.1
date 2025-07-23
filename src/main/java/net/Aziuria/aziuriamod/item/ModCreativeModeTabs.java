@@ -89,6 +89,9 @@ public class ModCreativeModeTabs {
                         output.accept(ModItems.PINEAPPLE_JUICE);
                         output.accept(ModItems.PEAR_JUICE);
                         output.accept(ModItems.CHERRY_JUICE);
+                        output.accept(ModItems.BLACKCURRANT_JUICE);
+                        output.accept(ModItems.SWEETBERRY_JUICE);
+                        output.accept(ModItems.GLOWBERRY_JUICE);
                         output.accept(ModItems.RADISH);
                         output.accept(ModItems.CUCUMBER);
                         output.accept(ModItems.TOMATO);
@@ -99,6 +102,7 @@ public class ModCreativeModeTabs {
                         output.accept(ModItems.PINEAPPLE);
                         output.accept(ModItems.PEAR);
                         output.accept(ModItems.CHERRY);
+                        output.accept(ModItems.BLACKCURRANT);
                         output.accept(ModItems.RADISH_SEEDS);
                         output.accept(ModItems.TOMATO_SEEDS);
                         output.accept(ModItems.CUCUMBER_SEEDS);

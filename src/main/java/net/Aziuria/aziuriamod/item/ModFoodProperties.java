@@ -96,6 +96,13 @@ public class ModFoodProperties {
             .effect(() -> new MobEffectInstance(MobEffects.NIGHT_VISION, 100, 0), 0.05f) // rare thematic bonus
             .build();
 
+    public static final FoodProperties BLACKCURRANT = new FoodProperties.Builder()
+            .nutrition(3) // light snack like cherry
+            .saturationModifier(0.3f) // moderate for berries
+            .effect(() -> new MobEffectInstance(MobEffects.REGENERATION, 80, 0), 0.20f) // higher regen chance
+            .effect(() -> new MobEffectInstance(MobEffects.NIGHT_VISION, 100, 0), 0.05f) // rare bonus
+            .build();
+
     public static final FoodProperties APPLE_JUICE = new FoodProperties.Builder()
             .nutrition(2) // small amount
             .saturationModifier(0.3f)
@@ -122,6 +129,30 @@ public class ModFoodProperties {
             .effect(() -> new MobEffectInstance(MobEffects.HEAL, 1, 0), 1.0f) // instant heal 1
             .effect(() -> new MobEffectInstance(MobEffects.REGENERATION, 100, 0), 0.20f) // better regen chance than pear
             .effect(() -> new MobEffectInstance(MobEffects.NIGHT_VISION, 100, 0), 0.10f) // rare, thematic bonus
+            .build();
+
+    public static final FoodProperties BLACKCURRANT_JUICE = new FoodProperties.Builder()
+            .nutrition(2) // juice amount
+            .saturationModifier(0.35f)
+            .effect(() -> new MobEffectInstance(MobEffects.HEAL, 1, 0), 1.0f)
+            .effect(() -> new MobEffectInstance(MobEffects.REGENERATION, 100, 0), 0.25f) // better regen chance
+            .effect(() -> new MobEffectInstance(MobEffects.NIGHT_VISION, 100, 0), 0.07f) // rare thematic
+            .build();
+
+    public static final FoodProperties SWEETBERRY_JUICE = new FoodProperties.Builder()
+            .nutrition(2)
+            .saturationModifier(0.3f)
+            .effect(() -> new MobEffectInstance(MobEffects.HEAL, 1, 0), 1.0f)
+            .effect(() -> new MobEffectInstance(MobEffects.REGENERATION, 80, 0), 0.20f)
+            .effect(() -> new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 100, 0), 0.10f) // rare energy boost
+            .build();
+
+    public static final FoodProperties GLOWBERRY_JUICE = new FoodProperties.Builder()
+            .nutrition(2)
+            .saturationModifier(0.3f)
+            .effect(() -> new MobEffectInstance(MobEffects.HEAL, 1, 0), 1.0f)
+            .effect(() -> new MobEffectInstance(MobEffects.REGENERATION, 60, 0), 0.15f)
+            .effect(() -> new MobEffectInstance(MobEffects.NIGHT_VISION, 200, 0), 0.20f) // higher glow theme
             .build();
 
 }

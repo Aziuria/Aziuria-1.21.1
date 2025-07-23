@@ -129,6 +129,8 @@ public class ModItems {
             () -> new Item(new Item.Properties().food(ModFoodProperties.PEAR)));
     public static final DeferredItem<Item> CHERRY = ITEMS.register("cherry",
             () -> new Item(new Item.Properties().food(ModFoodProperties.CHERRY)));
+    public static final DeferredItem<Item> BLACKCURRANT = ITEMS.register("blackcurrant",
+            () -> new Item(new Item.Properties().food(ModFoodProperties.BLACKCURRANT)));
 
     public static final DeferredItem<DrinkableItem> APPLE_JUICE = ITEMS.register("apple_juice",
             () -> new DrinkableItem(
@@ -161,6 +163,33 @@ public class ModItems {
             () -> new DrinkableItem(
                     new Item.Properties()
                             .food(ModFoodProperties.CHERRY_JUICE)
+                            .stacksTo(1)
+                            .craftRemainder(Items.GLASS_BOTTLE),
+                    32,
+                    UseAnim.DRINK));
+
+    public static final DeferredItem<DrinkableItem> BLACKCURRANT_JUICE = ITEMS.register("blackcurrant_juice",
+            () -> new DrinkableItem(
+                    new Item.Properties()
+                            .food(ModFoodProperties.BLACKCURRANT_JUICE)
+                            .stacksTo(1)
+                            .craftRemainder(Items.GLASS_BOTTLE),
+                    32,
+                    UseAnim.DRINK));
+
+    public static final DeferredItem<DrinkableItem> SWEETBERRY_JUICE = ITEMS.register("sweetberry_juice",
+            () -> new DrinkableItem(
+                    new Item.Properties()
+                            .food(ModFoodProperties.SWEETBERRY_JUICE)
+                            .stacksTo(1)
+                            .craftRemainder(Items.GLASS_BOTTLE),
+                    32,
+                    UseAnim.DRINK));
+
+    public static final DeferredItem<DrinkableItem> GLOWBERRY_JUICE = ITEMS.register("glowberry_juice",
+            () -> new DrinkableItem(
+                    new Item.Properties()
+                            .food(ModFoodProperties.GLOWBERRY_JUICE)
                             .stacksTo(1)
                             .craftRemainder(Items.GLASS_BOTTLE),
                     32,

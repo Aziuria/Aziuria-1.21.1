@@ -84,6 +84,7 @@ public class SackItemInventoryHandler {
             ALLOWED_ITEMS.add(Items.APPLE);
             ALLOWED_ITEMS.add(ModItems.PEAR.get());
             ALLOWED_ITEMS.add(ModItems.CHERRY.get());
+            ALLOWED_ITEMS.add(ModItems.BLACKCURRANT.get());
 
             // Misc
             ALLOWED_BLOCKS.add(ModBlocks.LEAF_LITTER.get());

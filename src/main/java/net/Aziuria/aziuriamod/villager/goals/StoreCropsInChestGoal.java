@@ -47,6 +47,7 @@ public class StoreCropsInChestGoal extends MoveToBlockGoal {
                 || stack.getItem() == ModItems.CORN.get()
                 || stack.getItem() == ModItems.SPRING_ONION.get()
                 || stack.getItem() == ModItems.ONION.get()
+                || stack.getItem() == ModItems.BLACKCURRANT.get()
                 || stack.getItem() == Items.CARROT
                 || stack.getItem() == Items.POTATO
                 || stack.getItem() == Items.WHEAT

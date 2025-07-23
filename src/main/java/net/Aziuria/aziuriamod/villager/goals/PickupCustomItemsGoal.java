@@ -96,7 +96,8 @@ public class PickupCustomItemsGoal extends Goal {
                 || item == ModItems.ONION.get()
                 || item == ModItems.SPRING_ONION.get()
                 || item == ModItems.RADISH.get()
-                || item == ModItems.TOMATO.get();
+                || item == ModItems.TOMATO.get()
+                || item == ModItems.BLACKCURRANT.get();
     }
 
     private boolean isFishermanItem(Item item) {
@@ -152,6 +153,7 @@ public class PickupCustomItemsGoal extends Goal {
                 || item == Items.STICK
                 || item == Items.APPLE
                 || item == ModItems.PEAR.get()
+                || item == ModItems.CHERRY.get()
                 || item == Items.CHERRY_SAPLING
                 || item == ModBlocks.APPLE_SAPLING.get().asItem() // <-- Your modded apple sapling here
                 || item == ModBlocks.PEAR_SAPLING.get().asItem()) { // <-- Your modded pear sapling here

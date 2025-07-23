@@ -84,6 +84,9 @@ public class ModVillagerTrades {
             addBuyTrade(event, 2, ModItems.CHERRY.get().getDefaultInstance(), 4, 3,4);
             addSellTrade(event, 2, ModItems.CHERRY.get().getDefaultInstance(), 8, 1, 4);
 
+            addBuyTrade(event, 2, ModItems.BLACKCURRANT.get().getDefaultInstance(), 4, 3,4);
+            addSellTrade(event, 2, ModItems.BLACKCURRANT.get().getDefaultInstance(), 8, 1, 4);
+
             addBuyTrade(event, 2, Items.SUGAR_CANE.getDefaultInstance(), 3, 2,4);
             addSellTrade(event, 2, Items.SUGAR_CANE.getDefaultInstance(), 6, 1, 4);
 
