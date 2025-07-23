@@ -9,6 +9,8 @@ import java.util.Optional;
 
 public class ModTreeGrowers {
 
+    // ---------------- APPLE VARIANTS ----------------
+
     public static final TreeGrower APPLE_VARIANT_1 = new TreeGrower(AziuriaMod.MOD_ID + ":apple_variant_1",
             Optional.empty(), Optional.of(ModConfiguredFeatures.APPLE_KEY_VARIANT_1), Optional.empty());
 
@@ -30,6 +32,51 @@ public class ModTreeGrowers {
     public static final TreeGrower APPLE_VARIANT_7 = new TreeGrower(AziuriaMod.MOD_ID + ":apple_variant_7",
             Optional.empty(), Optional.of(ModConfiguredFeatures.APPLE_KEY_VARIANT_7), Optional.empty());
 
+    // ---------------- PEAR VARIANTS ----------------
 
+    public static final TreeGrower PEAR_VARIANT_1 = new TreeGrower(AziuriaMod.MOD_ID + ":pear_variant_1",
+            Optional.empty(), Optional.of(ModConfiguredFeatures.PEAR_KEY_VARIANT_1), Optional.empty());
+
+    public static final TreeGrower PEAR_VARIANT_2 = new TreeGrower(AziuriaMod.MOD_ID + ":pear_variant_2",
+            Optional.empty(), Optional.of(ModConfiguredFeatures.PEAR_KEY_VARIANT_2), Optional.empty());
+
+    public static final TreeGrower PEAR_VARIANT_3 = new TreeGrower(AziuriaMod.MOD_ID + ":pear_variant_3",
+            Optional.empty(), Optional.of(ModConfiguredFeatures.PEAR_KEY_VARIANT_3), Optional.empty());
+
+    public static final TreeGrower PEAR_VARIANT_4 = new TreeGrower(AziuriaMod.MOD_ID + ":pear_variant_4",
+            Optional.empty(), Optional.of(ModConfiguredFeatures.PEAR_KEY_VARIANT_4), Optional.empty());
+
+    public static final TreeGrower PEAR_VARIANT_5 = new TreeGrower(AziuriaMod.MOD_ID + ":pear_variant_5",
+            Optional.empty(), Optional.of(ModConfiguredFeatures.PEAR_KEY_VARIANT_5), Optional.empty());
+
+    public static final TreeGrower PEAR_VARIANT_6 = new TreeGrower(AziuriaMod.MOD_ID + ":pear_variant_6",
+            Optional.empty(), Optional.of(ModConfiguredFeatures.PEAR_KEY_VARIANT_6), Optional.empty());
+
+    public static final TreeGrower PEAR_VARIANT_7 = new TreeGrower(AziuriaMod.MOD_ID + ":pear_variant_7",
+            Optional.empty(), Optional.of(ModConfiguredFeatures.PEAR_KEY_VARIANT_7), Optional.empty());
+
+    // ---------------- CHERRY VARIANTS ----------------
+
+    public static final TreeGrower CHERRY_VARIANT_1 = new TreeGrower(AziuriaMod.MOD_ID + ":cherry_variant_1",
+            Optional.empty(), Optional.of(ModConfiguredFeatures.CHERRY_KEY_VARIANT_1), Optional.empty());
+
+    public static final TreeGrower CHERRY_VARIANT_2 = new TreeGrower(AziuriaMod.MOD_ID + ":cherry_variant_2",
+            Optional.empty(), Optional.of(ModConfiguredFeatures.CHERRY_KEY_VARIANT_2), Optional.empty());
+
+    public static final TreeGrower CHERRY_VARIANT_3 = new TreeGrower(AziuriaMod.MOD_ID + ":cherry_variant_3",
+            Optional.empty(), Optional.of(ModConfiguredFeatures.CHERRY_KEY_VARIANT_3), Optional.empty());
+
+    public static final TreeGrower CHERRY_VARIANT_4 = new TreeGrower(AziuriaMod.MOD_ID + ":cherry_variant_4",
+            Optional.empty(), Optional.of(ModConfiguredFeatures.CHERRY_KEY_VARIANT_4), Optional.empty());
+
+    public static final TreeGrower CHERRY_VARIANT_5 = new TreeGrower(AziuriaMod.MOD_ID + ":cherry_variant_5",
+            Optional.empty(), Optional.of(ModConfiguredFeatures.CHERRY_KEY_VARIANT_5), Optional.empty());
+
+    public static final TreeGrower CHERRY_VARIANT_6 = new TreeGrower(AziuriaMod.MOD_ID + ":cherry_variant_6",
+            Optional.empty(), Optional.of(ModConfiguredFeatures.CHERRY_KEY_VARIANT_6), Optional.empty());
+
+    public static final TreeGrower CHERRY_VARIANT_7 = new TreeGrower(AziuriaMod.MOD_ID + ":cherry_variant_7",
+            Optional.empty(), Optional.of(ModConfiguredFeatures.CHERRY_KEY_VARIANT_7), Optional.empty());
 
 }
+

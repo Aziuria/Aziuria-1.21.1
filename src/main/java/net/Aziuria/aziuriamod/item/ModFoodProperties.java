@@ -41,19 +41,26 @@ public class ModFoodProperties {
             .build();
 
     public static final FoodProperties BEEF_BURGER = new FoodProperties.Builder()
-            .nutrition(12) // higher due to multiple stacked ingredients
-            .saturationModifier(0.85f) // slight increase, consistent with dense foods
+            .nutrition(12)
+            .saturationModifier(0.85f)
             .effect(() -> new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 200), 0.3f)
             .effect(() -> new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 100, 0), 0.2f)
             .effect(() -> new MobEffectInstance(MobEffects.HEALTH_BOOST, 200), 0.15f) // optional bonus for premium food
             .build();
 
     public static final FoodProperties CHEESEBURGER = new FoodProperties.Builder()
-            .nutrition(10) // beef + cheese + bread
-            .saturationModifier(0.85f) // high saturation, realistic for a cheeseburger
+            .nutrition(10)
+            .saturationModifier(0.85f)
             .effect(() -> new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 200), 0.3f) // beef strength
             .effect(() -> new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 100, 0), 0.2f) // energy boost
             .effect(() -> new MobEffectInstance(MobEffects.ABSORPTION, 200), 0.15f) // cheese shielding
+            .build();
+
+    public static final FoodProperties PORKCHOP_BURGER = new FoodProperties.Builder()
+            .nutrition(11)
+            .saturationModifier(0.85f)
+            .effect(() -> new MobEffectInstance(MobEffects.REGENERATION, 100, 0), 0.15f) // slight regen
+            .effect(() -> new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 100, 0), 0.15f) // small speed boost
             .build();
 
     public static final FoodProperties CHEESE = new FoodProperties.Builder()

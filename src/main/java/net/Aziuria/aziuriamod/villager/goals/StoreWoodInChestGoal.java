@@ -1,5 +1,6 @@
 package net.Aziuria.aziuriamod.villager.goals;
 
+import net.Aziuria.aziuriamod.item.ModItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -41,6 +42,9 @@ public class StoreWoodInChestGoal extends MoveToBlockGoal {
     private boolean isStorableItem(ItemStack stack) {
         return stack.is(ItemTags.LOGS)
                 || stack.is(ItemTags.SAPLINGS)
+                || stack.getItem() == ModItems.PEAR.get()
+                || stack.getItem() == ModItems.CHERRY.get()
+                || stack.getItem() == Items.APPLE
                 || stack.getItem() == Items.STICK;
     }
 

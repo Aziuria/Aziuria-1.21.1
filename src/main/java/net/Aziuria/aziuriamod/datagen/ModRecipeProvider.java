@@ -84,6 +84,26 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .unlockedBy("has_apple", has(Items.APPLE))
                 .save(recipeOutput);
 
+        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ModBlocks.PEAR_SAPLING.get(), 1)
+                .pattern(" A ")
+                .pattern(" D ")
+                .pattern(" B ")
+                .define('A', ModItems.PEAR.get())
+                .define('B', Items.BUCKET)
+                .define('D', Blocks.DIRT)
+                .unlockedBy("has_pear", has(ModItems.PEAR.get()))
+                .save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ModBlocks.CHERRY_SAPLING.get(), 1)
+                .pattern(" A ")
+                .pattern(" D ")
+                .pattern(" B ")
+                .define('A', ModItems.CHERRY.get())
+                .define('B', Items.BUCKET)
+                .define('D', Blocks.DIRT)
+                .unlockedBy("has_cherry", has(ModItems.CHERRY.get()))
+                .save(recipeOutput);
+
         ShapedRecipeBuilder.shaped(RecipeCategory.FOOD, ModItems.FLOUR.get(), 12)
                 .pattern("SSS")
                 .pattern("SSS")
@@ -131,6 +151,17 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .define('Q', ModItems.CHEESE.get())
                 .define('A', Items.BREAD)
                 .define('F', Items.COOKED_BEEF)
+                .unlockedBy("has_bread", has(Items.BREAD))
+                .save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.FOOD, ModItems.PORKCHOP_BURGER.get(), 1)
+                .pattern(" AR")
+                .pattern(" QF")
+                .pattern(" A ")
+                .define('R', ModItems.KNIFE.get())
+                .define('Q', ModItems.LETTUCE.get())
+                .define('A', Items.BREAD)
+                .define('F', Items.COOKED_PORKCHOP)
                 .unlockedBy("has_bread", has(Items.BREAD))
                 .save(recipeOutput);
 

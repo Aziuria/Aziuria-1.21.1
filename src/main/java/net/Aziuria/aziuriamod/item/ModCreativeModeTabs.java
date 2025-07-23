@@ -82,6 +82,7 @@ public class ModCreativeModeTabs {
                         output.accept(ModItems.FRENCH_FRIES);
                         output.accept(ModItems.BEEF_BURGER);
                         output.accept(ModItems.CHEESEBURGER);
+                        output.accept(ModItems.PORKCHOP_BURGER);
                         output.accept(ModItems.PANCAKE_DOUGH);
                         output.accept(ModItems.PANCAKE);
                         output.accept(ModItems.APPLE_JUICE);
@@ -107,7 +108,11 @@ public class ModCreativeModeTabs {
                         output.accept(ModItems.ONION_SEEDS);
                         output.accept(ModItems.SPRING_ONION_SEEDS);
                         output.accept(ModBlocks.APPLE_SAPLING.get());
+                        output.accept(ModBlocks.PEAR_SAPLING.get());
+                        output.accept(ModBlocks.CHERRY_SAPLING.get());
                         output.accept(ModBlocks.APPLE_LEAVES.get());
+                        output.accept(ModBlocks.PEAR_LEAVES.get());
+                        output.accept(ModBlocks.CHERRY_LEAVES.get());
                     }).build());
 
 

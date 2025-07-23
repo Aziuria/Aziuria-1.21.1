@@ -34,9 +34,15 @@ public class ModDataMapProvider extends DataMapProvider {
                 .add(ModItems.CORN.getId(), new Compostable(0.45f), false)
                 .add(ModItems.PINEAPPLE_SEEDS.getId(), new Compostable(0.45f), false)
                 .add(ModItems.PINEAPPLE.getId(), new Compostable(0.45f), false)
+                .add(ModItems.PEAR.getId(), new Compostable(0.45f), false)
+                .add(ModItems.CHERRY.getId(), new Compostable(0.45f), false)
                 .add(ModBlocks.LEAF_LITTER.getId(), new Compostable(0.45f), false)
                 .add(ModBlocks.APPLE_LEAVES.getId(), new Compostable(0.45f), false)
                 .add(ModBlocks.APPLE_SAPLING.getId(), new Compostable(0.45f), false)
+                .add(ModBlocks.PEAR_LEAVES.getId(), new Compostable(0.45f), false)
+                .add(ModBlocks.PEAR_SAPLING.getId(), new Compostable(0.45f), false)
+                .add(ModBlocks.CHERRY_LEAVES.getId(), new Compostable(0.45f), false)
+                .add(ModBlocks.CHERRY_SAPLING.getId(), new Compostable(0.45f), false)
                 .add(ModItems.FLAX_FLOWER.getId(), new Compostable(0.45f), false);
 
 

@@ -58,6 +58,9 @@ public class SackItemInventoryHandler {
             ALLOWED_ITEMS.add(Items.JUNGLE_SAPLING);
             ALLOWED_ITEMS.add(Items.ACACIA_SAPLING);
             ALLOWED_ITEMS.add(Items.DARK_OAK_SAPLING);
+            ALLOWED_BLOCKS.add(ModBlocks.APPLE_SAPLING.get());
+            ALLOWED_BLOCKS.add(ModBlocks.PEAR_SAPLING.get());
+            ALLOWED_BLOCKS.add(ModBlocks.CHERRY_SAPLING.get());
 
             // Bamboo
             ALLOWED_ITEMS.add(Items.BAMBOO);
@@ -79,6 +82,8 @@ public class SackItemInventoryHandler {
 
             // Apples
             ALLOWED_ITEMS.add(Items.APPLE);
+            ALLOWED_ITEMS.add(ModItems.PEAR.get());
+            ALLOWED_ITEMS.add(ModItems.CHERRY.get());
 
             // Misc
             ALLOWED_BLOCKS.add(ModBlocks.LEAF_LITTER.get());

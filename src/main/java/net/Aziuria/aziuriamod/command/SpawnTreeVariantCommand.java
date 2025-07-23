@@ -13,16 +13,16 @@ import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 public class SpawnTreeVariantCommand {  // Renamed class
 
     public static void register(CommandDispatcher<CommandSourceStack> dispatcher) {
-        dispatcher.register(Commands.literal("spawn_tree_variant")  // Updated command name here
-                .then(Commands.argument("variant", IntegerArgumentType.integer(1, 10)) // variants 1-10 allowed
+        dispatcher.register(Commands.literal("spawn_tree_variant")  // Command name
+                .then(Commands.argument("variant", IntegerArgumentType.integer(1, 24)) // Allow variants 1-24
                         .executes(ctx -> {
                             int variant = IntegerArgumentType.getInteger(ctx, "variant");
-                            return spawnTreeVariant(ctx.getSource(), variant);  // Updated method call
+                            return spawnTreeVariant(ctx.getSource(), variant);  // Spawn method call
                         }))
         );
     }
 
-    private static int spawnTreeVariant(CommandSourceStack source, int variant) {  // Renamed method
+    private static int spawnTreeVariant(CommandSourceStack source, int variant) {  // Spawn method
         ServerLevel level = source.getLevel();
         BlockPos pos;
 
@@ -33,9 +33,9 @@ public class SpawnTreeVariantCommand {  // Renamed class
             return 0;
         }
 
-        ConfiguredFeature<?, ?> feature = getTreeVariantFeature(variant, level);  // Renamed method
+        ConfiguredFeature<?, ?> feature = getTreeVariantFeature(variant, level);  // Fetch feature
         if (feature == null) {
-            source.sendFailure(Component.literal("Invalid tree variant: " + variant));  // Generic message now
+            source.sendFailure(Component.literal("Invalid tree variant: " + variant));
             return 0;
         }
 
@@ -49,7 +49,7 @@ public class SpawnTreeVariantCommand {  // Renamed class
         }
     }
 
-    private static ConfiguredFeature<?, ?> getTreeVariantFeature(int variant, ServerLevel level) {  // Renamed method
+    private static ConfiguredFeature<?, ?> getTreeVariantFeature(int variant, ServerLevel level) {  // Variant fetcher
         switch (variant) {
             case 1 -> {
                 return level.registryAccess()
@@ -100,6 +100,76 @@ public class SpawnTreeVariantCommand {  // Renamed class
                 return level.registryAccess()
                         .registryOrThrow(net.minecraft.core.registries.Registries.CONFIGURED_FEATURE)
                         .get(ModConfiguredFeatures.BIRCH_VARIANT_1);
+            }
+            case 11 -> {
+                return level.registryAccess()
+                        .registryOrThrow(net.minecraft.core.registries.Registries.CONFIGURED_FEATURE)
+                        .get(ModConfiguredFeatures.PEAR_KEY_VARIANT_1);
+            }
+            case 12 -> {
+                return level.registryAccess()
+                        .registryOrThrow(net.minecraft.core.registries.Registries.CONFIGURED_FEATURE)
+                        .get(ModConfiguredFeatures.PEAR_KEY_VARIANT_2);
+            }
+            case 13 -> {
+                return level.registryAccess()
+                        .registryOrThrow(net.minecraft.core.registries.Registries.CONFIGURED_FEATURE)
+                        .get(ModConfiguredFeatures.PEAR_KEY_VARIANT_3);
+            }
+            case 14 -> {
+                return level.registryAccess()
+                        .registryOrThrow(net.minecraft.core.registries.Registries.CONFIGURED_FEATURE)
+                        .get(ModConfiguredFeatures.PEAR_KEY_VARIANT_4);
+            }
+            case 15 -> {
+                return level.registryAccess()
+                        .registryOrThrow(net.minecraft.core.registries.Registries.CONFIGURED_FEATURE)
+                        .get(ModConfiguredFeatures.PEAR_KEY_VARIANT_5);
+            }
+            case 16 -> {
+                return level.registryAccess()
+                        .registryOrThrow(net.minecraft.core.registries.Registries.CONFIGURED_FEATURE)
+                        .get(ModConfiguredFeatures.PEAR_KEY_VARIANT_6);
+            }
+            case 17 -> {
+                return level.registryAccess()
+                        .registryOrThrow(net.minecraft.core.registries.Registries.CONFIGURED_FEATURE)
+                        .get(ModConfiguredFeatures.PEAR_KEY_VARIANT_7);
+            }
+            case 18 -> {
+                return level.registryAccess()
+                        .registryOrThrow(net.minecraft.core.registries.Registries.CONFIGURED_FEATURE)
+                        .get(ModConfiguredFeatures.CHERRY_KEY_VARIANT_1);
+            }
+            case 19 -> {
+                return level.registryAccess()
+                        .registryOrThrow(net.minecraft.core.registries.Registries.CONFIGURED_FEATURE)
+                        .get(ModConfiguredFeatures.CHERRY_KEY_VARIANT_2);
+            }
+            case 20 -> {
+                return level.registryAccess()
+                        .registryOrThrow(net.minecraft.core.registries.Registries.CONFIGURED_FEATURE)
+                        .get(ModConfiguredFeatures.CHERRY_KEY_VARIANT_3);
+            }
+            case 21 -> {
+                return level.registryAccess()
+                        .registryOrThrow(net.minecraft.core.registries.Registries.CONFIGURED_FEATURE)
+                        .get(ModConfiguredFeatures.CHERRY_KEY_VARIANT_4);
+            }
+            case 22 -> {
+                return level.registryAccess()
+                        .registryOrThrow(net.minecraft.core.registries.Registries.CONFIGURED_FEATURE)
+                        .get(ModConfiguredFeatures.CHERRY_KEY_VARIANT_5);
+            }
+            case 23 -> {
+                return level.registryAccess()
+                        .registryOrThrow(net.minecraft.core.registries.Registries.CONFIGURED_FEATURE)
+                        .get(ModConfiguredFeatures.CHERRY_KEY_VARIANT_6);
+            }
+            case 24 -> {
+                return level.registryAccess()
+                        .registryOrThrow(net.minecraft.core.registries.Registries.CONFIGURED_FEATURE)
+                        .get(ModConfiguredFeatures.CHERRY_KEY_VARIANT_7);
             }
             default -> {
                 return null;

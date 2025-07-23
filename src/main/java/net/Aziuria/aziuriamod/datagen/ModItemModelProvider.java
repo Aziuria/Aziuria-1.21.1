@@ -60,6 +60,7 @@ public class ModItemModelProvider extends ItemModelProvider {
         basicItem(ModItems.CHICKEN_NUGGETS.get());
         basicItem(ModItems.BEEF_BURGER.get());
         basicItem(ModItems.CHEESEBURGER.get());
+        basicItem(ModItems.PORKCHOP_BURGER.get());
         basicItem(ModItems.CHEESE.get());
         basicItem(ModItems.FRENCH_FRIES.get());
         basicItem(ModItems.PINEAPPLE.get());
@@ -93,6 +94,8 @@ public class ModItemModelProvider extends ItemModelProvider {
         trimmedArmorItem(ModItems.STEEL_BOOTS);
 
         saplingItem(ModBlocks.APPLE_SAPLING);
+        saplingItem(ModBlocks.PEAR_SAPLING);
+        saplingItem(ModBlocks.CHERRY_SAPLING);
     }
 
     private ItemModelBuilder saplingItem(DeferredBlock<Block> item) {

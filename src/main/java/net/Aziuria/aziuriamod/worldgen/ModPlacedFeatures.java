@@ -50,6 +50,21 @@ public class ModPlacedFeatures {
     public static final ResourceKey<PlacedFeature> APPLE_KEY_VARIANT_6 = registerKey("apple_variant_6");
     public static final ResourceKey<PlacedFeature> APPLE_KEY_VARIANT_7 = registerKey("apple_variant_7");
 
+    public static final ResourceKey<PlacedFeature> PEAR_KEY_VARIANT_1 = registerKey("pear_variant_1");
+    public static final ResourceKey<PlacedFeature> PEAR_KEY_VARIANT_2 = registerKey("pear_variant_2");
+    public static final ResourceKey<PlacedFeature> PEAR_KEY_VARIANT_3 = registerKey("pear_variant_3");
+    public static final ResourceKey<PlacedFeature> PEAR_KEY_VARIANT_4 = registerKey("pear_variant_4");
+    public static final ResourceKey<PlacedFeature> PEAR_KEY_VARIANT_5 = registerKey("pear_variant_5");
+    public static final ResourceKey<PlacedFeature> PEAR_KEY_VARIANT_6 = registerKey("pear_variant_6");
+    public static final ResourceKey<PlacedFeature> PEAR_KEY_VARIANT_7 = registerKey("pear_variant_7");
+
+    public static final ResourceKey<PlacedFeature> CHERRY_KEY_VARIANT_1 = registerKey("cherry_variant_1");
+    public static final ResourceKey<PlacedFeature> CHERRY_KEY_VARIANT_2 = registerKey("cherry_variant_2");
+    public static final ResourceKey<PlacedFeature> CHERRY_KEY_VARIANT_3 = registerKey("cherry_variant_3");
+    public static final ResourceKey<PlacedFeature> CHERRY_KEY_VARIANT_4 = registerKey("cherry_variant_4");
+    public static final ResourceKey<PlacedFeature> CHERRY_KEY_VARIANT_5 = registerKey("cherry_variant_5");
+    public static final ResourceKey<PlacedFeature> CHERRY_KEY_VARIANT_6 = registerKey("cherry_variant_6");
+    public static final ResourceKey<PlacedFeature> CHERRY_KEY_VARIANT_7 = registerKey("cherry_variant_7");
 
     public static final ResourceKey<PlacedFeature> DARK_OAK_KEY_VARIANT_1 = registerKey("dark_oak_variant_1");
     public static final ResourceKey<PlacedFeature> DARK_OAK_KEY_VARIANT_2 = registerKey("dark_oak_variant_2");
@@ -250,6 +265,202 @@ public class ModPlacedFeatures {
 
             register(context, APPLE_KEY_VARIANT_7,
                     configuredFeatures.getOrThrow(ModConfiguredFeatures.APPLE_KEY_VARIANT_7),
+                    modifiers
+            );
+        }
+
+        // Pear Variant 1
+        {
+            List<PlacementModifier> modifiers = new ArrayList<>(VegetationPlacements.treePlacement(
+                    NoiseThresholdCountPlacement.of(0.8, 0, 1),
+                    ModBlocks.PEAR_SAPLING.get()
+            ));
+            modifiers.add(RarityFilter.onAverageOnceEvery(15));
+
+            register(context, PEAR_KEY_VARIANT_1,
+                    configuredFeatures.getOrThrow(ModConfiguredFeatures.PEAR_KEY_VARIANT_1),
+                    modifiers
+            );
+        }
+
+// Pear Variant 2
+        {
+            List<PlacementModifier> modifiers = new ArrayList<>(VegetationPlacements.treePlacement(
+                    NoiseThresholdCountPlacement.of(0.8, 0, 1),
+                    ModBlocks.PEAR_SAPLING.get()
+            ));
+            modifiers.add(RarityFilter.onAverageOnceEvery(18)); // retain your desired rarity
+
+            register(context, PEAR_KEY_VARIANT_2,
+                    configuredFeatures.getOrThrow(ModConfiguredFeatures.PEAR_KEY_VARIANT_2),
+                    modifiers
+            );
+        }
+
+// Pear Variant 3
+        {
+            List<PlacementModifier> modifiers = new ArrayList<>(VegetationPlacements.treePlacement(
+                    NoiseThresholdCountPlacement.of(0.8, 0, 2),
+                    ModBlocks.PEAR_SAPLING.get()
+            ));
+            modifiers.add(RarityFilter.onAverageOnceEvery(14));
+
+            register(context, PEAR_KEY_VARIANT_3,
+                    configuredFeatures.getOrThrow(ModConfiguredFeatures.PEAR_KEY_VARIANT_3),
+                    modifiers
+            );
+        }
+
+// Pear Variant 4
+        {
+            List<PlacementModifier> modifiers = new ArrayList<>(VegetationPlacements.treePlacement(
+                    NoiseThresholdCountPlacement.of(0.8, 0, 1),
+                    ModBlocks.PEAR_SAPLING.get()
+            ));
+            modifiers.add(RarityFilter.onAverageOnceEvery(15));
+
+            register(context, PEAR_KEY_VARIANT_4,
+                    configuredFeatures.getOrThrow(ModConfiguredFeatures.PEAR_KEY_VARIANT_4),
+                    modifiers
+            );
+        }
+
+// Pear Variant 5
+        {
+            List<PlacementModifier> modifiers = new ArrayList<>(VegetationPlacements.treePlacement(
+                    NoiseThresholdCountPlacement.of(0.8, 0, 2),
+                    ModBlocks.PEAR_SAPLING.get()
+            ));
+            modifiers.add(RarityFilter.onAverageOnceEvery(12));
+
+            register(context, PEAR_KEY_VARIANT_5,
+                    configuredFeatures.getOrThrow(ModConfiguredFeatures.PEAR_KEY_VARIANT_5),
+                    modifiers
+            );
+        }
+
+// Pear Variant 6
+        {
+            List<PlacementModifier> modifiers = new ArrayList<>(VegetationPlacements.treePlacement(
+                    NoiseThresholdCountPlacement.of(0.8, 0, 1),
+                    ModBlocks.PEAR_SAPLING.get()
+            ));
+            modifiers.add(RarityFilter.onAverageOnceEvery(14));
+
+            register(context, PEAR_KEY_VARIANT_6,
+                    configuredFeatures.getOrThrow(ModConfiguredFeatures.PEAR_KEY_VARIANT_6),
+                    modifiers
+            );
+        }
+
+// Pear Variant 7
+        {
+            List<PlacementModifier> modifiers = new ArrayList<>(VegetationPlacements.treePlacement(
+                    NoiseThresholdCountPlacement.of(0.8, 0, 2),
+                    ModBlocks.PEAR_SAPLING.get()
+            ));
+            modifiers.add(RarityFilter.onAverageOnceEvery(13));
+
+            register(context, PEAR_KEY_VARIANT_7,
+                    configuredFeatures.getOrThrow(ModConfiguredFeatures.PEAR_KEY_VARIANT_7),
+                    modifiers
+            );
+        }
+
+        // Cherry Variant 1
+        {
+            List<PlacementModifier> modifiers = new ArrayList<>(VegetationPlacements.treePlacement(
+                    NoiseThresholdCountPlacement.of(0.8, 0, 1),
+                    ModBlocks.CHERRY_SAPLING.get()
+            ));
+            modifiers.add(RarityFilter.onAverageOnceEvery(15));
+
+            register(context, CHERRY_KEY_VARIANT_1,
+                    configuredFeatures.getOrThrow(ModConfiguredFeatures.CHERRY_KEY_VARIANT_1),
+                    modifiers
+            );
+        }
+
+//  Cherry Variant 2
+        {
+            List<PlacementModifier> modifiers = new ArrayList<>(VegetationPlacements.treePlacement(
+                    NoiseThresholdCountPlacement.of(0.8, 0, 1),
+                    ModBlocks.CHERRY_SAPLING.get()
+            ));
+            modifiers.add(RarityFilter.onAverageOnceEvery(18)); // retain your desired rarity
+
+            register(context, CHERRY_KEY_VARIANT_2,
+                    configuredFeatures.getOrThrow(ModConfiguredFeatures.CHERRY_KEY_VARIANT_2),
+                    modifiers
+            );
+        }
+
+// Cherry Variant 3
+        {
+            List<PlacementModifier> modifiers = new ArrayList<>(VegetationPlacements.treePlacement(
+                    NoiseThresholdCountPlacement.of(0.8, 0, 2),
+                    ModBlocks.CHERRY_SAPLING.get()
+            ));
+            modifiers.add(RarityFilter.onAverageOnceEvery(14));
+
+            register(context, CHERRY_KEY_VARIANT_3,
+                    configuredFeatures.getOrThrow(ModConfiguredFeatures.CHERRY_KEY_VARIANT_3),
+                    modifiers
+            );
+        }
+
+// Cherry Variant 4
+        {
+            List<PlacementModifier> modifiers = new ArrayList<>(VegetationPlacements.treePlacement(
+                    NoiseThresholdCountPlacement.of(0.8, 0, 1),
+                    ModBlocks.CHERRY_SAPLING.get()
+            ));
+            modifiers.add(RarityFilter.onAverageOnceEvery(15));
+
+            register(context, CHERRY_KEY_VARIANT_4,
+                    configuredFeatures.getOrThrow(ModConfiguredFeatures.CHERRY_KEY_VARIANT_4),
+                    modifiers
+            );
+        }
+
+// Cherry Variant 5
+        {
+            List<PlacementModifier> modifiers = new ArrayList<>(VegetationPlacements.treePlacement(
+                    NoiseThresholdCountPlacement.of(0.8, 0, 2),
+                    ModBlocks.CHERRY_SAPLING.get()
+            ));
+            modifiers.add(RarityFilter.onAverageOnceEvery(12));
+
+            register(context, CHERRY_KEY_VARIANT_5,
+                    configuredFeatures.getOrThrow(ModConfiguredFeatures.CHERRY_KEY_VARIANT_5),
+                    modifiers
+            );
+        }
+
+// Cherry Variant 6
+        {
+            List<PlacementModifier> modifiers = new ArrayList<>(VegetationPlacements.treePlacement(
+                    NoiseThresholdCountPlacement.of(0.8, 0, 1),
+                    ModBlocks.CHERRY_SAPLING.get()
+            ));
+            modifiers.add(RarityFilter.onAverageOnceEvery(14));
+
+            register(context, CHERRY_KEY_VARIANT_6,
+                    configuredFeatures.getOrThrow(ModConfiguredFeatures.CHERRY_KEY_VARIANT_6),
+                    modifiers
+            );
+        }
+
+// Cherry Variant 7
+        {
+            List<PlacementModifier> modifiers = new ArrayList<>(VegetationPlacements.treePlacement(
+                    NoiseThresholdCountPlacement.of(0.8, 0, 2),
+                    ModBlocks.CHERRY_SAPLING.get()
+            ));
+            modifiers.add(RarityFilter.onAverageOnceEvery(13));
+
+            register(context, CHERRY_KEY_VARIANT_7,
+                    configuredFeatures.getOrThrow(ModConfiguredFeatures.CHERRY_KEY_VARIANT_7),
                     modifiers
             );
         }

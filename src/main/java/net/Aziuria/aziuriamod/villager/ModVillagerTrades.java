@@ -78,6 +78,12 @@ public class ModVillagerTrades {
             addBuyTrade(event, 2, Items.APPLE.getDefaultInstance(), 4, 3,4);
             addSellTrade(event, 2, Items.APPLE.getDefaultInstance(), 8, 1, 4);
 
+            addBuyTrade(event, 2, ModItems.PEAR.get().getDefaultInstance(), 4, 3,4);
+            addSellTrade(event, 2, ModItems.PEAR.get().getDefaultInstance(), 8, 1, 4);
+
+            addBuyTrade(event, 2, ModItems.CHERRY.get().getDefaultInstance(), 4, 3,4);
+            addSellTrade(event, 2, ModItems.CHERRY.get().getDefaultInstance(), 8, 1, 4);
+
             addBuyTrade(event, 2, Items.SUGAR_CANE.getDefaultInstance(), 3, 2,4);
             addSellTrade(event, 2, Items.SUGAR_CANE.getDefaultInstance(), 6, 1, 4);
 
@@ -264,6 +270,12 @@ public class ModVillagerTrades {
 
             addBuyTrade(event, 2, ModBlocks.APPLE_SAPLING.get().asItem().getDefaultInstance(), 2, 4, 4);
             addSellTrade(event, 2, ModBlocks.APPLE_SAPLING.get().asItem().getDefaultInstance(), 6, 1, 4);
+
+            addBuyTrade(event, 2, ModBlocks.PEAR_SAPLING.get().asItem().getDefaultInstance(), 2, 4, 4);
+            addSellTrade(event, 2, ModBlocks.PEAR_SAPLING.get().asItem().getDefaultInstance(), 6, 1, 4);
+
+            addBuyTrade(event, 2, ModBlocks.CHERRY_SAPLING.get().asItem().getDefaultInstance(), 2, 4, 4);
+            addSellTrade(event, 2, ModBlocks.CHERRY_SAPLING.get().asItem().getDefaultInstance(), 6, 1, 4);
 
             addBuyTrade(event, 2, Items.STONE_AXE.getDefaultInstance(), 4, 1, 4);
             addSellTrade(event, 2, Items.STONE_AXE.getDefaultInstance(), 1, 1, 4);

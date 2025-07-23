@@ -1,6 +1,7 @@
 package net.Aziuria.aziuriamod.block.custom;
 
 import net.Aziuria.aziuriamod.handler.FastLeafDecayHandler;
+import net.Aziuria.aziuriamod.item.ModItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
@@ -25,12 +26,12 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.phys.BlockHitResult;
 
-public class ModAppleLeavesBlock extends LeavesBlock {
+public class ModPearLeavesBlock extends LeavesBlock {
 
     public static final IntegerProperty PICK_COUNT = IntegerProperty.create("pick_count", 0, 9);
     public static final IntegerProperty MAX_PICK = IntegerProperty.create("max_pick", 3, 9);
 
-    public ModAppleLeavesBlock(BlockBehaviour.Properties properties) {
+    public ModPearLeavesBlock(BlockBehaviour.Properties properties) {
         super(properties);
         this.registerDefaultState(this.defaultBlockState()
                 .setValue(PICK_COUNT, 0)
@@ -64,11 +65,11 @@ public class ModAppleLeavesBlock extends LeavesBlock {
             int maxPicks = state.getValue(MAX_PICK);
 
             if (currentPicks < maxPicks) {
-                // Drop an apple
-                ItemStack apple = new ItemStack(Items.APPLE);
-                ItemEntity appleEntity = new ItemEntity(level, pos.getX() + 0.5, pos.getY() + 0.7, pos.getZ() + 0.5, apple);
-                appleEntity.setDefaultPickUpDelay();
-                level.addFreshEntity(appleEntity);
+                // Drop a pear
+                ItemStack pear = new ItemStack(ModItems.PEAR.get());
+                ItemEntity pearEntity = new ItemEntity(level, pos.getX() + 0.5, pos.getY() + 0.7, pos.getZ() + 0.5, pear);
+                pearEntity.setDefaultPickUpDelay();
+                level.addFreshEntity(pearEntity);
 
                 level.playSound(null, pos, SoundEvents.ITEM_PICKUP, SoundSource.BLOCKS, 0.5F, 1.0F);
 

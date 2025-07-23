@@ -119,6 +119,8 @@ public class ModItems {
             () -> new Item(new Item.Properties().food(ModFoodProperties.BEEF_BURGER)));
     public static final DeferredItem<Item> CHEESEBURGER = ITEMS.register("cheeseburger",
             () -> new Item(new Item.Properties().food(ModFoodProperties.CHEESEBURGER)));
+    public static final DeferredItem<Item> PORKCHOP_BURGER = ITEMS.register("porkchop_burger",
+            () -> new Item(new Item.Properties().food(ModFoodProperties.PORKCHOP_BURGER)));
     public static final DeferredItem<Item> CHEESE = ITEMS.register("cheese",
             () -> new Item(new Item.Properties().food(ModFoodProperties.CHEESE)));
     public static final DeferredItem<Item> PANCAKE = ITEMS.register("pancake",
