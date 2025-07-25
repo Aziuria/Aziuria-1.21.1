@@ -91,13 +91,16 @@ public class PickupCustomItemsGoal extends Goal {
                 || item == ModItems.ONION_SEEDS.get()
                 || item == ModItems.SPRING_ONION_SEEDS.get()
                 || item == ModItems.TOMATO_SEEDS.get()
+                || item == ModItems.BLACKCURRANT_SEEDS.get()
+                || item == ModItems.STRAWBERRY_SEEDS.get()
                 || item == ModItems.CUCUMBER.get()
                 || item == ModItems.LETTUCE.get()
                 || item == ModItems.ONION.get()
                 || item == ModItems.SPRING_ONION.get()
                 || item == ModItems.RADISH.get()
                 || item == ModItems.TOMATO.get()
-                || item == ModItems.BLACKCURRANT.get();
+                || item == ModItems.BLACKCURRANT.get()
+                || item == ModItems.STRAWBERRY.get();
     }
 
     private boolean isFishermanItem(Item item) {

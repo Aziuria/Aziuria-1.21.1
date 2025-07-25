@@ -103,6 +103,13 @@ public class ModFoodProperties {
             .effect(() -> new MobEffectInstance(MobEffects.NIGHT_VISION, 100, 0), 0.05f) // rare bonus
             .build();
 
+    public static final FoodProperties STRAWBERRY = new FoodProperties.Builder()
+            .nutrition(3) // light snack
+            .saturationModifier(0.3f) // modest berry saturation
+            .effect(() -> new MobEffectInstance(MobEffects.REGENERATION, 60, 0), 0.15f) // mild regen chance
+            .effect(() -> new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 60, 0), 0.10f) // slight speed boost
+            .build();
+
     public static final FoodProperties APPLE_JUICE = new FoodProperties.Builder()
             .nutrition(2) // small amount
             .saturationModifier(0.3f)
@@ -153,6 +160,22 @@ public class ModFoodProperties {
             .effect(() -> new MobEffectInstance(MobEffects.HEAL, 1, 0), 1.0f)
             .effect(() -> new MobEffectInstance(MobEffects.REGENERATION, 60, 0), 0.15f)
             .effect(() -> new MobEffectInstance(MobEffects.NIGHT_VISION, 200, 0), 0.20f) // higher glow theme
+            .build();
+
+    public static final FoodProperties STRAWBERRY_JUICE = new FoodProperties.Builder()
+            .nutrition(2) // small juice value
+            .saturationModifier(0.3f)
+            .effect(() -> new MobEffectInstance(MobEffects.HEAL, 1, 0), 1.0f) // instant small heal
+            .effect(() -> new MobEffectInstance(MobEffects.REGENERATION, 100, 0), 0.25f) // stronger regen chance
+            .effect(() -> new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 60, 0), 0.10f) // light energy boost
+            .build();
+
+    public static final FoodProperties TOMATO_JUICE = new FoodProperties.Builder()
+            .nutrition(2) // light drink
+            .saturationModifier(0.35f) // slightly higher for savory juice
+            .effect(() -> new MobEffectInstance(MobEffects.HEAL, 1, 0), 1.0f) // instant small heal
+            .effect(() -> new MobEffectInstance(MobEffects.REGENERATION, 80, 0), 0.20f) // mild regen
+            .effect(() -> new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 100, 0), 0.10f) // slight resistance
             .build();
 
 }

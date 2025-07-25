@@ -28,34 +28,38 @@ public class BlockDropHandler {
         Random random = new Random();
         int chance = random.nextInt(100);
 
-        if (chance < 5.0) {
+        if (chance < 3.0) {
             return new ItemStack(Items.WHEAT_SEEDS);
-        } else if (chance < 10.0) {
+        } else if (chance < 6.0) {
             return new ItemStack(Items.BEETROOT_SEEDS);
-        } else if (chance < 15.0) {
+        } else if (chance < 9.0) {
             return new ItemStack(Items.CARROT);
-        } else if (chance < 20.0) {
+        } else if (chance < 12.0) {
             return new ItemStack(Items.POTATO);
-        } else if (chance < 25.0) {
+        } else if (chance < 15.0) {
             return new ItemStack(Items.MELON_SEEDS);
-        } else if (chance < 30.0) {
+        } else if (chance < 18.0) {
             return new ItemStack(Items.PUMPKIN_SEEDS);
-        } else if (chance < 35.0) {
+        } else if (chance < 21.0) {
             return new ItemStack(ModItems.TOMATO_SEEDS.get());
-        } else if (chance < 40.0) {
+        } else if (chance < 24.0) {
             return new ItemStack(ModItems.CUCUMBER_SEEDS.get());
-        } else if (chance < 45.0) {
+        } else if (chance < 27.0) {
             return new ItemStack(ModItems.RADISH_SEEDS.get());
-        } else if (chance < 50.0) {
+        } else if (chance < 30.0) {
             return new ItemStack(ModItems.LETTUCE_SEEDS.get());
-        } else if (chance < 55.0) {
+        } else if (chance < 33.0) {
             return new ItemStack(ModItems.ONION_SEEDS.get());
-        } else if (chance < 60.0) {
+        } else if (chance < 36.0) {
             return new ItemStack(ModItems.SPRING_ONION_SEEDS.get());
-        } else if (chance < 65.0) {
+        } else if (chance < 39.0) {
             return new ItemStack(ModItems.CORN_SEEDS.get());
-        } else if (chance < 70.0) {
+        } else if (chance < 42.0) {
             return new ItemStack(ModItems.PINEAPPLE_SEEDS.get());
+        } else if (chance < 45.0) {
+            return new ItemStack(ModItems.BLACKCURRANT_SEEDS.get());
+        } else if (chance < 47.0) {
+            return new ItemStack(ModItems.STRAWBERRY_SEEDS.get());
         } else {
             return ItemStack.EMPTY;
         }

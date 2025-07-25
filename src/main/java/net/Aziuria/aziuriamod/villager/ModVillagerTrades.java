@@ -47,6 +47,12 @@ public class ModVillagerTrades {
             addBuyTrade(event, 1, ModItems.PINEAPPLE_SEEDS.get().getDefaultInstance(), 3, 3,2);
             addSellTrade(event, 1, ModItems.PINEAPPLE_SEEDS.get().getDefaultInstance(), 5, 1, 2);
 
+            addBuyTrade(event, 1, ModItems.BLACKCURRANT_SEEDS.get().getDefaultInstance(), 3, 3,2);
+            addSellTrade(event, 1, ModItems.BLACKCURRANT_JUICE.get().getDefaultInstance(), 5, 1, 2);
+
+            addBuyTrade(event, 1, ModItems.STRAWBERRY_SEEDS.get().getDefaultInstance(), 3, 3,2);
+            addSellTrade(event, 1, ModItems.STRAWBERRY_SEEDS.get().getDefaultInstance(), 5, 1, 2);
+
             addBuyTrade(event, 1, ModItems.CORN_SEEDS.get().getDefaultInstance(), 3, 3,2);
             addSellTrade(event, 1, ModItems.CORN_SEEDS.get().getDefaultInstance(), 5, 1, 2);
 
@@ -86,6 +92,9 @@ public class ModVillagerTrades {
 
             addBuyTrade(event, 2, ModItems.BLACKCURRANT.get().getDefaultInstance(), 4, 3,4);
             addSellTrade(event, 2, ModItems.BLACKCURRANT.get().getDefaultInstance(), 8, 1, 4);
+
+            addBuyTrade(event, 2, ModItems.STRAWBERRY.get().getDefaultInstance(), 4, 3,4);
+            addSellTrade(event, 2, ModItems.STRAWBERRY.get().getDefaultInstance(), 8, 1, 4);
 
             addBuyTrade(event, 2, Items.SUGAR_CANE.getDefaultInstance(), 3, 2,4);
             addSellTrade(event, 2, Items.SUGAR_CANE.getDefaultInstance(), 6, 1, 4);

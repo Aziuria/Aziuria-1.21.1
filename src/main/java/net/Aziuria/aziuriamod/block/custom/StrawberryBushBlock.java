@@ -19,14 +19,14 @@ import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.Vec3;
 
-public class BlackcurrantBushBlock extends SweetBerryBushBlock {
-    public BlackcurrantBushBlock(Properties properties) {
+public class StrawberryBushBlock extends SweetBerryBushBlock {
+    public StrawberryBushBlock(Properties properties) {
         super(properties);
     }
 
     @Override
     public ItemStack getCloneItemStack(LevelReader level, BlockPos pos, BlockState state) {
-        return new ItemStack(ModItems.BLACKCURRANT.get());
+        return new ItemStack(ModItems.STRAWBERRY.get());
     }
 
     @Override
@@ -36,7 +36,7 @@ public class BlackcurrantBushBlock extends SweetBerryBushBlock {
 
         if (age > 1) {
             int dropCount = fullyMature ? (3 + level.random.nextInt(7)) : (1 + level.random.nextInt(3));
-            popResource(level, pos, new ItemStack(ModItems.BLACKCURRANT.get(), dropCount));
+            popResource(level, pos, new ItemStack(ModItems.STRAWBERRY.get(), dropCount));
             level.playSound(null, pos, SoundEvents.SWEET_BERRY_BUSH_PICK_BERRIES, SoundSource.BLOCKS, 1.0F, 0.8F + level.random.nextFloat() * 0.4F);
             BlockState newState = state.setValue(AGE, 1);
             level.setBlock(pos, newState, 2);
@@ -50,9 +50,7 @@ public class BlackcurrantBushBlock extends SweetBerryBushBlock {
     @Override
     public void entityInside(BlockState state, Level level, BlockPos pos, Entity entity) {
         if (entity instanceof LivingEntity && entity.getType() != EntityType.FOX && entity.getType() != EntityType.BEE) {
-            // Slows the entity in the bush, like sweet berry bushes
             entity.makeStuckInBlock(state, new Vec3(0.8D, 0.75D, 0.8D));
-            // NO DAMAGE APPLIED
         }
     }
 

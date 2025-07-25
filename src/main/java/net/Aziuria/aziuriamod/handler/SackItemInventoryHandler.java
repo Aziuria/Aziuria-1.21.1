@@ -50,6 +50,8 @@ public class SackItemInventoryHandler {
             ALLOWED_ITEMS.add(ModItems.LETTUCE_SEEDS.get());
             ALLOWED_ITEMS.add(ModItems.ONION_SEEDS.get());
             ALLOWED_ITEMS.add(ModItems.SPRING_ONION_SEEDS.get());
+            ALLOWED_ITEMS.add(ModItems.BLACKCURRANT_SEEDS.get());
+            ALLOWED_ITEMS.add(ModItems.STRAWBERRY_SEEDS.get());
 
             // Saplings
             ALLOWED_ITEMS.add(Items.OAK_SAPLING);
@@ -85,6 +87,9 @@ public class SackItemInventoryHandler {
             ALLOWED_ITEMS.add(ModItems.PEAR.get());
             ALLOWED_ITEMS.add(ModItems.CHERRY.get());
             ALLOWED_ITEMS.add(ModItems.BLACKCURRANT.get());
+            ALLOWED_ITEMS.add(ModItems.STRAWBERRY.get());
+            ALLOWED_ITEMS.add(Items.SWEET_BERRIES);
+            ALLOWED_ITEMS.add(Items.GLOW_BERRIES);
 
             // Misc
             ALLOWED_BLOCKS.add(ModBlocks.LEAF_LITTER.get());

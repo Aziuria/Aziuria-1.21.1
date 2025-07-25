@@ -75,6 +75,7 @@ public class ModConfiguredFeatures {
     public static final ResourceKey<ConfiguredFeature<?, ?>> BIRCH_VARIANT_1 = registerKey("birch_variant_1");
 
     public static final ResourceKey<ConfiguredFeature<?, ?>> BLACKCURRANT_BUSH_KEY = registerKey("blackcurrant_bush");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> STRAWBERRY_BUSH_KEY = registerKey("strawberry_bush");
 
 
 
@@ -322,6 +323,12 @@ public class ModConfiguredFeatures {
         register(context, BLACKCURRANT_BUSH_KEY, Feature.RANDOM_PATCH,
                 FeatureUtils.simplePatchConfiguration(Feature.SIMPLE_BLOCK,
                         new SimpleBlockConfiguration(BlockStateProvider.simple(ModBlocks.BLACKCURRANT_BUSH.get()
+                                .defaultBlockState().setValue(SweetBerryBushBlock.AGE, 3))
+                        ), List.of(Blocks.GRASS_BLOCK)));
+
+        register(context, STRAWBERRY_BUSH_KEY, Feature.RANDOM_PATCH,
+                FeatureUtils.simplePatchConfiguration(Feature.SIMPLE_BLOCK,
+                        new SimpleBlockConfiguration(BlockStateProvider.simple(ModBlocks.STRAWBERRY_BUSH.get()
                                 .defaultBlockState().setValue(SweetBerryBushBlock.AGE, 3))
                         ), List.of(Blocks.GRASS_BLOCK)));
 

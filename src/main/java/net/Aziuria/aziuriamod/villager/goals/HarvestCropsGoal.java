@@ -75,8 +75,16 @@ public class HarvestCropsGoal extends Goal {
         IntegerProperty ageProp = null;
         int maxAge = -1;
 
-        // ✅ Custom crops
-        if (block instanceof RadishCropBlock radish) {
+        // ✅ Custom berry bushes
+        if (block instanceof BlackcurrantBushBlock blackcurrant) {
+            ageProp = blackcurrant.getPublicAgeProperty();
+            maxAge = 3;
+        } else if (block instanceof StrawberryBushBlock strawberry) {
+            ageProp = strawberry.getPublicAgeProperty();
+            maxAge = 3;
+
+            // ✅ Custom crops
+        } else if (block instanceof RadishCropBlock radish) {
             ageProp = radish.getPublicAgeProperty();
             maxAge = 3;
         } else if (block instanceof CucumberCropBlock cucumber) {
@@ -100,7 +108,6 @@ public class HarvestCropsGoal extends Goal {
         } else if (block instanceof CornCropBlock corn) {
             ageProp = corn.getPublicAgeProperty();
             maxAge = 3;
-
 
             // ✅ Vanilla crops
         } else if (block == Blocks.WHEAT) {
@@ -153,8 +160,16 @@ public class HarvestCropsGoal extends Goal {
                     IntegerProperty ageProp = null;
                     int maxAge = -1;
 
-                    // ✅ Custom crops
-                    if (block instanceof RadishCropBlock radish) {
+                    // ✅ Custom berry bushes
+                    if (block instanceof BlackcurrantBushBlock blackcurrant) {
+                        ageProp = blackcurrant.getPublicAgeProperty();
+                        maxAge = 3;
+                    } else if (block instanceof StrawberryBushBlock strawberry) {
+                        ageProp = strawberry.getPublicAgeProperty();
+                        maxAge = 3;
+
+                        // ✅ Custom crops
+                    } else if (block instanceof RadishCropBlock radish) {
                         ageProp = radish.getPublicAgeProperty();
                         maxAge = 3;
                     } else if (block instanceof CucumberCropBlock cucumber) {
@@ -179,8 +194,7 @@ public class HarvestCropsGoal extends Goal {
                         ageProp = corn.getPublicAgeProperty();
                         maxAge = 3;
 
-
-                        // ✅ Vanilla crops: check by block instance
+                        // ✅ Vanilla crops
                     } else if (block == Blocks.WHEAT) {
                         ageProp = CropBlock.AGE;
                         maxAge = 7;

@@ -588,6 +588,10 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .requires(ModItems.BLACKCURRANT.get())
                 .unlockedBy("has_blackcurrant", has(ModItems.BLACKCURRANT.get())).save(recipeOutput);
 
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.STRAWBERRY_SEEDS.get(), 1)
+                .requires(ModItems.STRAWBERRY.get())
+                .unlockedBy("has_strawberry", has(ModItems.STRAWBERRY.get())).save(recipeOutput);
+
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.RADISH_SEEDS.get(), 3)
                 .requires(ModItems.RADISH.get())
                 .unlockedBy("has_radish", has(ModItems.RADISH.get())).save(recipeOutput);
@@ -626,6 +630,18 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .requires(ModItems.PEAR.get())
                 .requires(Items.POTION)  // Vanilla water bottle (glass bottle + water)
                 .unlockedBy("has_pear", has(ModItems.PEAR.get()))
+                .save(recipeOutput);
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, ModItems.TOMATO_JUICE.get(), 1)
+                .requires(ModItems.TOMATO.get())
+                .requires(Items.POTION)  // Vanilla water bottle (glass bottle + water)
+                .unlockedBy("has_tomato", has(ModItems.TOMATO.get()))
+                .save(recipeOutput);
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, ModItems.STRAWBERRY_JUICE.get(), 1)
+                .requires(ModItems.STRAWBERRY.get())
+                .requires(Items.POTION)  // Vanilla water bottle (glass bottle + water)
+                .unlockedBy("has_strawberry", has(ModItems.STRAWBERRY.get()))
                 .save(recipeOutput);
 
         ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, ModItems.CHERRY_JUICE.get(), 1)
