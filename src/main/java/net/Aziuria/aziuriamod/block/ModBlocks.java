@@ -300,6 +300,9 @@ public class ModBlocks {
     public static final DeferredBlock<Block> CHERRY_SAPLING = registerBlock("cherry_sapling",
             () -> new ModCherrySaplingBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_SAPLING)));
 
+    public static final DeferredBlock<Block> BLACKCURRANT_BUSH = BLOCKS.register("blackcurrant_bush",
+            () -> new BlackcurrantBushBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SWEET_BERRY_BUSH)));
+
 
 
 

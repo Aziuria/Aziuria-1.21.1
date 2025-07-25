@@ -129,8 +129,12 @@ public class ModItems {
             () -> new Item(new Item.Properties().food(ModFoodProperties.PEAR)));
     public static final DeferredItem<Item> CHERRY = ITEMS.register("cherry",
             () -> new Item(new Item.Properties().food(ModFoodProperties.CHERRY)));
+
     public static final DeferredItem<Item> BLACKCURRANT = ITEMS.register("blackcurrant",
             () -> new Item(new Item.Properties().food(ModFoodProperties.BLACKCURRANT)));
+
+    public static final DeferredItem<Item> BLACKCURRANT_SEEDS = ITEMS.register("blackcurrant_seeds",
+            () -> new ItemNameBlockItem(ModBlocks.BLACKCURRANT_BUSH.get(), new Item.Properties()));
 
     public static final DeferredItem<DrinkableItem> APPLE_JUICE = ITEMS.register("apple_juice",
             () -> new DrinkableItem(

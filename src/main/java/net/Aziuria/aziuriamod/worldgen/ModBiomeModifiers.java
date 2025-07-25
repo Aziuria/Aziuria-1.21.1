@@ -66,6 +66,8 @@ public class ModBiomeModifiers {
 
     public static final ResourceKey<BiomeModifier> BIRCH_VARIANT_1 = registerKey("birch_variant_1");
 
+    public static final ResourceKey<BiomeModifier> BLACKCURRANT_BUSH = registerKey("blackcurrant_bush");
+
     public static void bootstrap(BootstrapContext<BiomeModifier> context) {
         // CF -> PF -> BM
         var placedFeatures = context.lookup(Registries.PLACED_FEATURE);
@@ -278,6 +280,11 @@ public class ModBiomeModifiers {
                 HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.BIRCH_VARIANT_1)),
                 GenerationStep.Decoration.VEGETAL_DECORATION
         ));
+
+        context.register(BLACKCURRANT_BUSH, new BiomeModifiers.AddFeaturesBiomeModifier(
+                biomes.getOrThrow(BiomeTags.IS_OVERWORLD),
+                HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.BLACKCURRANT_BUSH_PLACED_KEY)),
+                GenerationStep.Decoration.VEGETAL_DECORATION));
     }
 
     private static ResourceKey<BiomeModifier> registerKey(String name) {

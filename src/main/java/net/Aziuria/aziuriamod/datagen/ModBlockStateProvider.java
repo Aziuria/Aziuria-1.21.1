@@ -8,6 +8,7 @@ import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.CropBlock;
+import net.minecraft.world.level.block.SweetBerryBushBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.client.model.generators.BlockStateProvider;
 import net.neoforged.neoforge.client.model.generators.ConfiguredModel;
@@ -41,6 +42,8 @@ public class ModBlockStateProvider extends BlockStateProvider {
         makeCrop(((CropBlock) ModBlocks.CORN_CROP.get()), "corn_crop_stage", "corn_crop_stage");
         makeCrop(((CropBlock) ModBlocks.PINEAPPLE_CROP.get()), "pineapple_crop_stage", "pineapple_crop_stage");
 
+        makeBush(((SweetBerryBushBlock) ModBlocks.BLACKCURRANT_BUSH.get()), "blackcurrant_bush_stage", "blackcurrant_bush_stage");
+
         getVariantBuilder(ModBlocks.FLAX_FLOWER_BLOCK.get())
                 .partialState()
                 .setModels(new ConfiguredModel(
@@ -72,10 +75,26 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
     }
 
+    public void makeBush(SweetBerryBushBlock block, String modelName, String textureName) {
+        Function<BlockState, ConfiguredModel[]> function = state -> states(state, modelName, textureName);
+
+        getVariantBuilder(block).forAllStates(function);
+    }
+
+    private ConfiguredModel[] states(BlockState state, String modelName, String textureName) {
+        ConfiguredModel[] models = new ConfiguredModel[1];
+        models[0] = new ConfiguredModel(models().cross(modelName + state.getValue(BlackcurrantBushBlock.AGE),
+                ResourceLocation.fromNamespaceAndPath(AziuriaMod.MOD_ID, "block/" + textureName + state.getValue(BlackcurrantBushBlock.AGE))).renderType("cutout"));
+
+        return models;
+    }
+
     public void makeCrop(CropBlock block, String modelName, String textureName) {
         Function<BlockState, ConfiguredModel[]> function = state -> states(state, block, modelName, textureName);
 
         getVariantBuilder(block).forAllStates(function);
+
+
     }
     private ConfiguredModel[] states(BlockState state, CropBlock block, String modelName, String textureName) {
         int age;

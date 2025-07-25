@@ -71,6 +71,8 @@ public class ModPlacedFeatures {
 
     public static final ResourceKey<PlacedFeature> BIRCH_VARIANT_1 = registerKey("birch_variant_1");
 
+    public static final ResourceKey<PlacedFeature> BLACKCURRANT_BUSH_PLACED_KEY = registerKey("blackcurrant_bush_placed");
+
 
 
     public static void bootstrap(BootstrapContext<PlacedFeature> context) {
@@ -520,6 +522,9 @@ public class ModPlacedFeatures {
                     modifiers
             );
         }
+
+        register(context, BLACKCURRANT_BUSH_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.BLACKCURRANT_BUSH_KEY),
+                List.of(RarityFilter.onAverageOnceEvery(32), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome()));
 
 
     }

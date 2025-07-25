@@ -584,6 +584,10 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .requires(ModItems.TOMATO.get())
                 .unlockedBy("has_tomato", has(ModItems.TOMATO.get())).save(recipeOutput);
 
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.BLACKCURRANT_SEEDS.get(), 1)
+                .requires(ModItems.BLACKCURRANT.get())
+                .unlockedBy("has_blackcurrant", has(ModItems.BLACKCURRANT.get())).save(recipeOutput);
+
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.RADISH_SEEDS.get(), 3)
                 .requires(ModItems.RADISH.get())
                 .unlockedBy("has_radish", has(ModItems.RADISH.get())).save(recipeOutput);

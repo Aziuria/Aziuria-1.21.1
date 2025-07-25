@@ -10,6 +10,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.valueproviders.ConstantInt;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.SweetBerryBushBlock;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.SimpleBlockFeature;
@@ -72,6 +73,8 @@ public class ModConfiguredFeatures {
     public static final ResourceKey<ConfiguredFeature<?, ?>> DARK_OAK_VARIANT_1 = registerKey("dark_oak_variant_1");
     public static final ResourceKey<ConfiguredFeature<?, ?>> DARK_OAK_VARIANT_2 = registerKey("dark_oak_variant_2");
     public static final ResourceKey<ConfiguredFeature<?, ?>> BIRCH_VARIANT_1 = registerKey("birch_variant_1");
+
+    public static final ResourceKey<ConfiguredFeature<?, ?>> BLACKCURRANT_BUSH_KEY = registerKey("blackcurrant_bush");
 
 
 
@@ -315,6 +318,12 @@ public class ModConfiguredFeatures {
                 BlockStateProvider.simple(ModBlocks.CHERRY_LEAVES.get()),
                 new BlobFoliagePlacer(ConstantInt.of(2), ConstantInt.of(2), 4),
                 new TwoLayersFeatureSize(2, 0, 2)).build());
+
+        register(context, BLACKCURRANT_BUSH_KEY, Feature.RANDOM_PATCH,
+                FeatureUtils.simplePatchConfiguration(Feature.SIMPLE_BLOCK,
+                        new SimpleBlockConfiguration(BlockStateProvider.simple(ModBlocks.BLACKCURRANT_BUSH.get()
+                                .defaultBlockState().setValue(SweetBerryBushBlock.AGE, 3))
+                        ), List.of(Blocks.GRASS_BLOCK)));
 
     }
 
