@@ -43,6 +43,20 @@ public class ModBlockEntities {
 
             ).build(null));
 
+    public static final Supplier<BlockEntityType<HookBlockEntity>> HOOK_BLOCK_ENTITY =
+            BLOCK_ENTITIES.register("hook_block_entity", () -> BlockEntityType.Builder.of(
+                    HookBlockEntity::new,
+                    ModBlocks.OAK_HOOK.get()
+             //       ModBlocks.BIRCH_SHELF.get(),
+             //       ModBlocks.SPRUCE_SHELF.get(),
+             //       ModBlocks.JUNGLE_SHELF.get(),
+             //       ModBlocks.DARK_OAK_SHELF.get(),
+             //       ModBlocks.BAMBOO_SHELF.get(),
+             //       ModBlocks.ACACIA_SHELF.get(),
+             //       ModBlocks.CHERRY_SHELF.get(),
+             //       ModBlocks.MANGROVE_SHELF.get()
+            ).build(null));
+
     public static final Supplier<BlockEntityType<SteelBarrelBlockEntity>> STEEL_BARREL_BLOCK_ENTITY =
             BLOCK_ENTITIES.register("steel_barrel_block_entity", () ->
                     BlockEntityType.Builder.of(

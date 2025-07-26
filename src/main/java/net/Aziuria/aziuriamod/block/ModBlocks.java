@@ -171,6 +171,12 @@ public class ModBlocks {
                     .sound(SoundType.WOOD)
                     .noOcclusion()));
 
+    public static final DeferredBlock<HookBlock> OAK_HOOK = registerBlock("oak_hook",
+            () -> new HookBlock(BlockBehaviour.Properties.of()
+                    .strength(1.5f)
+                    .sound(SoundType.WOOD)
+                    .noOcclusion()));
+
     public static final DeferredBlock<SteelBarrelBlock> STEEL_BARREL_EMPTY = registerBlock("steel_barrel_empty",
             () -> new SteelBarrelBlock(BlockBehaviour.Properties.of()
                     .strength(1.5f)

@@ -30,6 +30,7 @@ public class ClientModInitializer {
         event.enqueueWork(() -> {
             BlockEntityRenderers.register(ModBlockEntities.SHELF_BLOCK_ENTITY.get(), ShelfRenderer::new);
             BlockEntityRenderers.register(ModBlockEntities.STORAGE_BLOCK_ENTITY.get(), StorageRenderer::new);
+            BlockEntityRenderers.register(ModBlockEntities.HOOK_BLOCK_ENTITY.get(), HookRenderer::new);
             BlockEntityRenderers.register(ModBlockEntities.STEEL_BARREL_BLOCK_ENTITY.get(), SteelBarrelRenderer::new);
             BlockEntityRenderers.register(ModBlockEntities.WOODCUTTER_BENCH.get(), WoodcutterBenchRenderer::new);
             BlockEntityRenderers.register(ModBlockEntities.MINER_BENCH.get(), MinerBenchRenderer::new);

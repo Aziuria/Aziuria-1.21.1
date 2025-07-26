@@ -58,6 +58,7 @@ public class ModCreativeModeTabs {
                         output.accept(ModBlocks.ACACIA_STORAGE);
                         output.accept(ModBlocks.CHERRY_STORAGE);
                         output.accept(ModBlocks.MANGROVE_STORAGE);
+                        output.accept(ModBlocks.OAK_HOOK);
                         output.accept(ModBlocks.STEEL_BARREL_EMPTY);
                         output.accept(ModBlocks.IRON_BARREL_EMPTY);
                         output.accept(ModBlocks.LEAF_LITTER);
