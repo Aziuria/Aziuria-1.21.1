@@ -33,18 +33,44 @@ public class HookRenderer implements BlockEntityRenderer<HookBlockEntity> {
         // Center X, set Y = 0.75 (12 pixels height)
         poseStack.translate(0.5, 0.75, 0.5);
 
-// Move inward for tools/items (before rotation), including 1 pixel right shift
-        if (itemStack.getItem() instanceof SwordItem
-                || itemStack.getItem() instanceof PickaxeItem
-                || itemStack.getItem() instanceof HoeItem
-                || itemStack.getItem() instanceof ShovelItem
-                || itemStack.getItem() instanceof AxeItem) {
+
+// Move inward and slightly adjust per tool type
+        if (itemStack.getItem() instanceof SwordItem) {
             switch (facing) {
                 case NORTH -> poseStack.translate(-0.03125, 0, 0.3);
                 case SOUTH -> poseStack.translate(0.03125, 0, -0.3);
                 case EAST  -> poseStack.translate(-0.3, 0, -0.03125);
                 case WEST  -> poseStack.translate(0.3, 0, 0.03125);
             }
+        } else if (itemStack.getItem() instanceof PickaxeItem) {
+            switch (facing) {
+                case NORTH -> poseStack.translate(-0.07875, 0, 0.3);
+                case SOUTH -> poseStack.translate(0.07875, 0, -0.3);
+                case EAST  -> poseStack.translate(-0.3, 0, -0.0);
+                case WEST  -> poseStack.translate(0.3, 0, 0.0);
+            }
+        } else if (itemStack.getItem() instanceof HoeItem) {
+            switch (facing) {
+                case NORTH -> poseStack.translate(-0.07875, 0, 0.3);
+                case SOUTH -> poseStack.translate(0.07875, 0, -0.3);
+                case EAST  -> poseStack.translate(-0.3, 0, -0.0);
+                case WEST  -> poseStack.translate(0.3, 0, 0.0);
+            }
+        } else if (itemStack.getItem() instanceof ShovelItem) {
+            switch (facing) {
+                case NORTH -> poseStack.translate(-0.07875, 0, 0.3);
+                case SOUTH -> poseStack.translate(0.07875, 0, -0.3);
+                case EAST  -> poseStack.translate(-0.3, 0, -0.0);
+                case WEST  -> poseStack.translate(0.3, 0, 0.0);
+            }
+        } else if (itemStack.getItem() instanceof AxeItem) {
+            switch (facing) {
+                case NORTH -> poseStack.translate(-0.07875, 0, 0.3);
+                case SOUTH -> poseStack.translate(0.07875, 0, -0.3);
+                case EAST  -> poseStack.translate(-0.3, 0, -0.0);
+                case WEST  -> poseStack.translate(0.3, 0, 0.0);
+            }
+
         }
 
         // Rotate to face forward
@@ -56,6 +82,7 @@ public class HookRenderer implements BlockEntityRenderer<HookBlockEntity> {
             default -> 0f;
         };
         poseStack.mulPose(Axis.YP.rotationDegrees(rotation));
+
 
         // Now apply custom rotation based on tool type
         if (itemStack.getItem() instanceof SwordItem) {
@@ -77,7 +104,7 @@ public class HookRenderer implements BlockEntityRenderer<HookBlockEntity> {
 
 
         // Scale down for hook appearance
-        poseStack.scale(0.6f, 0.6f, 0.6f);
+        poseStack.scale(0.9f, 0.9f, 0.9f);
 
         itemRenderer.renderStatic(itemStack, ItemDisplayContext.FIXED, combinedLight, combinedOverlay, poseStack, bufferSource, blockEntity.getLevel(), 0);
 

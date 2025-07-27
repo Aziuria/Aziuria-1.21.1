@@ -45,6 +45,14 @@
   "block.aziuriamod.spruce_storage": "Spruce Storage",
 
   "block.aziuriamod.oak_hook": "Oak Hook",
+  "block.aziuriamod.acacia_hook": "Acacia Hook",
+  "block.aziuriamod.bamboo_hook": "Bamboo Hook",
+  "block.aziuriamod.birch_hook": "Birch Hook",
+  "block.aziuriamod.cherry_hook": "Cherry Hook",
+  "block.aziuriamod.dark_oak_hook": "Dark oak Hook",
+  "block.aziuriamod.jungle_hook": "Jungle Hook",
+  "block.aziuriamod.mangrove_hook": "Mangrove Hook",
+  "block.aziuriamod.spruce_hook": "Spruce Hook",
 
   "block.aziuriamod.steel_barrel_empty": "Steel Barrel",
   "block.aziuriamod.iron_barrel_empty": "Iron Barrel",
@@ -91,7 +99,7 @@
   "item.aziuriamod.apple_juice": "Apple Juice",
   "item.aziuriamod.pear_juice": "Pear Juice",
   "item.aziuriamod.cherry_juice": "Cherry Juice",
-  "item.aziuriamod.pineapple_juice": "Pinepple Juice",
+  "item.aziuriamod.pineapple_juice": "Pineapple Juice",
   "item.aziuriamod.blackcurrant_juice": "Blackcurrant Juice",
   "item.aziuriamod.strawberry_juice": "Strawberry Juice",
   "item.aziuriamod.sweetberry_juice": "Sweetberry Juice",

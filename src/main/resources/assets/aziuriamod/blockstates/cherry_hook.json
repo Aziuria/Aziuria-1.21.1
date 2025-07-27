@@ -1,0 +1,19 @@
+{
+	"variants": {
+		"facing=north": {
+			"model": "aziuriamod:block/cherry_hook"
+		},
+		"facing=south": {
+			"model": "aziuriamod:block/cherry_hook",
+			"y": 180
+		},
+		"facing=east": {
+			"model": "aziuriamod:block/cherry_hook",
+			"y": 90
+		},
+		"facing=west": {
+			"model": "aziuriamod:block/cherry_hook",
+			"y": 270
+		}
+	}
+}

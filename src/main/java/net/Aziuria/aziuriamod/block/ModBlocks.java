@@ -177,6 +177,54 @@ public class ModBlocks {
                     .sound(SoundType.WOOD)
                     .noOcclusion()));
 
+    public static final DeferredBlock<HookBlock> BIRCH_HOOK = registerBlock("birch_hook",
+            () -> new HookBlock(BlockBehaviour.Properties.of()
+                    .strength(1.5f)
+                    .sound(SoundType.WOOD)
+                    .noOcclusion()));
+
+    public static final DeferredBlock<HookBlock> SPRUCE_HOOK = registerBlock("spruce_hook",
+            () -> new HookBlock(BlockBehaviour.Properties.of()
+                    .strength(1.5f)
+                    .sound(SoundType.WOOD)
+                    .noOcclusion()));
+
+    public static final DeferredBlock<HookBlock> JUNGLE_HOOK = registerBlock("jungle_hook",
+            () -> new HookBlock(BlockBehaviour.Properties.of()
+                    .strength(1.5f)
+                    .sound(SoundType.WOOD)
+                    .noOcclusion()));
+
+    public static final DeferredBlock<HookBlock> DARK_OAK_HOOK = registerBlock("dark_oak_hook",
+            () -> new HookBlock(BlockBehaviour.Properties.of()
+                    .strength(1.5f)
+                    .sound(SoundType.WOOD)
+                    .noOcclusion()));
+
+    public static final DeferredBlock<HookBlock> BAMBOO_HOOK = registerBlock("bamboo_hook",
+            () -> new HookBlock(BlockBehaviour.Properties.of()
+                    .strength(1.5f)
+                    .sound(SoundType.WOOD)
+                    .noOcclusion()));
+
+    public static final DeferredBlock<HookBlock> ACACIA_HOOK = registerBlock("acacia_hook",
+            () -> new HookBlock(BlockBehaviour.Properties.of()
+                    .strength(1.5f)
+                    .sound(SoundType.WOOD)
+                    .noOcclusion()));
+
+    public static final DeferredBlock<HookBlock> CHERRY_HOOK = registerBlock("cherry_hook",
+            () -> new HookBlock(BlockBehaviour.Properties.of()
+                    .strength(1.5f)
+                    .sound(SoundType.WOOD)
+                    .noOcclusion()));
+
+    public static final DeferredBlock<HookBlock> MANGROVE_HOOK = registerBlock("mangrove_hook",
+            () -> new HookBlock(BlockBehaviour.Properties.of()
+                    .strength(1.5f)
+                    .sound(SoundType.WOOD)
+                    .noOcclusion()));
+
     public static final DeferredBlock<SteelBarrelBlock> STEEL_BARREL_EMPTY = registerBlock("steel_barrel_empty",
             () -> new SteelBarrelBlock(BlockBehaviour.Properties.of()
                     .strength(1.5f)

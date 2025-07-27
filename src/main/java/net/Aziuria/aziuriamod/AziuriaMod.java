@@ -30,6 +30,10 @@ import net.Aziuria.aziuriamod.villager.ModVillagerTrades;
 import net.Aziuria.aziuriamod.villager.ModVillagers;
 import net.Aziuria.aziuriamod.villager.VillagerAIHandler;
 import net.Aziuria.aziuriamod.villager.VillagerProfessionTickHandler;
+import net.Aziuria.aziuriamod.water.WaterFoodHandler;
+import net.Aziuria.aziuriamod.water.WaterHudOverlay;
+import net.Aziuria.aziuriamod.water.WaterNetworkHandler;
+import net.Aziuria.aziuriamod.water.WaterTickHandler;
 import net.Aziuria.aziuriamod.worldgen.rules.registry.ModPlacementModifier;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.neoforged.api.distmarker.Dist;
@@ -63,6 +67,8 @@ public class AziuriaMod {
         modEventBus.addListener(this::addCreative);
         modEventBus.addListener(NetworkHandler::register);
 
+        modEventBus.addListener(WaterNetworkHandler::register);
+
         if (FMLEnvironment.dist == Dist.CLIENT) {
             ClientModInitializer.register(modEventBus);
         }
@@ -75,6 +81,11 @@ public class AziuriaMod {
         NeoForge.EVENT_BUS.register(PlayerJoinHandler.class);
 
 
+
+        NeoForge.EVENT_BUS.register(WaterHudOverlay.class);
+        NeoForge.EVENT_BUS.register(WaterTickHandler.class);
+        NeoForge.EVENT_BUS.register(PlayerJoinHandler.class);
+        NeoForge.EVENT_BUS.register(WaterFoodHandler.class);
 
 
         // ** Added registrations for fog features **
@@ -90,6 +101,7 @@ public class AziuriaMod {
         NeoForge.EVENT_BUS.register(VillagerProfessionTickHandler.class);
         NeoForge.EVENT_BUS.addListener(ModVillagerTrades::onVillagerTrades);
         NeoForge.EVENT_BUS.addListener(FastLeafDecayHandler::onServerTick);
+
 
         // Register all mod content
         ModCreativeModeTabs.register(modEventBus);

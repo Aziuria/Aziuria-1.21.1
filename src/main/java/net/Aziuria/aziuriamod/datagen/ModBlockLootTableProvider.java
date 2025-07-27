@@ -56,6 +56,14 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
         dropSelf(ModBlocks.SPRUCE_STORAGE.get());
 
         dropSelf(ModBlocks.OAK_HOOK.get());
+        dropSelf(ModBlocks.ACACIA_HOOK.get());
+        dropSelf(ModBlocks.BIRCH_HOOK.get());
+        dropSelf(ModBlocks.BAMBOO_HOOK.get());
+        dropSelf(ModBlocks.CHERRY_HOOK.get());
+        dropSelf(ModBlocks.DARK_OAK_HOOK.get());
+        dropSelf(ModBlocks.JUNGLE_HOOK.get());
+        dropSelf(ModBlocks.MANGROVE_HOOK.get());
+        dropSelf(ModBlocks.SPRUCE_HOOK.get());
 
         dropSelf(ModBlocks.DEMAECATION_POST.get());
         dropSelf(ModBlocks.DEMAECATION_POST_B.get());

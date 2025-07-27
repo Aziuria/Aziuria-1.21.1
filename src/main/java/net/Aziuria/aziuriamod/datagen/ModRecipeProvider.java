@@ -322,8 +322,8 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .unlockedBy("has_steel_ingot", has(ModItems.STEEL_INGOT)).save(recipeOutput);
 
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.STEEL_LEGGINGS.get())
-                .pattern("   ")
                 .pattern("BBB")
+                .pattern("B B")
                 .pattern("B B")
                 .define('B', ModItems.STEEL_INGOT.get())
                 .unlockedBy("has_steel_ingot", has(ModItems.STEEL_INGOT)).save(recipeOutput);
@@ -545,6 +545,96 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .define('S', Items.BAMBOO_SLAB) // Assuming you have a BAMBOO_SLAB item in your ModItems
                 .define('T', Items.STICK)
                 .unlockedBy("has_bamboo_slab", has(Items.BAMBOO_SLAB))
+                .save(recipeOutput);
+
+        // OAK Hook
+        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ModBlocks.OAK_HOOK.get())
+                .pattern("   ")
+                .pattern("S S")
+                .pattern("SWS")
+                .define('W', Items.OAK_LOG)
+                .define('S', Items.STICK)
+                .unlockedBy("has_stick", has(Items.STICK))
+                .save(recipeOutput);
+
+        // Acacia Hook
+        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ModBlocks.ACACIA_HOOK.get())
+                .pattern("   ")
+                .pattern("S S")
+                .pattern("SWS")
+                .define('W', Items.ACACIA_LOG)
+                .define('S', Items.STICK)
+                .unlockedBy("has_stick", has(Items.STICK))
+                .save(recipeOutput);
+
+        // OAK Hook
+        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ModBlocks.BAMBOO_HOOK.get())
+                .pattern("   ")
+                .pattern("S S")
+                .pattern("SWS")
+                .define('W', Items.BAMBOO_BLOCK)
+                .define('S', Items.STICK)
+                .unlockedBy("has_stick", has(Items.STICK))
+                .save(recipeOutput);
+
+        // OAK Hook
+        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ModBlocks.BIRCH_HOOK.get())
+                .pattern("   ")
+                .pattern("S S")
+                .pattern("SWS")
+                .define('W', Items.BIRCH_LOG)
+                .define('S', Items.STICK)
+                .unlockedBy("has_stick", has(Items.STICK))
+                .save(recipeOutput);
+
+        // OAK Hook
+        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ModBlocks.CHERRY_HOOK.get())
+                .pattern("   ")
+                .pattern("S S")
+                .pattern("SWS")
+                .define('W', Items.CHERRY_LOG)
+                .define('S', Items.STICK)
+                .unlockedBy("has_stick", has(Items.STICK))
+                .save(recipeOutput);
+
+        // OAK Hook
+        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ModBlocks.DARK_OAK_HOOK.get())
+                .pattern("   ")
+                .pattern("S S")
+                .pattern("SWS")
+                .define('W', Items.DARK_OAK_LOG)
+                .define('S', Items.STICK)
+                .unlockedBy("has_stick", has(Items.STICK))
+                .save(recipeOutput);
+
+        // OAK Hook
+        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ModBlocks.JUNGLE_HOOK.get())
+                .pattern("   ")
+                .pattern("S S")
+                .pattern("SWS")
+                .define('W', Items.JUNGLE_LOG)
+                .define('S', Items.STICK)
+                .unlockedBy("has_stick", has(Items.STICK))
+                .save(recipeOutput);
+
+        // OAK Hook
+        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ModBlocks.MANGROVE_HOOK.get())
+                .pattern("   ")
+                .pattern("S S")
+                .pattern("SWS")
+                .define('W', Items.MANGROVE_LOG)
+                .define('S', Items.STICK)
+                .unlockedBy("has_stick", has(Items.STICK))
+                .save(recipeOutput);
+
+        // OAK Hook
+        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ModBlocks.SPRUCE_HOOK.get())
+                .pattern("   ")
+                .pattern("S S")
+                .pattern("SWS")
+                .define('W', Items.SPRUCE_LOG)
+                .define('S', Items.STICK)
+                .unlockedBy("has_stick", has(Items.STICK))
                 .save(recipeOutput);
 
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.STEEL_BARREL_EMPTY.get())

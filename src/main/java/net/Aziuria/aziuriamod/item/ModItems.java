@@ -5,7 +5,6 @@ import net.Aziuria.aziuriamod.block.ModBlocks;
 import net.Aziuria.aziuriamod.block.world.IslandBiomeType;
 import net.Aziuria.aziuriamod.block.world.IslandType;
 import net.Aziuria.aziuriamod.item.custom.DrinkableItem;
-import net.Aziuria.aziuriamod.item.custom.FuelItem;
 import net.Aziuria.aziuriamod.item.custom.IslandThrowableItem;
 import net.Aziuria.aziuriamod.item.custom.KnifeItem;
 import net.minecraft.world.item.*;
