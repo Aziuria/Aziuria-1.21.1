@@ -69,7 +69,6 @@ public class ThirstSyncPacket implements CustomPacketPayload {
                     IThirst thirstCap = player.getCapability(ThirstProvider.THIRST_CAP, null);
                     if (thirstCap != null) {
                         thirstCap.setThirst(packet.thirst);
-                        System.out.println("[ThirstSyncPacket] Thirst updated on client: " + packet.thirst);
                     }
                 }
             });

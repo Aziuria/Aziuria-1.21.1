@@ -40,7 +40,6 @@ public class ThirstDrinkHandler {
             newThirst = Math.max(0, Math.min(newThirst, MAX_THIRST));
             thirst.setThirst(newThirst);
 
-            LOGGER.debug("Changed thirst by {} via item {}", restoreAmount, itemStack.getItem().toString());
         }
     }
 }

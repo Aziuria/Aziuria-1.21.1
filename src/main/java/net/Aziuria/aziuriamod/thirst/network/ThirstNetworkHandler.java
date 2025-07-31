@@ -18,7 +18,6 @@ public class ThirstNetworkHandler {
     private static final Map<ServerPlayer, Integer> lastSentThirst = new ConcurrentHashMap<>();
 
     public static void register(final RegisterPayloadHandlersEvent event) {
-        System.out.println("[ThirstNetworkHandler] Registering thirst packets...");
         var registrar = event.registrar("aziuriamod").optional();
 
         registrar.playBidirectional(
@@ -29,13 +28,10 @@ public class ThirstNetworkHandler {
     }
 
     public static void sendThirstToClient(ServerPlayer player, ThirstSyncPacket packet) {
-        System.out.println("[ThirstNetworkHandler] Sending thirst to player " + player.getName().getString()
-                + ": thirst=" + packet.getThirst());
         PacketDistributor.sendToPlayer(player, packet);
     }
 
     public static void sendThirstToAll(ThirstSyncPacket packet) {
-        System.out.println("[ThirstNetworkHandler] Sending thirst to all players: thirst=" + packet.getThirst());
         PacketDistributor.sendToAllPlayers(packet);
     }
 
@@ -45,13 +41,11 @@ public class ThirstNetworkHandler {
 
     public static void syncThirstLevel(Player player) {
         if (!(player instanceof ServerPlayer serverPlayer)) {
-            System.out.println("[ThirstNetworkHandler] syncThirstLevel() called on non-server player, ignored");
             return;
         }
 
         var thirstCap = player.getCapability(ThirstProvider.THIRST_CAP, null);
         if (thirstCap == null) {
-            System.out.println("[ThirstNetworkHandler] syncThirstLevel() failed: capability missing");
             return;
         }
 
@@ -61,7 +55,6 @@ public class ThirstNetworkHandler {
         if (lastLevel == null || lastLevel != thirstLevel) {
             sendThirstLevel(serverPlayer, thirstLevel);
             lastSentThirst.put(serverPlayer, thirstLevel);
-            System.out.println("[ThirstNetworkHandler] syncThirstLevel() called for " + player.getName().getString() + ", thirst=" + thirstLevel);
         }
     }
 

@@ -24,26 +24,12 @@ public class ThirstHudOverlay {
         Minecraft mc = Minecraft.getInstance();
         Player player = mc.player;
 
-        AziuriaMod.LOGGER.info("Thirst HUD render event fired.");
-
-        if (player == null) {
-            AziuriaMod.LOGGER.warn("Player is null during thirst HUD rendering.");
-            return;
-        }
-
-        if (mc.options.hideGui) {
-            AziuriaMod.LOGGER.info("GUI is hidden, skipping thirst HUD rendering.");
-            return;
-        }
+        if (player == null || player.isCreative() || mc.options.hideGui) return;
 
         IThirst thirst = player.getCapability(ThirstProvider.THIRST_CAP, null);
-        if (thirst == null) {
-            AziuriaMod.LOGGER.warn("Thirst capability missing, skipping thirst bar rendering.");
-            return;
-        }
+        if (thirst == null) return;
 
         int thirstLevel = thirst.getThirst();
-        AziuriaMod.LOGGER.info("Rendering thirst bar. Current thirst level: {}", thirstLevel);
 
         int screenWidth = mc.getWindow().getGuiScaledWidth();
         int screenHeight = mc.getWindow().getGuiScaledHeight();
@@ -52,38 +38,79 @@ public class ThirstHudOverlay {
         int xStart = screenWidth / 2 + 91 - 81 - 3;
         int y = screenHeight - 53;
 
-        // Scale factor (e.g. 0.5 = 8x8 size)
         float scale = 0.8f;
 
-        // Prepare pose stack for scaling
         event.getGuiGraphics().pose().pushPose();
         event.getGuiGraphics().pose().scale(scale, scale, 1.0f);
 
         int scaledXStart = (int) (xStart / scale);
         int scaledY = (int) (y / scale);
 
-        // Draw empty icons (left to right)
+        int tickCount = player.tickCount;
+        int waveCycle = 40;
+        int waveDuration = 10;
+        int waveTick = tickCount % waveCycle;
+
+        boolean waveActive = (thirstLevel <= 19) && waveTick < waveDuration;
+        float waveProgress = waveTick / (float) waveDuration;
+        float waveAmplitude = 1.5f;
+
+        // Draw empty icons
         RenderSystem.setShaderTexture(0, WATER_EMPTY_ICON);
         for (int i = 0; i < icons; i++) {
+            float iconPos = i / (float)(icons - 1);
+            float wobbleY = 0f;
+
+            if (waveActive) {
+                float diff = waveProgress - iconPos;
+                if (diff >= -0.1f && diff <= 0.1f) {
+                    float phase = (diff + 0.1f) / 0.2f * (float) Math.PI;
+                    wobbleY = (float) Math.sin(phase) * waveAmplitude;
+                }
+            }
+
             int iconX = scaledXStart + i * spacing;
-            event.getGuiGraphics().blit(WATER_EMPTY_ICON, iconX, scaledY, 0f, 0f, 16, 16, 16, 16);
+            event.getGuiGraphics().blit(WATER_EMPTY_ICON, iconX, (int)(scaledY + wobbleY), 0f, 0f, 16, 16, 16, 16);
         }
 
-        // Draw full icons (right to left)
+        // Draw full icons
         RenderSystem.setShaderTexture(0, WATER_FULL_ICON);
         for (int i = 0; i < thirstLevel / 2; i++) {
-            int iconX = scaledXStart + (icons - 1 - i) * spacing;
-            event.getGuiGraphics().blit(WATER_FULL_ICON, iconX, scaledY, 0f, 0f, 16, 16, 16, 16);
+            int iconIndex = icons - 1 - i;
+            float iconPos = iconIndex / (float)(icons - 1);
+            float wobbleY = 0f;
+
+            if (waveActive) {
+                float diff = waveProgress - iconPos;
+                if (diff >= -0.1f && diff <= 0.1f) {
+                    float phase = (diff + 0.1f) / 0.2f * (float) Math.PI;
+                    wobbleY = (float) Math.sin(phase) * waveAmplitude;
+                }
+            }
+
+            int iconX = scaledXStart + iconIndex * spacing;
+            event.getGuiGraphics().blit(WATER_FULL_ICON, iconX, (int)(scaledY + wobbleY), 0f, 0f, 16, 16, 16, 16);
         }
 
-        // Draw half icon if needed
+        // Draw half icon
         if (thirstLevel % 2 == 1) {
-            int iconX = scaledXStart + (icons - 1 - (thirstLevel / 2)) * spacing;
+            int iconIndex = icons - 1 - (thirstLevel / 2);
+            float iconPos = iconIndex / (float)(icons - 1);
+            float wobbleY = 0f;
+
+            if (waveActive) {
+                float diff = waveProgress - iconPos;
+                if (diff >= -0.1f && diff <= 0.1f) {
+                    float phase = (diff + 0.1f) / 0.2f * (float) Math.PI;
+                    wobbleY = (float) Math.sin(phase) * waveAmplitude;
+                }
+            }
+
+            int iconX = scaledXStart + iconIndex * spacing;
             RenderSystem.setShaderTexture(0, WATER_HALF_ICON);
-            event.getGuiGraphics().blit(WATER_HALF_ICON, iconX, scaledY, 0f, 0f, 16, 16, 16, 16);
+            event.getGuiGraphics().blit(WATER_HALF_ICON, iconX, (int)(scaledY + wobbleY), 0f, 0f, 16, 16, 16, 16);
         }
 
-        // Restore pose stack
         event.getGuiGraphics().pose().popPose();
     }
 }

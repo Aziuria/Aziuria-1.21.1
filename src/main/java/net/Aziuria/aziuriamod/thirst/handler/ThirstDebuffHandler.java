@@ -4,15 +4,22 @@ import net.Aziuria.aziuriamod.client.damage.ModDamageSources;
 import net.Aziuria.aziuriamod.thirst.capability.IThirst;
 import net.Aziuria.aziuriamod.thirst.capability.ThirstProvider;
 import net.minecraft.core.Holder;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.entity.ai.attributes.Attribute;
+import net.minecraft.world.entity.ai.attributes.AttributeInstance;
+import net.minecraft.world.entity.ai.attributes.AttributeModifier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.neoforge.event.tick.PlayerTickEvent;
 
 public class ThirstDebuffHandler {
+
+    private static final ResourceLocation SPEED_ID = ResourceLocation.fromNamespaceAndPath("aziuriamod", "thirst_speed_penalty");
+    private static final ResourceLocation ATTACK_ID = ResourceLocation.fromNamespaceAndPath("aziuriamod", "thirst_attack_penalty");
+    private static final ResourceLocation MINING_ID = ResourceLocation.fromNamespaceAndPath("aziuriamod", "thirst_mining_penalty");
 
     @SubscribeEvent
     public static void onPlayerTickPost(PlayerTickEvent.Post event) {
@@ -23,24 +30,28 @@ public class ThirstDebuffHandler {
 
         int thirstLevel = thirst.getThirst();
 
-        // Prevent premature debuffing
         if (player.tickCount < 20 && thirstLevel == 0) return;
 
         if (thirstLevel > 10) {
-            removeThirstDebuffs(player);
+            removeThirstModifiers(player);
             return;
         }
 
-        int amplifier;
+        player.setSprinting(false);
+
+        double speedModifier, attackModifier, miningModifier;
         if (thirstLevel >= 6) {
-            amplifier = 0; // Mild debuffs
-            player.setSprinting(false);
+            speedModifier = -0.1;
+            attackModifier = -0.05;
+            miningModifier = -0.1;
         } else if (thirstLevel >= 1) {
-            amplifier = 1; // Stronger debuffs
-            player.setSprinting(false);
+            speedModifier = -0.25;
+            attackModifier = -0.15;
+            miningModifier = -0.25;
         } else {
-            amplifier = 2; // Critical
-            player.setSprinting(false);
+            speedModifier = -0.4;
+            attackModifier = -0.25;
+            miningModifier = -0.4;
 
             if (player.tickCount % 40 == 0) {
                 ServerLevel level = (ServerLevel) player.getCommandSenderWorld();
@@ -51,25 +62,38 @@ public class ThirstDebuffHandler {
             }
         }
 
-        applyEffects(player, amplifier);
+        applyAttributeModifier(player, Attributes.MOVEMENT_SPEED, SPEED_ID, "Thirst Speed Penalty", speedModifier);
+        applyAttributeModifier(player, Attributes.ATTACK_DAMAGE, ATTACK_ID, "Thirst Attack Penalty", attackModifier);
+        applyAttributeModifier(player, Attributes.ATTACK_SPEED, MINING_ID, "Thirst Mining Penalty", miningModifier);
     }
 
-    private static void applyEffects(ServerPlayer player, int amplifier) {
-        applyOrUpdateEffect(player, MobEffects.DIG_SLOWDOWN, amplifier);
-        applyOrUpdateEffect(player, MobEffects.WEAKNESS, amplifier);
-        applyOrUpdateEffect(player, MobEffects.MOVEMENT_SLOWDOWN, amplifier);
-    }
+    private static void applyAttributeModifier(ServerPlayer player, Holder<Attribute> attributeHolder, ResourceLocation id, String name, double amount) {
+        AttributeInstance instance = player.getAttribute(attributeHolder);
+        if (instance == null) return;
 
-    private static void applyOrUpdateEffect(ServerPlayer player, Holder<net.minecraft.world.effect.MobEffect> effect, int amplifier) {
-        MobEffectInstance current = player.getEffect(effect);
-        if (current == null || current.getAmplifier() != amplifier || current.getDuration() <= 20) {
-            player.addEffect(new MobEffectInstance(effect, 100, amplifier, false, false, false));
+        AttributeModifier existing = instance.getModifier(id);
+        if (existing != null) {
+            instance.removeModifier(existing);
         }
+
+        // Constructor now only takes 3 args: id, amount, operation
+        AttributeModifier modifier = new AttributeModifier(id, amount, AttributeModifier.Operation.ADD_MULTIPLIED_BASE);
+        instance.addTransientModifier(modifier);
     }
 
-    public static void removeThirstDebuffs(ServerPlayer player) {
-        player.removeEffect(MobEffects.DIG_SLOWDOWN);
-        player.removeEffect(MobEffects.WEAKNESS);
-        player.removeEffect(MobEffects.MOVEMENT_SLOWDOWN);
+    public static void removeThirstModifiers(ServerPlayer player) {
+        removeModifier(player, Attributes.MOVEMENT_SPEED, SPEED_ID);
+        removeModifier(player, Attributes.ATTACK_DAMAGE, ATTACK_ID);
+        removeModifier(player, Attributes.ATTACK_SPEED, MINING_ID);
+    }
+
+    private static void removeModifier(ServerPlayer player, Holder<Attribute> attributeHolder, ResourceLocation id) {
+        AttributeInstance instance = player.getAttribute(attributeHolder);
+        if (instance == null) return;
+
+        AttributeModifier modifier = instance.getModifier(id);
+        if (modifier != null) {
+            instance.removeModifier(modifier);
+        }
     }
 }
