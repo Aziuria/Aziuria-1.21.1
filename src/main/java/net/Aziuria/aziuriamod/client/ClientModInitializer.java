@@ -44,6 +44,7 @@ public class ClientModInitializer {
 
             EntityRenderers.register(ModEntities.ISLAND_THROWABLE.get(), IslandThrowableRenderer::new);
 
+
         });
 
     }

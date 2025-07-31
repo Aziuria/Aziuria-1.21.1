@@ -23,17 +23,21 @@ import net.Aziuria.aziuriamod.item.ModItems;
 import net.Aziuria.aziuriamod.item.custom.entities.ModEntities;
 import net.Aziuria.aziuriamod.fog.network.NetworkHandler;
 import net.Aziuria.aziuriamod.fog.network.PlayerJoinHandler;
+//import net.Aziuria.aziuriamod.water.PlayerJoinsHandler;
 import net.Aziuria.aziuriamod.particle.FallingLeafParticle;
 import net.Aziuria.aziuriamod.particle.ModParticles;
 import net.Aziuria.aziuriamod.sounds.ModSounds;
+import net.Aziuria.aziuriamod.thirst.capability.ThirstProvider;
+import net.Aziuria.aziuriamod.thirst.handler.PlayerJoinsHandler;
+import net.Aziuria.aziuriamod.thirst.handler.ThirstDrinkHandler;
+import net.Aziuria.aziuriamod.thirst.handler.ThirstPersistenceHandler;
+import net.Aziuria.aziuriamod.thirst.handler.ThirstTickHandler;
+import net.Aziuria.aziuriamod.thirst.network.ThirstNetworkHandler;
+import net.Aziuria.aziuriamod.thirst.registry.ThirstSetup;
 import net.Aziuria.aziuriamod.villager.ModVillagerTrades;
 import net.Aziuria.aziuriamod.villager.ModVillagers;
 import net.Aziuria.aziuriamod.villager.VillagerAIHandler;
 import net.Aziuria.aziuriamod.villager.VillagerProfessionTickHandler;
-import net.Aziuria.aziuriamod.water.WaterFoodHandler;
-import net.Aziuria.aziuriamod.water.WaterHudOverlay;
-import net.Aziuria.aziuriamod.water.WaterNetworkHandler;
-import net.Aziuria.aziuriamod.water.WaterTickHandler;
 import net.Aziuria.aziuriamod.worldgen.rules.registry.ModPlacementModifier;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.neoforged.api.distmarker.Dist;
@@ -67,7 +71,7 @@ public class AziuriaMod {
         modEventBus.addListener(this::addCreative);
         modEventBus.addListener(NetworkHandler::register);
 
-        modEventBus.addListener(WaterNetworkHandler::register);
+        modEventBus.addListener(ThirstNetworkHandler::register);
 
         if (FMLEnvironment.dist == Dist.CLIENT) {
             ClientModInitializer.register(modEventBus);
@@ -81,11 +85,11 @@ public class AziuriaMod {
         NeoForge.EVENT_BUS.register(PlayerJoinHandler.class);
 
 
+        NeoForge.EVENT_BUS.register(ThirstTickHandler.class);
+        NeoForge.EVENT_BUS.register(PlayerJoinsHandler.class);
+        NeoForge.EVENT_BUS.register(ThirstDrinkHandler.class);
+        NeoForge.EVENT_BUS.register(ThirstPersistenceHandler.class);
 
-        NeoForge.EVENT_BUS.register(WaterHudOverlay.class);
-        NeoForge.EVENT_BUS.register(WaterTickHandler.class);
-        NeoForge.EVENT_BUS.register(PlayerJoinHandler.class);
-        NeoForge.EVENT_BUS.register(WaterFoodHandler.class);
 
 
         // ** Added registrations for fog features **
@@ -133,6 +137,9 @@ public class AziuriaMod {
                 ModBlockEntities.STEEL_BARREL_BLOCK_ENTITY.get(),
                 (barrelEntity, direction) -> barrelEntity.getTank()
         );
+
+//        ModCapabilities.register(event);
+        ThirstProvider.register(event);
     }
 
     private void addCreative(BuildCreativeModeTabContentsEvent event) {
@@ -170,7 +177,7 @@ public class AziuriaMod {
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event) {
             event.enqueueWork(() -> LOGGER.info("Client setup complete."));
-
+            ThirstSetup.registerThirstItems();
 
         }
 
