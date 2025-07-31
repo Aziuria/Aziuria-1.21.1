@@ -40,16 +40,21 @@ public class ThirstPersistenceHandler {
         if (!(event.getEntity() instanceof ServerPlayer player)) return;
 
         File thirstFile = event.getPlayerFile("thirst");
-        if (!thirstFile.exists()) return;
+        IThirst thirst = player.getCapability(ThirstProvider.THIRST_CAP, null);
+        if (thirst == null) return;
+
+        if (!thirstFile.exists()) {
+            // No saved data, initialize thirst to full
+            thirst.setThirst(20);
+            thirst.setExhaustion(0f);
+            return;
+        }
 
         try (FileInputStream fis = new FileInputStream(thirstFile);
              GZIPInputStream gis = new GZIPInputStream(fis);
              DataInputStream dis = new DataInputStream(gis)) {
             CompoundTag thirstTag = NbtIo.read(dis);
-            IThirst thirst = player.getCapability(ThirstProvider.THIRST_CAP, null);
-            if (thirst != null) {
-                thirst.deserializeNBT(thirstTag);
-            }
+            thirst.deserializeNBT(thirstTag);
         } catch (IOException e) {
             e.printStackTrace();
         }

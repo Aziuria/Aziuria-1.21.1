@@ -4,6 +4,7 @@ import com.mojang.logging.LogUtils;
 import net.Aziuria.aziuriamod.block.ModBlocks;
 import net.Aziuria.aziuriamod.block.world.BlockBatcher;
 import net.Aziuria.aziuriamod.client.ModClientCommonBusEvents;
+import net.Aziuria.aziuriamod.client.damage.ModDamageTypes;
 import net.Aziuria.aziuriamod.command.DecayCommand;
 import net.Aziuria.aziuriamod.command.FogCommand;
 import net.Aziuria.aziuriamod.command.SpawnTreeVariantCommand;
@@ -27,11 +28,9 @@ import net.Aziuria.aziuriamod.fog.network.PlayerJoinHandler;
 import net.Aziuria.aziuriamod.particle.FallingLeafParticle;
 import net.Aziuria.aziuriamod.particle.ModParticles;
 import net.Aziuria.aziuriamod.sounds.ModSounds;
+import net.Aziuria.aziuriamod.thirst.capability.ThirstHudOverlay;
 import net.Aziuria.aziuriamod.thirst.capability.ThirstProvider;
-import net.Aziuria.aziuriamod.thirst.handler.PlayerJoinsHandler;
-import net.Aziuria.aziuriamod.thirst.handler.ThirstDrinkHandler;
-import net.Aziuria.aziuriamod.thirst.handler.ThirstPersistenceHandler;
-import net.Aziuria.aziuriamod.thirst.handler.ThirstTickHandler;
+import net.Aziuria.aziuriamod.thirst.handler.*;
 import net.Aziuria.aziuriamod.thirst.network.ThirstNetworkHandler;
 import net.Aziuria.aziuriamod.thirst.registry.ThirstSetup;
 import net.Aziuria.aziuriamod.villager.ModVillagerTrades;
@@ -89,6 +88,8 @@ public class AziuriaMod {
         NeoForge.EVENT_BUS.register(PlayerJoinsHandler.class);
         NeoForge.EVENT_BUS.register(ThirstDrinkHandler.class);
         NeoForge.EVENT_BUS.register(ThirstPersistenceHandler.class);
+        NeoForge.EVENT_BUS.register(ThirstDebuffHandler.class);
+        NeoForge.EVENT_BUS.register(ThirstHudOverlay.class);
 
 
 
@@ -111,6 +112,7 @@ public class AziuriaMod {
         ModCreativeModeTabs.register(modEventBus);
         ModItems.register(modEventBus);
         ModBlocks.register(modEventBus);
+        ModDamageTypes.register(modEventBus);
         ModSounds.register(modEventBus);
         ModVillagers.register(modEventBus);
         ModBlockEntities.register(modEventBus);

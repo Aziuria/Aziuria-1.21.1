@@ -33,11 +33,11 @@ public class ThirstTickHandler {
         int oldThirst = lastThirstMap.getOrDefault(playerId, currentThirst);
 
         // Exhaustion amounts per action (tweak as needed)
-        final float EX_WALK = 0.004f;
-        final float EX_SPRINT = 0.09f;
-        final float EX_JUMP = 0.2f;
-        final float EX_MINE = 0.015f;
-        final float EX_HOT = 0.015f;
+        final float EX_WALK = 0.0015f;
+        final float EX_SPRINT = 0.0075f;
+        final float EX_JUMP = 0.03f;
+        final float EX_MINE = 0.0025f;
+        final float EX_HOT = 0.003f;
 
         // CASE 1: Sprinting
         if (player.isSprinting() && horizontalSpeed > 0.01) {
@@ -68,7 +68,8 @@ public class ThirstTickHandler {
         Biome biome = player.level().getBiome(pos).value();
         float temperature = biome.getBaseTemperature();
 
-        if (temperature >= 1.5f && gameTime % 60 == 0) { // Apply once every 3 seconds
+        // CASE 5: Hot biome (apply every ~12.5 seconds)
+        if (temperature >= 1.5f && gameTime % 250 == 0) {
             thirst.addExhaustion(EX_HOT);
             LOGGER.debug("Hot biome exhaustion applied");
         }
