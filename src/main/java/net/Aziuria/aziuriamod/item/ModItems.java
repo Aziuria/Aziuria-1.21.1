@@ -128,6 +128,8 @@ public class ModItems {
             () -> new Item(new Item.Properties().food(ModFoodProperties.PEAR)));
     public static final DeferredItem<Item> CHERRY = ITEMS.register("cherry",
             () -> new Item(new Item.Properties().food(ModFoodProperties.CHERRY)));
+    public static final DeferredItem<Item> AVOCADO = ITEMS.register("avocado",
+            () -> new Item(new Item.Properties().food(ModFoodProperties.AVOCADO)));
 
     public static final DeferredItem<Item> STRAWBERRY = ITEMS.register("strawberry",
             () -> new Item(new Item.Properties().food(ModFoodProperties.STRAWBERRY)));
@@ -139,6 +141,7 @@ public class ModItems {
 
     public static final DeferredItem<Item> BLACKCURRANT_SEEDS = ITEMS.register("blackcurrant_seeds",
             () -> new ItemNameBlockItem(ModBlocks.BLACKCURRANT_BUSH.get(), new Item.Properties()));
+
 
     public static final DeferredItem<DrinkableItem> APPLE_JUICE = ITEMS.register("apple_juice",
             () -> new DrinkableItem(
@@ -171,6 +174,15 @@ public class ModItems {
             () -> new DrinkableItem(
                     new Item.Properties()
                             .food(ModFoodProperties.CHERRY_JUICE)
+                            .stacksTo(1)
+                            .craftRemainder(Items.GLASS_BOTTLE),
+                    32,
+                    UseAnim.DRINK));
+
+    public static final DeferredItem<DrinkableItem> AVOCADO_JUICE = ITEMS.register("avocado_juice",
+            () -> new DrinkableItem(
+                    new Item.Properties()
+                            .food(ModFoodProperties.AVOCADO_JUICE)
                             .stacksTo(1)
                             .craftRemainder(Items.GLASS_BOTTLE),
                     32,

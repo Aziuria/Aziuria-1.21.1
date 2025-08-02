@@ -18,6 +18,7 @@ public class ThirstSetup {
         ThirstRegistry.register(Items.CHORUS_FRUIT, 2);
         ThirstRegistry.register(ModItems.PINEAPPLE.get(), 3);
         ThirstRegistry.register(ModItems.PEAR.get(), 4);
+        ThirstRegistry.register(ModItems.AVOCADO.get(), -1);
         ThirstRegistry.register(ModItems.CHERRY.get(), 2);
         ThirstRegistry.register(ModItems.BLACKCURRANT.get(), 2);
         ThirstRegistry.register(ModItems.STRAWBERRY.get(), 2);
@@ -85,6 +86,7 @@ public class ThirstSetup {
         ThirstRegistry.register(ModItems.PINEAPPLE_JUICE.get(), 5);
         ThirstRegistry.register(ModItems.PEAR_JUICE.get(), 5);
         ThirstRegistry.register(ModItems.CHERRY_JUICE.get(), 5);
+        ThirstRegistry.register(ModItems.AVOCADO_JUICE.get(), 4);
         ThirstRegistry.register(ModItems.BLACKCURRANT_JUICE.get(), 5);
         ThirstRegistry.register(ModItems.SWEETBERRY_JUICE.get(), 5);
         ThirstRegistry.register(ModItems.GLOWBERRY_JUICE.get(), 5);

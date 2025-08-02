@@ -96,6 +96,13 @@ public class ModFoodProperties {
             .effect(() -> new MobEffectInstance(MobEffects.NIGHT_VISION, 100, 0), 0.05f) // rare thematic bonus
             .build();
 
+    public static final FoodProperties AVOCADO = new FoodProperties.Builder()
+            .nutrition(5) // more filling than most fruits
+            .saturationModifier(0.7f) // high healthy fat content
+            .effect(() -> new MobEffectInstance(MobEffects.REGENERATION, 100, 0), 0.25f) // moderate regen chance
+            .effect(() -> new MobEffectInstance(MobEffects.ABSORPTION, 200), 0.15f) // small bonus shielding
+            .build();
+
     public static final FoodProperties BLACKCURRANT = new FoodProperties.Builder()
             .nutrition(3) // light snack like cherry
             .saturationModifier(0.3f) // moderate for berries
@@ -133,9 +140,17 @@ public class ModFoodProperties {
     public static final FoodProperties CHERRY_JUICE = new FoodProperties.Builder()
             .nutrition(2)
             .saturationModifier(0.3f)
-            .effect(() -> new MobEffectInstance(MobEffects.HEAL, 1, 0), 1.0f) // instant heal 1
-            .effect(() -> new MobEffectInstance(MobEffects.REGENERATION, 100, 0), 0.20f) // better regen chance than pear
-            .effect(() -> new MobEffectInstance(MobEffects.NIGHT_VISION, 100, 0), 0.10f) // rare, thematic bonus
+            .effect(() -> new MobEffectInstance(MobEffects.HEAL, 1, 0), 1.0f)
+            .effect(() -> new MobEffectInstance(MobEffects.REGENERATION, 100, 0), 0.20f)
+            .effect(() -> new MobEffectInstance(MobEffects.NIGHT_VISION, 100, 0), 0.10f)
+            .build();
+
+    public static final FoodProperties AVOCADO_JUICE = new FoodProperties.Builder()
+            .nutrition(3)
+            .saturationModifier(0.5f)
+            .effect(() -> new MobEffectInstance(MobEffects.HEAL, 1, 0), 1.0f)
+            .effect(() -> new MobEffectInstance(MobEffects.ABSORPTION, 200), 0.20f)
+            .effect(() -> new MobEffectInstance(MobEffects.REGENERATION, 100, 0), 0.15f)
             .build();
 
     public static final FoodProperties BLACKCURRANT_JUICE = new FoodProperties.Builder()

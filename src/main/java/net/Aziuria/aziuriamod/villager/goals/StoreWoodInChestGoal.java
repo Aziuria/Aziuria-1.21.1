@@ -44,6 +44,7 @@ public class StoreWoodInChestGoal extends MoveToBlockGoal {
                 || stack.is(ItemTags.SAPLINGS)
                 || stack.getItem() == ModItems.PEAR.get()
                 || stack.getItem() == ModItems.CHERRY.get()
+                || stack.getItem() == ModItems.AVOCADO.get()
                 || stack.getItem() == Items.APPLE
                 || stack.getItem() == Items.STICK;
     }

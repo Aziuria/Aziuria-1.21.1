@@ -81,6 +81,7 @@
   "item.aziuriamod.tomato": "Tomato",
   "item.aziuriamod.pear": "Pear",
   "item.aziuriamod.cherry": "Cherry",
+  "item.aziuriamod.avocado": "Avocado",
   "item.aziuriamod.blackcurrant": "Blackcurrant",
   "item.aziuriamod.strawberry": "Strawberry",
   "item.aziuriamod.flour": "Flour",
@@ -99,6 +100,7 @@
   "item.aziuriamod.apple_juice": "Apple Juice",
   "item.aziuriamod.pear_juice": "Pear Juice",
   "item.aziuriamod.cherry_juice": "Cherry Juice",
+  "item.aziuriamod.avocado_juice": "Avocado Juice",
   "item.aziuriamod.pineapple_juice": "Pineapple Juice",
   "item.aziuriamod.blackcurrant_juice": "Blackcurrant Juice",
   "item.aziuriamod.strawberry_juice": "Strawberry Juice",
@@ -136,6 +138,8 @@
   "block.aziuriamod.pear_sapling": "Pear Tree Sapling",
   "block.aziuriamod.cherry_leaves": "Cherry Tree Leaves",
   "block.aziuriamod.cherry_sapling": "Cherry Tree Sapling",
+  "block.aziuriamod.avocado_leaves": "Avocado Tree Leaves",
+  "block.aziuriamod.avocado_sapling": "Avocado Tree Sapling",
 
   "item.aziuriamod.island_generator_small": "Small Island Generator",
   "item.aziuriamod.island_generator_medium": "Medium Island generator",
@@ -145,6 +149,6 @@
   "entity.minecraft.villager.aziuriamod.miner": "Miner",
 
 
-  "death.attack.dehydration": "Died of dehydration",
+  "death.attack.dehydration": "%1$s died of dehydration",
   "creativetab.aziuriamod.useful_items_and_blocks": "Useful Items and Blocks"
 }

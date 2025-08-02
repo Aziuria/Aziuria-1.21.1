@@ -60,6 +60,13 @@ public class ModBiomeModifiers {
     public static final ResourceKey<BiomeModifier> CHERRY_KEY_VARIANT_6 = registerKey("cherry_variant_6");
     public static final ResourceKey<BiomeModifier> CHERRY_KEY_VARIANT_7 = registerKey("cherry_variant_7");
 
+    public static final ResourceKey<BiomeModifier> AVOCADO_KEY_VARIANT_1 = registerKey("avocado_variant_1");
+    public static final ResourceKey<BiomeModifier> AVOCADO_KEY_VARIANT_2 = registerKey("avocado_variant_2");
+    public static final ResourceKey<BiomeModifier> AVOCADO_KEY_VARIANT_3 = registerKey("avocado_variant_3");
+    public static final ResourceKey<BiomeModifier> AVOCADO_KEY_VARIANT_4 = registerKey("avocado_variant_4");
+    public static final ResourceKey<BiomeModifier> AVOCADO_KEY_VARIANT_5 = registerKey("avocado_variant_5");
+    public static final ResourceKey<BiomeModifier> AVOCADO_KEY_VARIANT_6 = registerKey("avocado_variant_6");
+    public static final ResourceKey<BiomeModifier> AVOCADO_KEY_VARIANT_7 = registerKey("avocado_variant_7");
 
     public static final ResourceKey<BiomeModifier> DARK_OAK_KEY_VARIANT_1 = registerKey("dark_oak_variant_1");
     public static final ResourceKey<BiomeModifier> DARK_OAK_KEY_VARIANT_2 = registerKey("dark_oak_variant_2");
@@ -256,6 +263,41 @@ public class ModBiomeModifiers {
         context.register(CHERRY_KEY_VARIANT_7, new BiomeModifiers.AddFeaturesBiomeModifier(
                 biomes.getOrThrow(BiomeTags.IS_OVERWORLD),
                 HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.CHERRY_KEY_VARIANT_7)),
+                GenerationStep.Decoration.VEGETAL_DECORATION));
+
+        context.register(AVOCADO_KEY_VARIANT_1, new BiomeModifiers.AddFeaturesBiomeModifier(
+                biomes.getOrThrow(BiomeTags.IS_OVERWORLD),
+                HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.AVOCADO_KEY_VARIANT_1)),
+                GenerationStep.Decoration.VEGETAL_DECORATION));
+
+        context.register(AVOCADO_KEY_VARIANT_2, new BiomeModifiers.AddFeaturesBiomeModifier(
+                biomes.getOrThrow(BiomeTags.IS_OVERWORLD),
+                HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.AVOCADO_KEY_VARIANT_2)),
+                GenerationStep.Decoration.VEGETAL_DECORATION));
+
+        context.register(AVOCADO_KEY_VARIANT_3, new BiomeModifiers.AddFeaturesBiomeModifier(
+                biomes.getOrThrow(BiomeTags.IS_OVERWORLD),
+                HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.AVOCADO_KEY_VARIANT_3)),
+                GenerationStep.Decoration.VEGETAL_DECORATION));
+
+        context.register(AVOCADO_KEY_VARIANT_4, new BiomeModifiers.AddFeaturesBiomeModifier(
+                biomes.getOrThrow(BiomeTags.IS_OVERWORLD),
+                HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.AVOCADO_KEY_VARIANT_4)),
+                GenerationStep.Decoration.VEGETAL_DECORATION));
+
+        context.register(AVOCADO_KEY_VARIANT_5, new BiomeModifiers.AddFeaturesBiomeModifier(
+                biomes.getOrThrow(BiomeTags.IS_OVERWORLD),
+                HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.AVOCADO_KEY_VARIANT_5)),
+                GenerationStep.Decoration.VEGETAL_DECORATION));
+
+        context.register(AVOCADO_KEY_VARIANT_6, new BiomeModifiers.AddFeaturesBiomeModifier(
+                biomes.getOrThrow(BiomeTags.IS_OVERWORLD),
+                HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.AVOCADO_KEY_VARIANT_6)),
+                GenerationStep.Decoration.VEGETAL_DECORATION));
+
+        context.register(AVOCADO_KEY_VARIANT_7, new BiomeModifiers.AddFeaturesBiomeModifier(
+                biomes.getOrThrow(BiomeTags.IS_OVERWORLD),
+                HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.AVOCADO_KEY_VARIANT_7)),
                 GenerationStep.Decoration.VEGETAL_DECORATION));
 
         context.register(DARK_OAK_KEY_VARIANT_1, new BiomeModifiers.AddFeaturesBiomeModifier(

@@ -87,6 +87,9 @@ public class ModVillagerTrades {
             addBuyTrade(event, 2, ModItems.PEAR.get().getDefaultInstance(), 4, 3,4);
             addSellTrade(event, 2, ModItems.PEAR.get().getDefaultInstance(), 8, 1, 4);
 
+            addBuyTrade(event, 2, ModItems.AVOCADO.get().getDefaultInstance(), 4, 3,4);
+            addSellTrade(event, 2, ModItems.AVOCADO.get().getDefaultInstance(), 8, 1, 4);
+
             addBuyTrade(event, 2, ModItems.CHERRY.get().getDefaultInstance(), 4, 3,4);
             addSellTrade(event, 2, ModItems.CHERRY.get().getDefaultInstance(), 8, 1, 4);
 
@@ -288,6 +291,9 @@ public class ModVillagerTrades {
 
             addBuyTrade(event, 2, ModBlocks.CHERRY_SAPLING.get().asItem().getDefaultInstance(), 2, 4, 4);
             addSellTrade(event, 2, ModBlocks.CHERRY_SAPLING.get().asItem().getDefaultInstance(), 6, 1, 4);
+
+            addBuyTrade(event, 2, ModBlocks.AVOCADO_SAPLING.get().asItem().getDefaultInstance(), 2, 4, 4);
+            addSellTrade(event, 2, ModBlocks.AVOCADO_SAPLING.get().asItem().getDefaultInstance(), 6, 1, 4);
 
             addBuyTrade(event, 2, Items.STONE_AXE.getDefaultInstance(), 4, 1, 4);
             addSellTrade(event, 2, Items.STONE_AXE.getDefaultInstance(), 1, 1, 4);

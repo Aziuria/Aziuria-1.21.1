@@ -50,9 +50,9 @@ public class ThirstTickHandler {
 
         // Exhaustion amounts per action (tweak as needed)
         final float EX_WALK = 0.0015f;
-        final float EX_SPRINT = 0.0075f;
+        final float EX_SPRINT = 0.009f;
         final float EX_JUMP = 0.03f;
-        final float EX_MINE = 0.0025f;
+        final float EX_MINE = 0.0007f;
         final float EX_HOT = 0.003f;
 
         // CASE 1: Sprinting

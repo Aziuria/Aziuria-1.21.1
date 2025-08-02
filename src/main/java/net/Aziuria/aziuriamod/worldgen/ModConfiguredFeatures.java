@@ -69,6 +69,13 @@ public class ModConfiguredFeatures {
     public static final ResourceKey<ConfiguredFeature<?, ?>> CHERRY_KEY_VARIANT_6 = registerKey("cherry_variant_6");
     public static final ResourceKey<ConfiguredFeature<?, ?>> CHERRY_KEY_VARIANT_7 = registerKey("cherry_variant_7");
 
+    public static final ResourceKey<ConfiguredFeature<?, ?>> AVOCADO_KEY_VARIANT_1 = registerKey("avocado_variant_1");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> AVOCADO_KEY_VARIANT_2 = registerKey("avocado_variant_2");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> AVOCADO_KEY_VARIANT_3 = registerKey("avocado_variant_3");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> AVOCADO_KEY_VARIANT_4 = registerKey("avocado_variant_4");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> AVOCADO_KEY_VARIANT_5 = registerKey("avocado_variant_5");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> AVOCADO_KEY_VARIANT_6 = registerKey("avocado_variant_6");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> AVOCADO_KEY_VARIANT_7 = registerKey("avocado_variant_7");
 
     public static final ResourceKey<ConfiguredFeature<?, ?>> DARK_OAK_VARIANT_1 = registerKey("dark_oak_variant_1");
     public static final ResourceKey<ConfiguredFeature<?, ?>> DARK_OAK_VARIANT_2 = registerKey("dark_oak_variant_2");
@@ -317,6 +324,63 @@ public class ModConfiguredFeatures {
                 BlockStateProvider.simple(Blocks.OAK_LOG),
                 new ForkingTrunkPlacer(5, 2, 2),
                 BlockStateProvider.simple(ModBlocks.CHERRY_LEAVES.get()),
+                new BlobFoliagePlacer(ConstantInt.of(2), ConstantInt.of(2), 4),
+                new TwoLayersFeatureSize(2, 0, 2)).build());
+
+        // Variant 1 - Large, spreading branches
+        register(context, AVOCADO_KEY_VARIANT_1, Feature.TREE, new TreeConfiguration.TreeConfigurationBuilder(
+                BlockStateProvider.simple(Blocks.OAK_LOG),
+                new ForkingTrunkPlacer(7, 3, 2),
+                BlockStateProvider.simple(ModBlocks.AVOCADO_LEAVES.get()),
+                new BlobFoliagePlacer(ConstantInt.of(3), ConstantInt.of(3), 3),
+                new TwoLayersFeatureSize(2, 0, 2)).build());
+
+// Variant 2 - Medium, standard
+        register(context, AVOCADO_KEY_VARIANT_2, Feature.TREE, new TreeConfiguration.TreeConfigurationBuilder(
+                BlockStateProvider.simple(Blocks.OAK_LOG),
+                new ForkingTrunkPlacer(4, 2, 2),
+                BlockStateProvider.simple(ModBlocks.AVOCADO_LEAVES.get()),
+                new BlobFoliagePlacer(ConstantInt.of(3), ConstantInt.of(2), 3),
+                new TwoLayersFeatureSize(1, 0, 2)).build());
+
+// Variant 3 - Tall, slim
+        register(context, AVOCADO_KEY_VARIANT_3, Feature.TREE, new TreeConfiguration.TreeConfigurationBuilder(
+                BlockStateProvider.simple(Blocks.OAK_LOG),
+                new StraightTrunkPlacer(6, 1, 0),
+                BlockStateProvider.simple(ModBlocks.AVOCADO_LEAVES.get()),
+                new FancyFoliagePlacer(ConstantInt.of(4), ConstantInt.of(0), 5),
+                new ThreeLayersFeatureSize(2, 1, 2, 3, 2, OptionalInt.of(3))
+        ).build());
+
+// Variant 4 - Short, wide canopy (with FancyFoliagePlacer)
+        register(context, AVOCADO_KEY_VARIANT_4, Feature.TREE, new TreeConfiguration.TreeConfigurationBuilder(
+                BlockStateProvider.simple(Blocks.OAK_LOG),
+                new ForkingTrunkPlacer(3, 1, 1),
+                BlockStateProvider.simple(ModBlocks.AVOCADO_LEAVES.get()),
+                new FancyFoliagePlacer(ConstantInt.of(3), ConstantInt.of(2), 3),
+                new TwoLayersFeatureSize(1, 0, 1)).build());
+
+// Variant 5 - Medium, dense leaves (with FancyFoliagePlacer)
+        register(context, AVOCADO_KEY_VARIANT_5, Feature.TREE, new TreeConfiguration.TreeConfigurationBuilder(
+                BlockStateProvider.simple(Blocks.OAK_LOG),
+                new ForkingTrunkPlacer(5, 2, 1),
+                BlockStateProvider.simple(ModBlocks.AVOCADO_LEAVES.get()),
+                new FancyFoliagePlacer(ConstantInt.of(2), ConstantInt.of(3), 3),
+                new TwoLayersFeatureSize(1, 0, 2)).build());
+
+// Variant 6 - Large, spreading branches
+        register(context, AVOCADO_KEY_VARIANT_6, Feature.TREE, new TreeConfiguration.TreeConfigurationBuilder(
+                BlockStateProvider.simple(Blocks.OAK_LOG),
+                new ForkingTrunkPlacer(7, 3, 2),
+                BlockStateProvider.simple(ModBlocks.AVOCADO_LEAVES.get()),
+                new BlobFoliagePlacer(ConstantInt.of(3), ConstantInt.of(3), 3),
+                new TwoLayersFeatureSize(2, 0, 2)).build());
+
+// Variant 7 - Medium, layered canopy
+        register(context, AVOCADO_KEY_VARIANT_7, Feature.TREE, new TreeConfiguration.TreeConfigurationBuilder(
+                BlockStateProvider.simple(Blocks.OAK_LOG),
+                new ForkingTrunkPlacer(5, 2, 2),
+                BlockStateProvider.simple(ModBlocks.AVOCADO_LEAVES.get()),
                 new BlobFoliagePlacer(ConstantInt.of(2), ConstantInt.of(2), 4),
                 new TwoLayersFeatureSize(2, 0, 2)).build());
 

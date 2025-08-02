@@ -6,6 +6,7 @@ import net.Aziuria.aziuriamod.item.ModItems;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.*;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.ItemLike;
@@ -102,6 +103,16 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .define('B', Items.BUCKET)
                 .define('D', Blocks.DIRT)
                 .unlockedBy("has_cherry", has(ModItems.CHERRY.get()))
+                .save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ModBlocks.AVOCADO_SAPLING.get(), 1)
+                .pattern(" A ")
+                .pattern(" D ")
+                .pattern(" B ")
+                .define('A', ModItems.AVOCADO.get())
+                .define('B', Items.BUCKET)
+                .define('D', Blocks.DIRT)
+                .unlockedBy("has_avocado", has(ModItems.AVOCADO.get()))
                 .save(recipeOutput);
 
         ShapedRecipeBuilder.shaped(RecipeCategory.FOOD, ModItems.FLOUR.get(), 12)
@@ -740,6 +751,12 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .unlockedBy("has_cherry", has(ModItems.CHERRY.get()))
                 .save(recipeOutput);
 
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, ModItems.AVOCADO_JUICE.get(), 1)
+                .requires(ModItems.AVOCADO.get())
+                .requires(Items.POTION)  // Vanilla water bottle (glass bottle + water)
+                .unlockedBy("has_avocado", has(ModItems.AVOCADO.get()))
+                .save(recipeOutput);
+
         ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, ModItems.PINEAPPLE_JUICE.get(), 1)
                 .requires(ModItems.PINEAPPLE.get())
                 .requires(Items.POTION)  // Vanilla water bottle (glass bottle + water)
@@ -751,6 +768,24 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .requires(Items.POTION)  // Vanilla water bottle (glass bottle + water)
                 .unlockedBy("has_blackcurrant", has(ModItems.BLACKCURRANT.get()))
                 .save(recipeOutput);
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, Items.GREEN_DYE)
+                .requires(Items.KELP)
+                .requires(ModItems.KNIFE.get())
+                .unlockedBy("has_kelp", has(Items.KELP))
+                .save(recipeOutput, ResourceLocation.fromNamespaceAndPath("aziuriamod", "green_dye_from_kelp"));
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, Items.GREEN_DYE)
+                .requires(Items.LILY_PAD)
+                .requires(ModItems.KNIFE.get())
+                .unlockedBy("has_lily_pad", has(Items.LILY_PAD))
+                .save(recipeOutput, ResourceLocation.fromNamespaceAndPath("aziuriamod", "green_dye_from_seagrass"));
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, Items.BLACK_DYE)
+                .requires(ModItems.BLACKCURRANT.get())
+                .requires(ModItems.KNIFE.get()) // Assuming your mod has a KNIFE item
+                .unlockedBy("has_blackcurrant", has(ModItems.BLACKCURRANT.get()))
+                .save(recipeOutput, ResourceLocation.fromNamespaceAndPath("aziuriamod", "black_dye_from_blackcurrant"));
 
 
         oreSmelting(recipeOutput, STEEL_ALLOY_MESH_SMELTABLES, RecipeCategory.MISC, ModItems.STEEL_INGOT.get(), 0.25f, 200, "steel_ingot");

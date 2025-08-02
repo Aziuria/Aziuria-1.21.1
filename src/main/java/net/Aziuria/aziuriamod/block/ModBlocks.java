@@ -332,6 +332,18 @@ public class ModBlocks {
     public static final DeferredBlock<Block> APPLE_SAPLING = registerBlock("apple_sapling",
             () -> new ModAppleSaplingBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_SAPLING)));
 
+    public static final DeferredBlock<Block> AVOCADO_LEAVES = registerBlock("avocado_leaves",
+            () -> new ModAvocadoLeavesBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_LEAVES)) {
+                @Override
+                public boolean isFlammable(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
+                    return true;
+                }
+
+            });
+
+    public static final DeferredBlock<Block> AVOCADO_SAPLING = registerBlock("avocado_sapling",
+            () -> new ModAvocadoSaplingBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_SAPLING)));
+
     public static final DeferredBlock<Block> PEAR_LEAVES = registerBlock("pear_leaves",
             () -> new ModPearLeavesBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_LEAVES)) {
                 @Override

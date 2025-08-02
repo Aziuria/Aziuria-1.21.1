@@ -66,6 +66,14 @@ public class ModPlacedFeatures {
     public static final ResourceKey<PlacedFeature> CHERRY_KEY_VARIANT_6 = registerKey("cherry_variant_6");
     public static final ResourceKey<PlacedFeature> CHERRY_KEY_VARIANT_7 = registerKey("cherry_variant_7");
 
+    public static final ResourceKey<PlacedFeature> AVOCADO_KEY_VARIANT_1 = registerKey("avocado_variant_1");
+    public static final ResourceKey<PlacedFeature> AVOCADO_KEY_VARIANT_2 = registerKey("avocado_variant_2");
+    public static final ResourceKey<PlacedFeature> AVOCADO_KEY_VARIANT_3 = registerKey("avocado_variant_3");
+    public static final ResourceKey<PlacedFeature> AVOCADO_KEY_VARIANT_4 = registerKey("avocado_variant_4");
+    public static final ResourceKey<PlacedFeature> AVOCADO_KEY_VARIANT_5 = registerKey("avocado_variant_5");
+    public static final ResourceKey<PlacedFeature> AVOCADO_KEY_VARIANT_6 = registerKey("avocado_variant_6");
+    public static final ResourceKey<PlacedFeature> AVOCADO_KEY_VARIANT_7 = registerKey("avocado_variant_7");
+
     public static final ResourceKey<PlacedFeature> DARK_OAK_KEY_VARIANT_1 = registerKey("dark_oak_variant_1");
     public static final ResourceKey<PlacedFeature> DARK_OAK_KEY_VARIANT_2 = registerKey("dark_oak_variant_2");
 
@@ -468,6 +476,104 @@ public class ModPlacedFeatures {
             );
         }
 
+        // Avocado Variant 1
+        {
+            List<PlacementModifier> modifiers = new ArrayList<>(VegetationPlacements.treePlacement(
+                    NoiseThresholdCountPlacement.of(0.8, 0, 1),
+                    ModBlocks.AVOCADO_SAPLING.get()
+            ));
+            modifiers.add(RarityFilter.onAverageOnceEvery(15));
+
+            register(context, AVOCADO_KEY_VARIANT_1,
+                    configuredFeatures.getOrThrow(ModConfiguredFeatures.AVOCADO_KEY_VARIANT_1),
+                    modifiers
+            );
+        }
+
+// Avocado Variant 2
+        {
+            List<PlacementModifier> modifiers = new ArrayList<>(VegetationPlacements.treePlacement(
+                    NoiseThresholdCountPlacement.of(0.8, 0, 1),
+                    ModBlocks.AVOCADO_SAPLING.get()
+            ));
+            modifiers.add(RarityFilter.onAverageOnceEvery(18)); // retain your desired rarity
+
+            register(context, AVOCADO_KEY_VARIANT_2,
+                    configuredFeatures.getOrThrow(ModConfiguredFeatures.AVOCADO_KEY_VARIANT_2),
+                    modifiers
+            );
+        }
+
+// Avocado Variant 3
+        {
+            List<PlacementModifier> modifiers = new ArrayList<>(VegetationPlacements.treePlacement(
+                    NoiseThresholdCountPlacement.of(0.8, 0, 2),
+                    ModBlocks.AVOCADO_SAPLING.get()
+            ));
+            modifiers.add(RarityFilter.onAverageOnceEvery(14));
+
+            register(context, AVOCADO_KEY_VARIANT_3,
+                    configuredFeatures.getOrThrow(ModConfiguredFeatures.AVOCADO_KEY_VARIANT_3),
+                    modifiers
+            );
+        }
+
+// Avocado Variant 4
+        {
+            List<PlacementModifier> modifiers = new ArrayList<>(VegetationPlacements.treePlacement(
+                    NoiseThresholdCountPlacement.of(0.8, 0, 1),
+                    ModBlocks.AVOCADO_SAPLING.get()
+            ));
+            modifiers.add(RarityFilter.onAverageOnceEvery(15));
+
+            register(context, AVOCADO_KEY_VARIANT_4,
+                    configuredFeatures.getOrThrow(ModConfiguredFeatures.AVOCADO_KEY_VARIANT_4),
+                    modifiers
+            );
+        }
+
+// Avocado Variant 5
+        {
+            List<PlacementModifier> modifiers = new ArrayList<>(VegetationPlacements.treePlacement(
+                    NoiseThresholdCountPlacement.of(0.8, 0, 2),
+                    ModBlocks.AVOCADO_SAPLING.get()
+            ));
+            modifiers.add(RarityFilter.onAverageOnceEvery(12));
+
+            register(context, AVOCADO_KEY_VARIANT_5,
+                    configuredFeatures.getOrThrow(ModConfiguredFeatures.AVOCADO_KEY_VARIANT_5),
+                    modifiers
+            );
+        }
+
+// Avocado Variant 6
+        {
+            List<PlacementModifier> modifiers = new ArrayList<>(VegetationPlacements.treePlacement(
+                    NoiseThresholdCountPlacement.of(0.8, 0, 1),
+                    ModBlocks.AVOCADO_SAPLING.get()
+            ));
+            modifiers.add(RarityFilter.onAverageOnceEvery(14));
+
+            register(context, AVOCADO_KEY_VARIANT_6,
+                    configuredFeatures.getOrThrow(ModConfiguredFeatures.AVOCADO_KEY_VARIANT_6),
+                    modifiers
+            );
+        }
+
+// Avocado Variant 7
+        {
+            List<PlacementModifier> modifiers = new ArrayList<>(VegetationPlacements.treePlacement(
+                    NoiseThresholdCountPlacement.of(0.8, 0, 2),
+                    ModBlocks.AVOCADO_SAPLING.get()
+            ));
+            modifiers.add(RarityFilter.onAverageOnceEvery(13));
+
+            register(context, AVOCADO_KEY_VARIANT_7,
+                    configuredFeatures.getOrThrow(ModConfiguredFeatures.AVOCADO_KEY_VARIANT_7),
+                    modifiers
+            );
+        }
+
 
 // Dark Oak Variant 1
         {
@@ -525,10 +631,10 @@ public class ModPlacedFeatures {
         }
 
         register(context, BLACKCURRANT_BUSH_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.BLACKCURRANT_BUSH_KEY),
-                List.of(RarityFilter.onAverageOnceEvery(12), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome()));
+                List.of(RarityFilter.onAverageOnceEvery(6), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome()));
 
         register(context, STRAWBERRY_BUSH_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.STRAWBERRY_BUSH_KEY),
-                List.of(RarityFilter.onAverageOnceEvery(12), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome()));
+                List.of(RarityFilter.onAverageOnceEvery(6), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome()));
 
 
     }
