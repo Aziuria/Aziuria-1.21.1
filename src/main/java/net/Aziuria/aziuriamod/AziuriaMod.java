@@ -5,6 +5,7 @@ import net.Aziuria.aziuriamod.block.ModBlocks;
 import net.Aziuria.aziuriamod.block.world.BlockBatcher;
 import net.Aziuria.aziuriamod.client.ModClientCommonBusEvents;
 import net.Aziuria.aziuriamod.client.damage.ModDamageTypes;
+import net.Aziuria.aziuriamod.command.BreakRegionCommand;
 import net.Aziuria.aziuriamod.command.DecayCommand;
 import net.Aziuria.aziuriamod.command.FogCommand;
 import net.Aziuria.aziuriamod.command.SpawnTreeVariantCommand;
@@ -171,6 +172,7 @@ public class AziuriaMod {
         FogCommand.register(event.getDispatcher());
         DecayCommand.register(event.getDispatcher());
         SpawnTreeVariantCommand.register(event.getDispatcher());
+        BreakRegionCommand.register(event.getDispatcher());
     }
 
 
