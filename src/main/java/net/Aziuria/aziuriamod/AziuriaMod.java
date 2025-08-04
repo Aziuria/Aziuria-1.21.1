@@ -5,10 +5,7 @@ import net.Aziuria.aziuriamod.block.ModBlocks;
 import net.Aziuria.aziuriamod.block.world.BlockBatcher;
 import net.Aziuria.aziuriamod.client.ModClientCommonBusEvents;
 import net.Aziuria.aziuriamod.client.damage.ModDamageTypes;
-import net.Aziuria.aziuriamod.command.BreakRegionCommand;
-import net.Aziuria.aziuriamod.command.DecayCommand;
-import net.Aziuria.aziuriamod.command.FogCommand;
-import net.Aziuria.aziuriamod.command.SpawnTreeVariantCommand;
+import net.Aziuria.aziuriamod.command.*;
 import net.Aziuria.aziuriamod.fog.*;
 import net.Aziuria.aziuriamod.fog.handler.FogZombieTickHandler;
 import net.Aziuria.aziuriamod.handler.FastLeafDecayHandler;
@@ -20,6 +17,7 @@ import net.Aziuria.aziuriamod.client.screen.ModMenus;
 import net.Aziuria.aziuriamod.data.ModDataComponents;
 import net.Aziuria.aziuriamod.events.ModEvents;
 import net.Aziuria.aziuriamod.handler.BlockDropHandler;
+import net.Aziuria.aziuriamod.handler.VeinMinerHandler;
 import net.Aziuria.aziuriamod.item.ModCreativeModeTabs;
 import net.Aziuria.aziuriamod.item.ModItems;
 import net.Aziuria.aziuriamod.item.custom.entities.ModEntities;
@@ -91,6 +89,8 @@ public class AziuriaMod {
         NeoForge.EVENT_BUS.register(ThirstPersistenceHandler.class);
         NeoForge.EVENT_BUS.register(ThirstDebuffHandler.class);
         NeoForge.EVENT_BUS.register(ThirstHudOverlay.class);
+
+        NeoForge.EVENT_BUS.register(VeinMinerHandler.class);
 
 
 
@@ -173,6 +173,7 @@ public class AziuriaMod {
         DecayCommand.register(event.getDispatcher());
         SpawnTreeVariantCommand.register(event.getDispatcher());
         BreakRegionCommand.register(event.getDispatcher());
+        VeinMinerCommand.register(event.getDispatcher());
     }
 
 
