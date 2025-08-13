@@ -4,6 +4,7 @@ import com.mojang.serialization.MapCodec;
 import net.Aziuria.aziuriamod.block.entity.ShelfBlockEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.world.Containers;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -120,5 +121,21 @@ public class ShelfBlock extends BaseEntityBlock {
     @Override
     public MapCodec<? extends BaseEntityBlock> codec() {
         return CODEC;
+    }
+
+    // ✅ Drop stored items when the block is broken
+    @Override
+    public void onRemove(BlockState state, Level level, BlockPos pos, BlockState newState, boolean isMoving) {
+        if (state.getBlock() != newState.getBlock()) {
+            BlockEntity blockEntity = level.getBlockEntity(pos);
+            if (blockEntity instanceof ShelfBlockEntity shelfEntity) {
+                for (ItemStack stack : shelfEntity.getItems()) {
+                    if (!stack.isEmpty()) {
+                        Containers.dropItemStack(level, pos.getX(), pos.getY(), pos.getZ(), stack);
+                    }
+                }
+            }
+            super.onRemove(state, level, pos, newState, isMoving);
+        }
     }
 }

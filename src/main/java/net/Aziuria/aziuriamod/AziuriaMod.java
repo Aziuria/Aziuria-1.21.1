@@ -102,6 +102,7 @@ public class AziuriaMod {
         NeoForge.EVENT_BUS.register(new FogZombieTickHandler());
         NeoForge.EVENT_BUS.register(ModClientCommonBusEvents.class);
         NeoForge.EVENT_BUS.register(new FogZombieSpawner());
+        NeoForge.EVENT_BUS.register(new FogCreeperSpawner());
         NeoForge.EVENT_BUS.register(BlockBatcher.class);
         NeoForge.EVENT_BUS.register(VillagerAIHandler.class);
         NeoForge.EVENT_BUS.register(VillagerProfessionTickHandler.class);

@@ -18,6 +18,7 @@ public class ThirstHudOverlay {
             ResourceLocation.fromNamespaceAndPath(AziuriaMod.MOD_ID, "textures/gui/water_full.png");
 
     private static final int MAX_THIRST = 20;
+    private static int lastAirBubbleTick = -1;
 
     @SubscribeEvent
     public static void onRenderHud(RenderGuiEvent.Post event) {
@@ -37,6 +38,20 @@ public class ThirstHudOverlay {
         int icons = MAX_THIRST / 2;
         int xStart = screenWidth / 2 + 91 - 81 - 3;
         int y = screenHeight - 53;
+
+        int currentTick = player.tickCount;
+
+        boolean airBubblesVisible = player.isUnderWater() && player.getAirSupply() < player.getMaxAirSupply() && player.getAirSupply() > 0;
+
+        // Update lastAirBubbleTick when air bubbles are visible
+        if (airBubblesVisible) {
+            lastAirBubbleTick = currentTick;
+        }
+
+        // Shift thirst bar up if air bubbles are visible or if less than 20 ticks (1 second) have passed since last visible
+        if (airBubblesVisible || (lastAirBubbleTick != -1 && currentTick - lastAirBubbleTick < 20)) {
+            y -= 10; // Shift up by 10 pixels to avoid overlap
+        }
 
         float scale = 0.8f;
 
