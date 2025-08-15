@@ -21,7 +21,7 @@ public class ThirstHudOverlay {
     private static int lastAirBubbleTick = -1;
 
     @SubscribeEvent
-    public static void onRenderHud(RenderGuiEvent.Post event) {
+    public static void onRenderHud(RenderGuiEvent.Pre event) {
         Minecraft mc = Minecraft.getInstance();
         Player player = mc.player;
 
@@ -41,8 +41,12 @@ public class ThirstHudOverlay {
 
         int currentTick = player.tickCount;
 
-        boolean airBubblesVisible = player.isUnderWater() && player.getAirSupply() < player.getMaxAirSupply() && player.getAirSupply() > 0;
+        boolean hasWaterBreathing = player.hasEffect(net.minecraft.world.effect.MobEffects.WATER_BREATHING);
 
+        boolean airBubblesVisible = player.isUnderWater() && (
+                (player.getAirSupply() < player.getMaxAirSupply() && player.getAirSupply() > 0)
+                        || hasWaterBreathing
+        );
         // Update lastAirBubbleTick when air bubbles are visible
         if (airBubblesVisible) {
             lastAirBubbleTick = currentTick;
@@ -57,6 +61,11 @@ public class ThirstHudOverlay {
 
         event.getGuiGraphics().pose().pushPose();
         event.getGuiGraphics().pose().scale(scale, scale, 1.0f);
+
+        // Make icons fully opaque like the armor bar
+        RenderSystem.setShaderColor(1f, 1f, 1f, 1f);
+        RenderSystem.enableBlend();
+        RenderSystem.defaultBlendFunc();
 
         int scaledXStart = (int) (xStart / scale);
         int scaledY = (int) (y / scale);

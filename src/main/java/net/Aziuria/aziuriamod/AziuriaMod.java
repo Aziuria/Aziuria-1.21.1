@@ -175,6 +175,7 @@ public class AziuriaMod {
         SpawnTreeVariantCommand.register(event.getDispatcher());
         BreakRegionCommand.register(event.getDispatcher());
         VeinMinerCommand.register(event.getDispatcher());
+        RefreshGravityBlocksCommand.register(event.getDispatcher());
     }
 
 
