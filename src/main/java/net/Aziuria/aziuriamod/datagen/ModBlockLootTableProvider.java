@@ -70,6 +70,10 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
         dropSelf(ModBlocks.DEMAECATION_POST_C.get());
         dropSelf(ModBlocks.DEMAECATION_POST_D.get());
         dropSelf(ModBlocks.DEMAECATION_POST_E.get());
+        dropSelf(ModBlocks.BLACKSTONE_GRAVESTONE_A.get());
+        dropSelf(ModBlocks.BLACKSTONE_GRAVESTONE_B.get());
+        dropSelf(ModBlocks.COBBLESTONE_GRAVESTONE_A.get());
+        dropSelf(ModBlocks.COBBLESTONE_GRAVESTONE_B.get());
         dropSelf(ModBlocks.SPEAKER.get());
         dropSelf(ModBlocks.WOODCUTTER_BENCH.get());
         dropSelf(ModBlocks.MINER_BENCH.get());

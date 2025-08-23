@@ -148,6 +148,11 @@
   "entity.minecraft.villager.aziuriamod.woodcutter": "Woodcutter",
   "entity.minecraft.villager.aziuriamod.miner": "Miner",
 
+  "block.aziuriamod.blackstone_gravestone_a": "Blackstone Gravestone A",
+  "block.aziuriamod.blackstone_gravestone_b": "Blackstone Gravestone B",
+  "block.aziuriamod.cobblestone_gravestone_a": "Cobblestone Gravestone A",
+  "block.aziuriamod.cobblestone_gravestone_b": "Cobblestone Gravestone B",
+
 
   "death.attack.dehydration": "%1$s died of dehydration",
   "creativetab.aziuriamod.useful_items_and_blocks": "Useful Items and Blocks"

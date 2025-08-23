@@ -6,7 +6,7 @@ import net.minecraft.world.level.block.Block;
 
 public class RenderLayerUtil {
 
-    @SuppressWarnings("removal")
+    @SuppressWarnings({ "deprecation", "removal" })
     public static void setRenderLayer(Block block, RenderType renderType) {
         ItemBlockRenderTypes.setRenderLayer(block, renderType);
     }

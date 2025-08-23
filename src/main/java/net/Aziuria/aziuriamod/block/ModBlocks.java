@@ -282,6 +282,31 @@ public class ModBlocks {
                     .sound(SoundType.STONE)
                     .noOcclusion()));
 
+    public static final DeferredBlock<GravestoneBlock> BLACKSTONE_GRAVESTONE_A = registerBlock("blackstone_gravestone_a",
+            () -> new GravestoneBlock(BlockBehaviour.Properties.of()
+                    .strength(1.5f)
+                    .sound(SoundType.STONE)
+                    .noOcclusion()));
+
+    public static final DeferredBlock<GravestoneBlock> BLACKSTONE_GRAVESTONE_B = registerBlock("blackstone_gravestone_b",
+            () -> new GravestoneBlock(BlockBehaviour.Properties.of()
+                    .strength(1.5f)
+                    .sound(SoundType.STONE)
+                    .noOcclusion()));
+
+    public static final DeferredBlock<GravestoneBlock> COBBLESTONE_GRAVESTONE_A = registerBlock("cobblestone_gravestone_a",
+            () -> new GravestoneBlock(BlockBehaviour.Properties.of()
+                    .strength(1.5f)
+                    .sound(SoundType.STONE)
+                    .noOcclusion()));
+
+    public static final DeferredBlock<GravestoneBlock> COBBLESTONE_GRAVESTONE_B = registerBlock("cobblestone_gravestone_b",
+            () -> new GravestoneBlock(BlockBehaviour.Properties.of()
+                    .strength(1.5f)
+                    .sound(SoundType.STONE)
+                    .noOcclusion()));
+
+
     public static final DeferredBlock<SpeakerBlock> SPEAKER = registerBlock("speaker",
             () -> new SpeakerBlock(BlockBehaviour.Properties.of()
                     .strength(2.0f)

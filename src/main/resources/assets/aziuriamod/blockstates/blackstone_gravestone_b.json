@@ -1,0 +1,19 @@
+{
+	"variants": {
+		"facing=north": {
+			"model": "aziuriamod:block/blackstone_gravestone_b"
+		},
+		"facing=south": {
+			"model": "aziuriamod:block/blackstone_gravestone_b",
+			"y": 180
+		},
+		"facing=east": {
+			"model": "aziuriamod:block/blackstone_gravestone_b",
+			"y": 90
+		},
+		"facing=west": {
+			"model": "aziuriamod:block/blackstone_gravestone_b",
+			"y": 270
+		}
+	}
+}

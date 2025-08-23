@@ -26,6 +26,7 @@ public class ThirstHudOverlay {
         Player player = mc.player;
 
         if (player == null || player.isCreative() || mc.options.hideGui) return;
+        if (player == null || player.isCreative() || player.isSpectator() || mc.options.hideGui) return;
 
         IThirst thirst = player.getCapability(ThirstProvider.THIRST_CAP, null);
         if (thirst == null) return;
@@ -37,7 +38,7 @@ public class ThirstHudOverlay {
         int spacing = 10;
         int icons = MAX_THIRST / 2;
         int xStart = screenWidth / 2 + 91 - 81 - 3;
-        int y = screenHeight - 53;
+        int y = screenHeight - 52;
 
         int currentTick = player.tickCount;
 

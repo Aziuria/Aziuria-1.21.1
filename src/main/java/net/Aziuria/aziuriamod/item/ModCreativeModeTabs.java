@@ -6,6 +6,7 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.block.Blocks;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
@@ -69,6 +70,7 @@ public class ModCreativeModeTabs {
                         output.accept(ModBlocks.MANGROVE_HOOK);
                         output.accept(ModBlocks.STEEL_BARREL_EMPTY);
                         output.accept(ModBlocks.IRON_BARREL_EMPTY);
+                        output.accept(Blocks.SPAWNER);
                         output.accept(ModBlocks.LEAF_LITTER);
                         output.accept(ModBlocks.DEMAECATION_POST);
                         output.accept(ModBlocks.DEMAECATION_POST_B);
@@ -135,6 +137,10 @@ public class ModCreativeModeTabs {
                         output.accept(ModBlocks.PEAR_LEAVES);
                         output.accept(ModBlocks.CHERRY_LEAVES);
                         output.accept(ModBlocks.AVOCADO_LEAVES);
+                        output.accept(ModBlocks.BLACKSTONE_GRAVESTONE_A);
+                        output.accept(ModBlocks.BLACKSTONE_GRAVESTONE_B);
+                        output.accept(ModBlocks.COBBLESTONE_GRAVESTONE_A);
+                        output.accept(ModBlocks.COBBLESTONE_GRAVESTONE_B);
                     }).build());
 
 

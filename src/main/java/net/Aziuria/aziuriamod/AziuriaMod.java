@@ -176,6 +176,7 @@ public class AziuriaMod {
         BreakRegionCommand.register(event.getDispatcher());
         VeinMinerCommand.register(event.getDispatcher());
         RefreshGravityBlocksCommand.register(event.getDispatcher());
+        NearbyOreCommand.register(event.getDispatcher());
     }
 
 

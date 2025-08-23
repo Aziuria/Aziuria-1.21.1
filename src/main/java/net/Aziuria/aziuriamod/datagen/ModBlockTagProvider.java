@@ -40,6 +40,10 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                 .add(ModBlocks.DEMAECATION_POST_C.get())
                 .add(ModBlocks.DEMAECATION_POST_D.get())
                 .add(ModBlocks.DEMAECATION_POST_E.get())
+                .add(ModBlocks.BLACKSTONE_GRAVESTONE_A.get())
+                .add(ModBlocks.BLACKSTONE_GRAVESTONE_B.get())
+                .add(ModBlocks.COBBLESTONE_GRAVESTONE_A.get())
+                .add(ModBlocks.COBBLESTONE_GRAVESTONE_B.get())
                 .add(ModBlocks.SPEAKER.get())
                 .add(ModBlocks.STEEL_BARREL_EMPTY.get());
 
