@@ -1678,6 +1678,12 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .unlockedBy("has_kelp", has(Items.KELP))
                 .save(recipeOutput, ResourceLocation.fromNamespaceAndPath("aziuriamod", "green_dye_from_kelp"));
 
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, Items.BROWN_DYE)
+                .requires(Items.BLACK_DYE)
+                .requires(Items.ORANGE_DYE)
+                .unlockedBy("has_orange_dye", has(Items.ORANGE_DYE))
+                .save(recipeOutput, ResourceLocation.fromNamespaceAndPath("aziuriamod", "brown_dye_from_orange_dye"));
+
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, Items.GREEN_DYE)
                 .requires(Items.LILY_PAD)
                 .requires(ModItems.KNIFE.get())
