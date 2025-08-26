@@ -29,6 +29,11 @@ public class VeinMinerHandler {
             Blocks.DIAMOND_ORE,
             Blocks.EMERALD_ORE,
 
+            Blocks.NETHER_GOLD_ORE,
+            Blocks.NETHER_QUARTZ_ORE,
+            Blocks.ANCIENT_DEBRIS,
+            Blocks.GLOWSTONE,
+
             // Deepslate variants
             Blocks.DEEPSLATE_COAL_ORE,
             Blocks.DEEPSLATE_IRON_ORE,
@@ -38,8 +43,6 @@ public class VeinMinerHandler {
             Blocks.DEEPSLATE_LAPIS_ORE,
             Blocks.DEEPSLATE_DIAMOND_ORE,
             Blocks.DEEPSLATE_EMERALD_ORE,
-            Blocks.GLOWSTONE,
-            Blocks.QUARTZ_BLOCK,
 
             // Modded ores
             ModBlocks.DEEPSLATE_SULPHUR_ORE.get(),

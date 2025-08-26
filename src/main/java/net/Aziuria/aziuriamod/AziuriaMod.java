@@ -8,16 +8,13 @@ import net.Aziuria.aziuriamod.client.damage.ModDamageTypes;
 import net.Aziuria.aziuriamod.command.*;
 import net.Aziuria.aziuriamod.fog.*;
 import net.Aziuria.aziuriamod.fog.handler.FogZombieTickHandler;
-import net.Aziuria.aziuriamod.handler.FastLeafDecayHandler;
+import net.Aziuria.aziuriamod.handler.*;
 import net.Aziuria.aziuriamod.fog.handler.FogEventWorldLoadHandler;
-import net.Aziuria.aziuriamod.handler.LeafParticleHandler;
 import net.Aziuria.aziuriamod.block.entity.ModBlockEntities;
 import net.Aziuria.aziuriamod.client.ClientModInitializer;
 import net.Aziuria.aziuriamod.client.screen.ModMenus;
 import net.Aziuria.aziuriamod.data.ModDataComponents;
 import net.Aziuria.aziuriamod.events.ModEvents;
-import net.Aziuria.aziuriamod.handler.BlockDropHandler;
-import net.Aziuria.aziuriamod.handler.VeinMinerHandler;
 import net.Aziuria.aziuriamod.item.ModCreativeModeTabs;
 import net.Aziuria.aziuriamod.item.ModItems;
 import net.Aziuria.aziuriamod.item.custom.entities.ModEntities;
@@ -79,6 +76,7 @@ public class AziuriaMod {
         NeoForge.EVENT_BUS.register(BlockDropHandler.class);
         NeoForge.EVENT_BUS.register(ModEvents.class);
         NeoForge.EVENT_BUS.register(LeafParticleHandler.class);
+        NeoForge.EVENT_BUS.register(MilkBucketHandler.class);
         NeoForge.EVENT_BUS.register(FogEventWorldLoadHandler.class);
         NeoForge.EVENT_BUS.register(PlayerJoinHandler.class);
 

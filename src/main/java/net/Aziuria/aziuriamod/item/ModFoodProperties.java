@@ -193,4 +193,11 @@ public class ModFoodProperties {
             .effect(() -> new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 100, 0), 0.10f) // slight resistance
             .build();
 
+    public static final FoodProperties MILK_BOTTLE = new FoodProperties.Builder()
+            .nutrition(2)                 // small hunger restored, like a light drink
+            .saturationModifier(0.3f)     // low saturation
+            .effect(() -> new MobEffectInstance(MobEffects.REGENERATION, 40, 0), 0.1f) // optional tiny regen
+            // Realistically, milk mostly cleanses, so no strong buffs
+            .build();
+
 }

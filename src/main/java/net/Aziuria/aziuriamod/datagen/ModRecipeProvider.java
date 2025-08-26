@@ -1567,6 +1567,14 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .define('S', Items.IRON_INGOT)
                 .unlockedBy("has_steel_ingot", has(ModItems.STEEL_INGOT)).save(recipeOutput);
 
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.MILK_BOTTLE.get(),3)
+                .pattern("   ")
+                .pattern("BSB")
+                .pattern(" B ")
+                .define('B', Items.GLASS_BOTTLE)
+                .define('S', Items.MILK_BUCKET)
+                .unlockedBy("has_glass_bottle", has(Items.GLASS_BOTTLE)).save(recipeOutput);
+
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.IRON_BARREL_EMPTY.get())
                 .pattern("B B")
                 .pattern("B B")

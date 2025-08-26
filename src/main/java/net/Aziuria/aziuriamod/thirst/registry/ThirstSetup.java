@@ -8,7 +8,7 @@ public class ThirstSetup {
     public static void registerThirstItems() {
         // === LIQUIDS & POTIONS ===
         ThirstRegistry.register(Items.POTION, 5);
-        ThirstRegistry.register(Items.MILK_BUCKET, 4);
+        ThirstRegistry.register(ModItems.MILK_BOTTLE.get(), 4);
         ThirstRegistry.register(Items.HONEY_BOTTLE, 3);
 
         // === FRUITS ===

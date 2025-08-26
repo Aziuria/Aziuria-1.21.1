@@ -7,6 +7,7 @@ import net.Aziuria.aziuriamod.block.world.IslandType;
 import net.Aziuria.aziuriamod.item.custom.DrinkableItem;
 import net.Aziuria.aziuriamod.item.custom.IslandThrowableItem;
 import net.Aziuria.aziuriamod.item.custom.KnifeItem;
+import net.Aziuria.aziuriamod.item.custom.MilkBottleItem;
 import net.minecraft.world.item.*;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredHolder;
@@ -232,6 +233,15 @@ public class ModItems {
                             .craftRemainder(Items.GLASS_BOTTLE),
                     32,
                     UseAnim.DRINK));
+
+    public static final DeferredItem<MilkBottleItem> MILK_BOTTLE = ITEMS.register("milk_bottle",
+            () -> new MilkBottleItem(
+                    new Item.Properties()
+                            .food(ModFoodProperties.MILK_BOTTLE)
+                            .stacksTo(16) // bottles can stack
+                            .craftRemainder(Items.GLASS_BOTTLE)
+            ));
+
 
     public static final DeferredItem<Item> ISLAND_GENERATOR_SMALL = ITEMS.register("island_generator_small",
             () -> new IslandThrowableItem(IslandType.SMALL, IslandBiomeType.PLAINS, new Item.Properties().stacksTo(16)));

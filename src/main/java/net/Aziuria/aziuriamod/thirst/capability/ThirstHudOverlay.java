@@ -7,6 +7,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Player;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.neoforge.client.event.RenderGuiEvent;
+import net.neoforged.neoforge.event.entity.player.PlayerEvent;
 
 public class ThirstHudOverlay {
 
@@ -19,6 +20,9 @@ public class ThirstHudOverlay {
 
     private static final int MAX_THIRST = 20;
     private static int lastAirBubbleTick = -1;
+    private static final int PRE_SHIFT_TICKS = 5;   // shift before bubbles appear
+    private static final int POST_SHIFT_TICKS = 5;  // keep shift after bubbles vanish
+    private static int shiftCounter = 0;
 
     @SubscribeEvent
     public static void onRenderHud(RenderGuiEvent.Pre event) {
@@ -43,19 +47,33 @@ public class ThirstHudOverlay {
         int currentTick = player.tickCount;
 
         boolean hasWaterBreathing = player.hasEffect(net.minecraft.world.effect.MobEffects.WATER_BREATHING);
-
         boolean airBubblesVisible = player.isUnderWater() && (
                 (player.getAirSupply() < player.getMaxAirSupply() && player.getAirSupply() > 0)
                         || hasWaterBreathing
         );
-        // Update lastAirBubbleTick when air bubbles are visible
-        if (airBubblesVisible) {
-            lastAirBubbleTick = currentTick;
+
+        // <<< CHANGED: new robust shifting logic
+        boolean shouldShift = false;
+
+        // Early shift as soon as air starts dropping
+        if (player.getAirSupply() < player.getMaxAirSupply()) {
+            shouldShift = true;
         }
 
-        // Shift thirst bar up if air bubbles are visible or if less than 20 ticks (1 second) have passed since last visible
-        if (airBubblesVisible || (lastAirBubbleTick != -1 && currentTick - lastAirBubbleTick < 20)) {
-            y -= 10; // Shift up by 10 pixels to avoid overlap
+        // Or if vanilla bubbles are already visible
+        if (airBubblesVisible) {
+            shouldShift = true;
+        }
+
+        // Manage linger so bar doesn’t snap back too soon
+        if (shouldShift) {
+            shiftCounter = POST_SHIFT_TICKS;
+        } else if (shiftCounter > 0) {
+            shiftCounter--;
+        }
+
+        if (shouldShift || shiftCounter > 0) {
+            y -= 10;
         }
 
         float scale = 0.8f;
@@ -137,5 +155,11 @@ public class ThirstHudOverlay {
         }
 
         event.getGuiGraphics().pose().popPose();
+    }
+
+    // <<< ADDED: reset when switching dimensions so overlay doesn't "stick"
+    @SubscribeEvent
+    public static void onDimensionChange(PlayerEvent.PlayerChangedDimensionEvent event) {
+        lastAirBubbleTick = -1;
     }
 }
