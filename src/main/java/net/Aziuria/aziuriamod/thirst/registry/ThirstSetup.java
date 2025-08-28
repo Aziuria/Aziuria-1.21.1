@@ -18,7 +18,7 @@ public class ThirstSetup {
         ThirstRegistry.register(Items.CHORUS_FRUIT, 2);
         ThirstRegistry.register(ModItems.PINEAPPLE.get(), 3);
         ThirstRegistry.register(ModItems.PEAR.get(), 4);
-        ThirstRegistry.register(ModItems.AVOCADO.get(), -1);
+        ThirstRegistry.register(ModItems.AVOCADO.get(), -2);
         ThirstRegistry.register(ModItems.CHERRY.get(), 2);
         ThirstRegistry.register(ModItems.BLACKCURRANT.get(), 2);
         ThirstRegistry.register(ModItems.STRAWBERRY.get(), 2);
@@ -44,10 +44,10 @@ public class ThirstSetup {
         ThirstRegistry.register(Items.PUMPKIN_PIE, -1);
 
         // === STEWS & SOUPS ===
-        ThirstRegistry.register(Items.BEETROOT_SOUP, 4);
-        ThirstRegistry.register(Items.SUSPICIOUS_STEW, 3);
-        ThirstRegistry.register(Items.MUSHROOM_STEW, 3);
-        ThirstRegistry.register(Items.RABBIT_STEW, 4);
+        ThirstRegistry.register(Items.BEETROOT_SOUP, 3);
+        ThirstRegistry.register(Items.SUSPICIOUS_STEW, 2);
+        ThirstRegistry.register(Items.MUSHROOM_STEW, 2);
+        ThirstRegistry.register(Items.RABBIT_STEW, 3);
 
         // === DRY/HEAVY FOODS (BAKED/PROCESSED) ===
         ThirstRegistry.register(Items.BREAD, -3);
@@ -82,15 +82,15 @@ public class ThirstSetup {
         ThirstRegistry.register(Items.ROTTEN_FLESH, -2);
 
         // === JUICES ===
-        ThirstRegistry.register(ModItems.APPLE_JUICE.get(), 5);
-        ThirstRegistry.register(ModItems.PINEAPPLE_JUICE.get(), 5);
-        ThirstRegistry.register(ModItems.PEAR_JUICE.get(), 5);
-        ThirstRegistry.register(ModItems.CHERRY_JUICE.get(), 5);
-        ThirstRegistry.register(ModItems.AVOCADO_JUICE.get(), 4);
-        ThirstRegistry.register(ModItems.BLACKCURRANT_JUICE.get(), 5);
-        ThirstRegistry.register(ModItems.SWEETBERRY_JUICE.get(), 5);
-        ThirstRegistry.register(ModItems.GLOWBERRY_JUICE.get(), 5);
-        ThirstRegistry.register(ModItems.STRAWBERRY_JUICE.get(), 5);
-        ThirstRegistry.register(ModItems.TOMATO_JUICE.get(), 5);
+        ThirstRegistry.register(ModItems.APPLE_JUICE.get(), 4);
+        ThirstRegistry.register(ModItems.PINEAPPLE_JUICE.get(), 4);
+        ThirstRegistry.register(ModItems.PEAR_JUICE.get(), 4);
+        ThirstRegistry.register(ModItems.CHERRY_JUICE.get(), 4);
+        ThirstRegistry.register(ModItems.AVOCADO_JUICE.get(), 3);
+        ThirstRegistry.register(ModItems.BLACKCURRANT_JUICE.get(), 4);
+        ThirstRegistry.register(ModItems.SWEETBERRY_JUICE.get(), 4);
+        ThirstRegistry.register(ModItems.GLOWBERRY_JUICE.get(), 4);
+        ThirstRegistry.register(ModItems.STRAWBERRY_JUICE.get(), 4);
+        ThirstRegistry.register(ModItems.TOMATO_JUICE.get(), 4);
     }
 }

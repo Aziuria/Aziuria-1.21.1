@@ -119,6 +119,12 @@ public class FogCreeperSpawner {
 
         public FogBehaviorController(Creeper creeper) {
             this.creeper = creeper;
+
+            // === LADDER CLIMBING PATCH ===
+            PathNavigation nav = creeper.getNavigation();
+            if (nav instanceof GroundPathNavigation groundNav) {
+                groundNav.setCanFloat(true); // allows climbing ladders & prevents stuck paths
+            }
         }
 
         public void tick() {

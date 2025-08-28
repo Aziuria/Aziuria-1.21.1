@@ -6,6 +6,11 @@ import net.Aziuria.aziuriamod.block.world.BlockBatcher;
 import net.Aziuria.aziuriamod.client.ModClientCommonBusEvents;
 import net.Aziuria.aziuriamod.client.damage.ModDamageTypes;
 import net.Aziuria.aziuriamod.command.*;
+import net.Aziuria.aziuriamod.exhaustion.capability.ExhaustionHudOverlay;
+import net.Aziuria.aziuriamod.exhaustion.capability.ExhaustionProvider;
+import net.Aziuria.aziuriamod.exhaustion.handler.*;
+import net.Aziuria.aziuriamod.exhaustion.network.ExhaustionNetworkHandler;
+import net.Aziuria.aziuriamod.exhaustion.registry.ExhaustionSetup;
 import net.Aziuria.aziuriamod.fog.*;
 import net.Aziuria.aziuriamod.fog.handler.FogZombieTickHandler;
 import net.Aziuria.aziuriamod.handler.*;
@@ -67,6 +72,8 @@ public class AziuriaMod {
         modEventBus.addListener(NetworkHandler::register);
 
         modEventBus.addListener(ThirstNetworkHandler::register);
+        modEventBus.addListener(ExhaustionNetworkHandler::register);
+
 
         if (FMLEnvironment.dist == Dist.CLIENT) {
             ClientModInitializer.register(modEventBus);
@@ -87,6 +94,15 @@ public class AziuriaMod {
         NeoForge.EVENT_BUS.register(ThirstPersistenceHandler.class);
         NeoForge.EVENT_BUS.register(ThirstDebuffHandler.class);
         NeoForge.EVENT_BUS.register(ThirstHudOverlay.class);
+
+
+        NeoForge.EVENT_BUS.register(ExhaustionHudOverlay.class);
+        NeoForge.EVENT_BUS.register(ExhaustHandler.class);
+        NeoForge.EVENT_BUS.register(ExhaustionPersistenceHandler.class);
+        NeoForge.EVENT_BUS.register(ExhaustionTickHandler.class);
+        NeoForge.EVENT_BUS.register(ExhaustionPlayerHandler.class);
+        NeoForge.EVENT_BUS.register(ExhaustionDebuffHandler.class);
+
 
         NeoForge.EVENT_BUS.register(VeinMinerHandler.class);
 
@@ -142,6 +158,7 @@ public class AziuriaMod {
 
 //        ModCapabilities.register(event);
         ThirstProvider.register(event);
+        ExhaustionProvider.register(event);
     }
 
     private void addCreative(BuildCreativeModeTabContentsEvent event) {
@@ -184,6 +201,7 @@ public class AziuriaMod {
         public static void onClientSetup(FMLClientSetupEvent event) {
             event.enqueueWork(() -> LOGGER.info("Client setup complete."));
             ThirstSetup.registerThirstItems();
+            ExhaustionSetup.registerExhaustionItems();
 
         }
 

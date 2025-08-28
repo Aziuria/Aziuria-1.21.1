@@ -49,33 +49,34 @@ public class ThirstTickHandler {
         int oldThirst = lastThirstMap.getOrDefault(playerId, currentThirst);
 
         // Exhaustion amounts per action (tweak as needed)
-        final float EX_WALK = 0.0015f;
-        final float EX_SPRINT = 0.009f;
-        final float EX_JUMP = 0.03f;
+        final float EX_WALK = 0.001f;
+        final float EX_SPRINT = 0.008f;
+        final float EX_JUMP = 0.025f;
         final float EX_MINE = 0.0007f;
         final float EX_HOT = 0.003f;
+        final float DECAY_IDLE = -0.00001f;
+        final float EX_COLD = 0.001f;
 
-        // CASE 1: Sprinting
-        if (player.isSprinting() && horizontalSpeed > 0.01) {
-            thirst.addExhaustion(EX_SPRINT);
+        // Calculate combined activity exhaustion
+        float activityExhaustion = 0f;
+        if (player.isSprinting() && horizontalSpeed > 0.01) activityExhaustion += EX_SPRINT;
+        else if (!player.isSprinting() && horizontalSpeed > 0.0005) activityExhaustion += EX_WALK;
+
+        if (verticalSpeed > 0.25) activityExhaustion += EX_JUMP;
+        if (player.swinging) activityExhaustion += EX_MINE;
+
+        // Limit maximum exhaustion per tick to avoid spiking
+        activityExhaustion = Math.min(activityExhaustion, 0.01f); // tweak cap as needed
+
+        // Apply combined activity exhaustion
+        thirst.addExhaustion(activityExhaustion);
+
+        // Idle decay
+        if (horizontalSpeed < 0.0005 && Math.abs(verticalSpeed) < 0.05) {
+            thirst.addExhaustion(DECAY_IDLE);
         }
 
-        // CASE 2: Walking
-        else if (!player.isSprinting() && horizontalSpeed > 0.0005) {
-            thirst.addExhaustion(EX_WALK);
-        }
-
-        // CASE 3: Jumping
-        if (verticalSpeed > 0.25) {
-            thirst.addExhaustion(EX_JUMP);
-        }
-
-        // CASE 4: Mining
-        if (player.swinging) {
-            thirst.addExhaustion(EX_MINE);
-        }
-
-        // CASE 5: Hot biome
+        // CASE 5: Biome effects
         BlockPos pos = player.blockPosition();
         Biome biome = player.level().getBiome(pos).value();
         float temperature = biome.getBaseTemperature();
@@ -85,12 +86,25 @@ public class ThirstTickHandler {
             thirst.addExhaustion(EX_HOT);
         }
 
-        // Apply thirst reduction if exhaustion exceeds threshold
-        if (thirst.getExhaustion() >= 4.0f) {
-            thirst.setExhaustion(thirst.getExhaustion() - 4.0f);
-            thirst.setThirst(currentThirst - 1);
+        // CASE 6: Cold biome (apply every ~12.5 seconds)
+        if (temperature <= 0.2f && gameTime % 250 == 0) {
+            thirst.addExhaustion(EX_COLD);
+
+            // Optional: extra penalty if in water/lava
+            if (player.isInWater() || player.isInLava()) {
+                thirst.addExhaustion(EX_COLD); // double penalty
+            }
         }
 
+        // Apply thirst reduction if exhaustion exceeds threshold
+        if (thirst.getExhaustion() >= 4.0f) {
+            float excess = thirst.getExhaustion() - 4.0f;
+            int reduction = 1 + Math.round(excess * 0.1f); // scale gradually
+            thirst.setExhaustion(thirst.getExhaustion() - 4.0f);
+            thirst.setThirst(Math.max(0, currentThirst - reduction));
+        }
+
+        // Update last thirst map
         int updatedThirst = thirst.getThirst();
         if (updatedThirst != oldThirst) {
             lastThirstMap.put(playerId, updatedThirst);

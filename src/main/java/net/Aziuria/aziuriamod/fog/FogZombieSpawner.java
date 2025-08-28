@@ -9,6 +9,8 @@ import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
+import net.minecraft.world.entity.ai.navigation.GroundPathNavigation;
+import net.minecraft.world.entity.ai.navigation.PathNavigation;
 import net.minecraft.world.entity.animal.*;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.monster.Zombie;
@@ -110,6 +112,12 @@ public class FogZombieSpawner {
                         zombie.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(zombie, Villager.class, true));
                         zombie.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(zombie, Animal.class, 10, true, false,
                                 animal -> animal instanceof Sheep || animal instanceof Cow || animal instanceof Pig || animal instanceof Chicken));
+
+                        // === LADDER CLIMBING PATCH ===
+                        PathNavigation nav = zombie.getNavigation();
+                        if (nav instanceof GroundPathNavigation groundNav) {
+                            groundNav.setCanFloat(true); // allows climbing ladders & prevents stuck paths
+                        }
 
                         level.addFreshEntity(zombie);
                     }
