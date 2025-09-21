@@ -9,7 +9,7 @@ public class ExhaustionSetup {
 
         // === LIQUIDS & POTIONS (quick energy, low digestion cost) ===
         ExhaustionRegistry.register(Items.POTION, 2);        // hydration + minor boost
-      //  ExhaustionRegistry.register(ModItems.COFFEE.get(), 5); // stimulant, fatigue reducer
+        ExhaustionRegistry.register(ModItems.COFFEE.get(), 5); // stimulant, fatigue reducer
       //  ExhaustionRegistry.register(ModItems.TEA.get(), 4);   // mild energy boost
       //  ExhaustionRegistry.register(ModItems.ENERGY_DRINK.get(), 5); // sugar + caffeine
 

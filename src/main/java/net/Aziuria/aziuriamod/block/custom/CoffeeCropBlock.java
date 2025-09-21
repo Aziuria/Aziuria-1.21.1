@@ -12,7 +12,7 @@ import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-public class PineappleCropBlock extends CropBlock {
+public class CoffeeCropBlock extends CropBlock {
     public static final int MAX_AGE = 3;
     public static final IntegerProperty AGE = IntegerProperty.create("age", 0, 3);
     private static final VoxelShape[] SHAPE_BY_AGE =
@@ -23,7 +23,7 @@ public class PineappleCropBlock extends CropBlock {
                     Block.box(0.0, 0.0, 0.0, 16.0, 8.0, 16.0)};
 
 
-    public PineappleCropBlock(Properties properties) {
+    public CoffeeCropBlock(Properties properties) {
         super(properties);
     }
 
@@ -34,7 +34,7 @@ public class PineappleCropBlock extends CropBlock {
 
     @Override
     protected ItemLike getBaseSeedId() {
-        return ModItems.PINEAPPLE_SEEDS;
+        return ModItems.COFFEE_SEEDS;
     }
 
     @Override

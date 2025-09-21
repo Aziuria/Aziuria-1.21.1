@@ -67,6 +67,8 @@ public class ModItemModelProvider extends ItemModelProvider {
         basicItem(ModItems.PINEAPPLE_SEEDS.get());
         basicItem(ModItems.CORN.get());
         basicItem(ModItems.CORN_SEEDS.get());
+        basicItem(ModItems.COFFEE_BEANS.get());
+        basicItem(ModItems.COFFEE_SEEDS.get());
         basicItem(ModItems.CHERRY.get());
         basicItem(ModItems.BLACKCURRANT.get());
         basicItem(ModItems.STRAWBERRY.get());
@@ -85,6 +87,7 @@ public class ModItemModelProvider extends ItemModelProvider {
         basicItem(ModItems.GLOWBERRY_JUICE.get());
         basicItem(ModItems.SWEETBERRY_JUICE.get());
         basicItem(ModItems.TOMATO_JUICE.get());
+        basicItem(ModItems.COFFEE.get());
         basicItem(ModItems.MILK_BOTTLE.get());
         basicItem(ModItems.DICED_CHICKEN.get());
         basicItem(ModItems.BATTERED_CHICKEN.get());

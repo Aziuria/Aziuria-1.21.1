@@ -382,10 +382,15 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .define('S', ModItems.SULPHUR.get())
                 .unlockedBy("has_potassium", has(ModItems.POTASSIUM.get())).save(recipeOutput);
 
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, Items.STRING, 4)
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.LASHING.get(), 2)
                 .pattern("SSS")
                 .define('S', ModItems.FLAX_FLOWER.get())
                 .unlockedBy("has_flax_flower", has(ModItems.FLAX_FLOWER.get())).save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, Items.STRING, 2)
+                .pattern("SSS")
+                .define('S', ModItems.LASHING.get())
+                .unlockedBy("has_lashing", has(ModItems.LASHING.get())).save(recipeOutput);
 
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.SACK_ITEM.get())
                 .pattern("   ")
@@ -1672,6 +1677,12 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .requires(ModItems.PINEAPPLE.get())
                 .requires(Items.POTION)  // Vanilla water bottle (glass bottle + water)
                 .unlockedBy("has_pineapple", has(ModItems.PINEAPPLE.get()))
+                .save(recipeOutput);
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, ModItems.COFFEE.get(), 1)
+                .requires(ModItems.COFFEE_BEANS.get())
+                .requires(Items.POTION)  // Vanilla water bottle (glass bottle + water)
+                .unlockedBy("has_coffee_beans", has(ModItems.COFFEE_BEANS.get()))
                 .save(recipeOutput);
 
         ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, ModItems.BLACKCURRANT_JUICE.get(), 1)

@@ -10,6 +10,7 @@ public class ModFoodProperties {
     public static final FoodProperties PINEAPPLE = new FoodProperties.Builder()
             .nutrition(4)
             .saturationModifier(0.4f)
+            .alwaysEdible()
             .effect(() -> new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 80, 0), 0.2f)
             .build();
 
@@ -28,12 +29,14 @@ public class ModFoodProperties {
     public static final FoodProperties CUCUMBER = new FoodProperties.Builder()
             .nutrition(3)
             .saturationModifier(0.25f)
+            .alwaysEdible()
             .effect(() -> new MobEffectInstance(MobEffects.HEALTH_BOOST, 200, 0), 0.25f)
             .build();
 
     public static final FoodProperties TOMATO = new FoodProperties.Builder()
             .nutrition(3)
             .saturationModifier(0.25f)
+            .alwaysEdible()
             .effect(() -> new MobEffectInstance(MobEffects.HEALTH_BOOST, 200, 0), 0.25f)
             .build();
 
@@ -109,12 +112,14 @@ public class ModFoodProperties {
     public static final FoodProperties PEAR = new FoodProperties.Builder()
             .nutrition(4)
             .saturationModifier(0.4f)
+            .alwaysEdible()
             .effect(() -> new MobEffectInstance(MobEffects.REGENERATION, 40, 0), 0.1f)
             .build();
 
     public static final FoodProperties CHERRY = new FoodProperties.Builder()
             .nutrition(3)
             .saturationModifier(0.3f)
+            .alwaysEdible()
             .effect(() -> new MobEffectInstance(MobEffects.REGENERATION, 40, 0), 0.1f)
             .effect(() -> new MobEffectInstance(MobEffects.NIGHT_VISION, 60, 0), 0.05f)
             .build();
@@ -122,6 +127,7 @@ public class ModFoodProperties {
     public static final FoodProperties AVOCADO = new FoodProperties.Builder()
             .nutrition(5)
             .saturationModifier(0.7f)
+            .alwaysEdible()
             .effect(() -> new MobEffectInstance(MobEffects.REGENERATION, 80, 0), 0.15f)
             .effect(() -> new MobEffectInstance(MobEffects.ABSORPTION, 150, 0), 0.1f)
             .build();
@@ -129,6 +135,7 @@ public class ModFoodProperties {
     public static final FoodProperties BLACKCURRANT = new FoodProperties.Builder()
             .nutrition(3)
             .saturationModifier(0.3f)
+            .alwaysEdible()
             .effect(() -> new MobEffectInstance(MobEffects.REGENERATION, 60, 0), 0.15f)
             .effect(() -> new MobEffectInstance(MobEffects.NIGHT_VISION, 60, 0), 0.05f)
             .build();
@@ -136,6 +143,7 @@ public class ModFoodProperties {
     public static final FoodProperties STRAWBERRY = new FoodProperties.Builder()
             .nutrition(3)
             .saturationModifier(0.3f)
+            .alwaysEdible()
             .effect(() -> new MobEffectInstance(MobEffects.REGENERATION, 40, 0), 0.1f)
             .effect(() -> new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 60, 0), 0.05f)
             .build();
@@ -207,5 +215,14 @@ public class ModFoodProperties {
     public static final FoodProperties MILK_BOTTLE = new FoodProperties.Builder()
             .nutrition(2)
             .saturationModifier(0.3f)
+            .build();
+
+    public static final FoodProperties COFFEE = new FoodProperties.Builder()
+            .nutrition(1)
+            .saturationModifier(0.2f)
+            .alwaysEdible()
+            .effect(() -> new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 20 * 25, 0), 1.0f)
+            .effect(() -> new MobEffectInstance(MobEffects.DIG_SPEED, 20 * 20, 0), 0.8f)
+            .effect(() -> new MobEffectInstance(MobEffects.CONFUSION, 20 * 8, 0), 0.05f)
             .build();
 }

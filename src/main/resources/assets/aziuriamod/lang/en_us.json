@@ -10,6 +10,7 @@
   "item.aziuriamod.steel_shovel": "Steel Shovel",
   "item.aziuriamod.steel_hoe": "Steel Hoe",
   "item.aziuriamod.knife": "Knife",
+  "item.aziuriamod.lashing": "Lashing",
 
   "item.aziuriamod.steel_helmet": "Steel Helmet",
   "item.aziuriamod.steel_leggings": "Steel Leggings",
@@ -84,6 +85,8 @@
   "item.aziuriamod.avocado": "Avocado",
   "item.aziuriamod.blackcurrant": "Blackcurrant",
   "item.aziuriamod.strawberry": "Strawberry",
+  "item.aziuriamod.coffee_beans": "Coffee Beans",
+  "item.aziuriamod.yucca_leaves": "Yucca Leaves",
   "item.aziuriamod.flour": "Flour",
   "item.aziuriamod.diced_chicken": "Diced chicken",
   "item.aziuriamod.battered_chicken": "Raw Chicken Nuggets",
@@ -108,6 +111,7 @@
   "item.aziuriamod.glowberry_juice": "Glowberry Juice",
   "item.aziuriamod.tomato_juice": "Tomato Juice",
   "item.aziuriamod.milk_bottle": "Bottle Of Milk",
+  "item.aziuriamod.coffee": "Coffee",
 
   "item.aziuriamod.radish_seeds": "Radish Seeds",
   "block.aziuriamod.radish_crop": "Radish Crop",
@@ -125,8 +129,11 @@
   "item.aziuriamod.corn_seeds": "Corn Seeds",
   "item.aziuriamod.pineapple_crop": "Pineapple Crop",
   "item.aziuriamod.pineapple_seeds": "Pineapple Seeds",
+  "item.aziuriamod.coffee_crop": "Coffee Crop",
+  "item.aziuriamod.coffee_seeds": "Coffee Seeds",
 
   "block.aziuriamod.flax_flower": "Flax",
+  "block.aziuriamod.yucca_plant": "Yucca Plant",
 
   "item.aziuriamod.blackcurrant_seeds": "Blackcurrant Seeds",
   "block.aziuriamod.blackcurrant_bush": "Blackcurrant bush",

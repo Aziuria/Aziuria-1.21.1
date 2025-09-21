@@ -28,15 +28,15 @@ public class ExhaustionTickHandler {
         double horizontalSpeed = player.getDeltaMovement().horizontalDistanceSqr();
         double verticalSpeed = Math.abs(player.getDeltaMovement().y());
 
-        // === Updated exhaustion constants ===
-        final float DECAY_IDLE = -0.0002f;  // slower idle decay
-        final float EX_WALK = -0.0002f;
-        final float EX_SPRINT = -0.0008f;    // reduced
-        final float EX_JUMP = -0.001f;       // reduced
-        final float EX_MINE = -0.0003f;      // reduced
-        final float EX_HOT = -0.003f;
-        final float EX_COLD = -0.0015f;
-        final float EX_SWIM = -0.0005f;
+        // === Trial exhaustion constants (5 extra zeroes to all so remove them after trial phases) ===
+        final float DECAY_IDLE = -0.00000002f;  // slower idle decay
+        final float EX_WALK    = -0.00000002f;
+        final float EX_SPRINT  = -0.00000008f;
+        final float EX_JUMP    = -0.0000001f;
+        final float EX_MINE    = -0.00000003f;
+        final float EX_HOT     = -0.000003f;
+        final float EX_COLD    = -0.0000015f;
+        final float EX_SWIM    = -0.00000005f;
 
         // === Calculate combined activity factor ===
         float activityExhaustion = 0f;

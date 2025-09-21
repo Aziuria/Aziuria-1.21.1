@@ -37,6 +37,7 @@ public class ModCreativeModeTabs {
                         output.accept(ModItems.STEEL_SHOVEL);
                         output.accept(ModItems.STEEL_HOE);
                         output.accept(ModItems.KNIFE);
+                        output.accept(ModItems.LASHING);
                         output.accept(ModItems.STEEL_HELMET);
                         output.accept(ModItems.STEEL_BOOTS);
                         output.accept(ModItems.STEEL_LEGGINGS);
@@ -107,6 +108,7 @@ public class ModCreativeModeTabs {
                         output.accept(ModItems.STRAWBERRY_JUICE);
                         output.accept(ModItems.TOMATO_JUICE);
                         output.accept(ModItems.MILK_BOTTLE);
+                        output.accept(ModItems.COFFEE);
                         output.accept(ModItems.RADISH);
                         output.accept(ModItems.CUCUMBER);
                         output.accept(ModItems.TOMATO);
@@ -120,6 +122,7 @@ public class ModCreativeModeTabs {
                         output.accept(ModItems.AVOCADO);
                         output.accept(ModItems.BLACKCURRANT);
                         output.accept(ModItems.STRAWBERRY);
+                        output.accept(ModItems.COFFEE_BEANS);
                         output.accept(ModItems.RADISH_SEEDS);
                         output.accept(ModItems.TOMATO_SEEDS);
                         output.accept(ModItems.CUCUMBER_SEEDS);
@@ -130,6 +133,7 @@ public class ModCreativeModeTabs {
                         output.accept(ModItems.SPRING_ONION_SEEDS);
                         output.accept(ModItems.BLACKCURRANT_SEEDS);
                         output.accept(ModItems.STRAWBERRY_SEEDS);
+                        output.accept(ModItems.COFFEE_SEEDS);
                         output.accept(ModBlocks.APPLE_SAPLING);
                         output.accept(ModBlocks.PEAR_SAPLING);
                         output.accept(ModBlocks.CHERRY_SAPLING);

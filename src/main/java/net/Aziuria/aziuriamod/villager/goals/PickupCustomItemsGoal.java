@@ -93,6 +93,9 @@ public class PickupCustomItemsGoal extends Goal {
                 || item == ModItems.TOMATO_SEEDS.get()
                 || item == ModItems.BLACKCURRANT_SEEDS.get()
                 || item == ModItems.STRAWBERRY_SEEDS.get()
+                || item == ModItems.COFFEE_SEEDS.get()
+                || item == ModItems.PINEAPPLE_SEEDS.get()
+                || item == ModItems.CORN_SEEDS.get()
                 || item == ModItems.CUCUMBER.get()
                 || item == ModItems.LETTUCE.get()
                 || item == ModItems.ONION.get()
@@ -100,6 +103,9 @@ public class PickupCustomItemsGoal extends Goal {
                 || item == ModItems.RADISH.get()
                 || item == ModItems.TOMATO.get()
                 || item == ModItems.BLACKCURRANT.get()
+                || item == ModItems.COFFEE_BEANS.get()
+                || item == ModItems.CORN.get()
+                || item == ModItems.PINEAPPLE.get()
                 || item == ModItems.STRAWBERRY.get();
     }
 
