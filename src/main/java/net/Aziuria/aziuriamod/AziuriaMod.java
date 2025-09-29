@@ -101,7 +101,7 @@ public class AziuriaMod {
         NeoForge.EVENT_BUS.register(ExhaustionPersistenceHandler.class);
         NeoForge.EVENT_BUS.register(ExhaustionTickHandler.class);
         NeoForge.EVENT_BUS.register(ExhaustionPlayerHandler.class);
-        NeoForge.EVENT_BUS.register(ExhaustionDebuffHandler.class);
+      //  NeoForge.EVENT_BUS.register(ExhaustionDebuffHandler.class);
 
 
         NeoForge.EVENT_BUS.register(VeinMinerHandler.class);
