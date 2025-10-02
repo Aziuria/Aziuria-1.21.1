@@ -41,6 +41,7 @@ public class ModPlacedFeatures {
     public static final ResourceKey<PlacedFeature> LEAF_LITTER_EXTRA3_PLACED_KEY = registerKey("leaf_litter_extra3");
 
     public static final ResourceKey<PlacedFeature> FLAX_FLOWER_PLACED_KEY = registerKey("flax_flower_placed");
+    public static final ResourceKey<PlacedFeature> YUCCA_PLANT_PLACED_KEY = registerKey("yucca_plant_placed");
 
     public static final ResourceKey<PlacedFeature> APPLE_KEY_VARIANT_1 = registerKey("apple_variant_1");
     public static final ResourceKey<PlacedFeature> APPLE_KEY_VARIANT_2 = registerKey("apple_variant_2");
@@ -137,6 +138,16 @@ public class ModPlacedFeatures {
                         PlacementUtils.HEIGHTMAP_WORLD_SURFACE,
                         BiomeFilter.biome()
                 ));
+
+        register(context, YUCCA_PLANT_PLACED_KEY,
+                configuredFeatures.getOrThrow(ModConfiguredFeatures.YUCCA_PLANT_KEY),
+                List.of(
+                        RarityFilter.onAverageOnceEvery(10), // sparser than flax for realism
+                        InSquarePlacement.spread(),
+                        PlacementUtils.HEIGHTMAP_WORLD_SURFACE,
+                        BiomeFilter.biome()
+                )
+        );
 
 // original
         register(context, LEAF_LITTER_PLACED_KEY,

@@ -111,6 +111,14 @@ public class ModItems {
     public static final DeferredItem<Item> FLAX_FLOWER = ITEMS.register("flax_flower",
             () -> new BlockItem(ModBlocks.FLAX_FLOWER_BLOCK.get(), new Item.Properties()));
 
+    // The placeable block item for the yucca plant
+    public static final DeferredItem<Item> YUCCA_PLANT = ITEMS.register("yucca_plant",
+            () -> new BlockItem(ModBlocks.YUCCA_PLANT_BLOCK.get(), new Item.Properties()));
+
+    // The harvestable item (drop)
+    public static final DeferredItem<Item> YUCCA_LEAVES = ITEMS.register("yucca_leaves",
+            () -> new Item(new Item.Properties()));
+
     public static final DeferredItem<Item> FLOUR = ITEMS.register("flour",
             () -> new Item(new Item.Properties()));
     public static final DeferredItem<Item> PANCAKE_DOUGH = ITEMS.register("pancake_dough",

@@ -86,6 +86,8 @@ public class ModCreativeModeTabs {
                         output.accept(ModItems.ISLAND_GENERATOR_MEDIUM);
                         output.accept(ModItems.ISLAND_GENERATOR_LARGE);
                         output.accept(ModItems.FLAX_FLOWER);
+                        output.accept(ModItems.YUCCA_LEAVES);
+                        output.accept(ModBlocks.YUCCA_PLANT_BLOCK);
                         output.accept(ModItems.FLOUR);
                         output.accept(ModItems.CHEESE);
                         output.accept(ModItems.BATTERED_CHICKEN);

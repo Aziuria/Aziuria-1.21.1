@@ -35,6 +35,7 @@ public class ModBiomeModifiers {
     public static final ResourceKey<BiomeModifier> ADD_LEAF_LITTER_EXTRA3 = registerKey("add_leaf_litter_extra3");
 
     public static final ResourceKey<BiomeModifier> ADD_FLAX_FLOWER = registerKey("add_flax_flower");
+    public static final ResourceKey<BiomeModifier> YUCCA_PLANT = registerKey("yucca_plant");
 
     public static final ResourceKey<BiomeModifier> APPLE_KEY_VARIANT_1 = registerKey("apple_variant_1");
     public static final ResourceKey<BiomeModifier> APPLE_KEY_VARIANT_2 = registerKey("apple_variant_2");
@@ -165,6 +166,20 @@ public class ModBiomeModifiers {
                 ),
                 HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.FLAX_FLOWER_PLACED_KEY)),
                 GenerationStep.Decoration.VEGETAL_DECORATION));
+
+        context.register(YUCCA_PLANT, new BiomeModifiers.AddFeaturesBiomeModifier(
+                HolderSet.direct(
+                        biomes.getOrThrow(Biomes.SAVANNA),
+                        biomes.getOrThrow(Biomes.SAVANNA_PLATEAU),
+                        biomes.getOrThrow(Biomes.DESERT),
+                        biomes.getOrThrow(Biomes.BADLANDS),
+                        biomes.getOrThrow(Biomes.BEACH)
+                ),
+                HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.YUCCA_PLANT_PLACED_KEY)),
+                GenerationStep.Decoration.VEGETAL_DECORATION
+        ));
+
+
 
         context.register(APPLE_KEY_VARIANT_1, new BiomeModifiers.AddFeaturesBiomeModifier(
                 biomes.getOrThrow(BiomeTags.IS_OVERWORLD),

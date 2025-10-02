@@ -192,6 +192,16 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
                                 .apply(ApplyBonusCount.addUniformBonusCount(registrylookup.getOrThrow(Enchantments.FORTUNE)))
                 )));
 
+        // Yucca plant (custom loot)
+        this.add(ModBlocks.YUCCA_PLANT_BLOCK.get(),
+                block -> createSilkTouchOrShearsDispatchTable(block,
+                        this.applyExplosionDecay(block,
+                                LootItem.lootTableItem(ModItems.YUCCA_LEAVES.get())
+                                        .apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 5.0F)))
+                        )
+                )
+        );
+
 
     }
 

@@ -51,9 +51,17 @@ public class ModBlockStateProvider extends BlockStateProvider {
                 .setModels(new ConfiguredModel(
                         models().cross("flax_flower", modLoc("block/flax_flower")).renderType("cutout")
                 ));
+        // Yucca plant
+        getVariantBuilder(ModBlocks.YUCCA_PLANT_BLOCK.get())
+                .partialState()
+                .setModels(new ConfiguredModel(
+                        models().cross("yucca_plant", modLoc("block/yucca_plant")).renderType("cutout")
+                ));
+
 
         // Optional: register its block item model if you want it to use the block model
         blockItem(ModBlocks.FLAX_FLOWER_BLOCK);
+        blockItem(ModBlocks.YUCCA_PLANT_BLOCK);
 
         leavesBlock(ModBlocks.APPLE_LEAVES);
         saplingBlock(ModBlocks.APPLE_SAPLING);

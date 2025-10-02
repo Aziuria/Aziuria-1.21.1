@@ -158,6 +158,7 @@ public class VegetationGrowthHandler {
     private static void handleSavannaGrowth(ServerLevel level, BlockPos pos, float chance) {
         if (chance < 0.20f) level.setBlock(pos, Blocks.TALL_GRASS.defaultBlockState(), 3);
         else if (chance < 0.21f) level.setBlock(pos, ModBlocks.FLAX_FLOWER_BLOCK.get().defaultBlockState(), 3);
+        else if (chance < 0.23f) level.setBlock(pos, ModBlocks.YUCCA_PLANT_BLOCK.get().defaultBlockState(), 3);
     }
 
     private static void handleJungleGrowth(ServerLevel level, BlockPos pos, float chance) {
@@ -176,10 +177,12 @@ public class VegetationGrowthHandler {
 
     private static void handleBeachGrowth(ServerLevel level, BlockPos pos, float chance) {
         if (chance < 0.10f) level.setBlock(pos, Blocks.DEAD_BUSH.defaultBlockState(), 3);
+        else if (chance < 0.14f) level.setBlock(pos, ModBlocks.YUCCA_PLANT_BLOCK.get().defaultBlockState(), 3);
     }
 
     private static void handleDesertGrowth(ServerLevel level, BlockPos pos, float chance) {
-        if (chance < 0.10f) level.setBlock(pos, Blocks.DEAD_BUSH.defaultBlockState(), 3);
+        if (chance < 0.05f) level.setBlock(pos, ModBlocks.YUCCA_PLANT_BLOCK.get().defaultBlockState(), 3);
+        else if (chance < 0.10f) level.setBlock(pos, Blocks.DEAD_BUSH.defaultBlockState(), 3);
     }
 
     private static void handleSnowyGrowth(ServerLevel level, BlockPos pos, float chance) {

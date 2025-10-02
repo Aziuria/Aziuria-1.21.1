@@ -52,6 +52,8 @@ public class ModDataMapProvider extends DataMapProvider {
                 .add(ModBlocks.CHERRY_SAPLING.getId(), new Compostable(0.30f), false)
                 .add(ModBlocks.AVOCADO_LEAVES.getId(), new Compostable(0.30f), false)
                 .add(ModBlocks.AVOCADO_SAPLING.getId(), new Compostable(0.30f), false)
+                .add(ModItems.YUCCA_PLANT.getId(), new Compostable(0.30f), false)
+                .add(ModItems.YUCCA_LEAVES.getId(), new Compostable(0.30f), false)
                 .add(ModItems.FLAX_FLOWER.getId(), new Compostable(0.30f), false);
 
 

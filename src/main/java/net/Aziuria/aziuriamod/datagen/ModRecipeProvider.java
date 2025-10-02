@@ -387,6 +387,12 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .define('S', ModItems.FLAX_FLOWER.get())
                 .unlockedBy("has_flax_flower", has(ModItems.FLAX_FLOWER.get())).save(recipeOutput);
 
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.LASHING.get(), 2)
+                .pattern("BBB")
+                .define('B', ModItems.YUCCA_LEAVES)
+                .unlockedBy("has_yucca_leaves", has(ModItems.YUCCA_LEAVES.get()))
+                .save(recipeOutput, ResourceLocation.fromNamespaceAndPath("aziuriamod", "lashing_from_yucca"));
+
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, Items.STRING, 2)
                 .pattern("SSS")
                 .define('S', ModItems.LASHING.get())
