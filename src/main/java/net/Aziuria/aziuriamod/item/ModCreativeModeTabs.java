@@ -20,8 +20,11 @@ public class ModCreativeModeTabs {
             () -> CreativeModeTab.builder().icon(() -> new ItemStack(ModItems.STEEL_INGOT.get()))
                     .title(Component.translatable("creativetab.aziuriamod.useful_items_and_blocks"))
                     .displayItems((itemDisplayParameters, output) -> {
+
                         output.accept(ModItems.SACK_ITEM.get());
+                        output.accept(ModItems.LASHING);
                         output.accept(ModItems.STEEL_ALLOY_MESH);
+                        output.accept(ModItems.STEEL_INGOT);
                         output.accept(ModItems.POTASSIUM);
                         output.accept(ModItems.SULPHUR);
                         output.accept(ModBlocks.POTASSIUM_ORE);
@@ -30,14 +33,12 @@ public class ModCreativeModeTabs {
                         output.accept(ModBlocks.DEEPSLATE_SULPHUR_ORE);
                         output.accept(ModBlocks.STEEL_BLOCK);
                         output.accept(ModBlocks.UNBREAKABLE_GLASS);
-                        output.accept(ModItems.STEEL_INGOT);
                         output.accept(ModItems.STEEL_PICKAXE);
                         output.accept(ModItems.STEEL_AXE);
                         output.accept(ModItems.STEEL_SWORD);
                         output.accept(ModItems.STEEL_SHOVEL);
                         output.accept(ModItems.STEEL_HOE);
                         output.accept(ModItems.KNIFE);
-                        output.accept(ModItems.LASHING);
                         output.accept(ModItems.STEEL_HELMET);
                         output.accept(ModItems.STEEL_BOOTS);
                         output.accept(ModItems.STEEL_LEGGINGS);
@@ -69,10 +70,6 @@ public class ModCreativeModeTabs {
                         output.accept(ModBlocks.ACACIA_HOOK);
                         output.accept(ModBlocks.CHERRY_HOOK);
                         output.accept(ModBlocks.MANGROVE_HOOK);
-                        output.accept(ModBlocks.STEEL_BARREL_EMPTY);
-                        output.accept(ModBlocks.IRON_BARREL_EMPTY);
-                        output.accept(Blocks.SPAWNER);
-                        output.accept(ModBlocks.LEAF_LITTER);
                         output.accept(ModBlocks.DEMAECATION_POST);
                         output.accept(ModBlocks.DEMAECATION_POST_B);
                         output.accept(ModBlocks.DEMAECATION_POST_C);
@@ -82,23 +79,24 @@ public class ModCreativeModeTabs {
                         output.accept(ModBlocks.WOODCUTTER_BENCH);
                         output.accept(ModBlocks.MINER_BENCH);
                         output.accept(ModBlocks.STEEL_BARS);
+                        output.accept(ModBlocks.STEEL_BARREL_EMPTY);
+                        output.accept(ModBlocks.IRON_BARREL_EMPTY);
+                        output.accept(Blocks.SPAWNER);
                         output.accept(ModItems.ISLAND_GENERATOR_SMALL);
                         output.accept(ModItems.ISLAND_GENERATOR_MEDIUM);
                         output.accept(ModItems.ISLAND_GENERATOR_LARGE);
-                        output.accept(ModItems.FLAX_FLOWER);
-                        output.accept(ModItems.YUCCA_LEAVES);
-                        output.accept(ModBlocks.YUCCA_PLANT_BLOCK);
                         output.accept(ModItems.FLOUR);
                         output.accept(ModItems.CHEESE);
                         output.accept(ModItems.BATTERED_CHICKEN);
-                        output.accept(ModItems.CHICKEN_NUGGETS);
                         output.accept(ModItems.DICED_CHICKEN);
+                        output.accept(ModItems.CHICKEN_NUGGETS);
                         output.accept(ModItems.FRENCH_FRIES);
                         output.accept(ModItems.BEEF_BURGER);
                         output.accept(ModItems.CHEESEBURGER);
                         output.accept(ModItems.PORKCHOP_BURGER);
                         output.accept(ModItems.PANCAKE_DOUGH);
                         output.accept(ModItems.PANCAKE);
+                        output.accept(ModItems.MILK_BOTTLE);
                         output.accept(ModItems.APPLE_JUICE);
                         output.accept(ModItems.PINEAPPLE_JUICE);
                         output.accept(ModItems.PEAR_JUICE);
@@ -109,8 +107,8 @@ public class ModCreativeModeTabs {
                         output.accept(ModItems.GLOWBERRY_JUICE);
                         output.accept(ModItems.STRAWBERRY_JUICE);
                         output.accept(ModItems.TOMATO_JUICE);
-                        output.accept(ModItems.MILK_BOTTLE);
                         output.accept(ModItems.COFFEE);
+                        output.accept(ModItems.TEA);
                         output.accept(ModItems.RADISH);
                         output.accept(ModItems.CUCUMBER);
                         output.accept(ModItems.TOMATO);
@@ -125,6 +123,7 @@ public class ModCreativeModeTabs {
                         output.accept(ModItems.BLACKCURRANT);
                         output.accept(ModItems.STRAWBERRY);
                         output.accept(ModItems.COFFEE_BEANS);
+                        output.accept(ModItems.TEA_LEAVES);
                         output.accept(ModItems.RADISH_SEEDS);
                         output.accept(ModItems.TOMATO_SEEDS);
                         output.accept(ModItems.CUCUMBER_SEEDS);
@@ -136,6 +135,7 @@ public class ModCreativeModeTabs {
                         output.accept(ModItems.BLACKCURRANT_SEEDS);
                         output.accept(ModItems.STRAWBERRY_SEEDS);
                         output.accept(ModItems.COFFEE_SEEDS);
+                        output.accept(ModItems.TEA_SEEDS);
                         output.accept(ModBlocks.APPLE_SAPLING);
                         output.accept(ModBlocks.PEAR_SAPLING);
                         output.accept(ModBlocks.CHERRY_SAPLING);
@@ -144,6 +144,10 @@ public class ModCreativeModeTabs {
                         output.accept(ModBlocks.PEAR_LEAVES);
                         output.accept(ModBlocks.CHERRY_LEAVES);
                         output.accept(ModBlocks.AVOCADO_LEAVES);
+                        output.accept(ModItems.YUCCA_LEAVES);
+                        output.accept(ModBlocks.YUCCA_PLANT_BLOCK);
+                        output.accept(ModItems.FLAX_FLOWER);
+                        output.accept(ModBlocks.LEAF_LITTER);
                         output.accept(ModBlocks.BLACKSTONE_GRAVESTONE_A);
                         output.accept(ModBlocks.BLACKSTONE_GRAVESTONE_B);
                         output.accept(ModBlocks.COBBLESTONE_GRAVESTONE_A);

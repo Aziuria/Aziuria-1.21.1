@@ -108,6 +108,11 @@ public class ModItems {
     public static final DeferredItem<Item> COFFEE_SEEDS = ITEMS.register("coffee_seeds",
             () -> new ItemNameBlockItem(ModBlocks.COFFEE_CROP.get(), new Item.Properties()));
 
+    public static final DeferredItem<Item> TEA_LEAVES = ITEMS.register("tea_leaves",
+            () -> new Item(new Item.Properties()));
+    public static final DeferredItem<Item> TEA_SEEDS = ITEMS.register("tea_seeds",
+            () -> new ItemNameBlockItem(ModBlocks.TEA_CROP.get(), new Item.Properties()));
+
     public static final DeferredItem<Item> FLAX_FLOWER = ITEMS.register("flax_flower",
             () -> new BlockItem(ModBlocks.FLAX_FLOWER_BLOCK.get(), new Item.Properties()));
 
@@ -182,6 +187,15 @@ public class ModItems {
             () -> new DrinkableItem(
                     new Item.Properties()
                             .food(ModFoodProperties.COFFEE)
+                            .stacksTo(1)
+                            .craftRemainder(Items.GLASS_BOTTLE),
+                    32,
+                    UseAnim.DRINK));
+
+    public static final DeferredItem<DrinkableItem> TEA = ITEMS.register("tea",
+            () -> new DrinkableItem(
+                    new Item.Properties()
+                            .food(ModFoodProperties.TEA)
                             .stacksTo(1)
                             .craftRemainder(Items.GLASS_BOTTLE),
                     32,

@@ -87,6 +87,7 @@
   "item.aziuriamod.strawberry": "Strawberry",
   "item.aziuriamod.coffee_beans": "Coffee Beans",
   "item.aziuriamod.yucca_leaves": "Yucca Leaves",
+  "item.aziuriamod.tea_leaves": "Tea Leaves",
   "item.aziuriamod.flour": "Flour",
   "item.aziuriamod.diced_chicken": "Diced chicken",
   "item.aziuriamod.battered_chicken": "Raw Chicken Nuggets",
@@ -112,6 +113,7 @@
   "item.aziuriamod.tomato_juice": "Tomato Juice",
   "item.aziuriamod.milk_bottle": "Bottle Of Milk",
   "item.aziuriamod.coffee": "Coffee",
+  "item.aziuriamod.tea": "Tea",
 
   "item.aziuriamod.radish_seeds": "Radish Seeds",
   "block.aziuriamod.radish_crop": "Radish Crop",
@@ -131,6 +133,8 @@
   "item.aziuriamod.pineapple_seeds": "Pineapple Seeds",
   "item.aziuriamod.coffee_crop": "Coffee Crop",
   "item.aziuriamod.coffee_seeds": "Coffee Seeds",
+  "item.aziuriamod.tea_crop": "Tea Crop",
+  "item.aziuriamod.tea_seeds": "Tea Seeds",
 
   "block.aziuriamod.flax_flower": "Flax",
   "block.aziuriamod.yucca_plant": "Yucca Plant",

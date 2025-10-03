@@ -10,6 +10,7 @@ public class ThirstSetup {
         ThirstRegistry.register(Items.POTION, 5);
         ThirstRegistry.register(ModItems.MILK_BOTTLE.get(), 4);
         ThirstRegistry.register(ModItems.COFFEE.get(), 4);
+        ThirstRegistry.register(ModItems.TEA.get(), 4);
         ThirstRegistry.register(Items.HONEY_BOTTLE, 3);
 
         // === FRUITS ===

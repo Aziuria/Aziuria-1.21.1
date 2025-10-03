@@ -59,6 +59,9 @@ public class ModVillagerTrades {
             addBuyTrade(event, 1, ModItems.COFFEE_SEEDS.get().getDefaultInstance(), 4, 3,2);
             addSellTrade(event, 1, ModItems.COFFEE_SEEDS.get().getDefaultInstance(), 6, 1, 2);
 
+            addBuyTrade(event, 1, ModItems.TEA_SEEDS.get().getDefaultInstance(), 4, 3,2);
+            addSellTrade(event, 1, ModItems.TEA_SEEDS.get().getDefaultInstance(), 6, 1, 2);
+
             // === LEVEL 2 TRADES (mid game, XP = 5) ===
             addBuyTrade(event, 2, ModItems.TOMATO.get().getDefaultInstance(), 4, 2, 4);
             addSellTrade(event, 2, ModItems.TOMATO.get().getDefaultInstance(), 7, 1, 4);
@@ -141,6 +144,9 @@ public class ModVillagerTrades {
 
             addBuyTrade(event, 5, ModItems.COFFEE_BEANS.get().getDefaultInstance(), 9, 1, 10);
             addSellTrade(event, 5, ModItems.COFFEE_BEANS.get().getDefaultInstance(), 1, 3, 10);
+
+            addBuyTrade(event, 5, ModItems.TEA_LEAVES.get().getDefaultInstance(), 9, 1, 10);
+            addSellTrade(event, 5, ModItems.TEA_LEAVES.get().getDefaultInstance(), 1, 3, 10);
 
             addBuyTrade(event, 5, Items.DIAMOND_HOE.getDefaultInstance(), 22, 1, 10);
             addSellTrade(event, 5, Items.DIAMOND_HOE.getDefaultInstance(), 1, 4, 10);

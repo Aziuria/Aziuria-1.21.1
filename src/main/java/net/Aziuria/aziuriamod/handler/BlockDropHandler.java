@@ -62,6 +62,8 @@ public class BlockDropHandler {
             return new ItemStack(ModItems.STRAWBERRY_SEEDS.get());
         } else if (chance < 49.0) {
             return new ItemStack(ModItems.COFFEE_SEEDS.get());
+        } else if (chance < 51.0) {
+            return new ItemStack(ModItems.TEA_SEEDS.get());
         } else {
             return ItemStack.EMPTY;
         }

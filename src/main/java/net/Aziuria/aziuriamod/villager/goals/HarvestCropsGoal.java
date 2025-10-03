@@ -108,6 +108,12 @@ public class HarvestCropsGoal extends Goal {
         } else if (block instanceof CornCropBlock corn) {
             ageProp = corn.getPublicAgeProperty();
             maxAge = 3;
+        } else if (block instanceof TeaCropBlock corn) {
+            ageProp = corn.getPublicAgeProperty();
+            maxAge = 3;
+        } else if (block instanceof CoffeeCropBlock corn) {
+            ageProp = corn.getPublicAgeProperty();
+            maxAge = 3;
 
             // ✅ Vanilla crops
         } else if (block == Blocks.WHEAT) {
@@ -191,6 +197,12 @@ public class HarvestCropsGoal extends Goal {
                         ageProp = pineapple.getPublicAgeProperty();
                         maxAge = 3;
                     } else if (block instanceof CornCropBlock corn) {
+                        ageProp = corn.getPublicAgeProperty();
+                        maxAge = 3;
+                    } else if (block instanceof TeaCropBlock corn) {
+                        ageProp = corn.getPublicAgeProperty();
+                        maxAge = 3;
+                    } else if (block instanceof CoffeeCropBlock corn) {
                         ageProp = corn.getPublicAgeProperty();
                         maxAge = 3;
 

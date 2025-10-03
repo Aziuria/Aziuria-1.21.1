@@ -343,6 +343,8 @@ public class ModBlocks {
             () -> new CornCropBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.WHEAT)));
     public static final DeferredBlock<Block> COFFEE_CROP = BLOCKS.register("coffee_crop",
             () -> new CoffeeCropBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.WHEAT)));
+    public static final DeferredBlock<Block> TEA_CROP = BLOCKS.register("tea_crop",
+            () -> new TeaCropBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.WHEAT)));
 
     public static final DeferredBlock<Block> FLAX_FLOWER_BLOCK = BLOCKS.register("flax_flower",
             () -> new FlaxFlowerBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.DANDELION)));

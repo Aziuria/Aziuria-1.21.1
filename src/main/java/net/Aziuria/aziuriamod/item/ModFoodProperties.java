@@ -225,4 +225,13 @@ public class ModFoodProperties {
             .effect(() -> new MobEffectInstance(MobEffects.DIG_SPEED, 20 * 20, 0), 0.8f)
             .effect(() -> new MobEffectInstance(MobEffects.CONFUSION, 20 * 8, 0), 0.05f)
             .build();
+
+    public static final FoodProperties TEA = new FoodProperties.Builder()
+            .nutrition(2) // light drink
+            .saturationModifier(0.35f)
+            .alwaysEdible()
+            .effect(() -> new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 20 * 15, 0), 0.8f) // gentle speed boost (15s)
+            .effect(() -> new MobEffectInstance(MobEffects.REGENERATION, 20 * 8, 0), 0.4f)   // minor regen (8s)
+            .effect(() -> new MobEffectInstance(MobEffects.CONFUSION, 20 * 6, 0), 0.01f)
+            .build();
 }

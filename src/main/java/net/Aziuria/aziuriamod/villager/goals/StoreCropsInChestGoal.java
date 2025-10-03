@@ -50,6 +50,7 @@ public class StoreCropsInChestGoal extends MoveToBlockGoal {
                 || stack.getItem() == ModItems.BLACKCURRANT.get()
                 || stack.getItem() == ModItems.STRAWBERRY.get()
                 || stack.getItem() == ModItems.COFFEE_BEANS.get()
+                || stack.getItem() == ModItems.TEA_LEAVES.get()
                 || stack.getItem() == Items.CARROT
                 || stack.getItem() == Items.POTATO
                 || stack.getItem() == Items.WHEAT
@@ -64,6 +65,7 @@ public class StoreCropsInChestGoal extends MoveToBlockGoal {
                 || stack.getItem() == ModItems.TOMATO_SEEDS.get()
                 || stack.getItem() == ModItems.BLACKCURRANT_SEEDS.get()
                 || stack.getItem() == ModItems.STRAWBERRY_SEEDS.get()
+                || stack.getItem() == ModItems.TEA_SEEDS.get()
                 || stack.getItem() == ModItems.COFFEE_SEEDS.get();
     }
 

@@ -176,11 +176,15 @@ public class VegetationGrowthHandler {
     }
 
     private static void handleBeachGrowth(ServerLevel level, BlockPos pos, float chance) {
+        BlockState groundState = level.getBlockState(pos.below());
+        if (!groundState.is(Blocks.SAND)) return; // Only grow on sand
         if (chance < 0.10f) level.setBlock(pos, Blocks.DEAD_BUSH.defaultBlockState(), 3);
         else if (chance < 0.14f) level.setBlock(pos, ModBlocks.YUCCA_PLANT_BLOCK.get().defaultBlockState(), 3);
     }
 
     private static void handleDesertGrowth(ServerLevel level, BlockPos pos, float chance) {
+        BlockState groundState = level.getBlockState(pos.below());
+        if (!groundState.is(Blocks.SAND)) return; // Only grow on sand
         if (chance < 0.05f) level.setBlock(pos, ModBlocks.YUCCA_PLANT_BLOCK.get().defaultBlockState(), 3);
         else if (chance < 0.10f) level.setBlock(pos, Blocks.DEAD_BUSH.defaultBlockState(), 3);
     }
