@@ -42,5 +42,44 @@ public class ModItemTagProvider extends ItemTagsProvider {
                 .add(ModItems.STEEL_CHESTPLATE.get())
                 .add(ModItems.STEEL_LEGGINGS.get())
                 .add(ModItems.STEEL_BOOTS.get());
+
+        // Spinel tools
+        tag(ItemTags.SWORDS)
+                .add(ModItems.SPINEL_SWORD.get());
+        tag(ItemTags.PICKAXES)
+                .add(ModItems.SPINEL_PICKAXE.get());
+        tag(ItemTags.AXES)
+                .add(ModItems.SPINEL_AXE.get());
+        tag(ItemTags.SHOVELS)
+                .add(ModItems.SPINEL_SHOVEL.get());
+        tag(ItemTags.HOES)
+                .add(ModItems.SPINEL_HOE.get());
+
+        this.tag(ItemTags.TRIMMABLE_ARMOR)
+                .add(ModItems.SPINEL_HELMET.get())
+                .add(ModItems.SPINEL_CHESTPLATE.get())
+                .add(ModItems.SPINEL_LEGGINGS.get())
+                .add(ModItems.SPINEL_BOOTS.get());
+
+        // Spinel tools
+        tag(ItemTags.SWORDS)
+                .add(ModItems.COPPER_SWORD.get());
+        tag(ItemTags.PICKAXES)
+                .add(ModItems.COPPER_PICKAXE.get());
+        tag(ItemTags.AXES)
+                .add(ModItems.COPPER_AXE.get());
+        tag(ItemTags.SHOVELS)
+                .add(ModItems.COPPER_SHOVEL.get());
+        tag(ItemTags.HOES)
+                .add(ModItems.COPPER_HOE.get());
+
+        this.tag(ItemTags.TRIMMABLE_ARMOR)
+                .add(ModItems.COPPER_HELMET.get())
+                .add(ModItems.COPPER_CHESTPLATE.get())
+                .add(ModItems.COPPER_LEGGINGS.get())
+                .add(ModItems.COPPER_BOOTS.get());
+
     }
+
+
 }

@@ -11,6 +11,7 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.ArmorMaterial;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 
 import java.util.EnumMap;
@@ -20,12 +21,30 @@ import java.util.function.Supplier;
 public class ModArmorMaterials {
     public static final Holder<ArmorMaterial> STEEL_ARMOR_MATERIAL = register("steel",
             Util.make(new EnumMap<>(ArmorItem.Type.class), attribute -> {
-                attribute.put(ArmorItem.Type.BOOTS, 5);
-                attribute.put(ArmorItem.Type.LEGGINGS, 7);
-                attribute.put(ArmorItem.Type.CHESTPLATE, 9);
-                attribute.put(ArmorItem.Type.HELMET, 5);
-                attribute.put(ArmorItem.Type.BODY, 11);
-            }), 11, 2f, 0.1f, () -> ModItems.STEEL_INGOT.get());
+                attribute.put(ArmorItem.Type.BOOTS, 3);
+                attribute.put(ArmorItem.Type.LEGGINGS, 6);
+                attribute.put(ArmorItem.Type.CHESTPLATE, 7);
+                attribute.put(ArmorItem.Type.HELMET, 3);
+                attribute.put(ArmorItem.Type.BODY, 10);
+            }), 11, 1f, 0f, () -> ModItems.STEEL_INGOT.get());
+
+    public static final Holder<ArmorMaterial> SPINEL_ARMOR_MATERIAL = register("spinel",
+            Util.make(new EnumMap<>(ArmorItem.Type.class), attribute -> {
+                attribute.put(ArmorItem.Type.BOOTS, 3);
+                attribute.put(ArmorItem.Type.LEGGINGS, 6);
+                attribute.put(ArmorItem.Type.CHESTPLATE, 8);
+                attribute.put(ArmorItem.Type.HELMET, 3);
+                attribute.put(ArmorItem.Type.BODY, 8);
+            }), 9, 1.5f, 0.1f, () -> ModItems.SPINEL.get());
+
+    public static final Holder<ArmorMaterial> COPPER_ARMOR_MATERIAL = register("copper",
+            Util.make(new EnumMap<>(ArmorItem.Type.class), attribute -> {
+                attribute.put(ArmorItem.Type.BOOTS, 2);
+                attribute.put(ArmorItem.Type.LEGGINGS, 4);
+                attribute.put(ArmorItem.Type.CHESTPLATE, 5);
+                attribute.put(ArmorItem.Type.HELMET, 2);
+                attribute.put(ArmorItem.Type.BODY, 9);
+            }), 12, 0f, 0f, () -> Items.COPPER_INGOT);
 
 
     private static Holder<ArmorMaterial> register(String name, EnumMap<ArmorItem.Type, Integer> typeProtection,

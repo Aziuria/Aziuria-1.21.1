@@ -29,6 +29,10 @@ public class ModBiomeModifiers {
     public static final ResourceKey<BiomeModifier> ADD_POTASSIUM_ORE_UPPER = registerKey("add_potassium_ore_upper");
     public static final ResourceKey<BiomeModifier> ADD_POTASSIUM_ORE_MOUNTAINS = registerKey("add_potassium_ore_mountains");
 
+    public static final ResourceKey<BiomeModifier> ADD_SPINEL_ORE_ULTRA_DEEP = registerKey("add_spinel_ore_ultra_deep");
+    public static final ResourceKey<BiomeModifier> ADD_SPINEL_ORE_DEEP = registerKey("add_spinel_ore_deep");
+    public static final ResourceKey<BiomeModifier> ADD_SPINEL_ORE_MID = registerKey("add_spinel_ore_mid");
+
     public static final ResourceKey<BiomeModifier> ADD_LEAF_LITTER = registerKey("add_leaf_litter");
     public static final ResourceKey<BiomeModifier> ADD_LEAF_LITTER_EXTRA = registerKey("add_leaf_litter_extra");
     public static final ResourceKey<BiomeModifier> ADD_LEAF_LITTER_EXTRA2 = registerKey("add_leaf_litter_extra2");
@@ -132,6 +136,21 @@ public class ModBiomeModifiers {
         context.register(ADD_POTASSIUM_ORE_MOUNTAINS, new BiomeModifiers.AddFeaturesBiomeModifier(
                 biomes.getOrThrow(BiomeTags.IS_OVERWORLD),
                 HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.POTASSIUM_ORE_MOUNTAINS_PLACED_KEY)),
+                GenerationStep.Decoration.UNDERGROUND_ORES));
+
+        context.register(ADD_SPINEL_ORE_ULTRA_DEEP, new BiomeModifiers.AddFeaturesBiomeModifier(
+                biomes.getOrThrow(BiomeTags.IS_OVERWORLD),
+                HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.SPINEL_ORE_ULTRA_DEEP_PLACED_KEY)),
+                GenerationStep.Decoration.UNDERGROUND_ORES));
+
+        context.register(ADD_SPINEL_ORE_DEEP, new BiomeModifiers.AddFeaturesBiomeModifier(
+                biomes.getOrThrow(BiomeTags.IS_OVERWORLD),
+                HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.SPINEL_ORE_DEEP_PLACED_KEY)),
+                GenerationStep.Decoration.UNDERGROUND_ORES));
+
+        context.register(ADD_SPINEL_ORE_MID, new BiomeModifiers.AddFeaturesBiomeModifier(
+                biomes.getOrThrow(BiomeTags.IS_OVERWORLD),
+                HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.SPINEL_ORE_MID_PLACED_KEY)),
                 GenerationStep.Decoration.UNDERGROUND_ORES));
 
 

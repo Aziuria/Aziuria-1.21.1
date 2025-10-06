@@ -74,7 +74,9 @@ public class MineBlockGoal extends Goal {
             ModBlocks.POTASSIUM_ORE.get(),
             ModBlocks.DEEPSLATE_POTASSIUM_ORE.get(),
             ModBlocks.SULPHUR_ORE.get(),
-            ModBlocks.DEEPSLATE_SULPHUR_ORE.get()
+            ModBlocks.DEEPSLATE_SULPHUR_ORE.get(),
+            ModBlocks.SPINEL_ORE.get(),
+            ModBlocks.DEEPSLATE_SPINEL_ORE.get()
     );
 
     private static final Set<Block> STONE_BLOCKS = Set.of(

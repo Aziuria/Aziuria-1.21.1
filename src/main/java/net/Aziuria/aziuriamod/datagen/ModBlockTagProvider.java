@@ -22,8 +22,12 @@ public class ModBlockTagProvider extends BlockTagsProvider {
         tag(BlockTags.MINEABLE_WITH_PICKAXE)
                 .add(ModBlocks.POTASSIUM_ORE.get())
                 .add(ModBlocks.SULPHUR_ORE.get())
+                .add(ModBlocks.SPINEL_ORE.get())
+                .add(ModBlocks.SPECTRAL_ORE.get())
+                .add(ModBlocks.DEEPSLATE_SPINEL_ORE.get())
                 .add(ModBlocks.DEEPSLATE_SULPHUR_ORE.get())
                 .add(ModBlocks.DEEPSLATE_POTASSIUM_ORE.get())
+                .add(ModBlocks.DEEPSLATE_SPECTRAL_ORE.get())
                 .add(ModBlocks.IRON_BARREL_EMPTY.get())
                 .add(ModBlocks.STEEL_BARREL_EMPTY.get())
                 .add(ModBlocks.STEEL_BLOCK.get());
@@ -50,6 +54,8 @@ public class ModBlockTagProvider extends BlockTagsProvider {
         tag(BlockTags.NEEDS_IRON_TOOL)
                 .add(ModBlocks.SULPHUR_ORE.get())
                 .add(ModBlocks.POTASSIUM_ORE.get())
+                .add(ModBlocks.SPINEL_ORE.get())
+                .add(ModBlocks.DEEPSLATE_SPINEL_ORE.get())
                 .add(ModBlocks.DEEPSLATE_SULPHUR_ORE.get())
                 .add(ModBlocks.DEEPSLATE_POTASSIUM_ORE.get())
                 .add(ModBlocks.STEEL_BARS.get())
@@ -61,6 +67,25 @@ public class ModBlockTagProvider extends BlockTagsProvider {
         tag(ModTags.Blocks.INCORRECT_FOR_STEEL_TOOL)
                 .addTag(BlockTags.INCORRECT_FOR_IRON_TOOL)
                 .remove(ModTags.Blocks.NEEDS_STEEL_TOOL);
+
+        tag(ModTags.Blocks.NEEDS_SPINEL_TOOL)
+                .addTag(BlockTags.NEEDS_IRON_TOOL);
+
+        tag(ModTags.Blocks.INCORRECT_FOR_SPINEL_TOOL)
+                .addTag(BlockTags.INCORRECT_FOR_IRON_TOOL)
+                .remove(ModTags.Blocks.NEEDS_SPINEL_TOOL);
+
+        tag(ModTags.Blocks.NEEDS_COPPER_TOOL)
+                .addTag(BlockTags.NEEDS_STONE_TOOL);
+
+        tag(ModTags.Blocks.INCORRECT_FOR_COPPER_TOOL)
+                .addTag(BlockTags.INCORRECT_FOR_STONE_TOOL)
+                .remove(ModTags.Blocks.NEEDS_COPPER_TOOL);
+
+        tag(BlockTags.NEEDS_DIAMOND_TOOL)
+                .add(ModBlocks.SPECTRAL_ORE.get())
+                .add(ModBlocks.DEEPSLATE_SPECTRAL_ORE.get());
+
 
 
     }

@@ -105,6 +105,14 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
                 block -> createOreDrop(ModBlocks.POTASSIUM_ORE.get(), ModItems.POTASSIUM.get()));
         add(ModBlocks.DEEPSLATE_POTASSIUM_ORE.get(),
                 block -> createMultipleOreDrops(ModBlocks.DEEPSLATE_POTASSIUM_ORE.get(), ModItems.POTASSIUM.get(), 2, 5));
+        add(ModBlocks.SPINEL_ORE.get(),
+                block -> createOreDrop(ModBlocks.SPINEL_ORE.get(), ModItems.SPINEL.get()));
+        add(ModBlocks.DEEPSLATE_SPINEL_ORE.get(),
+                block -> createMultipleOreDrops(ModBlocks.DEEPSLATE_SPINEL_ORE.get(), ModItems.SPINEL.get(), 1, 2));
+        add(ModBlocks.SPECTRAL_ORE.get(),
+                block -> createOreDrop(ModBlocks.SPECTRAL_ORE.get(), ModItems.POTASSIUM.get()));
+        add(ModBlocks.DEEPSLATE_SPECTRAL_ORE.get(),
+                block -> createMultipleOreDrops(ModBlocks.DEEPSLATE_SPECTRAL_ORE.get(), ModItems.POTASSIUM.get(), 1, 2));
 
         LootItemCondition.Builder lootItemConditionBuilder = LootItemBlockStatePropertyCondition.hasBlockStateProperties(ModBlocks.RADISH_CROP.get())
                 .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(RadishCropBlock.AGE, 3));

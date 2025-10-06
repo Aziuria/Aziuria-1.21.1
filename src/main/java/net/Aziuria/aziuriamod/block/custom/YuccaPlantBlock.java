@@ -2,11 +2,15 @@ package net.Aziuria.aziuriamod.block.custom;
 
 import net.Aziuria.aziuriamod.item.ModItems;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.storage.loot.LootParams;
@@ -31,6 +35,29 @@ public class YuccaPlantBlock extends Block {
     @Override
     public VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
         return SHAPE;
+    }
+
+    @Override
+    public BlockState updateShape(BlockState state, Direction facing, BlockState facingState, LevelAccessor world, BlockPos currentPos, BlockPos facingPos) {
+        if (facing == Direction.DOWN) {
+            BlockState groundState = world.getBlockState(currentPos.below());
+            // Break the plant if the block below is not grass, sand, or red sand
+            if (!groundState.is(Blocks.SAND) && !groundState.is(Blocks.RED_SAND) && !groundState.is(Blocks.GRASS_BLOCK)) {
+                return Blocks.AIR.defaultBlockState();
+            }
+        }
+        return super.updateShape(state, facing, facingState, world, currentPos, facingPos);
+    }
+
+    @Override
+    public BlockState getStateForPlacement(BlockPlaceContext context) {
+        BlockPos pos = context.getClickedPos();
+        BlockState groundState = context.getLevel().getBlockState(pos.below());
+        // Allow placement only on grass, sand, or red sand
+        if (!groundState.is(Blocks.SAND) && !groundState.is(Blocks.RED_SAND) && !groundState.is(Blocks.GRASS_BLOCK)) {
+            return null; // prevents placement
+        }
+        return this.defaultBlockState();
     }
 
     @Override

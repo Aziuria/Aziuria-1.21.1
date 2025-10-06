@@ -48,7 +48,11 @@ public class VeinMinerHandler {
             ModBlocks.DEEPSLATE_SULPHUR_ORE.get(),
             ModBlocks.SULPHUR_ORE.get(),
             ModBlocks.DEEPSLATE_POTASSIUM_ORE.get(),
-            ModBlocks.POTASSIUM_ORE.get()
+            ModBlocks.POTASSIUM_ORE.get(),
+            ModBlocks.DEEPSLATE_SPINEL_ORE.get(),
+            ModBlocks.SPINEL_ORE.get(),
+            ModBlocks.DEEPSLATE_SPECTRAL_ORE.get(),
+            ModBlocks.SPECTRAL_ORE.get()
     );
 
     private static final Set<UUID> enabledPlayers = new HashSet<>();

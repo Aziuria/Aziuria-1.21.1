@@ -45,6 +45,7 @@ public class ModItemModelProvider extends ItemModelProvider {
     protected void registerModels() {
         basicItem(ModItems.SULPHUR.get());
         basicItem(ModItems.POTASSIUM.get());
+        basicItem(ModItems.SPINEL.get());
         basicItem(ModItems.STEEL_INGOT.get());
         basicItem(ModItems.SACK_ITEM.get());
         basicItem(ModItems.STEEL_ALLOY_MESH.get());
@@ -106,12 +107,30 @@ public class ModItemModelProvider extends ItemModelProvider {
         handheldItem(ModItems.STEEL_SHOVEL);
         handheldItem(ModItems.STEEL_AXE);
         handheldItem(ModItems.STEEL_HOE);
+        handheldItem(ModItems.SPINEL_SWORD);
+        handheldItem(ModItems.SPINEL_PICKAXE);
+        handheldItem(ModItems.SPINEL_SHOVEL);
+        handheldItem(ModItems.SPINEL_AXE);
+        handheldItem(ModItems.SPINEL_HOE);
+        handheldItem(ModItems.COPPER_SWORD);
+        handheldItem(ModItems.COPPER_PICKAXE);
+        handheldItem(ModItems.COPPER_SHOVEL);
+        handheldItem(ModItems.COPPER_AXE);
+        handheldItem(ModItems.COPPER_HOE);
      //   handheldItem(ModItems.KNIFE);
 
         trimmedArmorItem(ModItems.STEEL_HELMET);
         trimmedArmorItem(ModItems.STEEL_CHESTPLATE);
         trimmedArmorItem(ModItems.STEEL_LEGGINGS);
         trimmedArmorItem(ModItems.STEEL_BOOTS);
+        trimmedArmorItem(ModItems.SPINEL_HELMET);
+        trimmedArmorItem(ModItems.SPINEL_CHESTPLATE);
+        trimmedArmorItem(ModItems.SPINEL_LEGGINGS);
+        trimmedArmorItem(ModItems.SPINEL_BOOTS);
+        trimmedArmorItem(ModItems.COPPER_HELMET);
+        trimmedArmorItem(ModItems.COPPER_CHESTPLATE);
+        trimmedArmorItem(ModItems.COPPER_LEGGINGS);
+        trimmedArmorItem(ModItems.COPPER_BOOTS);
 
         saplingItem(ModBlocks.APPLE_SAPLING);
         saplingItem(ModBlocks.PEAR_SAPLING);

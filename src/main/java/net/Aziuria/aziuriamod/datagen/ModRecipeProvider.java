@@ -26,6 +26,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         List<ItemLike> STEEL_ALLOY_MESH_SMELTABLES = List.of(ModItems.STEEL_ALLOY_MESH);
         List<ItemLike> SULPHUR = List.of(ModBlocks.SULPHUR_ORE, ModBlocks.DEEPSLATE_SULPHUR_ORE);
         List<ItemLike> POTASSIUM = List.of(ModBlocks.POTASSIUM_ORE, ModBlocks.DEEPSLATE_POTASSIUM_ORE);
+        List<ItemLike> SPINEL = List.of(ModBlocks.SPINEL_ORE, ModBlocks.DEEPSLATE_SPINEL_ORE);
 
 
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.STEEL_ALLOY_MESH.get())
@@ -241,6 +242,22 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .define('B', ModItems.STEEL_INGOT.get())
                 .unlockedBy("has_steel_ingot", has(ModItems.STEEL_INGOT)).save(recipeOutput);
 
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.COPPER_PICKAXE.get())
+                .pattern("BBB")
+                .pattern(" K ")
+                .pattern(" K ")
+                .define('K', Items.STICK)
+                .define('B', Items.COPPER_INGOT)
+                .unlockedBy("has_copper_ingot", has(Items.COPPER_INGOT)).save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.SPINEL_PICKAXE.get())
+                .pattern("BBB")
+                .pattern(" K ")
+                .pattern(" K ")
+                .define('K', Items.STICK)
+                .define('B', ModItems.SPINEL.get())
+                .unlockedBy("has_spinel", has(ModItems.SPINEL)).save(recipeOutput);
+
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.DEMAECATION_POST.get())
                 .pattern(" W ")
                 .pattern(" B ")
@@ -322,6 +339,22 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .define('B', ModItems.STEEL_INGOT.get())
                 .unlockedBy("has_steel_ingot", has(ModItems.STEEL_INGOT)).save(recipeOutput);
 
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.COPPER_AXE.get())
+                .pattern("BB ")
+                .pattern("BK ")
+                .pattern(" K ")
+                .define('K', Items.STICK)
+                .define('B', Items.COPPER_INGOT)
+                .unlockedBy("has_copper_ingot", has(Items.COPPER_INGOT)).save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.SPINEL_AXE.get())
+                .pattern("BB ")
+                .pattern("BK ")
+                .pattern(" K ")
+                .define('K', Items.STICK)
+                .define('B', ModItems.SPINEL.get())
+                .unlockedBy("has_spinel", has(ModItems.SPINEL)).save(recipeOutput);
+
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.STEEL_SHOVEL.get())
                 .pattern(" B ")
                 .pattern(" K ")
@@ -329,6 +362,22 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .define('K', Items.STICK)
                 .define('B', ModItems.STEEL_INGOT.get())
                 .unlockedBy("has_steel_ingot", has(ModItems.STEEL_INGOT)).save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.COPPER_SHOVEL.get())
+                .pattern(" B ")
+                .pattern(" K ")
+                .pattern(" K ")
+                .define('K', Items.STICK)
+                .define('B', Items.COPPER_INGOT)
+                .unlockedBy("has_copper_ingot", has(Items.COPPER_INGOT)).save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.SPINEL_SHOVEL.get())
+                .pattern(" B ")
+                .pattern(" K ")
+                .pattern(" K ")
+                .define('K', Items.STICK)
+                .define('B', ModItems.SPINEL.get())
+                .unlockedBy("has_spinel", has(ModItems.SPINEL)).save(recipeOutput);
 
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.STEEL_SWORD.get())
                 .pattern(" B ")
@@ -338,6 +387,22 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .define('B', ModItems.STEEL_INGOT.get())
                 .unlockedBy("has_steel_ingot", has(ModItems.STEEL_INGOT)).save(recipeOutput);
 
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.COPPER_SWORD.get())
+                .pattern(" B ")
+                .pattern(" B ")
+                .pattern(" K ")
+                .define('K', Items.STICK)
+                .define('B', Items.COPPER_INGOT)
+                .unlockedBy("has_copper_ingot", has(Items.COPPER_INGOT)).save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.SPINEL_SWORD.get())
+                .pattern(" B ")
+                .pattern(" B ")
+                .pattern(" K ")
+                .define('K', Items.STICK)
+                .define('B', ModItems.SPINEL.get())
+                .unlockedBy("has_spinel", has(ModItems.SPINEL)).save(recipeOutput);
+
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.STEEL_HOE.get())
                 .pattern("BB ")
                 .pattern(" K ")
@@ -345,6 +410,22 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .define('K', Items.STICK)
                 .define('B', ModItems.STEEL_INGOT.get())
                 .unlockedBy("has_steel_ingot", has(ModItems.STEEL_INGOT)).save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.COPPER_HOE.get())
+                .pattern("BB ")
+                .pattern(" K ")
+                .pattern(" K ")
+                .define('K', Items.STICK)
+                .define('B', Items.COPPER_INGOT)
+                .unlockedBy("has_copper_ingot", has(Items.COPPER_INGOT)).save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.SPINEL_HOE.get())
+                .pattern("BB ")
+                .pattern(" K ")
+                .pattern(" K ")
+                .define('K', Items.STICK)
+                .define('B', ModItems.SPINEL.get())
+                .unlockedBy("has_spinel", has(ModItems.SPINEL)).save(recipeOutput);
 
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.STEEL_HELMET.get())
                 .pattern("BBB")
@@ -373,6 +454,62 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .pattern("B B")
                 .define('B', ModItems.STEEL_INGOT.get())
                 .unlockedBy("has_steel_ingot", has(ModItems.STEEL_INGOT)).save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.SPINEL_HELMET.get())
+                .pattern("BBB")
+                .pattern("B B")
+                .pattern("   ")
+                .define('B', ModItems.SPINEL.get())
+                .unlockedBy("has_spinel", has(ModItems.SPINEL)).save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.SPINEL_CHESTPLATE.get())
+                .pattern("B B")
+                .pattern("BBB")
+                .pattern("BBB")
+                .define('B', ModItems.SPINEL.get())
+                .unlockedBy("has_spinel", has(ModItems.SPINEL)).save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.SPINEL_LEGGINGS.get())
+                .pattern("BBB")
+                .pattern("B B")
+                .pattern("B B")
+                .define('B', ModItems.SPINEL.get())
+                .unlockedBy("has_spinel", has(ModItems.SPINEL)).save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.SPINEL_BOOTS.get())
+                .pattern("   ")
+                .pattern("B B")
+                .pattern("B B")
+                .define('B', ModItems.SPINEL.get())
+                .unlockedBy("has_spinel", has(ModItems.SPINEL)).save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.COPPER_HELMET.get())
+                .pattern("BBB")
+                .pattern("B B")
+                .pattern("   ")
+                .define('B', Items.COPPER_INGOT)
+                .unlockedBy("has_copper_ingot", has(Items.COPPER_INGOT)).save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.COPPER_CHESTPLATE.get())
+                .pattern("B B")
+                .pattern("BBB")
+                .pattern("BBB")
+                .define('B', Items.COPPER_INGOT)
+                .unlockedBy("has_copper_ingot", has(Items.COPPER_INGOT)).save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.COPPER_LEGGINGS.get())
+                .pattern("BBB")
+                .pattern("B B")
+                .pattern("B B")
+                .define('B', Items.COPPER_INGOT)
+                .unlockedBy("has_copper_ingot", has(Items.COPPER_INGOT)).save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.COPPER_BOOTS.get())
+                .pattern("   ")
+                .pattern("B B")
+                .pattern("B B")
+                .define('B', Items.COPPER_INGOT)
+                .unlockedBy("has_copper_ingot", has(Items.COPPER_INGOT)).save(recipeOutput);
 
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, Items.GUNPOWDER)
                 .pattern("PSP")
@@ -1748,6 +1885,9 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
 
         oreSmelting(recipeOutput, POTASSIUM, RecipeCategory.MISC, ModItems.POTASSIUM.get(), 0.25f, 200, "potassium");
         oreBlasting(recipeOutput, POTASSIUM, RecipeCategory.MISC, ModItems.POTASSIUM.get(), 0.25f, 100, "potassium");
+
+        oreSmelting(recipeOutput, SPINEL, RecipeCategory.MISC, ModItems.SPINEL.get(), 0.25f, 200, "spinel");
+        oreBlasting(recipeOutput, SPINEL, RecipeCategory.MISC, ModItems.SPINEL.get(), 0.25f, 100, "spinel");
 
         // === Chicken Nuggets from Battered Chicken ===
         oreSmelting(recipeOutput,

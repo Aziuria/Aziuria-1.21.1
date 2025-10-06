@@ -42,6 +42,10 @@ public class ModConfiguredFeatures {
     public static final ResourceKey<ConfiguredFeature<?, ?>> OVERWORLD_POTASSIUM_ORE_UPPER_KEY = registerKey("potassium_ore_upper");
     public static final ResourceKey<ConfiguredFeature<?, ?>> OVERWORLD_POTASSIUM_ORE_MOUNTAINS_KEY = registerKey("potassium_ore_mountains");
 
+    public static final ResourceKey<ConfiguredFeature<?, ?>> OVERWORLD_SPINEL_ORE_ULTRA_DEEP_KEY = registerKey("spinel_ore_ultra_deep");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> OVERWORLD_SPINEL_ORE_DEEP_KEY = registerKey("spinel_ore_deep");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> OVERWORLD_SPINEL_ORE_MID_KEY = registerKey("spinel_ore_mid");
+
     public static final ResourceKey<ConfiguredFeature<?, ?>> LEAF_LITTER_KEY = registerKey("leaf_litter");
     public static final ResourceKey<ConfiguredFeature<?, ?>> FLAX_FLOWER_KEY = registerKey("flax_flower");
     public static final ResourceKey<ConfiguredFeature<?, ?>> YUCCA_PLANT_KEY = registerKey("yucca_plant");
@@ -101,6 +105,10 @@ public class ModConfiguredFeatures {
                 OreConfiguration.target(stoneReplaceables, ModBlocks.POTASSIUM_ORE.get().defaultBlockState()),
                 OreConfiguration.target(deepslateReplaceables, ModBlocks.DEEPSLATE_POTASSIUM_ORE.get().defaultBlockState()));
 
+        List<OreConfiguration.TargetBlockState> overworldSpinelOres = List.of(
+                OreConfiguration.target(stoneReplaceables, ModBlocks.SPINEL_ORE.get().defaultBlockState()),
+                OreConfiguration.target(deepslateReplaceables, ModBlocks.DEEPSLATE_SPINEL_ORE.get().defaultBlockState()));
+
         register(context, OVERWORLD_SULPHUR_ORE_ULTRA_DEEP_KEY, Feature.ORE, new OreConfiguration(overworldSulphurOres, 6));
         register(context, OVERWORLD_SULPHUR_ORE_DEEP_KEY, Feature.ORE, new OreConfiguration(overworldSulphurOres, 5));
         register(context, OVERWORLD_SULPHUR_ORE_MID_KEY, Feature.ORE, new OreConfiguration(overworldSulphurOres, 4));
@@ -112,6 +120,10 @@ public class ModConfiguredFeatures {
         register(context, OVERWORLD_POTASSIUM_ORE_MID_KEY, Feature.ORE, new OreConfiguration(overworldPotassiumOres, 4));
         register(context, OVERWORLD_POTASSIUM_ORE_UPPER_KEY, Feature.ORE, new OreConfiguration(overworldPotassiumOres, 3));
         register(context, OVERWORLD_POTASSIUM_ORE_MOUNTAINS_KEY, Feature.ORE, new OreConfiguration(overworldPotassiumOres, 2));
+
+        register(context, OVERWORLD_SPINEL_ORE_ULTRA_DEEP_KEY, Feature.ORE, new OreConfiguration(overworldSpinelOres, 4));
+        register(context, OVERWORLD_SPINEL_ORE_DEEP_KEY, Feature.ORE, new OreConfiguration(overworldSpinelOres, 3));
+        register(context, OVERWORLD_SPINEL_ORE_MID_KEY, Feature.ORE, new OreConfiguration(overworldSpinelOres, 2));
 
         register(context, LEAF_LITTER_KEY, Feature.RANDOM_PATCH,
                 FeatureUtils.simplePatchConfiguration(

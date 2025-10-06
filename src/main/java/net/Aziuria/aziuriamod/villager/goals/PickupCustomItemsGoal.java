@@ -197,6 +197,7 @@ public class PickupCustomItemsGoal extends Goal {
                 || item == Items.OBSIDIAN
                 || item == ModItems.POTASSIUM.get()
                 || item == ModItems.SULPHUR.get()
+                || item == ModItems.SPINEL.get()
                 || item == ModItems.STEEL_PICKAXE.get();
     }
 }
