@@ -6,6 +6,7 @@ import net.Aziuria.aziuriamod.block.world.BlockBatcher;
 import net.Aziuria.aziuriamod.client.ModClientCommonBusEvents;
 import net.Aziuria.aziuriamod.client.damage.ModDamageTypes;
 import net.Aziuria.aziuriamod.command.*;
+import net.Aziuria.aziuriamod.datamaps.ModDataMapHooks;
 import net.Aziuria.aziuriamod.exhaustion.capability.ExhaustionHudOverlay;
 import net.Aziuria.aziuriamod.exhaustion.capability.ExhaustionProvider;
 import net.Aziuria.aziuriamod.exhaustion.handler.*;
@@ -101,6 +102,7 @@ public class AziuriaMod {
         NeoForge.EVENT_BUS.register(ExhaustionPersistenceHandler.class);
         NeoForge.EVENT_BUS.register(ExhaustionTickHandler.class);
         NeoForge.EVENT_BUS.register(ExhaustionPlayerHandler.class);
+        NeoForge.EVENT_BUS.register(CopperBarsInteractionHandler.class);
       //  NeoForge.EVENT_BUS.register(ExhaustionDebuffHandler.class);
 
 
@@ -147,8 +149,13 @@ public class AziuriaMod {
 
     private void commonSetup(final FMLCommonSetupEvent event) {
         LOGGER.info("Running common setup...");
-    }
 
+        // ✅ Safe to call here — not during datagen
+        event.enqueueWork(() -> {
+            ModDataMapHooks.register();
+            LOGGER.info("Registered copper bar wax/scrape data maps.");
+        });
+    }
     private void registerCapabilities(RegisterCapabilitiesEvent event) {
         event.registerBlockEntity(
                 Capabilities.FluidHandler.BLOCK,

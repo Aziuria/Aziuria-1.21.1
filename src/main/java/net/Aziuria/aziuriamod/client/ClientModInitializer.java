@@ -32,6 +32,14 @@ public class ClientModInitializer {
             BlockEntityRenderers.register(ModBlockEntities.STEEL_BARREL_BLOCK_ENTITY.get(), SteelBarrelRenderer::new);
             BlockEntityRenderers.register(ModBlockEntities.WOODCUTTER_BENCH.get(), WoodcutterBenchRenderer::new);
             BlockEntityRenderers.register(ModBlockEntities.MINER_BENCH.get(), MinerBenchRenderer::new);
+            RenderLayerUtil.setRenderLayer(ModBlocks.COPPER_BARS.get(), RenderType.cutout());
+            RenderLayerUtil.setRenderLayer(ModBlocks.EXPOSED_COPPER_BARS.get(), RenderType.cutout());
+            RenderLayerUtil.setRenderLayer(ModBlocks.WEATHERED_COPPER_BARS.get(), RenderType.cutout());
+            RenderLayerUtil.setRenderLayer(ModBlocks.OXIDIZED_COPPER_BARS.get(), RenderType.cutout());
+            RenderLayerUtil.setRenderLayer(ModBlocks.WAXED_COPPER_BARS.get(), RenderType.cutout());
+            RenderLayerUtil.setRenderLayer(ModBlocks.WAXED_EXPOSED_COPPER_BARS.get(), RenderType.cutout());
+            RenderLayerUtil.setRenderLayer(ModBlocks.WAXED_WEATHERED_COPPER_BARS.get(), RenderType.cutout());
+            RenderLayerUtil.setRenderLayer(ModBlocks.WAXED_OXIDIZED_COPPER_BARS.get(), RenderType.cutout());
 
 
             // instead of SetRenderLayer, use RenderLayerUtil, which is wrapped to get rid of annoying warnings of depreciation's

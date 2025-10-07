@@ -102,6 +102,14 @@ public class ModCreativeModeTabs {
                         output.accept(ModBlocks.WOODCUTTER_BENCH);
                         output.accept(ModBlocks.MINER_BENCH);
                         output.accept(ModBlocks.STEEL_BARS);
+                        output.accept(ModBlocks.COPPER_BARS);
+                        output.accept(ModBlocks.EXPOSED_COPPER_BARS);
+                        output.accept(ModBlocks.WEATHERED_COPPER_BARS);
+                        output.accept(ModBlocks.OXIDIZED_COPPER_BARS);
+                        output.accept(ModBlocks.WAXED_COPPER_BARS);
+                        output.accept(ModBlocks.WAXED_EXPOSED_COPPER_BARS);
+                        output.accept(ModBlocks.WAXED_WEATHERED_COPPER_BARS);
+                        output.accept(ModBlocks.WAXED_OXIDIZED_COPPER_BARS);
                         output.accept(ModBlocks.STEEL_BARREL_EMPTY);
                         output.accept(ModBlocks.IRON_BARREL_EMPTY);
                         output.accept(Blocks.SPAWNER);

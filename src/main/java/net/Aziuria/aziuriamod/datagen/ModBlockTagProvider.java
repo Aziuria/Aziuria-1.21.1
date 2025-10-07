@@ -30,6 +30,15 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                 .add(ModBlocks.DEEPSLATE_SPECTRAL_ORE.get())
                 .add(ModBlocks.IRON_BARREL_EMPTY.get())
                 .add(ModBlocks.STEEL_BARREL_EMPTY.get())
+                .add(ModBlocks.COPPER_BARS.get())
+                .add(ModBlocks.WEATHERED_COPPER_BARS.get())
+                .add(ModBlocks.OXIDIZED_COPPER_BARS.get())
+                .add(ModBlocks.EXPOSED_COPPER_BARS.get())
+                .add(ModBlocks.WAXED_COPPER_BARS.get())
+                .add(ModBlocks.WAXED_WEATHERED_COPPER_BARS.get())
+                .add(ModBlocks.WAXED_OXIDIZED_COPPER_BARS.get())
+                .add(ModBlocks.WAXED_EXPOSED_COPPER_BARS.get())
+                .add(ModBlocks.STEEL_BARS.get())
                 .add(ModBlocks.STEEL_BLOCK.get());
 
         tag(BlockTags.MINEABLE_WITH_AXE)
@@ -49,6 +58,14 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                 .add(ModBlocks.COBBLESTONE_GRAVESTONE_A.get())
                 .add(ModBlocks.COBBLESTONE_GRAVESTONE_B.get())
                 .add(ModBlocks.SPEAKER.get())
+                .add(ModBlocks.COPPER_BARS.get())
+                .add(ModBlocks.WEATHERED_COPPER_BARS.get())
+                .add(ModBlocks.OXIDIZED_COPPER_BARS.get())
+                .add(ModBlocks.EXPOSED_COPPER_BARS.get())
+                .add(ModBlocks.WAXED_COPPER_BARS.get())
+                .add(ModBlocks.WAXED_WEATHERED_COPPER_BARS.get())
+                .add(ModBlocks.WAXED_OXIDIZED_COPPER_BARS.get())
+                .add(ModBlocks.WAXED_EXPOSED_COPPER_BARS.get())
                 .add(ModBlocks.STEEL_BARREL_EMPTY.get());
 
         tag(BlockTags.NEEDS_IRON_TOOL)

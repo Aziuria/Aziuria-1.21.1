@@ -84,6 +84,14 @@
   "block.aziuriamod.speaker": "Speaker",
 
   "block.aziuriamod.steel_bars": "Steel Bars",
+  "block.aziuriamod.copper_bars": "Copper Bars",
+  "block.aziuriamod.exposed_copper_bars": "Exposed Copper Bars",
+  "block.aziuriamod.weathered_copper_bars": "Weathered Copper Bars",
+  "block.aziuriamod.oxidized_copper_bars": "Oxidized Copper Bars",
+  "block.aziuriamod.waxed_copper_bars": "Waxed Copper Bars",
+  "block.aziuriamod.waxed_exposed_copper_bars": "Waxed Exposed Copper Bars",
+  "block.aziuriamod.waxed_weathered_copper_bars": "Waxed Weathered Copper Bars",
+  "block.aziuriamod.waxed_oxidized_copper_bars": "Waxed Oxidized Copper Bars",
 
   "block.aziuriamod.demarcation_post_a": "Demarcation Post",
   "block.aziuriamod.demarcation_post_b": "Demarcation Post",

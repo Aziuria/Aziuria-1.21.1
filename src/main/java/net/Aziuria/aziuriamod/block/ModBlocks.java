@@ -2,6 +2,7 @@ package net.Aziuria.aziuriamod.block;
 
 import net.Aziuria.aziuriamod.AziuriaMod;
 import net.Aziuria.aziuriamod.block.custom.*;
+import net.Aziuria.aziuriamod.block.entity.CopperBarsBlock;
 import net.Aziuria.aziuriamod.block.entity.SteelBarsBlock;
 import net.Aziuria.aziuriamod.item.ModItems;
 import net.Aziuria.aziuriamod.item.custom.FuelItem;
@@ -256,6 +257,65 @@ public class ModBlocks {
     public static final DeferredBlock<SteelBarsBlock> STEEL_BARS = registerBlock("steel_bars",
             () -> new SteelBarsBlock(BlockBehaviour.Properties.of()
                     .strength(5.0f)
+                    .requiresCorrectToolForDrops()
+                    .noOcclusion()));
+
+    // COPPER BARS (can age)
+    public static final DeferredBlock<CopperBarsBlock> COPPER_BARS = registerBlock("copper_bars",
+            () -> new CopperBarsBlock(WeatheringCopper.WeatherState.UNAFFECTED, BlockBehaviour.Properties.of()
+                    .strength(4.0f)
+                    .requiresCorrectToolForDrops()
+                    .noOcclusion()
+                    .randomTicks()));
+
+    // EXPOSED COPPER BARS (can age)
+    public static final DeferredBlock<CopperBarsBlock> EXPOSED_COPPER_BARS = registerBlock("exposed_copper_bars",
+            () -> new CopperBarsBlock(WeatheringCopper.WeatherState.EXPOSED, BlockBehaviour.Properties.of()
+                    .strength(4.0f)
+                    .requiresCorrectToolForDrops()
+                    .noOcclusion()
+                    .randomTicks()));
+
+    // WEATHERED COPPER BARS (can age)
+    public static final DeferredBlock<CopperBarsBlock> WEATHERED_COPPER_BARS = registerBlock("weathered_copper_bars",
+            () -> new CopperBarsBlock(WeatheringCopper.WeatherState.WEATHERED, BlockBehaviour.Properties.of()
+                    .strength(4.0f)
+                    .requiresCorrectToolForDrops()
+                    .noOcclusion()
+                    .randomTicks()));
+
+    public static final DeferredBlock<CopperBarsBlock> WAXED_COPPER_BARS =
+            registerBlock("waxed_copper_bars",
+                    () -> new CopperBarsBlock(WeatheringCopper.WeatherState.UNAFFECTED, BlockBehaviour.Properties.of()
+                            .strength(4.0f)
+                            .requiresCorrectToolForDrops()
+                            .noOcclusion()));
+
+    public static final DeferredBlock<CopperBarsBlock> WAXED_EXPOSED_COPPER_BARS =
+            registerBlock("waxed_exposed_copper_bars",
+                    () -> new CopperBarsBlock(WeatheringCopper.WeatherState.EXPOSED, BlockBehaviour.Properties.of()
+                            .strength(4.0f)
+                            .requiresCorrectToolForDrops()
+                            .noOcclusion()));
+
+    public static final DeferredBlock<CopperBarsBlock> WAXED_WEATHERED_COPPER_BARS =
+            registerBlock("waxed_weathered_copper_bars",
+                    () -> new CopperBarsBlock(WeatheringCopper.WeatherState.WEATHERED, BlockBehaviour.Properties.of()
+                            .strength(4.0f)
+                            .requiresCorrectToolForDrops()
+                            .noOcclusion()));
+
+    public static final DeferredBlock<CopperBarsBlock> WAXED_OXIDIZED_COPPER_BARS =
+            registerBlock("waxed_oxidized_copper_bars",
+                    () -> new CopperBarsBlock(WeatheringCopper.WeatherState.OXIDIZED, BlockBehaviour.Properties.of()
+                            .strength(4.0f)
+                            .requiresCorrectToolForDrops()
+                            .noOcclusion()));
+
+    // OXIDIZED COPPER BARS (final stage — no random ticks)
+    public static final DeferredBlock<CopperBarsBlock> OXIDIZED_COPPER_BARS = registerBlock("oxidized_copper_bars",
+            () -> new CopperBarsBlock(WeatheringCopper.WeatherState.OXIDIZED, BlockBehaviour.Properties.of()
+                    .strength(4.0f)
                     .requiresCorrectToolForDrops()
                     .noOcclusion()));
 
