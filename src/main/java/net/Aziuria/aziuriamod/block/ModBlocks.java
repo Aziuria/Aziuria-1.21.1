@@ -5,6 +5,7 @@ import net.Aziuria.aziuriamod.block.custom.*;
 import net.Aziuria.aziuriamod.block.entity.CopperBarsBlock;
 import net.Aziuria.aziuriamod.block.entity.CopperChainBlock;
 import net.Aziuria.aziuriamod.block.entity.SteelBarsBlock;
+import net.Aziuria.aziuriamod.block.entity.SteelChainBlock;
 import net.Aziuria.aziuriamod.item.ModItems;
 import net.Aziuria.aziuriamod.item.custom.FuelItem;
 import net.Aziuria.aziuriamod.worldgen.tree.ModTreeGrowers;
@@ -318,6 +319,7 @@ public class ModBlocks {
             () -> new CopperChainBlock(WeatheringCopper.WeatherState.UNAFFECTED, BlockBehaviour.Properties.of()
                     .strength(4.0f)
                     .requiresCorrectToolForDrops()
+                    .sound(SoundType.CHAIN)
                     .noOcclusion()
                     .randomTicks()));
 
@@ -326,6 +328,7 @@ public class ModBlocks {
             () -> new CopperChainBlock(WeatheringCopper.WeatherState.EXPOSED, BlockBehaviour.Properties.of()
                     .strength(4.0f)
                     .requiresCorrectToolForDrops()
+                    .sound(SoundType.CHAIN)
                     .noOcclusion()
                     .randomTicks()));
 
@@ -334,6 +337,7 @@ public class ModBlocks {
             () -> new CopperChainBlock(WeatheringCopper.WeatherState.WEATHERED, BlockBehaviour.Properties.of()
                     .strength(4.0f)
                     .requiresCorrectToolForDrops()
+                    .sound(SoundType.CHAIN)
                     .noOcclusion()
                     .randomTicks()));
 
@@ -342,6 +346,7 @@ public class ModBlocks {
             () -> new CopperChainBlock(WeatheringCopper.WeatherState.OXIDIZED, BlockBehaviour.Properties.of()
                     .strength(4.0f)
                     .requiresCorrectToolForDrops()
+                    .sound(SoundType.CHAIN)
                     .noOcclusion()));
 
     public static final DeferredBlock<CopperChainBlock> WAXED_COPPER_CHAIN =
@@ -349,6 +354,7 @@ public class ModBlocks {
                     () -> new CopperChainBlock(WeatheringCopper.WeatherState.UNAFFECTED, BlockBehaviour.Properties.of()
                             .strength(4.0f)
                             .requiresCorrectToolForDrops()
+                            .sound(SoundType.CHAIN)
                             .noOcclusion()));
 
     public static final DeferredBlock<CopperChainBlock> WAXED_EXPOSED_COPPER_CHAIN =
@@ -356,6 +362,7 @@ public class ModBlocks {
                     () -> new CopperChainBlock(WeatheringCopper.WeatherState.EXPOSED, BlockBehaviour.Properties.of()
                             .strength(4.0f)
                             .requiresCorrectToolForDrops()
+                            .sound(SoundType.CHAIN)
                             .noOcclusion()));
 
     public static final DeferredBlock<CopperChainBlock> WAXED_WEATHERED_COPPER_CHAIN =
@@ -363,6 +370,7 @@ public class ModBlocks {
                     () -> new CopperChainBlock(WeatheringCopper.WeatherState.WEATHERED, BlockBehaviour.Properties.of()
                             .strength(4.0f)
                             .requiresCorrectToolForDrops()
+                            .sound(SoundType.CHAIN)
                             .noOcclusion()));
 
     public static final DeferredBlock<CopperChainBlock> WAXED_OXIDIZED_COPPER_CHAIN =
@@ -370,6 +378,15 @@ public class ModBlocks {
                     () -> new CopperChainBlock(WeatheringCopper.WeatherState.OXIDIZED, BlockBehaviour.Properties.of()
                             .strength(4.0f)
                             .requiresCorrectToolForDrops()
+                            .sound(SoundType.CHAIN)
+                            .noOcclusion()));
+
+    public static final DeferredBlock<SteelChainBlock> STEEL_CHAIN =
+            registerBlock("steel_chain",
+                    () -> new SteelChainBlock(BlockBehaviour.Properties.of()
+                            .strength(5.0f)
+                            .requiresCorrectToolForDrops()
+                            .sound(SoundType.CHAIN)
                             .noOcclusion()));
 
     // OXIDIZED COPPER BARS (final stage — no random ticks)

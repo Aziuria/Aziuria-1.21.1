@@ -3,6 +3,8 @@
   "item.aziuriamod.steel_alloy_mesh": "Steel Alloy Mesh",
   "item.aziuriamod.sulphur": "Sulphur",
   "item.aziuriamod.potassium": "Potassium",
+  "item.aziuriamod.copper_nugget": "Copper Nugget",
+  "item.aziuriamod.steel_nugget": "Steel Nugget",
   "item.aziuriamod.spinel": "Spinel Gem",
   "item.aziuriamod.sack_item": "Sack",
   "item.aziuriamod.steel_sword": "Steel Sword",
@@ -83,11 +85,12 @@
 
   "block.aziuriamod.speaker": "Speaker",
 
+  "block.aziuriamod.steel_chain": "Steel Chain",
   "block.aziuriamod.copper_chain": "Copper Chain",
   "block.aziuriamod.exposed_copper_chain": "Exposed Copper Chain",
   "block.aziuriamod.weathered_copper_chain": "Weathered Copper Chain",
   "block.aziuriamod.oxidized_copper_chain": "Oxidized Copper Chain",
-  "block.aziuriamod.waxed_copper_chain": "WaxedCopper Chain",
+  "block.aziuriamod.waxed_copper_chain": "Waxed Copper Chain",
   "block.aziuriamod.waxed_exposed_copper_chain": "Waxed Exposed Copper Chain",
   "block.aziuriamod.waxed_weathered_copper_chain": "Waxed Weathered Copper Chain",
   "block.aziuriamod.waxed_oxidized_copper_chain": "Waxed Oxidized Copper Chain",

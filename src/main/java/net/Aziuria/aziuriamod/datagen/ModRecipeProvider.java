@@ -58,6 +58,27 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .define('I', Items.COPPER_INGOT)
                 .unlockedBy("has_copper_ingot", has(Items.COPPER_INGOT)).save(recipeOutput);
 
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.STEEL_NUGGET.get(), 9)
+                .pattern("I")
+                .define('I', ModItems.STEEL_INGOT)
+                .unlockedBy("has_steel_ingot", has(ModItems.STEEL_INGOT)).save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.STEEL_INGOT.get())
+                .pattern("BBB")
+                .pattern("BBB")
+                .pattern("BBB")
+                .define('B', ModItems.STEEL_NUGGET.get())
+                .unlockedBy("has_steel_nugget", has(ModItems.STEEL_NUGGET.get()))
+                .save(recipeOutput, ResourceLocation.fromNamespaceAndPath("aziuriamod", "steel_from_nugget"));
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.STEEL_CHAIN.get())
+                .pattern(" C ")
+                .pattern(" I ")
+                .pattern(" C ")
+                .define('C', ModItems.STEEL_NUGGET)
+                .define('I', ModItems.STEEL_INGOT.get())
+                .unlockedBy("has_steel_ingot", has(ModItems.STEEL_INGOT)).save(recipeOutput);
+
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, Items.NAME_TAG)
                 .pattern("C  ")
                 .pattern("FIF")

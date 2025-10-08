@@ -44,6 +44,7 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                 .add(ModBlocks.EXPOSED_COPPER_CHAIN.get())
                 .add(ModBlocks.WAXED_COPPER_BARS.get())
                 .add(ModBlocks.STEEL_BARS.get())
+                .add(ModBlocks.STEEL_CHAIN.get())
                 .add(ModBlocks.STEEL_BLOCK.get());
 
         tag(BlockTags.MINEABLE_WITH_AXE)
@@ -88,6 +89,7 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                 .add(ModBlocks.DEEPSLATE_SPINEL_ORE.get())
                 .add(ModBlocks.DEEPSLATE_SULPHUR_ORE.get())
                 .add(ModBlocks.DEEPSLATE_POTASSIUM_ORE.get())
+                .add(ModBlocks.STEEL_CHAIN.get())
                 .add(ModBlocks.STEEL_BARS.get())
                 .add(ModBlocks.STEEL_BLOCK.get());
 
