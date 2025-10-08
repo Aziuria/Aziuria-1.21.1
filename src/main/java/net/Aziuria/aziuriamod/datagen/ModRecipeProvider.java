@@ -37,6 +37,27 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .define('I', Items.RAW_IRON)
                 .unlockedBy("has_raw_iron", has(Items.RAW_IRON)).save(recipeOutput);
 
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.COPPER_NUGGET.get(), 9)
+                .pattern("I")
+                .define('I', Items.COPPER_INGOT)
+                .unlockedBy("has_copper_ingot", has(Items.COPPER_INGOT)).save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, Items.COPPER_INGOT)
+                .pattern("BBB")
+                .pattern("BBB")
+                .pattern("BBB")
+                .define('B', ModItems.COPPER_NUGGET.get())
+                .unlockedBy("has_copper_nugget", has(ModItems.COPPER_NUGGET.get()))
+                .save(recipeOutput, ResourceLocation.fromNamespaceAndPath("aziuriamod", "copper_from_nugget"));
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.COPPER_CHAIN.get())
+                .pattern(" C ")
+                .pattern(" I ")
+                .pattern(" C ")
+                .define('C', ModItems.COPPER_NUGGET)
+                .define('I', Items.COPPER_INGOT)
+                .unlockedBy("has_copper_ingot", has(Items.COPPER_INGOT)).save(recipeOutput);
+
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, Items.NAME_TAG)
                 .pattern("C  ")
                 .pattern("FIF")

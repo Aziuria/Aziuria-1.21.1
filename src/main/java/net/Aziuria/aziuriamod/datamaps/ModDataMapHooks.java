@@ -38,6 +38,22 @@ public class ModDataMapHooks {
         SCRAPEABLES.put(ModBlocks.EXPOSED_COPPER_BARS.get(), ModBlocks.COPPER_BARS.get());
         SCRAPEABLES.put(ModBlocks.WEATHERED_COPPER_BARS.get(), ModBlocks.EXPOSED_COPPER_BARS.get());
         SCRAPEABLES.put(ModBlocks.OXIDIZED_COPPER_BARS.get(), ModBlocks.WEATHERED_COPPER_BARS.get());
+
+        // --- Copper Chains ---
+        WAXABLES.put(ModBlocks.COPPER_CHAIN.get(), ModBlocks.WAXED_COPPER_CHAIN.get());
+        WAXABLES.put(ModBlocks.EXPOSED_COPPER_CHAIN.get(), ModBlocks.WAXED_EXPOSED_COPPER_CHAIN.get());
+        WAXABLES.put(ModBlocks.WEATHERED_COPPER_CHAIN.get(), ModBlocks.WAXED_WEATHERED_COPPER_CHAIN.get());
+        WAXABLES.put(ModBlocks.OXIDIZED_COPPER_CHAIN.get(), ModBlocks.WAXED_OXIDIZED_COPPER_CHAIN.get());
+
+        UNWAXABLES.put(ModBlocks.WAXED_COPPER_CHAIN.get(), ModBlocks.COPPER_CHAIN.get());
+        UNWAXABLES.put(ModBlocks.WAXED_EXPOSED_COPPER_CHAIN.get(), ModBlocks.EXPOSED_COPPER_CHAIN.get());
+        UNWAXABLES.put(ModBlocks.WAXED_WEATHERED_COPPER_CHAIN.get(), ModBlocks.WEATHERED_COPPER_CHAIN.get());
+        UNWAXABLES.put(ModBlocks.WAXED_OXIDIZED_COPPER_CHAIN.get(), ModBlocks.OXIDIZED_COPPER_CHAIN.get());
+
+        SCRAPEABLES.put(ModBlocks.EXPOSED_COPPER_CHAIN.get(), ModBlocks.COPPER_CHAIN.get());
+        SCRAPEABLES.put(ModBlocks.WEATHERED_COPPER_CHAIN.get(), ModBlocks.EXPOSED_COPPER_CHAIN.get());
+        SCRAPEABLES.put(ModBlocks.OXIDIZED_COPPER_CHAIN.get(), ModBlocks.WEATHERED_COPPER_CHAIN.get());
+
     }
 
     public static Block getWaxed(Block block) {

@@ -27,6 +27,10 @@ public class ModItems {
             () -> new Item(new Item.Properties()));
     public static final DeferredItem<Item> POTASSIUM = ITEMS.register("potassium",
             () -> new Item(new Item.Properties()));
+
+    public static final DeferredItem<Item> COPPER_NUGGET = ITEMS.register("copper_nugget",
+            () -> new Item(new Item.Properties()));
+
     public static final DeferredHolder<Item, Item> SACK_ITEM = ITEMS.register("sack_item", () -> new SackItem(new Item.Properties()));
 
 

@@ -104,6 +104,7 @@ public class CopperBarsInteractionHandler {
         if (original.hasProperty(BlockStateProperties.SOUTH)) target = target.setValue(BlockStateProperties.SOUTH, original.getValue(BlockStateProperties.SOUTH));
         if (original.hasProperty(BlockStateProperties.WEST))  target = target.setValue(BlockStateProperties.WEST, original.getValue(BlockStateProperties.WEST));
         if (original.hasProperty(BlockStateProperties.UP))    target = target.setValue(BlockStateProperties.UP, original.getValue(BlockStateProperties.UP));
+        if (original.hasProperty(BlockStateProperties.WATERLOGGED)) target = target.setValue(BlockStateProperties.WATERLOGGED, original.getValue(BlockStateProperties.WATERLOGGED));
         return target;
     }
 }

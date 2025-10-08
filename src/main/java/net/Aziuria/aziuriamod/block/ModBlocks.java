@@ -3,6 +3,7 @@ package net.Aziuria.aziuriamod.block;
 import net.Aziuria.aziuriamod.AziuriaMod;
 import net.Aziuria.aziuriamod.block.custom.*;
 import net.Aziuria.aziuriamod.block.entity.CopperBarsBlock;
+import net.Aziuria.aziuriamod.block.entity.CopperChainBlock;
 import net.Aziuria.aziuriamod.block.entity.SteelBarsBlock;
 import net.Aziuria.aziuriamod.item.ModItems;
 import net.Aziuria.aziuriamod.item.custom.FuelItem;
@@ -308,6 +309,65 @@ public class ModBlocks {
     public static final DeferredBlock<CopperBarsBlock> WAXED_OXIDIZED_COPPER_BARS =
             registerBlock("waxed_oxidized_copper_bars",
                     () -> new CopperBarsBlock(WeatheringCopper.WeatherState.OXIDIZED, BlockBehaviour.Properties.of()
+                            .strength(4.0f)
+                            .requiresCorrectToolForDrops()
+                            .noOcclusion()));
+
+    // COPPER CHAIN (can age)
+    public static final DeferredBlock<CopperChainBlock> COPPER_CHAIN = registerBlock("copper_chain",
+            () -> new CopperChainBlock(WeatheringCopper.WeatherState.UNAFFECTED, BlockBehaviour.Properties.of()
+                    .strength(4.0f)
+                    .requiresCorrectToolForDrops()
+                    .noOcclusion()
+                    .randomTicks()));
+
+    // EXPOSED COPPER CHAIN (can age)
+    public static final DeferredBlock<CopperChainBlock> EXPOSED_COPPER_CHAIN = registerBlock("exposed_copper_chain",
+            () -> new CopperChainBlock(WeatheringCopper.WeatherState.EXPOSED, BlockBehaviour.Properties.of()
+                    .strength(4.0f)
+                    .requiresCorrectToolForDrops()
+                    .noOcclusion()
+                    .randomTicks()));
+
+    // WEATHERED COPPER CHAIN (can age)
+    public static final DeferredBlock<CopperChainBlock> WEATHERED_COPPER_CHAIN = registerBlock("weathered_copper_chain",
+            () -> new CopperChainBlock(WeatheringCopper.WeatherState.WEATHERED, BlockBehaviour.Properties.of()
+                    .strength(4.0f)
+                    .requiresCorrectToolForDrops()
+                    .noOcclusion()
+                    .randomTicks()));
+
+    // OXIDIZED COPPER CHAIN (final stage — no random ticks)
+    public static final DeferredBlock<CopperChainBlock> OXIDIZED_COPPER_CHAIN = registerBlock("oxidized_copper_chain",
+            () -> new CopperChainBlock(WeatheringCopper.WeatherState.OXIDIZED, BlockBehaviour.Properties.of()
+                    .strength(4.0f)
+                    .requiresCorrectToolForDrops()
+                    .noOcclusion()));
+
+    public static final DeferredBlock<CopperChainBlock> WAXED_COPPER_CHAIN =
+            registerBlock("waxed_copper_chain",
+                    () -> new CopperChainBlock(WeatheringCopper.WeatherState.UNAFFECTED, BlockBehaviour.Properties.of()
+                            .strength(4.0f)
+                            .requiresCorrectToolForDrops()
+                            .noOcclusion()));
+
+    public static final DeferredBlock<CopperChainBlock> WAXED_EXPOSED_COPPER_CHAIN =
+            registerBlock("waxed_exposed_copper_chain",
+                    () -> new CopperChainBlock(WeatheringCopper.WeatherState.EXPOSED, BlockBehaviour.Properties.of()
+                            .strength(4.0f)
+                            .requiresCorrectToolForDrops()
+                            .noOcclusion()));
+
+    public static final DeferredBlock<CopperChainBlock> WAXED_WEATHERED_COPPER_CHAIN =
+            registerBlock("waxed_weathered_copper_chain",
+                    () -> new CopperChainBlock(WeatheringCopper.WeatherState.WEATHERED, BlockBehaviour.Properties.of()
+                            .strength(4.0f)
+                            .requiresCorrectToolForDrops()
+                            .noOcclusion()));
+
+    public static final DeferredBlock<CopperChainBlock> WAXED_OXIDIZED_COPPER_CHAIN =
+            registerBlock("waxed_oxidized_copper_chain",
+                    () -> new CopperChainBlock(WeatheringCopper.WeatherState.OXIDIZED, BlockBehaviour.Properties.of()
                             .strength(4.0f)
                             .requiresCorrectToolForDrops()
                             .noOcclusion()));

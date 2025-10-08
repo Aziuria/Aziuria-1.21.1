@@ -28,6 +28,7 @@ public class ModCreativeModeTabs {
                         output.accept(ModItems.POTASSIUM);
                         output.accept(ModItems.SULPHUR);
                         output.accept(ModItems.SPINEL);
+                        output.accept(ModItems.COPPER_NUGGET);
                         output.accept(ModBlocks.POTASSIUM_ORE);
                         output.accept(ModBlocks.SULPHUR_ORE);
                         output.accept(ModBlocks.SPINEL_ORE);
@@ -110,6 +111,14 @@ public class ModCreativeModeTabs {
                         output.accept(ModBlocks.WAXED_EXPOSED_COPPER_BARS);
                         output.accept(ModBlocks.WAXED_WEATHERED_COPPER_BARS);
                         output.accept(ModBlocks.WAXED_OXIDIZED_COPPER_BARS);
+                        output.accept(ModBlocks.COPPER_CHAIN);
+                        output.accept(ModBlocks.EXPOSED_COPPER_CHAIN);
+                        output.accept(ModBlocks.WEATHERED_COPPER_CHAIN);
+                        output.accept(ModBlocks.OXIDIZED_COPPER_CHAIN);
+                        output.accept(ModBlocks.WAXED_COPPER_CHAIN);
+                        output.accept(ModBlocks.WAXED_EXPOSED_COPPER_CHAIN);
+                        output.accept(ModBlocks.WAXED_WEATHERED_COPPER_CHAIN);
+                        output.accept(ModBlocks.WAXED_OXIDIZED_COPPER_CHAIN);
                         output.accept(ModBlocks.STEEL_BARREL_EMPTY);
                         output.accept(ModBlocks.IRON_BARREL_EMPTY);
                         output.accept(Blocks.SPAWNER);

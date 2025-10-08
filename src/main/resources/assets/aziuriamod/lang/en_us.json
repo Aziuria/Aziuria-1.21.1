@@ -83,6 +83,14 @@
 
   "block.aziuriamod.speaker": "Speaker",
 
+  "block.aziuriamod.copper_chain": "Copper Chain",
+  "block.aziuriamod.exposed_copper_chain": "Exposed Copper Chain",
+  "block.aziuriamod.weathered_copper_chain": "Weathered Copper Chain",
+  "block.aziuriamod.oxidized_copper_chain": "Oxidized Copper Chain",
+  "block.aziuriamod.waxed_copper_chain": "WaxedCopper Chain",
+  "block.aziuriamod.waxed_exposed_copper_chain": "Waxed Exposed Copper Chain",
+  "block.aziuriamod.waxed_weathered_copper_chain": "Waxed Weathered Copper Chain",
+  "block.aziuriamod.waxed_oxidized_copper_chain": "Waxed Oxidized Copper Chain",
   "block.aziuriamod.steel_bars": "Steel Bars",
   "block.aziuriamod.copper_bars": "Copper Bars",
   "block.aziuriamod.exposed_copper_bars": "Exposed Copper Bars",

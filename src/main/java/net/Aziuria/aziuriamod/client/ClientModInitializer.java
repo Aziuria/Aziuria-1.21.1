@@ -40,6 +40,14 @@ public class ClientModInitializer {
             RenderLayerUtil.setRenderLayer(ModBlocks.WAXED_EXPOSED_COPPER_BARS.get(), RenderType.cutout());
             RenderLayerUtil.setRenderLayer(ModBlocks.WAXED_WEATHERED_COPPER_BARS.get(), RenderType.cutout());
             RenderLayerUtil.setRenderLayer(ModBlocks.WAXED_OXIDIZED_COPPER_BARS.get(), RenderType.cutout());
+            RenderLayerUtil.setRenderLayer(ModBlocks.COPPER_CHAIN.get(), RenderType.cutout());
+            RenderLayerUtil.setRenderLayer(ModBlocks.EXPOSED_COPPER_CHAIN.get(), RenderType.cutout());
+            RenderLayerUtil.setRenderLayer(ModBlocks.WEATHERED_COPPER_CHAIN.get(), RenderType.cutout());
+            RenderLayerUtil.setRenderLayer(ModBlocks.OXIDIZED_COPPER_CHAIN.get(), RenderType.cutout());
+            RenderLayerUtil.setRenderLayer(ModBlocks.WAXED_COPPER_CHAIN.get(), RenderType.cutout());
+            RenderLayerUtil.setRenderLayer(ModBlocks.WAXED_EXPOSED_COPPER_CHAIN.get(), RenderType.cutout());
+            RenderLayerUtil.setRenderLayer(ModBlocks.WAXED_WEATHERED_COPPER_CHAIN.get(), RenderType.cutout());
+            RenderLayerUtil.setRenderLayer(ModBlocks.WAXED_OXIDIZED_COPPER_CHAIN.get(), RenderType.cutout());
 
 
             // instead of SetRenderLayer, use RenderLayerUtil, which is wrapped to get rid of annoying warnings of depreciation's
