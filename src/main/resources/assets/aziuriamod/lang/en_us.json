@@ -82,6 +82,14 @@
 
   "block.aziuriamod.steel_barrel_empty": "Steel Barrel",
   "block.aziuriamod.iron_barrel_empty": "Iron Barrel",
+  "block.aziuriamod.copper_barrel_empty": "Copper Barrel",
+  "block.aziuriamod.exposed_copper_barrel_empty": "Exposed Copper Barrel",
+  "block.aziuriamod.weathered_copper_barrel_empty": "Weathered Copper Barrel",
+  "block.aziuriamod.oxidized_copper_barrel_empty": "Oxidized Copper Barrel",
+  "block.aziuriamod.waxed_copper_barrel_empty": "Waxed Copper Barrel",
+  "block.aziuriamod.waxed_exposed_copper_barrel_empty": "Waxed Exposed Copper Barrel",
+  "block.aziuriamod.waxed_weathered_copper_barrel_empty": "Waxed Weathered Copper Barrel",
+  "block.aziuriamod.waxed_oxidized_copper_barrel_empty": "Waxed Oxidized Copper Barrel",
 
   "block.aziuriamod.speaker": "Speaker",
 

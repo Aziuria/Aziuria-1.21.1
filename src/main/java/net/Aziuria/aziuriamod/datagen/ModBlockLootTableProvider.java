@@ -102,6 +102,14 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
 
         dropSelf(ModBlocks.STEEL_BARREL_EMPTY.get());
         dropSelf(ModBlocks.IRON_BARREL_EMPTY.get());
+        dropSelf(ModBlocks.COPPER_BARREL.get());
+        dropSelf(ModBlocks.EXPOSED_COPPER_BARREL.get());
+        dropSelf(ModBlocks.WEATHERED_COPPER_BARREL.get());
+        dropSelf(ModBlocks.OXIDIZED_COPPER_BARREL.get());
+        dropSelf(ModBlocks.WAXED_COPPER_BARREL.get());
+        dropSelf(ModBlocks.WAXED_EXPOSED_COPPER_BARREL.get());
+        dropSelf(ModBlocks.WAXED_WEATHERED_COPPER_BARREL.get());
+        dropSelf(ModBlocks.WAXED_OXIDIZED_COPPER_BARREL.get());
 
         dropSelf(ModBlocks.LEAF_LITTER.get());
         dropSelf(ModBlocks.APPLE_SAPLING.get());

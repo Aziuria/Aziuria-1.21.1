@@ -56,6 +56,14 @@ public class ClientModInitializer {
             RenderLayerUtil.setRenderLayer(ModBlocks.OAK_SHELF.get(), RenderType.solid());
             RenderLayerUtil.setRenderLayer(ModBlocks.UNBREAKABLE_GLASS.get(), RenderType.translucent());
             RenderLayerUtil.setRenderLayer(ModBlocks.STEEL_BARREL_EMPTY.get(), RenderType.translucent());
+            RenderLayerUtil.setRenderLayer(ModBlocks.COPPER_BARREL.get(), RenderType.translucent());
+            RenderLayerUtil.setRenderLayer(ModBlocks.EXPOSED_COPPER_BARREL.get(), RenderType.translucent());
+            RenderLayerUtil.setRenderLayer(ModBlocks.WEATHERED_COPPER_BARREL.get(), RenderType.translucent());
+            RenderLayerUtil.setRenderLayer(ModBlocks.OXIDIZED_COPPER_BARREL.get(), RenderType.translucent());
+            RenderLayerUtil.setRenderLayer(ModBlocks.WAXED_COPPER_BARREL.get(), RenderType.translucent());
+            RenderLayerUtil.setRenderLayer(ModBlocks.WAXED_EXPOSED_COPPER_BARREL.get(), RenderType.translucent());
+            RenderLayerUtil.setRenderLayer(ModBlocks.WAXED_WEATHERED_COPPER_BARREL.get(), RenderType.translucent());
+            RenderLayerUtil.setRenderLayer(ModBlocks.WAXED_OXIDIZED_COPPER_BARREL.get(), RenderType.translucent());
             RenderLayerUtil.setRenderLayer(ModBlocks.STEEL_BARS.get(), RenderType.cutout());
             RenderLayerUtil.setRenderLayer(ModBlocks.FLAX_FLOWER_BLOCK.get(), RenderType.cutout());
 

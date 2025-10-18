@@ -61,8 +61,20 @@ public class ModBlockEntities {
             BLOCK_ENTITIES.register("steel_barrel_block_entity", () ->
                     BlockEntityType.Builder.of(
                             SteelBarrelBlockEntity::new,
+                            // Steel and Iron
                             ModBlocks.STEEL_BARREL_EMPTY.get(),
-                            ModBlocks.IRON_BARREL_EMPTY.get()
+                            ModBlocks.IRON_BARREL_EMPTY.get(),
+
+                            // Copper barrel family — all oxidation stages
+                            ModBlocks.COPPER_BARREL.get(),
+                            ModBlocks.EXPOSED_COPPER_BARREL.get(),
+                            ModBlocks.WEATHERED_COPPER_BARREL.get(),
+                            ModBlocks.OXIDIZED_COPPER_BARREL.get(),
+
+                            ModBlocks.WAXED_COPPER_BARREL.get(),
+                            ModBlocks.WAXED_EXPOSED_COPPER_BARREL.get(),
+                            ModBlocks.WAXED_WEATHERED_COPPER_BARREL.get(),
+                            ModBlocks.WAXED_OXIDIZED_COPPER_BARREL.get()
                     ).build(null)
 
             );

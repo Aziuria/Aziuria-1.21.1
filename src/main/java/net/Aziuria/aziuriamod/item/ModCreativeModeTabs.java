@@ -121,6 +121,14 @@ public class ModCreativeModeTabs {
                         output.accept(ModBlocks.WAXED_EXPOSED_COPPER_CHAIN);
                         output.accept(ModBlocks.WAXED_WEATHERED_COPPER_CHAIN);
                         output.accept(ModBlocks.WAXED_OXIDIZED_COPPER_CHAIN);
+                        output.accept(ModBlocks.COPPER_BARREL);
+                        output.accept(ModBlocks.EXPOSED_COPPER_BARREL);
+                        output.accept(ModBlocks.WEATHERED_COPPER_BARREL);
+                        output.accept(ModBlocks.OXIDIZED_COPPER_BARREL);
+                        output.accept(ModBlocks.WAXED_COPPER_BARREL);
+                        output.accept(ModBlocks.WAXED_EXPOSED_COPPER_BARREL);
+                        output.accept(ModBlocks.WAXED_WEATHERED_COPPER_BARREL);
+                        output.accept(ModBlocks.WAXED_OXIDIZED_COPPER_BARREL);
                         output.accept(ModBlocks.STEEL_BARREL_EMPTY);
                         output.accept(ModBlocks.IRON_BARREL_EMPTY);
                         output.accept(Blocks.SPAWNER);

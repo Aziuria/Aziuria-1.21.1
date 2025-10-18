@@ -256,6 +256,65 @@ public class ModBlocks {
                     .sound(SoundType.METAL)
                     .noOcclusion()));
 
+    // COPPER BARREL (unaﬀected)
+    public static final DeferredBlock<CopperBarrelBlock> COPPER_BARREL = registerBlock("copper_barrel_empty",
+            () -> new CopperBarrelBlock(WeatheringCopper.WeatherState.UNAFFECTED, BlockBehaviour.Properties.of()
+                    .strength(1.5f)
+                    .sound(SoundType.METAL)
+                    .noOcclusion()
+                    .randomTicks())); // enables oxidation
+
+    // EXPOSED COPPER BARREL
+    public static final DeferredBlock<CopperBarrelBlock> EXPOSED_COPPER_BARREL = registerBlock("exposed_copper_barrel_empty",
+            () -> new CopperBarrelBlock(WeatheringCopper.WeatherState.EXPOSED, BlockBehaviour.Properties.of()
+                    .strength(1.5f)
+                    .sound(SoundType.METAL)
+                    .noOcclusion()
+                    .randomTicks()));
+
+    // WEATHERED COPPER BARREL
+    public static final DeferredBlock<CopperBarrelBlock> WEATHERED_COPPER_BARREL = registerBlock("weathered_copper_barrel_empty",
+            () -> new CopperBarrelBlock(WeatheringCopper.WeatherState.WEATHERED, BlockBehaviour.Properties.of()
+                    .strength(1.5f)
+                    .sound(SoundType.METAL)
+                    .noOcclusion()
+                    .randomTicks()));
+
+    // OXIDIZED COPPER BARREL (final stage — no random ticks)
+    public static final DeferredBlock<CopperBarrelBlock> OXIDIZED_COPPER_BARREL = registerBlock("oxidized_copper_barrel_empty",
+            () -> new CopperBarrelBlock(WeatheringCopper.WeatherState.OXIDIZED, BlockBehaviour.Properties.of()
+                    .strength(1.5f)
+                    .sound(SoundType.METAL)
+                    .noOcclusion()));
+
+    // WAXED COPPER BARREL (unaﬀected)
+    public static final DeferredBlock<CopperBarrelBlock> WAXED_COPPER_BARREL = registerBlock("waxed_copper_barrel_empty",
+            () -> new CopperBarrelBlock(WeatheringCopper.WeatherState.UNAFFECTED, BlockBehaviour.Properties.of()
+                    .strength(1.5f)
+                    .sound(SoundType.METAL)
+                    .noOcclusion())); // no random ticks — waxing prevents oxidation
+
+    // WAXED EXPOSED COPPER BARREL
+    public static final DeferredBlock<CopperBarrelBlock> WAXED_EXPOSED_COPPER_BARREL = registerBlock("waxed_exposed_copper_barrel_empty",
+            () -> new CopperBarrelBlock(WeatheringCopper.WeatherState.EXPOSED, BlockBehaviour.Properties.of()
+                    .strength(1.5f)
+                    .sound(SoundType.METAL)
+                    .noOcclusion()));
+
+    // WAXED WEATHERED COPPER BARREL
+    public static final DeferredBlock<CopperBarrelBlock> WAXED_WEATHERED_COPPER_BARREL = registerBlock("waxed_weathered_copper_barrel_empty",
+            () -> new CopperBarrelBlock(WeatheringCopper.WeatherState.WEATHERED, BlockBehaviour.Properties.of()
+                    .strength(1.5f)
+                    .sound(SoundType.METAL)
+                    .noOcclusion()));
+
+    // WAXED OXIDIZED COPPER BARREL (final stage)
+    public static final DeferredBlock<CopperBarrelBlock> WAXED_OXIDIZED_COPPER_BARREL = registerBlock("waxed_oxidized_copper_barrel_empty",
+            () -> new CopperBarrelBlock(WeatheringCopper.WeatherState.OXIDIZED, BlockBehaviour.Properties.of()
+                    .strength(1.5f)
+                    .sound(SoundType.METAL)
+                    .noOcclusion()));
+
     public static final DeferredBlock<SteelBarsBlock> STEEL_BARS = registerBlock("steel_bars",
             () -> new SteelBarsBlock(BlockBehaviour.Properties.of()
                     .strength(5.0f)

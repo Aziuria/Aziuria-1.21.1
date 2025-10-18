@@ -351,7 +351,7 @@ public class ModConfiguredFeatures {
 
         // Variant 1 - Large, spreading branches
         register(context, AVOCADO_KEY_VARIANT_1, Feature.TREE, new TreeConfiguration.TreeConfigurationBuilder(
-                BlockStateProvider.simple(Blocks.OAK_LOG),
+                BlockStateProvider.simple(Blocks.JUNGLE_LOG),
                 new ForkingTrunkPlacer(7, 3, 2),
                 BlockStateProvider.simple(ModBlocks.AVOCADO_LEAVES.get()),
                 new BlobFoliagePlacer(ConstantInt.of(3), ConstantInt.of(3), 3),
@@ -359,7 +359,7 @@ public class ModConfiguredFeatures {
 
 // Variant 2 - Medium, standard
         register(context, AVOCADO_KEY_VARIANT_2, Feature.TREE, new TreeConfiguration.TreeConfigurationBuilder(
-                BlockStateProvider.simple(Blocks.OAK_LOG),
+                BlockStateProvider.simple(Blocks.JUNGLE_LOG),
                 new ForkingTrunkPlacer(4, 2, 2),
                 BlockStateProvider.simple(ModBlocks.AVOCADO_LEAVES.get()),
                 new BlobFoliagePlacer(ConstantInt.of(3), ConstantInt.of(2), 3),
@@ -367,7 +367,7 @@ public class ModConfiguredFeatures {
 
 // Variant 3 - Tall, slim
         register(context, AVOCADO_KEY_VARIANT_3, Feature.TREE, new TreeConfiguration.TreeConfigurationBuilder(
-                BlockStateProvider.simple(Blocks.OAK_LOG),
+                BlockStateProvider.simple(Blocks.JUNGLE_LOG),
                 new StraightTrunkPlacer(6, 1, 0),
                 BlockStateProvider.simple(ModBlocks.AVOCADO_LEAVES.get()),
                 new FancyFoliagePlacer(ConstantInt.of(4), ConstantInt.of(0), 5),
@@ -376,7 +376,7 @@ public class ModConfiguredFeatures {
 
 // Variant 4 - Short, wide canopy (with FancyFoliagePlacer)
         register(context, AVOCADO_KEY_VARIANT_4, Feature.TREE, new TreeConfiguration.TreeConfigurationBuilder(
-                BlockStateProvider.simple(Blocks.OAK_LOG),
+                BlockStateProvider.simple(Blocks.JUNGLE_LOG),
                 new ForkingTrunkPlacer(3, 1, 1),
                 BlockStateProvider.simple(ModBlocks.AVOCADO_LEAVES.get()),
                 new FancyFoliagePlacer(ConstantInt.of(3), ConstantInt.of(2), 3),
@@ -384,7 +384,7 @@ public class ModConfiguredFeatures {
 
 // Variant 5 - Medium, dense leaves (with FancyFoliagePlacer)
         register(context, AVOCADO_KEY_VARIANT_5, Feature.TREE, new TreeConfiguration.TreeConfigurationBuilder(
-                BlockStateProvider.simple(Blocks.OAK_LOG),
+                BlockStateProvider.simple(Blocks.JUNGLE_LOG),
                 new ForkingTrunkPlacer(5, 2, 1),
                 BlockStateProvider.simple(ModBlocks.AVOCADO_LEAVES.get()),
                 new FancyFoliagePlacer(ConstantInt.of(2), ConstantInt.of(3), 3),
@@ -392,7 +392,7 @@ public class ModConfiguredFeatures {
 
 // Variant 6 - Large, spreading branches
         register(context, AVOCADO_KEY_VARIANT_6, Feature.TREE, new TreeConfiguration.TreeConfigurationBuilder(
-                BlockStateProvider.simple(Blocks.OAK_LOG),
+                BlockStateProvider.simple(Blocks.JUNGLE_LOG),
                 new ForkingTrunkPlacer(7, 3, 2),
                 BlockStateProvider.simple(ModBlocks.AVOCADO_LEAVES.get()),
                 new BlobFoliagePlacer(ConstantInt.of(3), ConstantInt.of(3), 3),
@@ -400,7 +400,7 @@ public class ModConfiguredFeatures {
 
 // Variant 7 - Medium, layered canopy
         register(context, AVOCADO_KEY_VARIANT_7, Feature.TREE, new TreeConfiguration.TreeConfigurationBuilder(
-                BlockStateProvider.simple(Blocks.OAK_LOG),
+                BlockStateProvider.simple(Blocks.JUNGLE_LOG),
                 new ForkingTrunkPlacer(5, 2, 2),
                 BlockStateProvider.simple(ModBlocks.AVOCADO_LEAVES.get()),
                 new BlobFoliagePlacer(ConstantInt.of(2), ConstantInt.of(2), 4),

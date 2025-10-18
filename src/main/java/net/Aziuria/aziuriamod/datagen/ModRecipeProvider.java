@@ -1756,6 +1756,14 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .define('S', ModBlocks.STEEL_BLOCK.get())
                 .unlockedBy("has_steel_ingot", has(ModItems.STEEL_INGOT)).save(recipeOutput);
 
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.COPPER_BARREL.get())
+                .pattern("B B")
+                .pattern("B B")
+                .pattern("SSS")
+                .define('B', Items.COPPER_INGOT)
+                .define('S', Blocks.COPPER_BLOCK)
+                .unlockedBy("has_copper_ingot", has(Items.COPPER_INGOT)).save(recipeOutput);
+
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.SPEAKER.get())
                 .pattern(" BB")
                 .pattern("BS ")
