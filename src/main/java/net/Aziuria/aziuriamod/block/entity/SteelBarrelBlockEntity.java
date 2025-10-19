@@ -12,6 +12,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.material.Fluids;
 import net.neoforged.neoforge.capabilities.BlockCapability;
 import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.fluids.FluidStack;
@@ -125,5 +126,24 @@ public class SteelBarrelBlockEntity extends BlockEntity {
         }
 
         return false;
+    }
+
+    // ===============================
+    // NEW CODE: Auto rain & lava collection
+    // ===============================
+    public void tick() {
+        if (level == null || level.isClientSide()) return;
+
+        BlockPos above = worldPosition.above();
+
+        // --- Rain collection with chance (0.025% per tick) ---
+        if (level.isRainingAt(above) && level.getRandom().nextFloat() < 0.00025F) {
+            tank.fill(new FluidStack(Fluids.WATER, 1000), IFluidHandler.FluidAction.EXECUTE);
+        }
+
+        // --- Lava drip collection with chance (0.05% per tick) ---
+        if (level.getFluidState(above).getType() == Fluids.LAVA && level.getRandom().nextFloat() < 0.0005F) {
+            tank.fill(new FluidStack(Fluids.LAVA, 1000), IFluidHandler.FluidAction.EXECUTE);
+        }
     }
 }

@@ -15,6 +15,8 @@ import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntityTicker;
+import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
@@ -149,6 +151,20 @@ public class CopperBarrelBlock extends BaseEntityBlock implements WeatheringCopp
     public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
         // Reuse SteelBarrelBlockEntity — both can share the same fluid handler logic
         return new SteelBarrelBlockEntity(pos, state);
+    }
+
+    // ======================================
+// ADD THIS: BlockEntity ticker for server-side ticking
+// ======================================
+    @Nullable
+    @Override
+    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> type) {
+        // Only tick on the server side
+        return level.isClientSide ? null : (lvl, pos, st, be) -> {
+            if (be instanceof SteelBarrelBlockEntity barrel) {
+                barrel.tick(); // call the auto-rain/lava tick
+            }
+        };
     }
 
     @Override
