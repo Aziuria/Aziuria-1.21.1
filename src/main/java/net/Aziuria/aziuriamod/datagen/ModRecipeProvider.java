@@ -165,6 +165,16 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .unlockedBy("has_avocado", has(ModItems.AVOCADO.get()))
                 .save(recipeOutput);
 
+        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ModBlocks.ORANGE_SAPLING.get(), 1)
+                .pattern(" A ")
+                .pattern(" D ")
+                .pattern(" B ")
+                .define('A', ModItems.ORANGE.get())
+                .define('B', Items.BUCKET)
+                .define('D', Blocks.DIRT)
+                .unlockedBy("has_orange", has(ModItems.ORANGE.get()))
+                .save(recipeOutput);
+
         ShapedRecipeBuilder.shaped(RecipeCategory.FOOD, ModItems.FLOUR.get(), 12)
                 .pattern("SSS")
                 .pattern("SSS")
@@ -1847,6 +1857,12 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .requires(ModItems.PEAR.get())
                 .requires(Items.POTION)  // Vanilla water bottle (glass bottle + water)
                 .unlockedBy("has_pear", has(ModItems.PEAR.get()))
+                .save(recipeOutput);
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, ModItems.ORANGE_JUICE.get(), 1)
+                .requires(ModItems.ORANGE.get())
+                .requires(Items.POTION)  // Vanilla water bottle (glass bottle + water)
+                .unlockedBy("has_orange", has(ModItems.ORANGE.get()))
                 .save(recipeOutput);
 
         ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, ModItems.TOMATO_JUICE.get(), 1)

@@ -90,6 +90,9 @@ public class ModVillagerTrades {
             addBuyTrade(event, 2, Items.APPLE.getDefaultInstance(), 4, 3,4);
             addSellTrade(event, 2, Items.APPLE.getDefaultInstance(), 8, 1, 4);
 
+            addBuyTrade(event, 2, ModItems.ORANGE.get().getDefaultInstance(), 4, 3,4);
+            addSellTrade(event, 2, ModItems.ORANGE.get().getDefaultInstance(), 8, 1, 4);
+
             addBuyTrade(event, 2, ModItems.PEAR.get().getDefaultInstance(), 4, 3,4);
             addSellTrade(event, 2, ModItems.PEAR.get().getDefaultInstance(), 8, 1, 4);
 

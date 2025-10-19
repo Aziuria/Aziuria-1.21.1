@@ -207,6 +207,44 @@ public class SpawnTreeVariantCommand {  // Renamed class
                         .registryOrThrow(net.minecraft.core.registries.Registries.CONFIGURED_FEATURE)
                         .get(ModConfiguredFeatures.AVOCADO_KEY_VARIANT_7);
             }
+
+            // New orange variants added here
+            case 32 -> {
+                return level.registryAccess()
+                        .registryOrThrow(net.minecraft.core.registries.Registries.CONFIGURED_FEATURE)
+                        .get(ModConfiguredFeatures.ORANGE_KEY_VARIANT_1);
+            }
+            case 33 -> {
+                return level.registryAccess()
+                        .registryOrThrow(net.minecraft.core.registries.Registries.CONFIGURED_FEATURE)
+                        .get(ModConfiguredFeatures.ORANGE_KEY_VARIANT_2);
+            }
+            case 34 -> {
+                return level.registryAccess()
+                        .registryOrThrow(net.minecraft.core.registries.Registries.CONFIGURED_FEATURE)
+                        .get(ModConfiguredFeatures.ORANGE_KEY_VARIANT_3);
+            }
+            case 35 -> {
+                return level.registryAccess()
+                        .registryOrThrow(net.minecraft.core.registries.Registries.CONFIGURED_FEATURE)
+                        .get(ModConfiguredFeatures.ORANGE_KEY_VARIANT_4);
+            }
+            case 36 -> {
+                return level.registryAccess()
+                        .registryOrThrow(net.minecraft.core.registries.Registries.CONFIGURED_FEATURE)
+                        .get(ModConfiguredFeatures.ORANGE_KEY_VARIANT_5);
+            }
+            case 37 -> {
+                return level.registryAccess()
+                        .registryOrThrow(net.minecraft.core.registries.Registries.CONFIGURED_FEATURE)
+                        .get(ModConfiguredFeatures.ORANGE_KEY_VARIANT_6);
+            }
+            case 38 -> {
+                return level.registryAccess()
+                        .registryOrThrow(net.minecraft.core.registries.Registries.CONFIGURED_FEATURE)
+                        .get(ModConfiguredFeatures.ORANGE_KEY_VARIANT_7);
+            }
+
             default -> {
                 return null;
             }

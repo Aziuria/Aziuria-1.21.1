@@ -11,10 +11,11 @@ public class ThirstSetup {
         ThirstRegistry.register(ModItems.MILK_BOTTLE.get(), 4);
         ThirstRegistry.register(ModItems.COFFEE.get(), 4);
         ThirstRegistry.register(ModItems.TEA.get(), 4);
-        ThirstRegistry.register(Items.HONEY_BOTTLE, 3);
+        ThirstRegistry.register(Items.HONEY_BOTTLE, 1);
 
         // === FRUITS ===
         ThirstRegistry.register(Items.APPLE, 3);
+        ThirstRegistry.register(ModItems.ORANGE.get(), 4);
         ThirstRegistry.register(Items.GOLDEN_APPLE, 4);
         ThirstRegistry.register(Items.ENCHANTED_GOLDEN_APPLE, 4);
         ThirstRegistry.register(Items.CHORUS_FRUIT, 2);
@@ -85,6 +86,7 @@ public class ThirstSetup {
 
         // === JUICES ===
         ThirstRegistry.register(ModItems.APPLE_JUICE.get(), 4);
+        ThirstRegistry.register(ModItems.ORANGE_JUICE.get(), 4);
         ThirstRegistry.register(ModItems.PINEAPPLE_JUICE.get(), 4);
         ThirstRegistry.register(ModItems.PEAR_JUICE.get(), 4);
         ThirstRegistry.register(ModItems.CHERRY_JUICE.get(), 4);

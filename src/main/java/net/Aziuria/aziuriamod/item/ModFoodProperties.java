@@ -234,4 +234,21 @@ public class ModFoodProperties {
             .effect(() -> new MobEffectInstance(MobEffects.REGENERATION, 20 * 8, 0), 0.4f)   // minor regen (8s)
             .effect(() -> new MobEffectInstance(MobEffects.CONFUSION, 20 * 6, 0), 0.01f)
             .build();
+
+    // Orange fruit (snack)
+    public static final FoodProperties ORANGE = new FoodProperties.Builder()
+            .nutrition(4)               // medium-light snack
+            .saturationModifier(0.4f)  // keeps player fuller for a bit
+            .alwaysEdible()            // can eat even if not hungry
+            .effect(() -> new MobEffectInstance(MobEffects.REGENERATION, 40, 0), 0.15f) // slight healing
+            .effect(() -> new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 60, 0), 0.1f) // minor energy boost
+            .build();
+
+    // Orange juice (drink)
+    public static final FoodProperties ORANGE_JUICE = new FoodProperties.Builder()
+            .nutrition(3)               // light drink, less than whole fruit
+            .saturationModifier(0.35f) // quenches thirst a little, keeps hunger stable
+            .effect(() -> new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 100, 0), 0.15f) // light refresh boost
+            .effect(() -> new MobEffectInstance(MobEffects.REGENERATION, 40, 0), 0.1f)     // slight healing
+            .build();
 }

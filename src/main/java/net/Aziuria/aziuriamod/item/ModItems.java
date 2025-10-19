@@ -218,6 +218,8 @@ public class ModItems {
             () -> new Item(new Item.Properties().food(ModFoodProperties.CHERRY)));
     public static final DeferredItem<Item> AVOCADO = ITEMS.register("avocado",
             () -> new Item(new Item.Properties().food(ModFoodProperties.AVOCADO)));
+    public static final DeferredItem<Item> ORANGE = ITEMS.register("orange",
+            () -> new Item(new Item.Properties().food(ModFoodProperties.ORANGE)));
 
     public static final DeferredItem<Item> STRAWBERRY = ITEMS.register("strawberry",
             () -> new Item(new Item.Properties().food(ModFoodProperties.STRAWBERRY)));
@@ -334,6 +336,15 @@ public class ModItems {
             () -> new DrinkableItem(
                     new Item.Properties()
                             .food(ModFoodProperties.STRAWBERRY_JUICE)
+                            .stacksTo(1)
+                            .craftRemainder(Items.GLASS_BOTTLE),
+                    32,
+                    UseAnim.DRINK));
+
+    public static final DeferredItem<DrinkableItem> ORANGE_JUICE = ITEMS.register("orange_juice",
+            () -> new DrinkableItem(
+                    new Item.Properties()
+                            .food(ModFoodProperties.ORANGE_JUICE)
                             .stacksTo(1)
                             .craftRemainder(Items.GLASS_BOTTLE),
                     32,

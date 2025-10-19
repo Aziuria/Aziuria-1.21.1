@@ -79,6 +79,14 @@ public class ModPlacedFeatures {
     public static final ResourceKey<PlacedFeature> AVOCADO_KEY_VARIANT_6 = registerKey("avocado_variant_6");
     public static final ResourceKey<PlacedFeature> AVOCADO_KEY_VARIANT_7 = registerKey("avocado_variant_7");
 
+    public static final ResourceKey<PlacedFeature> ORANGE_KEY_VARIANT_1 = registerKey("orange_variant_1");
+    public static final ResourceKey<PlacedFeature> ORANGE_KEY_VARIANT_2 = registerKey("orange_variant_2");
+    public static final ResourceKey<PlacedFeature> ORANGE_KEY_VARIANT_3 = registerKey("orange_variant_3");
+    public static final ResourceKey<PlacedFeature> ORANGE_KEY_VARIANT_4 = registerKey("orange_variant_4");
+    public static final ResourceKey<PlacedFeature> ORANGE_KEY_VARIANT_5 = registerKey("orange_variant_5");
+    public static final ResourceKey<PlacedFeature> ORANGE_KEY_VARIANT_6 = registerKey("orange_variant_6");
+    public static final ResourceKey<PlacedFeature> ORANGE_KEY_VARIANT_7 = registerKey("orange_variant_7");
+
     public static final ResourceKey<PlacedFeature> DARK_OAK_KEY_VARIANT_1 = registerKey("dark_oak_variant_1");
     public static final ResourceKey<PlacedFeature> DARK_OAK_KEY_VARIANT_2 = registerKey("dark_oak_variant_2");
 
@@ -597,6 +605,104 @@ public class ModPlacedFeatures {
 
             register(context, AVOCADO_KEY_VARIANT_7,
                     configuredFeatures.getOrThrow(ModConfiguredFeatures.AVOCADO_KEY_VARIANT_7),
+                    modifiers
+            );
+        }
+
+        // Orange Variant 1
+        {
+            List<PlacementModifier> modifiers = new ArrayList<>(VegetationPlacements.treePlacement(
+                    NoiseThresholdCountPlacement.of(0.8, 0, 1),
+                    ModBlocks.ORANGE_SAPLING.get()
+            ));
+            modifiers.add(RarityFilter.onAverageOnceEvery(15));
+
+            register(context, ORANGE_KEY_VARIANT_1,
+                    configuredFeatures.getOrThrow(ModConfiguredFeatures.ORANGE_KEY_VARIANT_1),
+                    modifiers
+            );
+        }
+
+// Orange Variant 2
+        {
+            List<PlacementModifier> modifiers = new ArrayList<>(VegetationPlacements.treePlacement(
+                    NoiseThresholdCountPlacement.of(0.8, 0, 1),
+                    ModBlocks.ORANGE_SAPLING.get()
+            ));
+            modifiers.add(RarityFilter.onAverageOnceEvery(18)); // slightly rarer
+
+            register(context, ORANGE_KEY_VARIANT_2,
+                    configuredFeatures.getOrThrow(ModConfiguredFeatures.ORANGE_KEY_VARIANT_2),
+                    modifiers
+            );
+        }
+
+// Orange Variant 3
+        {
+            List<PlacementModifier> modifiers = new ArrayList<>(VegetationPlacements.treePlacement(
+                    NoiseThresholdCountPlacement.of(0.8, 0, 2),
+                    ModBlocks.ORANGE_SAPLING.get()
+            ));
+            modifiers.add(RarityFilter.onAverageOnceEvery(14));
+
+            register(context, ORANGE_KEY_VARIANT_3,
+                    configuredFeatures.getOrThrow(ModConfiguredFeatures.ORANGE_KEY_VARIANT_3),
+                    modifiers
+            );
+        }
+
+// Orange Variant 4
+        {
+            List<PlacementModifier> modifiers = new ArrayList<>(VegetationPlacements.treePlacement(
+                    NoiseThresholdCountPlacement.of(0.8, 0, 1),
+                    ModBlocks.ORANGE_SAPLING.get()
+            ));
+            modifiers.add(RarityFilter.onAverageOnceEvery(15));
+
+            register(context, ORANGE_KEY_VARIANT_4,
+                    configuredFeatures.getOrThrow(ModConfiguredFeatures.ORANGE_KEY_VARIANT_4),
+                    modifiers
+            );
+        }
+
+// Orange Variant 5
+        {
+            List<PlacementModifier> modifiers = new ArrayList<>(VegetationPlacements.treePlacement(
+                    NoiseThresholdCountPlacement.of(0.8, 0, 2),
+                    ModBlocks.ORANGE_SAPLING.get()
+            ));
+            modifiers.add(RarityFilter.onAverageOnceEvery(12));
+
+            register(context, ORANGE_KEY_VARIANT_5,
+                    configuredFeatures.getOrThrow(ModConfiguredFeatures.ORANGE_KEY_VARIANT_5),
+                    modifiers
+            );
+        }
+
+// Orange Variant 6
+        {
+            List<PlacementModifier> modifiers = new ArrayList<>(VegetationPlacements.treePlacement(
+                    NoiseThresholdCountPlacement.of(0.8, 0, 1),
+                    ModBlocks.ORANGE_SAPLING.get()
+            ));
+            modifiers.add(RarityFilter.onAverageOnceEvery(14));
+
+            register(context, ORANGE_KEY_VARIANT_6,
+                    configuredFeatures.getOrThrow(ModConfiguredFeatures.ORANGE_KEY_VARIANT_6),
+                    modifiers
+            );
+        }
+
+// Orange Variant 7
+        {
+            List<PlacementModifier> modifiers = new ArrayList<>(VegetationPlacements.treePlacement(
+                    NoiseThresholdCountPlacement.of(0.8, 0, 2),
+                    ModBlocks.ORANGE_SAPLING.get()
+            ));
+            modifiers.add(RarityFilter.onAverageOnceEvery(13));
+
+            register(context, ORANGE_KEY_VARIANT_7,
+                    configuredFeatures.getOrThrow(ModConfiguredFeatures.ORANGE_KEY_VARIANT_7),
                     modifiers
             );
         }

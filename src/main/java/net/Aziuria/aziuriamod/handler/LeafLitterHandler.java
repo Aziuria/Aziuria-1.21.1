@@ -81,6 +81,12 @@ public class LeafLitterHandler {
                 || state.is(Blocks.ACACIA_LEAVES)
                 || state.is(Blocks.DARK_OAK_LEAVES)
                 || state.is(Blocks.MANGROVE_LEAVES)
-                || state.is(Blocks.CHERRY_LEAVES);
+                || state.is(Blocks.CHERRY_LEAVES)
+                // --- Aziuria Modded Leaves ---
+                || state.is(ModBlocks.APPLE_LEAVES.get())
+                || state.is(ModBlocks.PEAR_LEAVES.get())
+                || state.is(ModBlocks.AVOCADO_LEAVES.get())
+                || state.is(ModBlocks.CHERRY_LEAVES.get())
+                || state.is(ModBlocks.ORANGE_LEAVES.get());
     }
 }

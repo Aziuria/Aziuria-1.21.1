@@ -164,10 +164,12 @@ public class PickupCustomItemsGoal extends Goal {
                 || item == Items.STICK
                 || item == Items.APPLE
                 || item == ModItems.PEAR.get()
+                || item == ModItems.ORANGE.get()
                 || item == ModItems.CHERRY.get()
                 || item == ModItems.AVOCADO.get()
                 || item == ModBlocks.CHERRY_SAPLING.get().asItem()
                 || item == ModBlocks.AVOCADO_SAPLING.get().asItem()
+                || item == ModBlocks.ORANGE_SAPLING.get().asItem()
                 || item == ModBlocks.APPLE_SAPLING.get().asItem() // <-- Your modded apple sapling here
                 || item == ModBlocks.PEAR_SAPLING.get().asItem()) { // <-- Your modded pear sapling here
             return true;

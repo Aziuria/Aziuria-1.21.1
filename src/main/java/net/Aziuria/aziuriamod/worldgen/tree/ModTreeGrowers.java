@@ -101,5 +101,28 @@ public class ModTreeGrowers {
     public static final TreeGrower AVOCADO_VARIANT_7 = new TreeGrower(AziuriaMod.MOD_ID + ":avocado_variant_7",
             Optional.empty(), Optional.of(ModConfiguredFeatures.AVOCADO_KEY_VARIANT_7), Optional.empty());
 
+    // ---------------- ORANGE VARIANTS ----------------
+
+    public static final TreeGrower ORANGE_VARIANT_1 = new TreeGrower(AziuriaMod.MOD_ID + ":orange_variant_1",
+            Optional.empty(), Optional.of(ModConfiguredFeatures.ORANGE_KEY_VARIANT_1), Optional.empty());
+
+    public static final TreeGrower ORANGE_VARIANT_2 = new TreeGrower(AziuriaMod.MOD_ID + ":orange_variant_2",
+            Optional.empty(), Optional.of(ModConfiguredFeatures.ORANGE_KEY_VARIANT_2), Optional.empty());
+
+    public static final TreeGrower ORANGE_VARIANT_3 = new TreeGrower(AziuriaMod.MOD_ID + ":orange_variant_3",
+            Optional.empty(), Optional.of(ModConfiguredFeatures.ORANGE_KEY_VARIANT_3), Optional.empty());
+
+    public static final TreeGrower ORANGE_VARIANT_4 = new TreeGrower(AziuriaMod.MOD_ID + ":orange_variant_4",
+            Optional.empty(), Optional.of(ModConfiguredFeatures.ORANGE_KEY_VARIANT_4), Optional.empty());
+
+    public static final TreeGrower ORANGE_VARIANT_5 = new TreeGrower(AziuriaMod.MOD_ID + ":orange_variant_5",
+            Optional.empty(), Optional.of(ModConfiguredFeatures.ORANGE_KEY_VARIANT_5), Optional.empty());
+
+    public static final TreeGrower ORANGE_VARIANT_6 = new TreeGrower(AziuriaMod.MOD_ID + ":orange_variant_6",
+            Optional.empty(), Optional.of(ModConfiguredFeatures.ORANGE_KEY_VARIANT_6), Optional.empty());
+
+    public static final TreeGrower ORANGE_VARIANT_7 = new TreeGrower(AziuriaMod.MOD_ID + ":orange_variant_7",
+            Optional.empty(), Optional.of(ModConfiguredFeatures.ORANGE_KEY_VARIANT_7), Optional.empty());
+
 }
 

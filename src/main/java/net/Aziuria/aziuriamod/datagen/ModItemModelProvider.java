@@ -75,6 +75,7 @@ public class ModItemModelProvider extends ItemModelProvider {
         basicItem(ModItems.TEA_LEAVES.get());
         basicItem(ModItems.TEA_SEEDS.get());
         basicItem(ModItems.CHERRY.get());
+        basicItem(ModItems.ORANGE.get());
         basicItem(ModItems.BLACKCURRANT.get());
         basicItem(ModItems.STRAWBERRY.get());
         basicItem(ModItems.BLACKCURRANT_SEEDS.get());
@@ -82,6 +83,7 @@ public class ModItemModelProvider extends ItemModelProvider {
         basicItem(ModItems.PEAR.get());
         basicItem(ModItems.AVOCADO.get());
         basicItem(ModItems.APPLE_JUICE.get());
+        basicItem(ModItems.ORANGE_JUICE.get());
         basicItem(ModItems.PEAR_JUICE.get());
         basicItem(ModItems.CHERRY_JUICE.get());
         basicItem(ModItems.AVOCADO_JUICE.get());
@@ -138,6 +140,7 @@ public class ModItemModelProvider extends ItemModelProvider {
         saplingItem(ModBlocks.PEAR_SAPLING);
         saplingItem(ModBlocks.CHERRY_SAPLING);
         saplingItem(ModBlocks.AVOCADO_SAPLING);
+        saplingItem(ModBlocks.ORANGE_SAPLING);
     }
 
     private ItemModelBuilder saplingItem(DeferredBlock<Block> item) {

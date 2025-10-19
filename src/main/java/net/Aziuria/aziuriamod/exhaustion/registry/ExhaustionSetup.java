@@ -17,6 +17,7 @@ public class ExhaustionSetup {
         ExhaustionRegistry.register(Items.APPLE, 2);
         ExhaustionRegistry.register(Items.GOLDEN_APPLE, 2);   // high sugar, better boost
         ExhaustionRegistry.register(ModItems.PEAR.get(), 2);
+        ExhaustionRegistry.register(ModItems.ORANGE.get(), 2);
         ExhaustionRegistry.register(ModItems.AVOCADO.get(), 0); // heavy, small energy
         ExhaustionRegistry.register(ModItems.CHERRY.get(), 1);
         ExhaustionRegistry.register(ModItems.BLACKCURRANT.get(), 1);
@@ -78,6 +79,7 @@ public class ExhaustionSetup {
         ExhaustionRegistry.register(ModItems.APPLE_JUICE.get(), 2);
         ExhaustionRegistry.register(ModItems.PINEAPPLE_JUICE.get(), 1);
         ExhaustionRegistry.register(ModItems.PEAR_JUICE.get(), 1);
+        ExhaustionRegistry.register(ModItems.ORANGE_JUICE.get(), 1);
         ExhaustionRegistry.register(ModItems.CHERRY_JUICE.get(), 1);
         ExhaustionRegistry.register(ModItems.AVOCADO_JUICE.get(), 0);
         ExhaustionRegistry.register(ModItems.BLACKCURRANT_JUICE.get(), 1);

@@ -1,5 +1,6 @@
 package net.Aziuria.aziuriamod.villager.goals;
 
+import net.Aziuria.aziuriamod.block.ModBlocks;
 import net.Aziuria.aziuriamod.item.ModItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvents;
@@ -40,13 +41,27 @@ public class StoreWoodInChestGoal extends MoveToBlockGoal {
     }
 
     private boolean isStorableItem(ItemStack stack) {
-        return stack.is(ItemTags.LOGS)
-                || stack.is(ItemTags.SAPLINGS)
-                || stack.getItem() == ModItems.PEAR.get()
-                || stack.getItem() == ModItems.CHERRY.get()
-                || stack.getItem() == ModItems.AVOCADO.get()
-                || stack.getItem() == Items.APPLE
-                || stack.getItem() == Items.STICK;
+        return
+                // Vanilla logs and saplings
+                stack.is(ItemTags.LOGS) ||
+                        stack.is(ItemTags.SAPLINGS) ||
+
+                        // Vanilla items
+                        stack.getItem() == Items.APPLE ||
+                        stack.getItem() == Items.STICK ||
+
+                        // Custom fruit items
+                        stack.getItem() == ModItems.PEAR.get() ||
+                        stack.getItem() == ModItems.CHERRY.get() ||
+                        stack.getItem() == ModItems.AVOCADO.get() ||
+                        stack.getItem() == ModItems.ORANGE.get() ||
+
+                        // Custom saplings
+                        stack.getItem() == ModBlocks.APPLE_SAPLING.get().asItem() ||
+                        stack.getItem() == ModBlocks.ORANGE_SAPLING.get().asItem() ||
+                        stack.getItem() == ModBlocks.AVOCADO_SAPLING.get().asItem() ||
+                        stack.getItem() == ModBlocks.PEAR_SAPLING.get().asItem() ||
+                        stack.getItem() == ModBlocks.CHERRY_SAPLING.get().asItem();
     }
 
     @Override

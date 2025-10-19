@@ -24,12 +24,12 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.phys.BlockHitResult;
 
-public class ModAvocadoLeavesBlock extends LeavesBlock {
+public class ModOrangeLeavesBlock extends LeavesBlock {
 
     public static final IntegerProperty PICK_COUNT = IntegerProperty.create("pick_count", 0, 9);
     public static final IntegerProperty MAX_PICK = IntegerProperty.create("max_pick", 3, 9);
 
-    public ModAvocadoLeavesBlock(Properties properties) {
+    public ModOrangeLeavesBlock(Properties properties) {
         super(properties);
         this.registerDefaultState(this.defaultBlockState()
                 .setValue(PICK_COUNT, 0)
@@ -62,11 +62,11 @@ public class ModAvocadoLeavesBlock extends LeavesBlock {
             int maxPicks = state.getValue(MAX_PICK);
 
             if (currentPicks < maxPicks) {
-                // Drop an avocado
-                ItemStack avocado = new ItemStack(ModItems.AVOCADO.get());
-                ItemEntity avocadoEntity = new ItemEntity(level, pos.getX() + 0.5, pos.getY() + 0.7, pos.getZ() + 0.5, avocado);
-                avocadoEntity.setDefaultPickUpDelay();
-                level.addFreshEntity(avocadoEntity);
+                // Drop an orange
+                ItemStack orange = new ItemStack(ModItems.ORANGE.get());
+                ItemEntity orangeEntity = new ItemEntity(level, pos.getX() + 0.5, pos.getY() + 0.7, pos.getZ() + 0.5, orange);
+                orangeEntity.setDefaultPickUpDelay();
+                level.addFreshEntity(orangeEntity);
 
                 level.playSound(null, pos, SoundEvents.ITEM_PICKUP, SoundSource.BLOCKS, 0.5F, 1.0F);
 

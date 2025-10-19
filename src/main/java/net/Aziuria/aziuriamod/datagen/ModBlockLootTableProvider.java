@@ -116,12 +116,15 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
         dropSelf(ModBlocks.PEAR_SAPLING.get());
         dropSelf(ModBlocks.CHERRY_SAPLING.get());
         dropSelf(ModBlocks.AVOCADO_SAPLING.get());
+        dropSelf(ModBlocks.ORANGE_SAPLING.get());
         dropSelf(ModBlocks.FLAX_FLOWER_BLOCK.get());
 
         this.add(ModBlocks.APPLE_LEAVES.get(), block ->
                 createLeavesDrops(block, ModBlocks.APPLE_SAPLING.get(), NORMAL_LEAVES_SAPLING_CHANCES));
         this.add(ModBlocks.AVOCADO_LEAVES.get(), block ->
                 createLeavesDrops(block, ModBlocks.AVOCADO_SAPLING.get(), NORMAL_LEAVES_SAPLING_CHANCES));
+        this.add(ModBlocks.ORANGE_LEAVES.get(), block ->
+                createLeavesDrops(block, ModBlocks.ORANGE_SAPLING.get(), NORMAL_LEAVES_SAPLING_CHANCES));
         this.add(ModBlocks.PEAR_LEAVES.get(), block ->
                 createLeavesDrops(block, ModBlocks.PEAR_SAPLING.get(), NORMAL_LEAVES_SAPLING_CHANCES));
         this.add(ModBlocks.CHERRY_LEAVES.get(), block ->

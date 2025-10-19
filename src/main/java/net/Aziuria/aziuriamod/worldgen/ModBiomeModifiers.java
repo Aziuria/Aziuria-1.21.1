@@ -73,6 +73,14 @@ public class ModBiomeModifiers {
     public static final ResourceKey<BiomeModifier> AVOCADO_KEY_VARIANT_6 = registerKey("avocado_variant_6");
     public static final ResourceKey<BiomeModifier> AVOCADO_KEY_VARIANT_7 = registerKey("avocado_variant_7");
 
+    public static final ResourceKey<BiomeModifier> ORANGE_KEY_VARIANT_1 = registerKey("orange_variant_1");
+    public static final ResourceKey<BiomeModifier> ORANGE_KEY_VARIANT_2 = registerKey("orange_variant_2");
+    public static final ResourceKey<BiomeModifier> ORANGE_KEY_VARIANT_3 = registerKey("orange_variant_3");
+    public static final ResourceKey<BiomeModifier> ORANGE_KEY_VARIANT_4 = registerKey("orange_variant_4");
+    public static final ResourceKey<BiomeModifier> ORANGE_KEY_VARIANT_5 = registerKey("orange_variant_5");
+    public static final ResourceKey<BiomeModifier> ORANGE_KEY_VARIANT_6 = registerKey("orange_variant_6");
+    public static final ResourceKey<BiomeModifier> ORANGE_KEY_VARIANT_7 = registerKey("orange_variant_7");
+
     public static final ResourceKey<BiomeModifier> DARK_OAK_KEY_VARIANT_1 = registerKey("dark_oak_variant_1");
     public static final ResourceKey<BiomeModifier> DARK_OAK_KEY_VARIANT_2 = registerKey("dark_oak_variant_2");
 
@@ -566,6 +574,100 @@ public class ModBiomeModifiers {
                         biomes.getOrThrow(Biomes.GROVE)
                 ),
                 HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.AVOCADO_KEY_VARIANT_7)),
+                GenerationStep.Decoration.VEGETAL_DECORATION
+        ));
+
+        // ORANGE VARIANTS
+        context.register(ORANGE_KEY_VARIANT_1, new BiomeModifiers.AddFeaturesBiomeModifier(
+                HolderSet.direct(
+                        biomes.getOrThrow(Biomes.JUNGLE),
+                        biomes.getOrThrow(Biomes.BAMBOO_JUNGLE),
+                        biomes.getOrThrow(Biomes.SPARSE_JUNGLE),
+                        biomes.getOrThrow(Biomes.SAVANNA),
+                        biomes.getOrThrow(Biomes.SAVANNA_PLATEAU),
+                        biomes.getOrThrow(Biomes.WINDSWEPT_SAVANNA)
+                ),
+                HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.ORANGE_KEY_VARIANT_1)),
+                GenerationStep.Decoration.VEGETAL_DECORATION
+        ));
+
+        context.register(ORANGE_KEY_VARIANT_2, new BiomeModifiers.AddFeaturesBiomeModifier(
+                HolderSet.direct(
+                        biomes.getOrThrow(Biomes.JUNGLE),
+                        biomes.getOrThrow(Biomes.BAMBOO_JUNGLE),
+                        biomes.getOrThrow(Biomes.SPARSE_JUNGLE),
+                        biomes.getOrThrow(Biomes.SAVANNA),
+                        biomes.getOrThrow(Biomes.SAVANNA_PLATEAU),
+                        biomes.getOrThrow(Biomes.WINDSWEPT_SAVANNA)
+                ),
+                HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.ORANGE_KEY_VARIANT_2)),
+                GenerationStep.Decoration.VEGETAL_DECORATION
+        ));
+
+        // ORANGE VARIANTS
+        context.register(ORANGE_KEY_VARIANT_3, new BiomeModifiers.AddFeaturesBiomeModifier(
+                HolderSet.direct(
+                        biomes.getOrThrow(Biomes.JUNGLE),
+                        biomes.getOrThrow(Biomes.BAMBOO_JUNGLE),
+                        biomes.getOrThrow(Biomes.SPARSE_JUNGLE),
+                        biomes.getOrThrow(Biomes.SAVANNA),
+                        biomes.getOrThrow(Biomes.SAVANNA_PLATEAU),
+                        biomes.getOrThrow(Biomes.WINDSWEPT_SAVANNA)
+                ),
+                HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.ORANGE_KEY_VARIANT_3)),
+                GenerationStep.Decoration.VEGETAL_DECORATION
+        ));
+
+        context.register(ORANGE_KEY_VARIANT_4, new BiomeModifiers.AddFeaturesBiomeModifier(
+                HolderSet.direct(
+                        biomes.getOrThrow(Biomes.JUNGLE),
+                        biomes.getOrThrow(Biomes.BAMBOO_JUNGLE),
+                        biomes.getOrThrow(Biomes.SPARSE_JUNGLE),
+                        biomes.getOrThrow(Biomes.SAVANNA),
+                        biomes.getOrThrow(Biomes.SAVANNA_PLATEAU),
+                        biomes.getOrThrow(Biomes.WINDSWEPT_SAVANNA)
+                ),
+                HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.ORANGE_KEY_VARIANT_4)),
+                GenerationStep.Decoration.VEGETAL_DECORATION
+        ));
+
+        // ORANGE VARIANTS
+        context.register(ORANGE_KEY_VARIANT_5, new BiomeModifiers.AddFeaturesBiomeModifier(
+                HolderSet.direct(
+                        biomes.getOrThrow(Biomes.JUNGLE),
+                        biomes.getOrThrow(Biomes.BAMBOO_JUNGLE),
+                        biomes.getOrThrow(Biomes.SPARSE_JUNGLE),
+                        biomes.getOrThrow(Biomes.SAVANNA),
+                        biomes.getOrThrow(Biomes.SAVANNA_PLATEAU),
+                        biomes.getOrThrow(Biomes.WINDSWEPT_SAVANNA)
+                ),
+                HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.ORANGE_KEY_VARIANT_5)),
+                GenerationStep.Decoration.VEGETAL_DECORATION
+        ));
+
+        context.register(ORANGE_KEY_VARIANT_6, new BiomeModifiers.AddFeaturesBiomeModifier(
+                HolderSet.direct(
+                        biomes.getOrThrow(Biomes.JUNGLE),
+                        biomes.getOrThrow(Biomes.BAMBOO_JUNGLE),
+                        biomes.getOrThrow(Biomes.SPARSE_JUNGLE),
+                        biomes.getOrThrow(Biomes.SAVANNA),
+                        biomes.getOrThrow(Biomes.SAVANNA_PLATEAU),
+                        biomes.getOrThrow(Biomes.WINDSWEPT_SAVANNA)
+                ),
+                HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.ORANGE_KEY_VARIANT_6)),
+                GenerationStep.Decoration.VEGETAL_DECORATION
+        ));
+
+        context.register(ORANGE_KEY_VARIANT_7, new BiomeModifiers.AddFeaturesBiomeModifier(
+                HolderSet.direct(
+                        biomes.getOrThrow(Biomes.JUNGLE),
+                        biomes.getOrThrow(Biomes.BAMBOO_JUNGLE),
+                        biomes.getOrThrow(Biomes.SPARSE_JUNGLE),
+                        biomes.getOrThrow(Biomes.SAVANNA),
+                        biomes.getOrThrow(Biomes.SAVANNA_PLATEAU),
+                        biomes.getOrThrow(Biomes.WINDSWEPT_SAVANNA)
+                ),
+                HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.ORANGE_KEY_VARIANT_7)),
                 GenerationStep.Decoration.VEGETAL_DECORATION
         ));
 

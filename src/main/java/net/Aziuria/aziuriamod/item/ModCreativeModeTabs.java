@@ -148,6 +148,7 @@ public class ModCreativeModeTabs {
                         output.accept(ModItems.PANCAKE);
                         output.accept(ModItems.MILK_BOTTLE);
                         output.accept(ModItems.APPLE_JUICE);
+                        output.accept(ModItems.ORANGE_JUICE);
                         output.accept(ModItems.PINEAPPLE_JUICE);
                         output.accept(ModItems.PEAR_JUICE);
                         output.accept(ModItems.CHERRY_JUICE);
@@ -166,6 +167,7 @@ public class ModCreativeModeTabs {
                         output.accept(ModItems.ONION);
                         output.accept(ModItems.SPRING_ONION);
                         output.accept(ModItems.CORN);
+                        output.accept(ModItems.ORANGE);
                         output.accept(ModItems.PINEAPPLE);
                         output.accept(ModItems.PEAR);
                         output.accept(ModItems.CHERRY);
@@ -187,6 +189,7 @@ public class ModCreativeModeTabs {
                         output.accept(ModItems.COFFEE_SEEDS);
                         output.accept(ModItems.TEA_SEEDS);
                         output.accept(ModBlocks.APPLE_SAPLING);
+                        output.accept(ModBlocks.ORANGE_SAPLING);
                         output.accept(ModBlocks.PEAR_SAPLING);
                         output.accept(ModBlocks.CHERRY_SAPLING);
                         output.accept(ModBlocks.AVOCADO_SAPLING);
@@ -194,6 +197,7 @@ public class ModCreativeModeTabs {
                         output.accept(ModBlocks.PEAR_LEAVES);
                         output.accept(ModBlocks.CHERRY_LEAVES);
                         output.accept(ModBlocks.AVOCADO_LEAVES);
+                        output.accept(ModBlocks.ORANGE_LEAVES);
                         output.accept(ModItems.YUCCA_LEAVES);
                         output.accept(ModBlocks.YUCCA_PLANT_BLOCK);
                         output.accept(ModItems.FLAX_FLOWER);
