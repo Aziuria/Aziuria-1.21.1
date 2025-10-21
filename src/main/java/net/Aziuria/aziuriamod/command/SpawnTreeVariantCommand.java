@@ -14,7 +14,7 @@ public class SpawnTreeVariantCommand {  // Renamed class
 
     public static void register(CommandDispatcher<CommandSourceStack> dispatcher) {
         dispatcher.register(Commands.literal("spawn_tree_variant")  // Command name
-                .then(Commands.argument("variant", IntegerArgumentType.integer(1, 24)) // Allow variants 1-24
+                .then(Commands.argument("variant", IntegerArgumentType.integer(1, 38)) // Allow variants 1-24
                         .executes(ctx -> {
                             int variant = IntegerArgumentType.getInteger(ctx, "variant");
                             return spawnTreeVariant(ctx.getSource(), variant);  // Spawn method call
