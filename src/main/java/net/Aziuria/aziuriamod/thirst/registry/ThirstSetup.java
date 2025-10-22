@@ -97,7 +97,7 @@ public class ThirstSetup {
         ThirstRegistry.register(ModItems.GLOWBERRY_JUICE.get(), 4);
         ThirstRegistry.register(ModItems.STRAWBERRY_JUICE.get(), 4);
         ThirstRegistry.register(ModItems.TOMATO_JUICE.get(), 4);
-    //    ThirstRegistry.register(ModItems.BANANA_JUICE.get(), 4);
+        ThirstRegistry.register(ModItems.BANANA_JUICE.get(), 4);
         ThirstRegistry.register(ModItems.BANANA_SMOOTHIE.get(), 3);
     }
 }

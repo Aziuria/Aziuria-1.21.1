@@ -150,6 +150,7 @@ public class ModCreativeModeTabs {
                         output.accept(ModItems.MILK_BOTTLE);
                         output.accept(ModItems.APPLE_JUICE);
                         output.accept(ModItems.ORANGE_JUICE);
+                        output.accept(ModItems.BANANA_JUICE);
                         output.accept(ModItems.PINEAPPLE_JUICE);
                         output.accept(ModItems.PEAR_JUICE);
                         output.accept(ModItems.CHERRY_JUICE);

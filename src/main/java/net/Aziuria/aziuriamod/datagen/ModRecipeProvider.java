@@ -1893,6 +1893,12 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .unlockedBy("has_orange", has(ModItems.ORANGE.get()))
                 .save(recipeOutput);
 
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, ModItems.BANANA_JUICE.get(), 1)
+                .requires(ModItems.BANANA.get())
+                .requires(Items.POTION)  // Vanilla water bottle (glass bottle + water)
+                .unlockedBy("has_banana", has(ModItems.BANANA.get()))
+                .save(recipeOutput);
+
         ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, ModItems.TOMATO_JUICE.get(), 1)
                 .requires(ModItems.TOMATO.get())
                 .requires(Items.POTION)  // Vanilla water bottle (glass bottle + water)

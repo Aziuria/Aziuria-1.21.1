@@ -351,6 +351,15 @@ public class ModItems {
                     32,
                     UseAnim.DRINK));
 
+    public static final DeferredItem<DrinkableItem> BANANA_JUICE = ITEMS.register("banana_juice",
+            () -> new DrinkableItem(
+                    new Item.Properties()
+                            .food(ModFoodProperties.BANANA_JUICE)
+                            .stacksTo(1)
+                            .craftRemainder(Items.GLASS_BOTTLE),
+                    32,
+                    UseAnim.DRINK));
+
     public static final DeferredItem<SmoothieItem> BANANA_SMOOTHIE = ITEMS.register("banana_smoothie",
             () -> new SmoothieItem(
                     new Item.Properties()
