@@ -4,10 +4,7 @@ import net.Aziuria.aziuriamod.AziuriaMod;
 import net.Aziuria.aziuriamod.block.ModBlocks;
 import net.Aziuria.aziuriamod.block.world.IslandBiomeType;
 import net.Aziuria.aziuriamod.block.world.IslandType;
-import net.Aziuria.aziuriamod.item.custom.DrinkableItem;
-import net.Aziuria.aziuriamod.item.custom.IslandThrowableItem;
-import net.Aziuria.aziuriamod.item.custom.KnifeItem;
-import net.Aziuria.aziuriamod.item.custom.MilkBottleItem;
+import net.Aziuria.aziuriamod.item.custom.*;
 import net.minecraft.world.item.*;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredHolder;
@@ -127,6 +124,8 @@ public class ModItems {
                     new Item.Properties().durability(ArmorItem.Type.BOOTS.getDurability(12))));
 
     public static final DeferredItem<Item> LASHING = ITEMS.register("lashing",
+            () -> new Item(new Item.Properties()));
+    public static final DeferredItem<Item> EMPTY_CUP = ITEMS.register("empty_cup",
             () -> new Item(new Item.Properties()));
 
     public static final DeferredItem<Item> RADISH = ITEMS.register("radish",
@@ -351,6 +350,13 @@ public class ModItems {
                             .craftRemainder(Items.GLASS_BOTTLE),
                     32,
                     UseAnim.DRINK));
+
+    public static final DeferredItem<SmoothieItem> BANANA_SMOOTHIE = ITEMS.register("banana_smoothie",
+            () -> new SmoothieItem(
+                    new Item.Properties()
+                            .food(ModFoodProperties.BANANA_SMOOTHIE)
+                            .stacksTo(1)
+            ));
 
     public static final DeferredItem<MilkBottleItem> MILK_BOTTLE = ITEMS.register("milk_bottle",
             () -> new MilkBottleItem(

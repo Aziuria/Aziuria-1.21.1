@@ -260,4 +260,23 @@ public class ModFoodProperties {
             .effect(() -> new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 60, 0), 0.2f)  // slight energy boost
             .effect(() -> new MobEffectInstance(MobEffects.REGENERATION, 40, 0), 0.1f)   // minor healing
             .build();
+
+    // Banana smoothie (rich, nutritious drink)
+    public static final FoodProperties BANANA_SMOOTHIE = new FoodProperties.Builder()
+            .nutrition(6)               // hearty smoothie, more filling
+            .saturationModifier(0.7f)   // excellent hunger refill
+            .alwaysEdible()
+            .effect(() -> new MobEffectInstance(MobEffects.REGENERATION, 20 * 10, 0), 0.4f)     // gentle healing (10s)
+            .effect(() -> new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 20 * 10, 0), 0.2f) // feels strong/energized
+            .effect(() -> new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 20 * 8, 0), 0.25f)   // mild sugar boost (8s)
+            .build();
+
+//    // Banana juice (light drink)
+//    public static final FoodProperties BANANA_JUICE = new FoodProperties.Builder()
+//            .nutrition(3)               // light drink
+//            .saturationModifier(0.35f)  // refreshing, moderate satiation
+//            .alwaysEdible()
+//            .effect(() -> new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 20 * 10, 0), 0.25f)  // mild energy rush (10s)
+//            .effect(() -> new MobEffectInstance(MobEffects.REGENERATION, 20 * 5, 0), 0.15f)     // light healing (5s)
+//            .build();
 }

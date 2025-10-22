@@ -199,6 +199,24 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .unlockedBy("has_chicken", has(Items.CHICKEN))
                 .save(recipeOutput);
 
+        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ModItems.EMPTY_CUP.get(), 1)
+                .pattern("S S")
+                .pattern("SSS")
+                .define('S', Items.PAPER)
+                .unlockedBy("has_paper", has(Items.PAPER))
+                .save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.FOOD, ModItems.BANANA_SMOOTHIE.get(), 1)
+                .pattern("BMB")
+                .pattern("SCI")
+                .define('B', ModItems.BANANA.get())
+                .define('M', ModItems.MILK_BOTTLE.get())
+                .define('S', Items.SUGAR)
+                .define('I', Items.ICE)
+                .define('C', ModItems.EMPTY_CUP.get())
+                .unlockedBy("has_empty_cup", has(ModItems.EMPTY_CUP.get()))
+                .save(recipeOutput);
+
         ShapedRecipeBuilder.shaped(RecipeCategory.FOOD, ModItems.BATTERED_CHICKEN.get(), 3)
                 .pattern("SSS")
                 .pattern(" A ")

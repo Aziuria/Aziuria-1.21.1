@@ -50,6 +50,7 @@ public class ModItemModelProvider extends ItemModelProvider {
         basicItem(ModItems.STEEL_NUGGET.get());
         basicItem(ModItems.STEEL_INGOT.get());
         basicItem(ModItems.SACK_ITEM.get());
+        basicItem(ModItems.EMPTY_CUP.get());
         basicItem(ModItems.STEEL_ALLOY_MESH.get());
 
         basicItem(ModItems.RADISH_SEEDS.get());
@@ -95,6 +96,7 @@ public class ModItemModelProvider extends ItemModelProvider {
         basicItem(ModItems.GLOWBERRY_JUICE.get());
         basicItem(ModItems.SWEETBERRY_JUICE.get());
         basicItem(ModItems.TOMATO_JUICE.get());
+        basicItem(ModItems.BANANA_SMOOTHIE.get());
         basicItem(ModItems.YUCCA_LEAVES.get());
         basicItem(ModItems.COFFEE.get());
         basicItem(ModItems.TEA.get());

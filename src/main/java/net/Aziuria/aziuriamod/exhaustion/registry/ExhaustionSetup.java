@@ -88,5 +88,7 @@ public class ExhaustionSetup {
         ExhaustionRegistry.register(ModItems.GLOWBERRY_JUICE.get(), 1);
         ExhaustionRegistry.register(ModItems.STRAWBERRY_JUICE.get(), 1);
         ExhaustionRegistry.register(ModItems.TOMATO_JUICE.get(), 1);
+     //   ExhaustionRegistry.register(ModItems.BANANA_JUICE.get(), 1);
+        ExhaustionRegistry.register(ModItems.BANANA_SMOOTHIE.get(), 2);
     }
 }

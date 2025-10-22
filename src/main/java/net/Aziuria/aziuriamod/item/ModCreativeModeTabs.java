@@ -22,6 +22,7 @@ public class ModCreativeModeTabs {
                     .displayItems((itemDisplayParameters, output) -> {
 
                         output.accept(ModItems.SACK_ITEM.get());
+                        output.accept(ModItems.EMPTY_CUP.get());
                         output.accept(ModItems.LASHING);
                         output.accept(ModItems.STEEL_ALLOY_MESH);
                         output.accept(ModItems.STEEL_INGOT);
@@ -160,6 +161,7 @@ public class ModCreativeModeTabs {
                         output.accept(ModItems.TOMATO_JUICE);
                         output.accept(ModItems.COFFEE);
                         output.accept(ModItems.TEA);
+                        output.accept(ModItems.BANANA_SMOOTHIE);
                         output.accept(ModItems.RADISH);
                         output.accept(ModItems.CUCUMBER);
                         output.accept(ModItems.TOMATO);

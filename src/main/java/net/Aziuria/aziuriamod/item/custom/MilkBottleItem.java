@@ -72,4 +72,14 @@ public class MilkBottleItem extends Item {
     public SoundEvent getDrinkingSound() {
         return SoundEvents.GENERIC_DRINK; // vanilla drinking sound
     }
+
+    @Override
+    public boolean hasCraftingRemainingItem(ItemStack stack) {
+        return true;
+    }
+
+    @Override
+    public ItemStack getCraftingRemainingItem(ItemStack stack) {
+        return new ItemStack(Items.GLASS_BOTTLE);
+    }
 }
