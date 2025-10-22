@@ -55,10 +55,12 @@ public class StoreWoodInChestGoal extends MoveToBlockGoal {
                         stack.getItem() == ModItems.CHERRY.get() ||
                         stack.getItem() == ModItems.AVOCADO.get() ||
                         stack.getItem() == ModItems.ORANGE.get() ||
+                        stack.getItem() == ModItems.BANANA.get() ||
 
                         // Custom saplings
                         stack.getItem() == ModBlocks.APPLE_SAPLING.get().asItem() ||
                         stack.getItem() == ModBlocks.ORANGE_SAPLING.get().asItem() ||
+                        stack.getItem() == ModBlocks.BANANA_SAPLING.get().asItem() ||
                         stack.getItem() == ModBlocks.AVOCADO_SAPLING.get().asItem() ||
                         stack.getItem() == ModBlocks.PEAR_SAPLING.get().asItem() ||
                         stack.getItem() == ModBlocks.CHERRY_SAPLING.get().asItem();

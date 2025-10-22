@@ -92,6 +92,14 @@ public class ModConfiguredFeatures {
     public static final ResourceKey<ConfiguredFeature<?, ?>> ORANGE_KEY_VARIANT_6 = registerKey("orange_variant_6");
     public static final ResourceKey<ConfiguredFeature<?, ?>> ORANGE_KEY_VARIANT_7 = registerKey("orange_variant_7");
 
+    public static final ResourceKey<ConfiguredFeature<?, ?>> BANANA_KEY_VARIANT_1 = registerKey("banana_variant_1");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> BANANA_KEY_VARIANT_2 = registerKey("banana_variant_2");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> BANANA_KEY_VARIANT_3 = registerKey("banana_variant_3");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> BANANA_KEY_VARIANT_4 = registerKey("banana_variant_4");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> BANANA_KEY_VARIANT_5 = registerKey("banana_variant_5");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> BANANA_KEY_VARIANT_6 = registerKey("banana_variant_6");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> BANANA_KEY_VARIANT_7 = registerKey("banana_variant_7");
+
     public static final ResourceKey<ConfiguredFeature<?, ?>> DARK_OAK_VARIANT_1 = registerKey("dark_oak_variant_1");
     public static final ResourceKey<ConfiguredFeature<?, ?>> DARK_OAK_VARIANT_2 = registerKey("dark_oak_variant_2");
     public static final ResourceKey<ConfiguredFeature<?, ?>> BIRCH_VARIANT_1 = registerKey("birch_variant_1");
@@ -685,6 +693,131 @@ public class ModConfiguredFeatures {
                         .decorators(List.of(
                                 new LeaveVineDecorator(0.15f) // optional light vines
                         ))
+                        .build()
+        );
+
+        // Variant 1 - Tall, slightly spreading canopy, minimal side branches
+        int trunkHeight36 = 6 + random.nextInt(2); // banana trees usually tall
+        int branchSpread36 = 1 + random.nextInt(1); // slight spread
+        int forks36 = 2;
+        int foliageRadius36 = 2 + random.nextInt(1);
+        int foliageOffset36 = 1;
+
+        register(context, BANANA_KEY_VARIANT_1, Feature.TREE,
+                new TreeConfiguration.TreeConfigurationBuilder(
+                        BlockStateProvider.simple(Blocks.JUNGLE_LOG), // still use jungle log
+                        new ForkingTrunkPlacer(trunkHeight36, forks36, branchSpread36),
+                        BlockStateProvider.simple(ModBlocks.BANANA_LEAVES.get()),
+                        new BlobFoliagePlacer(ConstantInt.of(foliageRadius36), ConstantInt.of(foliageOffset36), 4),
+                        new TwoLayersFeatureSize(2, 0, 2)
+                )
+                        .decorators(List.of(new LeaveVineDecorator(0.1f))) // light vines
+                        .build()
+        );
+
+// Variant 2 - Medium height, compact canopy
+        int trunkHeight37 = 5 + random.nextInt(2);
+        int branchSpread37 = 1;
+        int forks37 = 2;
+        int foliageRadius37 = 2 + random.nextInt(1);
+        int foliageOffset37 = 1;
+
+        register(context, BANANA_KEY_VARIANT_2, Feature.TREE,
+                new TreeConfiguration.TreeConfigurationBuilder(
+                        BlockStateProvider.simple(Blocks.JUNGLE_LOG),
+                        new ForkingTrunkPlacer(trunkHeight37, forks37, branchSpread37),
+                        BlockStateProvider.simple(ModBlocks.BANANA_LEAVES.get()),
+                        new BlobFoliagePlacer(ConstantInt.of(foliageRadius37), ConstantInt.of(foliageOffset37), 3),
+                        new TwoLayersFeatureSize(1, 0, 2)
+                ).build()
+        );
+
+// Variant 3 - Slim, tall, minimal side leaves
+        int trunkHeight38 = 7 + random.nextInt(2);
+        int branchSpread38 = 1;
+        int forks38 = 1;
+        int foliageRadius38 = 2 + random.nextInt(1);
+        int foliageOffset38 = 0;
+
+        register(context, BANANA_KEY_VARIANT_3, Feature.TREE,
+                new TreeConfiguration.TreeConfigurationBuilder(
+                        BlockStateProvider.simple(Blocks.JUNGLE_LOG),
+                        new ForkingTrunkPlacer(trunkHeight38, forks38, branchSpread38),
+                        BlockStateProvider.simple(ModBlocks.BANANA_LEAVES.get()),
+                        new FancyFoliagePlacer(ConstantInt.of(foliageRadius38), ConstantInt.of(foliageOffset38), 2),
+                        new TwoLayersFeatureSize(2, 0, 2)
+                ).build()
+        );
+
+// Variant 4 - Shorter, bushier top
+        int trunkHeight39 = 4 + random.nextInt(1);
+        int branchSpread39 = 1;
+        int forks39 = 1;
+        int foliageRadius39 = 2;
+        int foliageOffset39 = 1;
+
+        register(context, BANANA_KEY_VARIANT_4, Feature.TREE,
+                new TreeConfiguration.TreeConfigurationBuilder(
+                        BlockStateProvider.simple(Blocks.JUNGLE_LOG),
+                        new ForkingTrunkPlacer(trunkHeight39, forks39, branchSpread39),
+                        BlockStateProvider.simple(ModBlocks.BANANA_LEAVES.get()),
+                        new FancyFoliagePlacer(ConstantInt.of(foliageRadius39), ConstantInt.of(foliageOffset39), 3),
+                        new TwoLayersFeatureSize(1, 0, 1)
+                ).build()
+        );
+
+// Variant 5 - Medium, slightly denser canopy
+        int trunkHeight40 = 5 + random.nextInt(1);
+        int branchSpread40 = 1;
+        int forks40 = 2;
+        int foliageRadius40 = 2;
+        int foliageOffset40 = 2;
+
+        register(context, BANANA_KEY_VARIANT_5, Feature.TREE,
+                new TreeConfiguration.TreeConfigurationBuilder(
+                        BlockStateProvider.simple(Blocks.JUNGLE_LOG),
+                        new ForkingTrunkPlacer(trunkHeight40, forks40, branchSpread40),
+                        BlockStateProvider.simple(ModBlocks.BANANA_LEAVES.get()),
+                        new FancyFoliagePlacer(ConstantInt.of(foliageRadius40), ConstantInt.of(foliageOffset40), 3),
+                        new TwoLayersFeatureSize(1, 0, 2)
+                ).build()
+        );
+
+// Variant 6 - Tall, slightly spreading, with light vines
+        int trunkHeight41 = 7 + random.nextInt(1);
+        int branchSpread41 = 1;
+        int forks41 = 2;
+        int foliageRadius41 = 2;
+        int foliageOffset41 = 0;
+
+        register(context, BANANA_KEY_VARIANT_6, Feature.TREE,
+                new TreeConfiguration.TreeConfigurationBuilder(
+                        BlockStateProvider.simple(Blocks.JUNGLE_LOG),
+                        new ForkingTrunkPlacer(trunkHeight41, forks41, branchSpread41),
+                        BlockStateProvider.simple(ModBlocks.BANANA_LEAVES.get()),
+                        new BlobFoliagePlacer(ConstantInt.of(foliageRadius41), ConstantInt.of(foliageOffset41), 3),
+                        new TwoLayersFeatureSize(2, 0, 2)
+                )
+                        .decorators(List.of(new LeaveVineDecorator(0.15f)))
+                        .build()
+        );
+
+// Variant 7 - Layered canopy, tall, slim
+        int trunkHeight42 = 6 + random.nextInt(2);
+        int branchSpread42 = 1;
+        int forks42 = 2;
+        int foliageRadius42 = 2;
+        int foliageOffset42 = 1;
+
+        register(context, BANANA_KEY_VARIANT_7, Feature.TREE,
+                new TreeConfiguration.TreeConfigurationBuilder(
+                        BlockStateProvider.simple(Blocks.JUNGLE_LOG),
+                        new ForkingTrunkPlacer(trunkHeight42, forks42, branchSpread42),
+                        BlockStateProvider.simple(ModBlocks.BANANA_LEAVES.get()),
+                        new FancyFoliagePlacer(ConstantInt.of(foliageRadius42), ConstantInt.of(foliageOffset42), 3),
+                        new TwoLayersFeatureSize(2, 0, 2)
+                )
+                        .decorators(List.of(new LeaveVineDecorator(0.1f)))
                         .build()
         );
 

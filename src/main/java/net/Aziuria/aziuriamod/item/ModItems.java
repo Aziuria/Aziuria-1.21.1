@@ -220,6 +220,8 @@ public class ModItems {
             () -> new Item(new Item.Properties().food(ModFoodProperties.AVOCADO)));
     public static final DeferredItem<Item> ORANGE = ITEMS.register("orange",
             () -> new Item(new Item.Properties().food(ModFoodProperties.ORANGE)));
+    public static final DeferredItem<Item> BANANA = ITEMS.register("banana",
+            () -> new Item(new Item.Properties().food(ModFoodProperties.BANANA)));
 
     public static final DeferredItem<Item> STRAWBERRY = ITEMS.register("strawberry",
             () -> new Item(new Item.Properties().food(ModFoodProperties.STRAWBERRY)));

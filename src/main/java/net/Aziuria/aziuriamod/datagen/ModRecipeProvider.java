@@ -145,6 +145,16 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .unlockedBy("has_pear", has(ModItems.PEAR.get()))
                 .save(recipeOutput);
 
+        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ModBlocks.BANANA_SAPLING.get(), 1)
+                .pattern(" A ")
+                .pattern(" D ")
+                .pattern(" B ")
+                .define('A', ModItems.BANANA.get())
+                .define('B', Items.BUCKET)
+                .define('D', Blocks.DIRT)
+                .unlockedBy("has_banana", has(ModItems.BANANA.get()))
+                .save(recipeOutput);
+
         ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ModBlocks.CHERRY_SAPLING.get(), 1)
                 .pattern(" A ")
                 .pattern(" D ")

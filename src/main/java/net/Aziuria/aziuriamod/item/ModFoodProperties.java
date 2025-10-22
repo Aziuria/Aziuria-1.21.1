@@ -251,4 +251,13 @@ public class ModFoodProperties {
             .effect(() -> new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 100, 0), 0.15f) // light refresh boost
             .effect(() -> new MobEffectInstance(MobEffects.REGENERATION, 40, 0), 0.1f)     // slight healing
             .build();
+
+    // Banana fruit (snack)
+    public static final FoodProperties BANANA = new FoodProperties.Builder()
+            .nutrition(5)               // slightly higher than orange, gives decent energy
+            .saturationModifier(0.5f)  // fills hunger efficiently
+            .alwaysEdible()            // can eat even if not hungry
+            .effect(() -> new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 60, 0), 0.2f)  // slight energy boost
+            .effect(() -> new MobEffectInstance(MobEffects.REGENERATION, 40, 0), 0.1f)   // minor healing
+            .build();
 }

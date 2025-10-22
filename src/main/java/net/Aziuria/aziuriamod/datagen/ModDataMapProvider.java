@@ -41,6 +41,7 @@ public class ModDataMapProvider extends DataMapProvider {
                 .add(ModItems.PEAR.getId(), new Compostable(0.45f), false)
                 .add(ModItems.ORANGE.getId(), new Compostable(0.45f), false)
                 .add(ModItems.AVOCADO.getId(), new Compostable(0.45f), false)
+                .add(ModItems.BANANA.getId(), new Compostable(0.45f), false)
                 .add(ModItems.CHERRY.getId(), new Compostable(0.45f), false)
                 .add(ModItems.BLACKCURRANT.getId(), new Compostable(0.45f), false)
                 .add(ModItems.STRAWBERRY.getId(), new Compostable(0.45f), false)
@@ -57,6 +58,8 @@ public class ModDataMapProvider extends DataMapProvider {
                 .add(ModBlocks.AVOCADO_SAPLING.getId(), new Compostable(0.30f), false)
                 .add(ModBlocks.ORANGE_LEAVES.getId(), new Compostable(0.30f), false)
                 .add(ModBlocks.ORANGE_SAPLING.getId(), new Compostable(0.30f), false)
+                .add(ModBlocks.BANANA_LEAVES.getId(), new Compostable(0.30f), false)
+                .add(ModBlocks.BANANA_SAPLING.getId(), new Compostable(0.30f), false)
                 .add(ModItems.YUCCA_PLANT.getId(), new Compostable(0.30f), false)
                 .add(ModItems.YUCCA_LEAVES.getId(), new Compostable(0.30f), false)
                 .add(ModItems.FLAX_FLOWER.getId(), new Compostable(0.30f), false);

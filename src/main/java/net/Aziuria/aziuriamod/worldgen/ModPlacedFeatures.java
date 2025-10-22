@@ -87,6 +87,14 @@ public class ModPlacedFeatures {
     public static final ResourceKey<PlacedFeature> ORANGE_KEY_VARIANT_6 = registerKey("orange_variant_6");
     public static final ResourceKey<PlacedFeature> ORANGE_KEY_VARIANT_7 = registerKey("orange_variant_7");
 
+    public static final ResourceKey<PlacedFeature> BANANA_KEY_VARIANT_1 = registerKey("banana_variant_1");
+    public static final ResourceKey<PlacedFeature> BANANA_KEY_VARIANT_2 = registerKey("banana_variant_2");
+    public static final ResourceKey<PlacedFeature> BANANA_KEY_VARIANT_3 = registerKey("banana_variant_3");
+    public static final ResourceKey<PlacedFeature> BANANA_KEY_VARIANT_4 = registerKey("banana_variant_4");
+    public static final ResourceKey<PlacedFeature> BANANA_KEY_VARIANT_5 = registerKey("banana_variant_5");
+    public static final ResourceKey<PlacedFeature> BANANA_KEY_VARIANT_6 = registerKey("banana_variant_6");
+    public static final ResourceKey<PlacedFeature> BANANA_KEY_VARIANT_7 = registerKey("banana_variant_7");
+
     public static final ResourceKey<PlacedFeature> DARK_OAK_KEY_VARIANT_1 = registerKey("dark_oak_variant_1");
     public static final ResourceKey<PlacedFeature> DARK_OAK_KEY_VARIANT_2 = registerKey("dark_oak_variant_2");
 
@@ -703,6 +711,106 @@ public class ModPlacedFeatures {
 
             register(context, ORANGE_KEY_VARIANT_7,
                     configuredFeatures.getOrThrow(ModConfiguredFeatures.ORANGE_KEY_VARIANT_7),
+                    modifiers
+            );
+        }
+
+        // ---------------- BANANA VARIANTS ----------------
+
+// Banana Variant 1
+        {
+            List<PlacementModifier> modifiers = new ArrayList<>(VegetationPlacements.treePlacement(
+                    NoiseThresholdCountPlacement.of(0.8, 0, 1),
+                    ModBlocks.BANANA_SAPLING.get()
+            ));
+            modifiers.add(RarityFilter.onAverageOnceEvery(15));
+
+            register(context, BANANA_KEY_VARIANT_1,
+                    configuredFeatures.getOrThrow(ModConfiguredFeatures.BANANA_KEY_VARIANT_1),
+                    modifiers
+            );
+        }
+
+// Banana Variant 2
+        {
+            List<PlacementModifier> modifiers = new ArrayList<>(VegetationPlacements.treePlacement(
+                    NoiseThresholdCountPlacement.of(0.8, 0, 1),
+                    ModBlocks.BANANA_SAPLING.get()
+            ));
+            modifiers.add(RarityFilter.onAverageOnceEvery(18)); // slightly rarer
+
+            register(context, BANANA_KEY_VARIANT_2,
+                    configuredFeatures.getOrThrow(ModConfiguredFeatures.BANANA_KEY_VARIANT_2),
+                    modifiers
+            );
+        }
+
+// Banana Variant 3
+        {
+            List<PlacementModifier> modifiers = new ArrayList<>(VegetationPlacements.treePlacement(
+                    NoiseThresholdCountPlacement.of(0.8, 0, 2),
+                    ModBlocks.BANANA_SAPLING.get()
+            ));
+            modifiers.add(RarityFilter.onAverageOnceEvery(14));
+
+            register(context, BANANA_KEY_VARIANT_3,
+                    configuredFeatures.getOrThrow(ModConfiguredFeatures.BANANA_KEY_VARIANT_3),
+                    modifiers
+            );
+        }
+
+// Banana Variant 4
+        {
+            List<PlacementModifier> modifiers = new ArrayList<>(VegetationPlacements.treePlacement(
+                    NoiseThresholdCountPlacement.of(0.8, 0, 1),
+                    ModBlocks.BANANA_SAPLING.get()
+            ));
+            modifiers.add(RarityFilter.onAverageOnceEvery(15));
+
+            register(context, BANANA_KEY_VARIANT_4,
+                    configuredFeatures.getOrThrow(ModConfiguredFeatures.BANANA_KEY_VARIANT_4),
+                    modifiers
+            );
+        }
+
+// Banana Variant 5
+        {
+            List<PlacementModifier> modifiers = new ArrayList<>(VegetationPlacements.treePlacement(
+                    NoiseThresholdCountPlacement.of(0.8, 0, 2),
+                    ModBlocks.BANANA_SAPLING.get()
+            ));
+            modifiers.add(RarityFilter.onAverageOnceEvery(12));
+
+            register(context, BANANA_KEY_VARIANT_5,
+                    configuredFeatures.getOrThrow(ModConfiguredFeatures.BANANA_KEY_VARIANT_5),
+                    modifiers
+            );
+        }
+
+// Banana Variant 6
+        {
+            List<PlacementModifier> modifiers = new ArrayList<>(VegetationPlacements.treePlacement(
+                    NoiseThresholdCountPlacement.of(0.8, 0, 1),
+                    ModBlocks.BANANA_SAPLING.get()
+            ));
+            modifiers.add(RarityFilter.onAverageOnceEvery(14));
+
+            register(context, BANANA_KEY_VARIANT_6,
+                    configuredFeatures.getOrThrow(ModConfiguredFeatures.BANANA_KEY_VARIANT_6),
+                    modifiers
+            );
+        }
+
+// Banana Variant 7
+        {
+            List<PlacementModifier> modifiers = new ArrayList<>(VegetationPlacements.treePlacement(
+                    NoiseThresholdCountPlacement.of(0.8, 0, 2),
+                    ModBlocks.BANANA_SAPLING.get()
+            ));
+            modifiers.add(RarityFilter.onAverageOnceEvery(13));
+
+            register(context, BANANA_KEY_VARIANT_7,
+                    configuredFeatures.getOrThrow(ModConfiguredFeatures.BANANA_KEY_VARIANT_7),
                     modifiers
             );
         }

@@ -14,7 +14,7 @@ public class SpawnTreeVariantCommand {  // Renamed class
 
     public static void register(CommandDispatcher<CommandSourceStack> dispatcher) {
         dispatcher.register(Commands.literal("spawn_tree_variant")  // Command name
-                .then(Commands.argument("variant", IntegerArgumentType.integer(1, 38)) // Allow variants 1-24
+                .then(Commands.argument("variant", IntegerArgumentType.integer(1, 45)) // Allow variants 1-24
                         .executes(ctx -> {
                             int variant = IntegerArgumentType.getInteger(ctx, "variant");
                             return spawnTreeVariant(ctx.getSource(), variant);  // Spawn method call
@@ -243,6 +243,43 @@ public class SpawnTreeVariantCommand {  // Renamed class
                 return level.registryAccess()
                         .registryOrThrow(net.minecraft.core.registries.Registries.CONFIGURED_FEATURE)
                         .get(ModConfiguredFeatures.ORANGE_KEY_VARIANT_7);
+            }
+
+            // New banana variants added here
+            case 39 -> {
+                return level.registryAccess()
+                        .registryOrThrow(net.minecraft.core.registries.Registries.CONFIGURED_FEATURE)
+                        .get(ModConfiguredFeatures.BANANA_KEY_VARIANT_1);
+            }
+            case 40 -> {
+                return level.registryAccess()
+                        .registryOrThrow(net.minecraft.core.registries.Registries.CONFIGURED_FEATURE)
+                        .get(ModConfiguredFeatures.BANANA_KEY_VARIANT_2);
+            }
+            case 41 -> {
+                return level.registryAccess()
+                        .registryOrThrow(net.minecraft.core.registries.Registries.CONFIGURED_FEATURE)
+                        .get(ModConfiguredFeatures.BANANA_KEY_VARIANT_3);
+            }
+            case 42 -> {
+                return level.registryAccess()
+                        .registryOrThrow(net.minecraft.core.registries.Registries.CONFIGURED_FEATURE)
+                        .get(ModConfiguredFeatures.BANANA_KEY_VARIANT_4);
+            }
+            case 43 -> {
+                return level.registryAccess()
+                        .registryOrThrow(net.minecraft.core.registries.Registries.CONFIGURED_FEATURE)
+                        .get(ModConfiguredFeatures.BANANA_KEY_VARIANT_5);
+            }
+            case 44 -> {
+                return level.registryAccess()
+                        .registryOrThrow(net.minecraft.core.registries.Registries.CONFIGURED_FEATURE)
+                        .get(ModConfiguredFeatures.BANANA_KEY_VARIANT_6);
+            }
+            case 45 -> {
+                return level.registryAccess()
+                        .registryOrThrow(net.minecraft.core.registries.Registries.CONFIGURED_FEATURE)
+                        .get(ModConfiguredFeatures.BANANA_KEY_VARIANT_7);
             }
 
             default -> {

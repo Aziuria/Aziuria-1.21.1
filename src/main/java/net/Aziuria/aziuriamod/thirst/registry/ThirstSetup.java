@@ -21,6 +21,7 @@ public class ThirstSetup {
         ThirstRegistry.register(Items.CHORUS_FRUIT, 2);
         ThirstRegistry.register(ModItems.PINEAPPLE.get(), 3);
         ThirstRegistry.register(ModItems.PEAR.get(), 4);
+        ThirstRegistry.register(ModItems.BANANA.get(), 0);
         ThirstRegistry.register(ModItems.AVOCADO.get(), -2);
         ThirstRegistry.register(ModItems.CHERRY.get(), 2);
         ThirstRegistry.register(ModItems.BLACKCURRANT.get(), 2);
