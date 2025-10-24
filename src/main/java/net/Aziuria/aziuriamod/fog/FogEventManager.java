@@ -147,6 +147,8 @@ public class FogEventManager {
             }
 
             if (activeFog == null && time >= nextFogCheckTime) {
+                // Skip fog for first day
+                if (time < 24000) return;
                 for (FogType type : FogRegistry.getAll()) {
                     if (type.shouldStart(serverLevel, random)) {
 
