@@ -66,9 +66,9 @@ public class ExhaustionSetup {
         ExhaustionRegistry.register(Items.COOKED_MUTTON, 1);
         ExhaustionRegistry.register(Items.COOKED_RABBIT, 1);
         ExhaustionRegistry.register(ModItems.CHICKEN_NUGGETS.get(), 0);
-        ExhaustionRegistry.register(ModItems.BEEF_BURGER.get(), 0);
-        ExhaustionRegistry.register(ModItems.CHEESEBURGER.get(), 0);
-        ExhaustionRegistry.register(ModItems.PORKCHOP_BURGER.get(), 0);
+        ExhaustionRegistry.register(ModItems.BEEF_BURGER.get(), -1);
+        ExhaustionRegistry.register(ModItems.CHEESEBURGER.get(), -1);
+        ExhaustionRegistry.register(ModItems.PORKCHOP_BURGER.get(), -1);
 
         // === FISH & SEAFOOD (light protein, low digestion cost) ===
         ExhaustionRegistry.register(Items.COOKED_COD, 1);
@@ -78,6 +78,7 @@ public class ExhaustionSetup {
 
         // === JUICES (hydrating, minor boost) ===
         ExhaustionRegistry.register(ModItems.APPLE_JUICE.get(), 2);
+        ExhaustionRegistry.register(ModItems.MELON_JUICE.get(), 2);
         ExhaustionRegistry.register(ModItems.PINEAPPLE_JUICE.get(), 1);
         ExhaustionRegistry.register(ModItems.PEAR_JUICE.get(), 1);
         ExhaustionRegistry.register(ModItems.ORANGE_JUICE.get(), 1);
@@ -90,5 +91,16 @@ public class ExhaustionSetup {
         ExhaustionRegistry.register(ModItems.TOMATO_JUICE.get(), 1);
         ExhaustionRegistry.register(ModItems.BANANA_JUICE.get(), 1);
         ExhaustionRegistry.register(ModItems.BANANA_SMOOTHIE.get(), 2);
+        ExhaustionRegistry.register(ModItems.APPLE_SMOOTHIE.get(), 2);      // steady sugar energy
+        ExhaustionRegistry.register(ModItems.AVOCADO_SMOOTHIE.get(), 3);    // fat/protein-rich, slow energy
+        ExhaustionRegistry.register(ModItems.BLACKCURRANT_SMOOTHIE.get(), 2); // antioxidant sugar, mild rush
+        ExhaustionRegistry.register(ModItems.CHERRY_SMOOTHIE.get(), 2);
+        ExhaustionRegistry.register(ModItems.GLOWBERRY_SMOOTHIE.get(), 2);
+        ExhaustionRegistry.register(ModItems.MELON_SMOOTHIE.get(), 2);
+        ExhaustionRegistry.register(ModItems.ORANGE_SMOOTHIE.get(), 2);
+        ExhaustionRegistry.register(ModItems.PEAR_SMOOTHIE.get(), 2);
+        ExhaustionRegistry.register(ModItems.PINEAPPLE_SMOOTHIE.get(), 2);
+        ExhaustionRegistry.register(ModItems.STRAWBERRY_SMOOTHIE.get(), 2);
+        ExhaustionRegistry.register(ModItems.SWEETBERRY_SMOOTHIE.get(), 2);
     }
 }

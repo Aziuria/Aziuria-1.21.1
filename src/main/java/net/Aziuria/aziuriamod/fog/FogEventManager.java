@@ -151,6 +151,11 @@ public class FogEventManager {
                     if (type.shouldStart(serverLevel, random)) {
 
                         startFogNow(type, serverLevel);
+
+                        // Set nextFogCheckTime dynamically instead of a fixed huge cooldown
+                        long dynamicCooldown = 20 * (60 * (1 + random.nextInt(360))); // 1–6 minutes
+                        nextFogCheckTime = time + dynamicCooldown;
+
                         saveToSavedData(level);
                         break;
 

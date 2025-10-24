@@ -29,13 +29,12 @@ import java.util.concurrent.ConcurrentHashMap;
 public class FogCreeperSpawner {
 
     private static final int SPAWN_INTERVAL_TICKS = 200; // every 10 seconds
-    private static final int MAX_GLOBAL_ASSASSINS = 2; // cap to only 2 in the whole world
-    private static int currentAssassinCount = 0; // global static counter
+    private static final int MAX_GLOBAL_ASSASSINS = 2;   // global cap
+    private static int currentAssassinCount = 0;         // global counter
     private int tickCounter = 0;
 
-    // Noise tracking — other code must add noise locations here
+    // Noise tracking
     public static final Map<BlockPos, Long> noisePositions = new ConcurrentHashMap<>();
-
     private final WeakHashMap<Creeper, FogBehaviorController> fogCreepers = new WeakHashMap<>();
 
     @SubscribeEvent
@@ -46,7 +45,7 @@ public class FogCreeperSpawner {
 
     public void tick(ServerLevel level) {
         if (!FogEventManager.isEvilFogActive()) {
-            fogCreepers.keySet().forEach(Mob::discard); // remove properly
+            fogCreepers.keySet().forEach(Mob::discard);
             fogCreepers.clear();
             currentAssassinCount = 0;
             noisePositions.clear();
@@ -87,7 +86,7 @@ public class FogCreeperSpawner {
         if (player == null) return;
 
         double angle = random.nextDouble() * Math.PI * 2;
-        double distance = 15 + random.nextDouble() * 10; // 15–25 blocks away
+        double distance = 15 + random.nextDouble() * 10;
         double spawnX = player.getX() + Math.cos(angle) * distance;
         double spawnZ = player.getZ() + Math.sin(angle) * distance;
         double spawnY = player.getY();
@@ -95,35 +94,32 @@ public class FogCreeperSpawner {
         Creeper creeper = new Creeper(EntityType.CREEPER, level);
         creeper.moveTo(spawnX, spawnY, spawnZ, random.nextFloat() * 360F, 0F);
         creeper.addTag("fog_assassin");
-        creeper.setPersistenceRequired(); // ensures it doesn’t despawn
+        creeper.setPersistenceRequired();
 
-        // Preserve basic target goals
+        // Target goals for mobs
         creeper.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(creeper, IronGolem.class, true));
         creeper.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(creeper, Villager.class, true));
 
         level.addFreshEntity(creeper);
-
         fogCreepers.put(creeper, new FogBehaviorController(creeper));
         currentAssassinCount++;
     }
 
     private static class FogBehaviorController {
         private static final double AMBUSH_DISTANCE = 2.0;
-        private static final int FUSE_TIME = 30; // ticks
         private final Creeper creeper;
         private boolean isSneaking = true;
         private boolean isFuseStarted = false;
-        private int fuseCounter = 0;
         private Player targetPlayer;
         private StealthPathNavigation stealthNavigation;
 
         public FogBehaviorController(Creeper creeper) {
             this.creeper = creeper;
 
-            // === LADDER CLIMBING PATCH ===
+            // Ladder climbing patch
             PathNavigation nav = creeper.getNavigation();
             if (nav instanceof GroundPathNavigation groundNav) {
-                groundNav.setCanFloat(true); // allows climbing ladders & prevents stuck paths
+                groundNav.setCanFloat(true);
             }
         }
 
@@ -138,7 +134,6 @@ public class FogCreeperSpawner {
             // --- Priority System Start ---
             Player closestPlayer = creeper.level().getNearestPlayer(creeper, 40);
             Player zombiePlayer = null;
-            double playerDistance = closestPlayer != null ? creeper.distanceToSqr(closestPlayer) : Double.MAX_VALUE;
             double zombieDistance = Double.MAX_VALUE;
 
             // Zombies alert
@@ -152,17 +147,21 @@ public class FogCreeperSpawner {
                 }
             }
 
-            // Determine target player
-            if (closestPlayer != null && (closestPlayer.distanceToSqr(creeper) <= zombieDistance)) {
+            // --- PATCHED LINE ---
+            // Ignore Creative/Spectator players
+            if (closestPlayer != null && !closestPlayer.isCreative() && !closestPlayer.isSpectator()
+                    && (closestPlayer.distanceToSqr(creeper) <= zombieDistance)) {
                 targetPlayer = closestPlayer;
             } else if (zombiePlayer != null) {
                 targetPlayer = zombiePlayer;
             }
+            // --- End Patch ---
 
             // Noise investigation if no player
             if (targetPlayer == null && !noisePositions.isEmpty()) {
                 long now = creeper.level().getGameTime();
-                noisePositions.entrySet().removeIf(e -> now - e.getValue() > 200); // expire old noises
+                noisePositions.entrySet().removeIf(e -> now - e.getValue() > 200);
+
                 BlockPos closestNoise = null;
                 double closestNoiseDist = Double.MAX_VALUE;
                 for (BlockPos noisePos : noisePositions.keySet()) {
@@ -172,13 +171,14 @@ public class FogCreeperSpawner {
                         closestNoiseDist = dist;
                     }
                 }
+
                 if (closestNoise != null) {
                     getNavigation().moveTo(closestNoise.getX() + 0.5, closestNoise.getY(), closestNoise.getZ() + 0.5, 1.0);
                     return;
                 }
             }
 
-            // Iron Golems / Villagers if nothing else
+            // Iron Golems / Villagers fallback
             if (targetPlayer == null) {
                 Mob closestEntity = null;
                 double closestDist = Double.MAX_VALUE;
@@ -206,13 +206,9 @@ public class FogCreeperSpawner {
             }
             // --- Priority System End ---
 
-            // Sneaking / normal follow logic
             if (targetPlayer != null) {
-                if (isSneaking) {
-                    handleSneakingBehavior();
-                } else {
-                    creeper.getNavigation().moveTo(targetPlayer, 1.0);
-                }
+                if (isSneaking) handleSneakingBehavior();
+                else creeper.getNavigation().moveTo(targetPlayer, 1.0);
             }
         }
 
@@ -227,6 +223,8 @@ public class FogCreeperSpawner {
         }
 
         private void handleSneakingBehavior() {
+            if (targetPlayer == null) return;
+
             if (isPlayerSeeingCreeper(targetPlayer)) {
                 isSneaking = false;
                 return;
@@ -271,9 +269,7 @@ public class FogCreeperSpawner {
             Vec3 targetPos = player.position();
             if (creeper.position().distanceTo(targetPos) > AMBUSH_DISTANCE) {
                 getNavigation().moveTo(targetPos.x, targetPos.y, targetPos.z, 1.0);
-            } else {
-                getNavigation().stop();
-            }
+            } else getNavigation().stop();
         }
 
         private boolean isPlayerFacingCreeper(Player player) {
@@ -292,7 +288,7 @@ public class FogCreeperSpawner {
             }
         }
 
-        // --- Stealth Navigation Classes ---
+        // --- Stealth Navigation ---
         private static class StealthPathNavigation extends GroundPathNavigation {
             private final Player player;
 
@@ -317,9 +313,7 @@ public class FogCreeperSpawner {
             @Override
             public PathType getPathType(PathfindingContext context, int x, int y, int z) {
                 BlockPos pos = new BlockPos(x, y, z);
-                if (isVisibleToPlayer(pos)) {
-                    return PathType.BLOCKED;
-                }
+                if (isVisibleToPlayer(pos)) return PathType.BLOCKED;
                 return super.getPathType(context, x, y, z);
             }
 

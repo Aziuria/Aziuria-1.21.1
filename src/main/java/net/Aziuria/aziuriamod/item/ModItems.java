@@ -279,6 +279,15 @@ public class ModItems {
                     32,
                     UseAnim.DRINK));
 
+    public static final DeferredItem<DrinkableItem> MELON_JUICE = ITEMS.register("melon_juice",
+            () -> new DrinkableItem(
+                    new Item.Properties()
+                            .food(ModFoodProperties.MELON_JUICE)
+                            .stacksTo(1)
+                            .craftRemainder(Items.GLASS_BOTTLE),
+                    32,
+                    UseAnim.DRINK));
+
     public static final DeferredItem<DrinkableItem> CHERRY_JUICE = ITEMS.register("cherry_juice",
             () -> new DrinkableItem(
                     new Item.Properties()
@@ -364,6 +373,83 @@ public class ModItems {
             () -> new SmoothieItem(
                     new Item.Properties()
                             .food(ModFoodProperties.BANANA_SMOOTHIE)
+                            .stacksTo(1)
+            ));
+
+    public static final DeferredItem<SmoothieItem> APPLE_SMOOTHIE = ITEMS.register("apple_smoothie",
+            () -> new SmoothieItem(
+                    new Item.Properties()
+                            .food(ModFoodProperties.APPLE_SMOOTHIE)
+                            .stacksTo(1)
+            ));
+
+    public static final DeferredItem<SmoothieItem> AVOCADO_SMOOTHIE = ITEMS.register("avocado_smoothie",
+            () -> new SmoothieItem(
+                    new Item.Properties()
+                            .food(ModFoodProperties.AVOCADO_SMOOTHIE)
+                            .stacksTo(1)
+            ));
+
+    public static final DeferredItem<SmoothieItem> BLACKCURRANT_SMOOTHIE = ITEMS.register("blackcurrant_smoothie",
+            () -> new SmoothieItem(
+                    new Item.Properties()
+                            .food(ModFoodProperties.BLACKCURRANT_SMOOTHIE)
+                            .stacksTo(1)
+            ));
+
+    public static final DeferredItem<SmoothieItem> CHERRY_SMOOTHIE = ITEMS.register("cherry_smoothie",
+            () -> new SmoothieItem(
+                    new Item.Properties()
+                            .food(ModFoodProperties.CHERRY_SMOOTHIE)
+                            .stacksTo(1)
+            ));
+
+    public static final DeferredItem<SmoothieItem> GLOWBERRY_SMOOTHIE = ITEMS.register("glowberry_smoothie",
+            () -> new SmoothieItem(
+                    new Item.Properties()
+                            .food(ModFoodProperties.GLOWBERRY_SMOOTHIE)
+                            .stacksTo(1)
+            ));
+
+    public static final DeferredItem<SmoothieItem> MELON_SMOOTHIE = ITEMS.register("melon_smoothie",
+            () -> new SmoothieItem(
+                    new Item.Properties()
+                            .food(ModFoodProperties.MELON_SMOOTHIE)
+                            .stacksTo(1)
+            ));
+
+    public static final DeferredItem<SmoothieItem> ORANGE_SMOOTHIE = ITEMS.register("orange_smoothie",
+            () -> new SmoothieItem(
+                    new Item.Properties()
+                            .food(ModFoodProperties.ORANGE_SMOOTHIE)
+                            .stacksTo(1)
+            ));
+
+    public static final DeferredItem<SmoothieItem> PEAR_SMOOTHIE = ITEMS.register("pear_smoothie",
+            () -> new SmoothieItem(
+                    new Item.Properties()
+                            .food(ModFoodProperties.PEAR_SMOOTHIE)
+                            .stacksTo(1)
+            ));
+
+    public static final DeferredItem<SmoothieItem> PINEAPPLE_SMOOTHIE = ITEMS.register("pineapple_smoothie",
+            () -> new SmoothieItem(
+                    new Item.Properties()
+                            .food(ModFoodProperties.PINEAPPLE_SMOOTHIE)
+                            .stacksTo(1)
+            ));
+
+    public static final DeferredItem<SmoothieItem> STRAWBERRY_SMOOTHIE = ITEMS.register("strawberry_smoothie",
+            () -> new SmoothieItem(
+                    new Item.Properties()
+                            .food(ModFoodProperties.STRAWBERRY_SMOOTHIE)
+                            .stacksTo(1)
+            ));
+
+    public static final DeferredItem<SmoothieItem> SWEETBERRY_SMOOTHIE = ITEMS.register("sweetberry_smoothie",
+            () -> new SmoothieItem(
+                    new Item.Properties()
+                            .food(ModFoodProperties.SWEETBERRY_SMOOTHIE)
                             .stacksTo(1)
             ));
 

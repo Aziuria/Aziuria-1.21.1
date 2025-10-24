@@ -15,7 +15,7 @@ public class FogRegistry {
     }
 
     public static void init() {
-        register(new BasicFogType());
         register(new EvilFogType());
+        register(new BasicFogType());
     }
 }

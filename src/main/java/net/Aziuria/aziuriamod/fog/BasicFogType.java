@@ -6,21 +6,37 @@ import net.minecraft.util.RandomSource;
 import net.minecraft.world.phys.Vec3;
 
 public class BasicFogType implements FogType {
+
     @Override
     public boolean shouldStart(ClientLevel level, RandomSource random) {
-        // Client-side logic for fog spawning chance
-        return random.nextInt(30000) == 0;
+        return calculateDynamicChance(level, random);
     }
 
     @Override
     public boolean shouldStart(ServerLevel level, RandomSource random) {
-        // Server-side logic for fog spawning chance - can be the same or adjusted
-        return random.nextInt(30000) == 0;
+        return calculateDynamicChance(level, random);
+    }
+
+    private boolean calculateDynamicChance(Object level, RandomSource random) {
+        // Prevent overlap
+        if (FogEventManager.getActiveFog() != null) return false;
+
+        long timeOfDay;
+        if (level instanceof ClientLevel cl) timeOfDay = cl.getGameTime() % 24000;
+        else if (level instanceof ServerLevel sl) timeOfDay = sl.getGameTime() % 24000;
+        else return false;
+
+        // Normal fog frequency: 2–4 days average, occasional double events
+        int baseChance = 25000; // base value for average frequency
+        double surpriseFactor = 0.7 + random.nextDouble() * 0.6; // 0.7 → 1.3
+        int adjustedChance = (int)(baseChance * surpriseFactor);
+
+        return random.nextInt(Math.max(1, adjustedChance)) == 0;
     }
 
     @Override
     public int getDurationTicks(RandomSource random) {
-        return 20 * 60 * (1 + random.nextInt(5));
+        return 20 * 60 * (1 + random.nextInt(5)); // 1–5 minutes
     }
 
     @Override

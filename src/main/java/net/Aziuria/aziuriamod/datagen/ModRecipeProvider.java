@@ -217,6 +217,127 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .unlockedBy("has_empty_cup", has(ModItems.EMPTY_CUP.get()))
                 .save(recipeOutput);
 
+        ShapedRecipeBuilder.shaped(RecipeCategory.FOOD, ModItems.APPLE_SMOOTHIE.get(), 1)
+                .pattern("BMB")
+                .pattern("SCI")
+                .define('B', Items.APPLE)
+                .define('M', ModItems.MILK_BOTTLE.get())
+                .define('S', Items.SUGAR)
+                .define('I', Items.ICE)
+                .define('C', ModItems.EMPTY_CUP.get())
+                .unlockedBy("has_empty_cup", has(ModItems.EMPTY_CUP.get()))
+                .save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.FOOD, ModItems.AVOCADO_SMOOTHIE.get(), 1)
+                .pattern("BMB")
+                .pattern("SCI")
+                .define('B', ModItems.AVOCADO.get())
+                .define('M', ModItems.MILK_BOTTLE.get())
+                .define('S', Items.SUGAR)
+                .define('I', Items.ICE)
+                .define('C', ModItems.EMPTY_CUP.get())
+                .unlockedBy("has_empty_cup", has(ModItems.EMPTY_CUP.get()))
+                .save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.FOOD, ModItems.BLACKCURRANT_SMOOTHIE.get(), 1)
+                .pattern("BMB")
+                .pattern("SCI")
+                .define('B', ModItems.BLACKCURRANT.get())
+                .define('M', ModItems.MILK_BOTTLE.get())
+                .define('S', Items.SUGAR)
+                .define('I', Items.ICE)
+                .define('C', ModItems.EMPTY_CUP.get())
+                .unlockedBy("has_empty_cup", has(ModItems.EMPTY_CUP.get()))
+                .save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.FOOD, ModItems.CHERRY_SMOOTHIE.get(), 1)
+                .pattern("BMB")
+                .pattern("SCI")
+                .define('B', ModItems.CHERRY.get())
+                .define('M', ModItems.MILK_BOTTLE.get())
+                .define('S', Items.SUGAR)
+                .define('I', Items.ICE)
+                .define('C', ModItems.EMPTY_CUP.get())
+                .unlockedBy("has_empty_cup", has(ModItems.EMPTY_CUP.get()))
+                .save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.FOOD, ModItems.GLOWBERRY_SMOOTHIE.get(), 1)
+                .pattern("BMB")
+                .pattern("SCI")
+                .define('B', Items.GLOW_BERRIES)
+                .define('M', ModItems.MILK_BOTTLE.get())
+                .define('S', Items.SUGAR)
+                .define('I', Items.ICE)
+                .define('C', ModItems.EMPTY_CUP.get())
+                .unlockedBy("has_empty_cup", has(ModItems.EMPTY_CUP.get()))
+                .save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.FOOD, ModItems.MELON_SMOOTHIE.get(), 1)
+                .pattern("BMB")
+                .pattern("SCI")
+                .define('B', Items.MELON_SLICE)
+                .define('M', ModItems.MILK_BOTTLE.get())
+                .define('S', Items.SUGAR)
+                .define('I', Items.ICE)
+                .define('C', ModItems.EMPTY_CUP.get())
+                .unlockedBy("has_empty_cup", has(ModItems.EMPTY_CUP.get()))
+                .save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.FOOD, ModItems.ORANGE_SMOOTHIE.get(), 1)
+                .pattern("BMB")
+                .pattern("SCI")
+                .define('B', ModItems.ORANGE.get())
+                .define('M', ModItems.MILK_BOTTLE.get())
+                .define('S', Items.SUGAR)
+                .define('I', Items.ICE)
+                .define('C', ModItems.EMPTY_CUP.get())
+                .unlockedBy("has_empty_cup", has(ModItems.EMPTY_CUP.get()))
+                .save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.FOOD, ModItems.PEAR_SMOOTHIE.get(), 1)
+                .pattern("BMB")
+                .pattern("SCI")
+                .define('B', ModItems.PEAR.get())
+                .define('M', ModItems.MILK_BOTTLE.get())
+                .define('S', Items.SUGAR)
+                .define('I', Items.ICE)
+                .define('C', ModItems.EMPTY_CUP.get())
+                .unlockedBy("has_empty_cup", has(ModItems.EMPTY_CUP.get()))
+                .save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.FOOD, ModItems.PINEAPPLE_SMOOTHIE.get(), 1)
+                .pattern("BMB")
+                .pattern("SCI")
+                .define('B', ModItems.PINEAPPLE.get())
+                .define('M', ModItems.MILK_BOTTLE.get())
+                .define('S', Items.SUGAR)
+                .define('I', Items.ICE)
+                .define('C', ModItems.EMPTY_CUP.get())
+                .unlockedBy("has_empty_cup", has(ModItems.EMPTY_CUP.get()))
+                .save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.FOOD, ModItems.STRAWBERRY_SMOOTHIE.get(), 1)
+                .pattern("BMB")
+                .pattern("SCI")
+                .define('B', ModItems.STRAWBERRY.get())
+                .define('M', ModItems.MILK_BOTTLE.get())
+                .define('S', Items.SUGAR)
+                .define('I', Items.ICE)
+                .define('C', ModItems.EMPTY_CUP.get())
+                .unlockedBy("has_empty_cup", has(ModItems.EMPTY_CUP.get()))
+                .save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.FOOD, ModItems.SWEETBERRY_SMOOTHIE.get(), 1)
+                .pattern("BMB")
+                .pattern("SCI")
+                .define('B', Items.SWEET_BERRIES)
+                .define('M', ModItems.MILK_BOTTLE.get())
+                .define('S', Items.SUGAR)
+                .define('I', Items.ICE)
+                .define('C', ModItems.EMPTY_CUP.get())
+                .unlockedBy("has_empty_cup", has(ModItems.EMPTY_CUP.get()))
+                .save(recipeOutput);
+
         ShapedRecipeBuilder.shaped(RecipeCategory.FOOD, ModItems.BATTERED_CHICKEN.get(), 3)
                 .pattern("SSS")
                 .pattern(" A ")
@@ -1865,36 +1986,49 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
 
         ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, ModItems.APPLE_JUICE.get(), 1)
                 .requires(Items.APPLE)
+                .requires(Items.SUGAR)
                 .requires(Items.POTION)  // Vanilla water bottle (glass bottle + water)
                 .unlockedBy("has_apple", has(Items.APPLE))
                 .save(recipeOutput);
 
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, ModItems.MELON_JUICE.get(), 1)
+                .requires(Items.MELON_SLICE)
+                .requires(Items.SUGAR)
+                .requires(Items.POTION)  // Vanilla water bottle (glass bottle + water)
+                .unlockedBy("has_melon_slice", has(Items.MELON_SLICE))
+                .save(recipeOutput);
+
         ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, ModItems.GLOWBERRY_JUICE.get(), 1)
                 .requires(Items.GLOW_BERRIES)
+                .requires(Items.SUGAR)
                 .requires(Items.POTION)  // Vanilla water bottle (glass bottle + water)
                 .unlockedBy("has_potion", has(Items.POTION))
                 .save(recipeOutput);
 
         ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, ModItems.SWEETBERRY_JUICE.get(), 1)
                 .requires(Items.SWEET_BERRIES)
+                .requires(Items.SUGAR)
                 .requires(Items.POTION)  // Vanilla water bottle (glass bottle + water)
                 .unlockedBy("has_potion", has(Items.POTION))
                 .save(recipeOutput);
 
         ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, ModItems.PEAR_JUICE.get(), 1)
                 .requires(ModItems.PEAR.get())
+                .requires(Items.SUGAR)
                 .requires(Items.POTION)  // Vanilla water bottle (glass bottle + water)
                 .unlockedBy("has_pear", has(ModItems.PEAR.get()))
                 .save(recipeOutput);
 
         ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, ModItems.ORANGE_JUICE.get(), 1)
                 .requires(ModItems.ORANGE.get())
+                .requires(Items.SUGAR)
                 .requires(Items.POTION)  // Vanilla water bottle (glass bottle + water)
                 .unlockedBy("has_orange", has(ModItems.ORANGE.get()))
                 .save(recipeOutput);
 
         ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, ModItems.BANANA_JUICE.get(), 1)
                 .requires(ModItems.BANANA.get())
+                .requires(Items.SUGAR)
                 .requires(Items.POTION)  // Vanilla water bottle (glass bottle + water)
                 .unlockedBy("has_banana", has(ModItems.BANANA.get()))
                 .save(recipeOutput);
@@ -1907,42 +2041,49 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
 
         ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, ModItems.STRAWBERRY_JUICE.get(), 1)
                 .requires(ModItems.STRAWBERRY.get())
+                .requires(Items.SUGAR)
                 .requires(Items.POTION)  // Vanilla water bottle (glass bottle + water)
                 .unlockedBy("has_strawberry", has(ModItems.STRAWBERRY.get()))
                 .save(recipeOutput);
 
         ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, ModItems.CHERRY_JUICE.get(), 1)
                 .requires(ModItems.CHERRY.get())
+                .requires(Items.SUGAR)
                 .requires(Items.POTION)  // Vanilla water bottle (glass bottle + water)
                 .unlockedBy("has_cherry", has(ModItems.CHERRY.get()))
                 .save(recipeOutput);
 
         ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, ModItems.AVOCADO_JUICE.get(), 1)
                 .requires(ModItems.AVOCADO.get())
+                .requires(Items.SUGAR)
                 .requires(Items.POTION)  // Vanilla water bottle (glass bottle + water)
                 .unlockedBy("has_avocado", has(ModItems.AVOCADO.get()))
                 .save(recipeOutput);
 
         ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, ModItems.PINEAPPLE_JUICE.get(), 1)
                 .requires(ModItems.PINEAPPLE.get())
+                .requires(Items.SUGAR)
                 .requires(Items.POTION)  // Vanilla water bottle (glass bottle + water)
                 .unlockedBy("has_pineapple", has(ModItems.PINEAPPLE.get()))
                 .save(recipeOutput);
 
         ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, ModItems.COFFEE.get(), 1)
                 .requires(ModItems.COFFEE_BEANS.get())
+                .requires(Items.SUGAR)
                 .requires(Items.POTION)  // Vanilla water bottle (glass bottle + water)
                 .unlockedBy("has_coffee_beans", has(ModItems.COFFEE_BEANS.get()))
                 .save(recipeOutput);
 
         ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, ModItems.TEA.get(), 1)
                 .requires(ModItems.TEA_LEAVES.get())
+                .requires(Items.SUGAR)
                 .requires(Items.POTION)  // Vanilla water bottle (glass bottle + water)
                 .unlockedBy("has_tea_leaves", has(ModItems.TEA_LEAVES.get()))
                 .save(recipeOutput);
 
         ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, ModItems.BLACKCURRANT_JUICE.get(), 1)
                 .requires(ModItems.BLACKCURRANT.get())
+                .requires(Items.SUGAR)
                 .requires(Items.POTION)  // Vanilla water bottle (glass bottle + water)
                 .unlockedBy("has_blackcurrant", has(ModItems.BLACKCURRANT.get()))
                 .save(recipeOutput);

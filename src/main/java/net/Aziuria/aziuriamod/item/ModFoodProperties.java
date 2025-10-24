@@ -244,6 +244,14 @@ public class ModFoodProperties {
             .effect(() -> new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 60, 0), 0.1f) // minor energy boost
             .build();
 
+    public static final FoodProperties MELON_JUICE = new FoodProperties.Builder()
+            .nutrition(3)
+            .saturationModifier(0.35f)
+            .alwaysEdible()
+            .effect(() -> new MobEffectInstance(MobEffects.REGENERATION, 20, 0), 0.2f)
+            .effect(() -> new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 20, 0), 0.15f)
+            .build();
+
     // Orange juice (drink)
     public static final FoodProperties ORANGE_JUICE = new FoodProperties.Builder()
             .nutrition(3)               // light drink, less than whole fruit
@@ -276,7 +284,98 @@ public class ModFoodProperties {
             .nutrition(3)               // light drink
             .saturationModifier(0.35f)  // refreshing, moderate satiation
             .alwaysEdible()
-            .effect(() -> new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 20 * 10, 0), 0.25f)  // mild energy rush (10s)
-            .effect(() -> new MobEffectInstance(MobEffects.REGENERATION, 20 * 5, 0), 0.15f)     // light healing (5s)
+            .effect(() -> new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 20, 0), 0.25f)  // mild energy rush (10s)
+            .effect(() -> new MobEffectInstance(MobEffects.REGENERATION, 20, 0), 0.15f)     // light healing (5s)
+            .build();
+
+    public static final FoodProperties APPLE_SMOOTHIE = new FoodProperties.Builder()
+            .nutrition(6)
+            .saturationModifier(0.7f)
+            .alwaysEdible()
+            .effect(() -> new MobEffectInstance(MobEffects.REGENERATION, 20 * 8, 0), 0.4f)
+            .effect(() -> new MobEffectInstance(MobEffects.ABSORPTION, 20 * 10, 0), 0.25f)
+            .effect(() -> new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 20 * 6, 0), 0.2f)
+            .build();
+
+    public static final FoodProperties AVOCADO_SMOOTHIE = new FoodProperties.Builder()
+            .nutrition(7)
+            .saturationModifier(0.8f)
+            .alwaysEdible()
+            .effect(() -> new MobEffectInstance(MobEffects.REGENERATION, 20 * 10, 0), 0.4f)
+            .effect(() -> new MobEffectInstance(MobEffects.ABSORPTION, 20 * 15, 1), 0.25f)
+            .effect(() -> new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 20 * 10, 0), 0.2f)
+            .build();
+
+    public static final FoodProperties BLACKCURRANT_SMOOTHIE = new FoodProperties.Builder()
+            .nutrition(6)
+            .saturationModifier(0.65f)
+            .alwaysEdible()
+            .effect(() -> new MobEffectInstance(MobEffects.REGENERATION, 20 * 8, 0), 0.4f)
+            .effect(() -> new MobEffectInstance(MobEffects.NIGHT_VISION, 20 * 12, 0), 0.3f)
+            .build();
+
+    public static final FoodProperties CHERRY_SMOOTHIE = new FoodProperties.Builder()
+            .nutrition(6)
+            .saturationModifier(0.65f)
+            .alwaysEdible()
+            .effect(() -> new MobEffectInstance(MobEffects.REGENERATION, 20 * 8, 0), 0.4f)
+            .effect(() -> new MobEffectInstance(MobEffects.NIGHT_VISION, 20 * 8, 0), 0.2f)
+            .effect(() -> new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 20 * 6, 0), 0.15f)
+            .build();
+
+    public static final FoodProperties GLOWBERRY_SMOOTHIE = new FoodProperties.Builder()
+            .nutrition(6)
+            .saturationModifier(0.6f)
+            .alwaysEdible()
+            .effect(() -> new MobEffectInstance(MobEffects.NIGHT_VISION, 20 * 12, 0), 0.35f)
+            .effect(() -> new MobEffectInstance(MobEffects.REGENERATION, 20 * 8, 0), 0.3f)
+            .build();
+
+    public static final FoodProperties MELON_SMOOTHIE = new FoodProperties.Builder()
+            .nutrition(6)
+            .saturationModifier(0.7f)
+            .alwaysEdible()
+            .effect(() -> new MobEffectInstance(MobEffects.REGENERATION, 20 * 8, 0), 0.35f)
+            .effect(() -> new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 20 * 8, 0), 0.2f)
+            .build();
+
+    public static final FoodProperties ORANGE_SMOOTHIE = new FoodProperties.Builder()
+            .nutrition(6)
+            .saturationModifier(0.7f)
+            .alwaysEdible()
+            .effect(() -> new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 20 * 10, 0), 0.3f)
+            .effect(() -> new MobEffectInstance(MobEffects.REGENERATION, 20 * 8, 0), 0.2f)
+            .build();
+
+    public static final FoodProperties PEAR_SMOOTHIE = new FoodProperties.Builder()
+            .nutrition(6)
+            .saturationModifier(0.7f)
+            .alwaysEdible()
+            .effect(() -> new MobEffectInstance(MobEffects.REGENERATION, 20 * 8, 0), 0.3f)
+            .effect(() -> new MobEffectInstance(MobEffects.ABSORPTION, 20 * 8, 0), 0.2f)
+            .build();
+
+    public static final FoodProperties PINEAPPLE_SMOOTHIE = new FoodProperties.Builder()
+            .nutrition(6)
+            .saturationModifier(0.7f)
+            .alwaysEdible()
+            .effect(() -> new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 20 * 12, 0), 0.35f)
+            .effect(() -> new MobEffectInstance(MobEffects.REGENERATION, 20 * 8, 0), 0.25f)
+            .build();
+
+    public static final FoodProperties STRAWBERRY_SMOOTHIE = new FoodProperties.Builder()
+            .nutrition(6)
+            .saturationModifier(0.7f)
+            .alwaysEdible()
+            .effect(() -> new MobEffectInstance(MobEffects.REGENERATION, 20 * 8, 0), 0.35f)
+            .effect(() -> new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 20 * 6, 0), 0.2f)
+            .build();
+
+    public static final FoodProperties SWEETBERRY_SMOOTHIE = new FoodProperties.Builder()
+            .nutrition(6)
+            .saturationModifier(0.7f)
+            .alwaysEdible()
+            .effect(() -> new MobEffectInstance(MobEffects.REGENERATION, 20 * 8, 0), 0.35f)
+            .effect(() -> new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 20 * 6, 0), 0.2f)
             .build();
 }

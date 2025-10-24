@@ -8,9 +8,9 @@ public class ThirstSetup {
     public static void registerThirstItems() {
         // === LIQUIDS & POTIONS ===
         ThirstRegistry.register(Items.POTION, 5);
-        ThirstRegistry.register(ModItems.MILK_BOTTLE.get(), 4);
-        ThirstRegistry.register(ModItems.COFFEE.get(), 4);
-        ThirstRegistry.register(ModItems.TEA.get(), 4);
+        ThirstRegistry.register(ModItems.MILK_BOTTLE.get(), 3);
+        ThirstRegistry.register(ModItems.COFFEE.get(), 3);
+        ThirstRegistry.register(ModItems.TEA.get(), 3);
         ThirstRegistry.register(Items.HONEY_BOTTLE, 1);
 
         // === FRUITS ===
@@ -98,6 +98,18 @@ public class ThirstSetup {
         ThirstRegistry.register(ModItems.STRAWBERRY_JUICE.get(), 4);
         ThirstRegistry.register(ModItems.TOMATO_JUICE.get(), 4);
         ThirstRegistry.register(ModItems.BANANA_JUICE.get(), 4);
+        ThirstRegistry.register(ModItems.MELON_JUICE.get(), 4);
         ThirstRegistry.register(ModItems.BANANA_SMOOTHIE.get(), 3);
+        ThirstRegistry.register(ModItems.APPLE_SMOOTHIE.get(), 3);
+        ThirstRegistry.register(ModItems.AVOCADO_SMOOTHIE.get(), 2);
+        ThirstRegistry.register(ModItems.BLACKCURRANT_SMOOTHIE.get(), 3);
+        ThirstRegistry.register(ModItems.CHERRY_SMOOTHIE.get(), 3);
+        ThirstRegistry.register(ModItems.GLOWBERRY_SMOOTHIE.get(), 3);
+        ThirstRegistry.register(ModItems.MELON_SMOOTHIE.get(), 4);
+        ThirstRegistry.register(ModItems.ORANGE_SMOOTHIE.get(), 3);
+        ThirstRegistry.register(ModItems.PEAR_SMOOTHIE.get(), 3);
+        ThirstRegistry.register(ModItems.PINEAPPLE_SMOOTHIE.get(), 3);
+        ThirstRegistry.register(ModItems.STRAWBERRY_SMOOTHIE.get(), 3);
+        ThirstRegistry.register(ModItems.SWEETBERRY_SMOOTHIE.get(), 3);
     }
 }
