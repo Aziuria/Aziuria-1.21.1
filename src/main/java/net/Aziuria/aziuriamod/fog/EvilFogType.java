@@ -7,6 +7,9 @@ import net.minecraft.world.phys.Vec3;
 
 public class EvilFogType implements FogType {
 
+    public static final int NIGHT_END = 21000;
+    public static final int NIGHT_START = 13000;
+
     @Override
     public boolean shouldStart(ClientLevel level, RandomSource random) {
         return calculateDynamicChance(level, random);
@@ -18,28 +21,43 @@ public class EvilFogType implements FogType {
     }
 
     private boolean calculateDynamicChance(Object level, RandomSource random) {
-        // Prevent overlap
         if (FogEventManager.getActiveFog() != null) return false;
 
         long timeOfDay;
-        if (level instanceof ClientLevel cl) timeOfDay = cl.getGameTime() % 24000;
-        else if (level instanceof ServerLevel sl) timeOfDay = sl.getGameTime() % 24000;
-        else return false;
+        long gameTime;
 
-        // Night only
-        boolean isNight = timeOfDay >= 13000 || timeOfDay <= 7000;
-        if (!isNight) return false;
+        if (level instanceof ClientLevel cl) {
+            gameTime = cl.getGameTime();
+            timeOfDay = gameTime % 24000;
+        } else if (level instanceof ServerLevel sl) {
+            gameTime = sl.getGameTime();
+            timeOfDay = gameTime % 24000;
+        } else return false;
 
-        // Night progress (0=start, 1=end)
-        float nightProgress = (timeOfDay - 13000f) / 10000f;
+        // Only allow night-time
+        boolean isNight = timeOfDay >= NIGHT_START && timeOfDay <= NIGHT_END;
+        if (!isNight) {
+            System.out.println("[Fog Debug] Evil fog prevented during daytime: timeOfDay=" + timeOfDay);
+            return false;
+        }
 
-        // Base chance for rare fog (~once a week)
-        int baseChance = 600;
-        // Surprise factor allows occasional double/triple events
-        double surpriseFactor = 0.5 + random.nextDouble(); // 0.5 → 1.5
-        int adjustedChance = Math.max(1, (int)(baseChance * (1.0f - nightProgress * 0.5f) * surpriseFactor));
+        float nightProgress = (timeOfDay >= NIGHT_START)
+                ? (timeOfDay - NIGHT_START) / (float)(NIGHT_END - NIGHT_START)
+                : 0f; // you can adjust if you want wrap-around for early morning
 
-        return random.nextInt(adjustedChance) == 0;
+        int baseChance = 1400;
+        double surpriseFactor = 0.5 + random.nextDouble();
+        int adjustedChance = Math.max(1, (int)(baseChance * (1.0f - nightProgress * 0.6f) * surpriseFactor));
+        boolean trigger = random.nextInt(adjustedChance) == 0;
+
+        if (trigger) {
+            System.out.println("[Fog Trigger] Evil fog triggered @ tick " + gameTime +
+                    " | TimeOfDay=" + timeOfDay +
+                    " | nightProgress=" + String.format("%.2f", nightProgress) +
+                    " | adjustedChance=" + adjustedChance);
+        }
+
+        return trigger;
     }
 
     @Override

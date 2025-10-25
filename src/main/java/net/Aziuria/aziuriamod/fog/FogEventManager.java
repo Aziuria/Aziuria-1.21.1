@@ -34,6 +34,8 @@ public class FogEventManager {
     private static long nextFogCheckTime = 0;
 
 
+
+
     // LOAD SAVED DATA & SYNC TO CLIENTS ON SERVER STARTUP
     public static void loadFromSavedData(Level level) {
         if (!(level instanceof ServerLevel serverLevel)) return;
@@ -55,6 +57,11 @@ public class FogEventManager {
         fogFadeOutStart = data.getFogFadeOutStart();
         dissipatingMessageSent = data.getDissipatingMessageSent();
         nextFogCheckTime = data.getNextFogCheckTime();
+
+        // SAFETY: if this is a brand new world with no fog data, prevent immediate trigger
+        if (nextFogCheckTime == 0) {
+            nextFogCheckTime = 24000; // wait until after first Minecraft day
+        }
 
 
         // SEND CURRENT FOG STATE TO ALL CLIENTS
@@ -112,7 +119,10 @@ public class FogEventManager {
                 }
             }
 
-            if (activeFog == null && time >= nextFogCheckTime) {
+            if (activeFog == null) {
+                // Prevent fog before next check time
+                if (time < nextFogCheckTime) return;
+
                 for (FogType type : FogRegistry.getAll()) {
                     if (type.shouldStart(clientLevel, random)) {
                         if (mc.player != null) {
@@ -146,21 +156,24 @@ public class FogEventManager {
 
             }
 
-            if (activeFog == null && time >= nextFogCheckTime) {
-                // Skip fog for first day
-                if (time < 24000) return;
+            // Prevent fog from spawning during the first Minecraft day
+            if (time < 24000 && activeFog == null) {
+                nextFogCheckTime = 24000;
+                return;
+            }
+
+            if (activeFog == null) {
+                // Prevent fog before next check time
+                if (time < nextFogCheckTime) return;
+
                 for (FogType type : FogRegistry.getAll()) {
                     if (type.shouldStart(serverLevel, random)) {
-
                         startFogNow(type, serverLevel);
 
-                        // Set nextFogCheckTime dynamically instead of a fixed huge cooldown
-                        long dynamicCooldown = 20 * (60 * (1 + random.nextInt(360))); // 1–6 minutes
-                        nextFogCheckTime = time + dynamicCooldown;
+                        nextFogCheckTime = time + FOG_COOLDOWN_TICKS;
 
                         saveToSavedData(level);
                         break;
-
                     }
                 }
             }
@@ -174,6 +187,15 @@ public class FogEventManager {
         long time = serverLevel.getGameTime();
 
         long duration = type.getDurationTicks(random);
+
+        // Cap Evil Fog duration to night time
+        if ("evil".equals(type.getId())) {
+            long timeOfDay = time % 24000;
+            long remainingNight = EvilFogType.NIGHT_END - timeOfDay;
+            if (remainingNight < 0) remainingNight = 0;
+            duration = Math.min(duration, remainingNight);
+        }
+
         fogStart = time;
         fogFadeInEnd = time + TRANSITION_DURATION;
         fogFadeOutStart = time + duration - TRANSITION_DURATION;

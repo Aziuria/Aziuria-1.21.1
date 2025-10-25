@@ -22,16 +22,31 @@ public class BasicFogType implements FogType {
         if (FogEventManager.getActiveFog() != null) return false;
 
         long timeOfDay;
-        if (level instanceof ClientLevel cl) timeOfDay = cl.getGameTime() % 24000;
-        else if (level instanceof ServerLevel sl) timeOfDay = sl.getGameTime() % 24000;
-        else return false;
+        long gameTime;
 
-        // Normal fog frequency: 2–4 days average, occasional double events
-        int baseChance = 25000; // base value for average frequency
-        double surpriseFactor = 0.7 + random.nextDouble() * 0.6; // 0.7 → 1.3
+        if (level instanceof ClientLevel cl) {
+            gameTime = cl.getGameTime();
+            timeOfDay = gameTime % 24000;
+        } else if (level instanceof ServerLevel sl) {
+            gameTime = sl.getGameTime();
+            timeOfDay = gameTime % 24000;
+        } else return false;
+
+        int baseChance = 1200; // average 2–3 days
+        double surpriseFactor = 0.7 + random.nextDouble() * 0.6; // 0.7–1.3
         int adjustedChance = (int)(baseChance * surpriseFactor);
+        boolean trigger = random.nextInt(Math.max(1, adjustedChance)) == 0;
 
-        return random.nextInt(Math.max(1, adjustedChance)) == 0;
+        // Only log when fog triggers
+        if (trigger) {
+            System.out.println("[Fog Trigger] Normal fog triggered @ tick " + gameTime +
+                    " | TimeOfDay=" + timeOfDay +
+                    " | base=" + baseChance +
+                    " | surprise=" + String.format("%.2f", surpriseFactor) +
+                    " | adjusted=" + adjustedChance);
+        }
+
+        return trigger;
     }
 
     @Override
