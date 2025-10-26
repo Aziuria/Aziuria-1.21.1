@@ -2,6 +2,7 @@ package net.Aziuria.aziuriamod.fog;
 
 import net.Aziuria.aziuriamod.block.entity.SpeakerBlockEntity;
 import net.Aziuria.aziuriamod.fog.helper.FogCooldownHelper;
+import net.Aziuria.aziuriamod.fog.helper.FogProbabilityHelper;
 import net.Aziuria.aziuriamod.fog.helper.NightCycleHelper;
 import net.Aziuria.aziuriamod.fog.network.FogStateSyncPacket;   // ← Packet import
 import net.Aziuria.aziuriamod.fog.network.NetworkHandler;       // ← Network handler import
@@ -36,8 +37,8 @@ public class FogEventManager {
     private static final int TRANSITION_DURATION = 20 * 6;
     private static long nextFogCheckTime = 0;
 
-
-
+    // --- FIRST-DAY DENIAL ---
+    private static boolean firstDayFogDenied = false;
 
     // LOAD SAVED DATA & SYNC TO CLIENTS ON SERVER STARTUP
     public static void loadFromSavedData(Level level) {
@@ -61,6 +62,8 @@ public class FogEventManager {
         dissipatingMessageSent = data.getDissipatingMessageSent();
         nextFogCheckTime = data.getNextFogCheckTime();
 
+        // --- FIRST-DAY DENIAL --- robust using NightCycleHelper
+        firstDayFogDenied = serverLevel.getDayTime() >= 24000L;
 
         // SEND CURRENT FOG STATE TO ALL CLIENTS
         NetworkHandler.sendFogStateToAll(new FogStateSyncPacket(
@@ -91,6 +94,18 @@ public class FogEventManager {
 
     // MAIN TICK FUNCTION
     public static void tick(Level level) {
+
+        // --- FIRST-DAY DENIAL CHECK (robust) ---
+        if (!firstDayFogDenied) {
+            long time = level.getGameTime();
+            if (time < 24000L || NightCycleHelper.isNight(time)) {
+                // Deny all fog during first day or first night
+                return;
+            }
+            firstDayFogDenied = true; // now allow fog normally
+            FogProbabilityHelper.reset();
+        }
+
         if (level.isClientSide()) {
             // CLIENT SIDE LOGIC
             ClientLevel clientLevel = (ClientLevel) level;
@@ -178,6 +193,10 @@ public class FogEventManager {
 
             if (activeFog != null && time >= fogEnd) {
 
+                if (activeFog != null) {
+                    FogProbabilityHelper.recordFogResult(activeFog.getId());
+                }
+
                 activeFog = null;
                 dissipatingMessageSent = false;
                 nextFogCheckTime = time + FogCooldownHelper.calculate(random, null, currentIntensity, 20 * 60 * 5, 20 * 60 * 8);
@@ -198,17 +217,14 @@ public class FogEventManager {
 
                 if (time < nextFogCheckTime) return;
 
-                List<FogType> shuffled = new ArrayList<>(FogRegistry.getAll());
-                Collections.shuffle(shuffled, new java.util.Random(random.nextLong())); // randomize order per check
-                for (FogType type : shuffled) {
-                    if (type.shouldStart(serverLevel, random)) {
-                        startFogNow(type, serverLevel);
+                List<FogType> allFogs = new ArrayList<>(FogRegistry.getAll());
+                FogType chosen = FogProbabilityHelper.selectFog(allFogs, new java.util.Random(random.nextLong()));
 
-                        nextFogCheckTime = time + FogCooldownHelper.calculate(random, activeFog, currentIntensity, 20 * 60 * 5, 20 * 60 * 8);
+                if (chosen != null && chosen.shouldStart(serverLevel, random)) {
+                    startFogNow(chosen, serverLevel);
+                    nextFogCheckTime = time + FogCooldownHelper.calculate(random, activeFog, currentIntensity, 20 * 60 * 5, 20 * 60 * 8);
+                    saveToSavedData(level);
 
-                        saveToSavedData(level);
-                        break;
-                    }
                 }
             }
         }
@@ -222,10 +238,14 @@ public class FogEventManager {
 
         long duration = type.getDurationTicks(random);
 
-        // --- UPDATED: Use NightCycleHelper to cap Evil Fog duration ---
+        // --- UPDATED: Use NightCycleHelper to CAP Evil Fog duration to NOT exceed sunrise ---
         if ("evil".equals(type.getId())) {
             long remainingNight = NightCycleHelper.ticksUntilDay(time);
-            duration = Math.min(duration, remainingNight);
+
+            // Only cap if random duration would EXCEED sunrise
+            if (duration > remainingNight) {
+                duration = remainingNight;
+            }
         }
 
         fogStart = time;
