@@ -60,7 +60,7 @@ public class FogRendererHook {
         FogType fog = FogEventManager.getActiveFog();
         if (fog == null || mc.player == null || mc.level == null) return;
 
-        float grayValue = 0.10f;
+        float grayValue = 0.7f;
         event.setRed(grayValue);
         event.setGreen(grayValue);
         event.setBlue(grayValue);

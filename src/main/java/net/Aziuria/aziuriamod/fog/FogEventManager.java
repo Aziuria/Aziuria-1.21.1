@@ -36,7 +36,8 @@ public class FogEventManager {
     private static long nextFogCheckTime = 0;
     private static boolean evilFogFadeOutTriggered = false;
 
-    private static boolean firstDayFogDenied = false;
+    private static int daysFogDenied = 0; // tracks number of full days fog is denied
+    private static final int FOG_DENIAL_DAYS = 3; // now 3
 
     // --- LOAD ---
     public static void loadFromSavedData(Level level) {
@@ -60,7 +61,7 @@ public class FogEventManager {
         dissipatingMessageSent = data.getDissipatingMessageSent();
         nextFogCheckTime = data.getNextFogCheckTime();
 
-        firstDayFogDenied = serverLevel.getDayTime() >= 24000L;
+        daysFogDenied = data.getDaysFogDenied(); // new method in FogEventSavedData
 
         NetworkHandler.sendFogStateToAll(new FogStateSyncPacket(
                 activeFog == null ? "" : activeFog.getId(),
@@ -82,6 +83,7 @@ public class FogEventManager {
         data.setFogFadeOutStart(fogFadeOutStart);
         data.setDissipatingMessageSent(dissipatingMessageSent);
         data.setNextFogCheckTime(nextFogCheckTime);
+        data.setDaysFogDenied(daysFogDenied); // <- add this
     }
 
     // --- TICK ---
@@ -89,9 +91,10 @@ public class FogEventManager {
         long time = level.getGameTime();
 
         // FIRST-DAY DENIAL
-        if (!firstDayFogDenied) {
-            if (time < 24000L || NightCycleHelper.isNight(time)) return;
-            firstDayFogDenied = true;
+        if (daysFogDenied < FOG_DENIAL_DAYS) {
+            long dayNumber = level.getDayTime() / 24000L;
+            if (dayNumber < FOG_DENIAL_DAYS || NightCycleHelper.isNight(time)) return;
+            daysFogDenied = FOG_DENIAL_DAYS; // now allow fog
             FogProbabilityHelper.reset();
         }
 
@@ -124,7 +127,6 @@ public class FogEventManager {
                 dissipatingMessageSent = true;
             }
             saveToSavedData(level);
-            System.out.println("[Fog Debug] Evil fog fade-out triggered (client) @ tick " + time);
         }
 
         if (time >= fogEnd) {
@@ -168,7 +170,6 @@ public class FogEventManager {
                 fogEnd = Math.max(fogEnd, time + TRANSITION_DURATION);
                 evilFogFadeOutTriggered = true;
                 saveToSavedData(level);
-                System.out.println("[Fog Debug] Evil fog fade-out triggered (server) @ tick " + time);
             }
 
             if (time >= fogEnd) {

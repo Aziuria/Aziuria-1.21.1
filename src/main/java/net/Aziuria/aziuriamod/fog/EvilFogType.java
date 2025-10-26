@@ -35,8 +35,6 @@ public class EvilFogType implements FogType {
 
         // Only allow nighttime using NightCycleHelper
         if (!NightCycleHelper.isNight(worldLevel)) {
-            long timeOfDay = worldLevel.getDayTime() % 24000L;
-            System.out.println("[Fog Debug] Evil fog prevented during daytime (helper): timeOfDay=" + timeOfDay);
             return false;
         }
 
@@ -45,19 +43,10 @@ public class EvilFogType implements FogType {
                 ? (timeOfDay - NightCycleHelper.NIGHT_START) / (float)(NightCycleHelper.NIGHT_END - NightCycleHelper.NIGHT_START)
                 : 0f;
 
-        int baseChance = 2000;
+        int baseChance = 2100;
         double surpriseFactor = 0.5 + random.nextDouble();
         int adjustedChance = Math.max(1, (int)(baseChance * (1.0f - nightProgress * 0.6f) * surpriseFactor));
-        boolean trigger = random.nextInt(adjustedChance) == 0;
-
-        if (trigger) {
-            System.out.println("[Fog Trigger] Evil fog triggered @ tick " + gameTime +
-                    " | TimeOfDay=" + timeOfDay +
-                    " | nightProgress=" + String.format("%.2f", nightProgress) +
-                    " | adjustedChance=" + adjustedChance);
-        }
-
-        return trigger;
+        return random.nextInt(adjustedChance) == 0;
     }
 
     @Override

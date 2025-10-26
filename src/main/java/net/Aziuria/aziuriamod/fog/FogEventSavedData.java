@@ -18,6 +18,8 @@ public class FogEventSavedData extends SavedData {
     private boolean dissipatingMessageSent = false;
     private long nextFogCheckTime = 0L;
 
+    private int daysFogDenied = 0;
+
     public FogEventSavedData() {}
 
     public FogEventSavedData(CompoundTag nbt, HolderLookup.Provider registries) {
@@ -34,6 +36,7 @@ public class FogEventSavedData extends SavedData {
         nbt.putLong("FogFadeOutStart", fogFadeOutStart);
         nbt.putBoolean("DissipatingMessageSent", dissipatingMessageSent);
         nbt.putLong("NextFogCheckTime", nextFogCheckTime);
+        nbt.putInt("DaysFogDenied", daysFogDenied);
         return nbt;
     }
 
@@ -47,6 +50,7 @@ public class FogEventSavedData extends SavedData {
             fogFadeOutStart = nbt.getLong("FogFadeOutStart");
             dissipatingMessageSent = nbt.getBoolean("DissipatingMessageSent");
             nextFogCheckTime = nbt.getLong("NextFogCheckTime");
+            daysFogDenied = nbt.contains("DaysFogDenied") ? nbt.getInt("DaysFogDenied") : 0;
         }
     }
 
@@ -73,6 +77,9 @@ public class FogEventSavedData extends SavedData {
 
     public long getNextFogCheckTime() { return nextFogCheckTime; }
     public void setNextFogCheckTime(long val) { this.nextFogCheckTime = val; setDirty(); }
+
+    public int getDaysFogDenied() { return daysFogDenied; }
+    public void setDaysFogDenied(int val) { this.daysFogDenied = val; setDirty(); }
 
     // Correct get method using NeoForge 1.21.1 SavedData.Factory
     public static FogEventSavedData get(ServerLevel level) {
