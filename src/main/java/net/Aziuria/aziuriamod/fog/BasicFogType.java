@@ -32,7 +32,7 @@ public class BasicFogType implements FogType {
             timeOfDay = gameTime % 24000;
         } else return false;
 
-        int baseChance = 1200; // average 2–3 days
+        int baseChance = 1650; // average 2–3 days
         double surpriseFactor = 0.7 + random.nextDouble() * 0.6; // 0.7–1.3
         int adjustedChance = (int)(baseChance * surpriseFactor);
         boolean trigger = random.nextInt(Math.max(1, adjustedChance)) == 0;

@@ -7,7 +7,7 @@ import net.minecraft.world.phys.Vec3;
 
 public class EvilFogType implements FogType {
 
-    public static final int NIGHT_END = 21000;
+    public static final int NIGHT_END = 23000;
     public static final int NIGHT_START = 13000;
 
     @Override
@@ -45,7 +45,7 @@ public class EvilFogType implements FogType {
                 ? (timeOfDay - NIGHT_START) / (float)(NIGHT_END - NIGHT_START)
                 : 0f; // you can adjust if you want wrap-around for early morning
 
-        int baseChance = 1400;
+        int baseChance = 2000;
         double surpriseFactor = 0.5 + random.nextDouble();
         int adjustedChance = Math.max(1, (int)(baseChance * (1.0f - nightProgress * 0.6f) * surpriseFactor));
         boolean trigger = random.nextInt(adjustedChance) == 0;

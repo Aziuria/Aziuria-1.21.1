@@ -15,6 +15,10 @@ import net.minecraft.server.level.ServerLevel;                // ← ServerLevel
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.Level;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 public class FogEventManager {
     private static final Minecraft mc = Minecraft.getInstance();
     private static final RandomSource random = RandomSource.create();
@@ -27,10 +31,7 @@ public class FogEventManager {
     private static long fogFadeInEnd = 0;
     private static long fogFadeOutStart = 0;
     private static boolean dissipatingMessageSent = false;
-
     private static final int TRANSITION_DURATION = 20 * 6;
-    private static final int FOG_COOLDOWN_TICKS = 20 * 60 * 5;
-
     private static long nextFogCheckTime = 0;
 
 
@@ -57,11 +58,6 @@ public class FogEventManager {
         fogFadeOutStart = data.getFogFadeOutStart();
         dissipatingMessageSent = data.getDissipatingMessageSent();
         nextFogCheckTime = data.getNextFogCheckTime();
-
-        // SAFETY: if this is a brand new world with no fog data, prevent immediate trigger
-        if (nextFogCheckTime == 0) {
-            nextFogCheckTime = 24000; // wait until after first Minecraft day
-        }
 
 
         // SEND CURRENT FOG STATE TO ALL CLIENTS
@@ -100,9 +96,30 @@ public class FogEventManager {
 
             long time = clientLevel.getGameTime();
 
-            if (activeFog == null && time < nextFogCheckTime) return;
-
             if (activeFog != null && time >= fogEnd) {
+
+                // --- SMOOTHLY END EVIL FOG AT SUNRISE (CLIENT SIDE) ---
+                if (activeFog != null && "evil".equals(activeFog.getId())) {
+                    long timeOfDay = time % 24000;
+
+                    // --- NEW EDGE CASE CHECK ---
+                    // Always start fade if time is past night-end, regardless of previous fade schedule
+                    if (timeOfDay > EvilFogType.NIGHT_END) {
+                        if (fogFadeOutStart < time) { // only allow forward update
+                            fogFadeOutStart = time;
+                            fogEnd = Math.max(fogEnd, time + TRANSITION_DURATION);
+                            if (!dissipatingMessageSent && mc.player != null) {
+                                mc.player.sendSystemMessage(Component.literal("⚠ The darkness fades as dawn breaks...")
+                                        .withStyle(style -> style.withColor(net.minecraft.ChatFormatting.YELLOW)));
+                                dissipatingMessageSent = true;
+                            }
+                            System.out.println("[Fog Debug] Evil fog entering fade-out at sunrise (client) @ " + timeOfDay);
+                            saveToSavedData(level);
+                        }
+                    }
+                }
+                // --- END SUNRISE CHECK ---
+
                 if (!dissipatingMessageSent && mc.player != null) {
                     mc.player.sendSystemMessage(Component.literal("⚠ Fog is dissipating...")
                             .withStyle(style -> style.withColor(net.minecraft.ChatFormatting.YELLOW)));
@@ -113,7 +130,7 @@ public class FogEventManager {
                 if (time >= fogEnd + TRANSITION_DURATION) {
                     activeFog = null;
                     dissipatingMessageSent = false;
-                    nextFogCheckTime = time + FOG_COOLDOWN_TICKS;
+                    nextFogCheckTime = time + FogCooldownHelper.calculate(random, null, currentIntensity, 20 * 60 * 5, 20 * 60 * 8);
                     stopAllSirens();
                     saveToSavedData(level);
                 }
@@ -121,9 +138,14 @@ public class FogEventManager {
 
             if (activeFog == null) {
                 // Prevent fog before next check time
+
+                if (mc.level != null && mc.level.getGameTime() < fogEnd) return;
+
                 if (time < nextFogCheckTime) return;
 
-                for (FogType type : FogRegistry.getAll()) {
+                List<FogType> shuffled = new ArrayList<>(FogRegistry.getAll());
+                Collections.shuffle(shuffled, new java.util.Random(random.nextLong())); // randomize order per check
+                for (FogType type : shuffled) {
                     if (type.shouldStart(clientLevel, random)) {
                         if (mc.player != null) {
                             mc.player.sendSystemMessage(Component.literal("⚠ Fog is approaching...")
@@ -142,11 +164,28 @@ public class FogEventManager {
 
             if (activeFog == null && time < nextFogCheckTime) return;
 
+// --- SMOOTHLY END EVIL FOG AT SUNRISE (SERVER SIDE) ---
+            if (activeFog != null && "evil".equals(activeFog.getId())) {
+                long timeOfDay = time % 24000;
+
+                // --- NEW EDGE CASE CHECK ---
+                if (timeOfDay > EvilFogType.NIGHT_END) {
+                    if (fogFadeOutStart < time) { // only allow forward update
+                        fogFadeOutStart = time;
+                        fogEnd = Math.max(fogEnd, time + TRANSITION_DURATION);
+                        System.out.println("[Fog Debug] Evil fog entering fade-out at sunrise (server) @ " + timeOfDay);
+                        saveToSavedData(level);
+                    }
+                }
+            }
+// --- END SUNRISE CHECK ---
+
             if (activeFog != null && time >= fogEnd) {
 
                 activeFog = null;
                 dissipatingMessageSent = false;
-                nextFogCheckTime = time + FOG_COOLDOWN_TICKS;
+                nextFogCheckTime = time + FogCooldownHelper.calculate(random, null, currentIntensity, 20 * 60 * 5, 20 * 60 * 8);
+
 
                 NetworkHandler.sendFogStateToAll(new FogStateSyncPacket(
                         "", 0, 0, 0, 0, 0
@@ -156,21 +195,20 @@ public class FogEventManager {
 
             }
 
-            // Prevent fog from spawning during the first Minecraft day
-            if (time < 24000 && activeFog == null) {
-                nextFogCheckTime = 24000;
-                return;
-            }
-
             if (activeFog == null) {
                 // Prevent fog before next check time
+
+                if (mc.level != null && mc.level.getGameTime() < fogEnd) return;
+
                 if (time < nextFogCheckTime) return;
 
-                for (FogType type : FogRegistry.getAll()) {
+                List<FogType> shuffled = new ArrayList<>(FogRegistry.getAll());
+                Collections.shuffle(shuffled, new java.util.Random(random.nextLong())); // randomize order per check
+                for (FogType type : shuffled) {
                     if (type.shouldStart(serverLevel, random)) {
                         startFogNow(type, serverLevel);
 
-                        nextFogCheckTime = time + FOG_COOLDOWN_TICKS;
+                        nextFogCheckTime = time + FogCooldownHelper.calculate(random, activeFog, currentIntensity, 20 * 60 * 5, 20 * 60 * 8);
 
                         saveToSavedData(level);
                         break;
@@ -201,7 +239,7 @@ public class FogEventManager {
         fogFadeOutStart = time + duration - TRANSITION_DURATION;
         fogEnd = time + duration;
         dissipatingMessageSent = false;
-        nextFogCheckTime = fogEnd + FOG_COOLDOWN_TICKS;
+        nextFogCheckTime = fogEnd + FogCooldownHelper.calculate(random, activeFog, currentIntensity, 20 * 60 * 5, 20 * 60 * 8);
 
 
         NetworkHandler.sendFogStateToAll(new FogStateSyncPacket(
@@ -228,7 +266,7 @@ public class FogEventManager {
         fogFadeOutStart = time + duration - TRANSITION_DURATION;
         fogEnd = time + duration;
         dissipatingMessageSent = false;
-        nextFogCheckTime = fogEnd + FOG_COOLDOWN_TICKS;
+        nextFogCheckTime = fogEnd + FogCooldownHelper.calculate(random, activeFog, currentIntensity, 20 * 60 * 5, 20 * 60 * 8);
 
         saveToSavedData(mc.level);
 
@@ -252,7 +290,7 @@ public class FogEventManager {
         dissipatingMessageSent = false;
 
         if (mc.level != null) {
-            nextFogCheckTime = mc.level.getGameTime() + FOG_COOLDOWN_TICKS;
+            nextFogCheckTime = mc.level.getGameTime() + FogCooldownHelper.calculate(random, null, currentIntensity, 20 * 60 * 5, 20 * 60 * 8);
             saveToSavedData(mc.level);
         }
 
@@ -285,7 +323,7 @@ public class FogEventManager {
             return horizonDistance - (horizonDistance - target) * progress;
         } else if (time >= fogFadeOutStart) {
             float progress = clamp((time - fogFadeOutStart) / (float) TRANSITION_DURATION);
-            return target + (horizonDistance - target) * progress;
+            return Math.min(horizonDistance, target + (horizonDistance - target) * progress);
         } else {
             return target;
         }
