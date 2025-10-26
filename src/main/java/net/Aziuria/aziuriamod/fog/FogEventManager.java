@@ -1,6 +1,8 @@
 package net.Aziuria.aziuriamod.fog;
 
 import net.Aziuria.aziuriamod.block.entity.SpeakerBlockEntity;
+import net.Aziuria.aziuriamod.fog.helper.FogCooldownHelper;
+import net.Aziuria.aziuriamod.fog.helper.NightCycleHelper;
 import net.Aziuria.aziuriamod.fog.network.FogStateSyncPacket;   // ← Packet import
 import net.Aziuria.aziuriamod.fog.network.NetworkHandler;       // ← Network handler import
 import net.Aziuria.aziuriamod.sounds.FadingSirenSoundInstance;
@@ -97,15 +99,11 @@ public class FogEventManager {
             long time = clientLevel.getGameTime();
 
             if (activeFog != null && time >= fogEnd) {
-
                 // --- SMOOTHLY END EVIL FOG AT SUNRISE (CLIENT SIDE) ---
                 if (activeFog != null && "evil".equals(activeFog.getId())) {
-                    long timeOfDay = time % 24000;
-
-                    // --- NEW EDGE CASE CHECK ---
-                    // Always start fade if time is past night-end, regardless of previous fade schedule
-                    if (timeOfDay > EvilFogType.NIGHT_END) {
-                        if (fogFadeOutStart < time) { // only allow forward update
+                    // --- UPDATED: Use NightCycleHelper ---
+                    if (!NightCycleHelper.isNight(time)) {
+                        if (fogFadeOutStart < time) {
                             fogFadeOutStart = time;
                             fogEnd = Math.max(fogEnd, time + TRANSITION_DURATION);
                             if (!dissipatingMessageSent && mc.player != null) {
@@ -113,7 +111,7 @@ public class FogEventManager {
                                         .withStyle(style -> style.withColor(net.minecraft.ChatFormatting.YELLOW)));
                                 dissipatingMessageSent = true;
                             }
-                            System.out.println("[Fog Debug] Evil fog entering fade-out at sunrise (client) @ " + timeOfDay);
+                            System.out.println("[Fog Debug] Evil fog entering fade-out at sunrise (client) @ tick " + time);
                             saveToSavedData(level);
                         }
                     }
@@ -164,21 +162,19 @@ public class FogEventManager {
 
             if (activeFog == null && time < nextFogCheckTime) return;
 
-// --- SMOOTHLY END EVIL FOG AT SUNRISE (SERVER SIDE) ---
+            // --- SMOOTHLY END EVIL FOG AT SUNRISE (SERVER SIDE) ---
             if (activeFog != null && "evil".equals(activeFog.getId())) {
-                long timeOfDay = time % 24000;
-
-                // --- NEW EDGE CASE CHECK ---
-                if (timeOfDay > EvilFogType.NIGHT_END) {
-                    if (fogFadeOutStart < time) { // only allow forward update
+                // --- UPDATED: Use NightCycleHelper ---
+                if (!NightCycleHelper.isNight(time)) {
+                    if (fogFadeOutStart < time) {
                         fogFadeOutStart = time;
                         fogEnd = Math.max(fogEnd, time + TRANSITION_DURATION);
-                        System.out.println("[Fog Debug] Evil fog entering fade-out at sunrise (server) @ " + timeOfDay);
+                        System.out.println("[Fog Debug] Evil fog entering fade-out at sunrise (server) @ tick " + time);
                         saveToSavedData(level);
                     }
                 }
             }
-// --- END SUNRISE CHECK ---
+            // --- END SUNRISE CHECK ---
 
             if (activeFog != null && time >= fogEnd) {
 
@@ -226,11 +222,9 @@ public class FogEventManager {
 
         long duration = type.getDurationTicks(random);
 
-        // Cap Evil Fog duration to night time
+        // --- UPDATED: Use NightCycleHelper to cap Evil Fog duration ---
         if ("evil".equals(type.getId())) {
-            long timeOfDay = time % 24000;
-            long remainingNight = EvilFogType.NIGHT_END - timeOfDay;
-            if (remainingNight < 0) remainingNight = 0;
+            long remainingNight = NightCycleHelper.ticksUntilDay(time);
             duration = Math.min(duration, remainingNight);
         }
 

@@ -1,5 +1,7 @@
-package net.Aziuria.aziuriamod.fog;
+package net.Aziuria.aziuriamod.fog.helper;
 
+import net.Aziuria.aziuriamod.fog.FogIntensity;
+import net.Aziuria.aziuriamod.fog.FogType;
 import net.minecraft.util.RandomSource;
 
 public class FogCooldownHelper {

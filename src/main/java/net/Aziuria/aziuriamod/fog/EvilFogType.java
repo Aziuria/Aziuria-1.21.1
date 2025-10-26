@@ -1,14 +1,13 @@
 package net.Aziuria.aziuriamod.fog;
 
+import net.Aziuria.aziuriamod.fog.helper.NightCycleHelper;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 
 public class EvilFogType implements FogType {
-
-    public static final int NIGHT_END = 23000;
-    public static final int NIGHT_START = 13000;
 
     @Override
     public boolean shouldStart(ClientLevel level, RandomSource random) {
@@ -23,27 +22,28 @@ public class EvilFogType implements FogType {
     private boolean calculateDynamicChance(Object level, RandomSource random) {
         if (FogEventManager.getActiveFog() != null) return false;
 
-        long timeOfDay;
+        Level worldLevel;
         long gameTime;
 
         if (level instanceof ClientLevel cl) {
+            worldLevel = cl;
             gameTime = cl.getGameTime();
-            timeOfDay = gameTime % 24000;
         } else if (level instanceof ServerLevel sl) {
+            worldLevel = sl;
             gameTime = sl.getGameTime();
-            timeOfDay = gameTime % 24000;
         } else return false;
 
-        // Only allow night-time
-        boolean isNight = timeOfDay >= NIGHT_START && timeOfDay <= NIGHT_END;
-        if (!isNight) {
-            System.out.println("[Fog Debug] Evil fog prevented during daytime: timeOfDay=" + timeOfDay);
+        // Only allow nighttime using NightCycleHelper
+        if (!NightCycleHelper.isNight(worldLevel)) {
+            long timeOfDay = worldLevel.getDayTime() % 24000L;
+            System.out.println("[Fog Debug] Evil fog prevented during daytime (helper): timeOfDay=" + timeOfDay);
             return false;
         }
 
-        float nightProgress = (timeOfDay >= NIGHT_START)
-                ? (timeOfDay - NIGHT_START) / (float)(NIGHT_END - NIGHT_START)
-                : 0f; // you can adjust if you want wrap-around for early morning
+        long timeOfDay = worldLevel.getDayTime() % 24000L;
+        float nightProgress = (timeOfDay >= NightCycleHelper.NIGHT_START)
+                ? (timeOfDay - NightCycleHelper.NIGHT_START) / (float)(NightCycleHelper.NIGHT_END - NightCycleHelper.NIGHT_START)
+                : 0f;
 
         int baseChance = 2000;
         double surpriseFactor = 0.5 + random.nextDouble();

@@ -8,6 +8,7 @@ import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.ai.goal.FloatGoal;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.ai.navigation.GroundPathNavigation;
 import net.minecraft.world.entity.ai.navigation.PathNavigation;
@@ -99,7 +100,8 @@ public class FogZombieSpawner {
                         zombie.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 20 * 60, 1));
                         zombie.addEffect(new MobEffectInstance(MobEffects.DAMAGE_BOOST, 20 * 60, 0));
 
-                        zombie.goalSelector.addGoal(0, new TargetRottenFleshGoal(zombie, 1.2D));
+                        zombie.goalSelector.addGoal(0, new FloatGoal(zombie));  // vanilla
+                        zombie.goalSelector.addGoal(1, new TargetRottenFleshGoal(zombie, 1.2D)); // our distraction
 
 
                         // NEW: 10% chance to spawn as baby zombie

@@ -9,6 +9,7 @@ import net.minecraft.world.entity.monster.Zombie;
 import net.minecraft.world.item.Items;
 
 import java.util.Comparator;
+import java.util.EnumSet;
 import java.util.List;
 import java.util.function.Predicate;
 
@@ -25,6 +26,7 @@ public class TargetRottenFleshGoal extends Goal {
         this.zombie = zombie;
         this.speedModifier = speed;
         this.searchRange = 16.0D; // How far to look for rotten flesh
+        setFlags(EnumSet.of(Flag.MOVE));
     }
 
     @Override
