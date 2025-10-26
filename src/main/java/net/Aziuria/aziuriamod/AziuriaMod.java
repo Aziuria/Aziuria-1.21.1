@@ -27,6 +27,7 @@ import net.Aziuria.aziuriamod.item.custom.entities.ModEntities;
 import net.Aziuria.aziuriamod.fog.network.NetworkHandler;
 import net.Aziuria.aziuriamod.fog.network.PlayerJoinHandler;
 //import net.Aziuria.aziuriamod.water.PlayerJoinsHandler;
+import net.Aziuria.aziuriamod.loot.ModLootModifiers;
 import net.Aziuria.aziuriamod.particle.FallingLeafParticle;
 import net.Aziuria.aziuriamod.particle.ModParticles;
 import net.Aziuria.aziuriamod.sounds.ModSounds;
@@ -128,6 +129,7 @@ public class AziuriaMod {
 
         // Register all mod content
         ModCreativeModeTabs.register(modEventBus);
+        ModLootModifiers.register(modEventBus);
         ModItems.register(modEventBus);
         ModBlocks.register(modEventBus);
         ModDamageTypes.register(modEventBus);
