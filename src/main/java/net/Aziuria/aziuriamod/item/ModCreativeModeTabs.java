@@ -70,7 +70,15 @@ public class ModCreativeModeTabs {
                         output.accept(ModItems.SPINEL_HOE);
 
                         // Misc
-                        output.accept(ModItems.KNIFE);
+                        output.accept(ModItems.WOOD_KNIFE);
+                        output.accept(ModItems.STONE_KNIFE);
+                        output.accept(ModItems.COPPER_KNIFE);
+                        output.accept(ModItems.IRON_KNIFE);
+                        output.accept(ModItems.GOLD_KNIFE);
+                        output.accept(ModItems.STEEL_KNIFE);
+                        output.accept(ModItems.SPINEL_KNIFE);
+                        output.accept(ModItems.DIAMOND_KNIFE);
+                        output.accept(ModItems.NETHERITE_KNIFE);
 
                         // ======= 🛡️ ARMOR =======
                         // Copper

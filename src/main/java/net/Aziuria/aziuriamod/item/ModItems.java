@@ -48,8 +48,25 @@ public class ModItems {
     public static final DeferredItem<HoeItem> STEEL_HOE = ITEMS.register("steel_hoe",
             () -> new HoeItem(ModToolTiers.STEEL, new Item.Properties()
                     .attributes(HoeItem.createAttributes(ModToolTiers.STEEL, -2.0F, -2.0f))));
-    public static final DeferredItem<KnifeItem> KNIFE = ITEMS.register("knife",
+
+    public static final DeferredItem<KnifeItem> WOOD_KNIFE = ITEMS.register("wooden_knife",
             () -> new KnifeItem(Tiers.WOOD, new Item.Properties().durability(59)));
+    public static final DeferredItem<KnifeItem> STONE_KNIFE = ITEMS.register("stone_knife",
+            () -> new KnifeItem(Tiers.STONE, new Item.Properties().durability(131)));
+    public static final DeferredItem<KnifeItem> COPPER_KNIFE = ITEMS.register("copper_knife",
+            () -> new KnifeItem(ModToolTiers.COPPER, new Item.Properties().durability(180)));
+    public static final DeferredItem<KnifeItem> IRON_KNIFE = ITEMS.register("iron_knife",
+            () -> new KnifeItem(Tiers.IRON, new Item.Properties().durability(250)));
+    public static final DeferredItem<KnifeItem> GOLD_KNIFE = ITEMS.register("golden_knife",
+            () -> new KnifeItem(Tiers.GOLD, new Item.Properties().durability(32)));
+    public static final DeferredItem<KnifeItem> STEEL_KNIFE = ITEMS.register("steel_knife",
+            () -> new KnifeItem(ModToolTiers.STEEL, new Item.Properties().durability(550)));
+    public static final DeferredItem<KnifeItem> SPINEL_KNIFE = ITEMS.register("spinel_knife",
+            () -> new KnifeItem(ModToolTiers.SPINEL, new Item.Properties().durability(750)));
+    public static final DeferredItem<KnifeItem> DIAMOND_KNIFE = ITEMS.register("diamond_knife",
+            () -> new KnifeItem(Tiers.DIAMOND, new Item.Properties().durability(1561)));
+    public static final DeferredItem<KnifeItem> NETHERITE_KNIFE = ITEMS.register("netherite_knife",
+            () -> new KnifeItem(Tiers.NETHERITE, new Item.Properties().durability(2031)));
 
     public static final DeferredItem<SwordItem> SPINEL_SWORD = ITEMS.register("spinel_sword",
             () -> new SwordItem(ModToolTiers.SPINEL, new Item.Properties()

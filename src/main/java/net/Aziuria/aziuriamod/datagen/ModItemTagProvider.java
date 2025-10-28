@@ -2,6 +2,7 @@ package net.Aziuria.aziuriamod.datagen;
 
 import net.Aziuria.aziuriamod.AziuriaMod;
 import net.Aziuria.aziuriamod.item.ModItems;
+import net.Aziuria.aziuriamod.util.ModTags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.ItemTagsProvider;
@@ -25,6 +26,18 @@ public class ModItemTagProvider extends ItemTagsProvider {
        //         .add(Items.COAL)
        //         .add(Items.STICK)
        //         .add(Items.COMPASS);
+
+        // Add knives tag
+        tag(ModTags.KNIVES)
+                .add(ModItems.WOOD_KNIFE.get())
+                .add(ModItems.STONE_KNIFE.get())
+                .add(ModItems.COPPER_KNIFE.get())
+                .add(ModItems.IRON_KNIFE.get())
+                .add(ModItems.GOLD_KNIFE.get())
+                .add(ModItems.STEEL_KNIFE.get())
+                .add(ModItems.SPINEL_KNIFE.get())
+                .add(ModItems.DIAMOND_KNIFE.get())
+                .add(ModItems.NETHERITE_KNIFE.get());
 
         tag(ItemTags.SWORDS)
                 .add(ModItems.STEEL_SWORD.get());

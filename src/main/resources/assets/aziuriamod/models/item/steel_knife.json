@@ -1,7 +1,7 @@
 {
 	"parent": "item/handheld",
 	"textures": {
-		"layer0": "aziuriamod:item/knife"
+		"layer0": "aziuriamod:item/steel_knife"
 	},
 	"display": {
 		"thirdperson_righthand": {

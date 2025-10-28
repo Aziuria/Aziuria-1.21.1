@@ -1,0 +1,14 @@
+{
+	"replace": false,
+	"values": [
+		"aziuriamod:wooden_knife",
+		"aziuriamod:stone_knife",
+		"aziuriamod:iron_knife",
+		"aziuriamod:diamond_knife",
+		"aziuriamod:netherite_knife",
+		"aziuriamod:copper_knife",
+		"aziuriamod:steel_knife",
+		"aziuriamod:golden_knife",
+		"aziuriamod:spinel_knife"
+	]
+}
