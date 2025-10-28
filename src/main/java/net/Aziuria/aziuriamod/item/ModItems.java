@@ -140,6 +140,16 @@ public class ModItems {
             () -> new ArmorItem(ModArmorMaterials.COPPER_ARMOR_MATERIAL, ArmorItem.Type.BOOTS,
                     new Item.Properties().durability(ArmorItem.Type.BOOTS.getDurability(12))));
 
+    public static final DeferredItem<Item> STEEL_HORSE_ARMOR = ITEMS.register("steel_horse_armor",
+            () -> new AnimalArmorItem(ModArmorMaterials.STEEL_ARMOR_MATERIAL, AnimalArmorItem.BodyType.EQUESTRIAN,
+                    false, new Item.Properties().stacksTo(1)));
+    public static final DeferredItem<Item> SPINEL_HORSE_ARMOR = ITEMS.register("spinel_horse_armor",
+            () -> new AnimalArmorItem(ModArmorMaterials.SPINEL_ARMOR_MATERIAL, AnimalArmorItem.BodyType.EQUESTRIAN,
+                    false, new Item.Properties().stacksTo(1)));
+    public static final DeferredItem<Item> COPPER_HORSE_ARMOR = ITEMS.register("copper_horse_armor",
+            () -> new AnimalArmorItem(ModArmorMaterials.COPPER_ARMOR_MATERIAL, AnimalArmorItem.BodyType.EQUESTRIAN,
+                    false, new Item.Properties().stacksTo(1)));
+
     public static final DeferredItem<Item> LASHING = ITEMS.register("lashing",
             () -> new Item(new Item.Properties()));
     public static final DeferredItem<Item> EMPTY_CUP = ITEMS.register("empty_cup",

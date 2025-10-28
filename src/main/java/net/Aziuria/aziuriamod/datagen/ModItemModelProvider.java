@@ -152,6 +152,10 @@ public class ModItemModelProvider extends ItemModelProvider {
         trimmedArmorItem(ModItems.COPPER_LEGGINGS);
         trimmedArmorItem(ModItems.COPPER_BOOTS);
 
+        basicItem(ModItems.SPINEL_HORSE_ARMOR.get());
+        basicItem(ModItems.COPPER_HORSE_ARMOR.get());
+        basicItem(ModItems.STEEL_HORSE_ARMOR.get());
+
         saplingItem(ModBlocks.APPLE_SAPLING);
         saplingItem(ModBlocks.PEAR_SAPLING);
         saplingItem(ModBlocks.CHERRY_SAPLING);

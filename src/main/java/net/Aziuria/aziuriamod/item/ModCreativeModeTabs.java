@@ -99,6 +99,11 @@ public class ModCreativeModeTabs {
                         output.accept(ModItems.SPINEL_LEGGINGS);
                         output.accept(ModItems.SPINEL_BOOTS);
 
+                        // Horse Armor
+                        output.accept(ModItems.COPPER_HORSE_ARMOR);
+                        output.accept(ModItems.STEEL_HORSE_ARMOR);
+                        output.accept(ModItems.SPINEL_HORSE_ARMOR);
+
                         // ======= 🪵 DECORATIVE BLOCKS =======
                         // Shelves
                         output.accept(ModBlocks.OAK_SHELF);
