@@ -49,7 +49,7 @@ public class ModItems {
             () -> new HoeItem(ModToolTiers.STEEL, new Item.Properties()
                     .attributes(HoeItem.createAttributes(ModToolTiers.STEEL, -2.0F, -2.0f))));
     public static final DeferredItem<KnifeItem> KNIFE = ITEMS.register("knife",
-            () -> new KnifeItem(new Item.Properties().durability(59)));
+            () -> new KnifeItem(Tiers.WOOD, new Item.Properties().durability(59)));
 
     public static final DeferredItem<SwordItem> SPINEL_SWORD = ITEMS.register("spinel_sword",
             () -> new SwordItem(ModToolTiers.SPINEL, new Item.Properties()

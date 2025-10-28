@@ -1,6 +1,7 @@
 package net.Aziuria.aziuriamod.handler;
 
 import net.Aziuria.aziuriamod.item.ModItems;
+import net.Aziuria.aziuriamod.item.custom.KnifeItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Blocks;
@@ -21,6 +22,22 @@ public class BlockDropHandler {
                 ItemEntity itemEntity = new ItemEntity(event.getLevel(), event.getPos().getX(), event.getPos().getY(), event.getPos().getZ(), seedDrop);
                 event.getDrops().add(itemEntity);
             }
+
+            // --- Knife-triggered dried grass drop ---
+            if (event.getTool().getItem() instanceof KnifeItem) {
+                if (random.nextInt(100) < 5) { // 5% chance to drop dried grass
+                    ItemStack shortGrass = new ItemStack(Items.SHORT_GRASS);
+                    ItemEntity itemEntity = new ItemEntity(
+                            event.getLevel(),
+                            event.getPos().getX(),
+                            event.getPos().getY(),
+                            event.getPos().getZ(),
+                            shortGrass
+                    );
+                    event.getDrops().add(itemEntity);
+                }
+            }
+            // end of knife code
         }
     }
 

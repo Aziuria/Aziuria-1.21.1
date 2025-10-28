@@ -2,12 +2,14 @@ package net.Aziuria.aziuriamod.item.custom;
 
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.SwordItem;
-import net.minecraft.world.item.Tiers;
+import net.minecraft.world.item.Tier;
+
+
 
 public class KnifeItem extends SwordItem {
 
-    public KnifeItem(Properties properties) {
-        super(Tiers.WOOD, properties);
+    public KnifeItem(Tier tier, Properties properties) {
+        super(tier, properties);
     }
 
     @Override
@@ -20,8 +22,9 @@ public class KnifeItem extends SwordItem {
         ItemStack copy = stack.copy();
         copy.setDamageValue(copy.getDamageValue() + 1);
         if (copy.getDamageValue() >= copy.getMaxDamage()) {
-            return ItemStack.EMPTY; // break when fully damaged
+            return ItemStack.EMPTY;
         }
         return copy;
     }
+
 }
