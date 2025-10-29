@@ -418,7 +418,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .define('A', ItemTags.PLANKS)
                 .define('F', Items.STICK)
                 .unlockedBy("has_stick", has(Items.STICK))
-                .save(recipeOutput);
+                .save(recipeOutput, ResourceLocation.fromNamespaceAndPath("aziuriamod", "wooden_knife_from_planks"));
 
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.STONE_KNIFE.get())
                 .pattern("  A")
@@ -427,7 +427,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .define('A', Items.COBBLESTONE)
                 .define('F', Items.STICK)
                 .unlockedBy("has_stick", has(Items.STICK))
-                .save(recipeOutput);
+                .save(recipeOutput, ResourceLocation.fromNamespaceAndPath("aziuriamod", "stone_knife_from_cobble"));
 
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.COPPER_KNIFE.get())
                 .pattern("  A")
@@ -436,7 +436,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .define('A', Items.COPPER_INGOT)
                 .define('F', Items.STICK)
                 .unlockedBy("has_stick", has(Items.STICK))
-                .save(recipeOutput);
+                .save(recipeOutput, ResourceLocation.fromNamespaceAndPath("aziuriamod", "copper_knife_from_copper"));
 
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.IRON_KNIFE.get())
                 .pattern("  A")
@@ -445,7 +445,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .define('A', Items.IRON_INGOT)
                 .define('F', Items.STICK)
                 .unlockedBy("has_stick", has(Items.STICK))
-                .save(recipeOutput);
+                .save(recipeOutput, ResourceLocation.fromNamespaceAndPath("aziuriamod", "iron_knife_from_iron"));
 
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.GOLD_KNIFE.get())
                 .pattern("  A")
@@ -454,7 +454,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .define('A', Items.GOLD_INGOT)
                 .define('F', Items.STICK)
                 .unlockedBy("has_stick", has(Items.STICK))
-                .save(recipeOutput);
+                .save(recipeOutput, ResourceLocation.fromNamespaceAndPath("aziuriamod", "golden_knife_from_gold"));
 
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.STEEL_KNIFE.get())
                 .pattern("  S")
@@ -463,7 +463,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .define('S', ModItems.STEEL_INGOT.get())
                 .define('F', Items.STICK)
                 .unlockedBy("has_stick", has(Items.STICK))
-                .save(recipeOutput);
+                .save(recipeOutput, ResourceLocation.fromNamespaceAndPath("aziuriamod", "steel_knife_from_steel"));
 
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.SPINEL_KNIFE.get())
                 .pattern("  S")
@@ -472,7 +472,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .define('S', ModItems.SPINEL.get())
                 .define('F', Items.STICK)
                 .unlockedBy("has_stick", has(Items.STICK))
-                .save(recipeOutput);
+                .save(recipeOutput, ResourceLocation.fromNamespaceAndPath("aziuriamod", "spinel_knife_from_spinel"));
 
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.DIAMOND_KNIFE.get())
                 .pattern("  A")
@@ -481,7 +481,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .define('A', Items.DIAMOND)
                 .define('F', Items.STICK)
                 .unlockedBy("has_stick", has(Items.STICK))
-                .save(recipeOutput);
+                .save(recipeOutput, ResourceLocation.fromNamespaceAndPath("aziuriamod", "diamond_knife_from_diamond"));
 
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.NETHERITE_KNIFE.get())
                 .pattern("  A")
@@ -490,7 +490,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .define('A', Items.NETHERITE_INGOT)
                 .define('F', Items.STICK)
                 .unlockedBy("has_stick", has(Items.STICK))
-                .save(recipeOutput);
+                .save(recipeOutput, ResourceLocation.fromNamespaceAndPath("aziuriamod", "netherite_knife_from_netherite"));
 
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.MINER_BENCH.get())
                 .pattern("SSA")
