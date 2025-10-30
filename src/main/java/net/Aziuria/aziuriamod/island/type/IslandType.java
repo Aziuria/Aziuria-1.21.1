@@ -1,4 +1,4 @@
-package net.Aziuria.aziuriamod.block.world;
+package net.Aziuria.aziuriamod.island.type;
 
 import net.minecraft.util.RandomSource;
 

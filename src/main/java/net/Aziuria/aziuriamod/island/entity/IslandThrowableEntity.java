@@ -1,8 +1,9 @@
-package net.Aziuria.aziuriamod.item.custom.entities;
+package net.Aziuria.aziuriamod.island.entity;
 
-import net.Aziuria.aziuriamod.block.world.IslandBiomeType;
-import net.Aziuria.aziuriamod.block.world.IslandGenerator;
-import net.Aziuria.aziuriamod.block.world.IslandType;
+import net.Aziuria.aziuriamod.island.type.IslandBiomeType;
+import net.Aziuria.aziuriamod.island.generation.IslandGenerator;
+import net.Aziuria.aziuriamod.island.type.IslandType;
+import net.Aziuria.aziuriamod.item.custom.entities.ModEntities;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.entity.EntityType;

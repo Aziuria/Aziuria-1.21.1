@@ -1,6 +1,5 @@
-package net.Aziuria.aziuriamod.block.world;
+package net.Aziuria.aziuriamod.island.util;
 
-import net.minecraft.world.level.Level;
 import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.chunk.ChunkGenerator;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;

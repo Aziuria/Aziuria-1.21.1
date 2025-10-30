@@ -1,4 +1,4 @@
-package net.Aziuria.aziuriamod.block.world;
+package net.Aziuria.aziuriamod.island.type;
 
 public enum IslandBiomeType {
     DESERT,
@@ -15,5 +15,15 @@ public enum IslandBiomeType {
     BEACH,
     DARK_FOREST,
     MEADOW,
+    SUNFLOWER_PLAINS,
+    FLOWER_FOREST,
+    GROVE,
+    WOODED_BADLANDS,
+    CHERRY_GROVE,
+    BAMBOO_JUNGLE,
+    SPARSE_JUNGLE,
+    SAVANNA_PLATEAU,
+    WINDSWEPT_SAVANNA,
+    BADLANDS,
     // Add any other custom/modded ones too
 }

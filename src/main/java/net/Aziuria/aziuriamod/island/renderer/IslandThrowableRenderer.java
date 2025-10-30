@@ -1,5 +1,6 @@
-package net.Aziuria.aziuriamod.item.custom.entities;
+package net.Aziuria.aziuriamod.island.renderer;
 
+import net.Aziuria.aziuriamod.island.entity.IslandThrowableEntity;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.ThrownItemRenderer;
 

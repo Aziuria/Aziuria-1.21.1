@@ -4,7 +4,7 @@ import net.Aziuria.aziuriamod.block.ModBlocks;
 import net.Aziuria.aziuriamod.block.entity.ModBlockEntities;
 import net.Aziuria.aziuriamod.block.entity.renderer.*;
 import net.Aziuria.aziuriamod.fog.FogRendererHook;
-import net.Aziuria.aziuriamod.item.custom.entities.IslandThrowableRenderer;
+import net.Aziuria.aziuriamod.island.renderer.IslandThrowableRenderer;
 import net.Aziuria.aziuriamod.item.custom.entities.ModEntities;
 import net.Aziuria.aziuriamod.util.RenderLayerUtil;
 import net.minecraft.client.renderer.RenderType;

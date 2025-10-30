@@ -1,6 +1,7 @@
 package net.Aziuria.aziuriamod.item.custom.entities;
 
 import net.Aziuria.aziuriamod.AziuriaMod;
+import net.Aziuria.aziuriamod.island.entity.IslandThrowableEntity;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;

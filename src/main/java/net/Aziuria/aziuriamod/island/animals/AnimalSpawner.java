@@ -1,11 +1,11 @@
-package net.Aziuria.aziuriamod.block.world;
+package net.Aziuria.aziuriamod.island.animals;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.level.levelgen.Heightmap;
-import net.Aziuria.aziuriamod.block.world.IslandType;
+import net.Aziuria.aziuriamod.island.type.IslandType;
 
 import java.util.List;
 import java.util.Random;

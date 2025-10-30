@@ -1,6 +1,6 @@
 package net.Aziuria.aziuriamod.events;
 
-import net.Aziuria.aziuriamod.block.world.DelayedExecutor;
+import net.Aziuria.aziuriamod.island.util.DelayedExecutor;
 import net.Aziuria.aziuriamod.handler.FastLeafDecayHandler;
 import net.Aziuria.aziuriamod.handler.LeafLitterHandler;
 import net.minecraft.server.level.ServerLevel;

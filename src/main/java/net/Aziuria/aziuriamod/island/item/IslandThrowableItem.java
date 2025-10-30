@@ -1,8 +1,8 @@
-package net.Aziuria.aziuriamod.item.custom;
+package net.Aziuria.aziuriamod.island.item;
 
-import net.Aziuria.aziuriamod.block.world.IslandType;
-import net.Aziuria.aziuriamod.block.world.IslandBiomeType;
-import net.Aziuria.aziuriamod.item.custom.entities.IslandThrowableEntity;
+import net.Aziuria.aziuriamod.island.type.IslandType;
+import net.Aziuria.aziuriamod.island.type.IslandBiomeType;
+import net.Aziuria.aziuriamod.island.entity.IslandThrowableEntity;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;

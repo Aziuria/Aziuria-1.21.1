@@ -1,11 +1,15 @@
-package net.Aziuria.aziuriamod.block.world;
+package net.Aziuria.aziuriamod.island.generation;
 
 import net.Aziuria.aziuriamod.block.ModBlocks;
+import net.Aziuria.aziuriamod.island.decoration.DecorationGenerator;
+import net.Aziuria.aziuriamod.island.util.DelayedExecutor;
+import net.Aziuria.aziuriamod.island.animals.AnimalSpawner;
+import net.Aziuria.aziuriamod.island.decoration.TreeGenerator;
+import net.Aziuria.aziuriamod.island.decoration.TreeLitterSpawner;
+import net.Aziuria.aziuriamod.island.type.IslandBiomeType;
+import net.Aziuria.aziuriamod.island.type.IslandType;
+import net.Aziuria.aziuriamod.island.util.BlockBatcher;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Registry;
-import net.minecraft.core.registries.Registries;
-import net.minecraft.data.worldgen.features.TreeFeatures;
-import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.util.RandomSource;
@@ -13,7 +17,6 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.levelgen.Heightmap;
-import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.synth.SimplexNoise;
 
 import java.util.ArrayList;
@@ -204,83 +207,28 @@ public class IslandGenerator {
                     }
                 }
 
-                // Decorations and potential trees
-                BlockPos decoPos = new BlockPos(worldX, topY + 1, worldZ);
-                double decoRoll = random.nextDouble();
+                batcher.flush();
 
-                boolean isGoodSoil = topBlock == Blocks.GRASS_BLOCK || topBlock == Blocks.DIRT
-                        || topBlock == Blocks.COARSE_DIRT || topBlock == Blocks.PODZOL
+                /// --- Decorations and tree candidate collection fixed ---
+                BlockPos soilPos = new BlockPos(worldX, topY, worldZ); // soil
+                BlockPos treePos = soilPos.above();                    // tree trunk starts above soil
+
+// Decorations can use all soil types
+                if (DecorationGenerator.isSoil(topBlock)) {
+                    DecorationGenerator.placeDecorations(level, soilPos, random, biomeType, batcher, topBlock);
+                }
+
+// Trees only spawn on "good soil" (exclude sand)
+                boolean isGoodSoil = topBlock == Blocks.GRASS_BLOCK
+                        || topBlock == Blocks.DIRT
+                        || topBlock == Blocks.COARSE_DIRT
+                        || topBlock == Blocks.PODZOL
                         || topBlock == Blocks.MYCELIUM;
 
                 if (isGoodSoil) {
-                    switch (biomeType) {
-                        case FOREST -> {
-                            if (decoRoll < 0.04) batcher.setBlock(decoPos, Blocks.TALL_GRASS.defaultBlockState());
-                            else if (decoRoll < 0.07) batcher.setBlock(decoPos, Blocks.FERN.defaultBlockState());
-                            else if (decoRoll < 0.09) batcher.setBlock(decoPos, Blocks.DANDELION.defaultBlockState());
-                            else if (decoRoll < 0.11) batcher.setBlock(decoPos, Blocks.POPPY.defaultBlockState());
-                            else if (decoRoll < 0.12) batcher.setBlock(decoPos, Blocks.BLUE_ORCHID.defaultBlockState());
-                            else if (decoRoll < 0.13) batcher.setBlock(decoPos, Blocks.LILAC.defaultBlockState());
-                        }
-                        case SNOWY, TAIGA -> {
-                            if (decoRoll < 0.04) batcher.setBlock(decoPos, Blocks.SWEET_BERRY_BUSH.defaultBlockState());
-                            else if (decoRoll < 0.06) batcher.setBlock(decoPos, Blocks.SPRUCE_SAPLING.defaultBlockState());
-                            else if (decoRoll < 0.08) batcher.setBlock(decoPos, Blocks.FERN.defaultBlockState());
-                            else if (decoRoll < 0.10) batcher.setBlock(decoPos, Blocks.SNOW.defaultBlockState());
-                            else if (decoRoll < 0.11) batcher.setBlock(decoPos, Blocks.BROWN_MUSHROOM.defaultBlockState());
-                        }
-                        case SWAMP -> {
-                            if (decoRoll < 0.05) batcher.setBlock(decoPos, Blocks.FERN.defaultBlockState());
-                            else if (decoRoll < 0.07) batcher.setBlock(decoPos, Blocks.SUGAR_CANE.defaultBlockState());
-                            else if (decoRoll < 0.09) batcher.setBlock(decoPos, Blocks.LILY_PAD.defaultBlockState());
-                        }
-                        case JUNGLE -> {
-                            if (decoRoll < 0.03) batcher.setBlock(decoPos, Blocks.MELON.defaultBlockState());
-                            else if (decoRoll < 0.06) batcher.setBlock(decoPos, Blocks.LARGE_FERN.defaultBlockState());
-                            else if (decoRoll < 0.08) batcher.setBlock(decoPos, Blocks.FERN.defaultBlockState());
-                            else if (decoRoll < 0.10) batcher.setBlock(decoPos, Blocks.VINE.defaultBlockState());
-                        }
-                        case PLAINS -> {
-                            if (decoRoll < 0.03) batcher.setBlock(decoPos, Blocks.DANDELION.defaultBlockState());
-                            else if (decoRoll < 0.06) batcher.setBlock(decoPos, Blocks.POPPY.defaultBlockState());
-                            else if (decoRoll < 0.09) batcher.setBlock(decoPos, Blocks.TALL_GRASS.defaultBlockState());
-                            else if (decoRoll < 0.10) batcher.setBlock(decoPos, Blocks.SHORT_GRASS.defaultBlockState());
-                        }
-                        case MUSHROOM -> {
-                            if (decoRoll < 0.07) batcher.setBlock(decoPos, Blocks.RED_MUSHROOM.defaultBlockState());
-                            else if (decoRoll < 0.13) batcher.setBlock(decoPos, Blocks.BROWN_MUSHROOM.defaultBlockState());
-                            else if (decoRoll < 0.15) batcher.setBlock(decoPos, Blocks.MYCELIUM.defaultBlockState());
-                        }
-                        case MEADOW -> {
-                            if (decoRoll < 0.04) batcher.setBlock(decoPos, Blocks.ALLIUM.defaultBlockState());
-                            else if (decoRoll < 0.07) batcher.setBlock(decoPos, Blocks.CORNFLOWER.defaultBlockState());
-                            else if (decoRoll < 0.10) batcher.setBlock(decoPos, Blocks.PEONY.defaultBlockState());
-                            else if (decoRoll < 0.12) batcher.setBlock(decoPos, Blocks.LILAC.defaultBlockState());
-                        }
-                        case DARK_FOREST -> {
-                            if (decoRoll < 0.04) batcher.setBlock(decoPos, Blocks.BROWN_MUSHROOM.defaultBlockState());
-                            else if (decoRoll < 0.08) batcher.setBlock(decoPos, Blocks.FERN.defaultBlockState());
-                            else if (decoRoll < 0.10) batcher.setBlock(decoPos, Blocks.COBWEB.defaultBlockState());
-                        }
-                        case SAVANNA -> {
-                            if (decoRoll < 0.04) batcher.setBlock(decoPos, Blocks.DEAD_BUSH.defaultBlockState());
-                            else if (decoRoll < 0.06) batcher.setBlock(decoPos, Blocks.TALL_GRASS.defaultBlockState());
-                            else if (decoRoll < 0.08) batcher.setBlock(decoPos, Blocks.ACACIA_SAPLING.defaultBlockState());
-                        }
-                        default -> {
-                            if (decoRoll < 0.05) batcher.setBlock(decoPos, Blocks.TALL_GRASS.defaultBlockState());
-                            else if (decoRoll < 0.1) batcher.setBlock(decoPos, Blocks.FERN.defaultBlockState());
-                        }
-                    }
-
-                    if (decoRoll < 0.02) {
-                        batcher.setBlock(decoPos, ModBlocks.FLAX_FLOWER_BLOCK.get().defaultBlockState());
-                    }
-
-                    // --- ▲▲▲ Collect tree candidate positions for delayed generation ▲▲▲ ---
-                    double forestNoise = noise.getValue(worldX * 0.01, worldZ * 0.01, 0); // low frequency
-                    if (forestNoise > FOREST_THRESHOLD && isGoodSoil && random.nextDouble() < TREE_SPAWN_CHANCE) {
-                        treePositions.add(decoPos);
+                    double forestNoise = noise.getValue(worldX * 0.02, worldZ * 0.02, 0);
+                    if (forestNoise > FOREST_THRESHOLD && random.nextDouble() < TREE_SPAWN_CHANCE) {
+                        treePositions.add(treePos); // trunk starts above soil
                     }
                 }
             }

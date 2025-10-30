@@ -2,8 +2,9 @@ package net.Aziuria.aziuriamod.item;
 
 import net.Aziuria.aziuriamod.AziuriaMod;
 import net.Aziuria.aziuriamod.block.ModBlocks;
-import net.Aziuria.aziuriamod.block.world.IslandBiomeType;
-import net.Aziuria.aziuriamod.block.world.IslandType;
+import net.Aziuria.aziuriamod.island.type.IslandBiomeType;
+import net.Aziuria.aziuriamod.island.type.IslandType;
+import net.Aziuria.aziuriamod.island.item.IslandThrowableItem;
 import net.Aziuria.aziuriamod.item.custom.*;
 import net.minecraft.world.item.*;
 import net.neoforged.bus.api.IEventBus;

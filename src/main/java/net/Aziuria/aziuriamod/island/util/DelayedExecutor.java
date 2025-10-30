@@ -1,4 +1,4 @@
-package net.Aziuria.aziuriamod.block.world;
+package net.Aziuria.aziuriamod.island.util;
 
 import net.minecraft.server.level.ServerLevel;
 
