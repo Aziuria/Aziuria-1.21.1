@@ -167,6 +167,9 @@ public class IslandGenerator {
                             } else if (oreTypeRoll < 0.86) { // 2%
                                 oreBlock = ModBlocks.POTASSIUM_ORE.get();
                                 veinSize = 2; // fixed
+                            } else if (oreTypeRoll < 0.88) { // 2%
+                                oreBlock = ModBlocks.SPINEL_ORE.get();
+                                veinSize = 2; // fixed
                             } else if (oreTypeRoll < 0.91) { // 5%
                                 oreBlock = Blocks.EMERALD_ORE;
                                 veinSize = 1; // single block
@@ -246,23 +249,21 @@ public class IslandGenerator {
             default -> delayTicks = 600L;
         }
 
-// Schedule tree generation after delay based on island size
-        DelayedExecutor.schedule(level, delayTicks, () -> {
+        DelayedExecutor.scheduleWithChunkSafety(level, delayTicks, () -> {
             for (BlockPos pos : treePositions) {
                 TreeGenerator.generateTree(level, pos, biomeType, random);
                 TreeLitterSpawner.spawnLitterAroundTree(level, level.getChunkSource().getGenerator(), pos, random, biomeType);
             }
         });
 
-
-        DelayedExecutor.schedule(level, delayTicks, () -> {
+        DelayedExecutor.scheduleWithChunkSafety(level, delayTicks, () -> {
             Player player = level.getNearestPlayer(center.getX(), center.getY(), center.getZ(), 40, false);
             if (player instanceof ServerPlayer serverPlayer) {
                 AnimalSpawner.spawnAnimalsNearPlayer(
                         level,
                         serverPlayer,
                         new java.util.Random(random.nextLong()),
-                        type   // Use the instance field here
+                        type
                 );
             }
         });

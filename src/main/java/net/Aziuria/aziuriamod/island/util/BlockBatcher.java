@@ -27,6 +27,13 @@ public class BlockBatcher {
         queue.add(new BlockPlacement(pos, state));
     }
 
+    public BlockState getBlockState(BlockPos pos, ServerLevel level) {
+        for (BlockPlacement placement : queue) {
+            if (placement.pos.equals(pos)) return placement.state;
+        }
+        return level.getBlockState(pos);
+    }
+
     public void flush() {
         if (!isRunning && !queue.isEmpty()) {
             isRunning = true;

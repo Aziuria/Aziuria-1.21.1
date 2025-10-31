@@ -56,6 +56,8 @@ public class DecorationGenerator {
                 || biomeType == IslandBiomeType.BEACH) && roll < 0.03) {
             batcher.setBlock(pos.above(), ModBlocks.YUCCA_PLANT_BLOCK.get().defaultBlockState());
         }
+
+        batcher.flush();
     }
 
     // --- Soil checks ---
@@ -78,12 +80,12 @@ public class DecorationGenerator {
     // --- Biome-specific placement methods ---
     private static void placePlains(ServerLevel level, BlockPos pos, double roll, IslandBiomeType biomeType, RandomSource random, BlockBatcher batcher, boolean landSoil) {
         if (!landSoil) return;
-        if (roll < 0.01) batcher.setBlock(pos.above(), Blocks.DANDELION.defaultBlockState());
-        else if (roll < 0.02) batcher.setBlock(pos.above(), Blocks.POPPY.defaultBlockState());
-        else if (roll < 0.03) batcher.setBlock(pos.above(), Blocks.BLUE_ORCHID.defaultBlockState());
-        else if (roll < 0.04) batcher.setBlock(pos.above(), Blocks.OXEYE_DAISY.defaultBlockState());
-        else if (roll < 0.28) batcher.setBlock(pos.above(), Blocks.TALL_GRASS.defaultBlockState());
-        else if (roll < 0.48) batcher.setBlock(pos.above(), Blocks.SHORT_GRASS.defaultBlockState());
+        if (roll < 0.03) batcher.setBlock(pos.above(), Blocks.DANDELION.defaultBlockState());
+        else if (roll < 0.05) batcher.setBlock(pos.above(), Blocks.POPPY.defaultBlockState());
+        else if (roll < 0.07) batcher.setBlock(pos.above(), Blocks.CORNFLOWER.defaultBlockState());
+        else if (roll < 0.09) batcher.setBlock(pos.above(), Blocks.OXEYE_DAISY.defaultBlockState());
+        else if (roll < 0.32) batcher.setBlock(pos.above(), Blocks.TALL_GRASS.defaultBlockState());
+        else if (roll < 0.52) batcher.setBlock(pos.above(), Blocks.SHORT_GRASS.defaultBlockState());
     }
 
     private static void placeForest(ServerLevel level, BlockPos pos, double roll, BlockBatcher batcher, boolean landSoil) {
@@ -175,5 +177,7 @@ public class DecorationGenerator {
         if (roll < 0.15) batcher.setBlock(pos.above(), Blocks.TALL_GRASS.defaultBlockState());
         else if (roll < 0.151) batcher.setBlock(pos.above(), Blocks.FERN.defaultBlockState());
     }
+
+
 
 }
