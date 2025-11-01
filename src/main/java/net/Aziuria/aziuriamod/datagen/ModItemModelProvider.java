@@ -46,6 +46,8 @@ public class ModItemModelProvider extends ItemModelProvider {
         basicItem(ModItems.SULPHUR.get());
         basicItem(ModItems.POTASSIUM.get());
         basicItem(ModItems.SPINEL.get());
+        basicItem(ModItems.SPECTRAL_DUST.get());
+        basicItem(ModItems.SPECTRAL_SUBSTANCE.get());
         basicItem(ModItems.COPPER_NUGGET.get());
         basicItem(ModItems.STEEL_NUGGET.get());
         basicItem(ModItems.STEEL_INGOT.get());

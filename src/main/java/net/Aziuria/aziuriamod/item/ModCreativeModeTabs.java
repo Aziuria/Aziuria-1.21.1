@@ -32,6 +32,8 @@ public class ModCreativeModeTabs {
                         output.accept(ModItems.POTASSIUM);
                         output.accept(ModItems.SULPHUR);
                         output.accept(ModItems.SPINEL);
+                        output.accept(ModItems.SPECTRAL_DUST);
+                        output.accept(ModItems.SPECTRAL_SUBSTANCE);
 
                         // ======= ⛏️ ORES & MINERALS =======
                         output.accept(ModBlocks.POTASSIUM_ORE);

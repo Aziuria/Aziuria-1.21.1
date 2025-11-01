@@ -4,14 +4,21 @@ import net.Aziuria.aziuriamod.block.ModBlocks;
 import net.Aziuria.aziuriamod.block.entity.ModBlockEntities;
 import net.Aziuria.aziuriamod.block.entity.renderer.*;
 import net.Aziuria.aziuriamod.fog.FogRendererHook;
+import net.minecraft.client.Minecraft;
 import net.Aziuria.aziuriamod.island.renderer.IslandThrowableRenderer;
+import net.Aziuria.aziuriamod.item.ModItems;
 import net.Aziuria.aziuriamod.item.custom.entities.ModEntities;
+import net.Aziuria.aziuriamod.item.renderer.SpectralDustRenderer;
 import net.Aziuria.aziuriamod.util.RenderLayerUtil;
+import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
 import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.neoforged.bus.api.IEventBus;
+import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
+import net.neoforged.neoforge.client.extensions.common.IClientItemExtensions;
+import net.neoforged.neoforge.client.extensions.common.RegisterClientExtensionsEvent;
 import net.neoforged.neoforge.common.NeoForge;
 
 public class ClientModInitializer {
@@ -73,4 +80,30 @@ public class ClientModInitializer {
         });
 
     }
+
+    // 🔥 Here’s the part that registers your Spectral Dust item renderer
+    @SubscribeEvent
+    public static void onRegisterClientExtensions(RegisterClientExtensionsEvent event) {
+        event.registerItem(new IClientItemExtensions() {
+            @Override
+            public BlockEntityWithoutLevelRenderer getCustomRenderer() {
+                return new SpectralDustRenderer(
+                        Minecraft.getInstance().getBlockEntityRenderDispatcher(),
+                        Minecraft.getInstance().getEntityModels()
+                );
+            }
+        }, ModItems.SPECTRAL_DUST.get());
+
+        // Spectral Substance
+        event.registerItem(new IClientItemExtensions() {
+            @Override
+            public BlockEntityWithoutLevelRenderer getCustomRenderer() {
+                return new SpectralDustRenderer(
+                        Minecraft.getInstance().getBlockEntityRenderDispatcher(),
+                        Minecraft.getInstance().getEntityModels()
+                );
+            }
+        }, ModItems.SPECTRAL_SUBSTANCE.get());
+    }
+
 }

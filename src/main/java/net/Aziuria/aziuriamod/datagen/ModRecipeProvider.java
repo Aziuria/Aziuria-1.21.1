@@ -65,6 +65,12 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .define('I', ModItems.STEEL_INGOT)
                 .unlockedBy("has_steel_ingot", has(ModItems.STEEL_INGOT)).save(recipeOutput);
 
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.SPECTRAL_SUBSTANCE.get())
+                .pattern("IU")
+                .define('I', ModItems.SPECTRAL_DUST)
+                .define('U', Items.WATER_BUCKET)
+                .unlockedBy("has_spectral_dust", has(ModItems.SPECTRAL_DUST)).save(recipeOutput);
+
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.STEEL_INGOT.get())
                 .pattern("BBB")
                 .pattern("BBB")

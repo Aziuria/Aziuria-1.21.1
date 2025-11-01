@@ -25,6 +25,10 @@ public class ModItems {
             () -> new Item(new Item.Properties()));
     public static final DeferredItem<Item> POTASSIUM = ITEMS.register("potassium",
             () -> new Item(new Item.Properties()));
+    public static final DeferredItem<Item> SPECTRAL_DUST = ITEMS.register("spectral_dust",
+            () -> new SpectralDustItem(new Item.Properties()));
+    public static final DeferredItem<Item> SPECTRAL_SUBSTANCE = ITEMS.register("spectral_substance",
+            () -> new SpectralDustItem(new Item.Properties()));
 
     public static final DeferredItem<Item> COPPER_NUGGET = ITEMS.register("copper_nugget",
             () -> new Item(new Item.Properties()));
