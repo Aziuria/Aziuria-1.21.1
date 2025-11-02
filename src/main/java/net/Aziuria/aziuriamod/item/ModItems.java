@@ -37,6 +37,8 @@ public class ModItems {
 
     public static final DeferredHolder<Item, Item> SACK_ITEM = ITEMS.register("sack_item", () -> new SackItem(new Item.Properties()));
 
+    public static final DeferredItem<Item> WORM = ITEMS.register("worm",
+            () -> new Item(new Item.Properties()));
 
     public static final DeferredItem<SwordItem> STEEL_SWORD = ITEMS.register("steel_sword",
             () -> new SwordItem(ModToolTiers.STEEL, new Item.Properties()

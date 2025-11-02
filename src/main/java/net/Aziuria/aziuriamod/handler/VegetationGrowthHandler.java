@@ -2,14 +2,18 @@ package net.Aziuria.aziuriamod.handler;
 
 import net.Aziuria.aziuriamod.block.ModBlocks;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.SeaPickleBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.levelgen.Heightmap;
+import net.minecraft.world.level.material.Fluids;
+
 public class VegetationGrowthHandler {
 
     public static void spreadPlants(ServerLevel level) {
@@ -18,9 +22,9 @@ public class VegetationGrowthHandler {
 
         level.players().forEach(player -> {
             BlockPos randomOffset = player.blockPosition().offset(
-                    random.nextInt(-16, 16),
+                    random.nextInt(-64, 64),
                     0,
-                    random.nextInt(-16, 16)
+                    random.nextInt(-64, 64)
             );
 
             BlockPos surfacePos = level.getHeightmapPos(Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, randomOffset);
@@ -95,6 +99,108 @@ public class VegetationGrowthHandler {
                 handleLushCaveGrowth(level, surfacePos, chance);
             } else {
                 handleDefaultGrowth(level, surfacePos, chance);
+            }
+        });
+    }
+
+    public static void spreadUnderwaterPlants(ServerLevel level) {
+        RandomSource random = level.getRandom();
+
+        level.players().forEach(player -> {
+            // ✅ Single random offset per player (instead of 30 loops)
+            BlockPos randomOffset = player.blockPosition().offset(
+                    random.nextInt(-64, 64),
+                    0,
+                    random.nextInt(-64, 64)
+            );
+
+            // Ocean floor heightmap
+            BlockPos seaFloor = level.getHeightmapPos(Heightmap.Types.OCEAN_FLOOR, randomOffset);
+            ResourceKey<Biome> biomeKey = level.getBiome(seaFloor).unwrapKey().orElse(null);
+            String biomePath = biomeKey != null ? biomeKey.location().getPath() : "unknown";
+            float roll = random.nextFloat();
+
+            // Skip if not underwater
+            if (!level.getFluidState(seaFloor).is(Fluids.WATER)) return;
+
+            // --- Kelp growth (ocean variants) ---
+            boolean kelpAllowed = biomePath.contains("ocean") || biomePath.contains("deep_ocean")
+                    || biomePath.contains("cold_ocean") || biomePath.contains("warm_ocean");
+            if (kelpAllowed && roll < 0.15f) {
+                level.setBlock(seaFloor, Blocks.KELP.defaultBlockState(), 3);
+                BlockPos growPos = seaFloor.above();
+                int extraHeight = 1 + random.nextInt(5);
+                for (int h = 0; h < extraHeight; h++) {
+                    if (level.getFluidState(growPos).is(Fluids.WATER)) {
+                        level.setBlock(growPos, Blocks.KELP_PLANT.defaultBlockState(), 3);
+                        growPos = growPos.above();
+                    } else break;
+                }
+                return;
+            }
+
+            // --- Seagrass growth (any water) ---
+            if (roll < 0.35f) {
+                if (random.nextBoolean()) {
+                    level.setBlock(seaFloor, Blocks.SEAGRASS.defaultBlockState(), 3);
+                } else if (level.getFluidState(seaFloor.above()).is(Fluids.WATER)) {
+                    level.setBlock(seaFloor, Blocks.TALL_SEAGRASS.defaultBlockState(), 3);
+                }
+            }
+
+            // --- Sea pickles (warm ocean only) ---
+            if ((biomePath.contains("warm_ocean") || biomePath.contains("deep_warm_ocean")) && roll > 0.95f) {
+                level.setBlock(
+                        seaFloor,
+                        Blocks.SEA_PICKLE.defaultBlockState().setValue(SeaPickleBlock.PICKLES, 1 + random.nextInt(4)),
+                        3
+                );
+            }
+        });
+    }
+
+    public static void spreadSugarCane(ServerLevel level) {
+        RandomSource random = level.getRandom();
+
+        level.players().forEach(player -> {
+            BlockPos randomOffset = player.blockPosition().offset(
+                    random.nextInt(-64, 64),
+                    0,
+                    random.nextInt(-64, 64)
+            );
+
+            // Use ocean floor heightmap for water-adjacent blocks
+            BlockPos surfacePos = level.getHeightmapPos(Heightmap.Types.OCEAN_FLOOR, randomOffset);
+            BlockState ground = level.getBlockState(surfacePos.below());
+
+            // Only spawn on sand, dirt, or grass
+            if (!ground.is(Blocks.SAND) && !ground.is(Blocks.DIRT) && !ground.is(Blocks.GRASS_BLOCK)) return;
+
+            // Must be next to water (checks one block below adjacent blocks like vanilla)
+            boolean canGrow = false;
+            for (Direction dir : Direction.Plane.HORIZONTAL) {
+                BlockPos adjPos = surfacePos.below().relative(dir);
+                if (level.getFluidState(adjPos).is(Fluids.WATER)) {
+                    canGrow = true;
+                    break;
+                }
+            }
+            if (!canGrow) return;
+
+            // Avoid snow/frozen/ice biomes
+            ResourceKey<Biome> biomeKey = level.getBiome(surfacePos).unwrapKey().orElse(null);
+            if (biomeKey != null) {
+                String biomePath = biomeKey.location().getPath();
+                if (biomePath.contains("snow") || biomePath.contains("frozen") || biomePath.contains("ice")) return;
+            }
+
+            // Only place if the block is empty
+            if (!level.isEmptyBlock(surfacePos)) return;
+
+            // Chance roll (50% default for natural growth)
+            if (random.nextFloat() < 0.15f) {
+                // Place sugar cane as 1 block tall
+                level.setBlock(surfacePos, Blocks.SUGAR_CANE.defaultBlockState(), 3);
             }
         });
     }

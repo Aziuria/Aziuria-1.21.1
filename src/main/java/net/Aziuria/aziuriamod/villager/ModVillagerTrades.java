@@ -2,6 +2,7 @@ package net.Aziuria.aziuriamod.villager;
 
 import net.Aziuria.aziuriamod.block.ModBlocks;
 import net.Aziuria.aziuriamod.item.ModItems;
+import net.minecraft.world.entity.npc.Villager;
 import net.minecraft.world.entity.npc.VillagerProfession;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
@@ -383,6 +384,18 @@ public class ModVillagerTrades {
 
             addBuyTrade(event, 5, Items.NETHERITE_AXE.getDefaultInstance(), 40, 1, 10);
             addSellTrade(event, 5, Items.NETHERITE_AXE.getDefaultInstance(), 1, 15, 10);
+        }
+
+        if (event.getType() == VillagerProfession.FISHERMAN) {
+            // === LEVEL 1 - FISHERMAN ===
+
+            // Villager sells a Fishing Rod to the player
+            addBuyTrade(event, 1, Items.FISHING_ROD.getDefaultInstance(), 5, 1, 2);
+            addSellTrade(event, 1, Items.FISHING_ROD.getDefaultInstance(), 1, 3, 2);
+
+            // Villager sells worms (bait) to the player
+            addBuyTrade(event, 1, ModItems.WORM.get().getDefaultInstance(), 3, 5, 2);
+            addSellTrade(event, 1, ModItems.WORM.get().getDefaultInstance(), 5, 1, 2);
         }
 
     }

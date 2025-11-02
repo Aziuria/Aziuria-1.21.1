@@ -26,6 +26,8 @@ public class ModEvents {
 
         if (tickCounter % 500 == 0) {
             VegetationGrowthHandler.spreadPlants(level);
+            VegetationGrowthHandler.spreadUnderwaterPlants(level);
+            VegetationGrowthHandler.spreadSugarCane(level);
         }
 
         if (tickCounter % 400 == 0) {

@@ -24,6 +24,7 @@ public class ModCreativeModeTabs {
                         // ======= 🔧 UTILITY & MATERIALS =======
                         output.accept(ModItems.SACK_ITEM.get());
                         output.accept(ModItems.EMPTY_CUP.get());
+                        output.accept(ModItems.WORM.get());
                         output.accept(ModItems.LASHING);
                         output.accept(ModItems.STEEL_ALLOY_MESH);
                         output.accept(ModItems.STEEL_INGOT);

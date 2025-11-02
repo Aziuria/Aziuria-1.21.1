@@ -73,6 +73,18 @@ public class ModGlobalLootModifierProvider extends GlobalLootModifierProvider {
                         LootItemRandomChanceCondition.randomChance(0.5f).build()  // 50% chance
                 }, Items.POTION, 1, 3)); // gives 1–3 iron ingots
 
+        this.add("worms_from_grass",
+                new AddItemModifier(new LootItemCondition[] {
+                        LootItemBlockStatePropertyCondition.hasBlockStateProperties(Blocks.GRASS_BLOCK).build(),
+                        LootItemRandomChanceCondition.randomChance(0.01f).build() // 3% chance
+                }, ModItems.WORM.get(), 0, 5)); // gives 0–5 worms
+
+        this.add("worms_from_dirt",
+                new AddItemModifier(new LootItemCondition[] {
+                        LootItemBlockStatePropertyCondition.hasBlockStateProperties(Blocks.DIRT).build(),
+                        LootItemRandomChanceCondition.randomChance(0.01f).build() // 3% chance
+                }, ModItems.WORM.get(), 0, 5)); // gives 0–5 worms
+
 //        this.add("remove_cobblestone_from_stone",
 //                new RemoveItemModifier(new LootItemCondition[] {
 //                        LootItemBlockStatePropertyCondition.hasBlockStateProperties(Blocks.STONE).build()
