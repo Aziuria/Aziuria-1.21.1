@@ -2160,6 +2160,24 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .unlockedBy("has_blackcurrant", has(ModItems.BLACKCURRANT.get()))
                 .save(recipeOutput);
 
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, ModItems.BREAD_FISHING_ROD.get(), 1)
+                .requires(Items.BREAD)
+                .requires(Items.FISHING_ROD)  // Vanilla water bottle (glass bottle + water)
+                .unlockedBy("has_fishing_rod", has(Items.FISHING_ROD))
+                .save(recipeOutput);
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, ModItems.CORN_FISHING_ROD.get(), 1)
+                .requires(ModItems.CORN.get())
+                .requires(Items.FISHING_ROD)  // Vanilla water bottle (glass bottle + water)
+                .unlockedBy("has_fishing_rod", has(Items.FISHING_ROD))
+                .save(recipeOutput);
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, ModItems.WORM_FISHING_ROD.get(), 1)
+                .requires(ModItems.WORM.get())
+                .requires(Items.FISHING_ROD)  // Vanilla water bottle (glass bottle + water)
+                .unlockedBy("has_fishing_rod", has(Items.FISHING_ROD))
+                .save(recipeOutput);
+
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, Items.GREEN_DYE)
                 .requires(Items.KELP)
                 .requires(ModTags.KNIVES)
