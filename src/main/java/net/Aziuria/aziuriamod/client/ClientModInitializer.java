@@ -14,6 +14,12 @@ import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
 import net.minecraft.client.renderer.entity.EntityRenderers;
+import net.minecraft.client.renderer.item.ItemProperties;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.FishingRodItem;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
@@ -76,9 +82,30 @@ public class ClientModInitializer {
 
             EntityRenderers.register(ModEntities.ISLAND_THROWABLE.get(), IslandThrowableRenderer::new);
 
-
+// =========================
+            // FISHING ROD CAST PROPERTY
+            // =========================
+            registerFishingRodCastProperty(ModItems.WORM_FISHING_ROD.get());
+            registerFishingRodCastProperty(ModItems.CORN_FISHING_ROD.get());
+            registerFishingRodCastProperty(ModItems.BREAD_FISHING_ROD.get());
         });
+    }
 
+    private static void registerFishingRodCastProperty(Item rod) {
+        ResourceLocation propertyId = ResourceLocation.fromNamespaceAndPath("aziuriamod", "cast");
+
+        ItemProperties.register(rod, propertyId, (stack, level, entity, seed) -> {
+            if (entity instanceof Player player) {
+                boolean isMainHand = player.getMainHandItem() == stack;
+                boolean isOffHand = player.getOffhandItem() == stack &&
+                        !(player.getMainHandItem().getItem() instanceof FishingRodItem);
+
+                boolean isUsing = player.fishing != null;
+
+                return (isMainHand || isOffHand) && isUsing ? 1.0F : 0.0F;
+            }
+            return 0.0F;
+        });
     }
 
     // 🔥 Here’s the part that registers your Spectral Dust item renderer

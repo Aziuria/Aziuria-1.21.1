@@ -505,6 +505,15 @@ public class ModItems {
     public static final DeferredItem<Item> ISLAND_GENERATOR_LARGE = ITEMS.register("island_generator_large",
             () -> new IslandThrowableItem(IslandType.LARGE, IslandBiomeType.PLAINS, new Item.Properties().stacksTo(16)));
 
+    public static final DeferredItem<Item> WORM_FISHING_ROD = ITEMS.register("worm_fishing_rod",
+            () -> new BaitedFishingRodItem(new Item.Properties().stacksTo(1).durability(64)));
+
+    public static final DeferredItem<Item> BREAD_FISHING_ROD = ITEMS.register("bread_fishing_rod",
+            () -> new BaitedFishingRodItem(new Item.Properties().stacksTo(1).durability(64)));
+
+    public static final DeferredItem<Item> CORN_FISHING_ROD = ITEMS.register("corn_fishing_rod",
+            () -> new BaitedFishingRodItem(new Item.Properties().stacksTo(1).durability(64)));
+
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);
 

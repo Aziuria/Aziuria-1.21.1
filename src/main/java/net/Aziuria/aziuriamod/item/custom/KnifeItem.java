@@ -1,5 +1,6 @@
 package net.Aziuria.aziuriamod.item.custom;
 
+import net.Aziuria.aziuriamod.block.ModBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -50,6 +51,11 @@ public class KnifeItem extends SwordItem {
         return state.is(Blocks.SHORT_GRASS)
                 || state.is(Blocks.TALL_GRASS)
                 || state.is(Blocks.FERN)
+                || state.is(Blocks.SEAGRASS)
+                || state.is(Blocks.KELP)
+                || state.is(Blocks.KELP_PLANT)
+                || state.is(ModBlocks.YUCCA_PLANT_BLOCK.get())
+                || state.is(ModBlocks.FLAX_FLOWER_BLOCK.get())
                 || state.is(Blocks.DEAD_BUSH)
                 || state.is(Blocks.HANGING_ROOTS)
                 || state.is(BlockTags.FLOWERS)

@@ -39,6 +39,24 @@ public class BlockDropHandler {
             }
             // end of knife code
         }
+
+        // --- Seagrass knife drop ---
+        if (event.getState().getBlock() == Blocks.SEAGRASS) {
+            Random random = new Random();
+            if (event.getTool().getItem() instanceof KnifeItem) {
+                if (random.nextInt(100) < 5) { // 5% chance to drop seagrass
+                    ItemStack seagrassItem = new ItemStack(Items.SEAGRASS);
+                    ItemEntity itemEntity = new ItemEntity(
+                            event.getLevel(),
+                            event.getPos().getX(),
+                            event.getPos().getY(),
+                            event.getPos().getZ(),
+                            seagrassItem
+                    );
+                    event.getDrops().add(itemEntity);
+                }
+            }
+        }
     }
 
     private static ItemStack getRandomSeed() {

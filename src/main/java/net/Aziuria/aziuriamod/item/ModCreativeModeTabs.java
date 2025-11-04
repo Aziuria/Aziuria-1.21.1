@@ -24,7 +24,6 @@ public class ModCreativeModeTabs {
                         // ======= 🔧 UTILITY & MATERIALS =======
                         output.accept(ModItems.SACK_ITEM.get());
                         output.accept(ModItems.EMPTY_CUP.get());
-                        output.accept(ModItems.WORM.get());
                         output.accept(ModItems.LASHING);
                         output.accept(ModItems.STEEL_ALLOY_MESH);
                         output.accept(ModItems.STEEL_INGOT);
@@ -35,6 +34,13 @@ public class ModCreativeModeTabs {
                         output.accept(ModItems.SPINEL);
                         output.accept(ModItems.SPECTRAL_DUST);
                         output.accept(ModItems.SPECTRAL_SUBSTANCE);
+
+                        // ======= 🔧 FISHING SEGMENT =======
+
+                        output.accept(ModItems.WORM.get());
+                        output.accept(ModItems.WORM_FISHING_ROD.get());
+                        output.accept(ModItems.BREAD_FISHING_ROD.get());
+                        output.accept(ModItems.CORN_FISHING_ROD.get());
 
                         // ======= ⛏️ ORES & MINERALS =======
                         output.accept(ModBlocks.POTASSIUM_ORE);
@@ -89,22 +95,20 @@ public class ModCreativeModeTabs {
                         output.accept(ModItems.COPPER_CHESTPLATE);
                         output.accept(ModItems.COPPER_LEGGINGS);
                         output.accept(ModItems.COPPER_BOOTS);
+                        output.accept(ModItems.COPPER_HORSE_ARMOR);
 
                         // Steel
                         output.accept(ModItems.STEEL_HELMET);
                         output.accept(ModItems.STEEL_CHESTPLATE);
                         output.accept(ModItems.STEEL_LEGGINGS);
                         output.accept(ModItems.STEEL_BOOTS);
+                        output.accept(ModItems.STEEL_HORSE_ARMOR);
 
                         // Spinel
                         output.accept(ModItems.SPINEL_HELMET);
                         output.accept(ModItems.SPINEL_CHESTPLATE);
                         output.accept(ModItems.SPINEL_LEGGINGS);
                         output.accept(ModItems.SPINEL_BOOTS);
-
-                        // Horse Armor
-                        output.accept(ModItems.COPPER_HORSE_ARMOR);
-                        output.accept(ModItems.STEEL_HORSE_ARMOR);
                         output.accept(ModItems.SPINEL_HORSE_ARMOR);
 
                         // ======= 🪵 DECORATIVE BLOCKS =======
