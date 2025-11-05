@@ -1,5 +1,6 @@
 package net.Aziuria.aziuriamod.handler;
 
+import net.Aziuria.aziuriamod.data.ModDataComponents;
 import net.Aziuria.aziuriamod.item.ModItems;
 import net.minecraft.world.Container;
 import net.minecraft.world.item.ItemStack;
@@ -13,27 +14,42 @@ public class FishingRodCraftingHandler {
     public static void onCraft(ItemCraftedEvent event) {
         ItemStack crafted = event.getCrafting();
 
-        // Only modify our custom baited fishing rods
-        if (crafted.getItem() != ModItems.WORM_FISHING_ROD.get() &&
-                crafted.getItem() != ModItems.BREAD_FISHING_ROD.get() &&
-                crafted.getItem() != ModItems.CORN_FISHING_ROD.get()) {
-            return;
-        }
+        // Only your baited rods
+        if (!crafted.is(ModItems.WORM_FISHING_ROD.get()) &&
+                !crafted.is(ModItems.BREAD_FISHING_ROD.get()) &&
+                !crafted.is(ModItems.CORN_FISHING_ROD.get())) return;
 
-        // Find any vanilla fishing rod in the crafting grid
-        Container craftMatrix = event.getInventory();
+        // Find vanilla rod in the input grid
         ItemStack vanillaRod = ItemStack.EMPTY;
-        for (int i = 0; i < craftMatrix.getContainerSize(); i++) {
-            ItemStack stack = craftMatrix.getItem(i);
-            if (stack.getItem() == Items.FISHING_ROD) {
-                vanillaRod = stack;
+        Container inv = event.getInventory();
+        for (int i = 0; i < inv.getContainerSize(); i++) {
+            ItemStack slot = inv.getItem(i);
+            if (slot.is(Items.FISHING_ROD)) {
+                vanillaRod = slot.copy();
                 break;
             }
         }
 
-        // If a vanilla rod was used, copy its damage to the new custom rod
         if (!vanillaRod.isEmpty()) {
+            // Carry over the vanilla rod’s damage
             crafted.setDamageValue(vanillaRod.getDamageValue());
+        }
+
+        // Initialize or reset persistent components
+        crafted.set(ModDataComponents.ROD_CAUGHT_COUNT.get(), 0);
+        crafted.set(ModDataComponents.ROD_MAX_BEFORE_REVERT.get(), new java.util.Random().nextInt(4) + 1);
+
+        // ---- Handle shift-click multi-craft ----
+        // NeoForge creates multiple identical outputs during shift-click,
+        // each must have the same components + damage applied manually.
+        for (ItemStack stack : event.getEntity().getInventory().items) {
+            if (stack.is(crafted.getItem()) && !stack.has(ModDataComponents.ROD_CAUGHT_COUNT.get())) {
+                stack.set(ModDataComponents.ROD_CAUGHT_COUNT.get(), 0);
+                stack.set(ModDataComponents.ROD_MAX_BEFORE_REVERT.get(), new java.util.Random().nextInt(4) + 1);
+                if (!vanillaRod.isEmpty()) {
+                    stack.setDamageValue(vanillaRod.getDamageValue());
+                }
+            }
         }
     }
 }
