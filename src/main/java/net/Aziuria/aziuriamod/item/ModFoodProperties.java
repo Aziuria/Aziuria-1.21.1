@@ -26,6 +26,13 @@ public class ModFoodProperties {
             .effect(() -> new MobEffectInstance(MobEffects.HEALTH_BOOST, 200, 0), 0.25f)
             .build();
 
+    public static final FoodProperties CORN_KERNELS = new FoodProperties.Builder()
+            .nutrition(1)                // small hunger refill
+            .saturationModifier(0.1f)    // barely fills saturation
+            .alwaysEdible()              // can eat even if not hungry
+            .effect(() -> new MobEffectInstance(MobEffects.HEALTH_BOOST, 100, 0), 0.1f) // small chance for minor buff
+            .build();
+
     public static final FoodProperties CUCUMBER = new FoodProperties.Builder()
             .nutrition(3)
             .saturationModifier(0.25f)

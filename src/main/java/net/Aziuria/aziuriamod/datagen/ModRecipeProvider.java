@@ -2056,6 +2056,12 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .requires(ModItems.LETTUCE.get())
                 .unlockedBy("has_lettuce", has(ModItems.LETTUCE.get())).save(recipeOutput);
 
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, ModItems.BREAD_BAIT.get(), 8)
+                .requires(Items.BREAD)
+                .requires(Items.POTION)  // Vanilla water bottle (glass bottle + water)
+                .unlockedBy("has_potion", has(Items.POTION))
+                .save(recipeOutput);
+
         ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, ModItems.APPLE_JUICE.get(), 1)
                 .requires(Items.APPLE)
                 .requires(Items.SUGAR)
@@ -2153,6 +2159,12 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .unlockedBy("has_tea_leaves", has(ModItems.TEA_LEAVES.get()))
                 .save(recipeOutput);
 
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, ModItems.CORN_KERNELS.get(), 8)
+                .requires(ModItems.CORN.get())
+                .requires(ModTags.KNIVES)  // Vanilla water bottle (glass bottle + water)
+                .unlockedBy("has_corn", has(ModItems.CORN.get()))
+                .save(recipeOutput);
+
         ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, ModItems.BLACKCURRANT_JUICE.get(), 1)
                 .requires(ModItems.BLACKCURRANT.get())
                 .requires(Items.SUGAR)
@@ -2161,13 +2173,13 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .save(recipeOutput);
 
         ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, ModItems.BREAD_FISHING_ROD.get(), 1)
-                .requires(Items.BREAD)
+                .requires(ModItems.BREAD_BAIT.get())
                 .requires(Items.FISHING_ROD)  // Vanilla water bottle (glass bottle + water)
                 .unlockedBy("has_fishing_rod", has(Items.FISHING_ROD))
                 .save(recipeOutput);
 
         ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, ModItems.CORN_FISHING_ROD.get(), 1)
-                .requires(ModItems.CORN.get())
+                .requires(ModItems.CORN_KERNELS.get())
                 .requires(Items.FISHING_ROD)  // Vanilla water bottle (glass bottle + water)
                 .unlockedBy("has_fishing_rod", has(Items.FISHING_ROD))
                 .save(recipeOutput);

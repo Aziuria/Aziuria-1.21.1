@@ -38,6 +38,7 @@ public class ModCreativeModeTabs {
                         // ======= 🔧 FISHING SEGMENT =======
 
                         output.accept(ModItems.WORM.get());
+                        output.accept(ModItems.BREAD_BAIT.get());
                         output.accept(ModItems.WORM_FISHING_ROD.get());
                         output.accept(ModItems.BREAD_FISHING_ROD.get());
                         output.accept(ModItems.CORN_FISHING_ROD.get());
@@ -257,6 +258,7 @@ public class ModCreativeModeTabs {
                         // ======= 🌿 PLANTS =======
                         output.accept(ModItems.COFFEE_BEANS);
                         output.accept(ModItems.CORN);
+                        output.accept(ModItems.CORN_KERNELS);
                         output.accept(ModItems.CUCUMBER);
                         output.accept(ModItems.LETTUCE);
                         output.accept(ModItems.ONION);

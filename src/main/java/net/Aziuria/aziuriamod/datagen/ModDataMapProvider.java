@@ -32,6 +32,8 @@ public class ModDataMapProvider extends DataMapProvider {
                 .add(ModItems.SPRING_ONION.getId(), new Compostable(0.45f), false)
                 .add(ModItems.CORN_SEEDS.getId(), new Compostable(0.30f), false)
                 .add(ModItems.CORN.getId(), new Compostable(0.45f), false)
+                .add(ModItems.CORN_KERNELS.getId(), new Compostable(0.45f), false)
+                .add(ModItems.BREAD_BAIT.getId(), new Compostable(0.45f), false)
                 .add(ModItems.COFFEE_SEEDS.getId(), new Compostable(0.30f), false)
                 .add(ModItems.COFFEE_BEANS.getId(), new Compostable(0.45f), false)
                 .add(ModItems.TEA_SEEDS.getId(), new Compostable(0.30f), false)

@@ -39,6 +39,8 @@ public class ModItems {
 
     public static final DeferredItem<Item> WORM = ITEMS.register("worm",
             () -> new Item(new Item.Properties()));
+    public static final DeferredItem<Item> BREAD_BAIT = ITEMS.register("bread_bait",
+            () -> new Item(new Item.Properties()));
 
     public static final DeferredItem<SwordItem> STEEL_SWORD = ITEMS.register("steel_sword",
             () -> new SwordItem(ModToolTiers.STEEL, new Item.Properties()
@@ -201,6 +203,9 @@ public class ModItems {
             () -> new Item(new Item.Properties().food(ModFoodProperties.CORN)));
     public static final DeferredItem<Item> CORN_SEEDS = ITEMS.register("corn_seeds",
             () -> new ItemNameBlockItem(ModBlocks.CORN_CROP.get(), new Item.Properties()));
+
+    public static final DeferredItem<Item> CORN_KERNELS = ITEMS.register("corn_kernels",
+            () -> new Item(new Item.Properties().food(ModFoodProperties.CORN_KERNELS)));
 
     public static final DeferredItem<Item> COFFEE_BEANS = ITEMS.register("coffee_beans",
             () -> new Item(new Item.Properties()));
