@@ -49,6 +49,8 @@ public class VeinMinerHandler {
             ModBlocks.SULPHUR_ORE.get(),
             ModBlocks.DEEPSLATE_POTASSIUM_ORE.get(),
             ModBlocks.POTASSIUM_ORE.get(),
+            ModBlocks.DEEPSLATE_TIN_ORE.get(),
+            ModBlocks.TIN_ORE.get(),
             ModBlocks.DEEPSLATE_SPINEL_ORE.get(),
             ModBlocks.SPINEL_ORE.get(),
             ModBlocks.DEEPSLATE_SPECTRAL_ORE.get(),

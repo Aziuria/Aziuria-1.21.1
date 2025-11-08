@@ -22,6 +22,13 @@ public class ModBiomeModifiers {
     public static final ResourceKey<BiomeModifier> ADD_SULPHUR_ORE_UPPER = registerKey("add_sulphur_ore_upper");
     public static final ResourceKey<BiomeModifier> ADD_SULPHUR_ORE_MOUNTAINS = registerKey("add_sulphur_ore_mountains");
 
+    // TIN
+    public static final ResourceKey<BiomeModifier> ADD_TIN_ORE_ULTRA_DEEP = registerKey("add_tin_ore_ultra_deep");
+    public static final ResourceKey<BiomeModifier> ADD_TIN_ORE_DEEP = registerKey("add_tin_ore_deep");
+    public static final ResourceKey<BiomeModifier> ADD_TIN_ORE_MID = registerKey("add_tin_ore_mid");
+    public static final ResourceKey<BiomeModifier> ADD_TIN_ORE_UPPER = registerKey("add_tin_ore_upper");
+    public static final ResourceKey<BiomeModifier> ADD_TIN_ORE_MOUNTAINS = registerKey("add_tin_ore_mountains");
+
     // POTASSIUM
     public static final ResourceKey<BiomeModifier> ADD_POTASSIUM_ORE_ULTRA_DEEP = registerKey("add_potassium_ore_ultra_deep");
     public static final ResourceKey<BiomeModifier> ADD_POTASSIUM_ORE_DEEP = registerKey("add_potassium_ore_deep");
@@ -126,6 +133,32 @@ public class ModBiomeModifiers {
         context.register(ADD_SULPHUR_ORE_MOUNTAINS, new BiomeModifiers.AddFeaturesBiomeModifier(
                 biomes.getOrThrow(BiomeTags.IS_OVERWORLD),
                 HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.SULPHUR_ORE_MOUNTAINS_PLACED_KEY)),
+                GenerationStep.Decoration.UNDERGROUND_ORES));
+
+        // TIN
+        context.register(ADD_TIN_ORE_ULTRA_DEEP, new BiomeModifiers.AddFeaturesBiomeModifier(
+                biomes.getOrThrow(BiomeTags.IS_OVERWORLD),
+                HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.TIN_ORE_ULTRA_DEEP_PLACED_KEY)),
+                GenerationStep.Decoration.UNDERGROUND_ORES));
+
+        context.register(ADD_TIN_ORE_DEEP, new BiomeModifiers.AddFeaturesBiomeModifier(
+                biomes.getOrThrow(BiomeTags.IS_OVERWORLD),
+                HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.TIN_ORE_DEEP_PLACED_KEY)),
+                GenerationStep.Decoration.UNDERGROUND_ORES));
+
+        context.register(ADD_TIN_ORE_MID, new BiomeModifiers.AddFeaturesBiomeModifier(
+                biomes.getOrThrow(BiomeTags.IS_OVERWORLD),
+                HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.TIN_ORE_MID_PLACED_KEY)),
+                GenerationStep.Decoration.UNDERGROUND_ORES));
+
+        context.register(ADD_TIN_ORE_UPPER, new BiomeModifiers.AddFeaturesBiomeModifier(
+                biomes.getOrThrow(BiomeTags.IS_OVERWORLD),
+                HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.TIN_ORE_UPPER_PLACED_KEY)),
+                GenerationStep.Decoration.UNDERGROUND_ORES));
+
+        context.register(ADD_TIN_ORE_MOUNTAINS, new BiomeModifiers.AddFeaturesBiomeModifier(
+                biomes.getOrThrow(BiomeTags.IS_OVERWORLD),
+                HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.TIN_ORE_MOUNTAINS_PLACED_KEY)),
                 GenerationStep.Decoration.UNDERGROUND_ORES));
 
 // POTASSIUM

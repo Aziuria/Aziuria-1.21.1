@@ -22,18 +22,28 @@ public class ModCreativeModeTabs {
                     .displayItems((itemDisplayParameters, output) -> {
 
                         // ======= 🔧 UTILITY & MATERIALS =======
+                        output.accept(ModItems.LASHING);
                         output.accept(ModItems.SACK_ITEM.get());
                         output.accept(ModItems.EMPTY_CUP.get());
-                        output.accept(ModItems.LASHING);
-                        output.accept(ModItems.STEEL_ALLOY_MESH);
-                        output.accept(ModItems.STEEL_INGOT);
-                        output.accept(ModItems.COPPER_NUGGET);
-                        output.accept(ModItems.STEEL_NUGGET);
+
+                        // ======= ⚗️ RESOURCE SEGMENT =======
+                        // Raw elements and simple materials
                         output.accept(ModItems.POTASSIUM);
                         output.accept(ModItems.SULPHUR);
+
+                        // Metal fragments and processed metals
+                        output.accept(ModItems.COPPER_NUGGET);
+                        output.accept(ModItems.TIN);
+                        output.accept(ModItems.TIN_INGOT);
+                        output.accept(ModItems.STEEL_NUGGET);
+                        output.accept(ModItems.STEEL_INGOT);
+                        output.accept(ModItems.STEEL_ALLOY_MESH);
+
+                        // Gems and spectral materials
                         output.accept(ModItems.SPINEL);
                         output.accept(ModItems.SPECTRAL_DUST);
                         output.accept(ModItems.SPECTRAL_SUBSTANCE);
+                        output.accept(ModItems.SPECTRAL_INGOT);
 
                         // ======= 🔧 FISHING SEGMENT =======
 
@@ -48,6 +58,8 @@ public class ModCreativeModeTabs {
                         output.accept(ModBlocks.DEEPSLATE_POTASSIUM_ORE);
                         output.accept(ModBlocks.SULPHUR_ORE);
                         output.accept(ModBlocks.DEEPSLATE_SULPHUR_ORE);
+                        output.accept(ModBlocks.TIN_ORE);
+                        output.accept(ModBlocks.DEEPSLATE_TIN_ORE);
                         output.accept(ModBlocks.SPINEL_ORE);
                         output.accept(ModBlocks.DEEPSLATE_SPINEL_ORE);
                         output.accept(ModBlocks.SPECTRAL_ORE);

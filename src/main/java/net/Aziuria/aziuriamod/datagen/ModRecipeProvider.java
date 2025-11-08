@@ -26,6 +26,8 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
     @Override
     protected void buildRecipes(RecipeOutput recipeOutput) {
         List<ItemLike> STEEL_ALLOY_MESH_SMELTABLES = List.of(ModItems.STEEL_ALLOY_MESH);
+        List<ItemLike> TIN_SMELTABLES = List.of(ModItems.TIN, ModBlocks.TIN_ORE, ModBlocks.DEEPSLATE_TIN_ORE);
+        List<ItemLike> SPECTRAL_SMELTABLES = List.of(ModItems.SPECTRAL_SUBSTANCE, ModBlocks.SPECTRAL_ORE, ModBlocks.DEEPSLATE_SPECTRAL_ORE);
         List<ItemLike> SULPHUR = List.of(ModBlocks.SULPHUR_ORE, ModBlocks.DEEPSLATE_SULPHUR_ORE);
         List<ItemLike> POTASSIUM = List.of(ModBlocks.POTASSIUM_ORE, ModBlocks.DEEPSLATE_POTASSIUM_ORE);
         List<ItemLike> SPINEL = List.of(ModBlocks.SPINEL_ORE, ModBlocks.DEEPSLATE_SPINEL_ORE);
@@ -2229,6 +2231,12 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
 
         oreSmelting(recipeOutput, STEEL_ALLOY_MESH_SMELTABLES, RecipeCategory.MISC, ModItems.STEEL_INGOT.get(), 0.25f, 200, "steel_ingot");
         oreBlasting(recipeOutput, STEEL_ALLOY_MESH_SMELTABLES, RecipeCategory.MISC, ModItems.STEEL_INGOT.get(), 0.25f, 100, "steel_ingot");
+
+        oreSmelting(recipeOutput, TIN_SMELTABLES, RecipeCategory.MISC, ModItems.TIN_INGOT.get(), 0.25f, 200, "steel_ingot");
+        oreBlasting(recipeOutput, TIN_SMELTABLES, RecipeCategory.MISC, ModItems.TIN_INGOT.get(), 0.25f, 100, "steel_ingot");
+
+        oreSmelting(recipeOutput, SPECTRAL_SMELTABLES, RecipeCategory.MISC, ModItems.SPECTRAL_INGOT.get(), 0.25f, 200, "spectral_ingot");
+        oreBlasting(recipeOutput, SPECTRAL_SMELTABLES, RecipeCategory.MISC, ModItems.SPECTRAL_INGOT.get(), 0.25f, 100, "spectral_ingot");
 
         oreSmelting(recipeOutput, SULPHUR, RecipeCategory.MISC, ModItems.SULPHUR.get(), 0.25f, 200, "sulphur");
         oreBlasting(recipeOutput, SULPHUR, RecipeCategory.MISC, ModItems.SULPHUR.get(), 0.25f, 100, "sulphur");

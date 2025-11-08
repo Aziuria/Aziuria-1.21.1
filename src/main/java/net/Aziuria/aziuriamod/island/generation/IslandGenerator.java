@@ -173,6 +173,9 @@ public class IslandGenerator {
                             } else if (oreTypeRoll < 0.91) { // 5%
                                 oreBlock = Blocks.EMERALD_ORE;
                                 veinSize = 1; // single block
+                            } else if (oreTypeRoll < 0.94) { // 5%
+                                oreBlock = ModBlocks.TIN_ORE.get();
+                                veinSize = 2; // single block
                             } else { // 9%
                                 oreBlock = Blocks.STONE;
                             }

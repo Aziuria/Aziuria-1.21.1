@@ -75,6 +75,8 @@ public class MineBlockGoal extends Goal {
             ModBlocks.DEEPSLATE_POTASSIUM_ORE.get(),
             ModBlocks.SULPHUR_ORE.get(),
             ModBlocks.DEEPSLATE_SULPHUR_ORE.get(),
+            ModBlocks.TIN_ORE.get(),
+            ModBlocks.DEEPSLATE_TIN_ORE.get(),
             ModBlocks.SPINEL_ORE.get(),
             ModBlocks.DEEPSLATE_SPINEL_ORE.get()
     );

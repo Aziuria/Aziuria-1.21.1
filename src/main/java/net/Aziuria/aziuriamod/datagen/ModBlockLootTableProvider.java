@@ -137,6 +137,10 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
         block -> createOreDrop(ModBlocks.SULPHUR_ORE.get(), ModItems.SULPHUR.get()));
         add(ModBlocks.DEEPSLATE_SULPHUR_ORE.get(),
                 block -> createMultipleOreDrops(ModBlocks.DEEPSLATE_SULPHUR_ORE.get(), ModItems.SULPHUR.get(), 2, 5));
+        add(ModBlocks.TIN_ORE.get(),
+                block -> createOreDrop(ModBlocks.TIN_ORE.get(), ModItems.TIN.get()));
+        add(ModBlocks.DEEPSLATE_TIN_ORE.get(),
+                block -> createMultipleOreDrops(ModBlocks.DEEPSLATE_TIN_ORE.get(), ModItems.TIN.get(), 2, 5));
         add(ModBlocks.POTASSIUM_ORE.get(),
                 block -> createOreDrop(ModBlocks.POTASSIUM_ORE.get(), ModItems.POTASSIUM.get()));
         add(ModBlocks.DEEPSLATE_POTASSIUM_ORE.get(),

@@ -44,6 +44,12 @@ public class ModConfiguredFeatures {
     public static final ResourceKey<ConfiguredFeature<?, ?>> OVERWORLD_POTASSIUM_ORE_UPPER_KEY = registerKey("potassium_ore_upper");
     public static final ResourceKey<ConfiguredFeature<?, ?>> OVERWORLD_POTASSIUM_ORE_MOUNTAINS_KEY = registerKey("potassium_ore_mountains");
 
+    public static final ResourceKey<ConfiguredFeature<?, ?>> OVERWORLD_TIN_ORE_ULTRA_DEEP_KEY = registerKey("tin_ore_ultra_deep");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> OVERWORLD_TIN_ORE_DEEP_KEY = registerKey("tin_ore_deep");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> OVERWORLD_TIN_ORE_MID_KEY = registerKey("tin_ore_mid");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> OVERWORLD_TIN_ORE_UPPER_KEY = registerKey("tin_ore_upper");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> OVERWORLD_TIN_ORE_MOUNTAINS_KEY = registerKey("tin_ore_mountains");
+
     public static final ResourceKey<ConfiguredFeature<?, ?>> OVERWORLD_SPINEL_ORE_ULTRA_DEEP_KEY = registerKey("spinel_ore_ultra_deep");
     public static final ResourceKey<ConfiguredFeature<?, ?>> OVERWORLD_SPINEL_ORE_DEEP_KEY = registerKey("spinel_ore_deep");
     public static final ResourceKey<ConfiguredFeature<?, ?>> OVERWORLD_SPINEL_ORE_MID_KEY = registerKey("spinel_ore_mid");
@@ -119,6 +125,10 @@ public class ModConfiguredFeatures {
                 OreConfiguration.target(stoneReplaceables, ModBlocks.SULPHUR_ORE.get().defaultBlockState()),
                 OreConfiguration.target(deepslateReplaceables, ModBlocks.DEEPSLATE_SULPHUR_ORE.get().defaultBlockState()));
 
+        List<OreConfiguration.TargetBlockState> overworldTinOres = List.of(
+                OreConfiguration.target(stoneReplaceables, ModBlocks.TIN_ORE.get().defaultBlockState()),
+                OreConfiguration.target(deepslateReplaceables, ModBlocks.DEEPSLATE_TIN_ORE.get().defaultBlockState()));
+
         List<OreConfiguration.TargetBlockState> overworldPotassiumOres = List.of(
                 OreConfiguration.target(stoneReplaceables, ModBlocks.POTASSIUM_ORE.get().defaultBlockState()),
                 OreConfiguration.target(deepslateReplaceables, ModBlocks.DEEPSLATE_POTASSIUM_ORE.get().defaultBlockState()));
@@ -132,6 +142,12 @@ public class ModConfiguredFeatures {
         register(context, OVERWORLD_SULPHUR_ORE_MID_KEY, Feature.ORE, new OreConfiguration(overworldSulphurOres, 4));
         register(context, OVERWORLD_SULPHUR_ORE_UPPER_KEY, Feature.ORE, new OreConfiguration(overworldSulphurOres, 3));
         register(context, OVERWORLD_SULPHUR_ORE_MOUNTAINS_KEY, Feature.ORE, new OreConfiguration(overworldSulphurOres, 2));
+
+        register(context, OVERWORLD_TIN_ORE_ULTRA_DEEP_KEY, Feature.ORE, new OreConfiguration(overworldTinOres, 4));
+        register(context, OVERWORLD_TIN_ORE_DEEP_KEY, Feature.ORE, new OreConfiguration(overworldTinOres, 5));
+        register(context, OVERWORLD_TIN_ORE_MID_KEY, Feature.ORE, new OreConfiguration(overworldTinOres, 6));
+        register(context, OVERWORLD_TIN_ORE_UPPER_KEY, Feature.ORE, new OreConfiguration(overworldTinOres, 5));
+        register(context, OVERWORLD_TIN_ORE_MOUNTAINS_KEY, Feature.ORE, new OreConfiguration(overworldTinOres, 4));
 
         register(context, OVERWORLD_POTASSIUM_ORE_ULTRA_DEEP_KEY, Feature.ORE, new OreConfiguration(overworldPotassiumOres, 6));
         register(context, OVERWORLD_POTASSIUM_ORE_DEEP_KEY, Feature.ORE, new OreConfiguration(overworldPotassiumOres, 5));

@@ -131,6 +131,16 @@ public class ClientModInitializer {
                 );
             }
         }, ModItems.SPECTRAL_SUBSTANCE.get());
-    }
 
+        // 🟣 Spectral Ingot
+        event.registerItem(new IClientItemExtensions() {
+            @Override
+            public BlockEntityWithoutLevelRenderer getCustomRenderer() {
+                return new SpectralDustRenderer(
+                        Minecraft.getInstance().getBlockEntityRenderDispatcher(),
+                        Minecraft.getInstance().getEntityModels()
+                );
+            }
+        }, ModItems.SPECTRAL_INGOT.get());
+    }
 }

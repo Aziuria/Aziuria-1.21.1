@@ -29,6 +29,12 @@ public class ModPlacedFeatures {
     public static final ResourceKey<PlacedFeature> SULPHUR_ORE_UPPER_PLACED_KEY = registerKey("sulphur_ore_upper_placed");
     public static final ResourceKey<PlacedFeature> SULPHUR_ORE_MOUNTAINS_PLACED_KEY = registerKey("sulphur_ore_mountains_placed");
 
+    public static final ResourceKey<PlacedFeature> TIN_ORE_ULTRA_DEEP_PLACED_KEY = registerKey("tin_ore_ultra_deep_placed");
+    public static final ResourceKey<PlacedFeature> TIN_ORE_DEEP_PLACED_KEY = registerKey("tin_ore_deep_placed");
+    public static final ResourceKey<PlacedFeature> TIN_ORE_MID_PLACED_KEY = registerKey("tin_ore_mid_placed");
+    public static final ResourceKey<PlacedFeature> TIN_ORE_UPPER_PLACED_KEY = registerKey("tin_ore_upper_placed");
+    public static final ResourceKey<PlacedFeature> TIN_ORE_MOUNTAINS_PLACED_KEY = registerKey("tin_ore_mountains_placed");
+
     public static final ResourceKey<PlacedFeature> POTASSIUM_ORE_ULTRA_DEEP_PLACED_KEY = registerKey("potassium_ore_ultra_deep_placed");
     public static final ResourceKey<PlacedFeature> POTASSIUM_ORE_DEEP_PLACED_KEY = registerKey("potassium_ore_deep_placed");
     public static final ResourceKey<PlacedFeature> POTASSIUM_ORE_MID_PLACED_KEY = registerKey("potassium_ore_mid_placed");
@@ -128,6 +134,27 @@ public class ModPlacedFeatures {
         register(context, SULPHUR_ORE_MOUNTAINS_PLACED_KEY,
                 configuredFeatures.getOrThrow(ModConfiguredFeatures.OVERWORLD_SULPHUR_ORE_MOUNTAINS_KEY),
                 ModOrePlacement.commonOrePlacement(6, HeightRangePlacement.triangle(VerticalAnchor.absolute(15), VerticalAnchor.absolute(128))));
+
+        //TIN PLACEMENTS
+        register(context, TIN_ORE_ULTRA_DEEP_PLACED_KEY,
+                configuredFeatures.getOrThrow(ModConfiguredFeatures.OVERWORLD_TIN_ORE_ULTRA_DEEP_KEY),
+                ModOrePlacement.commonOrePlacement(4, HeightRangePlacement.triangle(VerticalAnchor.absolute(-32), VerticalAnchor.absolute(-8))));
+
+        register(context, TIN_ORE_DEEP_PLACED_KEY,
+                configuredFeatures.getOrThrow(ModConfiguredFeatures.OVERWORLD_TIN_ORE_DEEP_KEY),
+                ModOrePlacement.commonOrePlacement(5, HeightRangePlacement.triangle(VerticalAnchor.absolute(-24), VerticalAnchor.absolute(0))));
+
+        register(context, TIN_ORE_MID_PLACED_KEY,
+                configuredFeatures.getOrThrow(ModConfiguredFeatures.OVERWORLD_TIN_ORE_MID_KEY),
+                ModOrePlacement.commonOrePlacement(6, HeightRangePlacement.triangle(VerticalAnchor.absolute(-8), VerticalAnchor.absolute(32))));
+
+        register(context, TIN_ORE_UPPER_PLACED_KEY,
+                configuredFeatures.getOrThrow(ModConfiguredFeatures.OVERWORLD_TIN_ORE_UPPER_KEY),
+                ModOrePlacement.commonOrePlacement(5, HeightRangePlacement.triangle(VerticalAnchor.absolute(16), VerticalAnchor.absolute(48))));
+
+        register(context, TIN_ORE_MOUNTAINS_PLACED_KEY,
+                configuredFeatures.getOrThrow(ModConfiguredFeatures.OVERWORLD_TIN_ORE_MOUNTAINS_KEY),
+                ModOrePlacement.commonOrePlacement(4, HeightRangePlacement.triangle(VerticalAnchor.absolute(32), VerticalAnchor.absolute(64))));
 
 // POTASSIUM PLACEMENT
         register(context, POTASSIUM_ORE_ULTRA_DEEP_PLACED_KEY,

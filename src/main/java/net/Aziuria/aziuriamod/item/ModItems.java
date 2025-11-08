@@ -17,6 +17,8 @@ public class ModItems {
 
     public static final DeferredItem<Item> STEEL_INGOT = ITEMS.register("steel_ingot",
             () -> new Item(new Item.Properties()));
+    public static final DeferredItem<Item> TIN_INGOT = ITEMS.register("tin_ingot",
+            () -> new Item(new Item.Properties()));
     public static final DeferredItem<Item> STEEL_ALLOY_MESH = ITEMS.register("steel_alloy_mesh",
             () -> new Item(new Item.Properties()));
     public static final DeferredItem<Item> SULPHUR = ITEMS.register("sulphur",
@@ -25,9 +27,13 @@ public class ModItems {
             () -> new Item(new Item.Properties()));
     public static final DeferredItem<Item> POTASSIUM = ITEMS.register("potassium",
             () -> new Item(new Item.Properties()));
+    public static final DeferredItem<Item> TIN = ITEMS.register("raw_tin",
+            () -> new Item(new Item.Properties()));
     public static final DeferredItem<Item> SPECTRAL_DUST = ITEMS.register("spectral_dust",
             () -> new SpectralDustItem(new Item.Properties()));
     public static final DeferredItem<Item> SPECTRAL_SUBSTANCE = ITEMS.register("spectral_substance",
+            () -> new SpectralDustItem(new Item.Properties()));
+    public static final DeferredItem<Item> SPECTRAL_INGOT = ITEMS.register("spectral_ingot",
             () -> new SpectralDustItem(new Item.Properties()));
 
     public static final DeferredItem<Item> COPPER_NUGGET = ITEMS.register("copper_nugget",

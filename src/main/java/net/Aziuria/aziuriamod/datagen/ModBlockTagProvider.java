@@ -26,6 +26,8 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                 .add(ModBlocks.SPINEL_ORE.get())
                 .add(ModBlocks.SPECTRAL_ORE.get())
                 .add(ModBlocks.DEEPSLATE_SPINEL_ORE.get())
+                .add(ModBlocks.TIN_ORE.get())
+                .add(ModBlocks.DEEPSLATE_TIN_ORE.get())
                 .add(ModBlocks.DEEPSLATE_SULPHUR_ORE.get())
                 .add(ModBlocks.DEEPSLATE_POTASSIUM_ORE.get())
                 .add(ModBlocks.DEEPSLATE_SPECTRAL_ORE.get())
@@ -127,6 +129,8 @@ public class ModBlockTagProvider extends BlockTagsProvider {
         tag(ModTags.Blocks.NEEDS_COPPER_TOOL)
                 .add(Blocks.IRON_ORE)
                 .add(Blocks.DEEPSLATE_IRON_ORE)
+                .add(ModBlocks.TIN_ORE.get())
+                .add(ModBlocks.DEEPSLATE_TIN_ORE.get())
                 .addTag(BlockTags.NEEDS_STONE_TOOL);
 
         tag(BlockTags.INCORRECT_FOR_STONE_TOOL)
