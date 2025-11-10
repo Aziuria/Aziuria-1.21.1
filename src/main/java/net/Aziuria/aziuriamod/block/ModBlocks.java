@@ -466,7 +466,8 @@ public class ModBlocks {
     public static final DeferredBlock<LeafLitterBlock> LEAF_LITTER = registerBlock("leaf_litter",
             () -> new LeafLitterBlock(BlockBehaviour.Properties.of()
                     .mapColor(MapColor.PLANT)
-                    .strength(0.2f)
+                    .instabreak()
+                    .sound(SoundType.GRASS)
                     .noOcclusion()
                     .isViewBlocking((s, r, p) -> false)
                     .isSuffocating((s, r, p) -> false)),
@@ -475,30 +476,35 @@ public class ModBlocks {
     public static final DeferredBlock<DemarcationPostBlock> DEMAECATION_POST = registerBlock("demarcation_post_a",
             () -> new DemarcationPostBlock(BlockBehaviour.Properties.of()
                     .strength(1.5f)
+                    .mapColor(MapColor.COLOR_ORANGE)
                     .sound(SoundType.STONE)
                     .noOcclusion()));
 
     public static final DeferredBlock<DemarcationPostBlock> DEMAECATION_POST_B = registerBlock("demarcation_post_b",
             () -> new DemarcationPostBlock(BlockBehaviour.Properties.of()
                     .strength(1.5f)
+                    .mapColor(MapColor.COLOR_ORANGE)
                     .sound(SoundType.STONE)
                     .noOcclusion()));
 
     public static final DeferredBlock<DemarcationPostBlock> DEMAECATION_POST_C = registerBlock("demarcation_post_c",
             () -> new DemarcationPostBlock(BlockBehaviour.Properties.of()
                     .strength(1.5f)
+                    .mapColor(MapColor.COLOR_ORANGE)
                     .sound(SoundType.STONE)
                     .noOcclusion()));
 
     public static final DeferredBlock<DemarcationPostBlock> DEMAECATION_POST_D = registerBlock("demarcation_post_d",
             () -> new DemarcationPostBlock(BlockBehaviour.Properties.of()
                     .strength(1.5f)
+                    .mapColor(MapColor.COLOR_ORANGE)
                     .sound(SoundType.STONE)
                     .noOcclusion()));
 
     public static final DeferredBlock<DemarcationPostBlock> DEMAECATION_POST_E = registerBlock("demarcation_post_e",
             () -> new DemarcationPostBlock(BlockBehaviour.Properties.of()
                     .strength(1.5f)
+                    .mapColor(MapColor.COLOR_ORANGE)
                     .sound(SoundType.STONE)
                     .noOcclusion()));
 

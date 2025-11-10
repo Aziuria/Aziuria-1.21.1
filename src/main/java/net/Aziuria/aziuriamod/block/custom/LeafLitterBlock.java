@@ -7,15 +7,11 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.HorizontalDirectionalBlock;
-import net.minecraft.world.level.block.RenderShape;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
-import net.minecraft.world.level.block.Mirror;
-import net.minecraft.world.level.block.Rotation;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
@@ -27,7 +23,8 @@ public class LeafLitterBlock extends Block {
     public static final MapCodec<LeafLitterBlock> CODEC = MapCodec.unit(() ->
             new LeafLitterBlock(BlockBehaviour.Properties.of()
                     .mapColor(net.minecraft.world.level.material.MapColor.PLANT)
-                    .strength(0.2f)
+                    .instabreak()   // breaks instantly
+                    .sound(SoundType.GRASS) // grass breaking sound
                     .noOcclusion()
                     .isViewBlocking((s, r, p) -> false)
                     .isSuffocating((s, r, p) -> false))

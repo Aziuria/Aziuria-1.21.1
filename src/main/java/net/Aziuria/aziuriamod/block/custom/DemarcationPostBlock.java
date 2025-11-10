@@ -19,7 +19,7 @@ public class DemarcationPostBlock extends Block {
 
     public static final MapCodec<DemarcationPostBlock> CODEC = MapCodec.unit(() ->
             new DemarcationPostBlock(BlockBehaviour.Properties.of()
-                    .mapColor(MapColor.STONE)
+                    .mapColor(MapColor.COLOR_ORANGE)
                     .strength(1.5f)
                     .noOcclusion()
             )
