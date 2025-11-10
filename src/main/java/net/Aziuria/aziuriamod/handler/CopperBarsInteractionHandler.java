@@ -153,6 +153,7 @@ public class CopperBarsInteractionHandler {
 
     private static BlockState copyBarProperties(BlockState target, BlockState original) {
         if (original.hasProperty(BlockStateProperties.AXIS))  target = target.setValue(BlockStateProperties.AXIS, original.getValue(BlockStateProperties.AXIS));
+        if (original.hasProperty(BlockStateProperties.HORIZONTAL_FACING)) target = target.setValue(BlockStateProperties.HORIZONTAL_FACING, original.getValue(BlockStateProperties.HORIZONTAL_FACING));
         if (original.hasProperty(BlockStateProperties.NORTH)) target = target.setValue(BlockStateProperties.NORTH, original.getValue(BlockStateProperties.NORTH));
         if (original.hasProperty(BlockStateProperties.EAST))  target = target.setValue(BlockStateProperties.EAST, original.getValue(BlockStateProperties.EAST));
         if (original.hasProperty(BlockStateProperties.SOUTH)) target = target.setValue(BlockStateProperties.SOUTH, original.getValue(BlockStateProperties.SOUTH));

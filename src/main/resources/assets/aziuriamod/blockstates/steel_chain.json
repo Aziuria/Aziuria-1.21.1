@@ -1,5 +1,7 @@
 {
 	"variants": {
-		"": { "model": "aziuriamod:block/steel_chain" }
+		"axis=y": { "model": "aziuriamod:block/steel_chain" },
+		"axis=x": { "model": "aziuriamod:block/steel_chain", "x": 90, "y": 90 },
+		"axis=z": { "model": "aziuriamod:block/steel_chain", "x": 90 }
 	}
 }

@@ -1,5 +1,7 @@
 {
 	"variants": {
-		"": { "model": "aziuriamod:block/oxidized_copper_chain" }
+		"axis=y": { "model": "aziuriamod:block/oxidized_copper_chain" },
+		"axis=x": { "model": "aziuriamod:block/oxidized_copper_chain", "x": 90, "y": 90 },
+		"axis=z": { "model": "aziuriamod:block/oxidized_copper_chain", "x": 90 }
 	}
 }
