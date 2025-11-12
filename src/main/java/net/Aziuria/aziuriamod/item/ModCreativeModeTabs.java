@@ -325,6 +325,9 @@ public class ModCreativeModeTabs {
                         output.accept(ModItems.FLAX_FLOWER);
                         output.accept(ModBlocks.LEAF_LITTER);
 
+                        // ======= 🐾 ANIMALS & MOBS =======
+                        output.accept(ModItems.WORM_SPAWN_EGG.get());
+
                         // ======= ⚰️ GRAVESTONES =======
                         output.accept(ModBlocks.BLACKSTONE_GRAVESTONE_A);
                         output.accept(ModBlocks.BLACKSTONE_GRAVESTONE_B);

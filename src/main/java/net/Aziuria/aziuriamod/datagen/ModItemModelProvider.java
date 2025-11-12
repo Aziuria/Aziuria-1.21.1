@@ -164,6 +164,8 @@ public class ModItemModelProvider extends ItemModelProvider {
         basicItem(ModItems.COPPER_HORSE_ARMOR.get());
         basicItem(ModItems.STEEL_HORSE_ARMOR.get());
 
+        withExistingParent(ModItems.WORM_SPAWN_EGG.getId().getPath(), mcLoc("item/template_spawn_egg"));
+
         saplingItem(ModBlocks.APPLE_SAPLING);
         saplingItem(ModBlocks.PEAR_SAPLING);
         saplingItem(ModBlocks.CHERRY_SAPLING);

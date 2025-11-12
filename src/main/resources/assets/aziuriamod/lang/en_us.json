@@ -173,6 +173,7 @@
   "item.aziuriamod.pancake_dough": "Pancake Dough",
   "item.aziuriamod.pancake": "Pancake",
   "item.aziuriamod.empty_cup": "Empty Cup",
+  "item.aziuriamod.worm_spawn_egg": "Worm Spawn Egg",
 
 
   "item.aziuriamod.apple_juice": "Apple Juice",
@@ -261,6 +262,8 @@
   "block.aziuriamod.blackstone_gravestone_b": "Blackstone Gravestone B",
   "block.aziuriamod.cobblestone_gravestone_a": "Cobblestone Gravestone A",
   "block.aziuriamod.cobblestone_gravestone_b": "Cobblestone Gravestone B",
+
+  "entity.mccourse.worm": "Worm",
 
 
   "death.attack.dehydration": "%1$s died of dehydration",

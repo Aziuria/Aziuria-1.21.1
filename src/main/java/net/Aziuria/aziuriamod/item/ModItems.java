@@ -2,12 +2,14 @@ package net.Aziuria.aziuriamod.item;
 
 import net.Aziuria.aziuriamod.AziuriaMod;
 import net.Aziuria.aziuriamod.block.ModBlocks;
+import net.Aziuria.aziuriamod.entity.ModEntity;
 import net.Aziuria.aziuriamod.island.type.IslandBiomeType;
 import net.Aziuria.aziuriamod.island.type.IslandType;
 import net.Aziuria.aziuriamod.island.item.IslandThrowableItem;
 import net.Aziuria.aziuriamod.item.custom.*;
 import net.minecraft.world.item.*;
 import net.neoforged.bus.api.IEventBus;
+import net.neoforged.neoforge.common.DeferredSpawnEggItem;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
@@ -524,6 +526,10 @@ public class ModItems {
 
     public static final DeferredItem<Item> CORN_FISHING_ROD = ITEMS.register("corn_fishing_rod",
             () -> new BaitedFishingRodItem(new Item.Properties().stacksTo(1).durability(64)));
+
+    public static final DeferredItem<Item> WORM_SPAWN_EGG = ITEMS.register("worm_spawn_egg",
+            () -> new DeferredSpawnEggItem(ModEntity.WORM, 0x31afaf, 0xffac00,
+                    new Item.Properties()));
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);

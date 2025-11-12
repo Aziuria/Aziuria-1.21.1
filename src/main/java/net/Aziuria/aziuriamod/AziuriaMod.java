@@ -2,6 +2,8 @@ package net.Aziuria.aziuriamod;
 
 import com.mojang.logging.LogUtils;
 import net.Aziuria.aziuriamod.block.ModBlocks;
+import net.Aziuria.aziuriamod.entity.ModEntity;
+import net.Aziuria.aziuriamod.entity.client.worm.WormRenderer;
 import net.Aziuria.aziuriamod.island.util.BlockBatcher;
 import net.Aziuria.aziuriamod.client.ModClientCommonBusEvents;
 import net.Aziuria.aziuriamod.client.damage.ModDamageTypes;
@@ -41,6 +43,7 @@ import net.Aziuria.aziuriamod.villager.ModVillagers;
 import net.Aziuria.aziuriamod.villager.VillagerAIHandler;
 import net.Aziuria.aziuriamod.villager.VillagerProfessionTickHandler;
 import net.Aziuria.aziuriamod.worldgen.rules.registry.ModPlacementModifier;
+import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.IEventBus;
@@ -135,6 +138,7 @@ public class AziuriaMod {
         ModCreativeModeTabs.register(modEventBus);
         ModLootModifiers.register(modEventBus);
         ModItems.register(modEventBus);
+        ModEntity.register(modEventBus);
         ModBlocks.register(modEventBus);
         ModDamageTypes.register(modEventBus);
         ModSounds.register(modEventBus);
@@ -215,6 +219,8 @@ public class AziuriaMod {
             event.enqueueWork(() -> LOGGER.info("Client setup complete."));
             ThirstSetup.registerThirstItems();
             ExhaustionSetup.registerExhaustionItems();
+
+            EntityRenderers.register(ModEntity.WORM.get(), WormRenderer::new);
 
         }
 
