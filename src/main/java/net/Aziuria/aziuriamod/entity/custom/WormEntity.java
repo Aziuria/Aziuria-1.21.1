@@ -2,7 +2,9 @@ package net.Aziuria.aziuriamod.entity.custom;
 
 import net.Aziuria.aziuriamod.block.ModBlocks;
 import net.Aziuria.aziuriamod.entity.ModEntity;
+import net.Aziuria.aziuriamod.item.ModItems;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.AgeableMob;
 import net.minecraft.world.entity.AnimationState;
 import net.minecraft.world.entity.EntityType;
@@ -72,4 +74,12 @@ public class WormEntity extends Animal {
             this.setupAnimationStates();
         }
     }
+
+    @Override
+    protected void dropCustomDeathLoot(ServerLevel level, DamageSource source, boolean recentlyHit) {
+        super.dropCustomDeathLoot(level, source, recentlyHit);
+        // Always drop 1 worm
+        this.spawnAtLocation(ModItems.WORM.get(), 1);
+    }
+
 }
