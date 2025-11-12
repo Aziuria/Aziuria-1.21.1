@@ -850,6 +850,17 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .unlockedBy("has_egg", has(Items.EGG))
                 .save(recipeOutput);
 
+        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ModItems.WORM_SPAWN_EGG.get())
+                .pattern("BHG")
+                .pattern("HWH")
+                .pattern("GHB")
+                .define('W', Items.EGG)
+                .define('G', Items.BROWN_DYE)
+                .define('B', Items.ORANGE_DYE)
+                .define('H', ModItems.WORM.get())
+                .unlockedBy("has_egg", has(Items.EGG))
+                .save(recipeOutput);
+
         ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, Items.ARMADILLO_SPAWN_EGG)
                 .pattern("BHG")
                 .pattern("HWH")

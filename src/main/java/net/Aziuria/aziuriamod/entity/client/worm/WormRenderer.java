@@ -10,7 +10,7 @@ import net.minecraft.resources.ResourceLocation;
 
 public class WormRenderer extends MobRenderer<WormEntity, WormModel<WormEntity>> {
     public WormRenderer(EntityRendererProvider.Context context) {
-        super(context, new WormModel<>(context.bakeLayer(WormModel.LAYER_LOCATION)), 0.1f);
+        super(context, new WormModel<>(context.bakeLayer(WormModel.LAYER_LOCATION)), 0.01f);
     }
 
     @Override

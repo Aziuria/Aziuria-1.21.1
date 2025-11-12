@@ -528,7 +528,7 @@ public class ModItems {
             () -> new BaitedFishingRodItem(new Item.Properties().stacksTo(1).durability(64)));
 
     public static final DeferredItem<Item> WORM_SPAWN_EGG = ITEMS.register("worm_spawn_egg",
-            () -> new DeferredSpawnEggItem(ModEntity.WORM, 0x31afaf, 0xffac00,
+            () -> new DeferredSpawnEggItem(ModEntity.WORM, 0x6B4226, 0xD19C77,
                     new Item.Properties()));
 
     public static void register(IEventBus eventBus) {

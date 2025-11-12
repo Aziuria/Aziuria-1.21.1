@@ -67,8 +67,8 @@ public class WormModel<T extends WormEntity> extends HierarchicalModel<T> {
         headYaw = Mth.clamp(headYaw, -30f, 30f);
         headPitch = Mth.clamp(headPitch, -25f, 45f);
 
-        this.head.yRot = headYaw * ((float)Math.PI / 180f);
-        this.head.xRot = headPitch * ((float)Math.PI / 180f);
+        this.head.yRot = (headYaw * 0.5f) * ((float)Math.PI / 180f);
+        this.head.xRot = (headPitch * 0.5f) * ((float)Math.PI / 180f);
     }
 
     @Override

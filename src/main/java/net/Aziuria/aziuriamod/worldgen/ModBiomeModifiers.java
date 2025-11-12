@@ -1,6 +1,7 @@
 package net.Aziuria.aziuriamod.worldgen;
 
 import net.Aziuria.aziuriamod.AziuriaMod;
+import net.Aziuria.aziuriamod.entity.ModEntity;
 import net.minecraft.core.HolderSet;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstrapContext;
@@ -8,10 +9,13 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BiomeTags;
 import net.minecraft.world.level.biome.Biomes;
+import net.minecraft.world.level.biome.MobSpawnSettings;
 import net.minecraft.world.level.levelgen.GenerationStep;
 import net.neoforged.neoforge.common.world.BiomeModifier;
 import net.neoforged.neoforge.common.world.BiomeModifiers;
 import net.neoforged.neoforge.registries.NeoForgeRegistries;
+
+import java.util.List;
 
 public class ModBiomeModifiers {
 
@@ -103,6 +107,8 @@ public class ModBiomeModifiers {
 
     public static final ResourceKey<BiomeModifier> BLACKCURRANT_BUSH = registerKey("blackcurrant_bush");
     public static final ResourceKey<BiomeModifier> STRAWBERRY_BUSH = registerKey("strawberry_bush");
+
+    public static final ResourceKey<BiomeModifier> SPAWN_WORM = registerKey("spawn_worm");
 
     public static void bootstrap(BootstrapContext<BiomeModifier> context) {
         // CF -> PF -> BM
@@ -834,10 +840,36 @@ public class ModBiomeModifiers {
                         biomes.getOrThrow(Biomes.FOREST),
                         biomes.getOrThrow(Biomes.MEADOW),
                         biomes.getOrThrow(Biomes.WINDSWEPT_HILLS),
+                        biomes.getOrThrow(Biomes.BIRCH_FOREST),
+                        biomes.getOrThrow(Biomes.OLD_GROWTH_BIRCH_FOREST),
                         biomes.getOrThrow(Biomes.WINDSWEPT_FOREST)
                 ),
                 HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.BLACKCURRANT_BUSH_PLACED_KEY)),
                 GenerationStep.Decoration.VEGETAL_DECORATION));
+
+        context.register(SPAWN_WORM, new BiomeModifiers.AddSpawnsBiomeModifier(
+                HolderSet.direct(
+                        biomes.getOrThrow(Biomes.SWAMP),
+                        biomes.getOrThrow(Biomes.PLAINS),
+                        biomes.getOrThrow(Biomes.SUNFLOWER_PLAINS),
+                        biomes.getOrThrow(Biomes.FOREST),
+                        biomes.getOrThrow(Biomes.FLOWER_FOREST),
+                        biomes.getOrThrow(Biomes.BIRCH_FOREST),
+                        biomes.getOrThrow(Biomes.OLD_GROWTH_BIRCH_FOREST),
+                        biomes.getOrThrow(Biomes.DARK_FOREST),
+                        biomes.getOrThrow(Biomes.OLD_GROWTH_PINE_TAIGA),
+                        biomes.getOrThrow(Biomes.OLD_GROWTH_SPRUCE_TAIGA),
+                        biomes.getOrThrow(Biomes.GROVE),
+                        biomes.getOrThrow(Biomes.MEADOW),
+                        biomes.getOrThrow(Biomes.RIVER),
+                        biomes.getOrThrow(Biomes.CHERRY_GROVE),
+                        biomes.getOrThrow(Biomes.MANGROVE_SWAMP),
+                        biomes.getOrThrow(Biomes.JUNGLE),
+                        biomes.getOrThrow(Biomes.BAMBOO_JUNGLE),
+                        biomes.getOrThrow(Biomes.SPARSE_JUNGLE),
+                        biomes.getOrThrow(Biomes.WINDSWEPT_FOREST)),
+
+                List.of(new MobSpawnSettings.SpawnerData(ModEntity.WORM.get(), 10, 1, 3))));
     }
 
     private static ResourceKey<BiomeModifier> registerKey(String name) {

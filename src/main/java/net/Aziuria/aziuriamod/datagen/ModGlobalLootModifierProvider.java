@@ -76,13 +76,13 @@ public class ModGlobalLootModifierProvider extends GlobalLootModifierProvider {
         this.add("worms_from_grass",
                 new AddItemModifier(new LootItemCondition[] {
                         LootItemBlockStatePropertyCondition.hasBlockStateProperties(Blocks.GRASS_BLOCK).build(),
-                        LootItemRandomChanceCondition.randomChance(0.25f).build() // 3% chance
+                        LootItemRandomChanceCondition.randomChance(0.15f).build() // 3% chance
                 }, ModItems.WORM.get(), 0, 5)); // gives 0–5 worms
 
         this.add("worms_from_dirt",
                 new AddItemModifier(new LootItemCondition[] {
                         LootItemBlockStatePropertyCondition.hasBlockStateProperties(Blocks.DIRT).build(),
-                        LootItemRandomChanceCondition.randomChance(0.25f).build() // 3% chance
+                        LootItemRandomChanceCondition.randomChance(0.15f).build() // 3% chance
                 }, ModItems.WORM.get(), 0, 5)); // gives 0–5 worms
 
 //        this.add("remove_cobblestone_from_stone",
