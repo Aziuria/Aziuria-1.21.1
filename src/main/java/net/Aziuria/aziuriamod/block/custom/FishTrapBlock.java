@@ -68,10 +68,24 @@ public class FishTrapBlock extends BaseEntityBlock implements SimpleWaterloggedB
 
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext context) {
-        FluidState fluidState = context.getLevel().getFluidState(context.getClickedPos());
+        Level level = context.getLevel();
+        BlockPos pos = context.getClickedPos();
+        FluidState fluidState = level.getFluidState(pos);
+
+        // Only allow placement in water source blocks
+        if (fluidState.getType() != Fluids.WATER || !fluidState.isSource()) {
+            return null; // cannot place here
+        }
+
+        // Ensure there is a solid block underneath
+        BlockPos below = pos.below();
+        if (!level.getBlockState(below).isFaceSturdy(level, below, Direction.UP)) {
+            return null; // cannot place here
+        }
+
         return this.defaultBlockState()
                 .setValue(FACING, context.getHorizontalDirection().getOpposite())
-                .setValue(WATERLOGGED, fluidState.getType() == Fluids.WATER);
+                .setValue(WATERLOGGED, true);
     }
 
     @Nullable

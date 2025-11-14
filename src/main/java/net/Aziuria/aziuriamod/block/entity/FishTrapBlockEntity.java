@@ -99,9 +99,10 @@ public class FishTrapBlockEntity extends BlockEntity {
             trap.baitCapacity = 0;
             trap.fishAccumulated = 0f;
 
-            // Force client to rerender the block, so bait disappears visually
-            if (level != null) {
-                level.sendBlockUpdated(pos, state, state, 3);
+            trap.setChanged(); // mark dirty
+            if (!level.isClientSide) {
+                BlockState currentState = level.getBlockState(pos);
+                level.sendBlockUpdated(pos, currentState, currentState, 3);
             }
         }
 
@@ -123,15 +124,36 @@ public class FishTrapBlockEntity extends BlockEntity {
         ItemStack drop = ItemStack.EMPTY;
 
         if (caughtFish > 0) {
-            // Randomly choose one of the four vanilla fish types
+            // Mix fish types randomly
             ItemStack[] possibleFish = new ItemStack[] {
                     new ItemStack(Items.COD),
                     new ItemStack(Items.SALMON),
                     new ItemStack(Items.TROPICAL_FISH),
                     new ItemStack(Items.PUFFERFISH)
             };
-            drop = possibleFish[level.random.nextInt(possibleFish.length)];
-            drop.setCount(caughtFish);
+
+            // Count of each fish type
+            int[] counts = new int[possibleFish.length];
+
+            for (int i = 0; i < caughtFish; i++) {
+                int index = level.random.nextInt(possibleFish.length);
+                counts[index]++;
+            }
+
+            // Combine into a single drop stack (growing if necessary)
+            for (int i = 0; i < possibleFish.length; i++) {
+                if (counts[i] > 0) {
+                    if (drop.isEmpty()) {
+                        drop = possibleFish[i].copy();
+                        drop.setCount(counts[i]);
+                    } else {
+                        ItemStack temp = possibleFish[i].copy();
+                        temp.setCount(counts[i]);
+                        drop.grow(temp.getCount());
+                    }
+                }
+            }
+
             caughtFish = 0; // reset after drop
         }
 
