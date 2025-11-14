@@ -1,85 +1,75 @@
 package net.Aziuria.aziuriamod.block.entity;
 
+import net.Aziuria.aziuriamod.item.ModItems;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
 import net.minecraft.core.HolderLookup;
-import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
-import net.minecraft.world.ContainerHelper;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.phys.Vec3;
 
 public class FishTrapBlockEntity extends BlockEntity {
 
-    public final NonNullList<ItemStack> inventory;
+    private static final int TICKS_PER_DAY = 24000;
+    private static final int MAX_FISH_PER_BAIT = 4;
+
+    private ItemStack baitSlot = ItemStack.EMPTY;
+    private int baitCapacity = 0;
+    private float fishAccumulated = 0f;
+    private int caughtFish = 0;
+    private int ticksActive = 0;
+    private int dailyTarget = 0;
 
     public FishTrapBlockEntity(BlockPos pos, BlockState state) {
         super(ModBlockEntities.FISH_TRAP_BLOCK_ENTITY.get(), pos, state);
-        this.inventory = NonNullList.withSize(4, ItemStack.EMPTY);
     }
 
-    /**
-     * Determines which slot (0-3) was clicked based on hit position and block facing.
-     * Layout:
-     * 0 1
-     * 2 3
-     */
-    public static int getClickedSlot(Vec3 hit, Direction facing) {
-        double x = hit.x;
-        double z = hit.z;
+    // ----------------------------
+    // Interaction
+    // ----------------------------
+    public InteractionResult onRightClick(Level level, BlockPos pos, Player player, ItemStack heldItem) {
+        if (!isValidBait(heldItem) && !baitSlot.isEmpty()) {
+            // If holding invalid bait, do nothing
+            return InteractionResult.PASS;
+        }
 
-        return switch (facing) {
-            case SOUTH -> (z > 0.5 ? 2 : 0) + (x > 0.5 ? 1 : 0);
-            case NORTH -> (z < 0.5 ? 2 : 0) + (x < 0.5 ? 1 : 0);
-            case EAST  -> (x < 0.5 ? 2 : 0) + (z < 0.5 ? 1 : 0);
-            case WEST  -> (x > 0.5 ? 2 : 0) + (z > 0.5 ? 1 : 0);
-            default -> 0;
-        };
-    }
-
-    /**
-     * Handles right-click interactions on the fish trap.
-     */
-    public InteractionResult onRightClick(Level level, BlockPos pos, Player player, ItemStack heldItem, int slot) {
-        if (slot < 0 || slot >= inventory.size()) return InteractionResult.PASS;
-
-        ItemStack slotStack = inventory.get(slot);
-
-        // Place item if empty
-        if (slotStack.isEmpty()) {
-            if (!heldItem.isEmpty()) {
-                inventory.set(slot, heldItem.copyWithCount(1));
+        if (baitSlot.isEmpty()) {
+            if (!heldItem.isEmpty() && isValidBait(heldItem)) {
+                baitSlot = heldItem.copy();
+                baitSlot.setCount(1);
                 heldItem.shrink(1);
+                baitCapacity = level.random.nextInt(1, MAX_FISH_PER_BAIT + 1);
+                fishAccumulated = 0f;
+
                 setChanged();
                 level.sendBlockUpdated(pos, getBlockState(), getBlockState(), 3);
                 return InteractionResult.CONSUME;
             }
         } else {
-            // Try stacking with existing item
-            if (ItemStack.matches(slotStack, heldItem) && slotStack.getCount() < slotStack.getMaxStackSize()) {
-                int space = slotStack.getMaxStackSize() - slotStack.getCount();
-                int add = Math.min(heldItem.getCount(), space);
-                slotStack.grow(add);
+            if (ItemStack.matches(baitSlot, heldItem) && baitSlot.getCount() < baitSlot.getMaxStackSize()) {
+                int space = baitSlot.getMaxStackSize() - baitSlot.getCount();
+                int add = Math.min(space, heldItem.getCount());
+                baitSlot.grow(add);
                 heldItem.shrink(add);
+
                 setChanged();
                 level.sendBlockUpdated(pos, getBlockState(), getBlockState(), 3);
                 return InteractionResult.CONSUME;
             }
 
-            // Drop item if cannot stack
-            if (!player.addItem(slotStack)) {
-                player.drop(slotStack, false);
-            }
-            inventory.set(slot, ItemStack.EMPTY);
+            if (!player.addItem(baitSlot)) player.drop(baitSlot, false);
+            baitSlot = ItemStack.EMPTY;
+            baitCapacity = 0;
+            fishAccumulated = 0f;
+
             setChanged();
             level.sendBlockUpdated(pos, getBlockState(), getBlockState(), 3);
             return InteractionResult.CONSUME;
@@ -88,8 +78,119 @@ public class FishTrapBlockEntity extends BlockEntity {
         return InteractionResult.PASS;
     }
 
-    public NonNullList<ItemStack> getItems() {
-        return inventory;
+    // ----------------------------
+    // Tick
+    // ----------------------------
+    public static <T extends BlockEntity> void tick(Level level, BlockPos pos, BlockState state, FishTrapBlockEntity trap) {
+        if (level.isClientSide || trap.baitSlot.isEmpty()) return;
+
+        if (!trap.isValidBait(trap.baitSlot)) return; // only valid bait
+        if (!trap.isSubmerged(level, pos)) return;   // must be underwater
+
+        if (trap.ticksActive == 0) trap.dailyTarget = level.random.nextInt(1, 10);
+
+        trap.ticksActive++;
+        float ratePerTick = trap.baitCapacity / (float) TICKS_PER_DAY;
+        trap.fishAccumulated += ratePerTick;
+
+        if (trap.fishAccumulated >= trap.baitCapacity) {
+            trap.caughtFish += (int) trap.fishAccumulated; // move fish to caught
+            trap.baitSlot = ItemStack.EMPTY;               // bait is gone
+            trap.baitCapacity = 0;
+            trap.fishAccumulated = 0f;
+
+            // Force client to rerender the block, so bait disappears visually
+            if (level != null) {
+                level.sendBlockUpdated(pos, state, state, 3);
+            }
+        }
+
+        if (trap.ticksActive >= TICKS_PER_DAY) trap.ticksActive = 0;
+        trap.setChanged();
+    }
+
+    // ----------------------------
+    // Inventory for renderer
+    // ----------------------------
+    public ItemStack getBaitSlot() {
+        return baitSlot;
+    }
+
+    // ----------------------------
+    // Drops
+    // ----------------------------
+    public ItemStack getDrop() {
+        ItemStack drop = ItemStack.EMPTY;
+
+        if (caughtFish > 0) {
+            // Randomly choose one of the four vanilla fish types
+            ItemStack[] possibleFish = new ItemStack[] {
+                    new ItemStack(Items.COD),
+                    new ItemStack(Items.SALMON),
+                    new ItemStack(Items.TROPICAL_FISH),
+                    new ItemStack(Items.PUFFERFISH)
+            };
+            drop = possibleFish[level.random.nextInt(possibleFish.length)];
+            drop.setCount(caughtFish);
+            caughtFish = 0; // reset after drop
+        }
+
+        if (!baitSlot.isEmpty()) {
+            if (drop.isEmpty()) drop = baitSlot.copy();
+            else drop.grow(baitSlot.getCount());
+        }
+
+        setChanged();
+        return drop;
+    }
+
+    // ----------------------------
+    // Submerged check
+    // ----------------------------
+    private boolean isSubmerged(Level level, BlockPos pos) {
+        return level.getFluidState(pos).isSource();
+    }
+
+    // ----------------------------
+    // Valid bait check
+    // ----------------------------
+    private boolean isValidBait(ItemStack stack) {
+        return stack.is(ModItems.WORM.get()) || stack.is(ModItems.CORN.get()) || stack.is(ModItems.BREAD_BAIT);
+    }
+
+    // ----------------------------
+    // Save / Load
+    // ----------------------------
+    @Override
+    public void loadAdditional(CompoundTag nbt, HolderLookup.Provider provider) {
+        super.loadAdditional(nbt, provider);
+
+        if (nbt.contains("BaitSlot")) {
+            baitSlot = ItemStack.parse(provider, nbt.get("BaitSlot")).orElse(ItemStack.EMPTY);
+        } else {
+            baitSlot = ItemStack.EMPTY;
+        }
+
+        baitCapacity = nbt.getInt("BaitCapacity");
+        fishAccumulated = nbt.getFloat("FishAccumulated");
+        ticksActive = nbt.getInt("TicksActive");
+        dailyTarget = nbt.getInt("DailyTarget");
+        caughtFish = nbt.getInt("CaughtFish");
+    }
+
+    @Override
+    public void saveAdditional(CompoundTag nbt, HolderLookup.Provider provider) {
+        super.saveAdditional(nbt, provider);
+
+        if (!baitSlot.isEmpty()) {
+            nbt.put("BaitSlot", baitSlot.save(provider));
+        }
+
+        nbt.putInt("BaitCapacity", baitCapacity);
+        nbt.putFloat("FishAccumulated", fishAccumulated);
+        nbt.putInt("TicksActive", ticksActive);
+        nbt.putInt("DailyTarget", dailyTarget);
+        nbt.putInt("CaughtFish", caughtFish);
     }
 
     @Override
@@ -98,22 +199,8 @@ public class FishTrapBlockEntity extends BlockEntity {
     }
 
     @Override
-    public CompoundTag getUpdateTag(HolderLookup.Provider registryLookup) {
-        return this.saveWithoutMetadata(registryLookup);
-    }
-
-    @Override
-    public void loadAdditional(CompoundTag nbt, HolderLookup.Provider registryLookup) {
-        super.loadAdditional(nbt, registryLookup);
-        this.inventory.clear();
-        ContainerHelper.loadAllItems(nbt, this.inventory, registryLookup);
-        this.setChanged();
-    }
-
-    @Override
-    public void saveAdditional(CompoundTag nbt, HolderLookup.Provider registryLookup) {
-        super.saveAdditional(nbt, registryLookup);
-        ContainerHelper.saveAllItems(nbt, this.inventory, registryLookup);
+    public CompoundTag getUpdateTag(HolderLookup.Provider provider) {
+        return saveWithoutMetadata(provider);
     }
 
     public Component getDisplayName() {
