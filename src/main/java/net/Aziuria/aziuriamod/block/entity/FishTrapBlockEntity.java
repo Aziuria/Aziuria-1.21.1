@@ -16,6 +16,9 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class FishTrapBlockEntity extends BlockEntity {
 
     private static final int TICKS_PER_DAY = 24000;
@@ -27,6 +30,7 @@ public class FishTrapBlockEntity extends BlockEntity {
     private int caughtFish = 0;
     private int ticksActive = 0;
     private int dailyTarget = 0;
+    private int[] fishCounts = new int[4];
 
     public FishTrapBlockEntity(BlockPos pos, BlockState state) {
         super(ModBlockEntities.FISH_TRAP_BLOCK_ENTITY.get(), pos, state);
@@ -94,15 +98,25 @@ public class FishTrapBlockEntity extends BlockEntity {
         trap.fishAccumulated += ratePerTick;
 
         if (trap.fishAccumulated >= trap.baitCapacity) {
-            trap.caughtFish += (int) trap.fishAccumulated; // move fish to caught
-            trap.baitSlot = ItemStack.EMPTY;               // bait is gone
+            int totalFish = trap.baitCapacity; // total fish caught
+            trap.baitSlot = ItemStack.EMPTY;   // consume bait
             trap.baitCapacity = 0;
             trap.fishAccumulated = 0f;
 
-            trap.setChanged(); // mark dirty
-            if (!level.isClientSide) {
-                BlockState currentState = level.getBlockState(pos);
-                level.sendBlockUpdated(pos, currentState, currentState, 3);
+            // Reset counts
+            for (int i = 0; i < trap.fishCounts.length; i++) trap.fishCounts[i] = 0;
+
+            // Randomly assign fish
+            for (int i = 0; i < totalFish; i++) {
+                int index = trap.level.random.nextInt(4);
+                trap.fishCounts[index]++;
+            }
+
+            trap.caughtFish = totalFish; // total for reference
+            trap.setChanged();
+            if (!trap.level.isClientSide) {
+                BlockState currentState = trap.level.getBlockState(pos);
+                trap.level.sendBlockUpdated(pos, currentState, currentState, 3);
             }
         }
 
@@ -120,50 +134,34 @@ public class FishTrapBlockEntity extends BlockEntity {
     // ----------------------------
     // Drops
     // ----------------------------
-    public ItemStack getDrop() {
-        ItemStack drop = ItemStack.EMPTY;
+    public List<ItemStack> getDrops() {
+        List<ItemStack> drops = new ArrayList<>();
+        ItemStack[] possibleFish = new ItemStack[]{
+                new ItemStack(Items.COD),
+                new ItemStack(Items.SALMON),
+                new ItemStack(Items.TROPICAL_FISH),
+                new ItemStack(Items.PUFFERFISH)
+        };
 
-        if (caughtFish > 0) {
-            // Mix fish types randomly
-            ItemStack[] possibleFish = new ItemStack[] {
-                    new ItemStack(Items.COD),
-                    new ItemStack(Items.SALMON),
-                    new ItemStack(Items.TROPICAL_FISH),
-                    new ItemStack(Items.PUFFERFISH)
-            };
-
-            // Count of each fish type
-            int[] counts = new int[possibleFish.length];
-
-            for (int i = 0; i < caughtFish; i++) {
-                int index = level.random.nextInt(possibleFish.length);
-                counts[index]++;
+        // Add each fish individually according to fishCounts
+        for (int i = 0; i < fishCounts.length; i++) {
+            for (int j = 0; j < fishCounts[i]; j++) {
+                drops.add(possibleFish[i].copy());
             }
-
-            // Combine into a single drop stack (growing if necessary)
-            for (int i = 0; i < possibleFish.length; i++) {
-                if (counts[i] > 0) {
-                    if (drop.isEmpty()) {
-                        drop = possibleFish[i].copy();
-                        drop.setCount(counts[i]);
-                    } else {
-                        ItemStack temp = possibleFish[i].copy();
-                        temp.setCount(counts[i]);
-                        drop.grow(temp.getCount());
-                    }
-                }
-            }
-
-            caughtFish = 0; // reset after drop
         }
 
+        // Reset counts after drop
+        caughtFish = 0;
+        for (int i = 0; i < fishCounts.length; i++) fishCounts[i] = 0;
+
+        // Add remaining bait if any
         if (!baitSlot.isEmpty()) {
-            if (drop.isEmpty()) drop = baitSlot.copy();
-            else drop.grow(baitSlot.getCount());
+            drops.add(baitSlot.copy());
+            baitSlot = ItemStack.EMPTY;
         }
 
         setChanged();
-        return drop;
+        return drops;
     }
 
     // ----------------------------

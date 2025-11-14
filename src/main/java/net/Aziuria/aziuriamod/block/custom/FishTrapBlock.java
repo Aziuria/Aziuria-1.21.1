@@ -110,8 +110,10 @@ public class FishTrapBlock extends BaseEntityBlock implements SimpleWaterloggedB
         if (state.getBlock() != newState.getBlock()) {
             BlockEntity be = level.getBlockEntity(pos);
             if (be instanceof FishTrapBlockEntity trap) {
-                ItemStack drop = trap.getDrop();
-                if (!drop.isEmpty()) Containers.dropItemStack(level, pos.getX(), pos.getY(), pos.getZ(), drop);
+                // Drop all stacks individually
+                for (ItemStack stack : trap.getDrops()) {
+                    Containers.dropItemStack(level, pos.getX(), pos.getY(), pos.getZ(), stack);
+                }
             }
             super.onRemove(state, level, pos, newState, isMoving);
         }
