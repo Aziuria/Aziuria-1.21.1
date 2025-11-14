@@ -103,6 +103,14 @@ public class ModBlockEntities {
                     ).build(null)
             );
 
+    public static final Supplier<BlockEntityType<FishTrapBlockEntity>> FISH_TRAP_BLOCK_ENTITY =
+            BLOCK_ENTITIES.register("fish_trap_block_entity", () ->
+                    BlockEntityType.Builder.of(
+                            FishTrapBlockEntity::new,
+                            ModBlocks.FISH_TRAP.get() // make sure this is your registered Fish Trap block
+                    ).build(null)
+            );
+
 
     public static void register(IEventBus eventBus) {
         BLOCK_ENTITIES.register(eventBus);

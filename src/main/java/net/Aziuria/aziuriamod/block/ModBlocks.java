@@ -198,6 +198,13 @@ public class ModBlocks {
                     .sound(SoundType.WOOD)
                     .noOcclusion()));
 
+    public static final DeferredBlock<FishTrapBlock> FISH_TRAP = registerBlock("fish_trap",
+            () -> new FishTrapBlock(BlockBehaviour.Properties.of()
+                    .strength(0.6f)
+                    .sound(SoundType.WOOD)
+                    .noOcclusion()
+            ));
+
     public static final DeferredBlock<HookBlock> OAK_HOOK = registerBlock("oak_hook",
             () -> new HookBlock(BlockBehaviour.Properties.of()
                     .strength(1.5f)

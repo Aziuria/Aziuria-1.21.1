@@ -41,6 +41,8 @@ public class ClientModInitializer {
         event.enqueueWork(() -> {
             BlockEntityRenderers.register(ModBlockEntities.SHELF_BLOCK_ENTITY.get(), ShelfRenderer::new);
             BlockEntityRenderers.register(ModBlockEntities.STORAGE_BLOCK_ENTITY.get(), StorageRenderer::new);
+            BlockEntityRenderers.register(ModBlockEntities.FISH_TRAP_BLOCK_ENTITY.get(), FishTrapRenderer::new);
+            RenderLayerUtil.setRenderLayer(ModBlocks.FISH_TRAP.get(), RenderType.cutout());
             BlockEntityRenderers.register(ModBlockEntities.HOOK_BLOCK_ENTITY.get(), HookRenderer::new);
             BlockEntityRenderers.register(ModBlockEntities.STEEL_BARREL_BLOCK_ENTITY.get(), SteelBarrelRenderer::new);
             BlockEntityRenderers.register(ModBlockEntities.WOODCUTTER_BENCH.get(), WoodcutterBenchRenderer::new);
