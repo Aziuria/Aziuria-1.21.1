@@ -43,6 +43,11 @@ public class ModItems {
     public static final DeferredItem<Item> STEEL_NUGGET = ITEMS.register("steel_nugget",
             () -> new Item(new Item.Properties()));
 
+    public static final DeferredItem<Item> NET = ITEMS.register("net",
+            () -> new Item(new Item.Properties()));
+    public static final DeferredItem<Item> NET_SEGMENT = ITEMS.register("net_segment",
+            () -> new Item(new Item.Properties()));
+
     public static final DeferredHolder<Item, Item> SACK_ITEM = ITEMS.register("sack_item", () -> new SackItem(new Item.Properties()));
 
     public static final DeferredItem<Item> WORM = ITEMS.register("worm",

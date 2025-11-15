@@ -125,6 +125,8 @@ public class ModItemModelProvider extends ItemModelProvider {
         basicItem(ModItems.DICED_CHICKEN.get());
         basicItem(ModItems.BATTERED_CHICKEN.get());
         basicItem(ModItems.SPRING_ONION_SEEDS.get());
+        basicItem(ModItems.NET.get());
+        basicItem(ModItems.NET_SEGMENT.get());
 
         basicItem(ModItems.ISLAND_GENERATOR_SMALL.get());
         basicItem(ModItems.ISLAND_GENERATOR_MEDIUM.get());

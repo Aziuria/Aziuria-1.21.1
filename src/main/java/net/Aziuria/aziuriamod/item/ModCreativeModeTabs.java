@@ -52,6 +52,8 @@ public class ModCreativeModeTabs {
                         output.accept(ModItems.WORM_FISHING_ROD.get());
                         output.accept(ModItems.BREAD_FISHING_ROD.get());
                         output.accept(ModItems.CORN_FISHING_ROD.get());
+                        output.accept(ModItems.NET.get());
+                        output.accept(ModItems.NET_SEGMENT.get());
                         output.accept(ModBlocks.FISH_TRAP.get());
 
                         // ======= ⛏️ ORES & MINERALS =======

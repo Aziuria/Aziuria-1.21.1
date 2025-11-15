@@ -41,6 +41,30 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .define('I', Items.RAW_IRON)
                 .unlockedBy("has_raw_iron", has(Items.RAW_IRON)).save(recipeOutput);
 
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.NET.get())
+                .pattern("I I")
+                .pattern(" I ")
+                .pattern("I I")
+                .define('I', ModItems.LASHING.get())
+                .unlockedBy("has_lashing", has(ModItems.LASHING.get())).save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.NET_SEGMENT.get())
+                .pattern("FLF")
+                .pattern("FIF")
+                .define('I', ModItems.NET.get())
+                .define('F', Items.STICK)
+                .define('L', ModTags.KNIVES)
+                .unlockedBy("has_net", has(ModItems.NET.get())).save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.FISH_TRAP.get())
+                .pattern("FIF")
+                .pattern("ILI")
+                .pattern("FIF")
+                .define('I', ModItems.NET_SEGMENT.get())
+                .define('F', ModItems.LASHING.get())
+                .define('L', ModTags.KNIVES)
+                .unlockedBy("has_net_segment", has(ModItems.NET_SEGMENT.get())).save(recipeOutput);
+
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.COPPER_NUGGET.get(), 9)
                 .pattern("I")
                 .define('I', Items.COPPER_INGOT)
