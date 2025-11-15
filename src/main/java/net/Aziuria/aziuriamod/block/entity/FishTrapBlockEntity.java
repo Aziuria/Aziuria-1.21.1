@@ -24,8 +24,8 @@ import java.util.Random;
 
 public class FishTrapBlockEntity extends BlockEntity {
 
-    private static final int MIN_TICKS = 200;        // minimum time for a bait to catch fish
-    private static final int MAX_TICKS = 1000;       // maximum time (1 Minecraft day)
+    private static final int MIN_TICKS = 5000;        // minimum time for a bait to catch fish
+    private static final int MAX_TICKS = 24000;       // maximum time (1 Minecraft day)
     private int targetTicks = MAX_TICKS;             // dynamically chosen per bait
     private static final int MAX_FISH_PER_BAIT = 4;
 
@@ -47,17 +47,17 @@ public class FishTrapBlockEntity extends BlockEntity {
     // Interaction
     // ----------------------------
     public InteractionResult onRightClick(Level level, BlockPos pos, Player player, ItemStack heldItem) {
-        // Remove bait with empty hand
-        if (baitSlot != ItemStack.EMPTY && heldItem.isEmpty()) {
-            if (!player.addItem(baitSlot)) player.drop(baitSlot, false);
-            baitSlot = ItemStack.EMPTY;
-            baitCapacity = 0;
-            fishAccumulated = 0f;
-
-            setChanged();
-            level.sendBlockUpdated(pos, getBlockState(), getBlockState(), 3);
-            return InteractionResult.CONSUME;
-        }
+        // Remove bait with empty hand (this is for future when bait based fishing becomes a thing)(THIS WAS LAST CHANGE I DID COMMENTING IT OUT IF ISSUE SHOULD ARISE)
+//        if (baitSlot != ItemStack.EMPTY && heldItem.isEmpty()) {
+//            if (!player.addItem(baitSlot)) player.drop(baitSlot, false);
+//            baitSlot = ItemStack.EMPTY;
+//            baitCapacity = 0;
+//            fishAccumulated = 0f;
+//
+//            setChanged();
+//            level.sendBlockUpdated(pos, getBlockState(), getBlockState(), 3);
+//            return InteractionResult.CONSUME;
+//        }
 
         // Add bait if trap is empty and holding valid bait
         if (baitSlot.isEmpty()) {
