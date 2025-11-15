@@ -20,10 +20,13 @@ import net.minecraft.world.level.block.state.BlockState;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class FishTrapBlockEntity extends BlockEntity {
 
-    private static final int TICKS_PER_DAY = 24000;
+    private static final int MIN_TICKS = 200;        // minimum time for a bait to catch fish
+    private static final int MAX_TICKS = 1000;       // maximum time (1 Minecraft day)
+    private int targetTicks = MAX_TICKS;             // dynamically chosen per bait
     private static final int MAX_FISH_PER_BAIT = 4;
 
     private ItemStack baitSlot = ItemStack.EMPTY;
@@ -33,6 +36,8 @@ public class FishTrapBlockEntity extends BlockEntity {
     private int ticksActive = 0;
     private int dailyTarget = 0;
     private int[] fishCounts = new int[4];
+
+    private static final Random random = new Random();
 
     public FishTrapBlockEntity(BlockPos pos, BlockState state) {
         super(ModBlockEntities.FISH_TRAP_BLOCK_ENTITY.get(), pos, state);
@@ -62,6 +67,9 @@ public class FishTrapBlockEntity extends BlockEntity {
                 heldItem.shrink(1);
                 baitCapacity = level.random.nextInt(1, MAX_FISH_PER_BAIT + 1);
                 fishAccumulated = 0f;
+
+                targetTicks = random.nextInt(MIN_TICKS, MAX_TICKS + 1);
+                ticksActive = 0; // start counting
 
                 setChanged();
                 level.sendBlockUpdated(pos, getBlockState(), getBlockState(), 3);
@@ -96,7 +104,7 @@ public class FishTrapBlockEntity extends BlockEntity {
         if (trap.ticksActive == 0) trap.dailyTarget = level.random.nextInt(1, 10);
 
         trap.ticksActive++;
-        float ratePerTick = trap.baitCapacity / (float) TICKS_PER_DAY;
+        float ratePerTick = trap.baitCapacity / (float) trap.targetTicks;
         trap.fishAccumulated += ratePerTick;
 
         if (trap.fishAccumulated >= trap.baitCapacity) {
@@ -104,6 +112,7 @@ public class FishTrapBlockEntity extends BlockEntity {
             trap.baitSlot = ItemStack.EMPTY;   // consume bait
             trap.baitCapacity = 0;
             trap.fishAccumulated = 0f;
+            trap.targetTicks = MAX_TICKS; // reset target ticks
 
             // Reset counts
             for (int i = 0; i < trap.fishCounts.length; i++) trap.fishCounts[i] = 0;
@@ -122,7 +131,7 @@ public class FishTrapBlockEntity extends BlockEntity {
             }
         }
 
-        if (trap.ticksActive >= TICKS_PER_DAY) trap.ticksActive = 0;
+        if (trap.ticksActive >= trap.targetTicks) trap.ticksActive = 0; // MODIFIED
         trap.setChanged();
     }
 
@@ -198,6 +207,7 @@ public class FishTrapBlockEntity extends BlockEntity {
         ticksActive = nbt.getInt("TicksActive");
         dailyTarget = nbt.getInt("DailyTarget");
         caughtFish = nbt.getInt("CaughtFish");
+        targetTicks = nbt.getInt("TargetTicks");
 
         // Load fishCounts
         if (nbt.contains("FishCounts")) {
@@ -223,6 +233,7 @@ public class FishTrapBlockEntity extends BlockEntity {
         nbt.putInt("TicksActive", ticksActive);
         nbt.putInt("DailyTarget", dailyTarget);
         nbt.putInt("CaughtFish", caughtFish);
+        nbt.putInt("TargetTicks", targetTicks);
 
         // Save fishCounts
         ListTag list = new ListTag();
