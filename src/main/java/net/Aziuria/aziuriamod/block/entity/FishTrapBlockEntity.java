@@ -4,6 +4,8 @@ import net.Aziuria.aziuriamod.item.ModItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.IntTag;
+import net.minecraft.nbt.ListTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
@@ -40,11 +42,19 @@ public class FishTrapBlockEntity extends BlockEntity {
     // Interaction
     // ----------------------------
     public InteractionResult onRightClick(Level level, BlockPos pos, Player player, ItemStack heldItem) {
-        if (!isValidBait(heldItem) && !baitSlot.isEmpty()) {
-            // If holding invalid bait, do nothing
-            return InteractionResult.PASS;
+        // Remove bait with empty hand
+        if (baitSlot != ItemStack.EMPTY && heldItem.isEmpty()) {
+            if (!player.addItem(baitSlot)) player.drop(baitSlot, false);
+            baitSlot = ItemStack.EMPTY;
+            baitCapacity = 0;
+            fishAccumulated = 0f;
+
+            setChanged();
+            level.sendBlockUpdated(pos, getBlockState(), getBlockState(), 3);
+            return InteractionResult.CONSUME;
         }
 
+        // Add bait if trap is empty and holding valid bait
         if (baitSlot.isEmpty()) {
             if (!heldItem.isEmpty() && isValidBait(heldItem)) {
                 baitSlot = heldItem.copy();
@@ -58,6 +68,7 @@ public class FishTrapBlockEntity extends BlockEntity {
                 return InteractionResult.CONSUME;
             }
         } else {
+            // Add more bait if holding same type
             if (ItemStack.matches(baitSlot, heldItem) && baitSlot.getCount() < baitSlot.getMaxStackSize()) {
                 int space = baitSlot.getMaxStackSize() - baitSlot.getCount();
                 int add = Math.min(space, heldItem.getCount());
@@ -68,15 +79,6 @@ public class FishTrapBlockEntity extends BlockEntity {
                 level.sendBlockUpdated(pos, getBlockState(), getBlockState(), 3);
                 return InteractionResult.CONSUME;
             }
-
-            if (!player.addItem(baitSlot)) player.drop(baitSlot, false);
-            baitSlot = ItemStack.EMPTY;
-            baitCapacity = 0;
-            fishAccumulated = 0f;
-
-            setChanged();
-            level.sendBlockUpdated(pos, getBlockState(), getBlockState(), 3);
-            return InteractionResult.CONSUME;
         }
 
         return InteractionResult.PASS;
@@ -175,7 +177,7 @@ public class FishTrapBlockEntity extends BlockEntity {
     // Valid bait check
     // ----------------------------
     private boolean isValidBait(ItemStack stack) {
-        return stack.is(ModItems.WORM.get()) || stack.is(ModItems.CORN.get()) || stack.is(ModItems.BREAD_BAIT);
+        return stack.is(ModItems.WORM.get()) || stack.is(ModItems.CORN_KERNELS.get()) || stack.is(ModItems.BREAD_BAIT);
     }
 
     // ----------------------------
@@ -196,6 +198,16 @@ public class FishTrapBlockEntity extends BlockEntity {
         ticksActive = nbt.getInt("TicksActive");
         dailyTarget = nbt.getInt("DailyTarget");
         caughtFish = nbt.getInt("CaughtFish");
+
+        // Load fishCounts
+        if (nbt.contains("FishCounts")) {
+            ListTag list = nbt.getList("FishCounts", 3); // 3 = TAG_Int
+            for (int i = 0; i < list.size() && i < fishCounts.length; i++) {
+                fishCounts[i] = list.getInt(i);
+            }
+        } else {
+            fishCounts = new int[4];
+        }
     }
 
     @Override
@@ -211,6 +223,13 @@ public class FishTrapBlockEntity extends BlockEntity {
         nbt.putInt("TicksActive", ticksActive);
         nbt.putInt("DailyTarget", dailyTarget);
         nbt.putInt("CaughtFish", caughtFish);
+
+        // Save fishCounts
+        ListTag list = new ListTag();
+        for (int i : fishCounts) {
+            list.add(IntTag.valueOf(i));
+        }
+        nbt.put("FishCounts", list);
     }
 
     @Override
