@@ -100,6 +100,8 @@ public class ModBiomeModifiers {
     public static final ResourceKey<BiomeModifier> BANANA_KEY_VARIANT_6 = registerKey("banana_variant_6");
     public static final ResourceKey<BiomeModifier> BANANA_KEY_VARIANT_7 = registerKey("banana_variant_7");
 
+    public static final ResourceKey<BiomeModifier> OAK_KEY_VARIANT_1 = registerKey("oak_variant_1");
+
     public static final ResourceKey<BiomeModifier> DARK_OAK_KEY_VARIANT_1 = registerKey("dark_oak_variant_1");
     public static final ResourceKey<BiomeModifier> DARK_OAK_KEY_VARIANT_2 = registerKey("dark_oak_variant_2");
 
@@ -816,6 +818,27 @@ public class ModBiomeModifiers {
                         biomes.getOrThrow(Biomes.OLD_GROWTH_BIRCH_FOREST)
                 ),
                 HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.BIRCH_VARIANT_1)),
+                GenerationStep.Decoration.VEGETAL_DECORATION
+        ));
+
+        context.register(ModBiomeModifiers.OAK_KEY_VARIANT_1, new BiomeModifiers.AddFeaturesBiomeModifier(
+                HolderSet.direct(
+                        biomes.getOrThrow(Biomes.PLAINS),
+                        biomes.getOrThrow(Biomes.SUNFLOWER_PLAINS),
+                        biomes.getOrThrow(Biomes.FOREST),
+                        biomes.getOrThrow(Biomes.FLOWER_FOREST),
+                        biomes.getOrThrow(Biomes.BIRCH_FOREST),
+                        biomes.getOrThrow(Biomes.OLD_GROWTH_BIRCH_FOREST),
+                        biomes.getOrThrow(Biomes.DARK_FOREST),
+                        biomes.getOrThrow(Biomes.MEADOW),
+                        biomes.getOrThrow(Biomes.RIVER),
+                        biomes.getOrThrow(Biomes.CHERRY_GROVE),
+                        biomes.getOrThrow(Biomes.JUNGLE),
+                        biomes.getOrThrow(Biomes.SPARSE_JUNGLE),
+                        biomes.getOrThrow(Biomes.BAMBOO_JUNGLE),
+                        biomes.getOrThrow(Biomes.WINDSWEPT_FOREST)
+                ),
+                HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.OAK_KEY_VARIANT_1)),
                 GenerationStep.Decoration.VEGETAL_DECORATION
         ));
 

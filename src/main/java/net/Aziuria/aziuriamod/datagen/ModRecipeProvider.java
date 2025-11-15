@@ -48,6 +48,12 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .define('I', ModItems.LASHING.get())
                 .unlockedBy("has_lashing", has(ModItems.LASHING.get())).save(recipeOutput);
 
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.NAIL.get(), 8)
+                .pattern("I")
+                .pattern("I")
+                .define('I', ModItems.TIN_INGOT.get())
+                .unlockedBy("has_tin_ingot", has(ModItems.TIN_INGOT.get())).save(recipeOutput);
+
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.NET_SEGMENT.get())
                 .pattern("FLF")
                 .pattern("FIF")

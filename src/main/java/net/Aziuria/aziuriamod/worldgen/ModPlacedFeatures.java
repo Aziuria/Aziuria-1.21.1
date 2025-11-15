@@ -101,6 +101,8 @@ public class ModPlacedFeatures {
     public static final ResourceKey<PlacedFeature> BANANA_KEY_VARIANT_6 = registerKey("banana_variant_6");
     public static final ResourceKey<PlacedFeature> BANANA_KEY_VARIANT_7 = registerKey("banana_variant_7");
 
+    public static final ResourceKey<PlacedFeature> OAK_KEY_VARIANT_1 = registerKey("oak_variant_1");
+
     public static final ResourceKey<PlacedFeature> DARK_OAK_KEY_VARIANT_1 = registerKey("dark_oak_variant_1");
     public static final ResourceKey<PlacedFeature> DARK_OAK_KEY_VARIANT_2 = registerKey("dark_oak_variant_2");
 
@@ -894,6 +896,27 @@ public class ModPlacedFeatures {
 
             register(context, BIRCH_VARIANT_1,
                     configuredFeatures.getOrThrow(ModConfiguredFeatures.BIRCH_VARIANT_1),
+                    modifiers
+            );
+        }
+
+        // Oak Variant 1
+        {
+            List<PlacementModifier> modifiers = new ArrayList<>(List.of(
+                    NoiseThresholdCountPlacement.of(0.6, 0, 2),
+                    InSquarePlacement.spread(),
+                    SurfaceWaterDepthFilter.forMaxDepth(1),
+                    NearbyWaterRadiusFilter.INSTANCE,  // Added this line
+                    RarityFilter.onAverageOnceEvery(8),
+                    PlacementUtils.HEIGHTMAP,
+                    BlockPredicateFilter.forPredicate(
+                            BlockPredicate.wouldSurvive(Blocks.OAK_SAPLING.defaultBlockState(), BlockPos.ZERO)
+                    ), // <-- Added this line to prevent spawning on sand
+                    BiomeFilter.biome()
+            ));
+
+            register(context, OAK_KEY_VARIANT_1,
+                    configuredFeatures.getOrThrow(ModConfiguredFeatures.OAK_KEY_VARIANT_1),
                     modifiers
             );
         }
