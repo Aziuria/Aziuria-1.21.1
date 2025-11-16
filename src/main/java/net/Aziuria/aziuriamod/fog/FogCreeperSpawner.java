@@ -215,6 +215,7 @@ public class FogCreeperSpawner {
         private PathNavigation getNavigation() {
             if (isSneaking && targetPlayer != null) {
                 if (stealthNavigation == null) {
+                    // create stealth navigation with the current targetPlayer (it's checked non-null here)
                     stealthNavigation = new StealthPathNavigation(creeper, (ServerLevel) creeper.level(), targetPlayer);
                 }
                 return stealthNavigation;
@@ -242,6 +243,7 @@ public class FogCreeperSpawner {
         }
 
         private boolean isPlayerSeeingCreeper(Player player) {
+            if (player == null || player.isRemoved()) return false; // PATCHED: guard
             Vec3 playerEye = player.getEyePosition(1.0F);
             Vec3 creeperPos = creeper.position().add(0, creeper.getEyeHeight(), 0);
 
@@ -254,9 +256,14 @@ public class FogCreeperSpawner {
             double fovCos = Math.cos(Math.toRadians(60));
             if (dot < fovCos) return false;
 
-            HitResult ray = player.level().clip(new ClipContext(playerEye, creeperPos,
-                    ClipContext.Block.COLLIDER, ClipContext.Fluid.NONE, player));
-            return ray.getType() == HitResult.Type.MISS;
+            // raytrace, guard against exceptions
+            try {
+                HitResult ray = player.level().clip(new ClipContext(playerEye, creeperPos,
+                        ClipContext.Block.COLLIDER, ClipContext.Fluid.NONE, player));
+                return ray.getType() == HitResult.Type.MISS;
+            } catch (Exception e) {
+                return false; // if anything goes wrong, assume not visible
+            }
         }
 
         private Vec3 getBehindPlayerPosition(Player player) {
@@ -273,6 +280,7 @@ public class FogCreeperSpawner {
         }
 
         private boolean isPlayerFacingCreeper(Player player) {
+            if (player == null || player.isRemoved()) return false; // PATCHED: guard
             Vec3 playerEye = player.getEyePosition(1.0F);
             Vec3 creeperPos = creeper.position().add(0, creeper.getEyeHeight(), 0);
             Vec3 dirToCreeper = creeperPos.subtract(playerEye).normalize();
@@ -290,21 +298,22 @@ public class FogCreeperSpawner {
 
         // --- Stealth Navigation ---
         private static class StealthPathNavigation extends GroundPathNavigation {
-            private final Player player;
+            private final Player player; // may be null in some edge cases if caller passes null (we still guard later)
 
             public StealthPathNavigation(Creeper mob, ServerLevel level, Player player) {
                 super(mob, level);
-                this.player = player;
+                this.player = player; // PATCHED: keep reference, but evaluator will guard null
             }
 
             @Override
             protected PathFinder createPathFinder(int maxDistance) {
+                // PASS player through; StealthNodeEvaluator handles nulls/removed players
                 return new PathFinder(new StealthNodeEvaluator(player), 200);
             }
         }
 
         private static class StealthNodeEvaluator extends WalkNodeEvaluator {
-            private final Player player;
+            private final Player player; // may be null if created with null
 
             public StealthNodeEvaluator(Player player) {
                 this.player = player;
@@ -313,18 +322,44 @@ public class FogCreeperSpawner {
             @Override
             public PathType getPathType(PathfindingContext context, int x, int y, int z) {
                 BlockPos pos = new BlockPos(x, y, z);
-                if (isVisibleToPlayer(pos)) return PathType.BLOCKED;
+
+                // PATCHED: if player is null/removed, don't block nodes for visibility
+                if (player == null || player.isRemoved() || player.level() == null) {
+                    return super.getPathType(context, x, y, z);
+                }
+
+                // also guard the evaluation so any unexpected exception won't crash the server
+                try {
+                    if (isVisibleToPlayer(pos)) return PathType.BLOCKED;
+                } catch (Exception e) {
+                    // if something odd happens, fall back to normal behaviour
+                    return super.getPathType(context, x, y, z);
+                }
                 return super.getPathType(context, x, y, z);
             }
 
             private boolean isVisibleToPlayer(BlockPos pos) {
-                Vec3 playerEye = player.getEyePosition(1.0F);
+                // PATCHED: defensive null checks
+                if (player == null || player.isRemoved() || player.level() == null) return false;
+
+                Vec3 playerEye;
+                try {
+                    playerEye = player.getEyePosition(1.0F);
+                } catch (Exception e) {
+                    return false;
+                }
+
                 Vec3 target = Vec3.atCenterOf(pos);
 
-                HitResult result = player.level().clip(new ClipContext(playerEye, target,
-                        ClipContext.Block.COLLIDER, ClipContext.Fluid.NONE, player));
+                try {
+                    HitResult result = player.level().clip(new ClipContext(playerEye, target,
+                            ClipContext.Block.COLLIDER, ClipContext.Fluid.NONE, player));
 
-                return result.getType() == HitResult.Type.MISS;
+                    return result.getType() == HitResult.Type.MISS;
+                } catch (Exception e) {
+                    // If raytrace fails for any reason, treat as not visible to be safe
+                    return false;
+                }
             }
         }
     }
