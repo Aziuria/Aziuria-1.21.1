@@ -97,8 +97,9 @@ public class FogZombieSpawner {
                         zombie.getPersistentData().putBoolean("SpawnedByFog", true);
                         zombie.moveTo(pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5, 0, 0);
                         zombie.getAttribute(Attributes.FOLLOW_RANGE).setBaseValue(40.0D);
-                        zombie.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 20 * 60, 1));
-                        zombie.addEffect(new MobEffectInstance(MobEffects.DAMAGE_BOOST, 20 * 60, 0));
+                        zombie.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 20 * 60 * 3, 1));
+                        zombie.addEffect(new MobEffectInstance(MobEffects.DAMAGE_BOOST, 20 * 60 * 3, 0));
+
 
                         zombie.goalSelector.addGoal(0, new FloatGoal(zombie));  // vanilla
                         zombie.goalSelector.addGoal(1, new TargetRottenFleshGoal(zombie, 1.2D)); // our distraction
