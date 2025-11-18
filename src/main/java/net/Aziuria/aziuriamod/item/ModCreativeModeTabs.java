@@ -26,6 +26,8 @@ public class ModCreativeModeTabs {
                         output.accept(ModItems.SACK_ITEM.get());
                         output.accept(ModItems.EMPTY_CUP.get());
                         output.accept(ModItems.NAIL.get());
+                        output.accept(ModItems.MALLET_HEAD.get());
+                        output.accept(ModItems.MALLET.get());
 
                         // ======= ⚗️ RESOURCE SEGMENT =======
                         // Raw elements and simple materials

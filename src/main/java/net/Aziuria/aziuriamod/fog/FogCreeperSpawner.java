@@ -147,7 +147,6 @@ public class FogCreeperSpawner {
                 }
             }
 
-            // --- PATCHED LINE ---
             // Ignore Creative/Spectator players
             if (closestPlayer != null && !closestPlayer.isCreative() && !closestPlayer.isSpectator()
                     && (closestPlayer.distanceToSqr(creeper) <= zombieDistance)) {
@@ -173,7 +172,7 @@ public class FogCreeperSpawner {
                 }
 
                 if (closestNoise != null) {
-                    getNavigation().moveTo(closestNoise.getX() + 0.5, closestNoise.getY(), closestNoise.getZ() + 0.5, 1.0);
+                    safeMoveTo(closestNoise.getX() + 0.5, closestNoise.getY(), closestNoise.getZ() + 0.5, 1.0);
                     return;
                 }
             }
@@ -200,7 +199,7 @@ public class FogCreeperSpawner {
                 }
 
                 if (closestEntity != null) {
-                    creeper.getNavigation().moveTo(closestEntity, 1.0);
+                    safeMoveTo(closestEntity.position().x, closestEntity.position().y, closestEntity.position().z, 1.0);
                     return;
                 }
             }
@@ -208,19 +207,27 @@ public class FogCreeperSpawner {
 
             if (targetPlayer != null) {
                 if (isSneaking) handleSneakingBehavior();
-                else creeper.getNavigation().moveTo(targetPlayer, 1.0);
+                else safeMoveTo(targetPlayer.position().x, targetPlayer.position().y, targetPlayer.position().z, 1.0);
+            }
+        }
+
+        // Safe navigation helper
+        private void safeMoveTo(double x, double y, double z, double speed) {
+            PathNavigation nav = getNavigation();
+            if (nav != null && nav.getNodeEvaluator() != null) {
+                nav.moveTo(x, y, z, speed);
             }
         }
 
         private PathNavigation getNavigation() {
             if (isSneaking && targetPlayer != null) {
                 if (stealthNavigation == null) {
-                    // create stealth navigation with the current targetPlayer (it's checked non-null here)
                     stealthNavigation = new StealthPathNavigation(creeper, (ServerLevel) creeper.level(), targetPlayer);
                 }
                 return stealthNavigation;
             }
-            return creeper.getNavigation();
+            PathNavigation nav = creeper.getNavigation();
+            return (nav != null && nav.getNodeEvaluator() != null) ? nav : null;
         }
 
         private void handleSneakingBehavior() {
@@ -235,7 +242,7 @@ public class FogCreeperSpawner {
             double distToBehind = creeper.position().distanceTo(behindPos);
 
             if (distToBehind > AMBUSH_DISTANCE) {
-                getNavigation().moveTo(behindPos.x, behindPos.y, behindPos.z, 1.0);
+                safeMoveTo(behindPos.x, behindPos.y, behindPos.z, 1.0);
             } else {
                 followPlayerSilently(targetPlayer);
                 if (isPlayerFacingCreeper(targetPlayer)) startFuse();
@@ -243,7 +250,7 @@ public class FogCreeperSpawner {
         }
 
         private boolean isPlayerSeeingCreeper(Player player) {
-            if (player == null || player.isRemoved()) return false; // PATCHED: guard
+            if (player == null || player.isRemoved()) return false;
             Vec3 playerEye = player.getEyePosition(1.0F);
             Vec3 creeperPos = creeper.position().add(0, creeper.getEyeHeight(), 0);
 
@@ -256,13 +263,12 @@ public class FogCreeperSpawner {
             double fovCos = Math.cos(Math.toRadians(60));
             if (dot < fovCos) return false;
 
-            // raytrace, guard against exceptions
             try {
                 HitResult ray = player.level().clip(new ClipContext(playerEye, creeperPos,
                         ClipContext.Block.COLLIDER, ClipContext.Fluid.NONE, player));
                 return ray.getType() == HitResult.Type.MISS;
             } catch (Exception e) {
-                return false; // if anything goes wrong, assume not visible
+                return false;
             }
         }
 
@@ -275,12 +281,15 @@ public class FogCreeperSpawner {
         private void followPlayerSilently(Player player) {
             Vec3 targetPos = player.position();
             if (creeper.position().distanceTo(targetPos) > AMBUSH_DISTANCE) {
-                getNavigation().moveTo(targetPos.x, targetPos.y, targetPos.z, 1.0);
-            } else getNavigation().stop();
+                safeMoveTo(targetPos.x, targetPos.y, targetPos.z, 1.0);
+            } else {
+                PathNavigation nav = getNavigation();
+                if (nav != null) nav.stop();
+            }
         }
 
         private boolean isPlayerFacingCreeper(Player player) {
-            if (player == null || player.isRemoved()) return false; // PATCHED: guard
+            if (player == null || player.isRemoved()) return false;
             Vec3 playerEye = player.getEyePosition(1.0F);
             Vec3 creeperPos = creeper.position().add(0, creeper.getEyeHeight(), 0);
             Vec3 dirToCreeper = creeperPos.subtract(playerEye).normalize();
@@ -298,22 +307,21 @@ public class FogCreeperSpawner {
 
         // --- Stealth Navigation ---
         private static class StealthPathNavigation extends GroundPathNavigation {
-            private final Player player; // may be null in some edge cases if caller passes null (we still guard later)
+            private final Player player;
 
             public StealthPathNavigation(Creeper mob, ServerLevel level, Player player) {
                 super(mob, level);
-                this.player = player; // PATCHED: keep reference, but evaluator will guard null
+                this.player = player;
             }
 
             @Override
             protected PathFinder createPathFinder(int maxDistance) {
-                // PASS player through; StealthNodeEvaluator handles nulls/removed players
                 return new PathFinder(new StealthNodeEvaluator(player), 200);
             }
         }
 
         private static class StealthNodeEvaluator extends WalkNodeEvaluator {
-            private final Player player; // may be null if created with null
+            private final Player player;
 
             public StealthNodeEvaluator(Player player) {
                 this.player = player;
@@ -323,23 +331,19 @@ public class FogCreeperSpawner {
             public PathType getPathType(PathfindingContext context, int x, int y, int z) {
                 BlockPos pos = new BlockPos(x, y, z);
 
-                // PATCHED: if player is null/removed, don't block nodes for visibility
                 if (player == null || player.isRemoved() || player.level() == null) {
                     return super.getPathType(context, x, y, z);
                 }
 
-                // also guard the evaluation so any unexpected exception won't crash the server
                 try {
                     if (isVisibleToPlayer(pos)) return PathType.BLOCKED;
                 } catch (Exception e) {
-                    // if something odd happens, fall back to normal behaviour
                     return super.getPathType(context, x, y, z);
                 }
                 return super.getPathType(context, x, y, z);
             }
 
             private boolean isVisibleToPlayer(BlockPos pos) {
-                // PATCHED: defensive null checks
                 if (player == null || player.isRemoved() || player.level() == null) return false;
 
                 Vec3 playerEye;
@@ -354,10 +358,8 @@ public class FogCreeperSpawner {
                 try {
                     HitResult result = player.level().clip(new ClipContext(playerEye, target,
                             ClipContext.Block.COLLIDER, ClipContext.Fluid.NONE, player));
-
                     return result.getType() == HitResult.Type.MISS;
                 } catch (Exception e) {
-                    // If raytrace fails for any reason, treat as not visible to be safe
                     return false;
                 }
             }

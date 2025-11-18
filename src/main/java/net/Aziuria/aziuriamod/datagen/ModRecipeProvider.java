@@ -54,13 +54,27 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .define('I', ModItems.TIN_INGOT.get())
                 .unlockedBy("has_tin_ingot", has(ModItems.TIN_INGOT.get())).save(recipeOutput);
 
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.MALLET.get())
+                .pattern(" I ")
+                .pattern(" U ")
+                .pattern(" U ")
+                .define('I', ModItems.MALLET_HEAD.get())
+                .define('U', Items.STICK)
+                .unlockedBy("has_stick", has(Items.STICK)).save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.MALLET_HEAD.get())
+                .pattern("UUU")
+                .pattern("U U")
+                .define('U', ItemTags.PLANKS)
+                .unlockedBy("has_planks", has(ItemTags.PLANKS)).save(recipeOutput);
+
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.NET_SEGMENT.get())
                 .pattern("FLF")
                 .pattern("FIF")
                 .define('I', ModItems.NET.get())
                 .define('F', Items.STICK)
                 .define('L', ModTags.KNIVES)
-                .unlockedBy("has_net", has(ModItems.NET.get())).save(recipeOutput);
+                .unlockedBy("has_stick", has(Items.STICK)).save(recipeOutput);
 
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.FISH_TRAP.get())
                 .pattern("FIF")
@@ -69,7 +83,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .define('I', ModItems.NET_SEGMENT.get())
                 .define('F', ModItems.LASHING.get())
                 .define('L', ModTags.KNIVES)
-                .unlockedBy("has_net_segment", has(ModItems.NET_SEGMENT.get())).save(recipeOutput);
+                .unlockedBy("has_lashing", has(ModItems.LASHING.get())).save(recipeOutput);
 
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.COPPER_NUGGET.get(), 9)
                 .pattern("I")

@@ -51,6 +51,11 @@ public class ModItems {
     public static final DeferredItem<Item> NAIL = ITEMS.register("nail",
             () -> new Item(new Item.Properties()));
 
+    public static final DeferredItem<Item> MALLET_HEAD = ITEMS.register("wooden_mallet_head",
+            () -> new Item(new Item.Properties()));
+    public static final DeferredItem<MalletItem> MALLET = ITEMS.register("wooden_mallet",
+            () -> new MalletItem(Tiers.WOOD, new Item.Properties().durability(85)));
+
     public static final DeferredHolder<Item, Item> SACK_ITEM = ITEMS.register("sack_item", () -> new SackItem(new Item.Properties()));
 
     public static final DeferredItem<Item> WORM = ITEMS.register("worm",

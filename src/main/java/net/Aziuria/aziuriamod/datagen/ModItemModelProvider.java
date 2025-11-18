@@ -128,6 +128,7 @@ public class ModItemModelProvider extends ItemModelProvider {
         basicItem(ModItems.NET.get());
         basicItem(ModItems.NET_SEGMENT.get());
         basicItem(ModItems.NAIL.get());
+        basicItem(ModItems.MALLET_HEAD.get());
 
         basicItem(ModItems.ISLAND_GENERATOR_SMALL.get());
         basicItem(ModItems.ISLAND_GENERATOR_MEDIUM.get());
@@ -148,6 +149,7 @@ public class ModItemModelProvider extends ItemModelProvider {
         handheldItem(ModItems.COPPER_SHOVEL);
         handheldItem(ModItems.COPPER_AXE);
         handheldItem(ModItems.COPPER_HOE);
+        handheldItem(ModItems.MALLET);
      //   handheldItem(ModItems.KNIFE);
 
         trimmedArmorItem(ModItems.STEEL_HELMET);
