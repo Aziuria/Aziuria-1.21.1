@@ -24,8 +24,6 @@ public class FogCommand {
                                         builder.suggest(type.getId());
                                     }
                                     builder.suggest("stop");
-                                    builder.suggest("disable"); // NEW: suggest disable
-                                    builder.suggest("enable");  // NEW: suggest enable
                                     return builder.buildFuture();
                                 })
                                 .executes(ctx -> {
@@ -37,31 +35,12 @@ public class FogCommand {
                                         return 1;
                                     }
 
-                                    // --- NEW: DISABLE fog ---
-                                    if ("disable".equalsIgnoreCase(id)) {
-                                        FogEventManager.setFogEnabled(false);
-                                        ctx.getSource().sendSuccess(() -> Component.literal("Fog has been disabled."), false);
-                                        return 1;
-                                    }
-
-                                    // --- NEW: ENABLE fog ---
-                                    if ("enable".equalsIgnoreCase(id)) {
-                                        FogEventManager.setFogEnabled(true);
-                                        ctx.getSource().sendSuccess(() -> Component.literal("Fog has been enabled."), false);
-                                        return 1;
-                                    }
-
                                     FogType match = FogRegistry.getAll().stream()
                                             .filter(f -> f.getId().equals(id))
                                             .findFirst()
                                             .orElse(null);
 
                                     if (match != null) {
-                                        // Check if fog is enabled
-                                        if (!FogEventManager.isFogEnabled()) {
-                                            ctx.getSource().sendFailure(Component.literal("Fog is currently disabled."));
-                                            return 0;
-                                        }
                                         FogEventManager.startFogNow(match);
                                         ctx.getSource().sendSuccess(() -> Component.literal("Started fog: " + id), false);
                                         return 1;
