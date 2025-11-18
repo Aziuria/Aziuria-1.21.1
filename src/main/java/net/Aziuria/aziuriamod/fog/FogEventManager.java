@@ -37,7 +37,9 @@ public class FogEventManager {
     private static boolean evilFogFadeOutTriggered = false;
 
     private static int daysFogDenied = 0; // tracks number of full days fog is denied
-    private static final int FOG_DENIAL_DAYS = 3; // now 3
+    private static final int FOG_DENIAL_DAYS = 1; // now 3
+
+    private static boolean fogEnabled = true;
 
     // --- LOAD ---
     public static void loadFromSavedData(Level level) {
@@ -62,6 +64,7 @@ public class FogEventManager {
         nextFogCheckTime = data.getNextFogCheckTime();
 
         daysFogDenied = data.getDaysFogDenied(); // new method in FogEventSavedData
+        fogEnabled = data.isFogEnabled();
 
         NetworkHandler.sendFogStateToAll(new FogStateSyncPacket(
                 activeFog == null ? "" : activeFog.getId(),
@@ -84,6 +87,7 @@ public class FogEventManager {
         data.setDissipatingMessageSent(dissipatingMessageSent);
         data.setNextFogCheckTime(nextFogCheckTime);
         data.setDaysFogDenied(daysFogDenied); // <- add this
+        data.setFogEnabled(fogEnabled);
     }
 
     // --- TICK ---
@@ -146,6 +150,7 @@ public class FogEventManager {
     }
 
     private static void attemptFogStartClient(ClientLevel level) {
+        if (!isFogEnabled()) return;
         List<FogType> shuffled = new ArrayList<>(FogRegistry.getAll());
         Collections.shuffle(shuffled, new java.util.Random(random.nextLong()));
 
@@ -163,6 +168,25 @@ public class FogEventManager {
     }
 
     private static void tickServer(ServerLevel level, long time) {
+
+
+        if (!fogEnabled) {
+            if (activeFog != null) {
+                activeFog = null;
+                dissipatingMessageSent = false;
+                fogStart = 0;
+                fogEnd = 0;
+                fogFadeInEnd = 0;
+                fogFadeOutStart = 0;
+                nextFogCheckTime = time + FogCooldownHelper.calculate(random, null, currentIntensity, 20*60*5, 20*60*8);
+
+                NetworkHandler.sendFogStateToAll(new FogStateSyncPacket("", 0, 0, 0, 0, 0));
+                saveToSavedData(level);
+            }
+            return;
+        }
+
+
         if (activeFog != null) {
             // Evil fog sunrise fade
             if (isEvilFogActive() && !evilFogFadeOutTriggered && !NightCycleHelper.isNight(time)) {
@@ -190,7 +214,7 @@ public class FogEventManager {
             return;
         }
 
-        if (activeFog == null && time >= nextFogCheckTime) {
+        if (activeFog == null  && fogEnabled && time >= nextFogCheckTime) {
             List<FogType> allFogs = new ArrayList<>(FogRegistry.getAll());
             FogType chosen = FogProbabilityHelper.selectFog(allFogs, new java.util.Random(random.nextLong()));
             if (chosen != null && chosen.shouldStart(level, random)) {
@@ -278,6 +302,16 @@ public class FogEventManager {
         if (mc == null || mc.getSoundManager() == null) return;
         SoundManager sm = mc.getSoundManager();
         sm.stop(ModSounds.SIREN.get().getLocation(), SoundSource.BLOCKS);
+    }
+
+    // NEW: Fog enable/disable methods
+    public static void setFogEnabled(boolean enabled) {
+        fogEnabled = enabled;
+        if (!enabled) stopFogNow(); // stop active fog immediately
+    }
+
+    public static boolean isFogEnabled() {
+        return fogEnabled;
     }
 
     // --- HELPERS ---
