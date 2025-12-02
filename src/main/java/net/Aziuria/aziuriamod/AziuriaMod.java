@@ -86,6 +86,7 @@ public class AziuriaMod {
 
         NeoForge.EVENT_BUS.register(this);
         NeoForge.EVENT_BUS.register(BlockDropHandler.class);
+        NeoForge.EVENT_BUS.register(BarkStripHandler.class);
         NeoForge.EVENT_BUS.register(ModEvents.class);
         NeoForge.EVENT_BUS.register(LeafParticleHandler.class);
         NeoForge.EVENT_BUS.register(MilkBucketHandler.class);

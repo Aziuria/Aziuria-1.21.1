@@ -333,6 +333,16 @@ public class ModCreativeModeTabs {
                         output.accept(ModBlocks.ORANGE_LEAVES);
                         output.accept(ModBlocks.PEAR_LEAVES);
 
+                        // ======= 🌳 TREE BARK / NATURAL MATERIALS =======
+                        output.accept(ModItems.OAK_BARK);
+                        output.accept(ModItems.BIRCH_BARK);
+                        output.accept(ModItems.SPRUCE_BARK);
+                        output.accept(ModItems.JUNGLE_BARK);
+                        output.accept(ModItems.DARK_OAK_BARK);
+                        output.accept(ModItems.MANGROVE_BARK);
+                        output.accept(ModItems.ACACIA_BARK);
+                        output.accept(ModItems.CHERRY_BARK);
+
                         // Extra plants
                         output.accept(ModItems.YUCCA_LEAVES);
                         output.accept(ModBlocks.YUCCA_PLANT_BLOCK);

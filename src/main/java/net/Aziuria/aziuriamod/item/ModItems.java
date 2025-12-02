@@ -63,6 +63,23 @@ public class ModItems {
     public static final DeferredItem<Item> BREAD_BAIT = ITEMS.register("bread_bait",
             () -> new Item(new Item.Properties()));
 
+    public static final DeferredItem<Item> OAK_BARK = ITEMS.register("oak_bark",
+            () -> new Item(new Item.Properties()));
+    public static final DeferredItem<Item> ACACIA_BARK = ITEMS.register("acacia_bark",
+            () -> new Item(new Item.Properties()));
+    public static final DeferredItem<Item> BIRCH_BARK = ITEMS.register("birch_bark",
+            () -> new Item(new Item.Properties()));
+    public static final DeferredItem<Item> CHERRY_BARK = ITEMS.register("cherry_bark",
+            () -> new Item(new Item.Properties()));
+    public static final DeferredItem<Item> DARK_OAK_BARK = ITEMS.register("dark_oak_bark",
+            () -> new Item(new Item.Properties()));
+    public static final DeferredItem<Item> JUNGLE_BARK = ITEMS.register("jungle_bark",
+            () -> new Item(new Item.Properties()));
+    public static final DeferredItem<Item> MANGROVE_BARK = ITEMS.register("mangrove_bark",
+            () -> new Item(new Item.Properties()));
+    public static final DeferredItem<Item> SPRUCE_BARK = ITEMS.register("spruce_bark",
+            () -> new Item(new Item.Properties()));
+
     public static final DeferredItem<SwordItem> STEEL_SWORD = ITEMS.register("steel_sword",
             () -> new SwordItem(ModToolTiers.STEEL, new Item.Properties()
                     .attributes(SwordItem.createAttributes(ModToolTiers.STEEL, 3, -2.4f))));

@@ -7,6 +7,7 @@ import net.minecraft.data.PackOutput;
 import net.minecraft.world.item.Items;
 import net.neoforged.neoforge.common.data.DataMapProvider;
 import net.neoforged.neoforge.registries.datamaps.builtin.Compostable;
+import net.neoforged.neoforge.registries.datamaps.builtin.FurnaceFuel;
 import net.neoforged.neoforge.registries.datamaps.builtin.NeoForgeDataMaps;
 
 import java.util.concurrent.CompletableFuture;
@@ -67,8 +68,28 @@ public class ModDataMapProvider extends DataMapProvider {
                 .add(ModItems.YUCCA_PLANT.getId(), new Compostable(0.30f), false)
                 .add(ModItems.YUCCA_LEAVES.getId(), new Compostable(0.30f), false)
                 .add(Items.POISONOUS_POTATO.builtInRegistryHolder().key(), new Compostable(0.50f), false)
+                .add(ModItems.OAK_BARK.getId(), new Compostable(0.25f), false)
+                .add(ModItems.BIRCH_BARK.getId(), new Compostable(0.25f), false)
+                .add(ModItems.SPRUCE_BARK.getId(), new Compostable(0.25f), false)
+                .add(ModItems.JUNGLE_BARK.getId(), new Compostable(0.25f), false)
+                .add(ModItems.ACACIA_BARK.getId(), new Compostable(0.25f), false)
+                .add(ModItems.DARK_OAK_BARK.getId(), new Compostable(0.25f), false)
+                .add(ModItems.MANGROVE_BARK.getId(), new Compostable(0.25f), false)
+                .add(ModItems.CHERRY_BARK.getId(), new Compostable(0.25f), false)
                 .add(ModItems.FLAX_FLOWER.getId(), new Compostable(0.30f), false);
 
+        this.builder(NeoForgeDataMaps.FURNACE_FUELS)
+                .add(ModItems.OAK_BARK.getId(), new FurnaceFuel(120), false)
+                .add(ModItems.BIRCH_BARK.getId(), new FurnaceFuel(120), false)
+                .add(ModItems.SPRUCE_BARK.getId(), new FurnaceFuel(120), false)
+                .add(ModItems.JUNGLE_BARK.getId(), new FurnaceFuel(120), false)
+                .add(ModItems.ACACIA_BARK.getId(), new FurnaceFuel(120), false)
+                .add(ModItems.DARK_OAK_BARK.getId(), new FurnaceFuel(120), false)
+                .add(ModItems.MANGROVE_BARK.getId(), new FurnaceFuel(120), false)
+                .add(ModItems.CHERRY_BARK.getId(), new FurnaceFuel(120), false)
+                .add(ModItems.WOOD_KNIFE.getId(), new FurnaceFuel(100), false)
+                .add(ModItems.MALLET.getId(), new FurnaceFuel(100), false)
+                .add(ModBlocks.LEAF_LITTER.getId(), new FurnaceFuel(100), false);
 
     }
 }

@@ -124,6 +124,15 @@
   "block.aziuriamod.cherry_fish_trap": "Cherry Fish Trap",
   "block.aziuriamod.mangrove_fish_trap": "Mangrove Fish Trap",
 
+  "item.aziuriamod.oak_bark": "Oak Bark",
+  "item.aziuriamod.birch_bark": "Birch Bark",
+  "item.aziuriamod.spruce_bark": "Spruce Bark",
+  "item.aziuriamod.jungle_bark": "Jungle Bark",
+  "item.aziuriamod.acacia_bark": "Acacia Bark",
+  "item.aziuriamod.dark_oak_bark": "Dark Oak Bark",
+  "item.aziuriamod.cherry_bark": "Cherry Bark",
+  "item.aziuriamod.mangrove_bark": "Mangrove Bark",
+
   "block.aziuriamod.steel_chain": "Steel Chain",
   "block.aziuriamod.copper_chain": "Copper Chain",
   "block.aziuriamod.exposed_copper_chain": "Exposed Copper Chain",

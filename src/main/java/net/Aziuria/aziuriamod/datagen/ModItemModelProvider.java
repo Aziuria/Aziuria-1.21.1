@@ -59,6 +59,15 @@ public class ModItemModelProvider extends ItemModelProvider {
         basicItem(ModItems.EMPTY_CUP.get());
         basicItem(ModItems.STEEL_ALLOY_MESH.get());
 
+        basicItem(ModItems.OAK_BARK.get());
+        basicItem(ModItems.DARK_OAK_BARK.get());
+        basicItem(ModItems.ACACIA_BARK.get());
+        basicItem(ModItems.MANGROVE_BARK.get());
+        basicItem(ModItems.JUNGLE_BARK.get());
+        basicItem(ModItems.SPRUCE_BARK.get());
+        basicItem(ModItems.CHERRY_BARK.get());
+        basicItem(ModItems.BIRCH_BARK.get());
+
         basicItem(ModItems.RADISH_SEEDS.get());
         basicItem(ModItems.CUCUMBER_SEEDS.get());
         basicItem(ModItems.TOMATO_SEEDS.get());
