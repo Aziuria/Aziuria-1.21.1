@@ -198,7 +198,63 @@ public class ModBlocks {
                     .sound(SoundType.WOOD)
                     .noOcclusion()));
 
-    public static final DeferredBlock<FishTrapBlock> FISH_TRAP = registerBlock("fish_trap",
+    public static final DeferredBlock<FishTrapBlock> OAK_FISH_TRAP = registerBlock("oak_fish_trap",
+            () -> new FishTrapBlock(BlockBehaviour.Properties.of()
+                    .strength(0.6f)
+                    .sound(SoundType.WOOD)
+                    .noOcclusion()
+            ));
+
+    public static final DeferredBlock<FishTrapBlock> BIRCH_FISH_TRAP = registerBlock("birch_fish_trap",
+            () -> new FishTrapBlock(BlockBehaviour.Properties.of()
+                    .strength(0.6f)
+                    .sound(SoundType.WOOD)
+                    .noOcclusion()
+            ));
+
+    public static final DeferredBlock<FishTrapBlock> BAMBOO_FISH_TRAP = registerBlock("bamboo_fish_trap",
+            () -> new FishTrapBlock(BlockBehaviour.Properties.of()
+                    .strength(0.6f)
+                    .sound(SoundType.WOOD)
+                    .noOcclusion()
+            ));
+
+    public static final DeferredBlock<FishTrapBlock> CHERRY_FISH_TRAP = registerBlock("cherry_fish_trap",
+            () -> new FishTrapBlock(BlockBehaviour.Properties.of()
+                    .strength(0.6f)
+                    .sound(SoundType.WOOD)
+                    .noOcclusion()
+            ));
+
+    public static final DeferredBlock<FishTrapBlock> MANGROVE_FISH_TRAP = registerBlock("mangrove_fish_trap",
+            () -> new FishTrapBlock(BlockBehaviour.Properties.of()
+                    .strength(0.6f)
+                    .sound(SoundType.WOOD)
+                    .noOcclusion()
+            ));
+
+    public static final DeferredBlock<FishTrapBlock> SPRUCE_FISH_TRAP = registerBlock("spruce_fish_trap",
+            () -> new FishTrapBlock(BlockBehaviour.Properties.of()
+                    .strength(0.6f)
+                    .sound(SoundType.WOOD)
+                    .noOcclusion()
+            ));
+
+    public static final DeferredBlock<FishTrapBlock> JUNGLE_FISH_TRAP = registerBlock("jungle_fish_trap",
+            () -> new FishTrapBlock(BlockBehaviour.Properties.of()
+                    .strength(0.6f)
+                    .sound(SoundType.WOOD)
+                    .noOcclusion()
+            ));
+
+    public static final DeferredBlock<FishTrapBlock> DARK_OAK_FISH_TRAP = registerBlock("dark_oak_fish_trap",
+            () -> new FishTrapBlock(BlockBehaviour.Properties.of()
+                    .strength(0.6f)
+                    .sound(SoundType.WOOD)
+                    .noOcclusion()
+            ));
+
+    public static final DeferredBlock<FishTrapBlock> ACACIA_FISH_TRAP = registerBlock("acacia_fish_trap",
             () -> new FishTrapBlock(BlockBehaviour.Properties.of()
                     .strength(0.6f)
                     .sound(SoundType.WOOD)

@@ -114,7 +114,15 @@
 
   "block.aziuriamod.speaker": "Speaker",
 
-  "block.aziuriamod.fish_trap": "Fish Trap",
+  "block.aziuriamod.oak_fish_trap": "Oak Fish Trap",
+  "block.aziuriamod.birch_fish_trap": "Birch Fish Trap",
+  "block.aziuriamod.bamboo_fish_trap": "Bamboo Fish Trap",
+  "block.aziuriamod.spruce_fish_trap": "Spruce Fish Trap",
+  "block.aziuriamod.jungle_fish_trap": "Jungle Fish Trap",
+  "block.aziuriamod.acacia_fish_trap": "Acacia Fish Trap",
+  "block.aziuriamod.dark_oak_fish_trap": "Dark Oak Fish Trap",
+  "block.aziuriamod.cherry_fish_trap": "Cherry Fish Trap",
+  "block.aziuriamod.mangrove_fish_trap": "Mangrove Fish Trap",
 
   "block.aziuriamod.steel_chain": "Steel Chain",
   "block.aziuriamod.copper_chain": "Copper Chain",

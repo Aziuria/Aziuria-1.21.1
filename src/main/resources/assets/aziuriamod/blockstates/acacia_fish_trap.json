@@ -1,0 +1,19 @@
+{
+	"variants": {
+		"facing=north": {
+			"model": "aziuriamod:block/acacia_fish_trap"
+		},
+		"facing=south": {
+			"model": "aziuriamod:block/acacia_fish_trap",
+			"y": 180
+		},
+		"facing=east": {
+			"model": "aziuriamod:block/acacia_fish_trap",
+			"y": 90
+		},
+		"facing=west": {
+			"model": "aziuriamod:block/acacia_fish_trap",
+			"y": 270
+		}
+	}
+}

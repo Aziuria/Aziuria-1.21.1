@@ -76,11 +76,92 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .define('L', ModTags.KNIVES)
                 .unlockedBy("has_stick", has(Items.STICK)).save(recipeOutput);
 
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.FISH_TRAP.get())
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.OAK_FISH_TRAP.get())
                 .pattern("FIF")
                 .pattern("ILI")
-                .pattern("FIF")
+                .pattern("FOF")
                 .define('I', ModItems.NET_SEGMENT.get())
+                .define('O', Blocks.OAK_LOG)
+                .define('F', ModItems.LASHING.get())
+                .define('L', ModTags.KNIVES)
+                .unlockedBy("has_lashing", has(ModItems.LASHING.get())).save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.BIRCH_FISH_TRAP.get())
+                .pattern("FIF")
+                .pattern("ILI")
+                .pattern("FOF")
+                .define('I', ModItems.NET_SEGMENT.get())
+                .define('O', Blocks.BIRCH_LOG)
+                .define('F', ModItems.LASHING.get())
+                .define('L', ModTags.KNIVES)
+                .unlockedBy("has_lashing", has(ModItems.LASHING.get())).save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.SPRUCE_FISH_TRAP.get())
+                .pattern("FIF")
+                .pattern("ILI")
+                .pattern("FOF")
+                .define('I', ModItems.NET_SEGMENT.get())
+                .define('O', Blocks.SPRUCE_LOG)
+                .define('F', ModItems.LASHING.get())
+                .define('L', ModTags.KNIVES)
+                .unlockedBy("has_lashing", has(ModItems.LASHING.get())).save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.JUNGLE_FISH_TRAP.get())
+                .pattern("FIF")
+                .pattern("ILI")
+                .pattern("FOF")
+                .define('I', ModItems.NET_SEGMENT.get())
+                .define('O', Blocks.JUNGLE_LOG)
+                .define('F', ModItems.LASHING.get())
+                .define('L', ModTags.KNIVES)
+                .unlockedBy("has_lashing", has(ModItems.LASHING.get())).save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.DARK_OAK_FISH_TRAP.get())
+                .pattern("FIF")
+                .pattern("ILI")
+                .pattern("FOF")
+                .define('I', ModItems.NET_SEGMENT.get())
+                .define('O', Blocks.DARK_OAK_LOG)
+                .define('F', ModItems.LASHING.get())
+                .define('L', ModTags.KNIVES)
+                .unlockedBy("has_lashing", has(ModItems.LASHING.get())).save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.BAMBOO_FISH_TRAP.get())
+                .pattern("FIF")
+                .pattern("ILI")
+                .pattern("FOF")
+                .define('I', ModItems.NET_SEGMENT.get())
+                .define('O', Blocks.BAMBOO_BLOCK)
+                .define('F', ModItems.LASHING.get())
+                .define('L', ModTags.KNIVES)
+                .unlockedBy("has_lashing", has(ModItems.LASHING.get())).save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.CHERRY_FISH_TRAP.get())
+                .pattern("FIF")
+                .pattern("ILI")
+                .pattern("FOF")
+                .define('I', ModItems.NET_SEGMENT.get())
+                .define('O', Blocks.CHERRY_LOG)
+                .define('F', ModItems.LASHING.get())
+                .define('L', ModTags.KNIVES)
+                .unlockedBy("has_lashing", has(ModItems.LASHING.get())).save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.MANGROVE_FISH_TRAP.get())
+                .pattern("FIF")
+                .pattern("ILI")
+                .pattern("FOF")
+                .define('I', ModItems.NET_SEGMENT.get())
+                .define('O', Blocks.MANGROVE_LOG)
+                .define('F', ModItems.LASHING.get())
+                .define('L', ModTags.KNIVES)
+                .unlockedBy("has_lashing", has(ModItems.LASHING.get())).save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.ACACIA_FISH_TRAP.get())
+                .pattern("FIF")
+                .pattern("ILI")
+                .pattern("FOF")
+                .define('I', ModItems.NET_SEGMENT.get())
+                .define('O', Blocks.ACACIA_LOG)
                 .define('F', ModItems.LASHING.get())
                 .define('L', ModTags.KNIVES)
                 .unlockedBy("has_lashing", has(ModItems.LASHING.get())).save(recipeOutput);

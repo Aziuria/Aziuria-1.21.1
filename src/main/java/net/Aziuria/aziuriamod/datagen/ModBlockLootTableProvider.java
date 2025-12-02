@@ -77,7 +77,15 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
         dropSelf(ModBlocks.MANGROVE_STORAGE.get());
         dropSelf(ModBlocks.SPRUCE_STORAGE.get());
 
-        dropSelf(ModBlocks.FISH_TRAP.get());
+        dropSelf(ModBlocks.OAK_FISH_TRAP.get());
+        dropSelf(ModBlocks.BIRCH_FISH_TRAP.get());
+        dropSelf(ModBlocks.SPRUCE_FISH_TRAP.get());
+        dropSelf(ModBlocks.JUNGLE_FISH_TRAP.get());
+        dropSelf(ModBlocks.DARK_OAK_FISH_TRAP.get());
+        dropSelf(ModBlocks.BAMBOO_FISH_TRAP.get());
+        dropSelf(ModBlocks.ACACIA_FISH_TRAP.get());
+        dropSelf(ModBlocks.CHERRY_FISH_TRAP.get());
+        dropSelf(ModBlocks.MANGROVE_FISH_TRAP.get());
 
         dropSelf(ModBlocks.OAK_HOOK.get());
         dropSelf(ModBlocks.ACACIA_HOOK.get());

@@ -42,7 +42,15 @@ public class ClientModInitializer {
             BlockEntityRenderers.register(ModBlockEntities.SHELF_BLOCK_ENTITY.get(), ShelfRenderer::new);
             BlockEntityRenderers.register(ModBlockEntities.STORAGE_BLOCK_ENTITY.get(), StorageRenderer::new);
             BlockEntityRenderers.register(ModBlockEntities.FISH_TRAP_BLOCK_ENTITY.get(), FishTrapRenderer::new);
-            RenderLayerUtil.setRenderLayer(ModBlocks.FISH_TRAP.get(), RenderType.cutout());
+            RenderLayerUtil.setRenderLayer(ModBlocks.OAK_FISH_TRAP.get(), RenderType.cutout());
+            RenderLayerUtil.setRenderLayer(ModBlocks.BIRCH_FISH_TRAP.get(), RenderType.cutout());
+            RenderLayerUtil.setRenderLayer(ModBlocks.SPRUCE_FISH_TRAP.get(), RenderType.cutout());
+            RenderLayerUtil.setRenderLayer(ModBlocks.JUNGLE_FISH_TRAP.get(), RenderType.cutout());
+            RenderLayerUtil.setRenderLayer(ModBlocks.DARK_OAK_FISH_TRAP.get(), RenderType.cutout());
+            RenderLayerUtil.setRenderLayer(ModBlocks.BAMBOO_FISH_TRAP.get(), RenderType.cutout());
+            RenderLayerUtil.setRenderLayer(ModBlocks.ACACIA_FISH_TRAP.get(), RenderType.cutout());
+            RenderLayerUtil.setRenderLayer(ModBlocks.CHERRY_FISH_TRAP.get(), RenderType.cutout());
+            RenderLayerUtil.setRenderLayer(ModBlocks.MANGROVE_FISH_TRAP.get(), RenderType.cutout());
             BlockEntityRenderers.register(ModBlockEntities.HOOK_BLOCK_ENTITY.get(), HookRenderer::new);
             BlockEntityRenderers.register(ModBlockEntities.STEEL_BARREL_BLOCK_ENTITY.get(), SteelBarrelRenderer::new);
             BlockEntityRenderers.register(ModBlockEntities.WOODCUTTER_BENCH.get(), WoodcutterBenchRenderer::new);

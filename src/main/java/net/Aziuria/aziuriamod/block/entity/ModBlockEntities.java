@@ -107,7 +107,15 @@ public class ModBlockEntities {
             BLOCK_ENTITIES.register("fish_trap_block_entity", () ->
                     BlockEntityType.Builder.of(
                             FishTrapBlockEntity::new,
-                            ModBlocks.FISH_TRAP.get() // make sure this is your registered Fish Trap block
+                            ModBlocks.OAK_FISH_TRAP.get(), // make sure this is your registered Fish Trap block
+                            ModBlocks.BIRCH_FISH_TRAP.get(), // make sure this is your registered Fish Trap block
+                            ModBlocks.SPRUCE_FISH_TRAP.get(), // make sure this is your registered Fish Trap block
+                            ModBlocks.JUNGLE_FISH_TRAP.get(), // make sure this is your registered Fish Trap block
+                            ModBlocks.DARK_OAK_FISH_TRAP.get(), // make sure this is your registered Fish Trap block
+                            ModBlocks.BAMBOO_FISH_TRAP.get(), // make sure this is your registered Fish Trap block
+                            ModBlocks.ACACIA_FISH_TRAP.get(), // make sure this is your registered Fish Trap block
+                            ModBlocks.CHERRY_FISH_TRAP.get(), // make sure this is your registered Fish Trap block
+                            ModBlocks.MANGROVE_FISH_TRAP.get() // make sure this is your registered Fish Trap block
                     ).build(null)
             );
 
