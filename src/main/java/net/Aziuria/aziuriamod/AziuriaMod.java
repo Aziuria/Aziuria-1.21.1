@@ -44,6 +44,7 @@ import net.Aziuria.aziuriamod.villager.VillagerAIHandler;
 import net.Aziuria.aziuriamod.villager.VillagerProfessionTickHandler;
 import net.Aziuria.aziuriamod.worldgen.rules.registry.ModBlockStateProviders;
 import net.Aziuria.aziuriamod.worldgen.rules.registry.ModPlacementModifier;
+import net.Aziuria.aziuriamod.worldgen.rules.registry.ModTrunkPlacerTypes;
 import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.neoforged.api.distmarker.Dist;
@@ -151,6 +152,7 @@ public class AziuriaMod {
         ModParticles.register(modEventBus);
         ModEntities.ENTITIES.register(modEventBus);
         ModPlacementModifier.PLACEMENT_MODIFIERS.register(modEventBus);
+        ModTrunkPlacerTypes.TRUNK_PLACERS.register(modEventBus);
         ModBlockStateProviders.STATE_PROVIDERS.register(modEventBus);
 
 

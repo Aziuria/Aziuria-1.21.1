@@ -2,6 +2,7 @@ package net.Aziuria.aziuriamod.worldgen;
 
 import net.Aziuria.aziuriamod.AziuriaMod;
 import net.Aziuria.aziuriamod.block.ModBlocks;
+import net.Aziuria.aziuriamod.worldgen.rules.DynamicForkingTrunkPlacer;
 import net.Aziuria.aziuriamod.worldgen.rules.RandomFacingStateProvider;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstrapContext;
@@ -224,7 +225,7 @@ public class ModConfiguredFeatures {
                 )
         );
 
-// ===== Dynamic Realistic Apple Tree Variant =====
+// ===== Dynamic Realistic Tree Variant =====
         RandomSource random = RandomSource.create();
 
 // 1. Dynamic trunk height
@@ -273,6 +274,9 @@ public class ModConfiguredFeatures {
                 0,
                 2
         );
+
+        // 7. Optional minor branch count
+        int minorBranches = trunkHeight >= 7 ? 1 : 2 + random.nextInt(2);
 
 // 7. Register tree
         // 8. Register tree
@@ -389,7 +393,7 @@ public class ModConfiguredFeatures {
         register(context, OAK_KEY_VARIANT_1, Feature.TREE,
                 new TreeConfiguration.TreeConfigurationBuilder(
                         BlockStateProvider.simple(Blocks.OAK_LOG),
-                        new ForkingTrunkPlacer(trunkHeight, extraHeight, baseBranchSpread),
+                        new DynamicForkingTrunkPlacer(trunkHeight, extraHeight, baseBranchSpread, minorBranches),
                         BlockStateProvider.simple(Blocks.OAK_LEAVES),
                         foliagePlacer,
                         featureSize
