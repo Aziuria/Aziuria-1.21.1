@@ -2,6 +2,7 @@ package net.Aziuria.aziuriamod.worldgen;
 
 import net.Aziuria.aziuriamod.AziuriaMod;
 import net.Aziuria.aziuriamod.block.ModBlocks;
+import net.Aziuria.aziuriamod.worldgen.rules.RandomFacingStateProvider;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.data.worldgen.features.FeatureUtils;
@@ -16,9 +17,7 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.SweetBerryBushBlock;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.feature.Feature;
-import net.minecraft.world.level.levelgen.feature.SimpleBlockFeature;
 import net.minecraft.world.level.levelgen.feature.configurations.*;
-import net.minecraft.world.level.levelgen.feature.featuresize.ThreeLayersFeatureSize;
 import net.minecraft.world.level.levelgen.feature.featuresize.TwoLayersFeatureSize;
 import net.minecraft.world.level.levelgen.feature.foliageplacers.BlobFoliagePlacer;
 import net.minecraft.world.level.levelgen.feature.foliageplacers.FancyFoliagePlacer;
@@ -26,13 +25,10 @@ import net.minecraft.world.level.levelgen.feature.foliageplacers.FoliagePlacer;
 import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
 import net.minecraft.world.level.levelgen.feature.treedecorators.LeaveVineDecorator;
 import net.minecraft.world.level.levelgen.feature.trunkplacers.ForkingTrunkPlacer;
-import net.minecraft.world.level.levelgen.feature.trunkplacers.StraightTrunkPlacer;
-import net.minecraft.world.level.levelgen.structure.templatesystem.BlockMatchTest;
 import net.minecraft.world.level.levelgen.structure.templatesystem.RuleTest;
 import net.minecraft.world.level.levelgen.structure.templatesystem.TagMatchTest;
 
 import java.util.List;
-import java.util.OptionalInt;
 
 public class ModConfiguredFeatures {
     public static final ResourceKey<ConfiguredFeature<?, ?>> OVERWORLD_SULPHUR_ORE_ULTRA_DEEP_KEY = registerKey("sulphur_ore_ultra_deep");
@@ -58,6 +54,9 @@ public class ModConfiguredFeatures {
     public static final ResourceKey<ConfiguredFeature<?, ?>> OVERWORLD_SPINEL_ORE_MID_KEY = registerKey("spinel_ore_mid");
 
     public static final ResourceKey<ConfiguredFeature<?, ?>> LEAF_LITTER_KEY = registerKey("leaf_litter");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> STICK_A = registerKey("stick_a");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> STICK_B = registerKey("stick_b");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> STICK_C = registerKey("stick_c");
     public static final ResourceKey<ConfiguredFeature<?, ?>> FLAX_FLOWER_KEY = registerKey("flax_flower");
     public static final ResourceKey<ConfiguredFeature<?, ?>> YUCCA_PLANT_KEY = registerKey("yucca_plant");
 
@@ -167,9 +166,43 @@ public class ModConfiguredFeatures {
         register(context, LEAF_LITTER_KEY, Feature.RANDOM_PATCH,
                 FeatureUtils.simplePatchConfiguration(
                         Feature.SIMPLE_BLOCK,
-                        new SimpleBlockConfiguration(BlockStateProvider.simple(ModBlocks.LEAF_LITTER.get().defaultBlockState())),
+                        new SimpleBlockConfiguration(
+                                new RandomFacingStateProvider(ModBlocks.LEAF_LITTER.get().defaultBlockState())
+                        ),
                         List.of(Blocks.GRASS_BLOCK)
+                )
+        );
 
+        register(context, STICK_A, Feature.RANDOM_PATCH,
+                FeatureUtils.simplePatchConfiguration(
+                        Feature.SIMPLE_BLOCK,
+                        new SimpleBlockConfiguration(
+                                new RandomFacingStateProvider(ModBlocks.STICK_A.get().defaultBlockState())
+                        ),
+                        List.of(Blocks.GRASS_BLOCK),
+                        8
+                )
+        );
+
+        register(context, STICK_B, Feature.RANDOM_PATCH,
+                FeatureUtils.simplePatchConfiguration(
+                        Feature.SIMPLE_BLOCK,
+                        new SimpleBlockConfiguration(
+                                new RandomFacingStateProvider(ModBlocks.STICK_B.get().defaultBlockState())
+                        ),
+                        List.of(Blocks.GRASS_BLOCK),
+                        8
+                )
+        );
+
+        register(context, STICK_C, Feature.RANDOM_PATCH,
+                FeatureUtils.simplePatchConfiguration(
+                        Feature.SIMPLE_BLOCK,
+                        new SimpleBlockConfiguration(
+                                new RandomFacingStateProvider(ModBlocks.STICK_C.get().defaultBlockState())
+                        ),
+                        List.of(Blocks.GRASS_BLOCK),
+                        8
                 )
         );
 

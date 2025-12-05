@@ -67,6 +67,7 @@ public class ModItemModelProvider extends ItemModelProvider {
         basicItem(ModItems.SPRUCE_BARK.get());
         basicItem(ModItems.CHERRY_BARK.get());
         basicItem(ModItems.BIRCH_BARK.get());
+        basicItem(ModItems.DRIED_GRASS.get());
 
         basicItem(ModItems.RADISH_SEEDS.get());
         basicItem(ModItems.CUCUMBER_SEEDS.get());

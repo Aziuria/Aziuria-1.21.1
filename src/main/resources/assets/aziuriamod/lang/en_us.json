@@ -113,6 +113,9 @@
   "block.aziuriamod.waxed_oxidized_copper_barrel_empty": "Waxed Oxidized Copper Barrel",
 
   "block.aziuriamod.speaker": "Speaker",
+  "block.aziuriamod.stick_a": "Stick",
+  "block.aziuriamod.stick_b": "Stick",
+  "block.aziuriamod.stick_c": "Stick",
 
   "block.aziuriamod.oak_fish_trap": "Oak Fish Trap",
   "block.aziuriamod.birch_fish_trap": "Birch Fish Trap",
@@ -132,6 +135,7 @@
   "item.aziuriamod.dark_oak_bark": "Dark Oak Bark",
   "item.aziuriamod.cherry_bark": "Cherry Bark",
   "item.aziuriamod.mangrove_bark": "Mangrove Bark",
+  "item.aziuriamod.dried_grass": "Dried Grass",
 
   "block.aziuriamod.steel_chain": "Steel Chain",
   "block.aziuriamod.copper_chain": "Copper Chain",

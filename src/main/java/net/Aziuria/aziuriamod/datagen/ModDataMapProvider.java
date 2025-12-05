@@ -76,9 +76,14 @@ public class ModDataMapProvider extends DataMapProvider {
                 .add(ModItems.DARK_OAK_BARK.getId(), new Compostable(0.25f), false)
                 .add(ModItems.MANGROVE_BARK.getId(), new Compostable(0.25f), false)
                 .add(ModItems.CHERRY_BARK.getId(), new Compostable(0.25f), false)
+                .add(ModItems.DRIED_GRASS.getId(), new Compostable(0.45f), false)
+                .add(ModBlocks.STICK_A.getId(), new Compostable(0.30f), false)
+                .add(ModBlocks.STICK_B.getId(), new Compostable(0.30f), false)
+                .add(ModBlocks.STICK_C.getId(), new Compostable(0.30f), false)
                 .add(ModItems.FLAX_FLOWER.getId(), new Compostable(0.30f), false);
 
         this.builder(NeoForgeDataMaps.FURNACE_FUELS)
+                .add(ModItems.DRIED_GRASS.getId(), new FurnaceFuel(100), false)
                 .add(ModItems.OAK_BARK.getId(), new FurnaceFuel(120), false)
                 .add(ModItems.BIRCH_BARK.getId(), new FurnaceFuel(120), false)
                 .add(ModItems.SPRUCE_BARK.getId(), new FurnaceFuel(120), false)
@@ -89,6 +94,9 @@ public class ModDataMapProvider extends DataMapProvider {
                 .add(ModItems.CHERRY_BARK.getId(), new FurnaceFuel(120), false)
                 .add(ModItems.WOOD_KNIFE.getId(), new FurnaceFuel(100), false)
                 .add(ModItems.MALLET.getId(), new FurnaceFuel(100), false)
+                .add(ModBlocks.STICK_A.getId(), new FurnaceFuel(120), false)
+                .add(ModBlocks.STICK_B.getId(), new FurnaceFuel(120), false)
+                .add(ModBlocks.STICK_C.getId(), new FurnaceFuel(120), false)
                 .add(ModBlocks.LEAF_LITTER.getId(), new FurnaceFuel(100), false);
 
     }

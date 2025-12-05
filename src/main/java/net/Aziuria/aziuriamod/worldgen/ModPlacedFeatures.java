@@ -50,6 +50,11 @@ public class ModPlacedFeatures {
     public static final ResourceKey<PlacedFeature> LEAF_LITTER_EXTRA2_PLACED_KEY = registerKey("leaf_litter_extra2");
     public static final ResourceKey<PlacedFeature> LEAF_LITTER_EXTRA3_PLACED_KEY = registerKey("leaf_litter_extra3");
 
+
+    public static final ResourceKey<PlacedFeature> STICK_A = registerKey("stick_a");
+    public static final ResourceKey<PlacedFeature> STICK_B = registerKey("stick_b");
+    public static final ResourceKey<PlacedFeature> STICK_C = registerKey("stick_c");
+
     public static final ResourceKey<PlacedFeature> FLAX_FLOWER_PLACED_KEY = registerKey("flax_flower_placed");
     public static final ResourceKey<PlacedFeature> YUCCA_PLANT_PLACED_KEY = registerKey("yucca_plant_placed");
 
@@ -251,6 +256,36 @@ public class ModPlacedFeatures {
                         NearLogPlacementModifier.of(9, 1.2),  // Larger radius, stronger falloff
                         BiomeFilter.biome()
 
+                ));
+
+        register(context, STICK_A,
+                configuredFeatures.getOrThrow(ModConfiguredFeatures.STICK_A),
+                List.of(
+                        RarityFilter.onAverageOnceEvery(1),
+                        InSquarePlacement.spread(),
+                        PlacementUtils.HEIGHTMAP_WORLD_SURFACE,
+                        NearLogPlacementModifier.of(5, 0.6),
+                        BiomeFilter.biome()
+                ));
+
+        register(context, STICK_B,
+                configuredFeatures.getOrThrow(ModConfiguredFeatures.STICK_B),
+                List.of(
+                        RarityFilter.onAverageOnceEvery(1),
+                        InSquarePlacement.spread(),
+                        PlacementUtils.HEIGHTMAP_WORLD_SURFACE,
+                        NearLogPlacementModifier.of(5, 0.6),
+                        BiomeFilter.biome()
+                ));
+
+        register(context, STICK_C,
+                configuredFeatures.getOrThrow(ModConfiguredFeatures.STICK_C),
+                List.of(
+                        RarityFilter.onAverageOnceEvery(1),
+                        InSquarePlacement.spread(),
+                        PlacementUtils.HEIGHTMAP_WORLD_SURFACE,
+                        NearLogPlacementModifier.of(5, 0.6),
+                        BiomeFilter.biome()
                 ));
 
 
@@ -887,12 +922,19 @@ public class ModPlacedFeatures {
             );
         }
 
+// Birch Variant 1
         {
-            List<PlacementModifier> modifiers = new ArrayList<>(VegetationPlacements.treePlacement(
-                    NoiseThresholdCountPlacement.of(0.8, 0, 1),
-                    Blocks.BIRCH_SAPLING
+            List<PlacementModifier> modifiers = new ArrayList<>(List.of(
+                    NoiseThresholdCountPlacement.of(0.6, 0, 2),
+                    InSquarePlacement.spread(),
+                    SurfaceWaterDepthFilter.forMaxDepth(1),
+                    RarityFilter.onAverageOnceEvery(6),
+                    PlacementUtils.HEIGHTMAP,
+                    BlockPredicateFilter.forPredicate(
+                            BlockPredicate.wouldSurvive(Blocks.BIRCH_SAPLING.defaultBlockState(), BlockPos.ZERO)
+                    ),
+                    BiomeFilter.biome()
             ));
-            modifiers.add(RarityFilter.onAverageOnceEvery(6));
 
             register(context, BIRCH_VARIANT_1,
                     configuredFeatures.getOrThrow(ModConfiguredFeatures.BIRCH_VARIANT_1),
@@ -906,7 +948,6 @@ public class ModPlacedFeatures {
                     NoiseThresholdCountPlacement.of(0.6, 0, 2),
                     InSquarePlacement.spread(),
                     SurfaceWaterDepthFilter.forMaxDepth(1),
-                    NearbyWaterRadiusFilter.INSTANCE,  // Added this line
                     RarityFilter.onAverageOnceEvery(8),
                     PlacementUtils.HEIGHTMAP,
                     BlockPredicateFilter.forPredicate(

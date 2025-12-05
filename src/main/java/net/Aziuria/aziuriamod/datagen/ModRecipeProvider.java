@@ -171,6 +171,24 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .define('I', Items.COPPER_INGOT)
                 .unlockedBy("has_copper_ingot", has(Items.COPPER_INGOT)).save(recipeOutput);
 
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, Items.STICK, 2)
+                .pattern("I")
+                .define('I', ModBlocks.STICK_A.get())
+                .unlockedBy("has_stick_a", has(ModBlocks.STICK_A.get()))
+                .save(recipeOutput, ResourceLocation.fromNamespaceAndPath("aziuriamod", "stick_from_stick_a"));
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, Items.STICK, 2)
+                .pattern("I")
+                .define('I', ModBlocks.STICK_B.get())
+                .unlockedBy("has_stick_b", has(ModBlocks.STICK_B.get()))
+                .save(recipeOutput, ResourceLocation.fromNamespaceAndPath("aziuriamod", "stick_from_stick_b"));
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, Items.STICK, 2)
+                .pattern("I")
+                .define('I', ModBlocks.STICK_C.get())
+                .unlockedBy("has_stick_c", has(ModBlocks.STICK_C.get()))
+                .save(recipeOutput, ResourceLocation.fromNamespaceAndPath("aziuriamod", "stick_from_stick_c"));
+
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, Items.COPPER_INGOT)
                 .pattern("BBB")
                 .pattern("BBB")

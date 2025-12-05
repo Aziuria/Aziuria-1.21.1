@@ -147,5 +147,35 @@ public class ModTreeGrowers {
     public static final TreeGrower BANANA_VARIANT_7 = new TreeGrower(AziuriaMod.MOD_ID + ":banana_variant_7",
             Optional.empty(), Optional.of(ModConfiguredFeatures.BANANA_KEY_VARIANT_7), Optional.empty());
 
+    // ---------------- DARK OAK VARIANTS ----------------
+    public static final TreeGrower DARK_OAK_VARIANT_1 = new TreeGrower(
+            AziuriaMod.MOD_ID + ":dark_oak_variant_1",
+            Optional.empty(),
+            Optional.of(ModConfiguredFeatures.DARK_OAK_VARIANT_1),
+            Optional.empty()
+    );
+
+    public static final TreeGrower DARK_OAK_VARIANT_2 = new TreeGrower(
+            AziuriaMod.MOD_ID + ":dark_oak_variant_2",
+            Optional.empty(),
+            Optional.of(ModConfiguredFeatures.DARK_OAK_VARIANT_2),
+            Optional.empty()
+    );
+
+    // ---------------- BIRCH VARIANTS ----------------
+    public static final TreeGrower BIRCH_VARIANT_1 = new TreeGrower(
+            AziuriaMod.MOD_ID + ":birch_variant_1",
+            Optional.empty(),
+            Optional.of(ModConfiguredFeatures.BIRCH_VARIANT_1),
+            Optional.empty()
+    );
+
+    public static final TreeGrower OAK_VARIANT_1 = new TreeGrower(
+            AziuriaMod.MOD_ID + ":oak_variant_1",
+            Optional.empty(),
+            Optional.of(ModConfiguredFeatures.OAK_KEY_VARIANT_1),
+            Optional.empty()
+    );
+
 }
 

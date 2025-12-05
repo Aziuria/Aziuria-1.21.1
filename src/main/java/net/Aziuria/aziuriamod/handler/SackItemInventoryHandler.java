@@ -55,7 +55,14 @@ public class SackItemInventoryHandler {
             ALLOWED_ITEMS.add(ModItems.BLACKCURRANT_SEEDS.get());
             ALLOWED_ITEMS.add(ModItems.STRAWBERRY_SEEDS.get());
             ALLOWED_ITEMS.add(ModItems.COFFEE_SEEDS.get());
-            ALLOWED_ITEMS.add(ModItems.TEA_SEEDS.get());
+            ALLOWED_ITEMS.add(ModItems.OAK_BARK.get());
+            ALLOWED_ITEMS.add(ModItems.BIRCH_BARK.get());
+            ALLOWED_ITEMS.add(ModItems.SPRUCE_BARK.get());
+            ALLOWED_ITEMS.add(ModItems.DARK_OAK_BARK.get());
+            ALLOWED_ITEMS.add(ModItems.JUNGLE_BARK.get());
+            ALLOWED_ITEMS.add(ModItems.ACACIA_BARK.get());
+            ALLOWED_ITEMS.add(ModItems.CHERRY_BARK.get());
+            ALLOWED_ITEMS.add(ModItems.MANGROVE_BARK.get());
 
             // Saplings
             ALLOWED_ITEMS.add(Items.OAK_SAPLING);
@@ -103,6 +110,9 @@ public class SackItemInventoryHandler {
 
             // Misc
             ALLOWED_BLOCKS.add(ModBlocks.LEAF_LITTER.get());
+            ALLOWED_BLOCKS.add(ModBlocks.STICK_A.get());
+            ALLOWED_BLOCKS.add(ModBlocks.STICK_B.get());
+            ALLOWED_BLOCKS.add(ModBlocks.STICK_C.get());
         }
 
         public SackHandler(ItemStack stack, HolderLookup.Provider registries) {

@@ -347,7 +347,11 @@ public class ModCreativeModeTabs {
                         output.accept(ModItems.YUCCA_LEAVES);
                         output.accept(ModBlocks.YUCCA_PLANT_BLOCK);
                         output.accept(ModItems.FLAX_FLOWER);
+                        output.accept(ModItems.DRIED_GRASS);
                         output.accept(ModBlocks.LEAF_LITTER);
+                        output.accept(ModBlocks.STICK_A);
+                        output.accept(ModBlocks.STICK_B);
+                        output.accept(ModBlocks.STICK_C);
 
                         // ======= 🐾 ANIMALS & MOBS =======
                         output.accept(ModItems.WORM_SPAWN_EGG.get());

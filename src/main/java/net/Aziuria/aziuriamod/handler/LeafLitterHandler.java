@@ -52,6 +52,26 @@ public class LeafLitterHandler {
                     if (chance < 1.0f) {
                         level.setBlock(surfacePos, ModBlocks.LEAF_LITTER.get().defaultBlockState(), 3);
                     }
+
+                    // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+                    // ADDITION: RANDOM STICK A/B/C NATURAL SPAWN SYSTEM
+                    // 10% chance to spawn sticks near leaf litter
+                    if (random.nextFloat() < 0.40f) {
+
+                        BlockState stickVariant;
+                        float stickRoll = random.nextFloat();
+
+                        if (stickRoll < 0.33f) {
+                            stickVariant = ModBlocks.STICK_A.get().defaultBlockState();
+                        } else if (stickRoll < 0.66f) {
+                            stickVariant = ModBlocks.STICK_B.get().defaultBlockState();
+                        } else {
+                            stickVariant = ModBlocks.STICK_C.get().defaultBlockState();
+                        }
+
+                        level.setBlock(surfacePos, stickVariant, 3);
+                    }
+                    // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
                 }
             }
         });

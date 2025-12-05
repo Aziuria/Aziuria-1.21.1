@@ -50,6 +50,9 @@ public class ModBiomeModifiers {
     public static final ResourceKey<BiomeModifier> ADD_LEAF_LITTER_EXTRA3 = registerKey("add_leaf_litter_extra3");
 
     public static final ResourceKey<BiomeModifier> ADD_FLAX_FLOWER = registerKey("add_flax_flower");
+    public static final ResourceKey<BiomeModifier> STICK_A = registerKey("stick_a");
+    public static final ResourceKey<BiomeModifier> STICK_B = registerKey("stick_b");
+    public static final ResourceKey<BiomeModifier> STICK_C = registerKey("stick_c");
     public static final ResourceKey<BiomeModifier> YUCCA_PLANT = registerKey("yucca_plant");
 
     public static final ResourceKey<BiomeModifier> APPLE_KEY_VARIANT_1 = registerKey("apple_variant_1");
@@ -230,6 +233,21 @@ public class ModBiomeModifiers {
         context.register(ADD_LEAF_LITTER_EXTRA3, new BiomeModifiers.AddFeaturesBiomeModifier(
                 biomes.getOrThrow(BiomeTags.IS_OVERWORLD),
                 HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.LEAF_LITTER_EXTRA3_PLACED_KEY)),
+                GenerationStep.Decoration.VEGETAL_DECORATION));
+
+        context.register(STICK_A, new BiomeModifiers.AddFeaturesBiomeModifier(
+                biomes.getOrThrow(BiomeTags.IS_OVERWORLD), // ← Changed from explicit biomes list
+                HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.STICK_A)),
+                GenerationStep.Decoration.VEGETAL_DECORATION));
+
+        context.register(STICK_B, new BiomeModifiers.AddFeaturesBiomeModifier(
+                biomes.getOrThrow(BiomeTags.IS_OVERWORLD), // ← Changed from explicit biomes list
+                HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.STICK_B)),
+                GenerationStep.Decoration.VEGETAL_DECORATION));
+
+        context.register(STICK_C, new BiomeModifiers.AddFeaturesBiomeModifier(
+                biomes.getOrThrow(BiomeTags.IS_OVERWORLD), // ← Changed from explicit biomes list
+                HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.STICK_C)),
                 GenerationStep.Decoration.VEGETAL_DECORATION));
 
         context.register(ADD_FLAX_FLOWER, new BiomeModifiers.AddFeaturesBiomeModifier(
@@ -814,8 +832,14 @@ public class ModBiomeModifiers {
 
         context.register(ModBiomeModifiers.BIRCH_VARIANT_1, new BiomeModifiers.AddFeaturesBiomeModifier(
                 HolderSet.direct(
+                        biomes.getOrThrow(Biomes.PLAINS),
+                        biomes.getOrThrow(Biomes.FOREST),
+                        biomes.getOrThrow(Biomes.FLOWER_FOREST),
                         biomes.getOrThrow(Biomes.BIRCH_FOREST),
-                        biomes.getOrThrow(Biomes.OLD_GROWTH_BIRCH_FOREST)
+                        biomes.getOrThrow(Biomes.OLD_GROWTH_BIRCH_FOREST),
+                        biomes.getOrThrow(Biomes.MEADOW),
+                        biomes.getOrThrow(Biomes.CHERRY_GROVE),
+                        biomes.getOrThrow(Biomes.WINDSWEPT_FOREST)
                 ),
                 HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.BIRCH_VARIANT_1)),
                 GenerationStep.Decoration.VEGETAL_DECORATION

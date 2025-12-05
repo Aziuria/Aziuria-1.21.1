@@ -536,6 +536,36 @@ public class ModBlocks {
                     .isSuffocating((s, r, p) -> false)),
             block -> new FuelItem(block, new Item.Properties(), 100));
 
+    public static final DeferredBlock<StickBlock> STICK_A = registerBlock("stick_a",
+            () -> new StickBlock(BlockBehaviour.Properties.of()
+                    .mapColor(MapColor.PLANT)
+                    .instabreak()
+                    .sound(SoundType.WOOD)
+                    .noOcclusion()
+                    .isViewBlocking((s, r, p) -> false)
+                    .isSuffocating((s, r, p) -> false)),
+            block -> new FuelItem(block, new Item.Properties(), 120));
+
+    public static final DeferredBlock<StickBlock> STICK_B = registerBlock("stick_b",
+            () -> new StickBlock(BlockBehaviour.Properties.of()
+                    .mapColor(MapColor.PLANT)
+                    .instabreak()
+                    .sound(SoundType.WOOD)
+                    .noOcclusion()
+                    .isViewBlocking((s, r, p) -> false)
+                    .isSuffocating((s, r, p) -> false)),
+            block -> new FuelItem(block, new Item.Properties(), 120));
+
+    public static final DeferredBlock<StickBlock> STICK_C = registerBlock("stick_c",
+            () -> new StickBlock(BlockBehaviour.Properties.of()
+                    .mapColor(MapColor.PLANT)
+                    .instabreak()
+                    .sound(SoundType.WOOD)
+                    .noOcclusion()
+                    .isViewBlocking((s, r, p) -> false)
+                    .isSuffocating((s, r, p) -> false)),
+            block -> new FuelItem(block, new Item.Properties(), 120));
+
     public static final DeferredBlock<DemarcationPostBlock> DEMAECATION_POST = registerBlock("demarcation_post_a",
             () -> new DemarcationPostBlock(BlockBehaviour.Properties.of()
                     .strength(1.5f)
