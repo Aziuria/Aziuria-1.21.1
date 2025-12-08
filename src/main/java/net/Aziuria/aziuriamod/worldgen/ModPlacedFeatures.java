@@ -114,6 +114,8 @@ public class ModPlacedFeatures {
     public static final ResourceKey<PlacedFeature> BIRCH_VARIANT_1 = registerKey("birch_variant_1");
 
     public static final ResourceKey<PlacedFeature> BLACKCURRANT_BUSH_PLACED_KEY = registerKey("blackcurrant_bush_placed");
+    public static final ResourceKey<PlacedFeature> BLUEBERRY_BUSH_PLACED_KEY = registerKey("blueberry_bush_placed");
+    public static final ResourceKey<PlacedFeature> GOOSEBERRY_BUSH_PLACED_KEY = registerKey("gooseberry_bush_placed");
     public static final ResourceKey<PlacedFeature> STRAWBERRY_BUSH_PLACED_KEY = registerKey("strawberry_bush_placed");
 
 
@@ -965,10 +967,14 @@ public class ModPlacedFeatures {
         register(context, BLACKCURRANT_BUSH_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.BLACKCURRANT_BUSH_KEY),
                 List.of(RarityFilter.onAverageOnceEvery(4), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome()));
 
+        register(context, BLUEBERRY_BUSH_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.BLUEBERRY_BUSH_KEY),
+                List.of(RarityFilter.onAverageOnceEvery(4), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome()));
+
         register(context, STRAWBERRY_BUSH_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.STRAWBERRY_BUSH_KEY),
                 List.of(RarityFilter.onAverageOnceEvery(4), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome()));
 
-
+        register(context, GOOSEBERRY_BUSH_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.GOOSEBERRY_BUSH_KEY),
+                List.of(RarityFilter.onAverageOnceEvery(4), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome()));
     }
 
     private static ResourceKey<PlacedFeature> registerKey(String name) {

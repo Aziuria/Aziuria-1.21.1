@@ -259,6 +259,36 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
                                 .apply(ApplyBonusCount.addUniformBonusCount(registrylookup.getOrThrow(Enchantments.FORTUNE)))
                 )));
 
+        this.add(ModBlocks.BLUEBERRY_BUSH.get(), block -> this.applyExplosionDecay(
+                block,LootTable.lootTable().withPool(LootPool.lootPool().when(
+                                        LootItemBlockStatePropertyCondition.hasBlockStateProperties(ModBlocks.BLUEBERRY_BUSH.get())
+                                                .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(SweetBerryBushBlock.AGE, 3))
+                                ).add(LootItem.lootTableItem(ModItems.BLUEBERRY.get()))
+                                .apply(SetItemCountFunction.setCount(UniformGenerator.between(2.0F, 3.0F)))
+                                .apply(ApplyBonusCount.addUniformBonusCount(registrylookup.getOrThrow(Enchantments.FORTUNE)))
+                ).withPool(LootPool.lootPool().when(
+                                        LootItemBlockStatePropertyCondition.hasBlockStateProperties(ModBlocks.BLUEBERRY_BUSH.get())
+                                                .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(SweetBerryBushBlock.AGE, 2))
+                                ).add(LootItem.lootTableItem(ModItems.BLUEBERRY.get()))
+                                .apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 2.0F)))
+                                .apply(ApplyBonusCount.addUniformBonusCount(registrylookup.getOrThrow(Enchantments.FORTUNE)))
+                )));
+
+        this.add(ModBlocks.GOOSEBERRY_BUSH.get(), block -> this.applyExplosionDecay(
+                block,LootTable.lootTable().withPool(LootPool.lootPool().when(
+                                        LootItemBlockStatePropertyCondition.hasBlockStateProperties(ModBlocks.GOOSEBERRY_BUSH.get())
+                                                .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(SweetBerryBushBlock.AGE, 3))
+                                ).add(LootItem.lootTableItem(ModItems.GOOSEBERRY.get()))
+                                .apply(SetItemCountFunction.setCount(UniformGenerator.between(2.0F, 3.0F)))
+                                .apply(ApplyBonusCount.addUniformBonusCount(registrylookup.getOrThrow(Enchantments.FORTUNE)))
+                ).withPool(LootPool.lootPool().when(
+                                        LootItemBlockStatePropertyCondition.hasBlockStateProperties(ModBlocks.GOOSEBERRY_BUSH.get())
+                                                .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(SweetBerryBushBlock.AGE, 2))
+                                ).add(LootItem.lootTableItem(ModItems.GOOSEBERRY.get()))
+                                .apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 2.0F)))
+                                .apply(ApplyBonusCount.addUniformBonusCount(registrylookup.getOrThrow(Enchantments.FORTUNE)))
+                )));
+
         // Yucca plant (custom loot)
         this.add(ModBlocks.YUCCA_PLANT_BLOCK.get(),
                 block -> createSilkTouchOrShearsDispatchTable(block,

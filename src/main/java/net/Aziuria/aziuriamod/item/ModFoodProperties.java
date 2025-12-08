@@ -385,4 +385,53 @@ public class ModFoodProperties {
             .effect(() -> new MobEffectInstance(MobEffects.REGENERATION, 20 * 8, 0), 0.35f)
             .effect(() -> new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 20 * 6, 0), 0.2f)
             .build();
+
+    public static final FoodProperties BLUEBERRY = new FoodProperties.Builder()
+            .nutrition(3)
+            .saturationModifier(0.3f)
+            .alwaysEdible()
+            .effect(() -> new MobEffectInstance(MobEffects.REGENERATION, 50, 0), 0.15f)
+            .effect(() -> new MobEffectInstance(MobEffects.NIGHT_VISION, 60, 0), 0.05f) // antioxidant eye-health vibe
+            .build();
+
+    public static final FoodProperties BLUEBERRY_JUICE = new FoodProperties.Builder()
+            .nutrition(2)
+            .saturationModifier(0.3f)
+            .alwaysEdible()
+            .effect(() -> new MobEffectInstance(MobEffects.REGENERATION, 50, 0), 0.15f)
+            .effect(() -> new MobEffectInstance(MobEffects.NIGHT_VISION, 60, 0), 0.05f)
+            .build();
+
+    public static final FoodProperties BLUEBERRY_SMOOTHIE = new FoodProperties.Builder()
+            .nutrition(6)
+            .saturationModifier(0.7f)
+            .alwaysEdible()
+            .effect(() -> new MobEffectInstance(MobEffects.REGENERATION, 20 * 8, 0), 0.4f)
+            .effect(() -> new MobEffectInstance(MobEffects.NIGHT_VISION, 20 * 12, 0), 0.25f)
+            .effect(() -> new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 20 * 6, 0), 0.15f)
+            .build();
+
+    public static final FoodProperties GOOSEBERRY = new FoodProperties.Builder()
+            .nutrition(3)                     // light fruit snack
+            .saturationModifier(0.3f)         // similar to strawberry
+            .alwaysEdible()
+            .effect(() -> new MobEffectInstance(MobEffects.REGENERATION, 50, 0), 0.15f)  // tangy boost
+            .effect(() -> new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 40, 0), 0.05f) // “fortifying” properties
+            .build();
+
+    public static final FoodProperties GOOSEBERRY_JUICE = new FoodProperties.Builder()
+            .nutrition(2)
+            .saturationModifier(0.3f)
+            .alwaysEdible()
+            .effect(() -> new MobEffectInstance(MobEffects.REGENERATION, 40, 0), 0.2f)
+            .effect(() -> new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 40, 0), 0.05f)
+            .build();
+
+    public static final FoodProperties GOOSEBERRY_SMOOTHIE = new FoodProperties.Builder()
+            .nutrition(6)
+            .saturationModifier(0.7f)
+            .alwaysEdible()
+            .effect(() -> new MobEffectInstance(MobEffects.REGENERATION, 20 * 8, 0), 0.4f)
+            .effect(() -> new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 20 * 10, 0), 0.25f) // fortified feeling
+            .build();
 }

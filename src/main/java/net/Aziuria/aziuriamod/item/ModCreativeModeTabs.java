@@ -257,8 +257,10 @@ public class ModCreativeModeTabs {
                         output.accept(ModItems.AVOCADO_JUICE);
                         output.accept(ModItems.BANANA_JUICE);
                         output.accept(ModItems.BLACKCURRANT_JUICE);
+                        output.accept(ModItems.BLUEBERRY_JUICE);
                         output.accept(ModItems.CHERRY_JUICE);
                         output.accept(ModItems.GLOWBERRY_JUICE);
+                        output.accept(ModItems.GOOSEBERRY_JUICE);
                         output.accept(ModItems.MELON_JUICE);
                         output.accept(ModItems.ORANGE_JUICE);
                         output.accept(ModItems.PEAR_JUICE);
@@ -272,8 +274,10 @@ public class ModCreativeModeTabs {
                         output.accept(ModItems.AVOCADO_SMOOTHIE);
                         output.accept(ModItems.BANANA_SMOOTHIE);
                         output.accept(ModItems.BLACKCURRANT_SMOOTHIE);
+                        output.accept(ModItems.BLUEBERRY_SMOOTHIE);
                         output.accept(ModItems.CHERRY_SMOOTHIE);
                         output.accept(ModItems.GLOWBERRY_SMOOTHIE);
+                        output.accept(ModItems.GOOSEBERRY_SMOOTHIE);
                         output.accept(ModItems.MELON_SMOOTHIE);
                         output.accept(ModItems.ORANGE_SMOOTHIE);
                         output.accept(ModItems.PEAR_SMOOTHIE);
@@ -300,7 +304,9 @@ public class ModCreativeModeTabs {
                         output.accept(ModItems.PEAR);
                         output.accept(ModItems.PINEAPPLE);
                         output.accept(ModItems.BLACKCURRANT);
+                        output.accept(ModItems.BLUEBERRY);
                         output.accept(ModItems.CHERRY);
+                        output.accept(ModItems.GOOSEBERRY);
                         output.accept(ModItems.STRAWBERRY);
 
                         // ======= 🌱 SEEDS & SAPLINGS =======
@@ -314,6 +320,8 @@ public class ModCreativeModeTabs {
                         output.accept(ModItems.TEA_SEEDS);
                         output.accept(ModItems.TOMATO_SEEDS);
                         output.accept(ModItems.BLACKCURRANT_SEEDS);
+                        output.accept(ModItems.BLUEBERRY_SEEDS);
+                        output.accept(ModItems.GOOSEBERRY_SEEDS);
                         output.accept(ModItems.PINEAPPLE_SEEDS);
                         output.accept(ModItems.STRAWBERRY_SEEDS);
 

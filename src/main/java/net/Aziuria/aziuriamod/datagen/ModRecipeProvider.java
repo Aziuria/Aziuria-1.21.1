@@ -403,6 +403,28 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .unlockedBy("has_empty_cup", has(ModItems.EMPTY_CUP.get()))
                 .save(recipeOutput);
 
+        ShapedRecipeBuilder.shaped(RecipeCategory.FOOD, ModItems.BLUEBERRY_SMOOTHIE.get(), 1)
+                .pattern("BMB")
+                .pattern("SCI")
+                .define('B', ModItems.BLUEBERRY.get())
+                .define('M', ModItems.MILK_BOTTLE.get())
+                .define('S', Items.SUGAR)
+                .define('I', Items.ICE)
+                .define('C', ModItems.EMPTY_CUP.get())
+                .unlockedBy("has_empty_cup", has(ModItems.EMPTY_CUP.get()))
+                .save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.FOOD, ModItems.GOOSEBERRY_SMOOTHIE.get(), 1)
+                .pattern("BMB")
+                .pattern("SCI")
+                .define('B', ModItems.GOOSEBERRY.get())
+                .define('M', ModItems.MILK_BOTTLE.get())
+                .define('S', Items.SUGAR)
+                .define('I', Items.ICE)
+                .define('C', ModItems.EMPTY_CUP.get())
+                .unlockedBy("has_empty_cup", has(ModItems.EMPTY_CUP.get()))
+                .save(recipeOutput);
+
         ShapedRecipeBuilder.shaped(RecipeCategory.FOOD, ModItems.CHERRY_SMOOTHIE.get(), 1)
                 .pattern("BMB")
                 .pattern("SCI")
@@ -2196,6 +2218,14 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .requires(ModItems.STRAWBERRY.get())
                 .unlockedBy("has_strawberry", has(ModItems.STRAWBERRY.get())).save(recipeOutput);
 
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.BLUEBERRY_SEEDS.get(), 1)
+                .requires(ModItems.BLUEBERRY.get())
+                .unlockedBy("has_blueberry", has(ModItems.BLUEBERRY.get())).save(recipeOutput);
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.GOOSEBERRY_SEEDS.get(), 1)
+                .requires(ModItems.GOOSEBERRY.get())
+                .unlockedBy("has_gooseberry", has(ModItems.GOOSEBERRY.get())).save(recipeOutput);
+
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.RADISH_SEEDS.get(), 3)
                 .requires(ModItems.RADISH.get())
                 .unlockedBy("has_radish", has(ModItems.RADISH.get())).save(recipeOutput);
@@ -2328,6 +2358,20 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .unlockedBy("has_blackcurrant", has(ModItems.BLACKCURRANT.get()))
                 .save(recipeOutput);
 
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, ModItems.BLUEBERRY_JUICE.get(), 1)
+                .requires(ModItems.BLUEBERRY.get())
+                .requires(Items.SUGAR)
+                .requires(Items.POTION)  // Vanilla water bottle (glass bottle + water)
+                .unlockedBy("has_blueberry", has(ModItems.BLUEBERRY.get()))
+                .save(recipeOutput);
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, ModItems.GOOSEBERRY_JUICE.get(), 1)
+                .requires(ModItems.GOOSEBERRY.get())
+                .requires(Items.SUGAR)
+                .requires(Items.POTION)  // Vanilla water bottle (glass bottle + water)
+                .unlockedBy("has_gooseberry", has(ModItems.GOOSEBERRY.get()))
+                .save(recipeOutput);
+
         ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, ModItems.BREAD_FISHING_ROD.get(), 1)
                 .requires(ModItems.BREAD_BAIT.get())
                 .requires(Items.FISHING_ROD)  // Vanilla water bottle (glass bottle + water)
@@ -2352,7 +2396,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .unlockedBy("has_kelp", has(Items.KELP))
                 .save(recipeOutput, ResourceLocation.fromNamespaceAndPath("aziuriamod", "green_dye_from_kelp"));
 
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, Items.BROWN_DYE)
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, Items.BROWN_DYE, 2)
                 .requires(Items.BLACK_DYE)
                 .requires(Items.ORANGE_DYE)
                 .unlockedBy("has_orange_dye", has(Items.ORANGE_DYE))
@@ -2369,6 +2413,24 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .requires(ModTags.KNIVES)
                 .unlockedBy("has_blackcurrant", has(ModItems.BLACKCURRANT.get()))
                 .save(recipeOutput, ResourceLocation.fromNamespaceAndPath("aziuriamod", "black_dye_from_blackcurrant"));
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, Items.BLUE_DYE)
+                .requires(ModItems.BLUEBERRY.get())
+                .requires(ModTags.KNIVES)
+                .unlockedBy("has_blueberry", has(ModItems.BLUEBERRY.get()))
+                .save(recipeOutput, ResourceLocation.fromNamespaceAndPath("aziuriamod", "blue_dye_from_blueberry"));
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, Items.RED_DYE)
+                .requires(ModItems.STRAWBERRY.get())
+                .requires(ModTags.KNIVES)
+                .unlockedBy("has_strawberry", has(ModItems.STRAWBERRY.get()))
+                .save(recipeOutput, ResourceLocation.fromNamespaceAndPath("aziuriamod", "red_dye_from_strawberry"));
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, Items.GREEN_DYE)
+                .requires(ModItems.GOOSEBERRY.get())
+                .requires(ModTags.KNIVES)
+                .unlockedBy("has_gooseberry", has(ModItems.GOOSEBERRY.get()))
+                .save(recipeOutput, ResourceLocation.fromNamespaceAndPath("aziuriamod", "green_dye_from_gooseberry"));
 
         ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, Items.END_PORTAL_FRAME)
                 .pattern("OOO")

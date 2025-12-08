@@ -111,7 +111,9 @@ public class ModBiomeModifiers {
     public static final ResourceKey<BiomeModifier> BIRCH_VARIANT_1 = registerKey("birch_variant_1");
 
     public static final ResourceKey<BiomeModifier> BLACKCURRANT_BUSH = registerKey("blackcurrant_bush");
+    public static final ResourceKey<BiomeModifier> BLUEBERRY_BUSH = registerKey("blueberry_bush");
     public static final ResourceKey<BiomeModifier> STRAWBERRY_BUSH = registerKey("strawberry_bush");
+    public static final ResourceKey<BiomeModifier> GOOSEBERRY_BUSH = registerKey("gooseberry_bush");
 
     public static final ResourceKey<BiomeModifier> SPAWN_WORM = registerKey("spawn_worm");
 
@@ -872,6 +874,8 @@ public class ModBiomeModifiers {
                         biomes.getOrThrow(Biomes.FOREST),
                         biomes.getOrThrow(Biomes.BIRCH_FOREST),
                         biomes.getOrThrow(Biomes.OLD_GROWTH_BIRCH_FOREST),
+                        biomes.getOrThrow(Biomes.CHERRY_GROVE),
+                        biomes.getOrThrow(Biomes.FLOWER_FOREST),
                         biomes.getOrThrow(Biomes.TAIGA),
                         biomes.getOrThrow(Biomes.MEADOW)
                 ),
@@ -886,12 +890,51 @@ public class ModBiomeModifiers {
                         biomes.getOrThrow(Biomes.OLD_GROWTH_SPRUCE_TAIGA),
                         biomes.getOrThrow(Biomes.FOREST),
                         biomes.getOrThrow(Biomes.MEADOW),
-                        biomes.getOrThrow(Biomes.WINDSWEPT_HILLS),
+                        biomes.getOrThrow(Biomes.GROVE),
                         biomes.getOrThrow(Biomes.BIRCH_FOREST),
                         biomes.getOrThrow(Biomes.OLD_GROWTH_BIRCH_FOREST),
                         biomes.getOrThrow(Biomes.WINDSWEPT_FOREST)
                 ),
                 HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.BLACKCURRANT_BUSH_PLACED_KEY)),
+                GenerationStep.Decoration.VEGETAL_DECORATION));
+
+        context.register(BLUEBERRY_BUSH, new BiomeModifiers.AddFeaturesBiomeModifier(
+                HolderSet.direct(
+                        biomes.getOrThrow(Biomes.BIRCH_FOREST),
+                        biomes.getOrThrow(Biomes.CHERRY_GROVE),
+                        biomes.getOrThrow(Biomes.FLOWER_FOREST),
+                        biomes.getOrThrow(Biomes.FOREST),
+                        biomes.getOrThrow(Biomes.GROVE),
+                        biomes.getOrThrow(Biomes.MEADOW),
+                        biomes.getOrThrow(Biomes.OLD_GROWTH_BIRCH_FOREST),
+                        biomes.getOrThrow(Biomes.OLD_GROWTH_PINE_TAIGA),
+                        biomes.getOrThrow(Biomes.OLD_GROWTH_SPRUCE_TAIGA),
+                        biomes.getOrThrow(Biomes.RIVER),
+                        biomes.getOrThrow(Biomes.WINDSWEPT_HILLS),
+                        biomes.getOrThrow(Biomes.WINDSWEPT_FOREST)
+                ),
+                HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.BLUEBERRY_BUSH_PLACED_KEY)),
+                GenerationStep.Decoration.VEGETAL_DECORATION));
+
+        context.register(GOOSEBERRY_BUSH, new BiomeModifiers.AddFeaturesBiomeModifier(
+                HolderSet.direct(
+                        biomes.getOrThrow(Biomes.FOREST),
+                        biomes.getOrThrow(Biomes.BIRCH_FOREST),
+                        biomes.getOrThrow(Biomes.OLD_GROWTH_BIRCH_FOREST),
+                        biomes.getOrThrow(Biomes.DARK_FOREST),
+                        biomes.getOrThrow(Biomes.CHERRY_GROVE),
+                        biomes.getOrThrow(Biomes.FLOWER_FOREST),
+                        biomes.getOrThrow(Biomes.TAIGA),
+                        biomes.getOrThrow(Biomes.OLD_GROWTH_PINE_TAIGA),
+                        biomes.getOrThrow(Biomes.OLD_GROWTH_SPRUCE_TAIGA),
+                        biomes.getOrThrow(Biomes.PLAINS),
+                        biomes.getOrThrow(Biomes.SUNFLOWER_PLAINS),
+                        biomes.getOrThrow(Biomes.SWAMP),
+                        biomes.getOrThrow(Biomes.MEADOW),
+                        biomes.getOrThrow(Biomes.RIVER),
+                        biomes.getOrThrow(Biomes.WINDSWEPT_FOREST)
+                ),
+                HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.GOOSEBERRY_BUSH_PLACED_KEY)),
                 GenerationStep.Decoration.VEGETAL_DECORATION));
 
         context.register(SPAWN_WORM, new BiomeModifiers.AddSpawnsBiomeModifier(

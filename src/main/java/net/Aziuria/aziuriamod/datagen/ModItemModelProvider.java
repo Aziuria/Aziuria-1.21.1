@@ -97,8 +97,12 @@ public class ModItemModelProvider extends ItemModelProvider {
         basicItem(ModItems.ORANGE.get());
         basicItem(ModItems.BLACKCURRANT.get());
         basicItem(ModItems.STRAWBERRY.get());
+        basicItem(ModItems.BLUEBERRY.get());
+        basicItem(ModItems.GOOSEBERRY.get());
         basicItem(ModItems.BLACKCURRANT_SEEDS.get());
         basicItem(ModItems.STRAWBERRY_SEEDS.get());
+        basicItem(ModItems.BLUEBERRY_SEEDS.get());
+        basicItem(ModItems.GOOSEBERRY_SEEDS.get());
         basicItem(ModItems.PEAR.get());
         basicItem(ModItems.AVOCADO.get());
         basicItem(ModItems.BANANA.get());
@@ -111,6 +115,8 @@ public class ModItemModelProvider extends ItemModelProvider {
         basicItem(ModItems.AVOCADO_JUICE.get());
         basicItem(ModItems.PINEAPPLE_JUICE.get());
         basicItem(ModItems.BLACKCURRANT_JUICE.get());
+        basicItem(ModItems.BLUEBERRY_JUICE.get());
+        basicItem(ModItems.GOOSEBERRY_JUICE.get());
         basicItem(ModItems.STRAWBERRY_JUICE.get());
         basicItem(ModItems.SWEETBERRY_JUICE.get());
         basicItem(ModItems.GLOWBERRY_JUICE.get());
@@ -120,6 +126,8 @@ public class ModItemModelProvider extends ItemModelProvider {
         basicItem(ModItems.APPLE_SMOOTHIE.get());
         basicItem(ModItems.AVOCADO_SMOOTHIE.get());
         basicItem(ModItems.BLACKCURRANT_SMOOTHIE.get());
+        basicItem(ModItems.BLUEBERRY_SMOOTHIE.get());
+        basicItem(ModItems.GOOSEBERRY_SMOOTHIE.get());
         basicItem(ModItems.CHERRY_SMOOTHIE.get());
         basicItem(ModItems.GLOWBERRY_SMOOTHIE.get());
         basicItem(ModItems.MELON_SMOOTHIE.get());

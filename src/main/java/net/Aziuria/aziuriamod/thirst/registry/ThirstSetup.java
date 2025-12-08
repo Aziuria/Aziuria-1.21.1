@@ -26,6 +26,8 @@ public class ThirstSetup {
         ThirstRegistry.register(ModItems.CHERRY.get(), 2);
         ThirstRegistry.register(ModItems.BLACKCURRANT.get(), 2);
         ThirstRegistry.register(ModItems.STRAWBERRY.get(), 2);
+        ThirstRegistry.register(ModItems.BLUEBERRY.get(), 2);
+        ThirstRegistry.register(ModItems.GOOSEBERRY.get(), 2);
 
         // === VEGETABLES ===
         ThirstRegistry.register(Items.CARROT, 2);
@@ -93,6 +95,8 @@ public class ThirstSetup {
         ThirstRegistry.register(ModItems.CHERRY_JUICE.get(), 4);
         ThirstRegistry.register(ModItems.AVOCADO_JUICE.get(), 3);
         ThirstRegistry.register(ModItems.BLACKCURRANT_JUICE.get(), 4);
+        ThirstRegistry.register(ModItems.BLUEBERRY_JUICE.get(), 4);
+        ThirstRegistry.register(ModItems.GOOSEBERRY_JUICE.get(), 4);
         ThirstRegistry.register(ModItems.SWEETBERRY_JUICE.get(), 4);
         ThirstRegistry.register(ModItems.GLOWBERRY_JUICE.get(), 4);
         ThirstRegistry.register(ModItems.STRAWBERRY_JUICE.get(), 4);
@@ -103,8 +107,10 @@ public class ThirstSetup {
         ThirstRegistry.register(ModItems.APPLE_SMOOTHIE.get(), 3);
         ThirstRegistry.register(ModItems.AVOCADO_SMOOTHIE.get(), 2);
         ThirstRegistry.register(ModItems.BLACKCURRANT_SMOOTHIE.get(), 3);
+        ThirstRegistry.register(ModItems.BLUEBERRY_SMOOTHIE.get(), 3);
         ThirstRegistry.register(ModItems.CHERRY_SMOOTHIE.get(), 3);
         ThirstRegistry.register(ModItems.GLOWBERRY_SMOOTHIE.get(), 3);
+        ThirstRegistry.register(ModItems.GOOSEBERRY_SMOOTHIE.get(), 3);
         ThirstRegistry.register(ModItems.MELON_SMOOTHIE.get(), 4);
         ThirstRegistry.register(ModItems.ORANGE_SMOOTHIE.get(), 3);
         ThirstRegistry.register(ModItems.PEAR_SMOOTHIE.get(), 3);

@@ -1,15 +1,17 @@
 package net.Aziuria.aziuriamod.handler;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.levelgen.Heightmap;
-import net.Aziuria.aziuriamod.block.ModBlocks; // Ensure LEAF_LITTER is registered properly
+import net.Aziuria.aziuriamod.block.ModBlocks; // Ensure LEAF_LITTER & sticks are registered properly
 
 public class LeafLitterHandler {
 
@@ -50,14 +52,13 @@ public class LeafLitterHandler {
                 // Check for nearby leaves instead of logs
                 if (isNearLeaves(level, surfacePos, 6)) {
                     if (chance < 1.0f) {
-                        level.setBlock(surfacePos, ModBlocks.LEAF_LITTER.get().defaultBlockState(), 3);
+                        // Random facing applied to leaf litter
+                        BlockState leafLitterState = applyRandomFacing(ModBlocks.LEAF_LITTER.get().defaultBlockState(), random);
+                        level.setBlock(surfacePos, leafLitterState, 3);
                     }
 
-                    // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-                    // ADDITION: RANDOM STICK A/B/C NATURAL SPAWN SYSTEM
-                    // 10% chance to spawn sticks near leaf litter
+                    // Random stick A/B/C spawn
                     if (random.nextFloat() < 0.40f) {
-
                         BlockState stickVariant;
                         float stickRoll = random.nextFloat();
 
@@ -69,17 +70,25 @@ public class LeafLitterHandler {
                             stickVariant = ModBlocks.STICK_C.get().defaultBlockState();
                         }
 
-                        level.setBlock(surfacePos, stickVariant, 3);
+                        // Random facing applied to sticks
+                        level.setBlock(surfacePos, applyRandomFacing(stickVariant, random), 3);
                     }
-                    // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
                 }
             }
         });
     }
 
+    private static BlockState applyRandomFacing(BlockState base, RandomSource random) {
+        if (base.hasProperty(BlockStateProperties.HORIZONTAL_FACING)) {
+            Direction dir = Direction.Plane.HORIZONTAL.getRandomDirection(random);
+            return base.setValue(BlockStateProperties.HORIZONTAL_FACING, dir);
+        }
+        return base;
+    }
+
     private static boolean isNearLeaves(ServerLevel level, BlockPos pos, int radius) {
         for (int dx = -radius; dx <= radius; dx++) {
-            for (int dy = -4; dy <= 9; dy++) {  // Changed from -2..5 to -4..9
+            for (int dy = -4; dy <= 9; dy++) {  // Allow for taller trees
                 for (int dz = -radius; dz <= radius; dz++) {
                     BlockPos checkPos = pos.offset(dx, dy, dz);
                     BlockState state = level.getBlockState(checkPos);
@@ -102,7 +111,7 @@ public class LeafLitterHandler {
                 || state.is(Blocks.DARK_OAK_LEAVES)
                 || state.is(Blocks.MANGROVE_LEAVES)
                 || state.is(Blocks.CHERRY_LEAVES)
-                // --- Aziuria Modded Leaves ---
+                // --- Modded Leaves ---
                 || state.is(ModBlocks.APPLE_LEAVES.get())
                 || state.is(ModBlocks.PEAR_LEAVES.get())
                 || state.is(ModBlocks.AVOCADO_LEAVES.get())

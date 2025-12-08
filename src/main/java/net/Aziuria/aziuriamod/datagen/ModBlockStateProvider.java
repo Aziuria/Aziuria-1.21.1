@@ -51,6 +51,8 @@ public class ModBlockStateProvider extends BlockStateProvider {
         makeCrop(((CropBlock) ModBlocks.PINEAPPLE_CROP.get()), "pineapple_crop_stage", "pineapple_crop_stage");
 
         makeBush(((SweetBerryBushBlock) ModBlocks.BLACKCURRANT_BUSH.get()), "blackcurrant_bush_stage", "blackcurrant_bush_stage");
+        makeBush(((SweetBerryBushBlock) ModBlocks.BLUEBERRY_BUSH.get()), "blueberry_bush_stage", "blueberry_bush_stage");
+        makeBush(((SweetBerryBushBlock) ModBlocks.GOOSEBERRY_BUSH.get()), "gooseberry_bush_stage", "gooseberry_bush_stage");
         makeBush(((SweetBerryBushBlock) ModBlocks.STRAWBERRY_BUSH.get()), "strawberry_bush_stage", "strawberry_bush_stage");
 
         getVariantBuilder(ModBlocks.FLAX_FLOWER_BLOCK.get())

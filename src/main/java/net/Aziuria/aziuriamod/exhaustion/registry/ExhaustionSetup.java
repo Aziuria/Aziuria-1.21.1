@@ -23,6 +23,8 @@ public class ExhaustionSetup {
         ExhaustionRegistry.register(ModItems.CHERRY.get(), 1);
         ExhaustionRegistry.register(ModItems.BLACKCURRANT.get(), 1);
         ExhaustionRegistry.register(ModItems.STRAWBERRY.get(), 1);
+        ExhaustionRegistry.register(ModItems.BLUEBERRY.get(), 1);
+        ExhaustionRegistry.register(ModItems.GOOSEBERRY.get(), 1);
         ExhaustionRegistry.register(ModItems.PINEAPPLE.get(), 2);
 
         // === VEGETABLES (low energy, easy digestion) ===
@@ -85,6 +87,8 @@ public class ExhaustionSetup {
         ExhaustionRegistry.register(ModItems.CHERRY_JUICE.get(), 1);
         ExhaustionRegistry.register(ModItems.AVOCADO_JUICE.get(), 0);
         ExhaustionRegistry.register(ModItems.BLACKCURRANT_JUICE.get(), 1);
+        ExhaustionRegistry.register(ModItems.BLUEBERRY_JUICE.get(), 1);
+        ExhaustionRegistry.register(ModItems.GOOSEBERRY_JUICE.get(), 1);
         ExhaustionRegistry.register(ModItems.SWEETBERRY_JUICE.get(), 1);
         ExhaustionRegistry.register(ModItems.GLOWBERRY_JUICE.get(), 1);
         ExhaustionRegistry.register(ModItems.STRAWBERRY_JUICE.get(), 1);
@@ -94,6 +98,8 @@ public class ExhaustionSetup {
         ExhaustionRegistry.register(ModItems.APPLE_SMOOTHIE.get(), 2);      // steady sugar energy
         ExhaustionRegistry.register(ModItems.AVOCADO_SMOOTHIE.get(), 3);    // fat/protein-rich, slow energy
         ExhaustionRegistry.register(ModItems.BLACKCURRANT_SMOOTHIE.get(), 2); // antioxidant sugar, mild rush
+        ExhaustionRegistry.register(ModItems.BLUEBERRY_SMOOTHIE.get(), 2); // antioxidant sugar, mild rush
+        ExhaustionRegistry.register(ModItems.GOOSEBERRY_SMOOTHIE.get(), 2); // antioxidant sugar, mild rush
         ExhaustionRegistry.register(ModItems.CHERRY_SMOOTHIE.get(), 2);
         ExhaustionRegistry.register(ModItems.GLOWBERRY_SMOOTHIE.get(), 2);
         ExhaustionRegistry.register(ModItems.MELON_SMOOTHIE.get(), 2);

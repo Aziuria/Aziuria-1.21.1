@@ -304,6 +304,7 @@ public class ModItems {
 
     public static final DeferredItem<Item> STRAWBERRY = ITEMS.register("strawberry",
             () -> new Item(new Item.Properties().food(ModFoodProperties.STRAWBERRY)));
+
     public static final DeferredItem<Item> STRAWBERRY_SEEDS = ITEMS.register("strawberry_seeds",
             () -> new ItemNameBlockItem(ModBlocks.STRAWBERRY_BUSH.get(), new Item.Properties()));
 
@@ -312,6 +313,18 @@ public class ModItems {
 
     public static final DeferredItem<Item> BLACKCURRANT_SEEDS = ITEMS.register("blackcurrant_seeds",
             () -> new ItemNameBlockItem(ModBlocks.BLACKCURRANT_BUSH.get(), new Item.Properties()));
+
+    public static final DeferredItem<Item> BLUEBERRY = ITEMS.register("blueberry",
+            () -> new Item(new Item.Properties().food(ModFoodProperties.BLUEBERRY)));
+
+    public static final DeferredItem<Item> BLUEBERRY_SEEDS = ITEMS.register("blueberry_seeds",
+            () -> new ItemNameBlockItem(ModBlocks.BLUEBERRY_BUSH.get(), new Item.Properties()));
+
+    public static final DeferredItem<Item> GOOSEBERRY = ITEMS.register("gooseberry",
+            () -> new Item(new Item.Properties().food(ModFoodProperties.GOOSEBERRY)));
+
+    public static final DeferredItem<Item> GOOSEBERRY_SEEDS = ITEMS.register("gooseberry_seeds",
+            () -> new ItemNameBlockItem(ModBlocks.GOOSEBERRY_BUSH.get(), new Item.Properties()));
 
 
     public static final DeferredItem<DrinkableItem> APPLE_JUICE = ITEMS.register("apple_juice",
@@ -390,6 +403,24 @@ public class ModItems {
             () -> new DrinkableItem(
                     new Item.Properties()
                             .food(ModFoodProperties.BLACKCURRANT_JUICE)
+                            .stacksTo(1)
+                            .craftRemainder(Items.GLASS_BOTTLE),
+                    32,
+                    UseAnim.DRINK));
+
+    public static final DeferredItem<DrinkableItem> BLUEBERRY_JUICE = ITEMS.register("blueberry_juice",
+            () -> new DrinkableItem(
+                    new Item.Properties()
+                            .food(ModFoodProperties.BLUEBERRY_JUICE)
+                            .stacksTo(1)
+                            .craftRemainder(Items.GLASS_BOTTLE),
+                    32,
+                    UseAnim.DRINK));
+
+    public static final DeferredItem<DrinkableItem> GOOSEBERRY_JUICE = ITEMS.register("gooseberry_juice",
+            () -> new DrinkableItem(
+                    new Item.Properties()
+                            .food(ModFoodProperties.GOOSEBERRY_JUICE)
                             .stacksTo(1)
                             .craftRemainder(Items.GLASS_BOTTLE),
                     32,
@@ -474,6 +505,20 @@ public class ModItems {
             () -> new SmoothieItem(
                     new Item.Properties()
                             .food(ModFoodProperties.BLACKCURRANT_SMOOTHIE)
+                            .stacksTo(1)
+            ));
+
+    public static final DeferredItem<SmoothieItem> BLUEBERRY_SMOOTHIE = ITEMS.register("blueberry_smoothie",
+            () -> new SmoothieItem(
+                    new Item.Properties()
+                            .food(ModFoodProperties.BLUEBERRY_SMOOTHIE)
+                            .stacksTo(1)
+            ));
+
+    public static final DeferredItem<SmoothieItem> GOOSEBERRY_SMOOTHIE = ITEMS.register("gooseberry_smoothie",
+            () -> new SmoothieItem(
+                    new Item.Properties()
+                            .food(ModFoodProperties.GOOSEBERRY_SMOOTHIE)
                             .stacksTo(1)
             ));
 
