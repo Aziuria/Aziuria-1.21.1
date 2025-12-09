@@ -5,13 +5,10 @@ import com.mojang.brigadier.arguments.StringArgumentType;
 import net.Aziuria.aziuriamod.fog.FogEventManager;
 import net.Aziuria.aziuriamod.fog.FogRegistry;
 import net.Aziuria.aziuriamod.fog.FogType;
-import net.Aziuria.aziuriamod.sounds.ModSounds;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.resources.sounds.SimpleSoundInstance;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
 import net.minecraft.network.chat.Component;
-import net.minecraft.sounds.SoundSource;
+import net.minecraft.server.level.ServerLevel;
 
 public class FogCommand {
     public static void register(CommandDispatcher<CommandSourceStack> dispatcher) {
@@ -62,6 +59,19 @@ public class FogCommand {
                                             ctx.getSource().sendFailure(Component.literal("Fog is currently disabled."));
                                             return 0;
                                         }
+
+                                        // --- Prevent evil fog during daytime ---
+                                        if ("evil".equals(match.getId())) {
+                                            if (ctx.getSource().getLevel() instanceof ServerLevel serverLevel) {
+                                                long time = serverLevel.getDayTime() % 24000L;
+                                                if (time < 13000L) { // before night
+                                                    ctx.getSource().sendFailure(Component.literal("Evil fog cannot be started during the day."));
+                                                    return 0;
+                                                }
+                                            }
+                                        }
+
+                                        // Start the fog
                                         FogEventManager.startFogNow(match);
                                         ctx.getSource().sendSuccess(() -> Component.literal("Started fog: " + id), false);
                                         return 1;
@@ -72,6 +82,5 @@ public class FogCommand {
                                 })
                         )
         );
-
     }
 }

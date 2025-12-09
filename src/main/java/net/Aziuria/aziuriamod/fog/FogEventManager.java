@@ -37,7 +37,9 @@ public class FogEventManager {
     private static boolean evilFogFadeOutTriggered = false;
 
     private static int daysFogDenied = 0; // tracks number of full days fog is denied
-    private static final int FOG_DENIAL_DAYS = 3; // now 3
+    private static final int FOG_DENIAL_DAYS = 1; // now 3
+
+    private static boolean fogForceStopping = false;
 
     private static boolean fogEnabled = true;
 
@@ -140,9 +142,18 @@ public class FogEventManager {
                 dissipatingMessageSent = true;
             }
             if (time >= fogEnd + TRANSITION_DURATION) {
+                // Fully clear fog state
                 activeFog = null;
                 dissipatingMessageSent = false;
-                nextFogCheckTime = time + FogCooldownHelper.calculate(random, null, currentIntensity, 20*60*5, 20*60*8);
+
+                // Reset stop flags
+                fogForceStopping = false;
+                evilFogFadeOutTriggered = false;
+
+                // Queue next fog naturally
+                nextFogCheckTime = mc.level.getGameTime() +
+                        FogCooldownHelper.calculate(random, null, currentIntensity, 20 * 60 * 5, 20 * 60 * 8);
+
                 stopAllSirens();
             }
             saveToSavedData(level);
@@ -197,12 +208,33 @@ public class FogEventManager {
             }
 
             if (time >= fogEnd) {
+                // Record fog event
                 FogProbabilityHelper.recordFogResult(activeFog.getId());
+
+                // Fully remove fog
                 activeFog = null;
                 dissipatingMessageSent = false;
-                nextFogCheckTime = time + FogCooldownHelper.calculate(random, null, currentIntensity, 20*60*5, 20*60*8);
 
-                NetworkHandler.sendFogStateToAll(new FogStateSyncPacket("", 0, 0, 0, 0, 0));
+                // Reset force stop and sunrise fade flags
+                fogForceStopping = false;
+                evilFogFadeOutTriggered = false;
+
+                // Normal cooldown scheduling
+                nextFogCheckTime = time +
+                        FogCooldownHelper.calculate(random, null, currentIntensity, 20 * 60 * 5, 20 * 60 * 8);
+
+                // Sync removal to client
+                NetworkHandler.sendFogStateToAll(
+                        new FogStateSyncPacket(
+                                "",                // no active fog
+                                -1,                // no intensity
+                                time,              // start time irrelevant
+                                time,              // fog end
+                                time,              // fade in end
+                                time               // fade out start
+                        )
+                );
+
                 saveToSavedData(level);
                 return;
             }
@@ -283,19 +315,41 @@ public class FogEventManager {
 
     // --- STOP ---
     public static void stopFogNow() {
-        activeFog = null;
-        fogStart = 0;
-        fogEnd = 0;
-        fogFadeInEnd = 0;
-        fogFadeOutStart = 0;
-        dissipatingMessageSent = false;
+        // If nothing active or already force stopping, ignore
+        if (activeFog == null || fogForceStopping) return;
 
+        fogForceStopping = true; // prevents repeated stop requests
+
+        long currentTime = 0;
         if (mc.level != null) {
-            nextFogCheckTime = mc.level.getGameTime() + FogCooldownHelper.calculate(random, null, currentIntensity, 20*60*5, 20*60*8);
-            saveToSavedData(mc.level);
+            currentTime = mc.level.getGameTime();
         }
 
+        // Trigger fade-out instead of deleting instantly
+        fogFadeOutStart = currentTime;
+        fogEnd = currentTime + TRANSITION_DURATION;  // transition fade
+
+        evilFogFadeOutTriggered = true; // prevent sunrise logic retriggering
+        dissipatingMessageSent = false; // reset so message can show
+
+        // Optional message — fade-out visual feedback
+        if (mc.player != null) {
+            mc.player.sendSystemMessage(
+                    Component.literal("⚠ Fog is dissipating...")
+                            .withStyle(style -> style.withColor(net.minecraft.ChatFormatting.YELLOW))
+            );
+            dissipatingMessageSent = true;
+        }
+
+        // Stop sounds immediately
         stopAllSirens();
+
+        // Write to save and schedule cooldown
+        if (mc.level != null) {
+            nextFogCheckTime = mc.level.getGameTime() +
+                    FogCooldownHelper.calculate(random, null, currentIntensity, 20 * 60 * 5, 20 * 60 * 8);
+            saveToSavedData(mc.level);
+        }
     }
 
     private static void stopAllSirens() {

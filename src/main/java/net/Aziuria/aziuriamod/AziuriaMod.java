@@ -4,6 +4,7 @@ import com.mojang.logging.LogUtils;
 import net.Aziuria.aziuriamod.block.ModBlocks;
 import net.Aziuria.aziuriamod.entity.ModEntity;
 import net.Aziuria.aziuriamod.entity.client.worm.WormRenderer;
+import net.Aziuria.aziuriamod.fog.events.ModServerEvents;
 import net.Aziuria.aziuriamod.island.util.BlockBatcher;
 import net.Aziuria.aziuriamod.client.ModClientCommonBusEvents;
 import net.Aziuria.aziuriamod.client.damage.ModDamageTypes;
@@ -135,6 +136,7 @@ public class AziuriaMod {
         NeoForge.EVENT_BUS.register(VillagerProfessionTickHandler.class);
         NeoForge.EVENT_BUS.addListener(ModVillagerTrades::onVillagerTrades);
         NeoForge.EVENT_BUS.addListener(FastLeafDecayHandler::onServerTick);
+        NeoForge.EVENT_BUS.register(ModServerEvents.class);
 
 
         // Register all mod content
