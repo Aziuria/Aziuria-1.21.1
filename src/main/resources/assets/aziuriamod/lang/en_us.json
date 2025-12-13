@@ -305,5 +305,7 @@
 
 
   "death.attack.dehydration": "%1$s died of dehydration",
-  "creativetab.aziuriamod.useful_items_and_blocks": "Useful Items and Blocks"
+  "creativetab.aziuriamod.useful_items_and_blocks": "Useful Items and Blocks",
+
+  "biome.aziuriamod.spectral_soulbound_forest": "Spectral Soulbound Forest"
 }

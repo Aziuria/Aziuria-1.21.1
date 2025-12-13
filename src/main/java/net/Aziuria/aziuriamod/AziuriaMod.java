@@ -43,10 +43,13 @@ import net.Aziuria.aziuriamod.villager.ModVillagerTrades;
 import net.Aziuria.aziuriamod.villager.ModVillagers;
 import net.Aziuria.aziuriamod.villager.VillagerAIHandler;
 import net.Aziuria.aziuriamod.villager.VillagerProfessionTickHandler;
+import net.Aziuria.aziuriamod.worldgen.biomes.ModOverworldRegion;
+import net.Aziuria.aziuriamod.worldgen.biomes.surface.ModSurfaceRules;
 import net.Aziuria.aziuriamod.worldgen.rules.registry.ModBlockStateProviders;
 import net.Aziuria.aziuriamod.worldgen.rules.registry.ModPlacementModifier;
 import net.Aziuria.aziuriamod.worldgen.rules.registry.ModTrunkPlacerTypes;
 import net.minecraft.client.renderer.entity.EntityRenderers;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.IEventBus;
@@ -66,6 +69,8 @@ import net.neoforged.neoforge.event.server.ServerStartingEvent;
 import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
 import net.neoforged.neoforge.capabilities.Capabilities;
 import org.slf4j.Logger;
+import terrablender.api.Regions;
+import terrablender.api.SurfaceRuleManager;
 
 @Mod(AziuriaMod.MOD_ID)
 public class AziuriaMod {
@@ -171,6 +176,10 @@ public class AziuriaMod {
         event.enqueueWork(() -> {
             ModDataMapHooks.register();
             LOGGER.info("Registered copper bar wax/scrape data maps.");
+
+            Regions.register(new ModOverworldRegion(ResourceLocation.fromNamespaceAndPath(MOD_ID, "overworld"), 30));
+
+            SurfaceRuleManager.addSurfaceRules(SurfaceRuleManager.RuleCategory.OVERWORLD, MOD_ID, ModSurfaceRules.makeRules());
         });
     }
     private void registerCapabilities(RegisterCapabilitiesEvent event) {
