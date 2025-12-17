@@ -948,14 +948,13 @@ public class ModPlacedFeatures {
         // Oak Variant 1
         {
             List<PlacementModifier> modifiers = new ArrayList<>(List.of(
-                    NoiseThresholdCountPlacement.of(0.6, 0, 2),
                     InSquarePlacement.spread(),
                     SurfaceWaterDepthFilter.forMaxDepth(1),
-                    RarityFilter.onAverageOnceEvery(4),
+                    RarityFilter.onAverageOnceEvery(1), // very frequent
                     PlacementUtils.HEIGHTMAP,
                     BlockPredicateFilter.forPredicate(
                             BlockPredicate.wouldSurvive(Blocks.OAK_SAPLING.defaultBlockState(), BlockPos.ZERO)
-                    ), // <-- Added this line to prevent spawning on sand
+                    ),
                     BiomeFilter.biome()
             ));
 
@@ -968,13 +967,14 @@ public class ModPlacedFeatures {
         // Oak Variant 1 - Very common for testing
         {
             List<PlacementModifier> modifiers = new ArrayList<>(List.of(
+                    NoiseThresholdCountPlacement.of(0.6, 0, 2),
                     InSquarePlacement.spread(),
                     SurfaceWaterDepthFilter.forMaxDepth(1),
-                    RarityFilter.onAverageOnceEvery(1), // very frequent
+                    RarityFilter.onAverageOnceEvery(4),
                     PlacementUtils.HEIGHTMAP,
                     BlockPredicateFilter.forPredicate(
                             BlockPredicate.wouldSurvive(Blocks.OAK_SAPLING.defaultBlockState(), BlockPos.ZERO)
-                    ),
+                    ), // <-- Added this line to prevent spawning on sand
                     BiomeFilter.biome()
             ));
 
