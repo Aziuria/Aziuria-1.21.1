@@ -32,93 +32,93 @@ import net.minecraft.world.level.levelgen.structure.templatesystem.TagMatchTest;
 import java.util.List;
 
 public class ModConfiguredFeatures {
-    public static final ResourceKey<ConfiguredFeature<?, ?>> OVERWORLD_SULPHUR_ORE_ULTRA_DEEP_KEY = registerKey("sulphur_ore_ultra_deep");
-    public static final ResourceKey<ConfiguredFeature<?, ?>> OVERWORLD_SULPHUR_ORE_DEEP_KEY = registerKey("sulphur_ore_deep");
-    public static final ResourceKey<ConfiguredFeature<?, ?>> OVERWORLD_SULPHUR_ORE_MID_KEY = registerKey("sulphur_ore_mid");
-    public static final ResourceKey<ConfiguredFeature<?, ?>> OVERWORLD_SULPHUR_ORE_UPPER_KEY = registerKey("sulphur_ore_upper");
-    public static final ResourceKey<ConfiguredFeature<?, ?>> OVERWORLD_SULPHUR_ORE_MOUNTAINS_KEY = registerKey("sulphur_ore_mountains");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> OVERWORLD_SULPHUR_ORE_ULTRA_DEEP_KEY = registerKey("configured_sulphur_ore_ultra_deep");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> OVERWORLD_SULPHUR_ORE_DEEP_KEY = registerKey("configured_sulphur_ore_deep");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> OVERWORLD_SULPHUR_ORE_MID_KEY = registerKey("configured_sulphur_ore_mid");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> OVERWORLD_SULPHUR_ORE_UPPER_KEY = registerKey("configured_sulphur_ore_upper");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> OVERWORLD_SULPHUR_ORE_MOUNTAINS_KEY = registerKey("configured_sulphur_ore_mountains");
 
-    public static final ResourceKey<ConfiguredFeature<?, ?>> OVERWORLD_POTASSIUM_ORE_ULTRA_DEEP_KEY = registerKey("potassium_ore_ultra_deep");
-    public static final ResourceKey<ConfiguredFeature<?, ?>> OVERWORLD_POTASSIUM_ORE_DEEP_KEY = registerKey("potassium_ore_deep");
-    public static final ResourceKey<ConfiguredFeature<?, ?>> OVERWORLD_POTASSIUM_ORE_MID_KEY = registerKey("potassium_ore_mid");
-    public static final ResourceKey<ConfiguredFeature<?, ?>> OVERWORLD_POTASSIUM_ORE_UPPER_KEY = registerKey("potassium_ore_upper");
-    public static final ResourceKey<ConfiguredFeature<?, ?>> OVERWORLD_POTASSIUM_ORE_MOUNTAINS_KEY = registerKey("potassium_ore_mountains");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> OVERWORLD_POTASSIUM_ORE_ULTRA_DEEP_KEY = registerKey("configured_potassium_ore_ultra_deep");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> OVERWORLD_POTASSIUM_ORE_DEEP_KEY = registerKey("configured_potassium_ore_deep");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> OVERWORLD_POTASSIUM_ORE_MID_KEY = registerKey("configured_potassium_ore_mid");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> OVERWORLD_POTASSIUM_ORE_UPPER_KEY = registerKey("configured_potassium_ore_upper");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> OVERWORLD_POTASSIUM_ORE_MOUNTAINS_KEY = registerKey("configured_potassium_ore_mountains");
 
-    public static final ResourceKey<ConfiguredFeature<?, ?>> OVERWORLD_TIN_ORE_ULTRA_DEEP_KEY = registerKey("tin_ore_ultra_deep");
-    public static final ResourceKey<ConfiguredFeature<?, ?>> OVERWORLD_TIN_ORE_DEEP_KEY = registerKey("tin_ore_deep");
-    public static final ResourceKey<ConfiguredFeature<?, ?>> OVERWORLD_TIN_ORE_MID_KEY = registerKey("tin_ore_mid");
-    public static final ResourceKey<ConfiguredFeature<?, ?>> OVERWORLD_TIN_ORE_UPPER_KEY = registerKey("tin_ore_upper");
-    public static final ResourceKey<ConfiguredFeature<?, ?>> OVERWORLD_TIN_ORE_MOUNTAINS_KEY = registerKey("tin_ore_mountains");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> OVERWORLD_TIN_ORE_ULTRA_DEEP_KEY = registerKey("configured_tin_ore_ultra_deep");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> OVERWORLD_TIN_ORE_DEEP_KEY = registerKey("configured_tin_ore_deep");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> OVERWORLD_TIN_ORE_MID_KEY = registerKey("configured_tin_ore_mid");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> OVERWORLD_TIN_ORE_UPPER_KEY = registerKey("configured_tin_ore_upper");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> OVERWORLD_TIN_ORE_MOUNTAINS_KEY = registerKey("configured_tin_ore_mountains");
 
-    public static final ResourceKey<ConfiguredFeature<?, ?>> OVERWORLD_SPINEL_ORE_ULTRA_DEEP_KEY = registerKey("spinel_ore_ultra_deep");
-    public static final ResourceKey<ConfiguredFeature<?, ?>> OVERWORLD_SPINEL_ORE_DEEP_KEY = registerKey("spinel_ore_deep");
-    public static final ResourceKey<ConfiguredFeature<?, ?>> OVERWORLD_SPINEL_ORE_MID_KEY = registerKey("spinel_ore_mid");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> OVERWORLD_SPINEL_ORE_ULTRA_DEEP_KEY = registerKey("configured_spinel_ore_ultra_deep");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> OVERWORLD_SPINEL_ORE_DEEP_KEY = registerKey("configured_spinel_ore_deep");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> OVERWORLD_SPINEL_ORE_MID_KEY = registerKey("configured_spinel_ore_mid");
 
-    public static final ResourceKey<ConfiguredFeature<?, ?>> LEAF_LITTER_KEY = registerKey("leaf_litter");
-    public static final ResourceKey<ConfiguredFeature<?, ?>> STICK_A = registerKey("stick_a");
-    public static final ResourceKey<ConfiguredFeature<?, ?>> STICK_B = registerKey("stick_b");
-    public static final ResourceKey<ConfiguredFeature<?, ?>> STICK_C = registerKey("stick_c");
-    public static final ResourceKey<ConfiguredFeature<?, ?>> FLAX_FLOWER_KEY = registerKey("flax_flower");
-    public static final ResourceKey<ConfiguredFeature<?, ?>> YUCCA_PLANT_KEY = registerKey("yucca_plant");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> LEAF_LITTER_KEY = registerKey("configured_leaf_litter");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> STICK_A = registerKey("configured_stick_a");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> STICK_B = registerKey("configured_stick_b");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> STICK_C = registerKey("configured_stick_c");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> FLAX_FLOWER_KEY = registerKey("configured_flax_flower");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> YUCCA_PLANT_KEY = registerKey("configured_yucca_plant");
 
-    public static final ResourceKey<ConfiguredFeature<?, ?>> APPLE_KEY_VARIANT_1 = registerKey("apple_variant_1");
-    public static final ResourceKey<ConfiguredFeature<?, ?>> APPLE_KEY_VARIANT_2 = registerKey("apple_variant_2");
-    public static final ResourceKey<ConfiguredFeature<?, ?>> APPLE_KEY_VARIANT_3 = registerKey("apple_variant_3");
-    public static final ResourceKey<ConfiguredFeature<?, ?>> APPLE_KEY_VARIANT_4 = registerKey("apple_variant_4");
-    public static final ResourceKey<ConfiguredFeature<?, ?>> APPLE_KEY_VARIANT_5 = registerKey("apple_variant_5");
-    public static final ResourceKey<ConfiguredFeature<?, ?>> APPLE_KEY_VARIANT_6 = registerKey("apple_variant_6");
-    public static final ResourceKey<ConfiguredFeature<?, ?>> APPLE_KEY_VARIANT_7 = registerKey("apple_variant_7");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> APPLE_KEY_VARIANT_1 = registerKey("apple_configured_variant_1");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> APPLE_KEY_VARIANT_2 = registerKey("apple_configured_variant_2");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> APPLE_KEY_VARIANT_3 = registerKey("apple_configured_variant_3");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> APPLE_KEY_VARIANT_4 = registerKey("apple_configured_variant_4");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> APPLE_KEY_VARIANT_5 = registerKey("apple_configured_variant_5");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> APPLE_KEY_VARIANT_6 = registerKey("apple_configured_variant_6");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> APPLE_KEY_VARIANT_7 = registerKey("apple_configured_variant_7");
 
-    public static final ResourceKey<ConfiguredFeature<?, ?>> PEAR_KEY_VARIANT_1 = registerKey("pear_variant_1");
-    public static final ResourceKey<ConfiguredFeature<?, ?>> PEAR_KEY_VARIANT_2 = registerKey("pear_variant_2");
-    public static final ResourceKey<ConfiguredFeature<?, ?>> PEAR_KEY_VARIANT_3 = registerKey("pear_variant_3");
-    public static final ResourceKey<ConfiguredFeature<?, ?>> PEAR_KEY_VARIANT_4 = registerKey("pear_variant_4");
-    public static final ResourceKey<ConfiguredFeature<?, ?>> PEAR_KEY_VARIANT_5 = registerKey("pear_variant_5");
-    public static final ResourceKey<ConfiguredFeature<?, ?>> PEAR_KEY_VARIANT_6 = registerKey("pear_variant_6");
-    public static final ResourceKey<ConfiguredFeature<?, ?>> PEAR_KEY_VARIANT_7 = registerKey("pear_variant_7");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> PEAR_KEY_VARIANT_1 = registerKey("pear_configured_variant_1");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> PEAR_KEY_VARIANT_2 = registerKey("pear_configured_variant_2");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> PEAR_KEY_VARIANT_3 = registerKey("pear_configured_variant_3");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> PEAR_KEY_VARIANT_4 = registerKey("pear_configured_variant_4");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> PEAR_KEY_VARIANT_5 = registerKey("pear_configured_variant_5");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> PEAR_KEY_VARIANT_6 = registerKey("pear_configured_variant_6");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> PEAR_KEY_VARIANT_7 = registerKey("pear_configured_variant_7");
 
-    public static final ResourceKey<ConfiguredFeature<?, ?>> CHERRY_KEY_VARIANT_1 = registerKey("cherry_variant_1");
-    public static final ResourceKey<ConfiguredFeature<?, ?>> CHERRY_KEY_VARIANT_2 = registerKey("cherry_variant_2");
-    public static final ResourceKey<ConfiguredFeature<?, ?>> CHERRY_KEY_VARIANT_3 = registerKey("cherry_variant_3");
-    public static final ResourceKey<ConfiguredFeature<?, ?>> CHERRY_KEY_VARIANT_4 = registerKey("cherry_variant_4");
-    public static final ResourceKey<ConfiguredFeature<?, ?>> CHERRY_KEY_VARIANT_5 = registerKey("cherry_variant_5");
-    public static final ResourceKey<ConfiguredFeature<?, ?>> CHERRY_KEY_VARIANT_6 = registerKey("cherry_variant_6");
-    public static final ResourceKey<ConfiguredFeature<?, ?>> CHERRY_KEY_VARIANT_7 = registerKey("cherry_variant_7");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> CHERRY_KEY_VARIANT_1 = registerKey("cherry_configured_variant_1");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> CHERRY_KEY_VARIANT_2 = registerKey("cherry_configured_variant_2");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> CHERRY_KEY_VARIANT_3 = registerKey("cherry_configured_variant_3");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> CHERRY_KEY_VARIANT_4 = registerKey("cherry_configured_variant_4");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> CHERRY_KEY_VARIANT_5 = registerKey("cherry_configured_variant_5");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> CHERRY_KEY_VARIANT_6 = registerKey("cherry_configured_variant_6");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> CHERRY_KEY_VARIANT_7 = registerKey("cherry_configured_variant_7");
 
-    public static final ResourceKey<ConfiguredFeature<?, ?>> AVOCADO_KEY_VARIANT_1 = registerKey("avocado_variant_1");
-    public static final ResourceKey<ConfiguredFeature<?, ?>> AVOCADO_KEY_VARIANT_2 = registerKey("avocado_variant_2");
-    public static final ResourceKey<ConfiguredFeature<?, ?>> AVOCADO_KEY_VARIANT_3 = registerKey("avocado_variant_3");
-    public static final ResourceKey<ConfiguredFeature<?, ?>> AVOCADO_KEY_VARIANT_4 = registerKey("avocado_variant_4");
-    public static final ResourceKey<ConfiguredFeature<?, ?>> AVOCADO_KEY_VARIANT_5 = registerKey("avocado_variant_5");
-    public static final ResourceKey<ConfiguredFeature<?, ?>> AVOCADO_KEY_VARIANT_6 = registerKey("avocado_variant_6");
-    public static final ResourceKey<ConfiguredFeature<?, ?>> AVOCADO_KEY_VARIANT_7 = registerKey("avocado_variant_7");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> AVOCADO_KEY_VARIANT_1 = registerKey("avocado_configured_variant_1");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> AVOCADO_KEY_VARIANT_2 = registerKey("avocado_configured_variant_2");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> AVOCADO_KEY_VARIANT_3 = registerKey("avocado_configured_variant_3");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> AVOCADO_KEY_VARIANT_4 = registerKey("avocado_configured_variant_4");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> AVOCADO_KEY_VARIANT_5 = registerKey("avocado_configured_variant_5");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> AVOCADO_KEY_VARIANT_6 = registerKey("avocado_configured_variant_6");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> AVOCADO_KEY_VARIANT_7 = registerKey("avocado_configured_variant_7");
 
-    public static final ResourceKey<ConfiguredFeature<?, ?>> ORANGE_KEY_VARIANT_1 = registerKey("orange_variant_1");
-    public static final ResourceKey<ConfiguredFeature<?, ?>> ORANGE_KEY_VARIANT_2 = registerKey("orange_variant_2");
-    public static final ResourceKey<ConfiguredFeature<?, ?>> ORANGE_KEY_VARIANT_3 = registerKey("orange_variant_3");
-    public static final ResourceKey<ConfiguredFeature<?, ?>> ORANGE_KEY_VARIANT_4 = registerKey("orange_variant_4");
-    public static final ResourceKey<ConfiguredFeature<?, ?>> ORANGE_KEY_VARIANT_5 = registerKey("orange_variant_5");
-    public static final ResourceKey<ConfiguredFeature<?, ?>> ORANGE_KEY_VARIANT_6 = registerKey("orange_variant_6");
-    public static final ResourceKey<ConfiguredFeature<?, ?>> ORANGE_KEY_VARIANT_7 = registerKey("orange_variant_7");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> ORANGE_KEY_VARIANT_1 = registerKey("orange_configured_variant_1");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> ORANGE_KEY_VARIANT_2 = registerKey("orange_configured_variant_2");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> ORANGE_KEY_VARIANT_3 = registerKey("orange_configured_variant_3");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> ORANGE_KEY_VARIANT_4 = registerKey("orange_configured_variant_4");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> ORANGE_KEY_VARIANT_5 = registerKey("orange_configured_variant_5");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> ORANGE_KEY_VARIANT_6 = registerKey("orange_configured_variant_6");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> ORANGE_KEY_VARIANT_7 = registerKey("orange_configured_variant_7");
 
-    public static final ResourceKey<ConfiguredFeature<?, ?>> BANANA_KEY_VARIANT_1 = registerKey("banana_variant_1");
-    public static final ResourceKey<ConfiguredFeature<?, ?>> BANANA_KEY_VARIANT_2 = registerKey("banana_variant_2");
-    public static final ResourceKey<ConfiguredFeature<?, ?>> BANANA_KEY_VARIANT_3 = registerKey("banana_variant_3");
-    public static final ResourceKey<ConfiguredFeature<?, ?>> BANANA_KEY_VARIANT_4 = registerKey("banana_variant_4");
-    public static final ResourceKey<ConfiguredFeature<?, ?>> BANANA_KEY_VARIANT_5 = registerKey("banana_variant_5");
-    public static final ResourceKey<ConfiguredFeature<?, ?>> BANANA_KEY_VARIANT_6 = registerKey("banana_variant_6");
-    public static final ResourceKey<ConfiguredFeature<?, ?>> BANANA_KEY_VARIANT_7 = registerKey("banana_variant_7");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> BANANA_KEY_VARIANT_1 = registerKey("banana_configured_variant_1");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> BANANA_KEY_VARIANT_2 = registerKey("banana_configured_variant_2");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> BANANA_KEY_VARIANT_3 = registerKey("banana_configured_variant_3");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> BANANA_KEY_VARIANT_4 = registerKey("banana_configured_variant_4");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> BANANA_KEY_VARIANT_5 = registerKey("banana_configured_variant_5");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> BANANA_KEY_VARIANT_6 = registerKey("banana_configured_variant_6");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> BANANA_KEY_VARIANT_7 = registerKey("banana_configured_variant_7");
 
-    public static final ResourceKey<ConfiguredFeature<?, ?>> OAK_KEY_VARIANT_1 = registerKey("oak_variant_1");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> OAK_KEY_VARIANT_1 = registerKey("oak_configured_variant_1");
 
-    public static final ResourceKey<ConfiguredFeature<?, ?>> DARK_OAK_VARIANT_1 = registerKey("dark_oak_variant_1");
-    public static final ResourceKey<ConfiguredFeature<?, ?>> DARK_OAK_VARIANT_2 = registerKey("dark_oak_variant_2");
-    public static final ResourceKey<ConfiguredFeature<?, ?>> BIRCH_VARIANT_1 = registerKey("birch_variant_1");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> DARK_OAK_VARIANT_1 = registerKey("dark_oak_configured_variant_1");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> DARK_OAK_VARIANT_2 = registerKey("dark_oak_configured_variant_2");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> BIRCH_VARIANT_1 = registerKey("birch_configured_variant_1");
 
-    public static final ResourceKey<ConfiguredFeature<?, ?>> BLACKCURRANT_BUSH_KEY = registerKey("blackcurrant_bush");
-    public static final ResourceKey<ConfiguredFeature<?, ?>> BLUEBERRY_BUSH_KEY = registerKey("blueberry_bush");
-    public static final ResourceKey<ConfiguredFeature<?, ?>> STRAWBERRY_BUSH_KEY = registerKey("strawberry_bush");
-    public static final ResourceKey<ConfiguredFeature<?, ?>> GOOSEBERRY_BUSH_KEY = registerKey("gooseberry_bush");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> BLACKCURRANT_BUSH_KEY = registerKey("configured_blackcurrant_bush");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> BLUEBERRY_BUSH_KEY = registerKey("configured_blueberry_bush");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> STRAWBERRY_BUSH_KEY = registerKey("configured_strawberry_bush");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> GOOSEBERRY_BUSH_KEY = registerKey("configured_gooseberry_bush");
 
 
 
@@ -358,7 +358,6 @@ public class ModConfiguredFeatures {
                         featureSize
                 ).build()
         );
-
 
         // Variant 1 - Small, bushy dark oak
         register(context, DARK_OAK_VARIANT_1, Feature.TREE,

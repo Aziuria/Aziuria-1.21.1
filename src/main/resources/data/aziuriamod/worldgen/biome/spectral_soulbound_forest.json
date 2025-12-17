@@ -79,7 +79,7 @@
     [
       "minecraft:glow_lichen",
       "minecraft:forest_flowers",
-      "minecraft:trees_birch_and_oak",
+      "aziuriamod:oak_placed_variant_1",
       "minecraft:flower_default",
       "minecraft:patch_grass_forest",
       "minecraft:brown_mushroom_normal",

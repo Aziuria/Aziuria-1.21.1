@@ -51,67 +51,68 @@ public class ModPlacedFeatures {
     public static final ResourceKey<PlacedFeature> LEAF_LITTER_EXTRA3_PLACED_KEY = registerKey("leaf_litter_extra3");
 
 
-    public static final ResourceKey<PlacedFeature> STICK_A = registerKey("stick_a");
-    public static final ResourceKey<PlacedFeature> STICK_B = registerKey("stick_b");
-    public static final ResourceKey<PlacedFeature> STICK_C = registerKey("stick_c");
+    public static final ResourceKey<PlacedFeature> STICK_A = registerKey("stick_a_placed");
+    public static final ResourceKey<PlacedFeature> STICK_B = registerKey("stick_b_placed");
+    public static final ResourceKey<PlacedFeature> STICK_C = registerKey("stick_c_placed");
 
     public static final ResourceKey<PlacedFeature> FLAX_FLOWER_PLACED_KEY = registerKey("flax_flower_placed");
     public static final ResourceKey<PlacedFeature> YUCCA_PLANT_PLACED_KEY = registerKey("yucca_plant_placed");
 
-    public static final ResourceKey<PlacedFeature> APPLE_KEY_VARIANT_1 = registerKey("apple_variant_1");
-    public static final ResourceKey<PlacedFeature> APPLE_KEY_VARIANT_2 = registerKey("apple_variant_2");
-    public static final ResourceKey<PlacedFeature> APPLE_KEY_VARIANT_3 = registerKey("apple_variant_3");
-    public static final ResourceKey<PlacedFeature> APPLE_KEY_VARIANT_4 = registerKey("apple_variant_4");
-    public static final ResourceKey<PlacedFeature> APPLE_KEY_VARIANT_5 = registerKey("apple_variant_5");
-    public static final ResourceKey<PlacedFeature> APPLE_KEY_VARIANT_6 = registerKey("apple_variant_6");
-    public static final ResourceKey<PlacedFeature> APPLE_KEY_VARIANT_7 = registerKey("apple_variant_7");
+    public static final ResourceKey<PlacedFeature> APPLE_KEY_VARIANT_1 = registerKey("apple_placed_variant_1");
+    public static final ResourceKey<PlacedFeature> APPLE_KEY_VARIANT_2 = registerKey("apple_placed_variant_2");
+    public static final ResourceKey<PlacedFeature> APPLE_KEY_VARIANT_3 = registerKey("apple_placed_variant_3");
+    public static final ResourceKey<PlacedFeature> APPLE_KEY_VARIANT_4 = registerKey("apple_placed_variant_4");
+    public static final ResourceKey<PlacedFeature> APPLE_KEY_VARIANT_5 = registerKey("apple_placed_variant_5");
+    public static final ResourceKey<PlacedFeature> APPLE_KEY_VARIANT_6 = registerKey("apple_placed_variant_6");
+    public static final ResourceKey<PlacedFeature> APPLE_KEY_VARIANT_7 = registerKey("apple_placed_variant_7");
 
-    public static final ResourceKey<PlacedFeature> PEAR_KEY_VARIANT_1 = registerKey("pear_variant_1");
-    public static final ResourceKey<PlacedFeature> PEAR_KEY_VARIANT_2 = registerKey("pear_variant_2");
-    public static final ResourceKey<PlacedFeature> PEAR_KEY_VARIANT_3 = registerKey("pear_variant_3");
-    public static final ResourceKey<PlacedFeature> PEAR_KEY_VARIANT_4 = registerKey("pear_variant_4");
-    public static final ResourceKey<PlacedFeature> PEAR_KEY_VARIANT_5 = registerKey("pear_variant_5");
-    public static final ResourceKey<PlacedFeature> PEAR_KEY_VARIANT_6 = registerKey("pear_variant_6");
-    public static final ResourceKey<PlacedFeature> PEAR_KEY_VARIANT_7 = registerKey("pear_variant_7");
+    public static final ResourceKey<PlacedFeature> PEAR_KEY_VARIANT_1 = registerKey("pear_placed_variant_1");
+    public static final ResourceKey<PlacedFeature> PEAR_KEY_VARIANT_2 = registerKey("pear_placed_variant_2");
+    public static final ResourceKey<PlacedFeature> PEAR_KEY_VARIANT_3 = registerKey("pear_placed_variant_3");
+    public static final ResourceKey<PlacedFeature> PEAR_KEY_VARIANT_4 = registerKey("pear_placed_variant_4");
+    public static final ResourceKey<PlacedFeature> PEAR_KEY_VARIANT_5 = registerKey("pear_placed_variant_5");
+    public static final ResourceKey<PlacedFeature> PEAR_KEY_VARIANT_6 = registerKey("pear_placed_variant_6");
+    public static final ResourceKey<PlacedFeature> PEAR_KEY_VARIANT_7 = registerKey("pear_placed_variant_7");
 
-    public static final ResourceKey<PlacedFeature> CHERRY_KEY_VARIANT_1 = registerKey("cherry_variant_1");
-    public static final ResourceKey<PlacedFeature> CHERRY_KEY_VARIANT_2 = registerKey("cherry_variant_2");
-    public static final ResourceKey<PlacedFeature> CHERRY_KEY_VARIANT_3 = registerKey("cherry_variant_3");
-    public static final ResourceKey<PlacedFeature> CHERRY_KEY_VARIANT_4 = registerKey("cherry_variant_4");
-    public static final ResourceKey<PlacedFeature> CHERRY_KEY_VARIANT_5 = registerKey("cherry_variant_5");
-    public static final ResourceKey<PlacedFeature> CHERRY_KEY_VARIANT_6 = registerKey("cherry_variant_6");
-    public static final ResourceKey<PlacedFeature> CHERRY_KEY_VARIANT_7 = registerKey("cherry_variant_7");
+    public static final ResourceKey<PlacedFeature> CHERRY_KEY_VARIANT_1 = registerKey("cherry_placed_variant_1");
+    public static final ResourceKey<PlacedFeature> CHERRY_KEY_VARIANT_2 = registerKey("cherry_placed_variant_2");
+    public static final ResourceKey<PlacedFeature> CHERRY_KEY_VARIANT_3 = registerKey("cherry_placed_variant_3");
+    public static final ResourceKey<PlacedFeature> CHERRY_KEY_VARIANT_4 = registerKey("cherry_placed_variant_4");
+    public static final ResourceKey<PlacedFeature> CHERRY_KEY_VARIANT_5 = registerKey("cherry_placed_variant_5");
+    public static final ResourceKey<PlacedFeature> CHERRY_KEY_VARIANT_6 = registerKey("cherry_placed_variant_6");
+    public static final ResourceKey<PlacedFeature> CHERRY_KEY_VARIANT_7 = registerKey("cherry_placed_variant_7");
 
-    public static final ResourceKey<PlacedFeature> AVOCADO_KEY_VARIANT_1 = registerKey("avocado_variant_1");
-    public static final ResourceKey<PlacedFeature> AVOCADO_KEY_VARIANT_2 = registerKey("avocado_variant_2");
-    public static final ResourceKey<PlacedFeature> AVOCADO_KEY_VARIANT_3 = registerKey("avocado_variant_3");
-    public static final ResourceKey<PlacedFeature> AVOCADO_KEY_VARIANT_4 = registerKey("avocado_variant_4");
-    public static final ResourceKey<PlacedFeature> AVOCADO_KEY_VARIANT_5 = registerKey("avocado_variant_5");
-    public static final ResourceKey<PlacedFeature> AVOCADO_KEY_VARIANT_6 = registerKey("avocado_variant_6");
-    public static final ResourceKey<PlacedFeature> AVOCADO_KEY_VARIANT_7 = registerKey("avocado_variant_7");
+    public static final ResourceKey<PlacedFeature> AVOCADO_KEY_VARIANT_1 = registerKey("avocado_placed_variant_1");
+    public static final ResourceKey<PlacedFeature> AVOCADO_KEY_VARIANT_2 = registerKey("avocado_placed_variant_2");
+    public static final ResourceKey<PlacedFeature> AVOCADO_KEY_VARIANT_3 = registerKey("avocado_placed_variant_3");
+    public static final ResourceKey<PlacedFeature> AVOCADO_KEY_VARIANT_4 = registerKey("avocado_placed_variant_4");
+    public static final ResourceKey<PlacedFeature> AVOCADO_KEY_VARIANT_5 = registerKey("avocado_placed_variant_5");
+    public static final ResourceKey<PlacedFeature> AVOCADO_KEY_VARIANT_6 = registerKey("avocado_placed_variant_6");
+    public static final ResourceKey<PlacedFeature> AVOCADO_KEY_VARIANT_7 = registerKey("avocado_placed_variant_7");
 
-    public static final ResourceKey<PlacedFeature> ORANGE_KEY_VARIANT_1 = registerKey("orange_variant_1");
-    public static final ResourceKey<PlacedFeature> ORANGE_KEY_VARIANT_2 = registerKey("orange_variant_2");
-    public static final ResourceKey<PlacedFeature> ORANGE_KEY_VARIANT_3 = registerKey("orange_variant_3");
-    public static final ResourceKey<PlacedFeature> ORANGE_KEY_VARIANT_4 = registerKey("orange_variant_4");
-    public static final ResourceKey<PlacedFeature> ORANGE_KEY_VARIANT_5 = registerKey("orange_variant_5");
-    public static final ResourceKey<PlacedFeature> ORANGE_KEY_VARIANT_6 = registerKey("orange_variant_6");
-    public static final ResourceKey<PlacedFeature> ORANGE_KEY_VARIANT_7 = registerKey("orange_variant_7");
+    public static final ResourceKey<PlacedFeature> ORANGE_KEY_VARIANT_1 = registerKey("orange_placed_variant_1");
+    public static final ResourceKey<PlacedFeature> ORANGE_KEY_VARIANT_2 = registerKey("orange_placed_variant_2");
+    public static final ResourceKey<PlacedFeature> ORANGE_KEY_VARIANT_3 = registerKey("orange_placed_variant_3");
+    public static final ResourceKey<PlacedFeature> ORANGE_KEY_VARIANT_4 = registerKey("orange_placed_variant_4");
+    public static final ResourceKey<PlacedFeature> ORANGE_KEY_VARIANT_5 = registerKey("orange_placed_variant_5");
+    public static final ResourceKey<PlacedFeature> ORANGE_KEY_VARIANT_6 = registerKey("orange_placed_variant_6");
+    public static final ResourceKey<PlacedFeature> ORANGE_KEY_VARIANT_7 = registerKey("orange_placed_variant_7");
 
-    public static final ResourceKey<PlacedFeature> BANANA_KEY_VARIANT_1 = registerKey("banana_variant_1");
-    public static final ResourceKey<PlacedFeature> BANANA_KEY_VARIANT_2 = registerKey("banana_variant_2");
-    public static final ResourceKey<PlacedFeature> BANANA_KEY_VARIANT_3 = registerKey("banana_variant_3");
-    public static final ResourceKey<PlacedFeature> BANANA_KEY_VARIANT_4 = registerKey("banana_variant_4");
-    public static final ResourceKey<PlacedFeature> BANANA_KEY_VARIANT_5 = registerKey("banana_variant_5");
-    public static final ResourceKey<PlacedFeature> BANANA_KEY_VARIANT_6 = registerKey("banana_variant_6");
-    public static final ResourceKey<PlacedFeature> BANANA_KEY_VARIANT_7 = registerKey("banana_variant_7");
+    public static final ResourceKey<PlacedFeature> BANANA_KEY_VARIANT_1 = registerKey("banana_placed_variant_1");
+    public static final ResourceKey<PlacedFeature> BANANA_KEY_VARIANT_2 = registerKey("banana_placed_variant_2");
+    public static final ResourceKey<PlacedFeature> BANANA_KEY_VARIANT_3 = registerKey("banana_placed_variant_3");
+    public static final ResourceKey<PlacedFeature> BANANA_KEY_VARIANT_4 = registerKey("banana_placed_variant_4");
+    public static final ResourceKey<PlacedFeature> BANANA_KEY_VARIANT_5 = registerKey("banana_placed_variant_5");
+    public static final ResourceKey<PlacedFeature> BANANA_KEY_VARIANT_6 = registerKey("banana_placed_variant_6");
+    public static final ResourceKey<PlacedFeature> BANANA_KEY_VARIANT_7 = registerKey("banana_placed_variant_7");
 
-    public static final ResourceKey<PlacedFeature> OAK_KEY_VARIANT_1 = registerKey("oak_variant_1");
+    public static final ResourceKey<PlacedFeature> OAK_KEY_VARIANT_1 = registerKey("oak_placed_variant_1");
+    public static final ResourceKey<PlacedFeature> OAK_KEY_VARIANT_1_VANILLA = registerKey("oak_placed_variant_1_vanilla");
 
-    public static final ResourceKey<PlacedFeature> DARK_OAK_KEY_VARIANT_1 = registerKey("dark_oak_variant_1");
-    public static final ResourceKey<PlacedFeature> DARK_OAK_KEY_VARIANT_2 = registerKey("dark_oak_variant_2");
+    public static final ResourceKey<PlacedFeature> DARK_OAK_KEY_VARIANT_1 = registerKey("dark_oak_placed_variant_1");
+    public static final ResourceKey<PlacedFeature> DARK_OAK_KEY_VARIANT_2 = registerKey("dark_oak_placed_variant_2");
 
-    public static final ResourceKey<PlacedFeature> BIRCH_VARIANT_1 = registerKey("birch_variant_1");
+    public static final ResourceKey<PlacedFeature> BIRCH_VARIANT_1 = registerKey("birch_placed_variant_1");
 
     public static final ResourceKey<PlacedFeature> BLACKCURRANT_BUSH_PLACED_KEY = registerKey("blackcurrant_bush_placed");
     public static final ResourceKey<PlacedFeature> BLUEBERRY_BUSH_PLACED_KEY = registerKey("blueberry_bush_placed");
@@ -381,7 +382,7 @@ public class ModPlacedFeatures {
                     NoiseThresholdCountPlacement.of(0.8, 0, 2),
                     ModBlocks.APPLE_SAPLING.get()
             ));
-            modifiers.add(RarityFilter.onAverageOnceEvery(13));
+            modifiers.add(RarityFilter.onAverageOnceEvery(2));
 
             register(context, APPLE_KEY_VARIANT_7,
                     configuredFeatures.getOrThrow(ModConfiguredFeatures.APPLE_KEY_VARIANT_7),
@@ -773,7 +774,7 @@ public class ModPlacedFeatures {
                     NoiseThresholdCountPlacement.of(0.8, 0, 2),
                     ModBlocks.ORANGE_SAPLING.get()
             ));
-            modifiers.add(RarityFilter.onAverageOnceEvery(13));
+            modifiers.add(RarityFilter.onAverageOnceEvery(2));
 
             register(context, ORANGE_KEY_VARIANT_7,
                     configuredFeatures.getOrThrow(ModConfiguredFeatures.ORANGE_KEY_VARIANT_7),
@@ -950,7 +951,7 @@ public class ModPlacedFeatures {
                     NoiseThresholdCountPlacement.of(0.6, 0, 2),
                     InSquarePlacement.spread(),
                     SurfaceWaterDepthFilter.forMaxDepth(1),
-                    RarityFilter.onAverageOnceEvery(8),
+                    RarityFilter.onAverageOnceEvery(4),
                     PlacementUtils.HEIGHTMAP,
                     BlockPredicateFilter.forPredicate(
                             BlockPredicate.wouldSurvive(Blocks.OAK_SAPLING.defaultBlockState(), BlockPos.ZERO)
@@ -959,6 +960,25 @@ public class ModPlacedFeatures {
             ));
 
             register(context, OAK_KEY_VARIANT_1,
+                    configuredFeatures.getOrThrow(ModConfiguredFeatures.OAK_KEY_VARIANT_1),
+                    modifiers
+            );
+        }
+
+        // Oak Variant 1 - Very common for testing
+        {
+            List<PlacementModifier> modifiers = new ArrayList<>(List.of(
+                    InSquarePlacement.spread(),
+                    SurfaceWaterDepthFilter.forMaxDepth(1),
+                    RarityFilter.onAverageOnceEvery(1), // very frequent
+                    PlacementUtils.HEIGHTMAP,
+                    BlockPredicateFilter.forPredicate(
+                            BlockPredicate.wouldSurvive(Blocks.OAK_SAPLING.defaultBlockState(), BlockPos.ZERO)
+                    ),
+                    BiomeFilter.biome()
+            ));
+
+            register(context, OAK_KEY_VARIANT_1_VANILLA,
                     configuredFeatures.getOrThrow(ModConfiguredFeatures.OAK_KEY_VARIANT_1),
                     modifiers
             );

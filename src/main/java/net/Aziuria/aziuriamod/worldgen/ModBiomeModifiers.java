@@ -8,6 +8,7 @@ import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BiomeTags;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.biome.Biomes;
 import net.minecraft.world.level.biome.MobSpawnSettings;
 import net.minecraft.world.level.levelgen.GenerationStep;
@@ -50,72 +51,73 @@ public class ModBiomeModifiers {
     public static final ResourceKey<BiomeModifier> ADD_LEAF_LITTER_EXTRA3 = registerKey("add_leaf_litter_extra3");
 
     public static final ResourceKey<BiomeModifier> ADD_FLAX_FLOWER = registerKey("add_flax_flower");
-    public static final ResourceKey<BiomeModifier> STICK_A = registerKey("stick_a");
-    public static final ResourceKey<BiomeModifier> STICK_B = registerKey("stick_b");
-    public static final ResourceKey<BiomeModifier> STICK_C = registerKey("stick_c");
-    public static final ResourceKey<BiomeModifier> YUCCA_PLANT = registerKey("yucca_plant");
+    public static final ResourceKey<BiomeModifier> STICK_A = registerKey("add_stick_a");
+    public static final ResourceKey<BiomeModifier> STICK_B = registerKey("add_stick_b");
+    public static final ResourceKey<BiomeModifier> STICK_C = registerKey("add_stick_c");
+    public static final ResourceKey<BiomeModifier> YUCCA_PLANT = registerKey("add_yucca_plant");
 
-    public static final ResourceKey<BiomeModifier> APPLE_KEY_VARIANT_1 = registerKey("apple_variant_1");
-    public static final ResourceKey<BiomeModifier> APPLE_KEY_VARIANT_2 = registerKey("apple_variant_2");
-    public static final ResourceKey<BiomeModifier> APPLE_KEY_VARIANT_3 = registerKey("apple_variant_3");
-    public static final ResourceKey<BiomeModifier> APPLE_KEY_VARIANT_4 = registerKey("apple_variant_4");
-    public static final ResourceKey<BiomeModifier> APPLE_KEY_VARIANT_5 = registerKey("apple_variant_5");
-    public static final ResourceKey<BiomeModifier> APPLE_KEY_VARIANT_6 = registerKey("apple_variant_6");
-    public static final ResourceKey<BiomeModifier> APPLE_KEY_VARIANT_7 = registerKey("apple_variant_7");
+    public static final ResourceKey<BiomeModifier> APPLE_KEY_VARIANT_1 = registerKey("add_apple_variant_1");
+    public static final ResourceKey<BiomeModifier> APPLE_KEY_VARIANT_2 = registerKey("add_apple_variant_2");
+    public static final ResourceKey<BiomeModifier> APPLE_KEY_VARIANT_3 = registerKey("add_apple_variant_3");
+    public static final ResourceKey<BiomeModifier> APPLE_KEY_VARIANT_4 = registerKey("add_apple_variant_4");
+    public static final ResourceKey<BiomeModifier> APPLE_KEY_VARIANT_5 = registerKey("add_apple_variant_5");
+    public static final ResourceKey<BiomeModifier> APPLE_KEY_VARIANT_6 = registerKey("add_apple_variant_6");
+    public static final ResourceKey<BiomeModifier> APPLE_KEY_VARIANT_7 = registerKey("add_apple_variant_7");
 
-    public static final ResourceKey<BiomeModifier> PEAR_KEY_VARIANT_1 = registerKey("pear_variant_1");
-    public static final ResourceKey<BiomeModifier> PEAR_KEY_VARIANT_2 = registerKey("pear_variant_2");
-    public static final ResourceKey<BiomeModifier> PEAR_KEY_VARIANT_3 = registerKey("pear_variant_3");
-    public static final ResourceKey<BiomeModifier> PEAR_KEY_VARIANT_4 = registerKey("pear_variant_4");
-    public static final ResourceKey<BiomeModifier> PEAR_KEY_VARIANT_5 = registerKey("pear_variant_5");
-    public static final ResourceKey<BiomeModifier> PEAR_KEY_VARIANT_6 = registerKey("pear_variant_6");
-    public static final ResourceKey<BiomeModifier> PEAR_KEY_VARIANT_7 = registerKey("pear_variant_7");
+    public static final ResourceKey<BiomeModifier> PEAR_KEY_VARIANT_1 = registerKey("add_pear_variant_1");
+    public static final ResourceKey<BiomeModifier> PEAR_KEY_VARIANT_2 = registerKey("add_pear_variant_2");
+    public static final ResourceKey<BiomeModifier> PEAR_KEY_VARIANT_3 = registerKey("add_pear_variant_3");
+    public static final ResourceKey<BiomeModifier> PEAR_KEY_VARIANT_4 = registerKey("add_pear_variant_4");
+    public static final ResourceKey<BiomeModifier> PEAR_KEY_VARIANT_5 = registerKey("add_pear_variant_5");
+    public static final ResourceKey<BiomeModifier> PEAR_KEY_VARIANT_6 = registerKey("add_pear_variant_6");
+    public static final ResourceKey<BiomeModifier> PEAR_KEY_VARIANT_7 = registerKey("add_pear_variant_7");
 
-    public static final ResourceKey<BiomeModifier> CHERRY_KEY_VARIANT_1 = registerKey("cherry_variant_1");
-    public static final ResourceKey<BiomeModifier> CHERRY_KEY_VARIANT_2 = registerKey("cherry_variant_2");
-    public static final ResourceKey<BiomeModifier> CHERRY_KEY_VARIANT_3 = registerKey("cherry_variant_3");
-    public static final ResourceKey<BiomeModifier> CHERRY_KEY_VARIANT_4 = registerKey("cherry_variant_4");
-    public static final ResourceKey<BiomeModifier> CHERRY_KEY_VARIANT_5 = registerKey("cherry_variant_5");
-    public static final ResourceKey<BiomeModifier> CHERRY_KEY_VARIANT_6 = registerKey("cherry_variant_6");
-    public static final ResourceKey<BiomeModifier> CHERRY_KEY_VARIANT_7 = registerKey("cherry_variant_7");
+    public static final ResourceKey<BiomeModifier> CHERRY_KEY_VARIANT_1 = registerKey("add_cherry_variant_1");
+    public static final ResourceKey<BiomeModifier> CHERRY_KEY_VARIANT_2 = registerKey("add_cherry_variant_2");
+    public static final ResourceKey<BiomeModifier> CHERRY_KEY_VARIANT_3 = registerKey("add_cherry_variant_3");
+    public static final ResourceKey<BiomeModifier> CHERRY_KEY_VARIANT_4 = registerKey("add_cherry_variant_4");
+    public static final ResourceKey<BiomeModifier> CHERRY_KEY_VARIANT_5 = registerKey("add_cherry_variant_5");
+    public static final ResourceKey<BiomeModifier> CHERRY_KEY_VARIANT_6 = registerKey("add_cherry_variant_6");
+    public static final ResourceKey<BiomeModifier> CHERRY_KEY_VARIANT_7 = registerKey("add_cherry_variant_7");
 
-    public static final ResourceKey<BiomeModifier> AVOCADO_KEY_VARIANT_1 = registerKey("avocado_variant_1");
-    public static final ResourceKey<BiomeModifier> AVOCADO_KEY_VARIANT_2 = registerKey("avocado_variant_2");
-    public static final ResourceKey<BiomeModifier> AVOCADO_KEY_VARIANT_3 = registerKey("avocado_variant_3");
-    public static final ResourceKey<BiomeModifier> AVOCADO_KEY_VARIANT_4 = registerKey("avocado_variant_4");
-    public static final ResourceKey<BiomeModifier> AVOCADO_KEY_VARIANT_5 = registerKey("avocado_variant_5");
-    public static final ResourceKey<BiomeModifier> AVOCADO_KEY_VARIANT_6 = registerKey("avocado_variant_6");
-    public static final ResourceKey<BiomeModifier> AVOCADO_KEY_VARIANT_7 = registerKey("avocado_variant_7");
+    public static final ResourceKey<BiomeModifier> AVOCADO_KEY_VARIANT_1 = registerKey("add_avocado_variant_1");
+    public static final ResourceKey<BiomeModifier> AVOCADO_KEY_VARIANT_2 = registerKey("add_avocado_variant_2");
+    public static final ResourceKey<BiomeModifier> AVOCADO_KEY_VARIANT_3 = registerKey("add_avocado_variant_3");
+    public static final ResourceKey<BiomeModifier> AVOCADO_KEY_VARIANT_4 = registerKey("add_avocado_variant_4");
+    public static final ResourceKey<BiomeModifier> AVOCADO_KEY_VARIANT_5 = registerKey("add_avocado_variant_5");
+    public static final ResourceKey<BiomeModifier> AVOCADO_KEY_VARIANT_6 = registerKey("add_avocado_variant_6");
+    public static final ResourceKey<BiomeModifier> AVOCADO_KEY_VARIANT_7 = registerKey("add_avocado_variant_7");
 
-    public static final ResourceKey<BiomeModifier> ORANGE_KEY_VARIANT_1 = registerKey("orange_variant_1");
-    public static final ResourceKey<BiomeModifier> ORANGE_KEY_VARIANT_2 = registerKey("orange_variant_2");
-    public static final ResourceKey<BiomeModifier> ORANGE_KEY_VARIANT_3 = registerKey("orange_variant_3");
-    public static final ResourceKey<BiomeModifier> ORANGE_KEY_VARIANT_4 = registerKey("orange_variant_4");
-    public static final ResourceKey<BiomeModifier> ORANGE_KEY_VARIANT_5 = registerKey("orange_variant_5");
-    public static final ResourceKey<BiomeModifier> ORANGE_KEY_VARIANT_6 = registerKey("orange_variant_6");
-    public static final ResourceKey<BiomeModifier> ORANGE_KEY_VARIANT_7 = registerKey("orange_variant_7");
+    public static final ResourceKey<BiomeModifier> ORANGE_KEY_VARIANT_1 = registerKey("add_orange_variant_1");
+    public static final ResourceKey<BiomeModifier> ORANGE_KEY_VARIANT_2 = registerKey("add_orange_variant_2");
+    public static final ResourceKey<BiomeModifier> ORANGE_KEY_VARIANT_3 = registerKey("add_orange_variant_3");
+    public static final ResourceKey<BiomeModifier> ORANGE_KEY_VARIANT_4 = registerKey("add_orange_variant_4");
+    public static final ResourceKey<BiomeModifier> ORANGE_KEY_VARIANT_5 = registerKey("add_orange_variant_5");
+    public static final ResourceKey<BiomeModifier> ORANGE_KEY_VARIANT_6 = registerKey("add_orange_variant_6");
+    public static final ResourceKey<BiomeModifier> ORANGE_KEY_VARIANT_7 = registerKey("add_orange_variant_7");
 
-    public static final ResourceKey<BiomeModifier> BANANA_KEY_VARIANT_1 = registerKey("banana_variant_1");
-    public static final ResourceKey<BiomeModifier> BANANA_KEY_VARIANT_2 = registerKey("banana_variant_2");
-    public static final ResourceKey<BiomeModifier> BANANA_KEY_VARIANT_3 = registerKey("banana_variant_3");
-    public static final ResourceKey<BiomeModifier> BANANA_KEY_VARIANT_4 = registerKey("banana_variant_4");
-    public static final ResourceKey<BiomeModifier> BANANA_KEY_VARIANT_5 = registerKey("banana_variant_5");
-    public static final ResourceKey<BiomeModifier> BANANA_KEY_VARIANT_6 = registerKey("banana_variant_6");
-    public static final ResourceKey<BiomeModifier> BANANA_KEY_VARIANT_7 = registerKey("banana_variant_7");
+    public static final ResourceKey<BiomeModifier> BANANA_KEY_VARIANT_1 = registerKey("add_banana_variant_1");
+    public static final ResourceKey<BiomeModifier> BANANA_KEY_VARIANT_2 = registerKey("add_banana_variant_2");
+    public static final ResourceKey<BiomeModifier> BANANA_KEY_VARIANT_3 = registerKey("add_banana_variant_3");
+    public static final ResourceKey<BiomeModifier> BANANA_KEY_VARIANT_4 = registerKey("add_banana_variant_4");
+    public static final ResourceKey<BiomeModifier> BANANA_KEY_VARIANT_5 = registerKey("add_banana_variant_5");
+    public static final ResourceKey<BiomeModifier> BANANA_KEY_VARIANT_6 = registerKey("add_banana_variant_6");
+    public static final ResourceKey<BiomeModifier> BANANA_KEY_VARIANT_7 = registerKey("add_banana_variant_7");
 
-    public static final ResourceKey<BiomeModifier> OAK_KEY_VARIANT_1 = registerKey("oak_variant_1");
+    public static final ResourceKey<BiomeModifier> OAK_KEY_VARIANT_1 = registerKey("add_oak_variant_1");
+    public static final ResourceKey<BiomeModifier> OAK_KEY_VARIANT_1_VANILLA = registerKey("add_oak_variant_1_vanilla");
 
-    public static final ResourceKey<BiomeModifier> DARK_OAK_KEY_VARIANT_1 = registerKey("dark_oak_variant_1");
-    public static final ResourceKey<BiomeModifier> DARK_OAK_KEY_VARIANT_2 = registerKey("dark_oak_variant_2");
+    public static final ResourceKey<BiomeModifier> DARK_OAK_KEY_VARIANT_1 = registerKey("add_dark_oak_variant_1");
+    public static final ResourceKey<BiomeModifier> DARK_OAK_KEY_VARIANT_2 = registerKey("add_dark_oak_variant_2");
 
-    public static final ResourceKey<BiomeModifier> BIRCH_VARIANT_1 = registerKey("birch_variant_1");
+    public static final ResourceKey<BiomeModifier> BIRCH_VARIANT_1 = registerKey("add_birch_variant_1");
 
-    public static final ResourceKey<BiomeModifier> BLACKCURRANT_BUSH = registerKey("blackcurrant_bush");
-    public static final ResourceKey<BiomeModifier> BLUEBERRY_BUSH = registerKey("blueberry_bush");
-    public static final ResourceKey<BiomeModifier> STRAWBERRY_BUSH = registerKey("strawberry_bush");
-    public static final ResourceKey<BiomeModifier> GOOSEBERRY_BUSH = registerKey("gooseberry_bush");
+    public static final ResourceKey<BiomeModifier> BLACKCURRANT_BUSH = registerKey("add_blackcurrant_bush");
+    public static final ResourceKey<BiomeModifier> BLUEBERRY_BUSH = registerKey("add_blueberry_bush");
+    public static final ResourceKey<BiomeModifier> STRAWBERRY_BUSH = registerKey("add_strawberry_bush");
+    public static final ResourceKey<BiomeModifier> GOOSEBERRY_BUSH = registerKey("add_gooseberry_bush");
 
-    public static final ResourceKey<BiomeModifier> SPAWN_WORM = registerKey("spawn_worm");
+    public static final ResourceKey<BiomeModifier> SPAWN_WORM = registerKey("add_spawn_worm");
 
     public static void bootstrap(BootstrapContext<BiomeModifier> context) {
         // CF -> PF -> BM
@@ -848,6 +850,15 @@ public class ModBiomeModifiers {
         ));
 
         context.register(ModBiomeModifiers.OAK_KEY_VARIANT_1, new BiomeModifiers.AddFeaturesBiomeModifier(
+                biomes.getOrThrow(
+                        TagKey.create(Registries.BIOME, ResourceLocation.fromNamespaceAndPath("aziuriamod", "spectral_soulbound_forest"))
+                ),
+                HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.OAK_KEY_VARIANT_1)),
+                GenerationStep.Decoration.VEGETAL_DECORATION
+        ));
+
+        // Then add vanilla biomes
+        context.register(ModBiomeModifiers.OAK_KEY_VARIANT_1_VANILLA, new BiomeModifiers.AddFeaturesBiomeModifier(
                 HolderSet.direct(
                         biomes.getOrThrow(Biomes.PLAINS),
                         biomes.getOrThrow(Biomes.SUNFLOWER_PLAINS),
@@ -864,7 +875,7 @@ public class ModBiomeModifiers {
                         biomes.getOrThrow(Biomes.BAMBOO_JUNGLE),
                         biomes.getOrThrow(Biomes.WINDSWEPT_FOREST)
                 ),
-                HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.OAK_KEY_VARIANT_1)),
+                HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.OAK_KEY_VARIANT_1_VANILLA)),
                 GenerationStep.Decoration.VEGETAL_DECORATION
         ));
 
