@@ -167,6 +167,12 @@ public class DynamicForkingTrunkPlacer extends TrunkPlacer {
                 if (this.placeLog(level, blockSetter, random, mutablePos.set(x, y, z), config, currentDir.getAxis())) {
                     branchTop = OptionalInt.of(y + 1);
                 }
+
+                // Random tiny offshoots
+                if (random.nextFloat() < 0.25f) {
+                    Direction twigDir = Direction.Plane.HORIZONTAL.getRandomDirection(random);
+                    placeMinorBranchCurvy(level, blockSetter, random, mutablePos, x, y, z, twigDir, 1, config, foliage);
+                }
             }
 
             // Possibly change main direction for next segment
