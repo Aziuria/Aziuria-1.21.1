@@ -230,62 +230,71 @@ public class ModConfiguredFeatures {
 // ===== Dynamic Realistic Tree Variant =====
         RandomSource random = RandomSource.create();
 
-// 1. Dynamic trunk height
+// 1. Dynamic trunk height (all types 3-4 blocks taller)
         int trunkHeight;
         int trunkType = random.nextInt(3); // 0=short,1=medium,2=tall
-
         switch (trunkType) {
-            case 0 -> trunkHeight = 4 + random.nextInt(2);       // 4-5 blocks (short)
-            case 1 -> trunkHeight = 5 + random.nextInt(2);       // 5-6 blocks (medium)
-            default -> trunkHeight = 7 + random.nextInt(3);      // 7-9 blocks (tall)
+            case 0 -> trunkHeight = 7 + random.nextInt(2);       // 7-8 blocks (short)
+            case 1 -> trunkHeight = 8 + random.nextInt(2);       // 8-9 blocks (medium)
+            default -> trunkHeight = 11 + random.nextInt(3);     // 11-13 blocks (tall)
         }
 
 // 2. Probabilistic trunk forks
         int forkChance = random.nextInt(100);
-        int baseBranchSpread = 1;
-        if (trunkHeight >= 7) baseBranchSpread = 1;        // tall & slim
-        else if (forkChance < 10) baseBranchSpread = 4;    // rare wide fork
-        else if (forkChance < 30) baseBranchSpread = 3;    // uncommon fork
-        else baseBranchSpread = 2;                          // standard
+        int baseBranchSpread;
+        if (trunkHeight >= 11) baseBranchSpread = 2 + random.nextInt(2);  // medium-wide forks for tall trees
+        else if (forkChance < 10) baseBranchSpread = 3;                   // rare wide fork
+        else baseBranchSpread = 1 + random.nextInt(2);                    // normal fork
 
+// 3. Extra height slightly increased for taller trees
         int extraHeight = 1 + random.nextInt(2);
-        if (trunkType == 2) extraHeight += 1;              // tall trees slightly taller
+        if (trunkType == 2) extraHeight += 1;
 
-// 3. Foliage radius (bumped for tall trees)
+// 4. Foliage radius
         int foliageRadius;
         switch (trunkType) {
-            case 0 -> foliageRadius = 2;                    // short, bushy
+            case 0 -> foliageRadius = 2;                     // short, bushy
             case 1 -> foliageRadius = 2 + random.nextInt(2); // medium: 2-3
-            default -> foliageRadius = 3;                   // tall & slim: 3 blocks
+            default -> foliageRadius = 3;                    // tall & slim: 3 blocks
         }
-        foliageRadius = Math.min(foliageRadius, 3);        // cap still safe
+        foliageRadius = Math.min(foliageRadius, 3);
 
-// 4. Foliage offset (probabilistic ±1)
-        IntProvider foliageOffsetProvider = UniformInt.of(0, 1); // 0–1 to be safe
-        if (trunkType == 0) foliageOffsetProvider = ConstantInt.of(0); // bushy short tree
+// 5. Foliage offset (cluster at branch tips)
+        IntProvider foliageOffsetProvider = UniformInt.of(1, 2);
+        if (trunkType == 0) foliageOffsetProvider = ConstantInt.of(0);
 
-// 5. Foliage type
+// 6. Foliage type
         boolean useFancyFoliage = (trunkType == 1 || trunkType == 2);
         FoliagePlacer foliagePlacer = useFancyFoliage
                 ? new FancyFoliagePlacer(ConstantInt.of(foliageRadius), foliageOffsetProvider, 3)
                 : new BlobFoliagePlacer(ConstantInt.of(foliageRadius), foliageOffsetProvider, 3);
 
-// 6. Feature size
+// 7. Feature size
         TwoLayersFeatureSize featureSize = new TwoLayersFeatureSize(
                 trunkType == 0 ? 1 : 2, // short = 1 layer, else 2 layers
                 0,
                 2
         );
 
-        // 7. Optional minor branch count
-        int minorBranches = trunkHeight >= 7 ? 1 : 2 + random.nextInt(2);
+// 8. Dynamic branch length
+        int branchLength;
+        if (trunkHeight <= 8) branchLength = 3;       // short trees
+        else if (trunkHeight <= 9) branchLength = 4;  // medium trees
+        else branchLength = 6;                         // tall trees
+
+// 9. Branch start offset (never in top 3 blocks)
+        int branchStartOffset = Math.min(4, trunkHeight - 4);  // top 3 blocks free
+        if (branchStartOffset < 1) branchStartOffset = 1;      // fallback for very short trees
+
+// 10. Optional minor branches (max 1 per level)
+        int minorBranches = (trunkHeight >= 6 && random.nextBoolean()) ? 1 : 0;
 
 // 7. Register tree
         // 8. Register tree
         register(context, APPLE_KEY_VARIANT_1, Feature.TREE,
                 new TreeConfiguration.TreeConfigurationBuilder(
                         BlockStateProvider.simple(Blocks.OAK_LOG),
-                        new ForkingTrunkPlacer(trunkHeight, extraHeight, baseBranchSpread),
+                        new DynamicForkingTrunkPlacer(trunkHeight, extraHeight, minorBranches, branchLength, branchStartOffset, baseBranchSpread),
                         BlockStateProvider.simple(ModBlocks.APPLE_LEAVES.get()),
                         foliagePlacer,
                         featureSize
@@ -297,7 +306,7 @@ public class ModConfiguredFeatures {
         register(context, APPLE_KEY_VARIANT_2, Feature.TREE,
                 new TreeConfiguration.TreeConfigurationBuilder(
                         BlockStateProvider.simple(Blocks.OAK_LOG),
-                        new ForkingTrunkPlacer(trunkHeight, extraHeight, baseBranchSpread),
+                        new DynamicForkingTrunkPlacer(trunkHeight, extraHeight, minorBranches, branchLength, branchStartOffset, baseBranchSpread),
                         BlockStateProvider.simple(ModBlocks.APPLE_LEAVES.get()),
                         foliagePlacer,
                         featureSize
@@ -374,7 +383,7 @@ public class ModConfiguredFeatures {
         register(context, DARK_OAK_VARIANT_2, Feature.TREE,
                 new TreeConfiguration.TreeConfigurationBuilder(
                         BlockStateProvider.simple(Blocks.DARK_OAK_LOG),
-                        new ForkingTrunkPlacer(trunkHeight, extraHeight, baseBranchSpread),
+                        new DynamicForkingTrunkPlacer(trunkHeight, extraHeight, minorBranches, branchLength, branchStartOffset, baseBranchSpread),
                         BlockStateProvider.simple(Blocks.DARK_OAK_LEAVES),
                         foliagePlacer,
                         featureSize
@@ -394,7 +403,7 @@ public class ModConfiguredFeatures {
         register(context, OAK_KEY_VARIANT_1, Feature.TREE,
                 new TreeConfiguration.TreeConfigurationBuilder(
                         BlockStateProvider.simple(Blocks.OAK_LOG),
-                        new DynamicForkingTrunkPlacer(trunkHeight, extraHeight, baseBranchSpread, minorBranches),
+                        new DynamicForkingTrunkPlacer(trunkHeight, extraHeight, minorBranches, branchLength, branchStartOffset, baseBranchSpread),
                         BlockStateProvider.simple(Blocks.OAK_LEAVES),
                         foliagePlacer,
                         featureSize
@@ -405,7 +414,7 @@ public class ModConfiguredFeatures {
         register(context, PEAR_KEY_VARIANT_1, Feature.TREE,
                 new TreeConfiguration.TreeConfigurationBuilder(
                         BlockStateProvider.simple(Blocks.OAK_LOG),
-                        new ForkingTrunkPlacer(trunkHeight, extraHeight, baseBranchSpread),
+                        new DynamicForkingTrunkPlacer(trunkHeight, extraHeight, minorBranches, branchLength, branchStartOffset, baseBranchSpread),
                         BlockStateProvider.simple(ModBlocks.PEAR_LEAVES.get()),
                         foliagePlacer,
                         featureSize
@@ -416,7 +425,7 @@ public class ModConfiguredFeatures {
         register(context, PEAR_KEY_VARIANT_2, Feature.TREE,
                 new TreeConfiguration.TreeConfigurationBuilder(
                         BlockStateProvider.simple(Blocks.OAK_LOG),
-                        new ForkingTrunkPlacer(trunkHeight, extraHeight, baseBranchSpread),
+                        new DynamicForkingTrunkPlacer(trunkHeight, extraHeight, minorBranches, branchLength, branchStartOffset, baseBranchSpread),
                         BlockStateProvider.simple(ModBlocks.PEAR_LEAVES.get()),
                         foliagePlacer,
                         featureSize
@@ -482,7 +491,7 @@ public class ModConfiguredFeatures {
         register(context, CHERRY_KEY_VARIANT_1, Feature.TREE,
                 new TreeConfiguration.TreeConfigurationBuilder(
                         BlockStateProvider.simple(Blocks.OAK_LOG),
-                        new ForkingTrunkPlacer(trunkHeight, extraHeight, baseBranchSpread),
+                        new DynamicForkingTrunkPlacer(trunkHeight, extraHeight, minorBranches, branchLength, branchStartOffset, baseBranchSpread),
                         BlockStateProvider.simple(ModBlocks.CHERRY_LEAVES.get()),
                         foliagePlacer,
                         featureSize
@@ -493,7 +502,7 @@ public class ModConfiguredFeatures {
         register(context, CHERRY_KEY_VARIANT_2, Feature.TREE,
                 new TreeConfiguration.TreeConfigurationBuilder(
                         BlockStateProvider.simple(Blocks.OAK_LOG),
-                        new ForkingTrunkPlacer(trunkHeight, extraHeight, baseBranchSpread),
+                        new DynamicForkingTrunkPlacer(trunkHeight, extraHeight, minorBranches, branchLength, branchStartOffset, baseBranchSpread),
                         BlockStateProvider.simple(ModBlocks.CHERRY_LEAVES.get()),
                         foliagePlacer,
                         featureSize
@@ -559,7 +568,7 @@ public class ModConfiguredFeatures {
         register(context, AVOCADO_KEY_VARIANT_1, Feature.TREE,
                 new TreeConfiguration.TreeConfigurationBuilder(
                         BlockStateProvider.simple(Blocks.JUNGLE_LOG),
-                        new ForkingTrunkPlacer(trunkHeight, extraHeight, baseBranchSpread),
+                        new DynamicForkingTrunkPlacer(trunkHeight, extraHeight, minorBranches, branchLength, branchStartOffset, baseBranchSpread),
                         BlockStateProvider.simple(ModBlocks.AVOCADO_LEAVES.get()),
                         foliagePlacer,
                         featureSize
@@ -570,7 +579,7 @@ public class ModConfiguredFeatures {
         register(context, AVOCADO_KEY_VARIANT_2, Feature.TREE,
                 new TreeConfiguration.TreeConfigurationBuilder(
                         BlockStateProvider.simple(Blocks.JUNGLE_LOG),
-                        new ForkingTrunkPlacer(trunkHeight, extraHeight, baseBranchSpread),
+                        new DynamicForkingTrunkPlacer(trunkHeight, extraHeight, minorBranches, branchLength, branchStartOffset, baseBranchSpread),
                         BlockStateProvider.simple(ModBlocks.AVOCADO_LEAVES.get()),
                         foliagePlacer,
                         featureSize
@@ -636,7 +645,7 @@ public class ModConfiguredFeatures {
         register(context, ORANGE_KEY_VARIANT_1, Feature.TREE,
                 new TreeConfiguration.TreeConfigurationBuilder(
                         BlockStateProvider.simple(Blocks.JUNGLE_LOG),
-                        new ForkingTrunkPlacer(trunkHeight, extraHeight, baseBranchSpread),
+                        new DynamicForkingTrunkPlacer(trunkHeight, extraHeight, minorBranches, branchLength, branchStartOffset, baseBranchSpread),
                         BlockStateProvider.simple(ModBlocks.ORANGE_LEAVES.get()),
                         foliagePlacer,
                         featureSize
@@ -651,7 +660,7 @@ public class ModConfiguredFeatures {
         register(context, ORANGE_KEY_VARIANT_2, Feature.TREE,
                 new TreeConfiguration.TreeConfigurationBuilder(
                         BlockStateProvider.simple(Blocks.JUNGLE_LOG),
-                        new ForkingTrunkPlacer(trunkHeight, extraHeight, baseBranchSpread),
+                        new DynamicForkingTrunkPlacer(trunkHeight, extraHeight, minorBranches, branchLength, branchStartOffset, baseBranchSpread),
                         BlockStateProvider.simple(ModBlocks.ORANGE_LEAVES.get()),
                         foliagePlacer,
                         featureSize
@@ -725,7 +734,7 @@ public class ModConfiguredFeatures {
         register(context, BANANA_KEY_VARIANT_1, Feature.TREE,
                 new TreeConfiguration.TreeConfigurationBuilder(
                         BlockStateProvider.simple(Blocks.JUNGLE_LOG),
-                        new ForkingTrunkPlacer(trunkHeight, extraHeight, baseBranchSpread),
+                        new DynamicForkingTrunkPlacer(trunkHeight, extraHeight, minorBranches, branchLength, branchStartOffset, baseBranchSpread),
                         BlockStateProvider.simple(ModBlocks.BANANA_LEAVES.get()),
                         foliagePlacer,
                         featureSize
@@ -751,7 +760,7 @@ public class ModConfiguredFeatures {
         register(context, BANANA_KEY_VARIANT_3, Feature.TREE,
                 new TreeConfiguration.TreeConfigurationBuilder(
                         BlockStateProvider.simple(Blocks.JUNGLE_LOG),
-                        new ForkingTrunkPlacer(trunkHeight, extraHeight, baseBranchSpread),
+                        new DynamicForkingTrunkPlacer(trunkHeight, extraHeight, minorBranches, branchLength, branchStartOffset, baseBranchSpread),
                         BlockStateProvider.simple(ModBlocks.BANANA_LEAVES.get()),
                         foliagePlacer,
                         featureSize

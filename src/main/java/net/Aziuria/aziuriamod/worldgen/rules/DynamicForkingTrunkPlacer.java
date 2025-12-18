@@ -15,9 +15,7 @@ import net.minecraft.world.level.levelgen.feature.foliageplacers.FoliagePlacer;
 import net.minecraft.world.level.levelgen.feature.trunkplacers.TrunkPlacer;
 import net.minecraft.world.level.levelgen.feature.trunkplacers.TrunkPlacerType;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.OptionalInt;
+import java.util.*;
 import java.util.function.BiConsumer;
 
 public class DynamicForkingTrunkPlacer extends TrunkPlacer {
@@ -26,30 +24,27 @@ public class DynamicForkingTrunkPlacer extends TrunkPlacer {
     private final int branchLength;
     private final int branchStartOffset;
     private final int baseBranchSpread;
+    private final int minVerticalSpacing = 4;
 
-    // Codec for data-driven generation (default minorBranches=1)
     public static final MapCodec<DynamicForkingTrunkPlacer> CODEC = RecordCodecBuilder.mapCodec(
-            inst -> trunkPlacerParts(inst).apply(inst, (baseHeight, heightRandA, heightRandB) ->
-                    new DynamicForkingTrunkPlacer(baseHeight, heightRandA, heightRandB, 1, 2, 4, 2))
+            inst -> trunkPlacerParts(inst).apply(inst,
+                    (baseHeight, heightRandA, heightRandB) ->
+                            new DynamicForkingTrunkPlacer(baseHeight, heightRandA, heightRandB, 1, 6, 4, 2))
     );
 
-    // Old 3-arg constructor
     public DynamicForkingTrunkPlacer(int baseHeight, int heightRandA, int heightRandB) {
-        this(baseHeight, heightRandA, heightRandB, 1, 2, 4, 2);
+        this(baseHeight, heightRandA, heightRandB, 1, 6, 4, 2);
     }
 
-    // 4-arg constructor
     public DynamicForkingTrunkPlacer(int baseHeight, int heightRandA, int heightRandB, int minorBranches) {
-        this(baseHeight, heightRandA, heightRandB, minorBranches, 4, 5, 4);
+        this(baseHeight, heightRandA, heightRandB, minorBranches, 6, 4, 4);
     }
 
-    // 6-arg convenience constructor for registration
     public DynamicForkingTrunkPlacer(int baseHeight, int extraHeight, int baseBranchSpread, int minorBranches,
                                      int branchLength, int branchStartOffset) {
         this(baseHeight, extraHeight, 0, minorBranches, branchLength, branchStartOffset, baseBranchSpread);
     }
 
-    // Full 7-arg constructor
     public DynamicForkingTrunkPlacer(int baseHeight, int heightRandA, int heightRandB,
                                      int minorBranches, int branchLength, int branchStartOffset, int baseBranchSpread) {
         super(baseHeight, heightRandA, heightRandB);
@@ -84,25 +79,41 @@ public class DynamicForkingTrunkPlacer extends TrunkPlacer {
         int trunkZ = pos.getZ();
         OptionalInt trunkTop = OptionalInt.empty();
 
-        // Main trunk height variation
+        Map<Direction, Integer> lastBranchY = new HashMap<>();
+        for (Direction dir : Direction.Plane.HORIZONTAL) lastBranchY.put(dir, -minVerticalSpacing);
+
         double heightModifier = random.nextDouble();
         int actualTrunkHeight = (int) Math.round(Mth.lerp(heightModifier, freeTreeHeight, freeTreeHeight + 1));
 
         for (int y = 0; y < actualTrunkHeight; y++) {
             int currentY = pos.getY() + y;
 
-            // Main trunk log (vertical)
-            if (this.placeLog(level, blockSetter, random, mutablePos.set(trunkX, currentY, trunkZ), config, Direction.Axis.Y)) {
+            // Place trunk log
+            if (this.placeLog(level, blockSetter, random,
+                    mutablePos.set(trunkX, currentY, trunkZ),
+                    config, Direction.Axis.Y)) {
                 trunkTop = OptionalInt.of(currentY + 1);
             }
 
-            // Minor branches start above branchStartOffset
-            if (y >= branchStartOffset && y < actualTrunkHeight - 1) {
-                int branchCount = random.nextInt(this.minorBranches + 1);
-                for (int b = 0; b <= branchCount; b++) {
-                    Direction branchDir = Direction.Plane.HORIZONTAL.getRandomDirection(random);
-                    placeMinorBranch(level, blockSetter, random, mutablePos,
-                            trunkX, currentY, trunkZ, branchDir, branchLength, config, foliage);
+            // Place minor branch (max 1 per level, leave top 3 blocks free)
+            if (y >= branchStartOffset && y < actualTrunkHeight - 3) {
+                List<Direction> validDirs = new ArrayList<>();
+                for (Direction dir : Direction.Plane.HORIZONTAL) {
+                    if (currentY - lastBranchY.get(dir) >= minVerticalSpacing) {
+                        validDirs.add(dir);
+                    }
+                }
+
+                if (!validDirs.isEmpty()) {
+                    Direction branchDir = validDirs.get(random.nextInt(validDirs.size()));
+                    lastBranchY.put(branchDir, currentY);
+
+                    placeMinorBranchCurvy(
+                            level, blockSetter, random, mutablePos,
+                            trunkX, currentY, trunkZ,
+                            branchDir, branchLength,
+                            config, foliage
+                    );
                 }
             }
         }
@@ -114,59 +125,53 @@ public class DynamicForkingTrunkPlacer extends TrunkPlacer {
             ));
         }
 
-        // Extra fork like vanilla ForkingTrunkPlacer
-        int forkHeight = actualTrunkHeight / 2 + random.nextInt(2);
-        Direction forkDir = Direction.Plane.HORIZONTAL.getRandomDirection(random);
-        int forkX = trunkX;
-        int forkZ = trunkZ;
-        OptionalInt forkTop = OptionalInt.empty();
-        int forkLength = 1 + random.nextInt(3);
-
-        for (int y = forkHeight; y < actualTrunkHeight && forkLength > 0; y++, forkLength--) {
-            int currentY = pos.getY() + y;
-            forkX += forkDir.getStepX();
-            forkZ += forkDir.getStepZ();
-
-            if (this.placeLog(level, blockSetter, random, mutablePos.set(forkX, currentY, forkZ), config,
-                    forkDir.getAxis())) {
-                forkTop = OptionalInt.of(currentY + 1);
-            }
-        }
-
-        if (forkTop.isPresent()) {
-            foliage.add(new FoliagePlacer.FoliageAttachment(
-                    new BlockPos(forkX, forkTop.getAsInt(), forkZ),
-                    0, false
-            ));
-        }
-
         return foliage;
     }
 
-    private void placeMinorBranch(LevelSimulatedReader level,
-                                  BiConsumer<BlockPos, BlockState> blockSetter,
-                                  RandomSource random,
-                                  BlockPos.MutableBlockPos mutablePos,
-                                  int startX, int startY, int startZ,
-                                  Direction direction,
-                                  int length,
-                                  TreeConfiguration config,
-                                  List<FoliagePlacer.FoliageAttachment> foliage) {
+    private void placeMinorBranchCurvy(LevelSimulatedReader level,
+                                       BiConsumer<BlockPos, BlockState> blockSetter,
+                                       RandomSource random,
+                                       BlockPos.MutableBlockPos mutablePos,
+                                       int startX, int startY, int startZ,
+                                       Direction direction,
+                                       int length,
+                                       TreeConfiguration config,
+                                       List<FoliagePlacer.FoliageAttachment> foliage) {
 
         int x = startX;
         int y = startY;
         int z = startZ;
         OptionalInt branchTop = OptionalInt.empty();
 
-        for (int i = 0; i < length; i++) {
-            x += direction.getStepX();
-            z += direction.getStepZ();
-            if (i % 2 == 0) y += 1;
+        int remainingLength = length;
+        Direction currentDir = direction;
 
-            Direction.Axis axis = direction.getAxis();
+        while (remainingLength > 0) {
+            int segmentLength = 1 + random.nextInt(2);
+            for (int i = 0; i < segmentLength && remainingLength > 0; i++, remainingLength--) {
+                // Move in main direction
+                x += currentDir.getStepX();
+                z += currentDir.getStepZ();
 
-            if (this.placeLog(level, blockSetter, random, mutablePos.set(x, y, z), config, axis)) {
-                branchTop = OptionalInt.of(y + 1);
+                // Random sideways wiggle
+                if (random.nextFloat() < 0.3f) {
+                    Direction side = random.nextBoolean() ? currentDir.getClockWise() : currentDir.getCounterClockWise();
+                    x += side.getStepX();
+                    z += side.getStepZ();
+                }
+
+                // Random vertical movement
+                if (random.nextFloat() < 0.5f) y += 1;
+                else if (random.nextFloat() < 0.2f) y -= 1;
+
+                if (this.placeLog(level, blockSetter, random, mutablePos.set(x, y, z), config, currentDir.getAxis())) {
+                    branchTop = OptionalInt.of(y + 1);
+                }
+            }
+
+            // Possibly change main direction for next segment
+            if (random.nextFloat() < 0.5f) {
+                currentDir = random.nextBoolean() ? currentDir.getClockWise() : currentDir.getCounterClockWise();
             }
         }
 
@@ -178,7 +183,6 @@ public class DynamicForkingTrunkPlacer extends TrunkPlacer {
         }
     }
 
-    // Overloaded placeLog to handle axis orientation
     protected boolean placeLog(LevelSimulatedReader level,
                                BiConsumer<BlockPos, BlockState> blockSetter,
                                RandomSource random,
