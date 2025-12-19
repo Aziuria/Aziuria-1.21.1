@@ -48,10 +48,27 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .define('I', ModItems.LASHING.get())
                 .unlockedBy("has_lashing", has(ModItems.LASHING.get())).save(recipeOutput);
 
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.EMPTY_JAR.get(), 3)
+                .pattern("III")
+                .pattern("F F")
+                .pattern("FFF")
+                .define('I', ModItems.TIN_INGOT.get())
+                .define('F', Items.GLASS)
+                .unlockedBy("has_tin_ingot", has(ModItems.TIN_INGOT.get())).save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, Items.GLASS_BOTTLE, 3)
+                .pattern(" I ")
+                .pattern("F F")
+                .pattern(" F ")
+                .define('I', ModItems.TIN_INGOT.get())
+                .define('F', Items.GLASS)
+                .unlockedBy("has_tin_ingot", has(ModItems.TIN_INGOT.get())).save(recipeOutput);
+
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.NAIL.get(), 8)
                 .pattern("I")
-                .pattern("I")
+                .pattern("F")
                 .define('I', ModItems.TIN_INGOT.get())
+                .define('F', ModItems.TIN_NUGGET.get())
                 .unlockedBy("has_tin_ingot", has(ModItems.TIN_INGOT.get())).save(recipeOutput);
 
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.MALLET.get())
@@ -71,7 +88,9 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.NET_SEGMENT.get())
                 .pattern("FLF")
                 .pattern("FIF")
+                .pattern("A A")
                 .define('I', ModItems.NET.get())
+                .define('A', ModItems.NAIL.get())
                 .define('F', Items.STICK)
                 .define('L', ModTags.KNIVES)
                 .unlockedBy("has_stick", has(Items.STICK)).save(recipeOutput);
@@ -249,10 +268,10 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .unlockedBy("has_string", has(Items.STRING)).save(recipeOutput);
 
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, Items.SADDLE)
-                .pattern(" C ")
+                .pattern("ACA")
                 .pattern("CFC")
-                .pattern("   ")
                 .define('C', Items.LEATHER)
+                .define('A', ModItems.NAIL.get())
                 .define('F', Items.IRON_BARS)
                 .unlockedBy("has_leather", has(Items.LEATHER)).save(recipeOutput);
 
@@ -587,8 +606,9 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.WOOD_KNIFE.get())
                 .pattern("  A")
                 .pattern(" A ")
-                .pattern("F  ")
+                .pattern("FS ")
                 .define('A', ItemTags.PLANKS)
+                .define('S', ModItems.NAIL.get())
                 .define('F', Items.STICK)
                 .unlockedBy("has_stick", has(Items.STICK))
                 .save(recipeOutput, ResourceLocation.fromNamespaceAndPath("aziuriamod", "wooden_knife_from_planks"));
@@ -596,72 +616,80 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.STONE_KNIFE.get())
                 .pattern("  A")
                 .pattern(" A ")
-                .pattern("F  ")
+                .pattern("FS ")
                 .define('A', Items.COBBLESTONE)
                 .define('F', Items.STICK)
+                .define('S', ModItems.NAIL.get())
                 .unlockedBy("has_stick", has(Items.STICK))
                 .save(recipeOutput, ResourceLocation.fromNamespaceAndPath("aziuriamod", "stone_knife_from_cobble"));
 
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.COPPER_KNIFE.get())
                 .pattern("  A")
                 .pattern(" A ")
-                .pattern("F  ")
+                .pattern("FS ")
                 .define('A', Items.COPPER_INGOT)
                 .define('F', Items.STICK)
+                .define('S', ModItems.NAIL.get())
                 .unlockedBy("has_stick", has(Items.STICK))
                 .save(recipeOutput, ResourceLocation.fromNamespaceAndPath("aziuriamod", "copper_knife_from_copper"));
 
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.IRON_KNIFE.get())
                 .pattern("  A")
                 .pattern(" A ")
-                .pattern("F  ")
+                .pattern("FS ")
                 .define('A', Items.IRON_INGOT)
                 .define('F', Items.STICK)
+                .define('S', ModItems.NAIL.get())
                 .unlockedBy("has_stick", has(Items.STICK))
                 .save(recipeOutput, ResourceLocation.fromNamespaceAndPath("aziuriamod", "iron_knife_from_iron"));
 
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.GOLD_KNIFE.get())
                 .pattern("  A")
                 .pattern(" A ")
-                .pattern("F  ")
+                .pattern("FS ")
                 .define('A', Items.GOLD_INGOT)
                 .define('F', Items.STICK)
+                .define('S', ModItems.NAIL.get())
                 .unlockedBy("has_stick", has(Items.STICK))
                 .save(recipeOutput, ResourceLocation.fromNamespaceAndPath("aziuriamod", "golden_knife_from_gold"));
 
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.STEEL_KNIFE.get())
-                .pattern("  S")
-                .pattern(" S ")
-                .pattern("F  ")
-                .define('S', ModItems.STEEL_INGOT.get())
+                .pattern("  A")
+                .pattern(" A ")
+                .pattern("FS ")
+                .define('A', ModItems.STEEL_INGOT.get())
                 .define('F', Items.STICK)
+                .define('S', ModItems.NAIL.get())
                 .unlockedBy("has_stick", has(Items.STICK))
                 .save(recipeOutput, ResourceLocation.fromNamespaceAndPath("aziuriamod", "steel_knife_from_steel"));
 
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.SPINEL_KNIFE.get())
                 .pattern("  S")
                 .pattern(" S ")
-                .pattern("F  ")
+                .pattern("FA ")
                 .define('S', ModItems.SPINEL.get())
                 .define('F', Items.STICK)
+                .define('A', ModItems.NAIL.get())
                 .unlockedBy("has_stick", has(Items.STICK))
                 .save(recipeOutput, ResourceLocation.fromNamespaceAndPath("aziuriamod", "spinel_knife_from_spinel"));
 
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.DIAMOND_KNIFE.get())
                 .pattern("  A")
                 .pattern(" A ")
-                .pattern("F  ")
+                .pattern("FS ")
                 .define('A', Items.DIAMOND)
                 .define('F', Items.STICK)
+                .define('S', ModItems.NAIL.get())
                 .unlockedBy("has_stick", has(Items.STICK))
                 .save(recipeOutput, ResourceLocation.fromNamespaceAndPath("aziuriamod", "diamond_knife_from_diamond"));
 
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.NETHERITE_KNIFE.get())
                 .pattern("  A")
                 .pattern(" A ")
-                .pattern("F  ")
+                .pattern("FS ")
                 .define('A', Items.NETHERITE_INGOT)
                 .define('F', Items.STICK)
+                .define('S', ModItems.NAIL.get())
                 .unlockedBy("has_stick", has(Items.STICK))
                 .save(recipeOutput, ResourceLocation.fromNamespaceAndPath("aziuriamod", "netherite_knife_from_netherite"));
 
@@ -1970,21 +1998,23 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .save(recipeOutput);
 
         ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ModBlocks.OAK_STORAGE.get())
-                .pattern("   ")
+                .pattern("A A")
                 .pattern("WTW")
                 .pattern("WSW")
                 .define('W', Items.OAK_LOG)
                 .define('S', Items.OAK_SLAB)
+                .define('A', ModItems.NAIL.get())
                 .define('T', Items.STICK)
                 .unlockedBy("has_oak_slab", has(Items.OAK_SLAB))
                 .save(recipeOutput);
 
         // Birch Storage
         ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ModBlocks.BIRCH_STORAGE.get())
-                .pattern("   ")
+                .pattern("A A")
                 .pattern("WTW")
                 .pattern("WSW")
                 .define('W', Items.BIRCH_LOG)
+                .define('A', ModItems.NAIL.get())
                 .define('S', Items.BIRCH_SLAB)
                 .define('T', Items.STICK)
                 .unlockedBy("has_birch_slab", has(Items.BIRCH_SLAB))
@@ -1992,76 +2022,83 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
 
 // Spruce Storage
         ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ModBlocks.SPRUCE_STORAGE.get())
-                .pattern("   ")
+                .pattern("A A")
                 .pattern("WTW")
                 .pattern("WSW")
                 .define('W', Items.SPRUCE_LOG)
                 .define('S', Items.SPRUCE_SLAB)
+                .define('A', ModItems.NAIL.get())
                 .define('T', Items.STICK)
                 .unlockedBy("has_spruce_slab", has(Items.SPRUCE_SLAB))
                 .save(recipeOutput);
 
 // Jungle Storage
         ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ModBlocks.JUNGLE_STORAGE.get())
-                .pattern("   ")
+                .pattern("A A")
                 .pattern("WTW")
                 .pattern("WSW")
                 .define('W', Items.JUNGLE_LOG)
                 .define('S', Items.JUNGLE_SLAB)
+                .define('A', ModItems.NAIL.get())
                 .define('T', Items.STICK)
                 .unlockedBy("has_jungle_slab", has(Items.JUNGLE_SLAB))
                 .save(recipeOutput);
 
 // Dark Oak Storage
         ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ModBlocks.DARK_OAK_STORAGE.get())
-                .pattern("   ")
+                .pattern("A A")
                 .pattern("WTW")
                 .pattern("WSW")
                 .define('W', Items.DARK_OAK_LOG)
                 .define('S', Items.DARK_OAK_SLAB)
+                .define('A', ModItems.NAIL.get())
                 .define('T', Items.STICK)
                 .unlockedBy("has_dark_oak_slab", has(Items.DARK_OAK_SLAB))
                 .save(recipeOutput);
 
 // Acacia Storage
         ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ModBlocks.ACACIA_STORAGE.get())
-                .pattern("   ")
+                .pattern("A A")
                 .pattern("WTW")
                 .pattern("WSW")
                 .define('W', Items.ACACIA_LOG)
                 .define('S', Items.ACACIA_SLAB)
+                .define('A', ModItems.NAIL.get())
                 .define('T', Items.STICK)
                 .unlockedBy("has_acacia_slab", has(Items.ACACIA_SLAB))
                 .save(recipeOutput);
 
         // Cherry Storage
         ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ModBlocks.CHERRY_STORAGE.get())
-                .pattern("   ")
+                .pattern("A A")
                 .pattern("WTW")
                 .pattern("WSW")
                 .define('W', Items.CHERRY_LOG)
                 .define('S', Items.CHERRY_SLAB)
+                .define('A', ModItems.NAIL.get())
                 .define('T', Items.STICK)
                 .unlockedBy("has_cherry_slab", has(Items.CHERRY_SLAB))
                 .save(recipeOutput);
 
         // Mangrove Storage
         ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ModBlocks.MANGROVE_STORAGE.get())
-                .pattern("   ")
+                .pattern("A A")
                 .pattern("WTW")
                 .pattern("WSW")
                 .define('W', Items.MANGROVE_LOG)
                 .define('S', Items.MANGROVE_SLAB)
+                .define('A', ModItems.NAIL.get())
                 .define('T', Items.STICK)
                 .unlockedBy("has_mangrove_slab", has(Items.MANGROVE_SLAB))
                 .save(recipeOutput);
 
         // Bamboo Storage (assuming custom bamboo slab exists)
         ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ModBlocks.BAMBOO_STORAGE.get())
-                .pattern("   ")
+                .pattern("A A")
                 .pattern("WTW")
                 .pattern("WSW")
                 .define('W', Items.BAMBOO_BLOCK)
+                .define('A', ModItems.NAIL.get())
                 .define('S', Items.BAMBOO_SLAB) // Assuming you have a BAMBOO_SLAB item in your ModItems
                 .define('T', Items.STICK)
                 .unlockedBy("has_bamboo_slab", has(Items.BAMBOO_SLAB))
@@ -2070,9 +2107,10 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         // OAK Hook
         ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ModBlocks.OAK_HOOK.get())
                 .pattern("   ")
-                .pattern("S S")
+                .pattern("SAS")
                 .pattern("SWS")
                 .define('W', Items.OAK_LOG)
+                .define('A', ModItems.NAIL.get())
                 .define('S', Items.STICK)
                 .unlockedBy("has_stick", has(Items.STICK))
                 .save(recipeOutput);
@@ -2080,9 +2118,10 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         // Acacia Hook
         ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ModBlocks.ACACIA_HOOK.get())
                 .pattern("   ")
-                .pattern("S S")
+                .pattern("SAS")
                 .pattern("SWS")
                 .define('W', Items.ACACIA_LOG)
+                .define('A', ModItems.NAIL.get())
                 .define('S', Items.STICK)
                 .unlockedBy("has_stick", has(Items.STICK))
                 .save(recipeOutput);
@@ -2090,9 +2129,10 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         // OAK Hook
         ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ModBlocks.BAMBOO_HOOK.get())
                 .pattern("   ")
-                .pattern("S S")
+                .pattern("SAS")
                 .pattern("SWS")
                 .define('W', Items.BAMBOO_BLOCK)
+                .define('A', ModItems.NAIL.get())
                 .define('S', Items.STICK)
                 .unlockedBy("has_stick", has(Items.STICK))
                 .save(recipeOutput);
@@ -2100,9 +2140,10 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         // OAK Hook
         ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ModBlocks.BIRCH_HOOK.get())
                 .pattern("   ")
-                .pattern("S S")
+                .pattern("SAS")
                 .pattern("SWS")
                 .define('W', Items.BIRCH_LOG)
+                .define('A', ModItems.NAIL.get())
                 .define('S', Items.STICK)
                 .unlockedBy("has_stick", has(Items.STICK))
                 .save(recipeOutput);
@@ -2110,9 +2151,10 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         // OAK Hook
         ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ModBlocks.CHERRY_HOOK.get())
                 .pattern("   ")
-                .pattern("S S")
+                .pattern("SAS")
                 .pattern("SWS")
                 .define('W', Items.CHERRY_LOG)
+                .define('A', ModItems.NAIL.get())
                 .define('S', Items.STICK)
                 .unlockedBy("has_stick", has(Items.STICK))
                 .save(recipeOutput);
@@ -2120,9 +2162,10 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         // OAK Hook
         ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ModBlocks.DARK_OAK_HOOK.get())
                 .pattern("   ")
-                .pattern("S S")
+                .pattern("SAS")
                 .pattern("SWS")
                 .define('W', Items.DARK_OAK_LOG)
+                .define('A', ModItems.NAIL.get())
                 .define('S', Items.STICK)
                 .unlockedBy("has_stick", has(Items.STICK))
                 .save(recipeOutput);
@@ -2130,9 +2173,10 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         // OAK Hook
         ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ModBlocks.JUNGLE_HOOK.get())
                 .pattern("   ")
-                .pattern("S S")
+                .pattern("SAS")
                 .pattern("SWS")
                 .define('W', Items.JUNGLE_LOG)
+                .define('A', ModItems.NAIL.get())
                 .define('S', Items.STICK)
                 .unlockedBy("has_stick", has(Items.STICK))
                 .save(recipeOutput);
@@ -2140,9 +2184,10 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         // OAK Hook
         ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ModBlocks.MANGROVE_HOOK.get())
                 .pattern("   ")
-                .pattern("S S")
+                .pattern("SAS")
                 .pattern("SWS")
                 .define('W', Items.MANGROVE_LOG)
+                .define('A', ModItems.NAIL.get())
                 .define('S', Items.STICK)
                 .unlockedBy("has_stick", has(Items.STICK))
                 .save(recipeOutput);
@@ -2150,9 +2195,10 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         // OAK Hook
         ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ModBlocks.SPRUCE_HOOK.get())
                 .pattern("   ")
-                .pattern("S S")
+                .pattern("SAS")
                 .pattern("SWS")
                 .define('W', Items.SPRUCE_LOG)
+                .define('A', ModItems.NAIL.get())
                 .define('S', Items.STICK)
                 .unlockedBy("has_stick", has(Items.STICK))
                 .save(recipeOutput);
@@ -2175,10 +2221,11 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
 
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.SPEAKER.get())
                 .pattern(" BB")
-                .pattern("BS ")
+                .pattern("SA ")
                 .pattern(" BB")
                 .define('B', ModItems.STEEL_INGOT.get())
                 .define('S', Items.IRON_INGOT)
+                .define('A', Items.REDSTONE_BLOCK)
                 .unlockedBy("has_steel_ingot", has(ModItems.STEEL_INGOT)).save(recipeOutput);
 
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.MILK_BOTTLE.get(),3)

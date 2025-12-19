@@ -25,6 +25,7 @@ public class ModCreativeModeTabs {
                         output.accept(ModItems.LASHING);
                         output.accept(ModItems.SACK_ITEM.get());
                         output.accept(ModItems.EMPTY_CUP.get());
+                        output.accept(ModItems.EMPTY_JAR.get());
                         output.accept(ModItems.NAIL.get());
                         output.accept(ModItems.MALLET_HEAD.get());
                         output.accept(ModItems.MALLET.get());
@@ -36,6 +37,7 @@ public class ModCreativeModeTabs {
 
                         // Metal fragments and processed metals
                         output.accept(ModItems.COPPER_NUGGET);
+                        output.accept(ModItems.TIN_NUGGET);
                         output.accept(ModItems.TIN);
                         output.accept(ModItems.TIN_INGOT);
                         output.accept(ModItems.STEEL_NUGGET);

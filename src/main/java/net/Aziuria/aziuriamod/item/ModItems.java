@@ -40,7 +40,11 @@ public class ModItems {
 
     public static final DeferredItem<Item> COPPER_NUGGET = ITEMS.register("copper_nugget",
             () -> new Item(new Item.Properties()));
+    public static final DeferredItem<Item> TIN_NUGGET = ITEMS.register("tin_nugget",
+            () -> new Item(new Item.Properties()));
     public static final DeferredItem<Item> STEEL_NUGGET = ITEMS.register("steel_nugget",
+            () -> new Item(new Item.Properties()));
+    public static final DeferredItem<Item> EMPTY_JAR = ITEMS.register("empty_jar",
             () -> new Item(new Item.Properties()));
 
     public static final DeferredItem<Item> NET = ITEMS.register("net",
