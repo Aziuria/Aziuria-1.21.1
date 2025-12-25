@@ -4,44 +4,58 @@ import net.Aziuria.aziuriamod.worldgen.biomes.ModBiomes;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.levelgen.SurfaceRules;
+import net.minecraft.world.level.levelgen.VerticalAnchor;
 
 public class ModSurfaceRules {
 
-    // ===== Vanilla blocks =====
-    private static final SurfaceRules.RuleSource DIRT = makeStateRule(Blocks.DIRT);
-    private static final SurfaceRules.RuleSource GRASS_BLOCK = makeStateRule(Blocks.GRASS_BLOCK);
-    private static final SurfaceRules.RuleSource STONE = makeStateRule(Blocks.STONE);
+    private static final SurfaceRules.RuleSource GRASS_BLOCK = state(Blocks.GRASS_BLOCK);
+    private static final SurfaceRules.RuleSource DIRT = state(Blocks.DIRT);
+    private static final SurfaceRules.RuleSource STONE = state(Blocks.STONE);
+    private static final SurfaceRules.RuleSource DEEPSLATE = state(Blocks.DEEPSLATE);
 
     public static SurfaceRules.RuleSource makeRules() {
 
-        // ===== Condition for topmost surface block =====
-        SurfaceRules.ConditionSource isSurface = SurfaceRules.ON_FLOOR;
+        // ===== PLAINS SURFACE (EXACT LOGIC) =====
+        SurfaceRules.RuleSource plainsSurface =
+                SurfaceRules.ifTrue(
+                        SurfaceRules.abovePreliminarySurface(),
+                        SurfaceRules.sequence(
+                                SurfaceRules.ifTrue(
+                                        SurfaceRules.waterBlockCheck(0, 0),
+                                        GRASS_BLOCK
+                                ),
+                                DIRT
+                        )
+                );
 
-        // ===== Custom biome surface rule =====
-        SurfaceRules.RuleSource spectralSurface = SurfaceRules.ifTrue(
-                SurfaceRules.isBiome(ModBiomes.SPECTRAL_SOULBOUND_FOREST),
-                SurfaceRules.sequence(
-                        SurfaceRules.ifTrue(isSurface, GRASS_BLOCK),       // Top block = Grass
-                        SurfaceRules.ifTrue(SurfaceRules.UNDER_FLOOR, DIRT) // Only below top = Dirt
-                )
-        );
+        // ===== BIOME OVERRIDE =====
+        SurfaceRules.RuleSource spectralSurface =
+                SurfaceRules.ifTrue(
+                        SurfaceRules.isBiome(ModBiomes.SPECTRAL_SOULBOUND_FOREST),
+                        plainsSurface
+                );
 
-        // ===== Default surface for other biomes =====
-        SurfaceRules.RuleSource defaultSurface = SurfaceRules.sequence(
-                SurfaceRules.ifTrue(isSurface, GRASS_BLOCK),           // Top block = Grass
-                SurfaceRules.ifTrue(SurfaceRules.UNDER_FLOOR, DIRT)   // Only below top = Dirt
-        );
+        // ===== DEEPSLATE (VANILLA GRADIENT) =====
+        SurfaceRules.RuleSource deepslate =
+                SurfaceRules.ifTrue(
+                        SurfaceRules.verticalGradient(
+                                "deepslate",
+                                VerticalAnchor.absolute(0),
+                                VerticalAnchor.absolute(8)
+                        ),
+                        DEEPSLATE
+                );
 
-        // ===== Full sequence =====
+        // ===== FINAL ORDER (MATCHES VANILLA) =====
         return SurfaceRules.sequence(
-                spectralSurface,  // Custom biome first
-                defaultSurface,   // Default for others
-                STONE             // Fallback for all deeper underground blocks (includes ores)
+                spectralSurface,   // biome surface
+                plainsSurface,     // default plains surface
+                deepslate,         // deepslate transition
+                STONE              // stone fallback
         );
     }
 
-    // ===== Helper to convert Block to SurfaceRules.RuleSource =====
-    private static SurfaceRules.RuleSource makeStateRule(Block block) {
+    private static SurfaceRules.RuleSource state(Block block) {
         return SurfaceRules.state(block.defaultBlockState());
     }
 }
