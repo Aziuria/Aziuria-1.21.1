@@ -7,25 +7,40 @@ import net.minecraft.world.level.levelgen.SurfaceRules;
 
 public class ModSurfaceRules {
 
+    // ===== Vanilla blocks =====
     private static final SurfaceRules.RuleSource DIRT = makeStateRule(Blocks.DIRT);
     private static final SurfaceRules.RuleSource GRASS_BLOCK = makeStateRule(Blocks.GRASS_BLOCK);
+    private static final SurfaceRules.RuleSource STONE = makeStateRule(Blocks.STONE);
 
     public static SurfaceRules.RuleSource makeRules() {
 
-        SurfaceRules.ConditionSource isAtOrAboveWaterLevel = SurfaceRules.waterBlockCheck(-1, 0);
-        SurfaceRules.RuleSource grassSurface = SurfaceRules.sequence(
-                SurfaceRules.ifTrue(isAtOrAboveWaterLevel, GRASS_BLOCK), DIRT
+        // ===== Condition for topmost surface block =====
+        SurfaceRules.ConditionSource isSurface = SurfaceRules.ON_FLOOR;
+
+        // ===== Custom biome surface rule =====
+        SurfaceRules.RuleSource spectralSurface = SurfaceRules.ifTrue(
+                SurfaceRules.isBiome(ModBiomes.SPECTRAL_SOULBOUND_FOREST),
+                SurfaceRules.sequence(
+                        SurfaceRules.ifTrue(isSurface, GRASS_BLOCK),       // Top block = Grass
+                        SurfaceRules.ifTrue(SurfaceRules.UNDER_FLOOR, DIRT) // Only below top = Dirt
+                )
         );
 
-        return SurfaceRules.sequence(
-                // Custom biome surface
-                SurfaceRules.ifTrue(SurfaceRules.isBiome(ModBiomes.SPECTRAL_SOULBOUND_FOREST), GRASS_BLOCK),
+        // ===== Default surface for other biomes =====
+        SurfaceRules.RuleSource defaultSurface = SurfaceRules.sequence(
+                SurfaceRules.ifTrue(isSurface, GRASS_BLOCK),           // Top block = Grass
+                SurfaceRules.ifTrue(SurfaceRules.UNDER_FLOOR, DIRT)   // Only below top = Dirt
+        );
 
-                // Default surface
-                SurfaceRules.ifTrue(SurfaceRules.ON_FLOOR, grassSurface)
+        // ===== Full sequence =====
+        return SurfaceRules.sequence(
+                spectralSurface,  // Custom biome first
+                defaultSurface,   // Default for others
+                STONE             // Fallback for all deeper underground blocks (includes ores)
         );
     }
 
+    // ===== Helper to convert Block to SurfaceRules.RuleSource =====
     private static SurfaceRules.RuleSource makeStateRule(Block block) {
         return SurfaceRules.state(block.defaultBlockState());
     }

@@ -73,9 +73,10 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
 
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.MALLET.get())
                 .pattern(" I ")
-                .pattern(" U ")
+                .pattern("AUA")
                 .pattern(" U ")
                 .define('I', ModItems.MALLET_HEAD.get())
+                .define('A', ModItems.LASHING.get())
                 .define('U', Items.STICK)
                 .unlockedBy("has_stick", has(Items.STICK)).save(recipeOutput);
 
