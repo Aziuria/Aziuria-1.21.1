@@ -15,16 +15,26 @@ public class ModSurfaceRules {
 
     public static SurfaceRules.RuleSource makeRules() {
 
-        // ===== PLAINS SURFACE (EXACT LOGIC) =====
+        // ===== PLAINS SURFACE (REDUCED DIRT DEPTH) =====
         SurfaceRules.RuleSource plainsSurface =
                 SurfaceRules.ifTrue(
                         SurfaceRules.abovePreliminarySurface(),
                         SurfaceRules.sequence(
+
+                                // --- TOP BLOCK ---
                                 SurfaceRules.ifTrue(
-                                        SurfaceRules.waterBlockCheck(0, 0),
-                                        GRASS_BLOCK
+                                        SurfaceRules.ON_FLOOR,
+                                        SurfaceRules.ifTrue(
+                                                SurfaceRules.waterBlockCheck(0, 0),
+                                                GRASS_BLOCK
+                                        )
                                 ),
-                                DIRT
+
+                                // --- SHALLOW DIRT ONLY ---
+                                SurfaceRules.ifTrue(
+                                        SurfaceRules.UNDER_FLOOR,
+                                        DIRT
+                                )
                         )
                 );
 
@@ -46,12 +56,12 @@ public class ModSurfaceRules {
                         DEEPSLATE
                 );
 
-        // ===== FINAL ORDER (MATCHES VANILLA) =====
+        // ===== FINAL ORDER =====
         return SurfaceRules.sequence(
-                spectralSurface,   // biome surface
-                plainsSurface,     // default plains surface
-                deepslate,         // deepslate transition
-                STONE              // stone fallback
+                spectralSurface,
+                plainsSurface,
+                deepslate,
+                STONE
         );
     }
 
