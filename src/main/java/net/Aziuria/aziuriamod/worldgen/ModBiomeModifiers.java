@@ -52,8 +52,11 @@ public class ModBiomeModifiers {
 
     public static final ResourceKey<BiomeModifier> ADD_FLAX_FLOWER = registerKey("add_flax_flower");
     public static final ResourceKey<BiomeModifier> STICK_A = registerKey("add_stick_a");
+    public static final ResourceKey<BiomeModifier> STICK_A1 = registerKey("add_stick_a1");
     public static final ResourceKey<BiomeModifier> STICK_B = registerKey("add_stick_b");
+    public static final ResourceKey<BiomeModifier> STICK_B1 = registerKey("add_stick_b1");
     public static final ResourceKey<BiomeModifier> STICK_C = registerKey("add_stick_c");
+    public static final ResourceKey<BiomeModifier> STICK_C1 = registerKey("add_stick_c1");
     public static final ResourceKey<BiomeModifier> YUCCA_PLANT = registerKey("add_yucca_plant");
 
     public static final ResourceKey<BiomeModifier> APPLE_KEY_VARIANT_1 = registerKey("add_apple_variant_1");
@@ -244,15 +247,39 @@ public class ModBiomeModifiers {
                 HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.STICK_A)),
                 GenerationStep.Decoration.VEGETAL_DECORATION));
 
+        context.register(ModBiomeModifiers.STICK_A1, new BiomeModifiers.AddFeaturesBiomeModifier(
+                biomes.getOrThrow(
+                        TagKey.create(Registries.BIOME, ResourceLocation.fromNamespaceAndPath("aziuriamod", "spectral_soulbound_forest"))
+                ),
+                HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.STICK_A1)),
+                GenerationStep.Decoration.VEGETAL_DECORATION
+        ));
+
         context.register(STICK_B, new BiomeModifiers.AddFeaturesBiomeModifier(
                 biomes.getOrThrow(BiomeTags.IS_OVERWORLD), // ← Changed from explicit biomes list
                 HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.STICK_B)),
                 GenerationStep.Decoration.VEGETAL_DECORATION));
 
+        context.register(ModBiomeModifiers.STICK_B1, new BiomeModifiers.AddFeaturesBiomeModifier(
+                biomes.getOrThrow(
+                        TagKey.create(Registries.BIOME, ResourceLocation.fromNamespaceAndPath("aziuriamod", "spectral_soulbound_forest"))
+                ),
+                HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.STICK_B1)),
+                GenerationStep.Decoration.VEGETAL_DECORATION
+        ));
+
         context.register(STICK_C, new BiomeModifiers.AddFeaturesBiomeModifier(
                 biomes.getOrThrow(BiomeTags.IS_OVERWORLD), // ← Changed from explicit biomes list
                 HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.STICK_C)),
                 GenerationStep.Decoration.VEGETAL_DECORATION));
+
+        context.register(ModBiomeModifiers.STICK_C1, new BiomeModifiers.AddFeaturesBiomeModifier(
+                biomes.getOrThrow(
+                        TagKey.create(Registries.BIOME, ResourceLocation.fromNamespaceAndPath("aziuriamod", "spectral_soulbound_forest"))
+                ),
+                HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.STICK_C1)),
+                GenerationStep.Decoration.VEGETAL_DECORATION
+        ));
 
         context.register(ADD_FLAX_FLOWER, new BiomeModifiers.AddFeaturesBiomeModifier(
                 HolderSet.direct(

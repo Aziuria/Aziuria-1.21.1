@@ -39,6 +39,13 @@ public class VegetationGrowthHandler {
             String biomePath = biomeID.getPath();
             float chance = random.nextFloat();
 
+            if (biomeID.equals(ResourceLocation.fromNamespaceAndPath(
+                    "aziuriamod", "spectral_soulbound_forest"
+            ))) {
+                handleSpectralSoulboundForestGrowth(level, surfacePos, chance);
+                return;
+            }
+
             // Exclude Nether, End, Ocean biomes
             if (biomePath.contains("nether") || biomePath.contains("end")) return;
 
@@ -120,12 +127,23 @@ public class VegetationGrowthHandler {
             String biomePath = biomeKey != null ? biomeKey.location().getPath() : "unknown";
             float roll = random.nextFloat();
 
+            ResourceLocation biomeID = biomeKey.location();
+
+            // ===== ADDED: SPECTRAL BIOME CHECK (UNDERWATER) =====
+            boolean isSpectralSoulboundForest = biomeID.equals(
+                    ResourceLocation.fromNamespaceAndPath("aziuriamod", "spectral_soulbound_forest")
+            );
+
             // Skip if not underwater
             if (!level.getFluidState(seaFloor).is(Fluids.WATER)) return;
 
             // --- Kelp growth (ocean variants) ---
-            boolean kelpAllowed = biomePath.contains("ocean") || biomePath.contains("deep_ocean")
-                    || biomePath.contains("cold_ocean") || biomePath.contains("warm_ocean");
+            boolean kelpAllowed =
+                    biomePath.contains("ocean")
+                            || biomePath.contains("deep_ocean")
+                            || biomePath.contains("cold_ocean")
+                            || biomePath.contains("warm_ocean")
+                            || isSpectralSoulboundForest;
             if (kelpAllowed && roll < 0.15f) {
                 level.setBlock(seaFloor, Blocks.KELP.defaultBlockState(), 3);
                 BlockPos growPos = seaFloor.above();
@@ -321,5 +339,13 @@ public class VegetationGrowthHandler {
 
     private static void handleDefaultGrowth(ServerLevel level, BlockPos pos, float chance) {
         if (chance < 0.10f) level.setBlock(pos, Blocks.TALL_GRASS.defaultBlockState(), 3);
+    }
+
+    private static void handleSpectralSoulboundForestGrowth(ServerLevel level, BlockPos pos, float chance) {
+        if (chance < 0.06f) level.setBlock(pos, ModBlocks.FLAX_FLOWER_BLOCK.get().defaultBlockState(), 3);
+        else if (chance < 0.12f) level.setBlock(pos, Blocks.ALLIUM.defaultBlockState(), 3);
+        else if (chance < 0.18f) level.setBlock(pos, Blocks.AZURE_BLUET.defaultBlockState(), 3);
+        else if (chance < 0.24f) level.setBlock(pos, Blocks.LILY_OF_THE_VALLEY.defaultBlockState(), 3);
+        else if (chance < 0.40f) level.setBlock(pos, Blocks.TALL_GRASS.defaultBlockState(), 3);
     }
 }

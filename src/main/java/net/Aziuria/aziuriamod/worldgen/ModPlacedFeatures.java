@@ -52,8 +52,11 @@ public class ModPlacedFeatures {
 
 
     public static final ResourceKey<PlacedFeature> STICK_A = registerKey("stick_a_placed");
+    public static final ResourceKey<PlacedFeature> STICK_A1 = registerKey("stick_a1_placed");
     public static final ResourceKey<PlacedFeature> STICK_B = registerKey("stick_b_placed");
+    public static final ResourceKey<PlacedFeature> STICK_B1 = registerKey("stick_b1_placed");
     public static final ResourceKey<PlacedFeature> STICK_C = registerKey("stick_c_placed");
+    public static final ResourceKey<PlacedFeature> STICK_C1 = registerKey("stick_c1_placed");
 
     public static final ResourceKey<PlacedFeature> FLAX_FLOWER_PLACED_KEY = registerKey("flax_flower_placed");
     public static final ResourceKey<PlacedFeature> YUCCA_PLANT_PLACED_KEY = registerKey("yucca_plant_placed");
@@ -271,6 +274,16 @@ public class ModPlacedFeatures {
                         BiomeFilter.biome()
                 ));
 
+        register(context, STICK_A1,
+                configuredFeatures.getOrThrow(ModConfiguredFeatures.STICK_A),
+                List.of(
+                        RarityFilter.onAverageOnceEvery(1),
+                        InSquarePlacement.spread(),
+                        PlacementUtils.HEIGHTMAP_WORLD_SURFACE,
+                        NearLogPlacementModifier.of(5, 0.6),
+                        BiomeFilter.biome()
+                ));
+
         register(context, STICK_B,
                 configuredFeatures.getOrThrow(ModConfiguredFeatures.STICK_B),
                 List.of(
@@ -281,8 +294,28 @@ public class ModPlacedFeatures {
                         BiomeFilter.biome()
                 ));
 
+        register(context, STICK_B1,
+                configuredFeatures.getOrThrow(ModConfiguredFeatures.STICK_A),
+                List.of(
+                        RarityFilter.onAverageOnceEvery(1),
+                        InSquarePlacement.spread(),
+                        PlacementUtils.HEIGHTMAP_WORLD_SURFACE,
+                        NearLogPlacementModifier.of(5, 0.6),
+                        BiomeFilter.biome()
+                ));
+
         register(context, STICK_C,
                 configuredFeatures.getOrThrow(ModConfiguredFeatures.STICK_C),
+                List.of(
+                        RarityFilter.onAverageOnceEvery(1),
+                        InSquarePlacement.spread(),
+                        PlacementUtils.HEIGHTMAP_WORLD_SURFACE,
+                        NearLogPlacementModifier.of(5, 0.6),
+                        BiomeFilter.biome()
+                ));
+
+        register(context, STICK_C1,
+                configuredFeatures.getOrThrow(ModConfiguredFeatures.STICK_A),
                 List.of(
                         RarityFilter.onAverageOnceEvery(1),
                         InSquarePlacement.spread(),
