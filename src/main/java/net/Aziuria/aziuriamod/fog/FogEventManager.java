@@ -37,7 +37,7 @@ public class FogEventManager {
     private static boolean evilFogFadeOutTriggered = false;
 
     private static int daysFogDenied = 0; // tracks number of full days fog is denied
-    private static final int FOG_DENIAL_DAYS = 1; // now 3
+    private static final int FOG_DENIAL_DAYS = 3; // now 3
 
     private static boolean fogForceStopping = false;
 
