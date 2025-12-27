@@ -27,12 +27,24 @@ public class ModBiomeModifiers {
     public static final ResourceKey<BiomeModifier> ADD_SULPHUR_ORE_UPPER = registerKey("add_sulphur_ore_upper");
     public static final ResourceKey<BiomeModifier> ADD_SULPHUR_ORE_MOUNTAINS = registerKey("add_sulphur_ore_mountains");
 
+    public static final ResourceKey<BiomeModifier> ADD_SULPHUR_ORE_ULTRA_DEEP_A = registerKey("add_sulphur_ore_ultra_deep_a");
+    public static final ResourceKey<BiomeModifier> ADD_SULPHUR_ORE_DEEP_A = registerKey("add_sulphur_ore_deep_a");
+    public static final ResourceKey<BiomeModifier> ADD_SULPHUR_ORE_MID_A = registerKey("add_sulphur_ore_mid_a");
+    public static final ResourceKey<BiomeModifier> ADD_SULPHUR_ORE_UPPER_A = registerKey("add_sulphur_ore_upper_a");
+    public static final ResourceKey<BiomeModifier> ADD_SULPHUR_ORE_MOUNTAINS_A = registerKey("add_sulphur_ore_mountains_a");
+
     // TIN
     public static final ResourceKey<BiomeModifier> ADD_TIN_ORE_ULTRA_DEEP = registerKey("add_tin_ore_ultra_deep");
     public static final ResourceKey<BiomeModifier> ADD_TIN_ORE_DEEP = registerKey("add_tin_ore_deep");
     public static final ResourceKey<BiomeModifier> ADD_TIN_ORE_MID = registerKey("add_tin_ore_mid");
     public static final ResourceKey<BiomeModifier> ADD_TIN_ORE_UPPER = registerKey("add_tin_ore_upper");
     public static final ResourceKey<BiomeModifier> ADD_TIN_ORE_MOUNTAINS = registerKey("add_tin_ore_mountains");
+
+    public static final ResourceKey<BiomeModifier> ADD_TIN_ORE_ULTRA_DEEP_A = registerKey("add_tin_ore_ultra_deep_a");
+    public static final ResourceKey<BiomeModifier> ADD_TIN_ORE_DEEP_A = registerKey("add_tin_ore_deep_a");
+    public static final ResourceKey<BiomeModifier> ADD_TIN_ORE_MID_A = registerKey("add_tin_ore_mid_a");
+    public static final ResourceKey<BiomeModifier> ADD_TIN_ORE_UPPER_A = registerKey("add_tin_ore_upper_a");
+    public static final ResourceKey<BiomeModifier> ADD_TIN_ORE_MOUNTAINS_A = registerKey("add_tin_ore_mountains_a");
 
     // POTASSIUM
     public static final ResourceKey<BiomeModifier> ADD_POTASSIUM_ORE_ULTRA_DEEP = registerKey("add_potassium_ore_ultra_deep");
@@ -41,9 +53,19 @@ public class ModBiomeModifiers {
     public static final ResourceKey<BiomeModifier> ADD_POTASSIUM_ORE_UPPER = registerKey("add_potassium_ore_upper");
     public static final ResourceKey<BiomeModifier> ADD_POTASSIUM_ORE_MOUNTAINS = registerKey("add_potassium_ore_mountains");
 
+    public static final ResourceKey<BiomeModifier> ADD_POTASSIUM_ORE_ULTRA_DEEP_A = registerKey("add_potassium_ore_ultra_deep_a");
+    public static final ResourceKey<BiomeModifier> ADD_POTASSIUM_ORE_DEEP_A = registerKey("add_potassium_ore_deep_a");
+    public static final ResourceKey<BiomeModifier> ADD_POTASSIUM_ORE_MID_A = registerKey("add_potassium_ore_mid_a");
+    public static final ResourceKey<BiomeModifier> ADD_POTASSIUM_ORE_UPPER_A = registerKey("add_potassium_ore_upper_a");
+    public static final ResourceKey<BiomeModifier> ADD_POTASSIUM_ORE_MOUNTAINS_A = registerKey("add_potassium_ore_mountains_a");
+
     public static final ResourceKey<BiomeModifier> ADD_SPINEL_ORE_ULTRA_DEEP = registerKey("add_spinel_ore_ultra_deep");
     public static final ResourceKey<BiomeModifier> ADD_SPINEL_ORE_DEEP = registerKey("add_spinel_ore_deep");
     public static final ResourceKey<BiomeModifier> ADD_SPINEL_ORE_MID = registerKey("add_spinel_ore_mid");
+
+    public static final ResourceKey<BiomeModifier> ADD_SPINEL_ORE_ULTRA_DEEP_A = registerKey("add_spinel_ore_ultra_deep_a");
+    public static final ResourceKey<BiomeModifier> ADD_SPINEL_ORE_DEEP_A = registerKey("add_spinel_ore_deep_a");
+    public static final ResourceKey<BiomeModifier> ADD_SPINEL_ORE_MID_A = registerKey("add_spinel_ore_mid_a");
 
     public static final ResourceKey<BiomeModifier> ADD_LEAF_LITTER = registerKey("add_leaf_litter");
     public static final ResourceKey<BiomeModifier> ADD_LEAF_LITTER_EXTRA = registerKey("add_leaf_litter_extra");
@@ -128,6 +150,40 @@ public class ModBiomeModifiers {
         var biomes = context.lookup(Registries.BIOME);
 
 // SULPHUR
+
+
+        context.register(ADD_SULPHUR_ORE_ULTRA_DEEP_A, new BiomeModifiers.AddFeaturesBiomeModifier(
+                biomes.getOrThrow(
+                        TagKey.create(Registries.BIOME, ResourceLocation.fromNamespaceAndPath("aziuriamod", "spectral_soulbound_forest"))),
+                HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.SULPHUR_ORE_ULTRA_DEEP_PLACED_KEY_A)),
+                GenerationStep.Decoration.UNDERGROUND_ORES));
+
+        context.register(ADD_SULPHUR_ORE_DEEP_A, new BiomeModifiers.AddFeaturesBiomeModifier(
+                biomes.getOrThrow(
+                        TagKey.create(Registries.BIOME, ResourceLocation.fromNamespaceAndPath("aziuriamod", "spectral_soulbound_forest"))),
+                HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.SULPHUR_ORE_DEEP_PLACED_KEY_A)),
+                GenerationStep.Decoration.UNDERGROUND_ORES));
+
+        context.register(ADD_SULPHUR_ORE_MID_A, new BiomeModifiers.AddFeaturesBiomeModifier(
+                biomes.getOrThrow(
+                        TagKey.create(Registries.BIOME, ResourceLocation.fromNamespaceAndPath("aziuriamod", "spectral_soulbound_forest"))),
+                HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.SULPHUR_ORE_MID_PLACED_KEY_A)),
+                GenerationStep.Decoration.UNDERGROUND_ORES));
+
+        context.register(ADD_SULPHUR_ORE_UPPER_A, new BiomeModifiers.AddFeaturesBiomeModifier(
+                biomes.getOrThrow(
+                        TagKey.create(Registries.BIOME, ResourceLocation.fromNamespaceAndPath("aziuriamod", "spectral_soulbound_forest"))),
+                HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.SULPHUR_ORE_UPPER_PLACED_KEY_A)),
+                GenerationStep.Decoration.UNDERGROUND_ORES));
+
+        context.register(ADD_SULPHUR_ORE_MOUNTAINS_A, new BiomeModifiers.AddFeaturesBiomeModifier(
+                biomes.getOrThrow(
+                        TagKey.create(Registries.BIOME, ResourceLocation.fromNamespaceAndPath("aziuriamod", "spectral_soulbound_forest"))),
+                HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.SULPHUR_ORE_MOUNTAINS_PLACED_KEY_A)),
+                GenerationStep.Decoration.UNDERGROUND_ORES));
+
+        //======
+
         context.register(ADD_SULPHUR_ORE_ULTRA_DEEP, new BiomeModifiers.AddFeaturesBiomeModifier(
                 biomes.getOrThrow(BiomeTags.IS_OVERWORLD),
                 HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.SULPHUR_ORE_ULTRA_DEEP_PLACED_KEY)),
@@ -179,6 +235,38 @@ public class ModBiomeModifiers {
                 HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.TIN_ORE_MOUNTAINS_PLACED_KEY)),
                 GenerationStep.Decoration.UNDERGROUND_ORES));
 
+        //=========
+
+        context.register(ADD_TIN_ORE_ULTRA_DEEP_A, new BiomeModifiers.AddFeaturesBiomeModifier(
+                biomes.getOrThrow(
+                        TagKey.create(Registries.BIOME, ResourceLocation.fromNamespaceAndPath("aziuriamod", "spectral_soulbound_forest"))),
+                HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.TIN_ORE_ULTRA_DEEP_PLACED_KEY_A)),
+                GenerationStep.Decoration.UNDERGROUND_ORES));
+
+        context.register(ADD_TIN_ORE_DEEP_A, new BiomeModifiers.AddFeaturesBiomeModifier(
+                biomes.getOrThrow(
+                        TagKey.create(Registries.BIOME, ResourceLocation.fromNamespaceAndPath("aziuriamod", "spectral_soulbound_forest"))),
+                HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.TIN_ORE_DEEP_PLACED_KEY_A)),
+                GenerationStep.Decoration.UNDERGROUND_ORES));
+
+        context.register(ADD_TIN_ORE_MID_A, new BiomeModifiers.AddFeaturesBiomeModifier(
+                biomes.getOrThrow(
+                        TagKey.create(Registries.BIOME, ResourceLocation.fromNamespaceAndPath("aziuriamod", "spectral_soulbound_forest"))),
+                HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.TIN_ORE_MID_PLACED_KEY_A)),
+                GenerationStep.Decoration.UNDERGROUND_ORES));
+
+        context.register(ADD_TIN_ORE_UPPER_A, new BiomeModifiers.AddFeaturesBiomeModifier(
+                biomes.getOrThrow(
+                        TagKey.create(Registries.BIOME, ResourceLocation.fromNamespaceAndPath("aziuriamod", "spectral_soulbound_forest"))),
+                HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.TIN_ORE_UPPER_PLACED_KEY_A)),
+                GenerationStep.Decoration.UNDERGROUND_ORES));
+
+        context.register(ADD_TIN_ORE_MOUNTAINS_A, new BiomeModifiers.AddFeaturesBiomeModifier(
+                biomes.getOrThrow(
+                        TagKey.create(Registries.BIOME, ResourceLocation.fromNamespaceAndPath("aziuriamod", "spectral_soulbound_forest"))),
+                HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.TIN_ORE_MOUNTAINS_PLACED_KEY_A)),
+                GenerationStep.Decoration.UNDERGROUND_ORES));
+
 // POTASSIUM
         context.register(ADD_POTASSIUM_ORE_ULTRA_DEEP, new BiomeModifiers.AddFeaturesBiomeModifier(
                 biomes.getOrThrow(BiomeTags.IS_OVERWORLD),
@@ -205,6 +293,40 @@ public class ModBiomeModifiers {
                 HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.POTASSIUM_ORE_MOUNTAINS_PLACED_KEY)),
                 GenerationStep.Decoration.UNDERGROUND_ORES));
 
+        //=====
+
+        context.register(ADD_POTASSIUM_ORE_ULTRA_DEEP_A, new BiomeModifiers.AddFeaturesBiomeModifier(
+                biomes.getOrThrow(
+                        TagKey.create(Registries.BIOME, ResourceLocation.fromNamespaceAndPath("aziuriamod", "spectral_soulbound_forest"))),
+                HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.POTASSIUM_ORE_ULTRA_DEEP_PLACED_KEY_A)),
+                GenerationStep.Decoration.UNDERGROUND_ORES));
+
+        context.register(ADD_POTASSIUM_ORE_DEEP_A, new BiomeModifiers.AddFeaturesBiomeModifier(
+                biomes.getOrThrow(
+                        TagKey.create(Registries.BIOME, ResourceLocation.fromNamespaceAndPath("aziuriamod", "spectral_soulbound_forest"))),
+                HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.POTASSIUM_ORE_DEEP_PLACED_KEY_A)),
+                GenerationStep.Decoration.UNDERGROUND_ORES));
+
+        context.register(ADD_POTASSIUM_ORE_MID_A, new BiomeModifiers.AddFeaturesBiomeModifier(
+                biomes.getOrThrow(
+                        TagKey.create(Registries.BIOME, ResourceLocation.fromNamespaceAndPath("aziuriamod", "spectral_soulbound_forest"))),
+                HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.POTASSIUM_ORE_MID_PLACED_KEY_A)),
+                GenerationStep.Decoration.UNDERGROUND_ORES));
+
+        context.register(ADD_POTASSIUM_ORE_UPPER_A, new BiomeModifiers.AddFeaturesBiomeModifier(
+                biomes.getOrThrow(
+                        TagKey.create(Registries.BIOME, ResourceLocation.fromNamespaceAndPath("aziuriamod", "spectral_soulbound_forest"))),
+                HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.POTASSIUM_ORE_UPPER_PLACED_KEY_A)),
+                GenerationStep.Decoration.UNDERGROUND_ORES));
+
+        context.register(ADD_POTASSIUM_ORE_MOUNTAINS_A, new BiomeModifiers.AddFeaturesBiomeModifier(
+                biomes.getOrThrow(
+                        TagKey.create(Registries.BIOME, ResourceLocation.fromNamespaceAndPath("aziuriamod", "spectral_soulbound_forest"))),
+                HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.POTASSIUM_ORE_MOUNTAINS_PLACED_KEY_A)),
+                GenerationStep.Decoration.UNDERGROUND_ORES));
+
+        //=====
+
         context.register(ADD_SPINEL_ORE_ULTRA_DEEP, new BiomeModifiers.AddFeaturesBiomeModifier(
                 biomes.getOrThrow(BiomeTags.IS_OVERWORLD),
                 HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.SPINEL_ORE_ULTRA_DEEP_PLACED_KEY)),
@@ -218,6 +340,26 @@ public class ModBiomeModifiers {
         context.register(ADD_SPINEL_ORE_MID, new BiomeModifiers.AddFeaturesBiomeModifier(
                 biomes.getOrThrow(BiomeTags.IS_OVERWORLD),
                 HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.SPINEL_ORE_MID_PLACED_KEY)),
+                GenerationStep.Decoration.UNDERGROUND_ORES));
+
+        //=====
+
+        context.register(ADD_SPINEL_ORE_ULTRA_DEEP_A, new BiomeModifiers.AddFeaturesBiomeModifier(
+                biomes.getOrThrow(
+                        TagKey.create(Registries.BIOME, ResourceLocation.fromNamespaceAndPath("aziuriamod", "spectral_soulbound_forest"))),
+                HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.SPINEL_ORE_ULTRA_DEEP_PLACED_KEY_A)),
+                GenerationStep.Decoration.UNDERGROUND_ORES));
+
+        context.register(ADD_SPINEL_ORE_DEEP_A, new BiomeModifiers.AddFeaturesBiomeModifier(
+                biomes.getOrThrow(
+                        TagKey.create(Registries.BIOME, ResourceLocation.fromNamespaceAndPath("aziuriamod", "spectral_soulbound_forest"))),
+                HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.SPINEL_ORE_DEEP_PLACED_KEY_A)),
+                GenerationStep.Decoration.UNDERGROUND_ORES));
+
+        context.register(ADD_SPINEL_ORE_MID_A, new BiomeModifiers.AddFeaturesBiomeModifier(
+                biomes.getOrThrow(
+                        TagKey.create(Registries.BIOME, ResourceLocation.fromNamespaceAndPath("aziuriamod", "spectral_soulbound_forest"))),
+                HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.SPINEL_ORE_MID_PLACED_KEY_A)),
                 GenerationStep.Decoration.UNDERGROUND_ORES));
 
 
