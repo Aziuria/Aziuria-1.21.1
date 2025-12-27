@@ -67,6 +67,10 @@ public class ModBiomeModifiers {
     public static final ResourceKey<BiomeModifier> ADD_SPINEL_ORE_DEEP_A = registerKey("add_spinel_ore_deep_a");
     public static final ResourceKey<BiomeModifier> ADD_SPINEL_ORE_MID_A = registerKey("add_spinel_ore_mid_a");
 
+    public static final ResourceKey<BiomeModifier> ADD_SPECTRAL_ORE_ULTRA_DEEP = registerKey("add_spectral_ore_ultra_deep");
+    public static final ResourceKey<BiomeModifier> ADD_SPECTRAL_ORE_DEEP = registerKey("add_spectral_ore_deep");
+    public static final ResourceKey<BiomeModifier> ADD_SPECTRAL_ORE_MID = registerKey("add_spectral_ore_mid");
+
     public static final ResourceKey<BiomeModifier> ADD_LEAF_LITTER = registerKey("add_leaf_litter");
     public static final ResourceKey<BiomeModifier> ADD_LEAF_LITTER_EXTRA = registerKey("add_leaf_litter_extra");
     public static final ResourceKey<BiomeModifier> ADD_LEAF_LITTER_EXTRA2 = registerKey("add_leaf_litter_extra2");
@@ -360,6 +364,26 @@ public class ModBiomeModifiers {
                 biomes.getOrThrow(
                         TagKey.create(Registries.BIOME, ResourceLocation.fromNamespaceAndPath("aziuriamod", "spectral_soulbound_forest"))),
                 HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.SPINEL_ORE_MID_PLACED_KEY_A)),
+                GenerationStep.Decoration.UNDERGROUND_ORES));
+
+        //=====
+
+        context.register(ADD_SPECTRAL_ORE_ULTRA_DEEP, new BiomeModifiers.AddFeaturesBiomeModifier(
+                biomes.getOrThrow(
+                        TagKey.create(Registries.BIOME, ResourceLocation.fromNamespaceAndPath("aziuriamod", "spectral_soulbound_forest"))),
+                HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.SPECTRAL_ORE_ULTRA_DEEP_PLACED_KEY_A)),
+                GenerationStep.Decoration.UNDERGROUND_ORES));
+
+        context.register(ADD_SPECTRAL_ORE_DEEP, new BiomeModifiers.AddFeaturesBiomeModifier(
+                biomes.getOrThrow(
+                        TagKey.create(Registries.BIOME, ResourceLocation.fromNamespaceAndPath("aziuriamod", "spectral_soulbound_forest"))),
+                HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.SPECTRAL_ORE_DEEP_PLACED_KEY_A)),
+                GenerationStep.Decoration.UNDERGROUND_ORES));
+
+        context.register(ADD_SPECTRAL_ORE_MID, new BiomeModifiers.AddFeaturesBiomeModifier(
+                biomes.getOrThrow(
+                        TagKey.create(Registries.BIOME, ResourceLocation.fromNamespaceAndPath("aziuriamod", "spectral_soulbound_forest"))),
+                HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.SPECTRAL_ORE_MID_PLACED_KEY_A)),
                 GenerationStep.Decoration.UNDERGROUND_ORES));
 
 

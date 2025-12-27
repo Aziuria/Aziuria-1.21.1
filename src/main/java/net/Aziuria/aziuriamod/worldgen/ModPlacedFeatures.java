@@ -67,6 +67,10 @@ public class ModPlacedFeatures {
     public static final ResourceKey<PlacedFeature> SPINEL_ORE_DEEP_PLACED_KEY_A = registerKey("spinel_ore_deep_placed_a");
     public static final ResourceKey<PlacedFeature> SPINEL_ORE_MID_PLACED_KEY_A = registerKey("spinel_ore_mid_placed_a");
 
+    public static final ResourceKey<PlacedFeature> SPECTRAL_ORE_ULTRA_DEEP_PLACED_KEY_A = registerKey("spectral_ore_ultra_deep_placed");
+    public static final ResourceKey<PlacedFeature> SPECTRAL_ORE_DEEP_PLACED_KEY_A = registerKey("spectral_ore_deep_placed");
+    public static final ResourceKey<PlacedFeature> SPECTRAL_ORE_MID_PLACED_KEY_A = registerKey("spectral_ore_mid_placed");
+
     public static final ResourceKey<PlacedFeature> LEAF_LITTER_PLACED_KEY = registerKey("leaf_litter_placed");
     public static final ResourceKey<PlacedFeature> LEAF_LITTER_EXTRA_PLACED_KEY = registerKey("leaf_litter_extra");
     public static final ResourceKey<PlacedFeature> LEAF_LITTER_EXTRA2_PLACED_KEY = registerKey("leaf_litter_extra2");
@@ -303,6 +307,18 @@ public class ModPlacedFeatures {
         register(context, SPINEL_ORE_MID_PLACED_KEY_A,
                 configuredFeatures.getOrThrow(ModConfiguredFeatures.OVERWORLD_SPINEL_ORE_MID_KEY),
                 ModOrePlacement.commonOrePlacement(10, HeightRangePlacement.triangle(VerticalAnchor.absolute(-38), VerticalAnchor.absolute(25))));
+
+        register(context, SPECTRAL_ORE_ULTRA_DEEP_PLACED_KEY_A,
+                configuredFeatures.getOrThrow(ModConfiguredFeatures.OVERWORLD_SPECTRAL_ORE_ULTRA_DEEP_KEY),
+                ModOrePlacement.rareOrePlacement(8, HeightRangePlacement.triangle(VerticalAnchor.absolute(-64), VerticalAnchor.absolute(-48))));
+
+        register(context, SPECTRAL_ORE_DEEP_PLACED_KEY_A,
+                configuredFeatures.getOrThrow(ModConfiguredFeatures.OVERWORLD_SPECTRAL_ORE_DEEP_KEY),
+                ModOrePlacement.rareOrePlacement(6, HeightRangePlacement.triangle(VerticalAnchor.absolute(-50), VerticalAnchor.absolute(-30))));
+
+        register(context, SPECTRAL_ORE_MID_PLACED_KEY_A,
+                configuredFeatures.getOrThrow(ModConfiguredFeatures.OVERWORLD_SPECTRAL_ORE_MID_KEY),
+                ModOrePlacement.rareOrePlacement(7, HeightRangePlacement.triangle(VerticalAnchor.absolute(-38), VerticalAnchor.absolute(2))));
 
 
         register(context, FLAX_FLOWER_PLACED_KEY,

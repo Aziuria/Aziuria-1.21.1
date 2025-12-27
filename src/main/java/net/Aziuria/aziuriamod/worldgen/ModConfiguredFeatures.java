@@ -54,6 +54,10 @@ public class ModConfiguredFeatures {
     public static final ResourceKey<ConfiguredFeature<?, ?>> OVERWORLD_SPINEL_ORE_DEEP_KEY = registerKey("configured_spinel_ore_deep");
     public static final ResourceKey<ConfiguredFeature<?, ?>> OVERWORLD_SPINEL_ORE_MID_KEY = registerKey("configured_spinel_ore_mid");
 
+    public static final ResourceKey<ConfiguredFeature<?, ?>> OVERWORLD_SPECTRAL_ORE_ULTRA_DEEP_KEY = registerKey("configured_spectral_ore_ultra_deep");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> OVERWORLD_SPECTRAL_ORE_DEEP_KEY = registerKey("configured_spectral_ore_deep");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> OVERWORLD_SPECTRAL_ORE_MID_KEY = registerKey("configured_spectral_ore_mid");
+
     public static final ResourceKey<ConfiguredFeature<?, ?>> LEAF_LITTER_KEY = registerKey("configured_leaf_litter");
     public static final ResourceKey<ConfiguredFeature<?, ?>> STICK_A = registerKey("configured_stick_a");
     public static final ResourceKey<ConfiguredFeature<?, ?>> STICK_B = registerKey("configured_stick_b");
@@ -144,6 +148,10 @@ public class ModConfiguredFeatures {
                 OreConfiguration.target(stoneReplaceables, ModBlocks.SPINEL_ORE.get().defaultBlockState()),
                 OreConfiguration.target(deepslateReplaceables, ModBlocks.DEEPSLATE_SPINEL_ORE.get().defaultBlockState()));
 
+        List<OreConfiguration.TargetBlockState> overworldSpectralOres = List.of(
+                OreConfiguration.target(stoneReplaceables, ModBlocks.SPECTRAL_ORE.get().defaultBlockState()),
+                OreConfiguration.target(deepslateReplaceables, ModBlocks.DEEPSLATE_SPECTRAL_ORE.get().defaultBlockState()));
+
         register(context, OVERWORLD_SULPHUR_ORE_ULTRA_DEEP_KEY, Feature.ORE, new OreConfiguration(overworldSulphurOres, 6));
         register(context, OVERWORLD_SULPHUR_ORE_DEEP_KEY, Feature.ORE, new OreConfiguration(overworldSulphurOres, 5));
         register(context, OVERWORLD_SULPHUR_ORE_MID_KEY, Feature.ORE, new OreConfiguration(overworldSulphurOres, 4));
@@ -165,6 +173,10 @@ public class ModConfiguredFeatures {
         register(context, OVERWORLD_SPINEL_ORE_ULTRA_DEEP_KEY, Feature.ORE, new OreConfiguration(overworldSpinelOres, 4));
         register(context, OVERWORLD_SPINEL_ORE_DEEP_KEY, Feature.ORE, new OreConfiguration(overworldSpinelOres, 3));
         register(context, OVERWORLD_SPINEL_ORE_MID_KEY, Feature.ORE, new OreConfiguration(overworldSpinelOres, 2));
+
+        register(context, OVERWORLD_SPECTRAL_ORE_ULTRA_DEEP_KEY, Feature.ORE, new OreConfiguration(overworldSpectralOres, 3));
+        register(context, OVERWORLD_SPECTRAL_ORE_DEEP_KEY, Feature.ORE, new OreConfiguration(overworldSpectralOres, 3));
+        register(context, OVERWORLD_SPECTRAL_ORE_MID_KEY, Feature.ORE, new OreConfiguration(overworldSpectralOres, 2));
 
         register(context, LEAF_LITTER_KEY, Feature.RANDOM_PATCH,
                 FeatureUtils.simplePatchConfiguration(
