@@ -8,6 +8,7 @@ import net.Aziuria.aziuriamod.block.entity.SteelBarsBlock;
 import net.Aziuria.aziuriamod.block.entity.SteelChainBlock;
 import net.Aziuria.aziuriamod.item.ModItems;
 import net.Aziuria.aziuriamod.item.custom.FuelItem;
+import net.Aziuria.aziuriamod.item.custom.PebbleItem;
 import net.Aziuria.aziuriamod.worldgen.tree.ModTreeGrowers;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -753,8 +754,11 @@ public class ModBlocks {
     public static final DeferredBlock<Block> STRAWBERRY_BUSH = BLOCKS.register("strawberry_bush",
             () -> new StrawberryBushBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SWEET_BERRY_BUSH)));
 
-
-
+    public static final DeferredBlock<PebbleBlock> PEBBLE_BLOCK = registerBlock(
+            "pebble",
+            () -> new PebbleBlock(BlockBehaviour.Properties.of().strength(0.5f).noOcclusion()),
+            block -> new PebbleItem(block, new Item.Properties().stacksTo(16)) // ✅ custom throwable BlockItem
+    );
 
 
     private static <T extends Block> DeferredBlock<T> registerBlock(String name, Supplier<T> block) {

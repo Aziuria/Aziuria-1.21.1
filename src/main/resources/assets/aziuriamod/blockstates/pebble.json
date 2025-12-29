@@ -1,0 +1,19 @@
+{
+	"variants": {
+		"facing=north": {
+			"model": "aziuriamod:block/pebble"
+		},
+		"facing=south": {
+			"model": "aziuriamod:block/pebble",
+			"y": 180
+		},
+		"facing=east": {
+			"model": "aziuriamod:block/pebble",
+			"y": 90
+		},
+		"facing=west": {
+			"model": "aziuriamod:block/pebble",
+			"y": 270
+		}
+	}
+}

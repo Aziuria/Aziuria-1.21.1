@@ -125,6 +125,7 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
         dropSelf(ModBlocks.STICK_A.get());
         dropSelf(ModBlocks.STICK_B.get());
         dropSelf(ModBlocks.STICK_C.get());
+        dropSelf(ModBlocks.PEBBLE_BLOCK.get());
         dropSelf(ModBlocks.APPLE_SAPLING.get());
         dropSelf(ModBlocks.PEAR_SAPLING.get());
         dropSelf(ModBlocks.CHERRY_SAPLING.get());

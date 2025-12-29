@@ -362,6 +362,7 @@ public class ModCreativeModeTabs {
                         output.accept(ModBlocks.STICK_A);
                         output.accept(ModBlocks.STICK_B);
                         output.accept(ModBlocks.STICK_C);
+                        output.accept(ModBlocks.PEBBLE_BLOCK);
 
                         // ======= 🐾 ANIMALS & MOBS =======
                         output.accept(ModItems.WORM_SPAWN_EGG.get());
