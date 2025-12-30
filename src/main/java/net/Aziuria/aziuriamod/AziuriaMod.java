@@ -120,6 +120,7 @@ public class AziuriaMod {
         NeoForge.EVENT_BUS.register(ExhaustionTickHandler.class);
         NeoForge.EVENT_BUS.register(ExhaustionPlayerHandler.class);
         NeoForge.EVENT_BUS.register(CopperBarsInteractionHandler.class);
+        NeoForge.EVENT_BUS.register(WoodMiningRestrictionHandler.class);
       //  NeoForge.EVENT_BUS.register(ExhaustionDebuffHandler.class);
 
 
@@ -225,6 +226,7 @@ public class AziuriaMod {
         VeinMinerCommand.register(event.getDispatcher());
         RefreshGravityBlocksCommand.register(event.getDispatcher());
         NearbyOreCommand.register(event.getDispatcher());
+        WoodMiningRestrictionCommand.register(event.getDispatcher());
     }
 
 
