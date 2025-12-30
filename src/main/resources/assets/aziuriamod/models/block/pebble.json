@@ -2,8 +2,8 @@
 	"format_version": "1.9.0",
 	"credit": "Made with Blockbench",
 	"textures": {
-		"0": "aziuriamod:block/stone",
-		"particle": "aziuriamod:block/stone"
+		"0": "aziuriamod:block/cobblestone",
+		"particle": "aziuriamod:block/cobblestone"
 	},
 	"elements": [
 		{

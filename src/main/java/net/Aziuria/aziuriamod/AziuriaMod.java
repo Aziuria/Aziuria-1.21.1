@@ -177,7 +177,7 @@ public class AziuriaMod {
             ModDataMapHooks.register();
             LOGGER.info("Registered copper bar wax/scrape data maps.");
 
-            Regions.register(new ModOverworldRegion(ResourceLocation.fromNamespaceAndPath(MOD_ID, "overworld"), 10));
+            Regions.register(new ModOverworldRegion(ResourceLocation.fromNamespaceAndPath(MOD_ID, "overworld"), 3));
 
             SurfaceRuleManager.addSurfaceRules(SurfaceRuleManager.RuleCategory.OVERWORLD, MOD_ID, ModSurfaceRules.makeRules());
         });

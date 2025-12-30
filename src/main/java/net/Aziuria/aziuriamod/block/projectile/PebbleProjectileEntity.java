@@ -64,9 +64,9 @@ public class PebbleProjectileEntity extends ThrowableItemProjectile {
 
             // Random drops
             float roll = level().random.nextFloat();
-            if (roll < 0.20f) {
-                spawnAtLocation(ModItems.PEAR.get());
-            } else if (roll < 0.40f) {
+            if (roll < 0.15f) {
+                spawnAtLocation(ModItems.STONE_SHARD.get());
+            } else if (roll < 0.70f) {
                 spawnAtLocation(ModBlocks.PEBBLE_BLOCK.get().asItem());
             }
 

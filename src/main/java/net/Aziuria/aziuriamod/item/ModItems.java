@@ -613,6 +613,11 @@ public class ModItems {
             () -> new DeferredSpawnEggItem(ModEntity.WORM, 0x6B4226, 0xD19C77,
                     new Item.Properties()));
 
+    public static final DeferredItem<StoneShardItem> STONE_SHARD = ITEMS.register("stone_shard",
+            () -> new StoneShardItem(new Item.Properties()
+                    .stacksTo(1)
+                    .durability(5))); // 3–6 uses, adjust if needed
+
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);
 

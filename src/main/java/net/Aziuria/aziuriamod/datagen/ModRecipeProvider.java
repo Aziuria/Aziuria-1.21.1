@@ -2480,6 +2480,11 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .unlockedBy("has_gooseberry", has(ModItems.GOOSEBERRY.get()))
                 .save(recipeOutput, ResourceLocation.fromNamespaceAndPath("aziuriamod", "green_dye_from_gooseberry"));
 
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.STONE_SHARD.get())
+                .requires(ModBlocks.PEBBLE_BLOCK.get())
+                .unlockedBy("has_pebble_block", has(ModBlocks.PEBBLE_BLOCK.get()))
+                .save(recipeOutput, ResourceLocation.fromNamespaceAndPath("aziuriamod", "stone_shard_from_pebble_block"));
+
         ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, Items.END_PORTAL_FRAME)
                 .pattern("OOO")
                 .pattern("ENE")

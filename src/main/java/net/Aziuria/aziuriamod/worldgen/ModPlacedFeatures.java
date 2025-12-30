@@ -75,6 +75,8 @@ public class ModPlacedFeatures {
     public static final ResourceKey<PlacedFeature> LEAF_LITTER_EXTRA_PLACED_KEY = registerKey("leaf_litter_extra");
     public static final ResourceKey<PlacedFeature> LEAF_LITTER_EXTRA2_PLACED_KEY = registerKey("leaf_litter_extra2");
     public static final ResourceKey<PlacedFeature> LEAF_LITTER_EXTRA3_PLACED_KEY = registerKey("leaf_litter_extra3");
+    public static final ResourceKey<PlacedFeature> PEBBLE_PLACED_KEY = registerKey("pebble_placed_key");
+    public static final ResourceKey<PlacedFeature> PEBBLE_PLACED_KEY3 = registerKey("pebble_placed_key3");
 
 
     public static final ResourceKey<PlacedFeature> STICK_A = registerKey("stick_a_placed");
@@ -147,8 +149,6 @@ public class ModPlacedFeatures {
     public static final ResourceKey<PlacedFeature> BLUEBERRY_BUSH_PLACED_KEY = registerKey("blueberry_bush_placed");
     public static final ResourceKey<PlacedFeature> GOOSEBERRY_BUSH_PLACED_KEY = registerKey("gooseberry_bush_placed");
     public static final ResourceKey<PlacedFeature> STRAWBERRY_BUSH_PLACED_KEY = registerKey("strawberry_bush_placed");
-
-
 
     public static void bootstrap(BootstrapContext<PlacedFeature> context) {
         var configuredFeatures = context.lookup(Registries.CONFIGURED_FEATURE);
@@ -379,6 +379,27 @@ public class ModPlacedFeatures {
                         InSquarePlacement.spread(),
                         PlacementUtils.HEIGHTMAP_WORLD_SURFACE,
                         NearLogPlacementModifier.of(9, 1.2),  // Larger radius, stronger falloff
+                        BiomeFilter.biome()
+
+                ));
+
+        register(context, PEBBLE_PLACED_KEY,
+                configuredFeatures.getOrThrow(ModConfiguredFeatures.PEBBLE_KEY),
+                List.of(
+                        RarityFilter.onAverageOnceEvery(3),
+                        InSquarePlacement.spread(),
+                        PlacementUtils.HEIGHTMAP_WORLD_SURFACE,
+                        BiomeFilter.biome()
+
+                ));
+
+
+        register(context, PEBBLE_PLACED_KEY3,
+                configuredFeatures.getOrThrow(ModConfiguredFeatures.PEBBLE_KEY),
+                List.of(
+                        RarityFilter.onAverageOnceEvery(3),
+                        InSquarePlacement.spread(),
+                        PlacementUtils.HEIGHTMAP_WORLD_SURFACE,
                         BiomeFilter.biome()
 
                 ));
@@ -1136,17 +1157,53 @@ public class ModPlacedFeatures {
             );
         }
 
-        register(context, BLACKCURRANT_BUSH_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.BLACKCURRANT_BUSH_KEY),
-                List.of(RarityFilter.onAverageOnceEvery(4), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome()));
+// BLACKCURRANT BUSH
+        register(context, BLACKCURRANT_BUSH_PLACED_KEY,
+                configuredFeatures.getOrThrow(ModConfiguredFeatures.BLACKCURRANT_BUSH_KEY),
+                List.of(
+                        RarityFilter.onAverageOnceEvery(3), // rare: ~1 cluster per 6 chunks
+                        CountPlacement.of(4),               // small cluster: 2 bushes
+                        InSquarePlacement.spread(),
+                        PlacementUtils.HEIGHTMAP_WORLD_SURFACE,
+                        // NearbyWaterRadiusFilter.INSTANCE,  // optional: bias towards water
+                        BiomeFilter.biome()
+                ));
 
-        register(context, BLUEBERRY_BUSH_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.BLUEBERRY_BUSH_KEY),
-                List.of(RarityFilter.onAverageOnceEvery(4), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome()));
+// BLUEBERRY BUSH
+        register(context, BLUEBERRY_BUSH_PLACED_KEY,
+                configuredFeatures.getOrThrow(ModConfiguredFeatures.BLUEBERRY_BUSH_KEY),
+                List.of(
+                        RarityFilter.onAverageOnceEvery(3),
+                        CountPlacement.of(4),
+                        InSquarePlacement.spread(),
+                        PlacementUtils.HEIGHTMAP_WORLD_SURFACE,
+                        // NearbyWaterRadiusFilter.INSTANCE,
+                        BiomeFilter.biome()
+                ));
 
-        register(context, STRAWBERRY_BUSH_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.STRAWBERRY_BUSH_KEY),
-                List.of(RarityFilter.onAverageOnceEvery(4), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome()));
+// STRAWBERRY BUSH
+        register(context, STRAWBERRY_BUSH_PLACED_KEY,
+                configuredFeatures.getOrThrow(ModConfiguredFeatures.STRAWBERRY_BUSH_KEY),
+                List.of(
+                        RarityFilter.onAverageOnceEvery(3), // slightly more common
+                        CountPlacement.of(4),
+                        InSquarePlacement.spread(),
+                        PlacementUtils.HEIGHTMAP_WORLD_SURFACE,
+                        // NearbyWaterRadiusFilter.INSTANCE,
+                        BiomeFilter.biome()
+                ));
 
-        register(context, GOOSEBERRY_BUSH_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.GOOSEBERRY_BUSH_KEY),
-                List.of(RarityFilter.onAverageOnceEvery(4), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome()));
+// GOOSEBERRY BUSH
+        register(context, GOOSEBERRY_BUSH_PLACED_KEY,
+                configuredFeatures.getOrThrow(ModConfiguredFeatures.GOOSEBERRY_BUSH_KEY),
+                List.of(
+                        RarityFilter.onAverageOnceEvery(3),
+                        CountPlacement.of(4),               // single bush per spawn, rare
+                        InSquarePlacement.spread(),
+                        PlacementUtils.HEIGHTMAP_WORLD_SURFACE,
+                        // NearbyWaterRadiusFilter.INSTANCE,
+                        BiomeFilter.biome()
+                ));
     }
 
     private static ResourceKey<PlacedFeature> registerKey(String name) {

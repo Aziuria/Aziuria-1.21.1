@@ -75,6 +75,8 @@ public class ModBiomeModifiers {
     public static final ResourceKey<BiomeModifier> ADD_LEAF_LITTER_EXTRA = registerKey("add_leaf_litter_extra");
     public static final ResourceKey<BiomeModifier> ADD_LEAF_LITTER_EXTRA2 = registerKey("add_leaf_litter_extra2");
     public static final ResourceKey<BiomeModifier> ADD_LEAF_LITTER_EXTRA3 = registerKey("add_leaf_litter_extra3");
+    public static final ResourceKey<BiomeModifier> ADD_PEBBLE = registerKey("add_pebble");
+    public static final ResourceKey<BiomeModifier> ADD_PEBBLE3 = registerKey("add_pebble3");
 
     public static final ResourceKey<BiomeModifier> ADD_FLAX_FLOWER = registerKey("add_flax_flower");
     public static final ResourceKey<BiomeModifier> STICK_A = registerKey("add_stick_a");
@@ -389,8 +391,13 @@ public class ModBiomeModifiers {
 
 
         context.register(ADD_LEAF_LITTER, new BiomeModifiers.AddFeaturesBiomeModifier(
-                biomes.getOrThrow(BiomeTags.IS_OVERWORLD), // ← Changed from explicit biomes list
+                biomes.getOrThrow(BiomeTags.IS_OVERWORLD),
                 HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.LEAF_LITTER_PLACED_KEY)),
+                GenerationStep.Decoration.VEGETAL_DECORATION));
+
+        context.register(ADD_PEBBLE, new BiomeModifiers.AddFeaturesBiomeModifier(
+                biomes.getOrThrow(BiomeTags.IS_OVERWORLD),
+                HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.PEBBLE_PLACED_KEY)),
                 GenerationStep.Decoration.VEGETAL_DECORATION));
 
         context.register(ADD_LEAF_LITTER_EXTRA, new BiomeModifiers.AddFeaturesBiomeModifier(
@@ -467,6 +474,14 @@ public class ModBiomeModifiers {
                         biomes.getOrThrow(Biomes.BEACH)
                 ),
                 HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.YUCCA_PLANT_PLACED_KEY)),
+                GenerationStep.Decoration.VEGETAL_DECORATION
+        ));
+
+        context.register(ModBiomeModifiers.ADD_PEBBLE3, new BiomeModifiers.AddFeaturesBiomeModifier(
+                biomes.getOrThrow(
+                        TagKey.create(Registries.BIOME, ResourceLocation.fromNamespaceAndPath("aziuriamod", "spectral_soulbound_forest"))
+                ),
+                HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.PEBBLE_PLACED_KEY3)),
                 GenerationStep.Decoration.VEGETAL_DECORATION
         ));
 

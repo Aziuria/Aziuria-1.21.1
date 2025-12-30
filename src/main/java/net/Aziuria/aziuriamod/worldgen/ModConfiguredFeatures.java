@@ -64,6 +64,7 @@ public class ModConfiguredFeatures {
     public static final ResourceKey<ConfiguredFeature<?, ?>> STICK_C = registerKey("configured_stick_c");
     public static final ResourceKey<ConfiguredFeature<?, ?>> FLAX_FLOWER_KEY = registerKey("configured_flax_flower");
     public static final ResourceKey<ConfiguredFeature<?, ?>> YUCCA_PLANT_KEY = registerKey("configured_yucca_plant");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> PEBBLE_KEY = registerKey("configured_pebble");
 
     public static final ResourceKey<ConfiguredFeature<?, ?>> APPLE_KEY_VARIANT_1 = registerKey("apple_configured_variant_1");
     public static final ResourceKey<ConfiguredFeature<?, ?>> APPLE_KEY_VARIANT_2 = registerKey("apple_configured_variant_2");
@@ -124,8 +125,6 @@ public class ModConfiguredFeatures {
     public static final ResourceKey<ConfiguredFeature<?, ?>> STRAWBERRY_BUSH_KEY = registerKey("configured_strawberry_bush");
     public static final ResourceKey<ConfiguredFeature<?, ?>> GOOSEBERRY_BUSH_KEY = registerKey("configured_gooseberry_bush");
 
-
-
     public static void bootstrap(BootstrapContext<ConfiguredFeature<?, ?>> context) {
 
         RuleTest stoneReplaceables = new TagMatchTest(BlockTags.STONE_ORE_REPLACEABLES);
@@ -185,6 +184,16 @@ public class ModConfiguredFeatures {
                                 new RandomFacingStateProvider(ModBlocks.LEAF_LITTER.get().defaultBlockState())
                         ),
                         List.of(Blocks.GRASS_BLOCK)
+                )
+        );
+
+        register(context, PEBBLE_KEY, Feature.RANDOM_PATCH,
+                FeatureUtils.simplePatchConfiguration(
+                        Feature.SIMPLE_BLOCK,
+                        new SimpleBlockConfiguration(
+                                new RandomFacingStateProvider(ModBlocks.PEBBLE_BLOCK.get().defaultBlockState())
+                        ),
+                        List.of(Blocks.SAND, Blocks.GRASS_BLOCK)
                 )
         );
 
@@ -836,25 +845,25 @@ public class ModConfiguredFeatures {
                 FeatureUtils.simplePatchConfiguration(Feature.SIMPLE_BLOCK,
                         new SimpleBlockConfiguration(BlockStateProvider.simple(ModBlocks.BLACKCURRANT_BUSH.get()
                                 .defaultBlockState().setValue(SweetBerryBushBlock.AGE, 3))
-                        ), List.of(Blocks.GRASS_BLOCK)));
+                        ), List.of(Blocks.GRASS_BLOCK), 2));
 
         register(context, BLUEBERRY_BUSH_KEY, Feature.RANDOM_PATCH,
                 FeatureUtils.simplePatchConfiguration(Feature.SIMPLE_BLOCK,
                         new SimpleBlockConfiguration(BlockStateProvider.simple(ModBlocks.BLUEBERRY_BUSH.get()
                                 .defaultBlockState().setValue(SweetBerryBushBlock.AGE, 3))
-                        ), List.of(Blocks.GRASS_BLOCK)));
+                        ), List.of(Blocks.GRASS_BLOCK), 2));
 
         register(context, GOOSEBERRY_BUSH_KEY, Feature.RANDOM_PATCH,
                 FeatureUtils.simplePatchConfiguration(Feature.SIMPLE_BLOCK,
                         new SimpleBlockConfiguration(BlockStateProvider.simple(ModBlocks.GOOSEBERRY_BUSH.get()
                                 .defaultBlockState().setValue(SweetBerryBushBlock.AGE, 3))
-                        ), List.of(Blocks.GRASS_BLOCK)));
+                        ), List.of(Blocks.GRASS_BLOCK), 2));
 
         register(context, STRAWBERRY_BUSH_KEY, Feature.RANDOM_PATCH,
                 FeatureUtils.simplePatchConfiguration(Feature.SIMPLE_BLOCK,
                         new SimpleBlockConfiguration(BlockStateProvider.simple(ModBlocks.STRAWBERRY_BUSH.get()
                                 .defaultBlockState().setValue(SweetBerryBushBlock.AGE, 3))
-                        ), List.of(Blocks.GRASS_BLOCK)));
+                        ), List.of(Blocks.GRASS_BLOCK), 2));
 
     }
 

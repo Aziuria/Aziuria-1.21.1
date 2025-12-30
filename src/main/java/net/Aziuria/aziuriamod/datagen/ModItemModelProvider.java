@@ -54,6 +54,7 @@ public class ModItemModelProvider extends ItemModelProvider {
         basicItem(ModItems.STEEL_NUGGET.get());
         basicItem(ModItems.TIN_NUGGET.get());
         basicItem(ModItems.EMPTY_JAR.get());
+        basicItem(ModItems.STONE_SHARD.get());
         basicItem(ModItems.STEEL_INGOT.get());
         basicItem(ModItems.TIN_INGOT.get());
         basicItem(ModItems.SACK_ITEM.get());
