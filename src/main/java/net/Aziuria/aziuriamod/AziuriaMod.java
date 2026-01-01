@@ -43,6 +43,7 @@ import net.Aziuria.aziuriamod.villager.ModVillagerTrades;
 import net.Aziuria.aziuriamod.villager.ModVillagers;
 import net.Aziuria.aziuriamod.villager.VillagerAIHandler;
 import net.Aziuria.aziuriamod.villager.VillagerProfessionTickHandler;
+import net.Aziuria.aziuriamod.worldgen.biomes.ModBiomes;
 import net.Aziuria.aziuriamod.worldgen.biomes.ModOverworldRegion;
 import net.Aziuria.aziuriamod.worldgen.biomes.surface.ModSurfaceRules;
 import net.Aziuria.aziuriamod.worldgen.rules.registry.ModBlockStateProviders;
@@ -148,6 +149,7 @@ public class AziuriaMod {
         // Register all mod content
         ModCreativeModeTabs.register(modEventBus);
         ModLootModifiers.register(modEventBus);
+        ModBiomes.BIOMES.register(modEventBus);
         ModItems.register(modEventBus);
         ModEntity.register(modEventBus);
         ModBlocks.register(modEventBus);
