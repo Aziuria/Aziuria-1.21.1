@@ -12,6 +12,7 @@ import net.minecraft.client.renderer.entity.VillagerRenderer;
 import net.minecraft.client.renderer.entity.layers.RenderLayer;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.npc.Villager;
+import net.minecraft.world.level.FoliageColor;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
 import net.neoforged.neoforge.client.event.RegisterColorHandlersEvent;
 import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
@@ -64,6 +65,7 @@ public class ModClientEvents {
         }
     }
 
+    @SuppressWarnings("deprecation")
     @SubscribeEvent
     public static void registerBlockColors(RegisterColorHandlersEvent.Block event) {
         BlockColors colors = event.getBlockColors();
@@ -76,6 +78,13 @@ public class ModClientEvents {
                     return -1;
                 },
                 ModBlocks.CUSTOM_OAK_LEAVES.get()
+        );
+
+        // --- CUSTOM BIRCH LEAVES (FIXED BIRCH COLOR, NO BIOME VARIATION) ---
+        colors.register(
+                (state, level, pos, tintIndex) ->
+                        FoliageColor.getBirchColor(),
+                ModBlocks.CUSTOM_BIRCH_LEAVES.get()
         );
     }
 }

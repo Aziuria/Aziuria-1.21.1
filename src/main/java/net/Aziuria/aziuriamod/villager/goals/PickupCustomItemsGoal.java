@@ -177,6 +177,7 @@ public class PickupCustomItemsGoal extends Goal {
                 || item == ModBlocks.ORANGE_SAPLING.get().asItem()
                 || item == ModBlocks.BANANA_SAPLING.get().asItem()
                 || item == ModBlocks.CUSTOM_OAK_SAPLING.get().asItem()
+                || item == ModBlocks.CUSTOM_BIRCH_SAPLING.get().asItem()
                 || item == ModBlocks.APPLE_SAPLING.get().asItem() // <-- Your modded apple sapling here
                 || item == ModBlocks.PEAR_SAPLING.get().asItem()) { // <-- Your modded pear sapling here
             return true;

@@ -30,6 +30,21 @@ public class CreativeTabHandler {
                     customOakSapling,
                     CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS
             );
+            // --- BIRCH ---
+            ItemStack vanillaBirchSapling = new ItemStack(Blocks.BIRCH_SAPLING);
+            ItemStack customBirchSapling  = new ItemStack(ModBlocks.CUSTOM_BIRCH_SAPLING.get());
+
+            event.remove(
+                    vanillaBirchSapling,
+                    CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS
+            );
+
+            // Insert birch AFTER spruce → anchor before jungle
+            event.insertBefore(
+                    new ItemStack(Blocks.JUNGLE_SAPLING),
+                    customBirchSapling,
+                    CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS
+            );
         }
     }
 }

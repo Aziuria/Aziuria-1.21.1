@@ -415,7 +415,7 @@ public class ModConfiguredFeatures {
                 new TreeConfiguration.TreeConfigurationBuilder(
                         BlockStateProvider.simple(Blocks.BIRCH_LOG),
                         new ForkingTrunkPlacer(trunkHeight, extraHeight, baseBranchSpread),
-                        BlockStateProvider.simple(Blocks.BIRCH_LEAVES),
+                        BlockStateProvider.simple(ModBlocks.CUSTOM_BIRCH_LEAVES.get()),
                         foliagePlacer,
                         featureSize
                 ).build()

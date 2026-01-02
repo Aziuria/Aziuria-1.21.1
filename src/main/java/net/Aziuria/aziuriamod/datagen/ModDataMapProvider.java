@@ -61,6 +61,8 @@ public class ModDataMapProvider extends DataMapProvider {
                 .add(ModBlocks.APPLE_SAPLING.getId(), new Compostable(0.30f), false)
                 .add(ModBlocks.CUSTOM_OAK_LEAVES.getId(), new Compostable(0.30f), false)
                 .add(ModBlocks.CUSTOM_OAK_SAPLING.getId(), new Compostable(0.30f), false)
+                .add(ModBlocks.CUSTOM_BIRCH_LEAVES.getId(), new Compostable(0.30f), false)
+                .add(ModBlocks.CUSTOM_BIRCH_SAPLING.getId(), new Compostable(0.30f), false)
                 .add(ModBlocks.PEAR_LEAVES.getId(), new Compostable(0.30f), false)
                 .add(ModBlocks.PEAR_SAPLING.getId(), new Compostable(0.30f), false)
                 .add(ModBlocks.CHERRY_LEAVES.getId(), new Compostable(0.30f), false)

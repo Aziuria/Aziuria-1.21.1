@@ -117,6 +117,23 @@ public class ModGlobalLootModifierProvider extends GlobalLootModifierProvider {
                 }, ModBlocks.CUSTOM_OAK_SAPLING.get(), 1, 1)
         );
 
+        this.add("remove_vanilla_birch_sapling_from_oak_leaves",
+                new RemoveItemModifier(new LootItemCondition[] {
+                        LootItemBlockStatePropertyCondition
+                                .hasBlockStateProperties(Blocks.BIRCH_LEAVES)
+                                .build()
+                }, Items.BIRCH_SAPLING)
+        );
+
+        this.add("add_custom_birch_sapling_to_oak_leaves",
+                new AddItemModifier(new LootItemCondition[] {
+                        LootItemBlockStatePropertyCondition
+                                .hasBlockStateProperties(Blocks.BIRCH_LEAVES)
+                                .build(),
+                        LootItemRandomChanceCondition.randomChance(0.05f).build() // vanilla-like chance
+                }, ModBlocks.CUSTOM_BIRCH_SAPLING.get(), 1, 1)
+        );
+
 
     }
 }

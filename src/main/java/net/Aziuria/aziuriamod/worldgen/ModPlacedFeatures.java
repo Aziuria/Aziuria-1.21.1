@@ -1107,7 +1107,7 @@ public class ModPlacedFeatures {
                     RarityFilter.onAverageOnceEvery(6),
                     PlacementUtils.HEIGHTMAP,
                     BlockPredicateFilter.forPredicate(
-                            BlockPredicate.wouldSurvive(Blocks.BIRCH_SAPLING.defaultBlockState(), BlockPos.ZERO)
+                            BlockPredicate.wouldSurvive(ModBlocks.CUSTOM_BIRCH_SAPLING.get().defaultBlockState(), BlockPos.ZERO)
                     ),
                     BiomeFilter.biome()
             ));
