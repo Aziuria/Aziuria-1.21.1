@@ -11,6 +11,7 @@ public class ThirstSetup {
         ThirstRegistry.register(ModItems.MILK_BOTTLE.get(), 3);
         ThirstRegistry.register(ModItems.COFFEE.get(), 3);
         ThirstRegistry.register(ModItems.TEA.get(), 3);
+        ThirstRegistry.register(ModItems.ENERGY_DRINK.get(), 3);    // minor hydration
         ThirstRegistry.register(Items.HONEY_BOTTLE, 1);
 
         // === FRUITS ===

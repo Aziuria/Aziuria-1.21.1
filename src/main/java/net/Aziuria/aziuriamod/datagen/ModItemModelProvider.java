@@ -110,6 +110,7 @@ public class ModItemModelProvider extends ItemModelProvider {
         basicItem(ModItems.AVOCADO.get());
         basicItem(ModItems.BANANA.get());
         basicItem(ModItems.APPLE_JUICE.get());
+        basicItem(ModItems.ENERGY_DRINK.get());
         basicItem(ModItems.ORANGE_JUICE.get());
         basicItem(ModItems.BANANA_JUICE.get());
         basicItem(ModItems.PEAR_JUICE.get());

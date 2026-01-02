@@ -331,6 +331,15 @@ public class ModItems {
             () -> new ItemNameBlockItem(ModBlocks.GOOSEBERRY_BUSH.get(), new Item.Properties()));
 
 
+    public static final DeferredItem<DrinkableItem> ENERGY_DRINK = ITEMS.register("energy_drink",
+            () -> new DrinkableItem(
+                    new Item.Properties()
+                            .food(ModFoodProperties.ENERGY_DRINK)
+                            .stacksTo(3)
+                            .craftRemainder(Items.GLASS_BOTTLE),
+                    32,
+                    UseAnim.DRINK));
+
     public static final DeferredItem<DrinkableItem> APPLE_JUICE = ITEMS.register("apple_juice",
             () -> new DrinkableItem(
                     new Item.Properties()

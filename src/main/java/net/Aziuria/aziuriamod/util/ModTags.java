@@ -26,6 +26,7 @@ public class ModTags {
 
     // ----- ITEM TAGS -----
     public static final TagKey<Item> KNIVES = createTag("knife_items"); // <-- put it here
+    public static final TagKey<Item> JUICES = createTag("juice_items"); // <-- put it here
 
     private static TagKey<Item> createTag(String name) {
         return ItemTags.create(ResourceLocation.fromNamespaceAndPath(AziuriaMod.MOD_ID, name));

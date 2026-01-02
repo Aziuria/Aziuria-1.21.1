@@ -434,4 +434,13 @@ public class ModFoodProperties {
             .effect(() -> new MobEffectInstance(MobEffects.REGENERATION, 20 * 8, 0), 0.4f)
             .effect(() -> new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 20 * 10, 0), 0.25f) // fortified feeling
             .build();
+
+    public static final FoodProperties ENERGY_DRINK = new FoodProperties.Builder()
+            .nutrition(2)                 // light hunger refill
+            .saturationModifier(0.35f)    // minor saturation
+            .alwaysEdible()
+            .effect(() -> new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 20 * 20, 0), 1.0f)   // 20s speed boost
+            .effect(() -> new MobEffectInstance(MobEffects.DIG_SPEED, 20 * 20, 0), 0.8f)        // 20s mining boost
+            .effect(() -> new MobEffectInstance(MobEffects.CONFUSION, 20 * 2, 0), 0.05f)       // minor jitter
+            .build();
 }

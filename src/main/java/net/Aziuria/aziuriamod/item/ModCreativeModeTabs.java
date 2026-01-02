@@ -255,6 +255,8 @@ public class ModCreativeModeTabs {
                         output.accept(ModItems.TEA);
 
                         // Juices (alphabetical)
+                        output.accept(ModItems.ENERGY_DRINK);
+
                         output.accept(ModItems.APPLE_JUICE);
                         output.accept(ModItems.AVOCADO_JUICE);
                         output.accept(ModItems.BANANA_JUICE);

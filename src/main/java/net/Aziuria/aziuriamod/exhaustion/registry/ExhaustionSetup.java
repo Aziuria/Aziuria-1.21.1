@@ -11,11 +11,15 @@ public class ExhaustionSetup {
         ExhaustionRegistry.register(Items.POTION, 1);        // hydration + minor boost
         ExhaustionRegistry.register(ModItems.COFFEE.get(), 5); // stimulant, fatigue reducer
         ExhaustionRegistry.register(ModItems.TEA.get(), 4);   // mild energy boost
-      //  ExhaustionRegistry.register(ModItems.ENERGY_DRINK.get(), 5); // sugar + caffeine
+        ExhaustionRegistry.register(ModItems.ENERGY_DRINK.get(), 5); // reduces fatigue
+        ExhaustionRegistry.register(ModItems.MILK_BOTTLE.get(), 1);    // mild energy, easy digestion
+        ExhaustionRegistry.register(Items.HONEY_BOTTLE, 2);
 
         // === FRUITS (light energy, easy digestion) ===
         ExhaustionRegistry.register(Items.APPLE, 2);
         ExhaustionRegistry.register(Items.GOLDEN_APPLE, 2);   // high sugar, better boost
+        ExhaustionRegistry.register(Items.ENCHANTED_GOLDEN_APPLE, 3);  // very high sugar, strong but short-lived energy
+        ExhaustionRegistry.register(Items.CHORUS_FRUIT, 1);            // weird effect, minor energy
         ExhaustionRegistry.register(ModItems.PEAR.get(), 2);
         ExhaustionRegistry.register(ModItems.BANANA.get(), 3);
         ExhaustionRegistry.register(ModItems.ORANGE.get(), 2);
@@ -35,6 +39,8 @@ public class ExhaustionSetup {
         ExhaustionRegistry.register(ModItems.CORN.get(), 1);
         ExhaustionRegistry.register(ModItems.CUCUMBER.get(), 1);
         ExhaustionRegistry.register(ModItems.TOMATO.get(), 1);
+        ExhaustionRegistry.register(ModItems.ONION.get(), 1);          // light energy, low digest
+        ExhaustionRegistry.register(ModItems.SPRING_ONION.get(), 1);   // similar to onion, easy digest
         ExhaustionRegistry.register(ModItems.LETTUCE.get(), 1);
 
         // === BERRIES (very small energy, easy to digest) ===
@@ -108,5 +114,9 @@ public class ExhaustionSetup {
         ExhaustionRegistry.register(ModItems.PINEAPPLE_SMOOTHIE.get(), 2);
         ExhaustionRegistry.register(ModItems.STRAWBERRY_SMOOTHIE.get(), 2);
         ExhaustionRegistry.register(ModItems.SWEETBERRY_SMOOTHIE.get(), 2);
+
+        ExhaustionRegistry.register(Items.SPIDER_EYE, -1);             // toxic, drains energy
+        ExhaustionRegistry.register(Items.POISONOUS_POTATO, -2);       // may cause sickness, energy drain
+        ExhaustionRegistry.register(Items.ROTTEN_FLESH, -3);           // hard to digest, energy negative
     }
 }

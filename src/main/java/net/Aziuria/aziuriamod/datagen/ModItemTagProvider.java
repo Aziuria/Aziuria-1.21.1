@@ -39,6 +39,23 @@ public class ModItemTagProvider extends ItemTagsProvider {
                 .add(ModItems.DIAMOND_KNIFE.get())
                 .add(ModItems.NETHERITE_KNIFE.get());
 
+        // Add juices tag
+        tag(ModTags.JUICES)
+                .add(ModItems.APPLE_JUICE.get())
+                .add(ModItems.AVOCADO_JUICE.get())
+                .add(ModItems.BANANA_JUICE.get())
+                .add(ModItems.BLACKCURRANT_JUICE.get())
+                .add(ModItems.BLUEBERRY_JUICE.get())
+                .add(ModItems.CHERRY_JUICE.get())
+                .add(ModItems.GLOWBERRY_JUICE.get())
+                .add(ModItems.GOOSEBERRY_JUICE.get())
+                .add(ModItems.MELON_JUICE.get())
+                .add(ModItems.ORANGE_JUICE.get())
+                .add(ModItems.PEAR_JUICE.get())
+                .add(ModItems.PINEAPPLE_JUICE.get())
+                .add(ModItems.STRAWBERRY_JUICE.get())
+                .add(ModItems.SWEETBERRY_JUICE.get());
+
         tag(ItemTags.SWORDS)
                 .add(ModItems.STEEL_SWORD.get());
         tag(ItemTags.PICKAXES)
