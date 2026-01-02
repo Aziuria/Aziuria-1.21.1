@@ -387,6 +387,12 @@ public class MineBlockGoal extends Goal {
                             || block == Blocks.MANGROVE_LEAVES
                             || block == Blocks.CHERRY_LEAVES
                             || block == ModBlocks.APPLE_LEAVES.get()  // your custom apple leaves
+                            || block == ModBlocks.AVOCADO_LEAVES.get()  // your custom apple leaves
+                            || block == ModBlocks.ORANGE_LEAVES.get()  // your custom apple leaves
+                            || block == ModBlocks.PEAR_LEAVES.get()  // your custom apple leaves
+                            || block == ModBlocks.BANANA_LEAVES.get()  // your custom apple leaves
+                            || block == ModBlocks.CHERRY_LEAVES.get()  // your custom apple leaves
+                            || block == ModBlocks.CUSTOM_OAK_LEAVES.get()  // your custom apple leaves
                     ) {
                         return true;
                     }

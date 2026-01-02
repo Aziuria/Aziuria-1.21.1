@@ -199,6 +199,7 @@ public class ModItemModelProvider extends ItemModelProvider {
         saplingItem(ModBlocks.AVOCADO_SAPLING);
         saplingItem(ModBlocks.ORANGE_SAPLING);
         saplingItem(ModBlocks.BANANA_SAPLING);
+        saplingItem(ModBlocks.CUSTOM_OAK_SAPLING);
     }
 
     private ItemModelBuilder saplingItem(DeferredBlock<Block> item) {

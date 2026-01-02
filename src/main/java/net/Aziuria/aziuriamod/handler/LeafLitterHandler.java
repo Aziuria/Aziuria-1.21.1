@@ -117,6 +117,7 @@ public class LeafLitterHandler {
                 || state.is(ModBlocks.AVOCADO_LEAVES.get())
                 || state.is(ModBlocks.CHERRY_LEAVES.get())
                 || state.is(ModBlocks.BANANA_LEAVES.get())
+                || state.is(ModBlocks.CUSTOM_OAK_LEAVES.get())
                 || state.is(ModBlocks.ORANGE_LEAVES.get());
     }
 }

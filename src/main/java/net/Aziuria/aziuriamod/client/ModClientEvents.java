@@ -1,8 +1,11 @@
 package net.Aziuria.aziuriamod.client;
 
+import net.Aziuria.aziuriamod.block.ModBlocks;
 import net.Aziuria.aziuriamod.client.screen.ModMenus;
 import net.Aziuria.aziuriamod.client.screen.custom.SackScreen;
+import net.minecraft.client.color.block.BlockColors;
 import net.minecraft.client.model.VillagerModel;
+import net.minecraft.client.renderer.BiomeColors;
 import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.LivingEntityRenderer;
 import net.minecraft.client.renderer.entity.VillagerRenderer;
@@ -10,6 +13,7 @@ import net.minecraft.client.renderer.entity.layers.RenderLayer;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.npc.Villager;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
+import net.neoforged.neoforge.client.event.RegisterColorHandlersEvent;
 import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.bus.api.IEventBus;
@@ -58,5 +62,20 @@ public class ModClientEvents {
                 e.printStackTrace();
             }
         }
+    }
+
+    @SubscribeEvent
+    public static void registerBlockColors(RegisterColorHandlersEvent.Block event) {
+        BlockColors colors = event.getBlockColors();
+
+        colors.register(
+                (state, level, pos, tintIndex) -> {
+                    if (level != null && pos != null) {
+                        return BiomeColors.getAverageFoliageColor(level, pos);
+                    }
+                    return -1;
+                },
+                ModBlocks.CUSTOM_OAK_LEAVES.get()
+        );
     }
 }

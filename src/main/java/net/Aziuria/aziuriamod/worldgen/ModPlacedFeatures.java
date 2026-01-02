@@ -1126,7 +1126,7 @@ public class ModPlacedFeatures {
                     RarityFilter.onAverageOnceEvery(1), // very frequent
                     PlacementUtils.HEIGHTMAP,
                     BlockPredicateFilter.forPredicate(
-                            BlockPredicate.wouldSurvive(Blocks.OAK_SAPLING.defaultBlockState(), BlockPos.ZERO)
+                            BlockPredicate.wouldSurvive(ModBlocks.CUSTOM_OAK_SAPLING.get().defaultBlockState(), BlockPos.ZERO)
                     ),
                     BiomeFilter.biome()
             ));
@@ -1146,7 +1146,7 @@ public class ModPlacedFeatures {
                     RarityFilter.onAverageOnceEvery(4),
                     PlacementUtils.HEIGHTMAP,
                     BlockPredicateFilter.forPredicate(
-                            BlockPredicate.wouldSurvive(Blocks.OAK_SAPLING.defaultBlockState(), BlockPos.ZERO)
+                            BlockPredicate.wouldSurvive(ModBlocks.CUSTOM_OAK_SAPLING.get().defaultBlockState(), BlockPos.ZERO)
                     ), // <-- Added this line to prevent spawning on sand
                     BiomeFilter.biome()
             ));

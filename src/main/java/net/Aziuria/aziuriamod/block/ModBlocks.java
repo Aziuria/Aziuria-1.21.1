@@ -672,6 +672,18 @@ public class ModBlocks {
     public static final DeferredBlock<Block> YUCCA_PLANT_BLOCK = BLOCKS.register("yucca_plant",
             () -> new YuccaPlantBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.DANDELION)));
 
+    public static final DeferredBlock<Block> CUSTOM_OAK_SAPLING = registerBlock("oak_sapling",
+            () -> new ModOakSaplingBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_SAPLING)));
+
+    public static final DeferredBlock<Block> CUSTOM_OAK_LEAVES = registerBlock("oak_leaves",
+            () -> new ModOakLeavesBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_LEAVES)) {
+                @Override
+                public boolean isFlammable(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
+                    return true;
+                }
+
+            });
+
     public static final DeferredBlock<Block> APPLE_LEAVES = registerBlock("apple_leaves",
             () -> new ModAppleLeavesBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_LEAVES)) {
                 @Override

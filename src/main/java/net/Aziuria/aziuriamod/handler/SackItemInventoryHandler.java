@@ -79,6 +79,7 @@ public class SackItemInventoryHandler {
             ALLOWED_BLOCKS.add(ModBlocks.CHERRY_SAPLING.get());
             ALLOWED_BLOCKS.add(ModBlocks.AVOCADO_SAPLING.get());
             ALLOWED_BLOCKS.add(ModBlocks.ORANGE_SAPLING.get());
+            ALLOWED_BLOCKS.add(ModBlocks.CUSTOM_OAK_SAPLING.get());
 
             // Bamboo
             ALLOWED_ITEMS.add(Items.BAMBOO);

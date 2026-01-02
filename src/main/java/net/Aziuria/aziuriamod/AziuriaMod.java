@@ -81,6 +81,7 @@ public class AziuriaMod {
         // Setup events
         modEventBus.addListener(this::commonSetup);
         modEventBus.addListener(this::registerCapabilities); // <-- Register capabilities
+        modEventBus.register(new CreativeTabHandler());
         modEventBus.addListener(this::addCreative);
         modEventBus.addListener(NetworkHandler::register);
 

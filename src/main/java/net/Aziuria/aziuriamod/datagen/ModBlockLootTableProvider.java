@@ -13,6 +13,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.SweetBerryBushBlock;
 import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.LootTable;
@@ -127,6 +128,7 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
         dropSelf(ModBlocks.STICK_C.get());
         dropSelf(ModBlocks.PEBBLE_BLOCK.get());
         dropSelf(ModBlocks.APPLE_SAPLING.get());
+        dropSelf(ModBlocks.CUSTOM_OAK_SAPLING.get());
         dropSelf(ModBlocks.PEAR_SAPLING.get());
         dropSelf(ModBlocks.CHERRY_SAPLING.get());
         dropSelf(ModBlocks.AVOCADO_SAPLING.get());
@@ -146,6 +148,8 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
                 createLeavesDrops(block, ModBlocks.PEAR_SAPLING.get(), NORMAL_LEAVES_SAPLING_CHANCES));
         this.add(ModBlocks.CHERRY_LEAVES.get(), block ->
                 createLeavesDrops(block, ModBlocks.CHERRY_SAPLING.get(), NORMAL_LEAVES_SAPLING_CHANCES));
+        this.add(ModBlocks.CUSTOM_OAK_LEAVES.get(), block ->
+                createLeavesDrops(block, ModBlocks.CUSTOM_OAK_SAPLING.get(), NORMAL_LEAVES_SAPLING_CHANCES));
 
         add(ModBlocks.SULPHUR_ORE.get(),
         block -> createOreDrop(ModBlocks.SULPHUR_ORE.get(), ModItems.SULPHUR.get()));

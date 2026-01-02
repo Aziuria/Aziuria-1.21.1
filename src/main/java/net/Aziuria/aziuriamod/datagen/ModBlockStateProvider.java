@@ -84,6 +84,8 @@ public class ModBlockStateProvider extends BlockStateProvider {
         saplingBlock(ModBlocks.ORANGE_SAPLING);
         leavesBlock(ModBlocks.BANANA_LEAVES);
         saplingBlock(ModBlocks.BANANA_SAPLING);
+        leavesBlock(ModBlocks.CUSTOM_OAK_LEAVES);
+        saplingBlock(ModBlocks.CUSTOM_OAK_SAPLING);
 
     }
 

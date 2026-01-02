@@ -425,7 +425,7 @@ public class ModConfiguredFeatures {
                 new TreeConfiguration.TreeConfigurationBuilder(
                         BlockStateProvider.simple(Blocks.OAK_LOG),
                         new DynamicForkingTrunkPlacer(trunkHeight, extraHeight, minorBranches, branchLength, branchStartOffset, baseBranchSpread),
-                        BlockStateProvider.simple(Blocks.OAK_LEAVES),
+                        BlockStateProvider.simple(ModBlocks.CUSTOM_OAK_LEAVES.get()),
                         foliagePlacer,
                         featureSize
                 ).build()

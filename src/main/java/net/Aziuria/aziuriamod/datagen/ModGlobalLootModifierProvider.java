@@ -100,6 +100,23 @@ public class ModGlobalLootModifierProvider extends GlobalLootModifierProvider {
 //                        new LootTableIdCondition.Builder(ResourceLocation.withDefaultNamespace("entities/creeper")).build()
 //                }, ModItems.GOJI_BERRIES.get()));
 
+        this.add("remove_vanilla_oak_sapling_from_oak_leaves",
+                new RemoveItemModifier(new LootItemCondition[] {
+                        LootItemBlockStatePropertyCondition
+                                .hasBlockStateProperties(Blocks.OAK_LEAVES)
+                                .build()
+                }, Items.OAK_SAPLING)
+        );
+
+        this.add("add_custom_oak_sapling_to_oak_leaves",
+                new AddItemModifier(new LootItemCondition[] {
+                        LootItemBlockStatePropertyCondition
+                                .hasBlockStateProperties(Blocks.OAK_LEAVES)
+                                .build(),
+                        LootItemRandomChanceCondition.randomChance(0.05f).build() // vanilla-like chance
+                }, ModBlocks.CUSTOM_OAK_SAPLING.get(), 1, 1)
+        );
+
 
     }
 }
