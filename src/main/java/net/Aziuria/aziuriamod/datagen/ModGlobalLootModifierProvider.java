@@ -113,7 +113,7 @@ public class ModGlobalLootModifierProvider extends GlobalLootModifierProvider {
                         LootItemBlockStatePropertyCondition
                                 .hasBlockStateProperties(Blocks.OAK_LEAVES)
                                 .build(),
-                        LootItemRandomChanceCondition.randomChance(0.05f).build() // vanilla-like chance
+                        LootItemRandomChanceCondition.randomChance(0.15f).build() // vanilla-like chance
                 }, ModBlocks.CUSTOM_OAK_SAPLING.get(), 1, 1)
         );
 
@@ -130,7 +130,7 @@ public class ModGlobalLootModifierProvider extends GlobalLootModifierProvider {
                         LootItemBlockStatePropertyCondition
                                 .hasBlockStateProperties(Blocks.BIRCH_LEAVES)
                                 .build(),
-                        LootItemRandomChanceCondition.randomChance(0.05f).build() // vanilla-like chance
+                        LootItemRandomChanceCondition.randomChance(0.15f).build() // vanilla-like chance
                 }, ModBlocks.CUSTOM_BIRCH_SAPLING.get(), 1, 1)
         );
 
