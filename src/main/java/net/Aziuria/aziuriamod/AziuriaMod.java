@@ -29,7 +29,6 @@ import net.Aziuria.aziuriamod.item.ModItems;
 import net.Aziuria.aziuriamod.item.custom.entities.ModEntities;
 import net.Aziuria.aziuriamod.fog.network.NetworkHandler;
 import net.Aziuria.aziuriamod.fog.network.PlayerJoinHandler;
-//import net.Aziuria.aziuriamod.water.PlayerJoinsHandler;
 import net.Aziuria.aziuriamod.loot.ModLootModifiers;
 import net.Aziuria.aziuriamod.particle.FallingLeafParticle;
 import net.Aziuria.aziuriamod.particle.ModParticles;
@@ -117,6 +116,7 @@ public class AziuriaMod {
         NeoForge.EVENT_BUS.register(ExhaustionHudOverlay.class);
         NeoForge.EVENT_BUS.register(ExhaustHandler.class);
         NeoForge.EVENT_BUS.register(CopperArmorLightningHandler.class);
+        NeoForge.EVENT_BUS.register(ArmorTrimHandler.class);
         NeoForge.EVENT_BUS.register(ExhaustionPersistenceHandler.class);
         NeoForge.EVENT_BUS.register(ExhaustionTickHandler.class);
         NeoForge.EVENT_BUS.register(ExhaustionPlayerHandler.class);
