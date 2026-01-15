@@ -5,6 +5,7 @@ import net.minecraft.core.Holder;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.util.Mth;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
@@ -17,8 +18,14 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.armortrim.ArmorTrim;
 import net.minecraft.world.item.armortrim.TrimMaterial;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.SculkSensorBlock;
+import net.minecraft.world.level.block.SculkShriekerBlock;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.Vec3;
 import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.neoforge.event.VanillaGameEvent;
 import net.neoforged.neoforge.event.entity.EntityStruckByLightningEvent;
 import net.neoforged.neoforge.event.entity.ProjectileImpactEvent;
 import net.neoforged.neoforge.event.entity.living.*;
@@ -296,6 +303,35 @@ public class ArmorTrimHandler {
                 BlockPos pos = drop.blockPosition();
                 drop.level().addFreshEntity(new ItemEntity(drop.level(), pos.getX(), pos.getY(), pos.getZ(), extra));
             }
+        }
+    }
+
+    /* ========================================================= */
+    /* ===================== AMETHYST – SILENT ================= */
+    /* ========================================================= */
+    @SubscribeEvent
+    public static void onVanillaGameEvent(VanillaGameEvent event) {
+        // Only care if source is a player
+        Entity source = event.getCause();
+        if (!(source instanceof Player player)) return;
+
+        // Check for full Amethyst trim
+        Optional<Holder<TrimMaterial>> trim = getFullSetTrim(player);
+        if (trim.isEmpty() || !trim.get().value().assetName().equals("amethyst")) return;
+
+        Level level = event.getLevel();
+        Vec3 posVec = event.getEventPosition();
+        BlockPos pos = new BlockPos(
+                Mth.floor(posVec.x),
+                Mth.floor(posVec.y),
+                Mth.floor(posVec.z)
+        );
+
+        BlockState state = level.getBlockState(pos);
+
+        // Cancel vibrations for Sculk Sensor and Sculk Shrieker only
+        if (state.getBlock() instanceof SculkSensorBlock || state.getBlock() instanceof SculkShriekerBlock) {
+            event.setCanceled(true); // suppress the vibration
         }
     }
 }
