@@ -8,6 +8,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.item.ItemEntity;
@@ -138,36 +139,42 @@ public class ArmorTrimHandler {
             // Heal player like a Totem (50% HP)
             player.setHealth(player.getMaxHealth() * 0.5F);
 
-            // Break all armor
-            for (ItemStack stack : player.getInventory().armor) {
-                if (stack.isDamageableItem()) {
-                    stack.setDamageValue(stack.getMaxDamage());
+            // Break all armor properly using hurtAndBreak
+            EquipmentSlot[] slots = {EquipmentSlot.HEAD, EquipmentSlot.CHEST, EquipmentSlot.LEGS, EquipmentSlot.FEET};
+            for (EquipmentSlot slot : slots) {
+                ItemStack stack = player.getItemBySlot(slot);
+                if (!stack.isEmpty() && stack.isDamageableItem()) {
+                    // Use NeoForge-compatible method
+                    stack.hurtAndBreak(stack.getMaxDamage(), player, slot);
                 }
             }
 
-            // Knock back all nearby hostile mobs
-            List<Mob> mobs = level.getEntitiesOfClass(
-                    Mob.class,
-                    player.getBoundingBox().inflate(6), // 6-block radius
-                    Mob::isAggressive
+            // Knock back all nearby hostile mobs and players within 6-block horizontal radius
+            List<LivingEntity> entities = level.getEntitiesOfClass(
+                    LivingEntity.class,
+                    player.getBoundingBox().inflate(6, 2, 6),
+                    e -> e != player // exclude self
             );
 
-            for (Mob mob : mobs) {
-                // Compute normalized direction away from player
-                double dx = mob.getX() - player.getX();
-                double dz = mob.getZ() - player.getZ();
+            for (LivingEntity ent : entities) {
+                // Only shove hostile mobs or other players
+                if (!(ent instanceof Mob) && !(ent instanceof Player)) continue;
+
+                // Compute normalized horizontal direction away from player
+                double dx = ent.getX() - player.getX();
+                double dz = ent.getZ() - player.getZ();
                 double dist = Math.sqrt(dx * dx + dz * dz);
                 if (dist == 0) dist = 0.1; // prevent divide by zero
                 double nx = dx / dist;
                 double nz = dz / dist;
 
-                // Apply strong shove
-                double shoveStrength = 4.0; // adjust higher for farther push
-                mob.push(nx * shoveStrength, 1.0, nz * shoveStrength); // push instantly
-                mob.hurtMarked = true; // force immediate physics update
+                // Apply strong shove in one instant
+                double shoveStrength = 1.8; // tweak as needed
+                ent.setDeltaMovement(nx * shoveStrength, 0.5, nz * shoveStrength);
+                ent.hurtMarked = true; // force immediate physics update
 
-                // Apply Slowness effect
-                mob.addEffect(new MobEffectInstance(
+                // Apply short Slowness effect to stagger
+                ent.addEffect(new MobEffectInstance(
                         MobEffects.MOVEMENT_SLOWDOWN,
                         100,  // 5 seconds
                         1,    // amplifier
