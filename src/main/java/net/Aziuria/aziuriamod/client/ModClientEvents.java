@@ -33,7 +33,7 @@ public class ModClientEvents {
         event.register(ModMenus.SACK_MENU.get(), SackScreen::new);
     }
 
-
+    @SuppressWarnings("unchecked")
     @SubscribeEvent
     public static void onAddLayers(EntityRenderersEvent.AddLayers event) {
         EntityRenderer<? extends Villager> renderer = event.getRenderer(EntityType.VILLAGER);

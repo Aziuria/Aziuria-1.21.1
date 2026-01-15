@@ -1,7 +1,7 @@
 package net.Aziuria.aziuriamod.datagen;
 
 import net.Aziuria.aziuriamod.block.*;
-import net.Aziuria.aziuriamod.block.custom.*;
+import net.Aziuria.aziuriamod.block.custom.vegetation.farming.*;
 import net.Aziuria.aziuriamod.item.ModItems;
 import net.minecraft.advancements.critereon.StatePropertiesPredicate;
 import net.minecraft.core.Holder;
@@ -13,7 +13,6 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.SweetBerryBushBlock;
 import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.LootTable;

@@ -2,6 +2,8 @@ package net.Aziuria.aziuriamod.loot;
 
 import com.mojang.serialization.MapCodec;
 import net.Aziuria.aziuriamod.AziuriaMod;
+import net.Aziuria.aziuriamod.loot.modifier.AddItemModifier;
+import net.Aziuria.aziuriamod.loot.modifier.RemoveItemModifier;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.common.loot.IGlobalLootModifier;
 import net.neoforged.neoforge.registries.DeferredRegister;

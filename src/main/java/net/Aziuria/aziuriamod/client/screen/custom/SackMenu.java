@@ -1,8 +1,7 @@
 package net.Aziuria.aziuriamod.client.screen.custom;
 
 import net.Aziuria.aziuriamod.client.screen.ModMenus;
-import net.Aziuria.aziuriamod.handler.SackItemInventoryHandler; // Ensure this is imported
-import net.Aziuria.aziuriamod.handler.SackItemInventoryHandler.SackHandler; // Import custom handler
+import net.Aziuria.aziuriamod.handler.items.SackItemInventoryHandler.SackHandler; // Import custom handler
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;

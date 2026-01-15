@@ -1,6 +1,6 @@
 package net.Aziuria.aziuriamod.fog;
 
-import net.Aziuria.aziuriamod.block.entity.SpeakerBlockEntity;
+import net.Aziuria.aziuriamod.block.entity.custom.SpeakerBlockEntity;
 import net.Aziuria.aziuriamod.fog.helper.*;
 import net.Aziuria.aziuriamod.fog.network.FogStateSyncPacket;
 import net.Aziuria.aziuriamod.fog.network.NetworkHandler;

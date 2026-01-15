@@ -1,6 +1,8 @@
 package net.Aziuria.aziuriamod.villager.goals;
 
-import net.Aziuria.aziuriamod.block.custom.*;
+import net.Aziuria.aziuriamod.block.custom.vegetation.farming.*;
+import net.Aziuria.aziuriamod.block.custom.vegetation.bushes.BlackcurrantBushBlock;
+import net.Aziuria.aziuriamod.block.custom.vegetation.bushes.StrawberryBushBlock;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.ai.goal.Goal;

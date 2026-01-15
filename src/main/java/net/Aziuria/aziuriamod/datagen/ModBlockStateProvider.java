@@ -2,7 +2,8 @@ package net.Aziuria.aziuriamod.datagen;
 
 import net.Aziuria.aziuriamod.AziuriaMod;
 import net.Aziuria.aziuriamod.block.*;
-import net.Aziuria.aziuriamod.block.custom.*;
+import net.Aziuria.aziuriamod.block.custom.vegetation.farming.*;
+import net.Aziuria.aziuriamod.block.custom.vegetation.bushes.BlackcurrantBushBlock;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
