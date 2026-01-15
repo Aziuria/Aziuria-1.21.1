@@ -241,41 +241,42 @@ public class ArmorTrimHandler {
     /* ====================== QUARTZ – ENHANCER ================= */
     /* ========================================================= */
 
+    private static final ThreadLocal<Boolean> QUARTZ_RECURSION = ThreadLocal.withInitial(() -> false);
+
     @SubscribeEvent
     public static void onEffectAdded(MobEffectEvent.Added event) {
+        // Prevent recursion
+        if (QUARTZ_RECURSION.get()) return;
+
         if (!(event.getEntity() instanceof Player player)) return;
 
         Optional<Holder<TrimMaterial>> trim = getFullSetTrim(player);
         if (trim.isEmpty() || !trim.get().value().assetName().equals("quartz")) return;
 
         MobEffectInstance oldEffect = event.getEffectInstance();
-        if (oldEffect == null) return; // safety
+        if (oldEffect == null || oldEffect.getEffect() == null) return;
 
-        // Determine new amplifier and duration
-        int newAmplifier = oldEffect.getAmplifier();
-        int newDuration = oldEffect.getDuration();
+        // Only modify beneficial effects
+        if (!oldEffect.getEffect().value().isBeneficial()) return;
 
-        // Access MobEffect via Holder
-        if (oldEffect.getEffect().value().isBeneficial()) {
-            newAmplifier += 1; // boost positive effects
-        } else {
-            if (newAmplifier > 0) newAmplifier -= 1;          // weaken negative effects
-            newDuration = (int) (newDuration * 0.9);          // optional: reduce duration slightly
-        }
+        // Begin recursion guard
+        QUARTZ_RECURSION.set(true);
 
-        // Create new instance with same properties except modified amplifier/duration
-        MobEffectInstance newEffect = new MobEffectInstance(
-                oldEffect.getEffect(), // Keep Holder<MobEffect> here
-                newDuration,
-                newAmplifier,
+        // Directly add a new effect with +1 amplifier
+        MobEffectInstance boosted = new MobEffectInstance(
+                oldEffect.getEffect(),
+                oldEffect.getDuration(),
+                oldEffect.getAmplifier() + 1,  // guaranteed +1
                 oldEffect.isAmbient(),
                 oldEffect.isVisible(),
                 oldEffect.showIcon()
         );
 
-        // Remove old effect and apply new one
-        player.removeEffect(oldEffect.getEffect()); // ✅ pass Holder<MobEffect>, NOT value()
-        player.addEffect(newEffect);
+        // Apply the boosted effect
+        player.addEffect(boosted);
+
+        // End recursion guard
+        QUARTZ_RECURSION.set(false);
     }
 
     /* ========================================================= */
