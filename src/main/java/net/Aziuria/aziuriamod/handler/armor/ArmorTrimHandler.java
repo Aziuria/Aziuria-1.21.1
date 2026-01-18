@@ -19,9 +19,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.armortrim.ArmorTrim;
 import net.minecraft.world.item.armortrim.TrimMaterial;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.SculkSensorBlock;
-import net.minecraft.world.level.block.SculkShriekerBlock;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -30,9 +28,9 @@ import net.neoforged.neoforge.event.entity.EntityStruckByLightningEvent;
 import net.neoforged.neoforge.event.entity.ProjectileImpactEvent;
 import net.neoforged.neoforge.event.entity.living.*;
 import net.neoforged.neoforge.event.entity.player.PlayerXpEvent;
+import net.neoforged.neoforge.event.tick.PlayerTickEvent;
 
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 public class ArmorTrimHandler {
 
@@ -334,4 +332,76 @@ public class ArmorTrimHandler {
             event.setCanceled(true); // suppress the vibration
         }
     }
+
+    /* ========================================================= */
+    /* ===================== REDSTONE – ENERGIZED ============= */
+    /* ========================================================= */
+//    private static final Map<Player, Set<BlockPos>> activeLamps = new HashMap<>();
+//    private static final Map<Player, Set<BlockPos>> activeWires = new HashMap<>();
+//
+//    @SubscribeEvent
+//    public static void onRedstoneNearby(PlayerTickEvent.Post event) {
+//        Player player = event.getEntity();
+//
+//        Optional<Holder<TrimMaterial>> trim = getFullSetTrim(player);
+//        if (trim.isEmpty() || !trim.get().value().assetName().equals("redstone")) return;
+//
+//        Level level = player.level();
+//        BlockPos center = player.blockPosition();
+//
+//        int radius = 2;
+//        Set<BlockPos> currentLamps = new HashSet<>();
+//        Set<BlockPos> currentWires = new HashSet<>();
+//
+//        for (int x = -radius; x <= radius; x++) {
+//            for (int y = -radius; y <= radius; y++) {
+//                for (int z = -radius; z <= radius; z++) {
+//                    BlockPos pos = center.offset(x, y, z);
+//                    BlockState state = level.getBlockState(pos);
+//
+//                    // Redstone wires
+//                    if (state.is(Blocks.REDSTONE_WIRE)) {
+//                        currentWires.add(pos);
+//                        if (state.getValue(RedStoneWireBlock.POWER) < 15) {
+//                            level.setBlock(pos, state.setValue(RedStoneWireBlock.POWER, 15), 2);
+//                        }
+//                    }
+//
+//                    // Redstone lamps
+//                    if (state.is(Blocks.REDSTONE_LAMP)) {
+//                        currentLamps.add(pos);
+//                        if (!state.getValue(RedstoneLampBlock.LIT)) {
+//                            level.setBlock(pos, state.setValue(RedstoneLampBlock.LIT, true), 2);
+//                        }
+//                    }
+//                }
+//            }
+//        }
+//
+//        // Turn off lamps that are no longer in range
+//        Set<BlockPos> previousLamps = activeLamps.getOrDefault(player, new HashSet<>());
+//        for (BlockPos oldPos : previousLamps) {
+//            if (!currentLamps.contains(oldPos)) {
+//                BlockState oldState = level.getBlockState(oldPos);
+//                if (oldState.is(Blocks.REDSTONE_LAMP) && oldState.getValue(RedstoneLampBlock.LIT)) {
+//                    level.setBlock(oldPos, oldState.setValue(RedstoneLampBlock.LIT, false), 2);
+//                }
+//            }
+//        }
+//
+//        // Turn off wires that are no longer in range
+//        Set<BlockPos> previousWires = activeWires.getOrDefault(player, new HashSet<>());
+//        for (BlockPos oldPos : previousWires) {
+//            if (!currentWires.contains(oldPos)) {
+//                BlockState oldState = level.getBlockState(oldPos);
+//                if (oldState.is(Blocks.REDSTONE_WIRE) && oldState.getValue(RedStoneWireBlock.POWER) > 0) {
+//                    level.setBlock(oldPos, oldState.setValue(RedStoneWireBlock.POWER, 0), 2);
+//                }
+//            }
+//        }
+//
+//        // Save current sets
+//        activeLamps.put(player, currentLamps);
+//        activeWires.put(player, currentWires);
+//    }
 }

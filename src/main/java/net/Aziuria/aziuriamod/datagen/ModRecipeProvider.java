@@ -71,6 +71,31 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .define('F', ModItems.TIN_NUGGET.get())
                 .unlockedBy("has_tin_ingot", has(ModItems.TIN_INGOT.get())).save(recipeOutput);
 
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.TIN_NUGGET.get(), 9)
+                .pattern("I")
+                .define('I', ModItems.TIN_INGOT.get())
+                .unlockedBy("has_tin_ingot", has(ModItems.TIN_INGOT.get())).save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.TIN_INGOT.get())
+                .pattern("III")
+                .pattern("III")
+                .pattern("III")
+                .define('I', ModItems.TIN_NUGGET.get())
+                .unlockedBy("has_tin_nugget", has(ModItems.TIN_NUGGET.get())).save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, Blocks.COBBLESTONE_SLAB)
+                .pattern("III")
+                .pattern("III")
+                .pattern("III")
+                .define('I', ModBlocks.PEBBLE_BLOCK.get())
+                .unlockedBy("has_pebble_block", has(ModBlocks.PEBBLE_BLOCK.get())).save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, Blocks.COBBLESTONE)
+                .pattern("I")
+                .pattern("I")
+                .define('I', Blocks.COBBLESTONE_SLAB)
+                .unlockedBy("has_cobblestone_slab", has(Blocks.COBBLESTONE_SLAB)).save(recipeOutput);
+
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.MALLET.get())
                 .pattern(" I ")
                 .pattern("AUA")
