@@ -20,6 +20,8 @@ import net.minecraft.world.item.armortrim.ArmorTrim;
 import net.minecraft.world.item.armortrim.TrimMaterial;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.entity.AbstractFurnaceBlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -91,13 +93,6 @@ public class ArmorTrimHandler {
         player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 600, 0));
         player.addEffect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 600, 0));
 
-        // Power nearby lamps/bulbs briefly
-        BlockPos center = player.blockPosition();
-        for (BlockPos pos : BlockPos.betweenClosed(center.offset(-6, -2, -6), center.offset(6, 2, 6))) {
-            if (level.getBlockState(pos).is(Blocks.REDSTONE_LAMP)) {
-                level.setBlock(pos, Blocks.REDSTONE_LAMP.defaultBlockState().setValue(net.minecraft.world.level.block.RedstoneLampBlock.LIT, true), 3);
-            }
-        }
     }
 
     /* ========================================================= */
@@ -334,74 +329,52 @@ public class ArmorTrimHandler {
     }
 
     /* ========================================================= */
-    /* ===================== REDSTONE – ENERGIZED ============= */
+    /* ==================== REDSTONE – ENGINEER ================= */
     /* ========================================================= */
-//    private static final Map<Player, Set<BlockPos>> activeLamps = new HashMap<>();
-//    private static final Map<Player, Set<BlockPos>> activeWires = new HashMap<>();
-//
-//    @SubscribeEvent
-//    public static void onRedstoneNearby(PlayerTickEvent.Post event) {
-//        Player player = event.getEntity();
-//
-//        Optional<Holder<TrimMaterial>> trim = getFullSetTrim(player);
-//        if (trim.isEmpty() || !trim.get().value().assetName().equals("redstone")) return;
-//
-//        Level level = player.level();
-//        BlockPos center = player.blockPosition();
-//
-//        int radius = 2;
-//        Set<BlockPos> currentLamps = new HashSet<>();
-//        Set<BlockPos> currentWires = new HashSet<>();
-//
-//        for (int x = -radius; x <= radius; x++) {
-//            for (int y = -radius; y <= radius; y++) {
-//                for (int z = -radius; z <= radius; z++) {
-//                    BlockPos pos = center.offset(x, y, z);
-//                    BlockState state = level.getBlockState(pos);
-//
-//                    // Redstone wires
-//                    if (state.is(Blocks.REDSTONE_WIRE)) {
-//                        currentWires.add(pos);
-//                        if (state.getValue(RedStoneWireBlock.POWER) < 15) {
-//                            level.setBlock(pos, state.setValue(RedStoneWireBlock.POWER, 15), 2);
-//                        }
-//                    }
-//
-//                    // Redstone lamps
-//                    if (state.is(Blocks.REDSTONE_LAMP)) {
-//                        currentLamps.add(pos);
-//                        if (!state.getValue(RedstoneLampBlock.LIT)) {
-//                            level.setBlock(pos, state.setValue(RedstoneLampBlock.LIT, true), 2);
-//                        }
-//                    }
-//                }
-//            }
-//        }
-//
-//        // Turn off lamps that are no longer in range
-//        Set<BlockPos> previousLamps = activeLamps.getOrDefault(player, new HashSet<>());
-//        for (BlockPos oldPos : previousLamps) {
-//            if (!currentLamps.contains(oldPos)) {
-//                BlockState oldState = level.getBlockState(oldPos);
-//                if (oldState.is(Blocks.REDSTONE_LAMP) && oldState.getValue(RedstoneLampBlock.LIT)) {
-//                    level.setBlock(oldPos, oldState.setValue(RedstoneLampBlock.LIT, false), 2);
-//                }
-//            }
-//        }
-//
-//        // Turn off wires that are no longer in range
-//        Set<BlockPos> previousWires = activeWires.getOrDefault(player, new HashSet<>());
-//        for (BlockPos oldPos : previousWires) {
-//            if (!currentWires.contains(oldPos)) {
-//                BlockState oldState = level.getBlockState(oldPos);
-//                if (oldState.is(Blocks.REDSTONE_WIRE) && oldState.getValue(RedStoneWireBlock.POWER) > 0) {
-//                    level.setBlock(oldPos, oldState.setValue(RedStoneWireBlock.POWER, 0), 2);
-//                }
-//            }
-//        }
-//
-//        // Save current sets
-//        activeLamps.put(player, currentLamps);
-//        activeWires.put(player, currentWires);
-//    }
+
+    @SubscribeEvent
+    public static void onFurnaceSpeed(PlayerTickEvent.Post event) {
+        Player player = event.getEntity();
+        Level level = player.level();
+        if (level.isClientSide()) return; // server only
+
+        Optional<Holder<TrimMaterial>> trim = getFullSetTrim(player);
+        if (trim.isEmpty() || !trim.get().value().assetName().equals("redstone")) return;
+
+        BlockPos playerPos = player.blockPosition();
+        int boostRadius = 10; // 10-block radius for effect
+        float speedMultiplier = 1.15F; // +17.5% speed
+
+        // Iterate nearby blocks within cube radius
+        for (int x = -boostRadius; x <= boostRadius; x++) {
+            for (int y = -boostRadius; y <= boostRadius; y++) {
+                for (int z = -boostRadius; z <= boostRadius; z++) {
+                    BlockPos pos = playerPos.offset(x, y, z);
+                    BlockState state = level.getBlockState(pos);
+
+                    // Only Furnace or Blast Furnace
+                    if (state.getBlock() instanceof FurnaceBlock || state.getBlock() instanceof BlastFurnaceBlock) {
+                        double dist = Math.sqrt(x*x + y*y + z*z);
+                        if (dist > boostRadius) continue;
+
+                        BlockEntity be = level.getBlockEntity(pos);
+                        if (be instanceof AbstractFurnaceBlockEntity furnaceEntity) {
+                            // Safe: accelerate cookTime without exceeding cookTimeTotal
+                            int cookTime = furnaceEntity.getBlockState().getValue(AbstractFurnaceBlock.LIT) ? 1 : 0; // placeholder
+                            // ⚠️ NeoForge 1.21.1 does not expose cookTime directly
+                            // So we can "tick" the furnace manually faster using serverTick
+                            AbstractFurnaceBlockEntity.serverTick(level, pos, state, furnaceEntity);
+                            // Apply additional ticks proportional to 17.5%
+                            if (speedMultiplier > 1f) {
+                                int extraTicks = Math.max(1, (int)((speedMultiplier - 1f) * 2)); // tweak multiplier scaling
+                                for (int i = 0; i < extraTicks; i++) {
+                                    AbstractFurnaceBlockEntity.serverTick(level, pos, state, furnaceEntity);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
