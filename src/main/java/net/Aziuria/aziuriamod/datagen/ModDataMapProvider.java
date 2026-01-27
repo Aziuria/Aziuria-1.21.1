@@ -74,6 +74,7 @@ public class ModDataMapProvider extends DataMapProvider {
                 .add(ModBlocks.BANANA_LEAVES.getId(), new Compostable(0.30f), false)
                 .add(ModBlocks.BANANA_SAPLING.getId(), new Compostable(0.30f), false)
                 .add(ModItems.YUCCA_PLANT.getId(), new Compostable(0.30f), false)
+                .add(ModItems.EGG_SHELL.getId(), new Compostable(0.30f), false)
                 .add(ModItems.YUCCA_LEAVES.getId(), new Compostable(0.30f), false)
                 .add(Items.POISONOUS_POTATO.builtInRegistryHolder().key(), new Compostable(0.50f), false)
                 .add(ModItems.OAK_BARK.getId(), new Compostable(0.25f), false)

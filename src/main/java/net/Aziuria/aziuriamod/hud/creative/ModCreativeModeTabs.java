@@ -370,6 +370,7 @@ public class ModCreativeModeTabs {
 
                         // ======= 🐾 ANIMALS & MOBS =======
                         output.accept(ModItems.WORM_SPAWN_EGG.get());
+                        output.accept(ModItems.EGG_SHELL.get());
 
                         // ======= ⚰️ GRAVESTONES =======
                         output.accept(ModBlocks.BLACKSTONE_GRAVESTONE_A);

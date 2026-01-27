@@ -6,11 +6,8 @@ import net.Aziuria.aziuriamod.entity.ModEntity;
 import net.Aziuria.aziuriamod.island.type.IslandBiomeType;
 import net.Aziuria.aziuriamod.island.type.IslandType;
 import net.Aziuria.aziuriamod.island.item.IslandThrowableItem;
-import net.Aziuria.aziuriamod.item.custom.items.BaitedFishingRodItem;
+import net.Aziuria.aziuriamod.item.custom.items.*;
 import net.Aziuria.aziuriamod.item.custom.custom.DrinkableItem;
-import net.Aziuria.aziuriamod.item.custom.items.MilkBottleItem;
-import net.Aziuria.aziuriamod.item.custom.items.SackItem;
-import net.Aziuria.aziuriamod.item.custom.items.SmoothieItem;
 import net.Aziuria.aziuriamod.item.custom.mineral.SpectralDustItem;
 import net.Aziuria.aziuriamod.item.custom.tools.KnifeItem;
 import net.Aziuria.aziuriamod.item.custom.tools.MalletItem;
@@ -216,6 +213,8 @@ public class ModItems {
             () -> new Item(new Item.Properties()));
     public static final DeferredItem<Item> EMPTY_CUP = ITEMS.register("empty_cup",
             () -> new Item(new Item.Properties()));
+    public static final DeferredItem<EggShellItem> EGG_SHELL = ITEMS.register("egg_shells",
+            () -> new EggShellItem(new Item.Properties()));
 
     public static final DeferredItem<Item> RADISH = ITEMS.register("radish",
             () -> new Item(new Item.Properties().food(ModFoodProperties.RADISH)));

@@ -3,10 +3,15 @@ package net.Aziuria.aziuriamod.events;
 import net.Aziuria.aziuriamod.island.util.DelayedExecutor;
 import net.Aziuria.aziuriamod.handler.blocks.FastLeafDecayHandler;
 import net.Aziuria.aziuriamod.handler.blocks.LeafLitterHandler;
+import net.Aziuria.aziuriamod.item.ModItems;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.entity.projectile.ThrownEgg;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.LeavesBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.neoforged.neoforge.event.entity.ProjectileImpactEvent;
 import net.neoforged.neoforge.event.level.BlockEvent;
 import net.neoforged.neoforge.event.tick.LevelTickEvent;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -47,6 +52,19 @@ public class ModEvents {
             if (!state.getValue(BlockStateProperties.PERSISTENT)) {
                 FastLeafDecayHandler.queueLeafForDecay(level, event.getPos());
             }
+        }
+    }
+
+    @SubscribeEvent
+    public static void onEggImpact(ProjectileImpactEvent event) {
+        if (!(event.getProjectile() instanceof ThrownEgg egg)) return;
+
+        Level level = egg.level();
+        if (level.isClientSide()) return;
+
+        // 15% chance to drop Egg Shell
+        if (level.random.nextFloat() < 0.15f) {
+            egg.spawnAtLocation(new ItemStack(ModItems.EGG_SHELL.get()));
         }
     }
 }

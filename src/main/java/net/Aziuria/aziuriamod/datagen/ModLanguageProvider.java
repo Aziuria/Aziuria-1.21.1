@@ -17,6 +17,7 @@ public class ModLanguageProvider extends LanguageProvider {
 
         // ===================== ITEMS =====================
         add(ModItems.STEEL_INGOT.get(), "Steel Ingot");
+        add(ModItems.EGG_SHELL.get(), "Egg Shells");
         add(ModItems.SPECTRAL_INGOT.get(), "Spectral Ingot");
         add(ModItems.TIN_INGOT.get(), "Tin Ingot");
         add(ModItems.TIN_NUGGET.get(), "Tin Nugget");
