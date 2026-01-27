@@ -6,6 +6,7 @@ import net.minecraft.core.component.DataComponents;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.Mth;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
@@ -238,45 +239,24 @@ public class ArmorTrimHandler {
     }
 
     /* ========================================================= */
-    /* ====================== QUARTZ – ENHANCER ================= */
+    /* ====================== QUARTZ – FALLING ================= */
     /* ========================================================= */
 
-    private static final ThreadLocal<Boolean> QUARTZ_RECURSION = ThreadLocal.withInitial(() -> false);
-
     @SubscribeEvent
-    public static void onEffectAdded(MobEffectEvent.Added event) {
-        // Prevent recursion
-        if (QUARTZ_RECURSION.get()) return;
-
+    public static void onQuartzFallDamage(LivingDamageEvent.Pre event) {
         if (!(event.getEntity() instanceof Player player)) return;
 
+        // Only care about fall damage
+        String sourceId = event.getSource().type().msgId();
+        if (!sourceId.equals("fall")) return;
+
+        // Check for full Quartz trim
         Optional<Holder<TrimMaterial>> trim = getFullSetTrim(player);
         if (trim.isEmpty() || !trim.get().value().assetName().equals("quartz")) return;
 
-        MobEffectInstance oldEffect = event.getEffectInstance();
-        if (oldEffect == null || oldEffect.getEffect() == null) return;
-
-        // Only modify beneficial effects
-        if (!oldEffect.getEffect().value().isBeneficial()) return;
-
-        // Begin recursion guard
-        QUARTZ_RECURSION.set(true);
-
-        // Directly add a new effect with +1 amplifier
-        MobEffectInstance boosted = new MobEffectInstance(
-                oldEffect.getEffect(),
-                oldEffect.getDuration(),
-                oldEffect.getAmplifier() + 1,  // guaranteed +1
-                oldEffect.isAmbient(),
-                oldEffect.isVisible(),
-                oldEffect.showIcon()
-        );
-
-        // Apply the boosted effect
-        player.addEffect(boosted);
-
-        // End recursion guard
-        QUARTZ_RECURSION.set(false);
+        // Reduce fall damage by 15%
+        float currentDamage = event.getNewDamage();
+        event.setNewDamage(currentDamage * 0.85f);
     }
 
     /* ========================================================= */
