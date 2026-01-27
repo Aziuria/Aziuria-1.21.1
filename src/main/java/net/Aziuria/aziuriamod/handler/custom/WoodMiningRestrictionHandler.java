@@ -17,7 +17,7 @@ public class WoodMiningRestrictionHandler {
     // 🔁 GLOBAL DEFAULT (change this)
     // false = OFF by default
     // true  = ON by default
-    private static final boolean DEFAULT_ENABLED = false;
+    private static final boolean DEFAULT_ENABLED = true;
 
     // Per-player overrides
     private static final Map<UUID, Boolean> playerOverrides = new HashMap<>();

@@ -47,6 +47,8 @@ import net.Aziuria.aziuriamod.hud.thirst.capability.ThirstProvider;
 import net.Aziuria.aziuriamod.hud.thirst.handler.*;
 import net.Aziuria.aziuriamod.hud.thirst.network.ThirstNetworkHandler;
 import net.Aziuria.aziuriamod.hud.thirst.registry.ThirstSetup;
+import net.Aziuria.aziuriamod.tips.network.ModTipNetwork;
+import net.Aziuria.aziuriamod.tips.handler.PlayerJoinHandlers;
 import net.Aziuria.aziuriamod.villager.ModVillagerTrades;
 import net.Aziuria.aziuriamod.villager.ModVillagers;
 import net.Aziuria.aziuriamod.villager.VillagerAIHandler;
@@ -96,6 +98,8 @@ public class AziuriaMod {
         modEventBus.addListener(ThirstNetworkHandler::register);
         modEventBus.addListener(ExhaustionNetworkHandler::register);
 
+        modEventBus.addListener(ModTipNetwork::register);
+
 
         if (FMLEnvironment.dist == Dist.CLIENT) {
             ClientModInitializer.register(modEventBus);
@@ -121,6 +125,7 @@ public class AziuriaMod {
         NeoForge.EVENT_BUS.register(ThirstDebuffHandler.class);
         NeoForge.EVENT_BUS.register(ThirstHudOverlay.class);
 
+        NeoForge.EVENT_BUS.register(PlayerJoinHandlers.class);
 
         NeoForge.EVENT_BUS.register(ExhaustionHudOverlay.class);
         NeoForge.EVENT_BUS.register(ExhaustHandler.class);
