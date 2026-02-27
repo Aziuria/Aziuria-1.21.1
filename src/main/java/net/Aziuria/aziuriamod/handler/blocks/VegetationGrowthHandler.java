@@ -102,6 +102,8 @@ public class VegetationGrowthHandler {
                 handleRiverGrowth(level, surfacePos, chance);
             } else if (biomePath.contains("cherry")) {
                 handleCherryGrowth(level, surfacePos, chance);
+            } else if (biomePath.equals("dark_forest")) {
+                handleDarkForestGrowth(level, surfacePos, chance);
             } else if (biomePath.contains("lush")) {
                 handleLushCaveGrowth(level, surfacePos, chance);
             } else {
@@ -303,7 +305,7 @@ public class VegetationGrowthHandler {
         BlockState groundState = level.getBlockState(pos.below());
         if (!groundState.is(Blocks.SAND) && !groundState.is(Blocks.RED_SAND)) return; // Only grow on sand or red sand
         if (chance < 0.10f) level.setBlock(pos, Blocks.DEAD_BUSH.defaultBlockState(), 3);
-        else if (chance < 0.14f) level.setBlock(pos, ModBlocks.YUCCA_PLANT_BLOCK.get().defaultBlockState(), 3);
+        else if (chance < 0.17f) level.setBlock(pos, ModBlocks.YUCCA_PLANT_BLOCK.get().defaultBlockState(), 3);
     }
 
     private static void handleDesertGrowth(ServerLevel level, BlockPos pos, float chance) {
@@ -346,6 +348,13 @@ public class VegetationGrowthHandler {
         else if (chance < 0.12f) level.setBlock(pos, Blocks.ALLIUM.defaultBlockState(), 3);
         else if (chance < 0.18f) level.setBlock(pos, Blocks.AZURE_BLUET.defaultBlockState(), 3);
         else if (chance < 0.24f) level.setBlock(pos, Blocks.LILY_OF_THE_VALLEY.defaultBlockState(), 3);
+        else if (chance < 0.40f) level.setBlock(pos, Blocks.TALL_GRASS.defaultBlockState(), 3);
+    }
+
+    private static void handleDarkForestGrowth(ServerLevel level, BlockPos pos, float chance) {
+        if (chance < 0.02f) level.setBlock(pos, ModBlocks.FLAX_FLOWER_BLOCK.get().defaultBlockState(), 3);
+        else if (chance < 0.06f) level.setBlock(pos, Blocks.DANDELION.defaultBlockState(), 3);
+        else if (chance < 0.10f) level.setBlock(pos, Blocks.POPPY.defaultBlockState(), 3);
         else if (chance < 0.40f) level.setBlock(pos, Blocks.TALL_GRASS.defaultBlockState(), 3);
     }
 }

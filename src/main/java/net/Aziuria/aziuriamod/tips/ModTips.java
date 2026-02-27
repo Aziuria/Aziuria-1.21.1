@@ -15,7 +15,7 @@ public class ModTips {
         mc.getToasts().addToast(
                 new PebbleMessageToast(
                         Component.literal(
-                                "Find pebbles and break or craft them into stone shards to mine wood."
+                                "Collect pebbles to break or craft them into stone shards to mine wood."
                         ),
                         new ItemStack(ModBlocks.PEBBLE_BLOCK.get())
                 )
@@ -29,7 +29,7 @@ public class ModTips {
         mc.getToasts().addToast(
                 new PebbleMessageToast(
                         Component.literal(
-                                "Pebbles can be used as projectiles to throw them at mobs."
+                                "Pebbles can be used as projectiles to attack mobs."
                         ),
                         new ItemStack(ModBlocks.PEBBLE_BLOCK.get())
                 )

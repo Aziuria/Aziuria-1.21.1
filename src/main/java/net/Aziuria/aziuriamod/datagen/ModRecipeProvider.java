@@ -2343,7 +2343,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .define('A', ModItems.COFFEE.get())
                 .define('F', Items.POTION)
                 .define('L', ModTags.JUICES)
-                .unlockedBy("has_potion", has(Items.POTION)).save(recipeOutput);
+                .unlockedBy("has_sugar", has(Items.SUGAR)).save(recipeOutput);
 
         ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, ModItems.APPLE_JUICE.get(), 1)
                 .requires(Items.APPLE)

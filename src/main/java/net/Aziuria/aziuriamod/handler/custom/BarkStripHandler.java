@@ -31,10 +31,15 @@ public class BarkStripHandler {
         // Only axes
         if (!(stack.getItem() instanceof AxeItem)) return;
 
-        // Only handle specific logs
-        if (!(block == Blocks.OAK_LOG || block == Blocks.BIRCH_LOG || block == Blocks.SPRUCE_LOG ||
-                block == Blocks.JUNGLE_LOG || block == Blocks.ACACIA_LOG || block == Blocks.DARK_OAK_LOG ||
-                block == Blocks.MANGROVE_LOG || block == Blocks.CHERRY_LOG)) return;
+// Only handle specific logs + wood
+        if (!(block == Blocks.OAK_LOG || block == Blocks.OAK_WOOD ||
+                block == Blocks.BIRCH_LOG || block == Blocks.BIRCH_WOOD ||
+                block == Blocks.SPRUCE_LOG || block == Blocks.SPRUCE_WOOD ||
+                block == Blocks.JUNGLE_LOG || block == Blocks.JUNGLE_WOOD ||
+                block == Blocks.ACACIA_LOG || block == Blocks.ACACIA_WOOD ||
+                block == Blocks.DARK_OAK_LOG || block == Blocks.DARK_OAK_WOOD ||
+                block == Blocks.MANGROVE_LOG || block == Blocks.MANGROVE_WOOD ||
+                block == Blocks.CHERRY_LOG || block == Blocks.CHERRY_WOOD)) return;
 
         // Let vanilla handle the actual stripping (do not setBlock here)
         // Just spawn 2–4 bark
@@ -54,14 +59,30 @@ public class BarkStripHandler {
     }
 
     private static ItemStack getBark(Block block) {
-        if (block == Blocks.OAK_LOG) return new ItemStack(ModItems.OAK_BARK.get());
-        if (block == Blocks.BIRCH_LOG) return new ItemStack(ModItems.BIRCH_BARK.get());
-        if (block == Blocks.SPRUCE_LOG) return new ItemStack(ModItems.SPRUCE_BARK.get());
-        if (block == Blocks.JUNGLE_LOG) return new ItemStack(ModItems.JUNGLE_BARK.get());
-        if (block == Blocks.ACACIA_LOG) return new ItemStack(ModItems.ACACIA_BARK.get());
-        if (block == Blocks.DARK_OAK_LOG) return new ItemStack(ModItems.DARK_OAK_BARK.get());
-        if (block == Blocks.MANGROVE_LOG) return new ItemStack(ModItems.MANGROVE_BARK.get());
-        if (block == Blocks.CHERRY_LOG) return new ItemStack(ModItems.CHERRY_BARK.get());
+        if (block == Blocks.OAK_LOG || block == Blocks.OAK_WOOD)
+            return new ItemStack(ModItems.OAK_BARK.get());
+
+        if (block == Blocks.BIRCH_LOG || block == Blocks.BIRCH_WOOD)
+            return new ItemStack(ModItems.BIRCH_BARK.get());
+
+        if (block == Blocks.SPRUCE_LOG || block == Blocks.SPRUCE_WOOD)
+            return new ItemStack(ModItems.SPRUCE_BARK.get());
+
+        if (block == Blocks.JUNGLE_LOG || block == Blocks.JUNGLE_WOOD)
+            return new ItemStack(ModItems.JUNGLE_BARK.get());
+
+        if (block == Blocks.ACACIA_LOG || block == Blocks.ACACIA_WOOD)
+            return new ItemStack(ModItems.ACACIA_BARK.get());
+
+        if (block == Blocks.DARK_OAK_LOG || block == Blocks.DARK_OAK_WOOD)
+            return new ItemStack(ModItems.DARK_OAK_BARK.get());
+
+        if (block == Blocks.MANGROVE_LOG || block == Blocks.MANGROVE_WOOD)
+            return new ItemStack(ModItems.MANGROVE_BARK.get());
+
+        if (block == Blocks.CHERRY_LOG || block == Blocks.CHERRY_WOOD)
+            return new ItemStack(ModItems.CHERRY_BARK.get());
+
         return ItemStack.EMPTY;
     }
 }

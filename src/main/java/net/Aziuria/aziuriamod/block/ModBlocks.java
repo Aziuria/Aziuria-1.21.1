@@ -39,6 +39,9 @@ public class ModBlocks {
     public static final DeferredRegister.Blocks BLOCKS =
             DeferredRegister.createBlocks(AziuriaMod.MOD_ID);
 
+    /* ========================================================= */
+    /* =========================== ORES ======================== */
+    /* ========================================================= */
 
     public static final DeferredBlock<Block> SULPHUR_ORE = registerBlock("sulphur_ore",
             () -> new DropExperienceBlock(UniformInt.of(2, 4),
@@ -788,8 +791,8 @@ public class ModBlocks {
 
     public static final DeferredBlock<PebbleBlock> PEBBLE_BLOCK = registerBlock(
             "pebble",
-            () -> new PebbleBlock(BlockBehaviour.Properties.of().strength(0.5f).noOcclusion()),
-            block -> new PebbleItem(block, new Item.Properties().stacksTo(16)) // ✅ custom throwable BlockItem
+            () -> new PebbleBlock(BlockBehaviour.Properties.of().noOcclusion()),
+            block -> new PebbleItem(block, new Item.Properties().stacksTo(64)) // ✅ custom throwable BlockItem
     );
 
 

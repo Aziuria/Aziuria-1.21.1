@@ -12,6 +12,7 @@ import net.minecraft.data.worldgen.placement.PlacementUtils;
 import net.minecraft.data.worldgen.placement.VegetationPlacements;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.levelgen.VerticalAnchor;
 import net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate;
@@ -149,6 +150,9 @@ public class ModPlacedFeatures {
     public static final ResourceKey<PlacedFeature> BLUEBERRY_BUSH_PLACED_KEY = registerKey("blueberry_bush_placed");
     public static final ResourceKey<PlacedFeature> GOOSEBERRY_BUSH_PLACED_KEY = registerKey("gooseberry_bush_placed");
     public static final ResourceKey<PlacedFeature> STRAWBERRY_BUSH_PLACED_KEY = registerKey("strawberry_bush_placed");
+
+    public static final ResourceKey<PlacedFeature> FALLEN_OAK_KEY = registerKey("fallen_oak_placed");
+    public static final ResourceKey<PlacedFeature> FALLEN_BIRCH_KEY = registerKey("fallen_birch_placed");
 
     public static void bootstrap(BootstrapContext<PlacedFeature> context) {
         var configuredFeatures = context.lookup(Registries.CONFIGURED_FEATURE);
@@ -1204,6 +1208,29 @@ public class ModPlacedFeatures {
                         // NearbyWaterRadiusFilter.INSTANCE,
                         BiomeFilter.biome()
                 ));
+
+        // Fallen Oak Placement
+        {
+            List<PlacementModifier> modifiers = List.of(
+                    InSquarePlacement.spread(),
+                    PlacementUtils.HEIGHTMAP_WORLD_SURFACE,
+                    CountPlacement.of(UniformInt.of(0, 2)), // up to 2 per chunk
+                    RarityFilter.onAverageOnceEvery(6), // rare
+                    BiomeFilter.biome()
+            );
+
+            register(context, FALLEN_OAK_KEY,
+                    configuredFeatures.getOrThrow(ModConfiguredFeatures.FALLEN_OAK_KEY),
+                    modifiers
+
+            );
+
+            register(context, FALLEN_BIRCH_KEY,
+                    configuredFeatures.getOrThrow(ModConfiguredFeatures.FALLEN_BIRCH_KEY),
+                    modifiers
+            );
+        }
+
     }
 
     private static ResourceKey<PlacedFeature> registerKey(String name) {

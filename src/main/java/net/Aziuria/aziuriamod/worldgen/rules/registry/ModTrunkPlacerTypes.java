@@ -2,6 +2,7 @@ package net.Aziuria.aziuriamod.worldgen.rules.registry;
 
 import net.Aziuria.aziuriamod.AziuriaMod;
 import net.Aziuria.aziuriamod.worldgen.rules.DynamicForkingTrunkPlacer;
+import net.Aziuria.aziuriamod.worldgen.rules.FallenLogTrunkPlacer;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.level.levelgen.feature.trunkplacers.TrunkPlacerType;
 import net.neoforged.neoforge.registries.DeferredHolder;
@@ -16,5 +17,11 @@ public class ModTrunkPlacerTypes {
     public static final DeferredHolder<TrunkPlacerType<?>, ?> DYNAMIC_FORKING =
             TRUNK_PLACERS.register("dynamic_forking_trunk_placer", () ->
                     new TrunkPlacerType<>(DynamicForkingTrunkPlacer.CODEC)
+            );
+
+    // ===== Fallen Log Trunk Placer =====
+    public static final DeferredHolder<TrunkPlacerType<?>, ?> FALLEN_LOG =
+            TRUNK_PLACERS.register("fallen_log_trunk_placer", () ->
+                    new TrunkPlacerType<>(FallenLogTrunkPlacer.CODEC)
             );
 }

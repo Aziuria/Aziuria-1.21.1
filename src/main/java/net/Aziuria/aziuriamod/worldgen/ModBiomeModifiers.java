@@ -151,6 +151,9 @@ public class ModBiomeModifiers {
 
     public static final ResourceKey<BiomeModifier> SPAWN_WORM = registerKey("add_spawn_worm");
 
+    public static final ResourceKey<BiomeModifier> FALLEN_OAK = registerKey("add_fallen_oak");
+    public static final ResourceKey<BiomeModifier> FALLEN_BIRCH = registerKey("add_fallen_birch");
+
     public static void bootstrap(BootstrapContext<BiomeModifier> context) {
         // CF -> PF -> BM
         var placedFeatures = context.lookup(Registries.PLACED_FEATURE);
@@ -1173,6 +1176,47 @@ public class ModBiomeModifiers {
                         biomes.getOrThrow(Biomes.WINDSWEPT_FOREST)),
 
                 List.of(new MobSpawnSettings.SpawnerData(ModEntity.WORM.get(), 10, 1, 3))));
+
+        context.register(ModBiomeModifiers.FALLEN_OAK,
+                new BiomeModifiers.AddFeaturesBiomeModifier(
+                        HolderSet.direct(
+                                biomes.getOrThrow(Biomes.PLAINS),
+                                biomes.getOrThrow(Biomes.SUNFLOWER_PLAINS),
+                                biomes.getOrThrow(Biomes.FOREST),
+                                biomes.getOrThrow(Biomes.FLOWER_FOREST),
+                                biomes.getOrThrow(Biomes.BIRCH_FOREST),
+                                biomes.getOrThrow(Biomes.OLD_GROWTH_BIRCH_FOREST),
+                                biomes.getOrThrow(Biomes.DARK_FOREST),
+                                biomes.getOrThrow(Biomes.MEADOW),
+                                biomes.getOrThrow(Biomes.RIVER),
+                                biomes.getOrThrow(Biomes.CHERRY_GROVE),
+                                biomes.getOrThrow(Biomes.JUNGLE),
+                                biomes.getOrThrow(Biomes.SPARSE_JUNGLE),
+                                biomes.getOrThrow(Biomes.BAMBOO_JUNGLE),
+                                biomes.getOrThrow(Biomes.WINDSWEPT_FOREST)
+                        ),
+                        HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.FALLEN_OAK_KEY)),
+                        GenerationStep.Decoration.VEGETAL_DECORATION
+                )
+        );
+
+        context.register(ModBiomeModifiers.FALLEN_BIRCH, new BiomeModifiers.AddFeaturesBiomeModifier(
+                HolderSet.direct(
+                        biomes.getOrThrow(Biomes.PLAINS),
+                        biomes.getOrThrow(Biomes.FOREST),
+                        biomes.getOrThrow(Biomes.FLOWER_FOREST),
+                        biomes.getOrThrow(Biomes.BIRCH_FOREST),
+                        biomes.getOrThrow(Biomes.OLD_GROWTH_BIRCH_FOREST),
+                        biomes.getOrThrow(Biomes.MEADOW),
+                        biomes.getOrThrow(Biomes.CHERRY_GROVE),
+                        biomes.getOrThrow(Biomes.WINDSWEPT_FOREST)
+                ),
+                HolderSet.direct(
+                        placedFeatures.getOrThrow(ModPlacedFeatures.FALLEN_BIRCH_KEY)
+                ),
+                GenerationStep.Decoration.VEGETAL_DECORATION
+        ));
+
     }
 
     private static ResourceKey<BiomeModifier> registerKey(String name) {

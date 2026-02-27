@@ -5,14 +5,16 @@ import net.Aziuria.aziuriamod.block.ModBlocks;
 import net.Aziuria.aziuriamod.item.ModItems;
 import net.Aziuria.aziuriamod.loot.modifier.AddItemModifier;
 import net.Aziuria.aziuriamod.loot.modifier.RemoveItemModifier;
+import net.minecraft.advancements.critereon.ItemEnchantmentsPredicate;
+import net.minecraft.advancements.critereon.ItemPredicate;
+import net.minecraft.advancements.critereon.MinMaxBounds;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.storage.loot.predicates.LootItemBlockStatePropertyCondition;
-import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
-import net.minecraft.world.level.storage.loot.predicates.LootItemRandomChanceCondition;
+import net.minecraft.world.level.storage.loot.predicates.*;
 import net.neoforged.neoforge.common.data.GlobalLootModifierProvider;
 import net.neoforged.neoforge.common.loot.LootTableIdCondition;
 
@@ -85,15 +87,21 @@ public class ModGlobalLootModifierProvider extends GlobalLootModifierProvider {
                         LootItemRandomChanceCondition.randomChance(0.15f).build() // 3% chance
                 }, ModItems.WORM.get(), 0, 5)); // gives 0–5 worms
 
+        this.add("pebble_from_gravel",
+                new AddItemModifier(new LootItemCondition[] {
+                        LootItemBlockStatePropertyCondition.hasBlockStateProperties(Blocks.GRAVEL).build(),
+                        LootItemRandomChanceCondition.randomChance(0.15f).build() // 3% chance
+                }, ModBlocks.PEBBLE_BLOCK.get(), 1, 3)); // gives 0–3 pebbble
+
 //        this.add("remove_cobblestone_from_stone",
 //                new RemoveItemModifier(new LootItemCondition[] {
 //                        LootItemBlockStatePropertyCondition.hasBlockStateProperties(Blocks.STONE).build()
 //                }, Items.COBBLESTONE));
 //
-//        this.add("stone_drops_shards",
+//        this.add("stone_drops_pebble",
 //                new AddItemModifier(new LootItemCondition[] {
 //                        LootItemBlockStatePropertyCondition.hasBlockStateProperties(Blocks.STONE).build()
-//                }, ModItems.STONE_SHARD.get(), 3, 8));
+//                }, ModBlocks.PEBBLE_BLOCK.get(), 3, 8));
 //
 //        this.add("berry_from_creeper",
 //                new AddItemModifier(new LootItemCondition[] {
@@ -133,7 +141,6 @@ public class ModGlobalLootModifierProvider extends GlobalLootModifierProvider {
                         LootItemRandomChanceCondition.randomChance(0.15f).build() // vanilla-like chance
                 }, ModBlocks.CUSTOM_BIRCH_SAPLING.get(), 1, 1)
         );
-
 
     }
 }

@@ -3,8 +3,6 @@ package net.Aziuria.aziuriamod.hud.exhaustion.handler;
 import net.Aziuria.aziuriamod.hud.exhaustion.capability.Exhaustion;
 import net.Aziuria.aziuriamod.hud.exhaustion.capability.ExhaustionProvider;
 import net.Aziuria.aziuriamod.hud.exhaustion.capability.Iexhaustion;
-import net.Aziuria.aziuriamod.fog.FogEventManager;
-import net.Aziuria.aziuriamod.sounds.ModSounds;
 import net.minecraft.core.Holder;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
@@ -28,9 +26,6 @@ public class ExhaustionDebuffHandler {
 
     private static final float SLEEP_THRESHOLD_PERCENT = 40f;
     private static final float RECOVERY_PER_HOUR = 12.5f;
-
-    // Tracks siren wake-ups
-    private static final WeakHashMap<ServerPlayer, Boolean> sirenTriggered = new WeakHashMap<>();
 
     // Tracks when each player started sleeping
     private static final WeakHashMap<ServerPlayer, Long> sleepStartTick = new WeakHashMap<>();
@@ -57,29 +52,7 @@ public class ExhaustionDebuffHandler {
             removeExhaustionModifiers(player);
         }
 
-// Siren/fog wake-up only if a fog event is about to start
-        if (player.isSleeping() && !sirenTriggered.containsKey(player)) {
-            // Check fog manager for active or imminent fog
-            if (FogEventManager.getActiveFog() != null) {
-                player.stopSleeping();
-                player.playNotifySound(ModSounds.SIREN.get(), player.getSoundSource(), 1.0f, 1.0f);
-                player.displayClientMessage(
-                        net.minecraft.network.chat.Component.literal("⚠ You were woken up by the fog siren!"), true
-                );
-
-                // Apply partial recovery based on slept hours
-                applySleepRecovery(player);
-
-                sirenTriggered.put(player, true);
-            }
-        }
-
-        // Reset siren trigger when player is not sleeping
-        if (!player.isSleeping() && sirenTriggered.containsKey(player)) {
-            sirenTriggered.remove(player);
-        }
-
-        // If player wakes normally, apply recovery
+        // If player wakes, apply recovery
         if (!player.isSleeping() && sleepStartTick.containsKey(player)) {
             applySleepRecovery(player);
             sleepStartTick.remove(player);

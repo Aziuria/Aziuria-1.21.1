@@ -2,7 +2,9 @@ package net.Aziuria.aziuriamod.worldgen;
 
 import net.Aziuria.aziuriamod.AziuriaMod;
 import net.Aziuria.aziuriamod.block.ModBlocks;
+import net.Aziuria.aziuriamod.worldgen.rules.ConsistentHorizontalLogStateProvider;
 import net.Aziuria.aziuriamod.worldgen.rules.DynamicForkingTrunkPlacer;
+import net.Aziuria.aziuriamod.worldgen.rules.FallenLogTrunkPlacer;
 import net.Aziuria.aziuriamod.worldgen.rules.RandomFacingStateProvider;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstrapContext;
@@ -124,6 +126,9 @@ public class ModConfiguredFeatures {
     public static final ResourceKey<ConfiguredFeature<?, ?>> BLUEBERRY_BUSH_KEY = registerKey("configured_blueberry_bush");
     public static final ResourceKey<ConfiguredFeature<?, ?>> STRAWBERRY_BUSH_KEY = registerKey("configured_strawberry_bush");
     public static final ResourceKey<ConfiguredFeature<?, ?>> GOOSEBERRY_BUSH_KEY = registerKey("configured_gooseberry_bush");
+
+    public static final ResourceKey<ConfiguredFeature<?, ?>> FALLEN_OAK_KEY = registerKey("fallen_oak");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> FALLEN_BIRCH_KEY = registerKey("fallen_birch");
 
     public static void bootstrap(BootstrapContext<ConfiguredFeature<?, ?>> context) {
 
@@ -415,7 +420,7 @@ public class ModConfiguredFeatures {
                 new TreeConfiguration.TreeConfigurationBuilder(
                         BlockStateProvider.simple(Blocks.BIRCH_LOG),
                         new ForkingTrunkPlacer(trunkHeight, extraHeight, baseBranchSpread),
-                        BlockStateProvider.simple(ModBlocks.CUSTOM_BIRCH_LEAVES.get()),
+                        BlockStateProvider.simple(Blocks.BIRCH_LEAVES),
                         foliagePlacer,
                         featureSize
                 ).build()
@@ -425,7 +430,7 @@ public class ModConfiguredFeatures {
                 new TreeConfiguration.TreeConfigurationBuilder(
                         BlockStateProvider.simple(Blocks.OAK_LOG),
                         new DynamicForkingTrunkPlacer(trunkHeight, extraHeight, minorBranches, branchLength, branchStartOffset, baseBranchSpread),
-                        BlockStateProvider.simple(ModBlocks.CUSTOM_OAK_LEAVES.get()),
+                        BlockStateProvider.simple(Blocks.OAK_LEAVES),
                         foliagePlacer,
                         featureSize
                 ).build()
@@ -864,6 +869,28 @@ public class ModConfiguredFeatures {
                         new SimpleBlockConfiguration(BlockStateProvider.simple(ModBlocks.STRAWBERRY_BUSH.get()
                                 .defaultBlockState().setValue(SweetBerryBushBlock.AGE, 3))
                         ), List.of(Blocks.GRASS_BLOCK), 2));
+
+
+// Pick a random length between 3–7
+        int fallenLogLength = 3 + random.nextInt(5); // 3,4,5,6,7
+
+        register(context, FALLEN_OAK_KEY, Feature.TREE,
+                new TreeConfiguration.TreeConfigurationBuilder(
+                        new ConsistentHorizontalLogStateProvider(Blocks.OAK_LOG.defaultBlockState()), // trunk block
+                        new FallenLogTrunkPlacer(3, 7), // min/max length
+                        BlockStateProvider.simple(Blocks.AIR), // no leaves
+                        new BlobFoliagePlacer(ConstantInt.of(0), ConstantInt.of(0), 0), // empty foliage
+                        new TwoLayersFeatureSize(1, 0, 0) // minimal feature size
+                ).build()
+        );
+
+        register(context, FALLEN_BIRCH_KEY, Feature.TREE, new TreeConfiguration.TreeConfigurationBuilder(
+                new ConsistentHorizontalLogStateProvider(Blocks.BIRCH_LOG.defaultBlockState()), // trunk
+                new FallenLogTrunkPlacer(3, 7), // min/max length
+                BlockStateProvider.simple(Blocks.AIR), // no leaves
+                new BlobFoliagePlacer(ConstantInt.of(0), ConstantInt.of(0), 0), // empty foliage
+                new TwoLayersFeatureSize(1, 0, 0)
+        ).build());
 
     }
 
