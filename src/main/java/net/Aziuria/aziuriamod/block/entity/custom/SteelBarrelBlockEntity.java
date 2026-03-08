@@ -2,6 +2,7 @@ package net.Aziuria.aziuriamod.block.entity.custom;
 
 import net.Aziuria.aziuriamod.block.entity.ModBlockEntities;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.Packet;
@@ -10,6 +11,7 @@ import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.PointedDripstoneBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Fluids;
@@ -45,6 +47,7 @@ public class SteelBarrelBlockEntity extends BlockEntity {
     }
 
     // **NO @Override here**
+    @SuppressWarnings("unchecked")
     @Nullable
     public <T, C> T getCapability(BlockCapability<T, C> capability, C context) {
         if (capability == Capabilities.FluidHandler.BLOCK) {
@@ -145,5 +148,56 @@ public class SteelBarrelBlockEntity extends BlockEntity {
         if (level.getFluidState(above).getType() == Fluids.LAVA && level.getRandom().nextFloat() < 0.0005F) {
             tank.fill(new FluidStack(Fluids.LAVA, 1000), IFluidHandler.FluidAction.EXECUTE);
         }
+
+        //// =========================================
+        //// DRIPSTONE VANILLA UPGRADE START
+        //// =========================================
+
+        // --- DRIPSTONE SAFE UPGRADE ---
+        BlockPos scanPos = above;
+
+        while (scanPos.getY() < level.getMaxBuildHeight()) { // safety: world bounds
+            if (!level.isLoaded(scanPos)) break; // safety: chunk loaded
+
+            BlockState dripstoneState = level.getBlockState(scanPos);
+
+            // Stop if solid block (non-air, non-dripstone)
+            if (!dripstoneState.isAir() && !(dripstoneState.getBlock() instanceof PointedDripstoneBlock)) {
+                break;
+            }
+
+            // If we hit a downward-pointing dripstone, proceed as usual
+            if (dripstoneState.getBlock() instanceof PointedDripstoneBlock
+                    && dripstoneState.getValue(PointedDripstoneBlock.TIP_DIRECTION) == Direction.DOWN) {
+
+                BlockPos topDripstone = scanPos;
+
+                // Walk upward through dripstone chain
+                while (level.getBlockState(topDripstone).getBlock() instanceof PointedDripstoneBlock) {
+                    topDripstone = topDripstone.above();
+                }
+
+                // Check for fluid source above stalactite
+                BlockPos sourcePos = topDripstone.above();
+                var fluid = level.getFluidState(sourcePos).getType();
+
+                if (fluid == Fluids.WATER && level.getRandom().nextFloat() < 0.000925F) {
+                    tank.fill(new FluidStack(Fluids.WATER, 100), IFluidHandler.FluidAction.EXECUTE);
+                }
+
+                if (fluid == Fluids.LAVA && level.getRandom().nextFloat() < 0.000925F) {
+                    tank.fill(new FluidStack(Fluids.LAVA, 100), IFluidHandler.FluidAction.EXECUTE);
+                }
+
+                break; // only process the first valid dripstone
+            }
+
+            // Move scanPos one block up
+            scanPos = scanPos.above();
+        }
+
+        //// =========================================
+        //// DRIPSTONE VANILLA UPGRADE END
+        //// =========================================
     }
 }

@@ -106,6 +106,12 @@ public class VegetationGrowthHandler {
                 handleDarkForestGrowth(level, surfacePos, chance);
             } else if (biomePath.contains("lush")) {
                 handleLushCaveGrowth(level, surfacePos, chance);
+            } else if (biomePath.equals("flower_forest")) {
+                handleFlowerForestGrowth(level, surfacePos, chance);
+            } else if (biomePath.equals("windswept")) {
+                handleWindsweptGrowth(level, surfacePos, chance);
+            } else if (biomePath.equals("sunflower_plains")) {
+                handleSunflowerPlainsGrowth(level, surfacePos, chance);
             } else {
                 handleDefaultGrowth(level, surfacePos, chance);
             }
@@ -251,6 +257,41 @@ public class VegetationGrowthHandler {
         else if (chance < 0.20f) level.setBlock(pos, Blocks.CORNFLOWER.defaultBlockState(), 3);
         else if (chance < 0.55f) level.setBlock(pos, Blocks.TALL_GRASS.defaultBlockState(), 3);
         else if (chance < 0.70f) level.setBlock(pos, Blocks.SHORT_GRASS.defaultBlockState(), 3);
+    }
+
+    private static void handleWindsweptGrowth(ServerLevel level, BlockPos pos, float chance) {
+        if (chance < 0.04f) level.setBlock(pos, Blocks.DANDELION.defaultBlockState(), 3);
+        else if (chance < 0.08f) level.setBlock(pos, Blocks.POPPY.defaultBlockState(), 3);
+        else if (chance < 0.18f) level.setBlock(pos, Blocks.FERN.defaultBlockState(), 3);
+        else if (chance < 0.55f) level.setBlock(pos, Blocks.TALL_GRASS.defaultBlockState(), 3);
+        else if (chance < 0.70f) level.setBlock(pos, Blocks.SHORT_GRASS.defaultBlockState(), 3);
+    }
+
+    private static void handleSunflowerPlainsGrowth(ServerLevel level, BlockPos pos, float chance) {
+        if (chance < 0.25f) level.setBlock(pos, Blocks.SUNFLOWER.defaultBlockState(), 3); // Sunflowers dominate
+        else if (chance < 0.35f) level.setBlock(pos, Blocks.DANDELION.defaultBlockState(), 3); // Dandelions
+        else if (chance < 0.45f) level.setBlock(pos, Blocks.POPPY.defaultBlockState(), 3); // Poppies
+        else if (chance < 0.50f) level.setBlock(pos, Blocks.CORNFLOWER.defaultBlockState(), 3); // Cornflowers (rare)
+        else if (chance < 0.55f) level.setBlock(pos, ModBlocks.FLAX_FLOWER_BLOCK.get().defaultBlockState(), 3); // Optional Flax
+        else if (chance < 0.80f) level.setBlock(pos, Blocks.TALL_GRASS.defaultBlockState(), 3); // Tall grass filler
+        else if (chance < 1.00f) level.setBlock(pos, Blocks.SHORT_GRASS.defaultBlockState(), 3); // Short grass filler
+    }
+
+    private static void handleFlowerForestGrowth(ServerLevel level, BlockPos pos, float chance) {
+        if (chance < 0.05f) level.setBlock(pos, Blocks.DANDELION.defaultBlockState(), 3);
+        else if (chance < 0.10f) level.setBlock(pos, Blocks.POPPY.defaultBlockState(), 3);
+        else if (chance < 0.15f) level.setBlock(pos, Blocks.ALLIUM.defaultBlockState(), 3);
+        else if (chance < 0.20f) level.setBlock(pos, Blocks.AZURE_BLUET.defaultBlockState(), 3);
+        else if (chance < 0.25f) level.setBlock(pos, Blocks.LILY_OF_THE_VALLEY.defaultBlockState(), 3);
+        else if (chance < 0.30f) level.setBlock(pos, Blocks.OXEYE_DAISY.defaultBlockState(), 3);
+        else if (chance < 0.35f) level.setBlock(pos, Blocks.RED_TULIP.defaultBlockState(), 3);
+        else if (chance < 0.40f) level.setBlock(pos, Blocks.ORANGE_TULIP.defaultBlockState(), 3);
+        else if (chance < 0.46f) level.setBlock(pos, Blocks.WHITE_TULIP.defaultBlockState(), 3);
+        else if (chance < 0.50f) level.setBlock(pos, Blocks.PINK_TULIP.defaultBlockState(), 3);
+        else if (chance < 0.55f) level.setBlock(pos, ModBlocks.FLAX_FLOWER_BLOCK.get().defaultBlockState(), 3);
+        else if (chance < 0.60f) level.setBlock(pos, Blocks.CORNFLOWER.defaultBlockState(), 3);
+        else if (chance < 0.80f) level.setBlock(pos, Blocks.TALL_GRASS.defaultBlockState(), 3);
+        else if (chance < 0.95f) level.setBlock(pos, Blocks.SHORT_GRASS.defaultBlockState(), 3);
     }
 
     private static void handlePlainsGrowth(ServerLevel level, BlockPos pos, float chance) {

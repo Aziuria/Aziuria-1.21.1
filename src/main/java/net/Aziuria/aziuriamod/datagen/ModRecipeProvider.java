@@ -88,13 +88,29 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .pattern("III")
                 .pattern("III")
                 .define('I', ModBlocks.PEBBLE_BLOCK.get())
-                .unlockedBy("has_pebble_block", has(ModBlocks.PEBBLE_BLOCK.get())).save(recipeOutput);
+                .unlockedBy("has_pebble_block", has(ModBlocks.PEBBLE_BLOCK.get()))
+                        .save(recipeOutput, ResourceLocation.fromNamespaceAndPath("aziuriamod", "cobblestone_slab_from_pebble"));
 
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, Blocks.COBBLESTONE)
                 .pattern("I")
                 .pattern("I")
                 .define('I', Blocks.COBBLESTONE_SLAB)
-                .unlockedBy("has_cobblestone_slab", has(Blocks.COBBLESTONE_SLAB)).save(recipeOutput);
+                .unlockedBy("has_cobblestone_slab", has(Blocks.COBBLESTONE_SLAB))
+                                .save(recipeOutput, ResourceLocation.fromNamespaceAndPath("aziuriamod", "cobblestone_from_cobblestone_slab"));
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, Blocks.OAK_SLAB)
+                .pattern("II")
+                .pattern("II")
+                .define('I', Items.STICK)
+                .unlockedBy("has_stick", has(Items.STICK))
+                                .save(recipeOutput, ResourceLocation.fromNamespaceAndPath("aziuriamod", "oak_slab_from_stick"));
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, Blocks.OAK_PLANKS)
+                .pattern("II")
+                .pattern("II")
+                .define('I', Blocks.OAK_SLAB)
+                .unlockedBy("has_oak_slab", has(Blocks.OAK_SLAB))
+                                .save(recipeOutput, ResourceLocation.fromNamespaceAndPath("aziuriamod", "oak_planks_from_oak_slabs"));
 
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.MALLET.get())
                 .pattern(" I ")

@@ -113,6 +113,7 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                 .add(ModBlocks.STEEL_BLOCK.get());
 
         tag(ModTags.Blocks.NEEDS_STEEL_TOOL)
+                .add(Blocks.OBSIDIAN)
                 .addTag(BlockTags.NEEDS_IRON_TOOL);
 
         tag(ModTags.Blocks.INCORRECT_FOR_STEEL_TOOL)
@@ -120,6 +121,7 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                 .remove(ModTags.Blocks.NEEDS_STEEL_TOOL);
 
         tag(ModTags.Blocks.NEEDS_SPINEL_TOOL)
+                .add(Blocks.OBSIDIAN)
                 .addTag(BlockTags.NEEDS_IRON_TOOL);
 
         tag(ModTags.Blocks.INCORRECT_FOR_SPINEL_TOOL)

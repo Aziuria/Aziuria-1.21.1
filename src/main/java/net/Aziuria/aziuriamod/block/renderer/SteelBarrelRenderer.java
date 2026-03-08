@@ -39,7 +39,7 @@ public class SteelBarrelRenderer implements BlockEntityRenderer<SteelBarrelBlock
                 barrel.getBlockPos(),
                 fluidStack,
                 bufferSource,
-                RenderType.translucent(),
+                RenderType.solid(),
                 FluidRenderer.FluidSpriteType.STILL
         ).getRight();
 
