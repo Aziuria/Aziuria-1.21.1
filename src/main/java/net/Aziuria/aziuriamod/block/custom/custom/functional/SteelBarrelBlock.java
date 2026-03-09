@@ -84,7 +84,7 @@ public class SteelBarrelBlock extends BaseEntityBlock {
     // <<< ADDED
     @Override
     public int getLightEmission(BlockState state, BlockGetter level, BlockPos pos) {
-        return state.getValue(LAVA_LIT) ? 8 : 0;
+        return state.getValue(LAVA_LIT) ? 15 : 0;
     }
     // <<< END
 
