@@ -1,5 +1,7 @@
 package net.Aziuria.aziuriamod.block.entity.custom;
 
+import net.Aziuria.aziuriamod.block.custom.custom.functional.CopperBarrelBlock;
+import net.Aziuria.aziuriamod.block.custom.custom.functional.SteelBarrelBlock;
 import net.Aziuria.aziuriamod.block.entity.ModBlockEntities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -32,6 +34,35 @@ public class SteelBarrelBlockEntity extends BlockEntity {
         protected void onContentsChanged() {
             setChanged();
             if (level != null && !level.isClientSide()) {
+
+                // <<< ADDED : check if tank contains lava
+                boolean hasLava = tank.getFluid().getFluid() == Fluids.LAVA;
+
+                BlockState state = level.getBlockState(worldPosition);
+
+                if (state.hasProperty(SteelBarrelBlock.LAVA_LIT)
+                        && state.getValue(SteelBarrelBlock.LAVA_LIT) != hasLava) {
+
+                    level.setBlock(
+                            worldPosition,
+                            state.setValue(SteelBarrelBlock.LAVA_LIT, hasLava),
+                            3
+                    );
+                }
+                // <<< END ADDED
+
+                if (state.hasProperty(CopperBarrelBlock.LAVA_LIT)
+                        && state.getValue(CopperBarrelBlock.LAVA_LIT) != hasLava) {
+
+                    level.setBlock(
+                            worldPosition,
+                            state.setValue(CopperBarrelBlock.LAVA_LIT, hasLava),
+                            3
+                    );
+                }
+// <<< END ADDED
+
+
                 level.sendBlockUpdated(worldPosition, getBlockState(), getBlockState(), 3);
             }
         }

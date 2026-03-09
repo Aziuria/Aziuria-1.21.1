@@ -17,6 +17,7 @@ import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.phys.BlockHitResult;
@@ -28,6 +29,7 @@ import org.jetbrains.annotations.Nullable;
 
 public class SteelBarrelBlock extends BaseEntityBlock {
     public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
+    public static final BooleanProperty LAVA_LIT = BooleanProperty.create("lava_lit");
 
     public static final MapCodec<SteelBarrelBlock> CODEC = MapCodec.unit(() ->
             new SteelBarrelBlock(BlockBehaviour.Properties.of()
@@ -38,7 +40,13 @@ public class SteelBarrelBlock extends BaseEntityBlock {
 
     public SteelBarrelBlock(BlockBehaviour.Properties properties) {
         super(properties);
-        this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH));
+        // <<< MODIFIED
+        this.registerDefaultState(
+                this.stateDefinition.any()
+                        .setValue(FACING, Direction.NORTH)
+                        .setValue(LAVA_LIT, false)
+        );
+        // <<< END
     }
 
     @Override
@@ -46,9 +54,8 @@ public class SteelBarrelBlock extends BaseEntityBlock {
         return CODEC;
     }
 
-    @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-        builder.add(FACING);
+        builder.add(FACING, LAVA_LIT); // <<< ADDED
     }
 
     @Override
@@ -64,13 +71,22 @@ public class SteelBarrelBlock extends BaseEntityBlock {
 
     @Override
     public VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
-        return Shapes.box(0.0, 0.0, 0.0, 1.0, 1.0, 1.0);
+        double s = 2/16.0;          // inset 2 pixels from each side
+        double yTop = 16/16.0;      // slightly higher than default (almost full block)
+        return Shapes.box(s, 0.0, s, 1.0 - s, yTop, 1.0 - s);
     }
 
     @Override
     protected RenderShape getRenderShape(BlockState state) {
         return RenderShape.MODEL;
     }
+
+    // <<< ADDED
+    @Override
+    public int getLightEmission(BlockState state, BlockGetter level, BlockPos pos) {
+        return state.getValue(LAVA_LIT) ? 8 : 0;
+    }
+    // <<< END
 
     @Nullable
     @Override

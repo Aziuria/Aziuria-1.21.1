@@ -1,5 +1,6 @@
 package net.Aziuria.aziuriamod.handler.blocks;
 
+import net.Aziuria.aziuriamod.block.custom.custom.functional.CopperBarrelBlock;
 import net.Aziuria.aziuriamod.datamaps.ModDataMapHooks;
 import net.Aziuria.aziuriamod.block.entity.custom.SteelBarrelBlockEntity;
 import net.minecraft.core.BlockPos;
@@ -160,6 +161,7 @@ public class CopperBarsInteractionHandler {
         if (original.hasProperty(BlockStateProperties.WEST))  target = target.setValue(BlockStateProperties.WEST, original.getValue(BlockStateProperties.WEST));
         if (original.hasProperty(BlockStateProperties.UP))    target = target.setValue(BlockStateProperties.UP, original.getValue(BlockStateProperties.UP));
         if (original.hasProperty(BlockStateProperties.WATERLOGGED)) target = target.setValue(BlockStateProperties.WATERLOGGED, original.getValue(BlockStateProperties.WATERLOGGED));
+        if (original.hasProperty(CopperBarrelBlock.LAVA_LIT)) target = target.setValue(CopperBarrelBlock.LAVA_LIT, original.getValue(CopperBarrelBlock.LAVA_LIT));
         return target;
     }
 }
