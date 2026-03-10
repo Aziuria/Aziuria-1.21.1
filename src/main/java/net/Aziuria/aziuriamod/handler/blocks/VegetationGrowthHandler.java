@@ -78,28 +78,8 @@ public class VegetationGrowthHandler {
             }
 
             // Biome-specific handlers
-            if (biomePath.contains("plains")) {
-                handlePlainsGrowth(level, surfacePos, chance);
-            } else if (biomePath.contains("forest")) {
-                handleForestGrowth(level, surfacePos, chance);
-            } else if (biomePath.contains("taiga")) {
-                handleTaigaGrowth(level, surfacePos, chance);
-            } else if (biomePath.contains("swamp")) {
-                handleSwampGrowth(level, surfacePos, chance);
-            } else if (biomePath.contains("savanna")) {
-                handleSavannaGrowth(level, surfacePos, chance);
-            } else if (biomePath.contains("jungle")) {
-                handleJungleGrowth(level, surfacePos, chance);
-            } else if (biomePath.contains("meadow") || biomePath.contains("mountain") || biomePath.contains("hills")) {
-                handleMeadowGrowth(level, surfacePos, chance);
-            } else if (biomePath.contains("beach")) {
-                handleBeachGrowth(level, surfacePos, chance);
-            } else if (biomePath.contains("desert") || biomePath.contains("badlands")) {
-                handleDesertGrowth(level, surfacePos, chance);
-            } else if (biomePath.contains("snow") || biomePath.contains("frozen")) {
-                handleSnowyGrowth(level, surfacePos, chance);
-            } else if (biomePath.contains("river")) {
-                handleRiverGrowth(level, surfacePos, chance);
+            if (biomePath.contains("sunflower_plains")) {
+                handleSunflowerPlainsGrowth(level, surfacePos, chance);
             } else if (biomePath.contains("cherry")) {
                 handleCherryGrowth(level, surfacePos, chance);
             } else if (biomePath.equals("dark_forest")) {
@@ -110,8 +90,28 @@ public class VegetationGrowthHandler {
                 handleFlowerForestGrowth(level, surfacePos, chance);
             } else if (biomePath.equals("windswept")) {
                 handleWindsweptGrowth(level, surfacePos, chance);
-            } else if (biomePath.equals("sunflower_plains")) {
-                handleSunflowerPlainsGrowth(level, surfacePos, chance);
+            } else if (biomePath.contains("taiga")) {
+                handleTaigaGrowth(level, surfacePos, chance);
+            } else if (biomePath.contains("swamp")) {
+                handleSwampGrowth(level, surfacePos, chance);
+            } else if (biomePath.contains("savanna")) {
+                handleSavannaGrowth(level, surfacePos, chance);
+            } else if (biomePath.contains("jungle")) {
+                handleJungleGrowth(level, surfacePos, chance);
+            } else if (biomePath.equals("river")) {
+                handleRiverGrowth(level, surfacePos, chance);
+            } else if (biomePath.contains("snow") || biomePath.contains("frozen")) {
+                handleSnowyGrowth(level, surfacePos, chance);
+            } else if (biomePath.contains("meadow") || biomePath.contains("mountain")) {
+                handleMeadowGrowth(level, surfacePos, chance);
+            } else if (biomePath.contains("beach")) {
+                handleBeachGrowth(level, surfacePos, chance);
+            } else if (biomePath.contains("desert") || biomePath.contains("badlands")) {
+                handleDesertGrowth(level, surfacePos, chance);
+            } else if (biomePath.contains("forest")) {
+                handleForestGrowth(level, surfacePos, chance);
+            } else if (biomePath.contains("plains")) {
+                handlePlainsGrowth(level, surfacePos, chance);
             } else {
                 handleDefaultGrowth(level, surfacePos, chance);
             }
