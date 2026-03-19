@@ -11,6 +11,9 @@ public class ModToolTiers {
     public static final Tier STEEL = new SimpleTier(ModTags.Blocks.INCORRECT_FOR_STEEL_TOOL,
             550, 6.5f, 2.0f, 14, () -> Ingredient.of(ModItems.STEEL_INGOT));
 
+    public static final Tier AMETHYST = new SimpleTier(ModTags.Blocks.INCORRECT_FOR_AMETHYST_TOOL,
+            150, 4.5f, 1.2f, 19, () -> Ingredient.of(Items.AMETHYST_SHARD));
+
     public static final Tier SPINEL = new SimpleTier(ModTags.Blocks.INCORRECT_FOR_SPINEL_TOOL,
             750, 8.0f, 3.0f, 12, () -> Ingredient.of(ModItems.SPINEL));
 

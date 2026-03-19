@@ -84,16 +84,15 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .unlockedBy("has_tin_nugget", has(ModItems.TIN_NUGGET.get())).save(recipeOutput);
 
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, Blocks.COBBLESTONE_SLAB)
-                .pattern("III")
-                .pattern("III")
-                .pattern("III")
+                .pattern("II")
+                .pattern("II")
                 .define('I', ModBlocks.PEBBLE_BLOCK.get())
                 .unlockedBy("has_pebble_block", has(ModBlocks.PEBBLE_BLOCK.get()))
                         .save(recipeOutput, ResourceLocation.fromNamespaceAndPath("aziuriamod", "cobblestone_slab_from_pebble"));
 
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, Blocks.COBBLESTONE)
-                .pattern("I")
-                .pattern("I")
+                .pattern("II")
+                .pattern("II")
                 .define('I', Blocks.COBBLESTONE_SLAB)
                 .unlockedBy("has_cobblestone_slab", has(Blocks.COBBLESTONE_SLAB))
                                 .save(recipeOutput, ResourceLocation.fromNamespaceAndPath("aziuriamod", "cobblestone_from_cobblestone_slab"));
@@ -718,6 +717,16 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .unlockedBy("has_stick", has(Items.STICK))
                 .save(recipeOutput, ResourceLocation.fromNamespaceAndPath("aziuriamod", "steel_knife_from_steel"));
 
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.AMETHYST_KNIFE.get())
+                .pattern("  A")
+                .pattern(" A ")
+                .pattern("FS ")
+                .define('A', Items.AMETHYST_SHARD)
+                .define('F', Items.STICK)
+                .define('S', ModItems.NAIL.get())
+                .unlockedBy("has_stick", has(Items.STICK))
+                .save(recipeOutput, ResourceLocation.fromNamespaceAndPath("aziuriamod", "amethyst_knife_from_amethyst"));
+
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.SPINEL_KNIFE.get())
                 .pattern("  S")
                 .pattern(" S ")
@@ -778,6 +787,14 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .define('K', Items.STICK)
                 .define('B', ModItems.STEEL_INGOT.get())
                 .unlockedBy("has_steel_ingot", has(ModItems.STEEL_INGOT)).save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.AMETHYST_PICKAXE.get())
+                .pattern("BBB")
+                .pattern(" K ")
+                .pattern(" K ")
+                .define('K', Items.STICK)
+                .define('B', Items.AMETHYST_SHARD)
+                .unlockedBy("has_amethyst_shard", has(Items.AMETHYST_SHARD)).save(recipeOutput);
 
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.COPPER_PICKAXE.get())
                 .pattern("BBB")
@@ -876,6 +893,14 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .define('B', ModItems.STEEL_INGOT.get())
                 .unlockedBy("has_steel_ingot", has(ModItems.STEEL_INGOT)).save(recipeOutput);
 
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.AMETHYST_AXE.get())
+                .pattern("BB")
+                .pattern("BK")
+                .pattern(" K")
+                .define('K', Items.STICK)
+                .define('B', Items.AMETHYST_SHARD)
+                .unlockedBy("has_amethyst_shard", has(Items.AMETHYST_SHARD)).save(recipeOutput);
+
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.COPPER_AXE.get())
                 .pattern("BB")
                 .pattern("BK")
@@ -899,6 +924,14 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .define('K', Items.STICK)
                 .define('B', ModItems.STEEL_INGOT.get())
                 .unlockedBy("has_steel_ingot", has(ModItems.STEEL_INGOT)).save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.AMETHYST_SHOVEL.get())
+                .pattern("B")
+                .pattern("K")
+                .pattern("K")
+                .define('K', Items.STICK)
+                .define('B', Items.AMETHYST_SHARD)
+                .unlockedBy("has_amethyst_shard", has(Items.AMETHYST_SHARD)).save(recipeOutput);
 
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.COPPER_SHOVEL.get())
                 .pattern("B")
@@ -924,6 +957,14 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .define('B', ModItems.STEEL_INGOT.get())
                 .unlockedBy("has_steel_ingot", has(ModItems.STEEL_INGOT)).save(recipeOutput);
 
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.AMETHYST_SWORD.get())
+                .pattern("B")
+                .pattern("B")
+                .pattern("K")
+                .define('K', Items.STICK)
+                .define('B', Items.AMETHYST_SHARD)
+                .unlockedBy("has_amethyst_shard", has(Items.AMETHYST_SHARD)).save(recipeOutput);
+
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.COPPER_SWORD.get())
                 .pattern("B")
                 .pattern("B")
@@ -947,6 +988,14 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .define('K', Items.STICK)
                 .define('B', ModItems.STEEL_INGOT.get())
                 .unlockedBy("has_steel_ingot", has(ModItems.STEEL_INGOT)).save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.AMETHYST_HOE.get())
+                .pattern("BB")
+                .pattern(" K")
+                .pattern(" K")
+                .define('K', Items.STICK)
+                .define('B', Items.AMETHYST_SHARD)
+                .unlockedBy("has_amethyst_shard", has(Items.AMETHYST_SHARD)).save(recipeOutput);
 
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.COPPER_HOE.get())
                 .pattern("BB")
@@ -2311,6 +2360,22 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.TOMATO_SEEDS.get(), 3)
                 .requires(ModItems.TOMATO.get())
                 .unlockedBy("has_tomato", has(ModItems.TOMATO.get())).save(recipeOutput);
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.TEA_SEEDS.get(), 3)
+                .requires(ModItems.TEA_LEAVES.get())
+                .unlockedBy("has_tea_leaves", has(ModItems.TEA_LEAVES.get())).save(recipeOutput);
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.COFFEE_SEEDS.get(), 3)
+                .requires(ModItems.COFFEE_BEANS.get())
+                .unlockedBy("has_coffee_beans", has(ModItems.COFFEE_BEANS.get())).save(recipeOutput);
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.CORN_SEEDS.get(), 3)
+                .requires(ModItems.CORN.get())
+                .unlockedBy("has_corn", has(ModItems.CORN.get())).save(recipeOutput);
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.PINEAPPLE_SEEDS.get(), 3)
+                .requires(ModItems.PINEAPPLE.get())
+                .unlockedBy("has_pineapple", has(ModItems.PINEAPPLE.get())).save(recipeOutput);
 
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.BLACKCURRANT_SEEDS.get(), 1)
                 .requires(ModItems.BLACKCURRANT.get())

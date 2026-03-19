@@ -35,6 +35,7 @@ public class ModItemTagProvider extends ItemTagsProvider {
                 .add(ModItems.IRON_KNIFE.get())
                 .add(ModItems.GOLD_KNIFE.get())
                 .add(ModItems.STEEL_KNIFE.get())
+                .add(ModItems.AMETHYST_KNIFE.get())
                 .add(ModItems.SPINEL_KNIFE.get())
                 .add(ModItems.DIAMOND_KNIFE.get())
                 .add(ModItems.NETHERITE_KNIFE.get());
@@ -66,6 +67,17 @@ public class ModItemTagProvider extends ItemTagsProvider {
                 .add(ModItems.STEEL_SHOVEL.get());
         tag(ItemTags.HOES)
                 .add(ModItems.STEEL_HOE.get());
+
+        tag(ItemTags.SWORDS)
+                .add(ModItems.AMETHYST_SWORD.get());
+        tag(ItemTags.PICKAXES)
+                .add(ModItems.AMETHYST_PICKAXE.get());
+        tag(ItemTags.AXES)
+                .add(ModItems.AMETHYST_AXE.get());
+        tag(ItemTags.SHOVELS)
+                .add(ModItems.AMETHYST_SHOVEL.get());
+        tag(ItemTags.HOES)
+                .add(ModItems.AMETHYST_HOE.get());
 
         this.tag(ItemTags.TRIMMABLE_ARMOR)
                 .add(ModItems.STEEL_HELMET.get())

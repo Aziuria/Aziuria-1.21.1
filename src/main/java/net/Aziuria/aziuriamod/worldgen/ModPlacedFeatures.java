@@ -314,15 +314,15 @@ public class ModPlacedFeatures {
 
         register(context, SPECTRAL_ORE_ULTRA_DEEP_PLACED_KEY_A,
                 configuredFeatures.getOrThrow(ModConfiguredFeatures.OVERWORLD_SPECTRAL_ORE_ULTRA_DEEP_KEY),
-                ModOrePlacement.rareOrePlacement(8, HeightRangePlacement.triangle(VerticalAnchor.absolute(-64), VerticalAnchor.absolute(-48))));
+                ModOrePlacement.commonOrePlacement(8, HeightRangePlacement.triangle(VerticalAnchor.absolute(-64), VerticalAnchor.absolute(-48))));
 
         register(context, SPECTRAL_ORE_DEEP_PLACED_KEY_A,
                 configuredFeatures.getOrThrow(ModConfiguredFeatures.OVERWORLD_SPECTRAL_ORE_DEEP_KEY),
-                ModOrePlacement.rareOrePlacement(6, HeightRangePlacement.triangle(VerticalAnchor.absolute(-50), VerticalAnchor.absolute(-30))));
+                ModOrePlacement.commonOrePlacement(6, HeightRangePlacement.triangle(VerticalAnchor.absolute(-50), VerticalAnchor.absolute(-30))));
 
         register(context, SPECTRAL_ORE_MID_PLACED_KEY_A,
                 configuredFeatures.getOrThrow(ModConfiguredFeatures.OVERWORLD_SPECTRAL_ORE_MID_KEY),
-                ModOrePlacement.rareOrePlacement(7, HeightRangePlacement.triangle(VerticalAnchor.absolute(-38), VerticalAnchor.absolute(2))));
+                ModOrePlacement.commonOrePlacement(7, HeightRangePlacement.triangle(VerticalAnchor.absolute(-38), VerticalAnchor.absolute(2))));
 
 
         register(context, FLAX_FLOWER_PLACED_KEY,

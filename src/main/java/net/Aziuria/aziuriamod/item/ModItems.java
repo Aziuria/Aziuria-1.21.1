@@ -108,6 +108,22 @@ public class ModItems {
             () -> new HoeItem(ModToolTiers.STEEL, new Item.Properties()
                     .attributes(HoeItem.createAttributes(ModToolTiers.STEEL, -2.0F, -2.0f))));
 
+    public static final DeferredItem<SwordItem> AMETHYST_SWORD = ITEMS.register("amethyst_sword",
+            () -> new SwordItem(ModToolTiers.AMETHYST, new Item.Properties()
+                    .attributes(SwordItem.createAttributes(ModToolTiers.AMETHYST, 3, -2.4f))));
+    public static final DeferredItem<PickaxeItem> AMETHYST_PICKAXE = ITEMS.register("amethyst_pickaxe",
+            () -> new PickaxeItem(ModToolTiers.AMETHYST, new Item.Properties()
+                    .attributes(PickaxeItem.createAttributes(ModToolTiers.AMETHYST, 1.0F, -2.8f))));
+    public static final DeferredItem<ShovelItem> AMETHYST_SHOVEL = ITEMS.register("amethyst_shovel",
+            () -> new ShovelItem(ModToolTiers.AMETHYST, new Item.Properties()
+                    .attributes(ShovelItem.createAttributes(ModToolTiers.AMETHYST, 1.5F, -3.0f))));
+    public static final DeferredItem<AxeItem> AMETHYST_AXE = ITEMS.register("amethyst_axe",
+            () -> new AxeItem(ModToolTiers.AMETHYST, new Item.Properties()
+                    .attributes(AxeItem.createAttributes(ModToolTiers.AMETHYST, 6.0F, -3.1f))));
+    public static final DeferredItem<HoeItem> AMETHYST_HOE = ITEMS.register("amethyst_hoe",
+            () -> new HoeItem(ModToolTiers.AMETHYST, new Item.Properties()
+                    .attributes(HoeItem.createAttributes(ModToolTiers.AMETHYST, -2.0F, -2.0f))));
+
     public static final DeferredItem<KnifeItem> WOOD_KNIFE = ITEMS.register("wooden_knife",
             () -> new KnifeItem(Tiers.WOOD, new Item.Properties().durability(59)));
     public static final DeferredItem<KnifeItem> STONE_KNIFE = ITEMS.register("stone_knife",
@@ -120,6 +136,8 @@ public class ModItems {
             () -> new KnifeItem(Tiers.GOLD, new Item.Properties().durability(32)));
     public static final DeferredItem<KnifeItem> STEEL_KNIFE = ITEMS.register("steel_knife",
             () -> new KnifeItem(ModToolTiers.STEEL, new Item.Properties().durability(550)));
+    public static final DeferredItem<KnifeItem> AMETHYST_KNIFE = ITEMS.register("amethyst_knife",
+            () -> new KnifeItem(ModToolTiers.AMETHYST, new Item.Properties().durability(150)));
     public static final DeferredItem<KnifeItem> SPINEL_KNIFE = ITEMS.register("spinel_knife",
             () -> new KnifeItem(ModToolTiers.SPINEL, new Item.Properties().durability(750)));
     public static final DeferredItem<KnifeItem> DIAMOND_KNIFE = ITEMS.register("diamond_knife",

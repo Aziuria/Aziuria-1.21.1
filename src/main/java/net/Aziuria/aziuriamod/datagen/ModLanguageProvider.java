@@ -39,6 +39,12 @@ public class ModLanguageProvider extends LanguageProvider {
         add(ModItems.STEEL_SHOVEL.get(), "Steel Shovel");
         add(ModItems.STEEL_HOE.get(), "Steel Hoe");
 
+        add(ModItems.AMETHYST_SWORD.get(), "Amethyst Sword");
+        add(ModItems.AMETHYST_AXE.get(), "Amethyst Axe");
+        add(ModItems.AMETHYST_PICKAXE.get(), "Amethyst Pickaxe");
+        add(ModItems.AMETHYST_SHOVEL.get(), "Amethyst Shovel");
+        add(ModItems.AMETHYST_HOE.get(), "Amethyst Hoe");
+
         add(ModItems.SPINEL_SWORD.get(), "Spinel Sword");
         add(ModItems.SPINEL_AXE.get(), "Spinel Axe");
         add(ModItems.SPINEL_PICKAXE.get(), "Spinel Pickaxe");
@@ -57,6 +63,7 @@ public class ModLanguageProvider extends LanguageProvider {
         add(ModItems.IRON_KNIFE.get(), "Iron Knife");
         add(ModItems.GOLD_KNIFE.get(), "Golden Knife");
         add(ModItems.STEEL_KNIFE.get(), "Steel Knife");
+        add(ModItems.AMETHYST_KNIFE.get(), "Amethyst Knife");
         add(ModItems.SPINEL_KNIFE.get(), "Spinel Knife");
         add(ModItems.DIAMOND_KNIFE.get(), "Diamond Knife");
         add(ModItems.NETHERITE_KNIFE.get(), "Netherite Knife");

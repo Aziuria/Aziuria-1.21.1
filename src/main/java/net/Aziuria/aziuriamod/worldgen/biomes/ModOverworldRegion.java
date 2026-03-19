@@ -28,8 +28,8 @@ public class ModOverworldRegion extends Region {
         VanillaParameterOverlayBuilder builder = new VanillaParameterOverlayBuilder();
 
         new ParameterPointListBuilder()
-                .temperature(Temperature.span(Temperature.COOL, Temperature.UNFROZEN))
-                .humidity(Humidity.span(Humidity.ARID, Humidity.DRY))
+                .temperature(Temperature.WARM, Temperature.HOT) // (this and humidity below really helped alter size of biome)
+                .humidity(Humidity.ARID, Humidity.ARID)          // very dry only
                 .continentalness(Continentalness.INLAND, Continentalness.MID_INLAND)
                 .erosion(Erosion.EROSION_0, Erosion.EROSION_3)
                 .depth(Depth.SURFACE, Depth.FLOOR)

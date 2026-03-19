@@ -163,6 +163,11 @@ public class ModItemModelProvider extends ItemModelProvider {
         handheldItem(ModItems.STEEL_SHOVEL);
         handheldItem(ModItems.STEEL_AXE);
         handheldItem(ModItems.STEEL_HOE);
+        handheldItem(ModItems.AMETHYST_SWORD);
+        handheldItem(ModItems.AMETHYST_PICKAXE);
+        handheldItem(ModItems.AMETHYST_SHOVEL);
+        handheldItem(ModItems.AMETHYST_AXE);
+        handheldItem(ModItems.AMETHYST_HOE);
         handheldItem(ModItems.SPINEL_SWORD);
         handheldItem(ModItems.SPINEL_PICKAXE);
         handheldItem(ModItems.SPINEL_SHOVEL);

@@ -4,6 +4,7 @@ import net.Aziuria.aziuriamod.item.ModItems;
 import net.Aziuria.aziuriamod.item.custom.tools.KnifeItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.PickaxeItem;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.neoforged.neoforge.event.level.BlockDropsEvent;
@@ -105,6 +106,31 @@ public class BlockDropHandler {
             return new ItemStack(ModItems.GOOSEBERRY_SEEDS.get());
         } else {
             return ItemStack.EMPTY;
+        }
+    }
+
+    @SubscribeEvent
+    public static void restrictAmethystDrops(BlockDropsEvent event) {
+
+        if (event.getState().getBlock() == Blocks.AMETHYST_CLUSTER ||
+                event.getState().getBlock() == Blocks.LARGE_AMETHYST_BUD ||
+                event.getState().getBlock() == Blocks.MEDIUM_AMETHYST_BUD ||
+                event.getState().getBlock() == Blocks.SMALL_AMETHYST_BUD) {
+
+            ItemStack tool = event.getTool();
+
+            boolean allowed =
+                    tool.getItem() instanceof PickaxeItem &&
+                            (
+                                    tool.is(Items.DIAMOND_PICKAXE) ||
+                                            tool.is(Items.NETHERITE_PICKAXE) ||
+                                            tool.is(ModItems.SPINEL_PICKAXE.get()) ||
+                                            tool.is(ModItems.AMETHYST_PICKAXE.get())
+                            );
+
+            if (!allowed) {
+                event.getDrops().clear(); // remove shard drops
+            }
         }
     }
 }

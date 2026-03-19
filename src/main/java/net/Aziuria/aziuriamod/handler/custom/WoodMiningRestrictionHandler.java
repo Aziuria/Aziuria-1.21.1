@@ -47,7 +47,6 @@ public class WoodMiningRestrictionHandler {
 
         // Only logs
         if (!event.getState().is(BlockTags.LOGS)) return;
-
         ItemStack held = player.getMainHandItem();
 
         // Allow axes

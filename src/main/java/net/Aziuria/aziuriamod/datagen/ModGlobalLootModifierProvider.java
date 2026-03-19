@@ -90,7 +90,7 @@ public class ModGlobalLootModifierProvider extends GlobalLootModifierProvider {
         this.add("pebble_from_gravel",
                 new AddItemModifier(new LootItemCondition[] {
                         LootItemBlockStatePropertyCondition.hasBlockStateProperties(Blocks.GRAVEL).build(),
-                        LootItemRandomChanceCondition.randomChance(0.15f).build() // 3% chance
+                        LootItemRandomChanceCondition.randomChance(0.18f).build() // 3% chance
                 }, ModBlocks.PEBBLE_BLOCK.get(), 1, 3)); // gives 0–3 pebbble
 
 //        this.add("remove_cobblestone_from_stone",

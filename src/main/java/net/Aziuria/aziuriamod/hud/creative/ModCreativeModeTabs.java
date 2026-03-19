@@ -101,6 +101,13 @@ public class ModCreativeModeTabs {
                         output.accept(ModItems.STEEL_SHOVEL);
                         output.accept(ModItems.STEEL_HOE);
 
+                        // Steel
+                        output.accept(ModItems.AMETHYST_PICKAXE);
+                        output.accept(ModItems.AMETHYST_AXE);
+                        output.accept(ModItems.AMETHYST_SWORD);
+                        output.accept(ModItems.AMETHYST_SHOVEL);
+                        output.accept(ModItems.AMETHYST_HOE);
+
                         // Spinel
                         output.accept(ModItems.SPINEL_PICKAXE);
                         output.accept(ModItems.SPINEL_AXE);
@@ -115,6 +122,7 @@ public class ModCreativeModeTabs {
                         output.accept(ModItems.IRON_KNIFE);
                         output.accept(ModItems.GOLD_KNIFE);
                         output.accept(ModItems.STEEL_KNIFE);
+                        output.accept(ModItems.AMETHYST_KNIFE);
                         output.accept(ModItems.SPINEL_KNIFE);
                         output.accept(ModItems.DIAMOND_KNIFE);
                         output.accept(ModItems.NETHERITE_KNIFE);

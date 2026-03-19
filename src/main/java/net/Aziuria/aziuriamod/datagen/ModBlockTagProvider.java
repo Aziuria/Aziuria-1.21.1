@@ -32,6 +32,8 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                 .add(ModBlocks.DEEPSLATE_POTASSIUM_ORE.get())
                 .add(ModBlocks.DEEPSLATE_SPECTRAL_ORE.get())
                 .add(ModBlocks.IRON_BARREL_EMPTY.get())
+                .add(Blocks.BUDDING_AMETHYST)
+                .add(Blocks.AMETHYST_CLUSTER)
                 .add(ModBlocks.STEEL_BARREL_EMPTY.get())
                 .add(ModBlocks.COPPER_BARREL.get())
                 .add(ModBlocks.EXPOSED_COPPER_BARREL.get())
@@ -117,6 +119,31 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                 .addTag(BlockTags.NEEDS_IRON_TOOL);
 
         tag(ModTags.Blocks.INCORRECT_FOR_STEEL_TOOL)
+                .add(ModBlocks.SPECTRAL_ORE.get())
+                .add(ModBlocks.DEEPSLATE_SPECTRAL_ORE.get())
+                .add(Blocks.BUDDING_AMETHYST)
+                .add(Blocks.AMETHYST_CLUSTER)
+                .addTag(BlockTags.INCORRECT_FOR_IRON_TOOL)
+                .remove(ModTags.Blocks.NEEDS_STEEL_TOOL);
+
+        tag(ModTags.Blocks.NEEDS_AMETHYST_TOOL)
+                .add(ModBlocks.DEEPSLATE_SPECTRAL_ORE.get())
+                .add(ModBlocks.SPECTRAL_ORE.get())
+                .add(Blocks.BUDDING_AMETHYST)
+                .add(Blocks.AMETHYST_CLUSTER)
+                .addTag(BlockTags.NEEDS_IRON_TOOL);
+
+        tag(ModTags.Blocks.INCORRECT_FOR_AMETHYST_TOOL)
+                .add(Blocks.DEEPSLATE_GOLD_ORE)
+                .add(Blocks.GOLD_ORE)
+                .add(Blocks.DEEPSLATE_LAPIS_ORE)
+                .add(Blocks.LAPIS_ORE)
+                .add(Blocks.DEEPSLATE_DIAMOND_ORE)
+                .add(Blocks.DIAMOND_ORE)
+                .add(Blocks.DEEPSLATE_REDSTONE_ORE)
+                .add(Blocks.REDSTONE_ORE)
+                .add(ModBlocks.DEEPSLATE_SPINEL_ORE.get())
+                .add(ModBlocks.SPINEL_ORE.get())
                 .addTag(BlockTags.INCORRECT_FOR_IRON_TOOL)
                 .remove(ModTags.Blocks.NEEDS_STEEL_TOOL);
 
@@ -125,6 +152,8 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                 .addTag(BlockTags.NEEDS_IRON_TOOL);
 
         tag(ModTags.Blocks.INCORRECT_FOR_SPINEL_TOOL)
+                .add(ModBlocks.SPECTRAL_ORE.get())
+                .add(ModBlocks.DEEPSLATE_SPECTRAL_ORE.get())
                 .addTag(BlockTags.INCORRECT_FOR_IRON_TOOL)
                 .remove(ModTags.Blocks.NEEDS_SPINEL_TOOL);
 
@@ -135,17 +164,52 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                 .add(ModBlocks.DEEPSLATE_TIN_ORE.get())
                 .addTag(BlockTags.NEEDS_STONE_TOOL);
 
-        tag(BlockTags.INCORRECT_FOR_STONE_TOOL)
-                .add(Blocks.IRON_ORE)
+        tag(BlockTags.INCORRECT_FOR_WOODEN_TOOL)
+                .add(ModBlocks.SPECTRAL_ORE.get())
+                .add(ModBlocks.DEEPSLATE_SPECTRAL_ORE.get())
+                .add(Blocks.BUDDING_AMETHYST)
+                .add(Blocks.AMETHYST_CLUSTER)
                 .add(Blocks.DEEPSLATE_IRON_ORE);
 
+        tag(BlockTags.INCORRECT_FOR_DIAMOND_TOOL)
+                .add(ModBlocks.SPECTRAL_ORE.get())
+                .add(ModBlocks.DEEPSLATE_SPECTRAL_ORE.get());
+
+
+        tag(BlockTags.INCORRECT_FOR_STONE_TOOL)
+                .add(ModBlocks.SPECTRAL_ORE.get())
+                .add(ModBlocks.DEEPSLATE_SPECTRAL_ORE.get())
+                .add(Blocks.IRON_ORE)
+                .add(Blocks.BUDDING_AMETHYST)
+                .add(Blocks.AMETHYST_CLUSTER)
+                .add(Blocks.DEEPSLATE_IRON_ORE);
+
+        tag(BlockTags.INCORRECT_FOR_IRON_TOOL)
+                .add(ModBlocks.SPECTRAL_ORE.get())
+                .add(ModBlocks.DEEPSLATE_SPECTRAL_ORE.get())
+                .add(Blocks.BUDDING_AMETHYST)
+                .add(Blocks.AMETHYST_CLUSTER);
+
+        tag(BlockTags.INCORRECT_FOR_GOLD_TOOL)
+                .add(ModBlocks.SPECTRAL_ORE.get())
+                .add(ModBlocks.DEEPSLATE_SPECTRAL_ORE.get())
+                .add(Blocks.BUDDING_AMETHYST)
+                .add(Blocks.AMETHYST_CLUSTER);
+
         tag(ModTags.Blocks.INCORRECT_FOR_COPPER_TOOL)
+                .add(ModBlocks.SPECTRAL_ORE.get())
+                .add(ModBlocks.DEEPSLATE_SPECTRAL_ORE.get())
+                .add(Blocks.BUDDING_AMETHYST)
+                .add(Blocks.AMETHYST_CLUSTER)
                 .addTag(BlockTags.INCORRECT_FOR_STONE_TOOL)
                 .remove(ModTags.Blocks.NEEDS_COPPER_TOOL);
 
         tag(BlockTags.NEEDS_DIAMOND_TOOL)
-                .add(ModBlocks.SPECTRAL_ORE.get())
-                .add(ModBlocks.DEEPSLATE_SPECTRAL_ORE.get());
+                .add(Blocks.SMALL_AMETHYST_BUD)
+                .add(Blocks.MEDIUM_AMETHYST_BUD)
+                .add(Blocks.LARGE_AMETHYST_BUD)
+                .add(Blocks.BUDDING_AMETHYST)
+                .add(Blocks.AMETHYST_CLUSTER);
 
 
 

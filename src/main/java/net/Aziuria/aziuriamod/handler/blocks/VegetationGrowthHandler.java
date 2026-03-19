@@ -115,6 +115,62 @@ public class VegetationGrowthHandler {
             } else {
                 handleDefaultGrowth(level, surfacePos, chance);
             }
+
+            // --- EXTRA SURFACE PLACEMENT DURING RAIN (FROM HERE) ---
+            if (level.isRaining() && level.isRainingAt(surfacePos)) {
+                // Only place on the surface if empty
+                if (level.isEmptyBlock(surfacePos) || level.getBlockState(surfacePos).isAir()) {
+                    float rainChance = random.nextFloat();
+
+                    if (biomeID.equals(ResourceLocation.fromNamespaceAndPath(
+                            "aziuriamod", "spectral_soulbound_forest"
+                    ))) {
+                        handleSpectralSoulboundForestGrowth(level, surfacePos, rainChance);
+                    }
+
+                    // Call the same biome handler again at the surface position
+                    if (biomePath.contains("sunflower_plains")) {
+                        handleSunflowerPlainsGrowth(level, surfacePos, rainChance);
+                    } else if (biomePath.contains("cherry")) {
+                        handleCherryGrowth(level, surfacePos, rainChance);
+                    } else if (biomePath.equals("dark_forest")) {
+                        handleDarkForestGrowth(level, surfacePos, rainChance);
+                    } else if (biomePath.contains("lush")) {
+                        handleLushCaveGrowth(level, surfacePos, rainChance);
+                    } else if (biomePath.equals("flower_forest")) {
+                        handleFlowerForestGrowth(level, surfacePos, rainChance);
+                    } else if (biomePath.equals("windswept")) {
+                        handleWindsweptGrowth(level, surfacePos, rainChance);
+                    } else if (biomePath.contains("taiga")) {
+                        handleTaigaGrowth(level, surfacePos, rainChance);
+                    } else if (biomePath.contains("swamp")) {
+                        handleSwampGrowth(level, surfacePos, rainChance);
+                    } else if (biomePath.contains("savanna")) {
+                        handleSavannaGrowth(level, surfacePos, rainChance);
+                    } else if (biomePath.contains("jungle")) {
+                        handleJungleGrowth(level, surfacePos, rainChance);
+                    } else if (biomePath.equals("river")) {
+                        handleRiverGrowth(level, surfacePos, rainChance);
+                    } else if (biomePath.contains("snow") || biomePath.contains("frozen")) {
+                        handleSnowyGrowth(level, surfacePos, rainChance);
+                    } else if (biomePath.contains("meadow") || biomePath.contains("mountain")) {
+                        handleMeadowGrowth(level, surfacePos, rainChance);
+                    } else if (biomePath.contains("beach")) {
+                        handleBeachGrowth(level, surfacePos, rainChance);
+                    } else if (biomePath.contains("desert") || biomePath.contains("badlands")) {
+                        handleDesertGrowth(level, surfacePos, rainChance);
+                    } else if (biomePath.contains("forest")) {
+                        handleForestGrowth(level, surfacePos, rainChance);
+                    } else if (biomePath.contains("plains")) {
+                        handlePlainsGrowth(level, surfacePos, rainChance);
+                    } else {
+                        handleDefaultGrowth(level, surfacePos, rainChance);
+                    }
+                }
+            }
+
+            //(TO HERE ALL RAIN SEGMENT JUST IN CASE NEED REMOVING)
+
         });
     }
 
@@ -153,24 +209,26 @@ public class VegetationGrowthHandler {
                             || biomePath.contains("warm_ocean")
                             || isSpectralSoulboundForest;
             if (kelpAllowed && roll < 0.15f) {
-                level.setBlock(seaFloor, Blocks.KELP.defaultBlockState(), 3);
+                level.setBlock(seaFloor, Blocks.KELP_PLANT.defaultBlockState(), 3);
                 BlockPos growPos = seaFloor.above();
                 int extraHeight = 1 + random.nextInt(5);
                 for (int h = 0; h < extraHeight; h++) {
                     if (level.getFluidState(growPos).is(Fluids.WATER)) {
-                        level.setBlock(growPos, Blocks.KELP_PLANT.defaultBlockState(), 3);
+                        level.setBlock(growPos, Blocks.KELP.defaultBlockState(), 3);
                         growPos = growPos.above();
                     } else break;
                 }
                 return;
             }
 
-            // --- Seagrass growth (any water) ---
+// --- Seagrass growth (any water) ---
             if (roll < 0.35f) {
                 if (random.nextBoolean()) {
+                    // Normal seagrass
                     level.setBlock(seaFloor, Blocks.SEAGRASS.defaultBlockState(), 3);
-                } else if (level.getFluidState(seaFloor.above()).is(Fluids.WATER)) {
-                    level.setBlock(seaFloor, Blocks.TALL_SEAGRASS.defaultBlockState(), 3);
+                } else {
+                    // Proper tall seagrass placement
+                    placeTallSeagrass(level, seaFloor);
                 }
             }
 
@@ -238,6 +296,45 @@ public class VegetationGrowthHandler {
         return blockBelow.is(Blocks.GRASS_BLOCK);  // Check if the block below is a grass block (island-like behavior)
     }
 
+    // ===== HELPER METHOD: SAFE DOUBLE PLANT PLACEMENT =====
+    private static void placeDoublePlant(ServerLevel level, BlockPos pos, BlockState state) {
+
+        // Ensure space above for the upper half
+        if (!level.isEmptyBlock(pos.above())) return;
+
+        if (!state.canSurvive(level, pos)) return; // changes
+
+        // Place both halves correctly
+        level.setBlock(pos, state.setValue(net.minecraft.world.level.block.DoublePlantBlock.HALF,
+                net.minecraft.world.level.block.state.properties.DoubleBlockHalf.LOWER), 3);
+
+        level.setBlock(pos.above(), state.setValue(net.minecraft.world.level.block.DoublePlantBlock.HALF,
+                net.minecraft.world.level.block.state.properties.DoubleBlockHalf.UPPER), 3);
+    }
+
+    private static void placeTallSeagrass(ServerLevel level, BlockPos pos) {
+
+        // ✅ SAFETY 1: must be water at base
+        if (!level.getFluidState(pos).is(Fluids.WATER)) return;
+
+        // ✅ SAFETY 2: must be water above for upper half
+        if (!level.getFluidState(pos.above()).is(Fluids.WATER)) return;
+
+        // Place lower half
+        level.setBlock(pos,
+                Blocks.TALL_SEAGRASS.defaultBlockState().setValue(
+                        net.minecraft.world.level.block.DoublePlantBlock.HALF,
+                        net.minecraft.world.level.block.state.properties.DoubleBlockHalf.LOWER
+                ), 3);
+
+        // Place upper half
+        level.setBlock(pos.above(),
+                Blocks.TALL_SEAGRASS.defaultBlockState().setValue(
+                        net.minecraft.world.level.block.DoublePlantBlock.HALF,
+                        net.minecraft.world.level.block.state.properties.DoubleBlockHalf.UPPER
+                ), 3);
+    }
+
     private static void handleOceanIslandGrowth(ServerLevel level, BlockPos pos, float chance) {
         handleGenericOceanIslandGrowth(level, pos, chance);
     }
@@ -255,7 +352,7 @@ public class VegetationGrowthHandler {
         else if (chance < 0.10f) level.setBlock(pos, Blocks.POPPY.defaultBlockState(), 3);
         else if (chance < 0.15f) level.setBlock(pos, Blocks.OXEYE_DAISY.defaultBlockState(), 3);
         else if (chance < 0.20f) level.setBlock(pos, Blocks.CORNFLOWER.defaultBlockState(), 3);
-        else if (chance < 0.55f) level.setBlock(pos, Blocks.TALL_GRASS.defaultBlockState(), 3);
+        else if (chance < 0.55f) placeDoublePlant(level, pos, Blocks.TALL_GRASS.defaultBlockState());
         else if (chance < 0.70f) level.setBlock(pos, Blocks.SHORT_GRASS.defaultBlockState(), 3);
     }
 
@@ -263,74 +360,87 @@ public class VegetationGrowthHandler {
         if (chance < 0.04f) level.setBlock(pos, Blocks.DANDELION.defaultBlockState(), 3);
         else if (chance < 0.08f) level.setBlock(pos, Blocks.POPPY.defaultBlockState(), 3);
         else if (chance < 0.18f) level.setBlock(pos, Blocks.FERN.defaultBlockState(), 3);
-        else if (chance < 0.55f) level.setBlock(pos, Blocks.TALL_GRASS.defaultBlockState(), 3);
+        else if (chance < 0.55f) placeDoublePlant(level, pos, Blocks.TALL_GRASS.defaultBlockState());
         else if (chance < 0.70f) level.setBlock(pos, Blocks.SHORT_GRASS.defaultBlockState(), 3);
     }
 
     private static void handleSunflowerPlainsGrowth(ServerLevel level, BlockPos pos, float chance) {
-        if (chance < 0.25f) level.setBlock(pos, Blocks.SUNFLOWER.defaultBlockState(), 3); // Sunflowers dominate
+        if (chance < 0.25f) placeDoublePlant(level, pos, Blocks.SUNFLOWER.defaultBlockState());
         else if (chance < 0.35f) level.setBlock(pos, Blocks.DANDELION.defaultBlockState(), 3); // Dandelions
         else if (chance < 0.45f) level.setBlock(pos, Blocks.POPPY.defaultBlockState(), 3); // Poppies
         else if (chance < 0.50f) level.setBlock(pos, Blocks.CORNFLOWER.defaultBlockState(), 3); // Cornflowers (rare)
         else if (chance < 0.55f) level.setBlock(pos, ModBlocks.FLAX_FLOWER_BLOCK.get().defaultBlockState(), 3); // Optional Flax
-        else if (chance < 0.80f) level.setBlock(pos, Blocks.TALL_GRASS.defaultBlockState(), 3); // Tall grass filler
+        else if (chance < 0.80f) placeDoublePlant(level, pos, Blocks.TALL_GRASS.defaultBlockState());
         else if (chance < 1.00f) level.setBlock(pos, Blocks.SHORT_GRASS.defaultBlockState(), 3); // Short grass filler
     }
 
     private static void handleFlowerForestGrowth(ServerLevel level, BlockPos pos, float chance) {
-        if (chance < 0.05f) level.setBlock(pos, Blocks.DANDELION.defaultBlockState(), 3);
-        else if (chance < 0.10f) level.setBlock(pos, Blocks.POPPY.defaultBlockState(), 3);
-        else if (chance < 0.15f) level.setBlock(pos, Blocks.ALLIUM.defaultBlockState(), 3);
-        else if (chance < 0.20f) level.setBlock(pos, Blocks.AZURE_BLUET.defaultBlockState(), 3);
-        else if (chance < 0.25f) level.setBlock(pos, Blocks.LILY_OF_THE_VALLEY.defaultBlockState(), 3);
-        else if (chance < 0.30f) level.setBlock(pos, Blocks.OXEYE_DAISY.defaultBlockState(), 3);
-        else if (chance < 0.35f) level.setBlock(pos, Blocks.RED_TULIP.defaultBlockState(), 3);
-        else if (chance < 0.40f) level.setBlock(pos, Blocks.ORANGE_TULIP.defaultBlockState(), 3);
-        else if (chance < 0.46f) level.setBlock(pos, Blocks.WHITE_TULIP.defaultBlockState(), 3);
-        else if (chance < 0.50f) level.setBlock(pos, Blocks.PINK_TULIP.defaultBlockState(), 3);
-        else if (chance < 0.55f) level.setBlock(pos, ModBlocks.FLAX_FLOWER_BLOCK.get().defaultBlockState(), 3);
-        else if (chance < 0.60f) level.setBlock(pos, Blocks.CORNFLOWER.defaultBlockState(), 3);
-        else if (chance < 0.80f) level.setBlock(pos, Blocks.TALL_GRASS.defaultBlockState(), 3);
-        else if (chance < 0.95f) level.setBlock(pos, Blocks.SHORT_GRASS.defaultBlockState(), 3);
+        if (chance < 0.04f) level.setBlock(pos, Blocks.DANDELION.defaultBlockState(), 3);
+        else if (chance < 0.08f) level.setBlock(pos, Blocks.POPPY.defaultBlockState(), 3);
+        else if (chance < 0.12f) level.setBlock(pos, Blocks.ALLIUM.defaultBlockState(), 3);
+        else if (chance < 0.16f) level.setBlock(pos, Blocks.AZURE_BLUET.defaultBlockState(), 3);
+        else if (chance < 0.19f) level.setBlock(pos, Blocks.LILY_OF_THE_VALLEY.defaultBlockState(), 3);
+        else if (chance < 0.23f) level.setBlock(pos, Blocks.OXEYE_DAISY.defaultBlockState(), 3);
+        else if (chance < 0.27f) level.setBlock(pos, Blocks.RED_TULIP.defaultBlockState(), 3);
+        else if (chance < 0.31f) level.setBlock(pos, Blocks.ORANGE_TULIP.defaultBlockState(), 3);
+        else if (chance < 0.35f) level.setBlock(pos, Blocks.WHITE_TULIP.defaultBlockState(), 3);
+        else if (chance < 0.39f) level.setBlock(pos, Blocks.PINK_TULIP.defaultBlockState(), 3);
+        else if (chance < 0.44f) level.setBlock(pos, ModBlocks.FLAX_FLOWER_BLOCK.get().defaultBlockState(), 3);
+        else if (chance < 0.48f) level.setBlock(pos, Blocks.CORNFLOWER.defaultBlockState(), 3);
+        else if (chance < 0.68f) placeDoublePlant(level, pos, Blocks.TALL_GRASS.defaultBlockState());
+        else if (chance < 0.88f) level.setBlock(pos, Blocks.SHORT_GRASS.defaultBlockState(), 3);
+        else if (chance < 0.91f) placeDoublePlant(level, pos, Blocks.LILAC.defaultBlockState());
+        else if (chance < 0.94f) placeDoublePlant(level, pos, Blocks.ROSE_BUSH.defaultBlockState());
+        else if (chance < 0.97f) placeDoublePlant(level, pos, Blocks.PEONY.defaultBlockState());
     }
 
     private static void handlePlainsGrowth(ServerLevel level, BlockPos pos, float chance) {
         if (chance < 0.05f) level.setBlock(pos, Blocks.DANDELION.defaultBlockState(), 3);
         else if (chance < 0.10f) level.setBlock(pos, Blocks.POPPY.defaultBlockState(), 3);
         else if (chance < 0.15f) level.setBlock(pos, Blocks.OXEYE_DAISY.defaultBlockState(), 3);
-        else if (chance < 0.20f) level.setBlock(pos, ModBlocks.FLAX_FLOWER_BLOCK.get().defaultBlockState(), 3);
-        else if (chance < 0.25f) level.setBlock(pos, Blocks.CORNFLOWER.defaultBlockState(), 3);
-        else if (chance < 0.65f) level.setBlock(pos, Blocks.TALL_GRASS.defaultBlockState(), 3);
+        else if (chance < 0.20f) level.setBlock(pos, Blocks.AZURE_BLUET.defaultBlockState(), 3);
+        else if (chance < 0.25f) level.setBlock(pos, ModBlocks.FLAX_FLOWER_BLOCK.get().defaultBlockState(), 3);
+        else if (chance < 0.30f) level.setBlock(pos, Blocks.CORNFLOWER.defaultBlockState(), 3);
+        else if (chance < 0.45f) placeDoublePlant(level, pos, Blocks.TALL_GRASS.defaultBlockState());
         else if (chance < 0.80f) level.setBlock(pos, Blocks.SHORT_GRASS.defaultBlockState(), 3);
     }
 
     private static void handleForestGrowth(ServerLevel level, BlockPos pos, float chance) {
-        if (chance < 0.07f) level.setBlock(pos, Blocks.ALLIUM.defaultBlockState(), 3);
-        else if (chance < 0.14f) level.setBlock(pos, Blocks.AZURE_BLUET.defaultBlockState(), 3);
-        else if (chance < 0.15f) level.setBlock(pos, ModBlocks.FLAX_FLOWER_BLOCK.get().defaultBlockState(), 3);
-        else if (chance < 0.21f) level.setBlock(pos, Blocks.OXEYE_DAISY.defaultBlockState(), 3);
-        else if (chance < 0.30f) level.setBlock(pos, Blocks.TALL_GRASS.defaultBlockState(), 3);
+        if (chance < 0.05f) level.setBlock(pos, Blocks.DANDELION.defaultBlockState(), 3);
+        else if (chance < 0.10f) level.setBlock(pos, Blocks.POPPY.defaultBlockState(), 3);
+        else if (chance < 0.14f) level.setBlock(pos, Blocks.CORNFLOWER.defaultBlockState(), 3);
+        else if (chance < 0.19f) level.setBlock(pos, ModBlocks.FLAX_FLOWER_BLOCK.get().defaultBlockState(), 3);
+        else if (chance < 0.21f) level.setBlock(pos, Blocks.LILY_OF_THE_VALLEY.defaultBlockState(), 3);
+        else if (chance < 0.23f) placeDoublePlant(level, pos, Blocks.LILAC.defaultBlockState());
+        else if (chance < 0.25f) placeDoublePlant(level, pos, Blocks.PEONY.defaultBlockState());
+        else if (chance < 0.27f) placeDoublePlant(level, pos, Blocks.ROSE_BUSH.defaultBlockState());
+        else if (chance < 0.40f) level.setBlock(pos, Blocks.SHORT_GRASS.defaultBlockState(), 3);
+        else if (chance < 0.60f) placeDoublePlant(level, pos, Blocks.TALL_GRASS.defaultBlockState());
     }
 
     private static void handleTaigaGrowth(ServerLevel level, BlockPos pos, float chance) {
         if (chance < 0.10f) level.setBlock(pos, Blocks.FERN.defaultBlockState(), 3);
-        else if (chance < 0.20f) level.setBlock(pos, Blocks.TALL_GRASS.defaultBlockState(), 3);
+        else if (chance < 0.20f) level.setBlock(pos, Blocks.SHORT_GRASS.defaultBlockState(), 3);
+        else if (chance < 0.30f) placeDoublePlant(level, pos, Blocks.TALL_GRASS.defaultBlockState());
     }
 
     private static void handleSwampGrowth(ServerLevel level, BlockPos pos, float chance) {
         if (chance < 0.12f) level.setBlock(pos, Blocks.BLUE_ORCHID.defaultBlockState(), 3);
-        else if (chance < 0.22f) level.setBlock(pos, Blocks.TALL_GRASS.defaultBlockState(), 3);
+        else if (chance < 0.22f) placeDoublePlant(level, pos, Blocks.TALL_GRASS.defaultBlockState());
+        else if (chance < 0.32f) level.setBlock(pos, Blocks.SHORT_GRASS.defaultBlockState(), 3);
     }
 
     private static void handleSavannaGrowth(ServerLevel level, BlockPos pos, float chance) {
-        if (chance < 0.20f) level.setBlock(pos, Blocks.TALL_GRASS.defaultBlockState(), 3);
-        else if (chance < 0.21f) level.setBlock(pos, ModBlocks.FLAX_FLOWER_BLOCK.get().defaultBlockState(), 3);
-        else if (chance < 0.23f) level.setBlock(pos, ModBlocks.YUCCA_PLANT_BLOCK.get().defaultBlockState(), 3);
+        if (chance < 0.20f) placeDoublePlant(level, pos, Blocks.TALL_GRASS.defaultBlockState());
+        else if (chance < 0.40f) level.setBlock(pos, Blocks.SHORT_GRASS.defaultBlockState(), 3);
+        else if (chance < 0.42f) level.setBlock(pos, ModBlocks.FLAX_FLOWER_BLOCK.get().defaultBlockState(), 3);
+        else if (chance < 0.44f) level.setBlock(pos, ModBlocks.YUCCA_PLANT_BLOCK.get().defaultBlockState(), 3);
     }
 
     private static void handleJungleGrowth(ServerLevel level, BlockPos pos, float chance) {
         if (chance < 0.12f) level.setBlock(pos, Blocks.FERN.defaultBlockState(), 3);
-        else if (chance < 0.20f) level.setBlock(pos, Blocks.TALL_GRASS.defaultBlockState(), 3);
+        else if (chance < 0.22f) placeDoublePlant(level, pos, Blocks.TALL_GRASS.defaultBlockState());
+        else if (chance < 0.40f) level.setBlock(pos, Blocks.SHORT_GRASS.defaultBlockState(), 3);
     }
 
     private static void handleMeadowGrowth(ServerLevel level, BlockPos pos, float chance) {
@@ -339,7 +449,8 @@ public class VegetationGrowthHandler {
         else if (chance < 0.15f) level.setBlock(pos, Blocks.DANDELION.defaultBlockState(), 3);
         else if (chance < 0.17f) level.setBlock(pos, ModBlocks.FLAX_FLOWER_BLOCK.get().defaultBlockState(), 3);
         else if (chance < 0.20f) level.setBlock(pos, Blocks.POPPY.defaultBlockState(), 3);
-        else if (chance < 0.30f) level.setBlock(pos, Blocks.TALL_GRASS.defaultBlockState(), 3);
+        else if (chance < 0.30f) placeDoublePlant(level, pos, Blocks.TALL_GRASS.defaultBlockState());
+        else if (chance < 0.40f) level.setBlock(pos, Blocks.SHORT_GRASS.defaultBlockState(), 3);
     }
 
     private static void handleBeachGrowth(ServerLevel level, BlockPos pos, float chance) {
@@ -357,7 +468,8 @@ public class VegetationGrowthHandler {
     }
 
     private static void handleSnowyGrowth(ServerLevel level, BlockPos pos, float chance) {
-        if (chance < 0.10f) level.setBlock(pos, Blocks.TALL_GRASS.defaultBlockState(), 3);
+        if (chance < 0.10f) level.setBlock(pos, Blocks.SHORT_GRASS.defaultBlockState(), 3);
+        else if (chance < 0.20f) placeDoublePlant(level, pos, Blocks.TALL_GRASS.defaultBlockState());
     }
 
     private static void handleRiverGrowth(ServerLevel level, BlockPos pos, float chance) {
@@ -367,12 +479,14 @@ public class VegetationGrowthHandler {
         else if (chance < 0.20f) level.setBlock(pos, Blocks.OXEYE_DAISY.defaultBlockState(), 3);
         else if (chance < 0.21f) level.setBlock(pos, ModBlocks.FLAX_FLOWER_BLOCK.get().defaultBlockState(), 3);
         else if (chance < 0.31f) level.setBlock(pos, Blocks.CORNFLOWER.defaultBlockState(), 3);
-        else if (chance < 0.64f) level.setBlock(pos, Blocks.TALL_GRASS.defaultBlockState(), 3);
+        else if (chance < 0.64f) placeDoublePlant(level, pos, Blocks.TALL_GRASS.defaultBlockState());
         else if (chance < 0.98f) level.setBlock(pos, Blocks.SHORT_GRASS.defaultBlockState(), 3);
     }
 
     private static void handleCherryGrowth(ServerLevel level, BlockPos pos, float chance) {
         if (chance < 0.15f) level.setBlock(pos, Blocks.PINK_PETALS.defaultBlockState(), 3);
+        else if (chance < 0.25f) placeDoublePlant(level, pos, Blocks.TALL_GRASS.defaultBlockState());
+        else if (chance < 0.35f) level.setBlock(pos, Blocks.SHORT_GRASS.defaultBlockState(), 3);
     }
 
     private static void handleLushCaveGrowth(ServerLevel level, BlockPos pos, float chance) {
@@ -381,7 +495,8 @@ public class VegetationGrowthHandler {
     }
 
     private static void handleDefaultGrowth(ServerLevel level, BlockPos pos, float chance) {
-        if (chance < 0.10f) level.setBlock(pos, Blocks.TALL_GRASS.defaultBlockState(), 3);
+        if (chance < 0.10f) level.setBlock(pos, Blocks.SHORT_GRASS.defaultBlockState(), 3);
+        else if (chance < 0.20f) placeDoublePlant(level, pos, Blocks.TALL_GRASS.defaultBlockState());
     }
 
     private static void handleSpectralSoulboundForestGrowth(ServerLevel level, BlockPos pos, float chance) {
@@ -389,13 +504,15 @@ public class VegetationGrowthHandler {
         else if (chance < 0.12f) level.setBlock(pos, Blocks.ALLIUM.defaultBlockState(), 3);
         else if (chance < 0.18f) level.setBlock(pos, Blocks.AZURE_BLUET.defaultBlockState(), 3);
         else if (chance < 0.24f) level.setBlock(pos, Blocks.LILY_OF_THE_VALLEY.defaultBlockState(), 3);
-        else if (chance < 0.40f) level.setBlock(pos, Blocks.TALL_GRASS.defaultBlockState(), 3);
+        else if (chance < 0.40f) level.setBlock(pos, Blocks.SHORT_GRASS.defaultBlockState(), 3);
+        else if (chance < 0.56f) placeDoublePlant(level, pos, Blocks.TALL_GRASS.defaultBlockState());
     }
 
     private static void handleDarkForestGrowth(ServerLevel level, BlockPos pos, float chance) {
         if (chance < 0.02f) level.setBlock(pos, ModBlocks.FLAX_FLOWER_BLOCK.get().defaultBlockState(), 3);
         else if (chance < 0.06f) level.setBlock(pos, Blocks.DANDELION.defaultBlockState(), 3);
         else if (chance < 0.10f) level.setBlock(pos, Blocks.POPPY.defaultBlockState(), 3);
-        else if (chance < 0.40f) level.setBlock(pos, Blocks.TALL_GRASS.defaultBlockState(), 3);
+        else if (chance < 0.40f) level.setBlock(pos, Blocks.SHORT_GRASS.defaultBlockState(), 3);
+        else if (chance < 0.70f) placeDoublePlant(level, pos, Blocks.TALL_GRASS.defaultBlockState());
     }
 }

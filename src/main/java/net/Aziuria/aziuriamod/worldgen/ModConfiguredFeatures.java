@@ -176,7 +176,7 @@ public class ModConfiguredFeatures {
 
         register(context, OVERWORLD_SPINEL_ORE_ULTRA_DEEP_KEY, Feature.ORE, new OreConfiguration(overworldSpinelOres, 4));
         register(context, OVERWORLD_SPINEL_ORE_DEEP_KEY, Feature.ORE, new OreConfiguration(overworldSpinelOres, 3));
-        register(context, OVERWORLD_SPINEL_ORE_MID_KEY, Feature.ORE, new OreConfiguration(overworldSpinelOres, 2));
+        register(context, OVERWORLD_SPINEL_ORE_MID_KEY, Feature.ORE, new OreConfiguration(overworldSpinelOres, 3));
 
         register(context, OVERWORLD_SPECTRAL_ORE_ULTRA_DEEP_KEY, Feature.ORE, new OreConfiguration(overworldSpectralOres, 3));
         register(context, OVERWORLD_SPECTRAL_ORE_DEEP_KEY, Feature.ORE, new OreConfiguration(overworldSpectralOres, 3));
