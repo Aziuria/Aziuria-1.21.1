@@ -19,6 +19,6 @@ public class StingEffect extends MobEffect {
     @Override
     public boolean shouldApplyEffectTickThisTick(int duration, int amplifier) {
         // Run every 15 seconds (300 ticks)
-        return duration % 300 == 0;
+        return duration % 40 == 0;
     }
 }

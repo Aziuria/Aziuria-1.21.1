@@ -6,6 +6,7 @@ import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity; // ✅ FIXED
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
@@ -34,6 +35,10 @@ public class StingingNettlesBlock extends FlowerBlock {
             // slow movement (important)
             entity.makeStuckInBlock(state, new Vec3(0.65D, 0.75D, 0.65D));
 
+            if (entity instanceof Player player) {
+                if (player.isCreative() || player.isSpectator()) return;
+            }
+
             double dx = Math.abs(entity.getX() - entity.xOld);
             double dz = Math.abs(entity.getZ() - entity.zOld);
 
@@ -42,17 +47,19 @@ public class StingingNettlesBlock extends FlowerBlock {
                 // 50/50 chance to apply sting effects + damage
                 if (level.random.nextBoolean()) {
 
-                    // slow periodic damage
-                    if (livingEntity.tickCount % 20 == 0) {
-                        livingEntity.hurt(level.damageSources().cactus(), 1.0F);
-                    }
+                    // ----------------------------
+                    // 50% EFFECT CHANCE (ON SAME TIMER TICK)
+                    // ----------------------------
+                    if (level.random.nextFloat() < 0.5F) {
 
-                    // apply sting effect (refresh duration instead of stacking immunity)
-                    livingEntity.addEffect(new MobEffectInstance(
-                            ModEffects.STING_EFFECT,
-                            100, // short refresh so it stays active while inside
-                            0
-                    ));
+                        MobEffectInstance existing = livingEntity.getEffect(ModEffects.STING_EFFECT);
+
+                        livingEntity.addEffect(new MobEffectInstance(
+                                ModEffects.STING_EFFECT,
+                                100,
+                                existing != null ? existing.getAmplifier() : 0
+                        ));
+                    }
                 }
             }
         }
