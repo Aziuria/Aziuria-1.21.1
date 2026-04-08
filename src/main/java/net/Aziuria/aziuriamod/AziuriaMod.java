@@ -2,6 +2,7 @@ package net.Aziuria.aziuriamod;
 
 import com.mojang.logging.LogUtils;
 import net.Aziuria.aziuriamod.block.ModBlocks;
+import net.Aziuria.aziuriamod.effect.ModEffects;
 import net.Aziuria.aziuriamod.entity.ModEntity;
 import net.Aziuria.aziuriamod.entity.client.worm.WormRenderer;
 import net.Aziuria.aziuriamod.fog.events.ModServerEvents;
@@ -168,6 +169,7 @@ public class AziuriaMod {
         ModBlocks.register(modEventBus);
         ModDamageTypes.register(modEventBus);
         ModSounds.register(modEventBus);
+        ModEffects.register(modEventBus);
         ModVillagers.register(modEventBus);
         ModBlockEntities.register(modEventBus);
         ModMenus.register(modEventBus);

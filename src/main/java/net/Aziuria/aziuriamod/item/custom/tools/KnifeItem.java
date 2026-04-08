@@ -56,6 +56,7 @@ public class KnifeItem extends SwordItem {
                 || state.is(Blocks.KELP_PLANT)
                 || state.is(ModBlocks.YUCCA_PLANT_BLOCK.get())
                 || state.is(ModBlocks.FLAX_FLOWER_BLOCK.get())
+                || state.is(ModBlocks.STINGING_NETTLES_BLOCK.get())
                 || state.is(Blocks.DEAD_BUSH)
                 || state.is(Blocks.HANGING_ROOTS)
                 || state.is(BlockTags.FLOWERS)

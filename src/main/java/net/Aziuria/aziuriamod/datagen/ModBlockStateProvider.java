@@ -61,6 +61,13 @@ public class ModBlockStateProvider extends BlockStateProvider {
                 .setModels(new ConfiguredModel(
                         models().cross("flax_flower", modLoc("block/flax_flower")).renderType("cutout")
                 ));
+
+        getVariantBuilder(ModBlocks.STINGING_NETTLES_BLOCK.get())
+                .partialState()
+                .setModels(new ConfiguredModel(
+                        models().cross("stinging_nettles", modLoc("block/stinging_nettles")).renderType("cutout")
+                ));
+
         // Yucca plant
         getVariantBuilder(ModBlocks.YUCCA_PLANT_BLOCK.get())
                 .partialState()
@@ -71,6 +78,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
         // Optional: register its block item model if you want it to use the block model
         blockItem(ModBlocks.FLAX_FLOWER_BLOCK);
+        blockItem(ModBlocks.STINGING_NETTLES_BLOCK);
         blockItem(ModBlocks.YUCCA_PLANT_BLOCK);
 
         leavesBlock(ModBlocks.APPLE_LEAVES);

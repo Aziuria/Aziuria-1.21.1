@@ -122,6 +122,7 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
         dropSelf(ModBlocks.WAXED_OXIDIZED_COPPER_BARREL.get());
 
         dropSelf(ModBlocks.LEAF_LITTER.get());
+        dropSelf(ModBlocks.STINGING_NETTLES_BLOCK.get());
         dropSelf(ModBlocks.STICK_A.get());
         dropSelf(ModBlocks.STICK_B.get());
         dropSelf(ModBlocks.STICK_C.get());

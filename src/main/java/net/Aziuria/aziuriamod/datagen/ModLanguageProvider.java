@@ -2,6 +2,7 @@ package net.Aziuria.aziuriamod.datagen;
 
 import net.Aziuria.aziuriamod.AziuriaMod;
 import net.Aziuria.aziuriamod.block.ModBlocks;
+import net.Aziuria.aziuriamod.effect.ModEffects;
 import net.Aziuria.aziuriamod.item.ModItems;
 import net.minecraft.data.PackOutput;
 import net.neoforged.neoforge.common.data.LanguageProvider;
@@ -248,6 +249,9 @@ public class ModLanguageProvider extends LanguageProvider {
         // ---- PLANTS ----
         add(ModBlocks.FLAX_FLOWER_BLOCK.get(), "Flax");
         add(ModBlocks.YUCCA_PLANT_BLOCK.get(), "Yucca Plant");
+
+        add(ModBlocks.STINGING_NETTLES_BLOCK.get(), "Stinging Nettles");
+        add("effect.aziuriamod.nettled", "Stung");
 
         // ===================== FOOD ITEMS =====================
         add(ModItems.LETTUCE.get(), "Lettuce");

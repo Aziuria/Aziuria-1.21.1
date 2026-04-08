@@ -290,6 +290,9 @@ public class ModItems {
     public static final DeferredItem<Item> FLAX_FLOWER = ITEMS.register("flax_flower",
             () -> new BlockItem(ModBlocks.FLAX_FLOWER_BLOCK.get(), new Item.Properties()));
 
+    public static final DeferredItem<Item> STINGING_NETTLES = ITEMS.register("stinging_nettles",
+            () -> new BlockItem(ModBlocks.STINGING_NETTLES_BLOCK.get(), new Item.Properties()));
+
     // The placeable block item for the yucca plant
     public static final DeferredItem<Item> YUCCA_PLANT = ITEMS.register("yucca_plant",
             () -> new BlockItem(ModBlocks.YUCCA_PLANT_BLOCK.get(), new Item.Properties()));

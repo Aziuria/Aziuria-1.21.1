@@ -99,6 +99,8 @@ public class SackItemInventoryHandler {
             ALLOWED_ITEMS.add(Items.WHITE_TULIP);
             ALLOWED_ITEMS.add(Items.BLACK_DYE); // Black flowers
             ALLOWED_ITEMS.add(ModItems.FLAX_FLOWER.get());
+            ALLOWED_ITEMS.add(ModItems.YUCCA_LEAVES.get());
+            ALLOWED_ITEMS.add(ModItems.STINGING_NETTLES.get());
 
             // Apples
             ALLOWED_ITEMS.add(Items.APPLE);

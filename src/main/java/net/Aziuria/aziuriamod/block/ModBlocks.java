@@ -14,6 +14,7 @@ import net.Aziuria.aziuriamod.block.custom.vegetation.bushes.BlueberryBushBlock;
 import net.Aziuria.aziuriamod.block.custom.vegetation.bushes.GooseberryBushBlock;
 import net.Aziuria.aziuriamod.block.custom.vegetation.bushes.StrawberryBushBlock;
 import net.Aziuria.aziuriamod.block.custom.vegetation.flower.FlaxFlowerBlock;
+import net.Aziuria.aziuriamod.block.custom.vegetation.plants.StingingNettlesBlock;
 import net.Aziuria.aziuriamod.block.custom.vegetation.plants.YuccaPlantBlock;
 import net.Aziuria.aziuriamod.item.ModItems;
 import net.Aziuria.aziuriamod.item.custom.custom.FuelItem;
@@ -679,6 +680,9 @@ public class ModBlocks {
 
     public static final DeferredBlock<Block> FLAX_FLOWER_BLOCK = BLOCKS.register("flax_flower",
             () -> new FlaxFlowerBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.DANDELION)));
+
+    public static final DeferredBlock<Block> STINGING_NETTLES_BLOCK = BLOCKS.register("stinging_nettles",
+            () -> new StingingNettlesBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.DANDELION)));
 
     public static final DeferredBlock<Block> YUCCA_PLANT_BLOCK = BLOCKS.register("yucca_plant",
             () -> new YuccaPlantBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.DANDELION)));

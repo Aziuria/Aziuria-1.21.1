@@ -89,6 +89,7 @@ public class ClientModInitializer {
             RenderLayerUtil.setRenderLayer(ModBlocks.WAXED_OXIDIZED_COPPER_BARREL.get(), RenderType.translucent());
             RenderLayerUtil.setRenderLayer(ModBlocks.STEEL_BARS.get(), RenderType.cutout());
             RenderLayerUtil.setRenderLayer(ModBlocks.FLAX_FLOWER_BLOCK.get(), RenderType.cutout());
+            RenderLayerUtil.setRenderLayer(ModBlocks.STINGING_NETTLES_BLOCK.get(), RenderType.cutout());
 
             EntityRenderers.register(ModEntities.ISLAND_THROWABLE.get(), IslandThrowableRenderer::new);
             EntityRenderers.register(ModEntities.PEBBLE_PROJECTILE.get(), ThrownItemRenderer::new);
